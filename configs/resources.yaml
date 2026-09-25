@@ -44,7 +44,8 @@ runtime_verification:
   github_contents_write_verified: true
   github_write_error: null
   remote_files_uploaded: true
-  remote_main_sha: 329da0199d5ececd06978103ed4421bbc4536bed
+  remote_bootstrap_sha: bb3cbdde007b9143f59e0bda51ee4b9bd16742a5
+  p0_handoff_sha: 329da0199d5ececd06978103ed4421bbc4536bed
   cluster_access_verified: false
   calculator_installations_verified: false
   training_or_qc_executed: false

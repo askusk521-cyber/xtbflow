@@ -104,8 +104,8 @@
     },
     {
       "path": "configs/resources.yaml",
-      "sha256": "e4504308ace8d3061a6630e66fa6684c4141484713bb8890a5f9b3077b4465cd",
-      "bytes": 5127
+      "sha256": "a8fa0b0bc66352c858b265be74eebe191fb4d0d60d54ed6bf4e4d107820c32d7",
+      "bytes": 5191
     },
     {
       "path": "configs/task.yaml",
@@ -114,8 +114,8 @@
     },
     {
       "path": "docs/HANDOFF_STATUS.md",
-      "sha256": "f1f311214df813e938d3e97a0a7250bc66dbebf793fc846e0292475dbf82d493",
-      "bytes": 2041
+      "sha256": "9210dcf12e748bc5df74b7e98e5da94f8aa0e9accffc342ed7f25418101317db",
+      "bytes": 2289
     },
     {
       "path": "docs/LEGACY_ASSET_INDEX.md",

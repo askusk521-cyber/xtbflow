@@ -16,15 +16,16 @@ GitHub 接口可读取 `askusk521-cyber/xtbflow`，仓库可见性为 public、�
 
 ## 当前远端状态
 
-远端 `main` 已创建并核验：
+远端 `main` 已创建并完成两次非强制推送核验。初始化与 P0 handoff 提交分别为：
 
 ```text
 remote: git@github.com:askusk521-cyber/xtbflow.git
 branch: main
-sha: 329da0199d5ececd06978103ed4421bbc4536bed
+bootstrap_sha: bb3cbdde007b9143f59e0bda51ee4b9bd16742a5
+p0_handoff_sha: 329da0199d5ececd06978103ed4421bbc4536bed
 ```
 
-验证命令 `git ls-remote origin refs/heads/main` 返回同一 SHA。此次及前一次推送均没有使用 force push。
+当前远端精确 SHA 的规范核验命令是 `git ls-remote origin refs/heads/main`；它应与本地 `git rev-parse HEAD` 相同。状态文档自身的后续提交不在配置中自引用。所有推送均没有使用 force push。
 
 ## 本地交付
 

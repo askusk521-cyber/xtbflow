@@ -1,0 +1,79 @@
+# HISTORICAL, NOT ACTIVE. Private filesystem paths and host identifiers redacted.
+schema_version: 1
+prepared_on: '2026-09-25'
+project:
+  repo_path: LOCAL_ONLY_REDACTED
+  execution_mirror_path: LOCAL_ONLY_REDACTED
+  current_head: df20cc446f1d655ccb428fb3eeea1a7abe66357b
+  working_tree_dirty: true
+  frozen_commit: null
+  work_branch: main
+  environment_lock_path: LOCAL_ONLY_REDACTED
+  checkpoint_manifest_path: LOCAL_ONLY_REDACTED
+  previous_audit_evidence_path: LOCAL_ONLY_REDACTED
+  prior_cost_pilot_path: LOCAL_ONLY_REDACTED
+  regression_examples_path: LOCAL_ONLY_REDACTED
+  seed_manifest_path: null
+roles:
+  research_owner: null
+  quantum_chemistry_reviewer: null
+  sealed_test_custodian: null
+  experiment_collaborator: null
+compute:
+  scheduler: slurm
+  execution_host_alias: LOCAL_ONLY_REDACTED
+  execution_hostname: LOCAL_ONLY_REDACTED
+  remote_project_root: LOCAL_ONLY_REDACTED
+  approved_queue: main
+  gpu_count: 1
+  gpu_model: pro6000
+  gpu_memory_gb: null
+  cpu_cores_per_job: 8
+  ram_gb_per_job: 48
+  scratch_directory: LOCAL_ONLY_REDACTED
+  retained_data_directory: LOCAL_ONLY_REDACTED
+  free_storage_gb: null
+  external_network_policy: read-only access for approved asset/audit metadata; no upload or publication
+calculators:
+  semiempirical:
+    executable_or_api: null
+    version: null
+    method: null
+    solvent_model: null
+    energy_force_smoke_test_log: null
+  reference:
+    executable_or_api: null
+    version: null
+    license_or_use_authorized: false
+    method_basis_dispersion: null
+    solvent_model: null
+    scf_and_optimization_thresholds: null
+    ts_frequency_irc_smoke_test_log: null
+  independent_validation:
+    protocol_path: LOCAL_ONLY_REDACTED
+    approved: false
+budgets:
+  pilot_qc_jobs: 0
+  pilot_qc_core_hours: 0
+  pilot_gpu_hours: 0
+  max_concurrent_jobs: 0
+  max_retries_per_job: 0
+  max_wall_minutes_per_job: 0
+  max_retained_storage_gb: 0
+permissions:
+  read_existing_assets: true
+  modify_raw_data: false
+  access_sealed_test_labels: false
+  launch_pilot_computations: false
+  launch_large_scale_training: false
+  publish_data_or_code: false
+  approved_read_roots:
+  - LOCAL_ONLY_REDACTED
+  approved_write_roots:
+  - LOCAL_ONLY_REDACTED
+approvals:
+  scope_approved: false
+  seed_generation_approved: false
+  physics_protocol_approved: false
+  pilot_budget_approved: false
+  approver_and_date: null

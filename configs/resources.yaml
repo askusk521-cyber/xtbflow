@@ -1,0 +1,133 @@
+# ACTIVE. Supersedes historical operation permissions, not scientific evidence requirements.
+schema: xtbflow-resources/v2
+prepared_on: '2026-09-25'
+authority:
+  status: owner_authorized_full_project_operations
+  source: explicit user instruction in project conversation
+  scope: xtbflow project and existing project resources
+  owner_github: askusk521-cyber
+  repeated_routine_approval_required: false
+  historical_zero_budget_permissions_superseded: true
+project:
+  name: xtbflow
+  remote_ssh: git@github.com:askusk521-cyber/xtbflow.git
+  remote_https: https://github.com/askusk521-cyber/xtbflow.git
+  default_branch: main
+  repository_visibility_observed: public
+  repo_root_resolution: git rev-parse --show-toplevel
+  code_commit_resolution: git rev-parse HEAD; record before each comparable run
+  legacy_worktree_imported: false
+  legacy_dirty_worktree_preserve: true
+  private_host_config: configs/host.local.yaml
+permissions:
+  read_project_assets: true
+  modify_project_code_and_configs: true
+  commit_and_push: true
+  manage_project_branches_issues_and_prs: true
+  install_project_dependencies: true
+  download_license_permitted_public_assets: true
+  generate_derived_datasets: true
+  launch_pilot_computations: true
+  launch_large_scale_training: true
+  publish_project_code: true
+  publish_license_cleared_derived_data: true
+  manage_bounded_stage_budgets: true
+integrity_rules:
+  original_data_immutable: true
+  sealed_labels_excluded_from_training: true
+  no_credentials_or_private_paths_in_public_git: true
+  no_false_scientific_results: true
+  preserve_uncommitted_legacy_work: true
+  permission_does_not_imply_technical_access: true
+runtime_verification:
+  github_repository_read_verified: true
+  github_contents_write_verified: false
+  github_write_error: 403 Resource not accessible by integration
+  remote_files_uploaded: false
+  cluster_access_verified: false
+  calculator_installations_verified: false
+  training_or_qc_executed: false
+compute:
+  scheduler_user_reported: slurm
+  gpu_count_user_reported: 1
+  gpu_model_user_reported: pro6000
+  gpu_memory_gb_verified: null
+  cpu_cores_standard_job_user_reported: 8
+  ram_gb_standard_job_user_reported: 48
+  free_storage_gb_verified: null
+  host_alias_env: XTBFlow_EXECUTION_HOST
+  worktree_root_env: XTBFlow_WORK_ROOT
+  legacy_source_root_env: XTBFlow_LEGACY_ROOT
+  data_root_env: XTBFlow_DATA_ROOT
+  run_root_env: XTBFlow_RUN_ROOT
+  queue_env: XTBFlow_QUEUE
+  host_settings_are_claims_until_probed: true
+calculators:
+  semiempirical:
+    selected: xtbloom
+    method: GFN2-xTB
+    execution_authorized: true
+    installed_version: null
+    build_hash: null
+    conformance_passed: false
+    initial_environment: nonperiodic molecular diagnostics; water clusters must be explicitly labeled
+    independent_implementation_check: pinned original xTB or tblite under matched settings
+  reference:
+    selected: CP2K
+    execution_authorized: true
+    installed_version: null
+    theory_protocol_id: null
+    license_review_completed: false
+    energy_force_smoke_passed: false
+    path_validation_smoke_passed: false
+    first_public_training_needs_fresh_dft: false
+  future_reference:
+    selected: jinzhezenggroup/vibeqc
+    promotion_status: not_qualified
+    requirement: recheck exact version and selected method energy/force support; run a cross-code protocol
+      bridge
+roles:
+  project_authority: repository owner, as stated in conversation
+  quantum_chemistry_reviewer: null
+  sealed_test_custodian: null
+  experiment_collaborator: null
+  missing_experiment_collaborator_blocks_public_pilot: false
+  new_wet_lab_experiments: deferred_by_owner
+budget_policy:
+  mode: agent_managed_bounded_stages
+  numbers_are: agent-selected starting caps, not verified capacity or promised runtime
+  existing_resource_quota_check_required: true
+  stop_at_first_limit: true
+  retries_and_failed_calls_count: true
+  stage_cap_changes_require: recorded rationale and updated run config before execution; no repeated routine
+    owner approval
+  new_paid_resource_provisioning: not implied; requires actual billing authorization
+initial_stage_caps:
+  P1:
+    gpu_hours_total_including_semiempirical: 24
+    cpu_core_hours: 200
+    semiempirical_system_evaluations: 10000
+    fresh_dft_energy_force_calls: 0
+    retained_new_storage_gb: 50
+    max_concurrent_jobs: 1
+    max_retries_per_job: 1
+    max_wall_minutes_per_job: 120
+  P2a:
+    fresh_dft_energy_force_calls: 100
+    cpu_core_hours: 400
+    max_concurrent_jobs: 1
+    max_retries_per_job: 1
+  P2b_and_larger_training:
+    numeric_caps: null
+    launch_requires: agent records measured-cost-derived finite limits and gate evidence before scheduling;
+      not an unlimited allocation
+manifests:
+  public_data_manifest: null
+  independent_reactant_seed_manifest: null
+  status: must be generated from real accessible assets; no placeholder records
+scientific_validation:
+  physics_protocol_approved: false
+  independent_review_completed: false
+  sealed_test_completed: false
+  chemical_mechanism_established: false
+  note: scientific evidence status is separate from operational authorization

@@ -1,0 +1,110 @@
+schema: xtbflow-public-first-plan/v2
+status: authorized_with_evidence_and_runtime_gates
+method_priority: flow_matching
+instruction_precedence:
+- AGENTS.md
+- configs/resources.yaml
+- configs/task.yaml
+- this file
+- historical sources
+assumptions:
+  available_legacy_assets: user-described; must verify accessible bytes
+  public_data_reuse: reuse completed audits and exclusions; do not re-audit unchanged assets without reason
+  new_experiments: deferred
+  reference_backend: CP2K first; VibeQC only after requalification
+phases:
+- id: P0
+  name: repository_and_real_asset_takeover
+  owner_authorized: true
+  training: false
+  deliverables:
+  - real legacy asset index, or explicit connectivity gaps
+  - clean intended code migration without discarding legacy dirty changes
+  - source/version/license ledger
+  - runtime inventory and calculator interface tests
+  - actual commit/environment/data identities
+- id: P1
+  name: public_labels_and_semiempirical_module_pilot
+  owner_authorized: true
+  fresh_dft_calls: 0
+  caps: configs/resources.yaml:initial_stage_caps.P1
+  suggested_subset:
+    parent_reactions_min: 100
+    parent_reactions_max: 300
+    geometries_max: 10000
+    sufficiency_claim: false
+  deliverables:
+  - real public_data_manifest with parent-group split and provenance
+  - same-geometry GFN2 and public-reference E/F pairs
+  - small scalar delta-energy model plus held-out E/F error
+  - conservation and symmetry tests
+  - flow diagnostic versus identical postprocessing and direct-ML baselines
+  - failure taxonomy and metered cost
+  cannot_claim:
+  - new DFT-connected channels
+  - aqueous kinetics established
+  - reactant-only discovery proved from known endpoints
+- id: P2a
+  name: fresh_reference_energy_force_bridge
+  owner_authorized: true
+  requires:
+  - actual cluster/calculator availability
+  - frozen reference protocol and convergence checks
+  - review arrangements appropriate to physical protocol
+  caps: configs/resources.yaml:initial_stage_caps.P2a
+  deliverables:
+  - selected-method CP2K E/F conformance and measured throughput
+  - target-domain calibration including charged/sulfur/water cases
+  - reference audits not exclusively selected by semiempirical success
+  - distinct protocol IDs; no unlabeled pooling of different methods
+- id: P2b
+  name: independent_reactant_competition_and_paths
+  owner_authorized: true
+  requires:
+  - independent input manifest frozen before search
+  - measured finite path budget recorded by agent
+  - validated TS/mode/endpoint driver
+  - comparable strong rules and independent serial baseline
+  deliverables:
+  - attempt-level competing events including failures
+  - reference saddle/mode/connectivity evidence
+  - matched-budget discovery and coverage curves
+  - isolated final evaluation without test feedback
+- id: P3
+  name: computation_only_target_study
+  owner_authorized: true
+  requires:
+  - validated method/domain and bounded resources
+  - microstate/conformer/solvent sampling
+  - consistent free-energy references
+  - competition network including donor and product fate
+  deliverables:
+  - position-specific neighboring-oxygen hypothesis comparison
+  - literature constraints distinguished from prospective predictions
+  - independent computational checks and uncertainty
+  claim_boundary: computationally supported interpretation and testable predictions; no new experimental
+    validation
+manifest_contract:
+  public_required_fields:
+  - source_dataset
+  - release_or_checksum
+  - record_id
+  - parent_reaction_id
+  - split_group
+  - geometry_locator
+  - geometry_hash
+  - geometry_origin
+  - reference_protocol_id
+  - units
+  - available_label_mask
+  - charge_spin_evidence
+  - license_record
+  - pretraining_overlap_audit
+  independent_schema: schemas/independent_reactant_seed.schema.json
+  missing_values: quarantine or document; never guess neutral/singlet or fabricate identifiers
+evaluation:
+  first_question: does the physics module improve held-out error and proposal cost beyond the same postprocessing?
+  statistical_unit: independent parent reaction or prespecified family, not frames or random seeds
+  large_training_transition: evidence-driven; authority already granted, numeric run caps still required
+source_scope: This plan implements the prior conversation and attached bundles; software capability statements
+  in historical sources must be rechecked at actual pinned installation.

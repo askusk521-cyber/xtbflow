@@ -1,0 +1,18 @@
+# Copy to configs/host.local.yaml ONLY in the execution environment.
+# This is a template, not proof that any directory, host or queue exists.
+# Do not put passwords, private keys or API tokens here.
+local_repo_root: null
+legacy_source_root: null
+execution_host_alias: null
+execution_repo_root: null
+data_root: null
+run_root: null
+scheduler: slurm
+queue: null
+credentials_provider: operating_system_or_cluster_secret_manager
+verified:
+  ssh: false
+  scheduler: false
+  gpu_model_and_memory: false
+  disk_and_quota: false
+  calculators: false

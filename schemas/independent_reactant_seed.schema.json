@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Independent reactant seed manifest",
+  "description": "待填写的真实输入清单；不包含产物/TS标签。每个item为一个独立反应物微观态与溶剂构型。",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "seed_id",
+      "parent_system_id",
+      "family_id",
+      "mapped_explicit_h_smiles",
+      "geometry_path",
+      "geometry_sha256",
+      "charge",
+      "multiplicity",
+      "microstate_description",
+      "solvent_snapshot_id",
+      "reactant_generation_protocol",
+      "provenance",
+      "approved_split_group"
+    ],
+    "properties": {
+      "seed_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "parent_system_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "family_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "mapped_explicit_h_smiles": {
+        "type": "string",
+        "minLength": 1
+      },
+      "geometry_path": {
+        "type": "string",
+        "minLength": 1
+      },
+      "geometry_sha256": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "charge": {
+        "type": "integer"
+      },
+      "multiplicity": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "microstate_description": {
+        "type": "string",
+        "minLength": 1
+      },
+      "solvent_snapshot_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "reactant_generation_protocol": {
+        "type": "string",
+        "minLength": 1
+      },
+      "provenance": {
+        "type": "string",
+        "minLength": 1
+      },
+      "approved_split_group": {
+        "type": "string",
+        "minLength": 1
+      },
+      "buffer_species_explicit": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "temperature_k": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "ph": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "allowed_intent": {
+        "type": "string"
+      },
+      "license_record": {
+        "type": "string"
+      }
+    }
+  }
+}

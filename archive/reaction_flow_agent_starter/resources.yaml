@@ -1,0 +1,71 @@
+# null 必须通过真实文件/负责人确认补齐；禁止臆造路径和计算结果。
+# 凭据通过集群/操作系统的秘密管理提供，不写入本文件。
+schema_version: 1
+prepared_on: '2026-09-25'
+project:
+  repo_path: null
+  frozen_commit: null
+  work_branch: null
+  environment_lock_path: null
+  checkpoint_manifest_path: null
+  previous_audit_evidence_path: null
+  prior_cost_pilot_path: null
+  regression_examples_path: null
+  seed_manifest_path: null
+roles:
+  research_owner: null
+  quantum_chemistry_reviewer: null
+  sealed_test_custodian: null
+  experiment_collaborator: null
+compute:
+  scheduler: null  # local / slurm / other; record exact invocation separately
+  approved_queue: null
+  gpu_count: null
+  gpu_memory_gb: null
+  cpu_cores_per_job: null
+  ram_gb_per_job: null
+  scratch_directory: null
+  retained_data_directory: null
+  free_storage_gb: null
+  external_network_policy: null
+calculators:
+  semiempirical:
+    executable_or_api: null
+    version: null
+    method: null
+    solvent_model: null
+    energy_force_smoke_test_log: null
+  reference:
+    executable_or_api: null
+    version: null
+    license_or_use_authorized: false
+    method_basis_dispersion: null
+    solvent_model: null
+    scf_and_optimization_thresholds: null
+    ts_frequency_irc_smoke_test_log: null
+  independent_validation:
+    protocol_path: null
+    approved: false
+budgets:
+  pilot_qc_jobs: 0
+  pilot_qc_core_hours: 0
+  pilot_gpu_hours: 0
+  max_concurrent_jobs: 0
+  max_retries_per_job: 0
+  max_wall_minutes_per_job: 0
+  max_retained_storage_gb: 0
+permissions:
+  read_existing_assets: true
+  modify_raw_data: false
+  access_sealed_test_labels: false
+  launch_pilot_computations: false
+  launch_large_scale_training: false
+  publish_data_or_code: false
+  approved_read_roots: []
+  approved_write_roots: []
+approvals:
+  scope_approved: false
+  seed_generation_approved: false
+  physics_protocol_approved: false
+  pilot_budget_approved: false
+  approver_and_date: null

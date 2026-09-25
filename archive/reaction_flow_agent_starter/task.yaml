@@ -1,0 +1,43 @@
+schema_version: 1
+status: proposed_requires_owner_approval
+core_hypothesis: >-
+  守恒事件表征与三维反应模式的联合流匹配，结合经独立参考数据校准的
+  半经验势，在同等物理计算成本下，比强规则和独立串联模型发现更多有效竞争通道。
+method_priority: flow_matching
+pilot_scope:
+  chemistry: 水相闭壳层质子转移耦合亲核加成与酰基转移
+  proposed_elements: [H, C, N, O, S]
+  charge_scope: 按批准的显式微观态清单确定，不根据 pH 自动猜测单一电荷
+  spin_scope: 初期固定闭壳层单重态，不声称跨自旋机理能力
+  spectator_environment: 独立反应物采样得到的显式水与缓冲物候选池
+  final_application: Ala-SEt 与核苷的非酶促氨酰化
+input_permissions:
+  allowed:
+    - 固定原子身份、完整显式氢和立体化学
+    - 独立生成的反应物微观态、构象、相对接近构型和溶剂快照
+    - 总电荷、自旋、温度、缓冲物及可获得的实验条件
+    - 预先定义且对所有方法一致的有限反应意图
+  prohibited:
+    - 真实产物或由真实产物导出的候选筛选掩码
+    - 参考 TS、参考反应模态或反向 IRC 结构作为盲推理输入
+    - 由目标 TS 反选的活性水与反应就绪构象
+    - 封存测试标签或基于测试结果更新模型
+  supervision_note: 训练阶段可以使用产物和 TS 标签；标签不得经预处理泄漏为推理特征。
+outputs:
+  - 带原子索引的候选基元事件或电子重分布
+  - 参与质子、水和缓冲物的身份
+  - 多个三维 TS 初猜及可选反应方向/投影算子
+  - 每个候选的生成日志、预算和模型不确定性指标
+  - 独立验证后实际连通的端点及实际事件
+interpretation_limits:
+  - 流匹配生成时间不是化学反应时间。
+  - 连续键电子变量不是量子化学电子密度。
+  - 样本频率不是动力学分支概率。
+  - 半经验或 DFT 势能面上的驻点不等于溶液自由能机制已确立。
+  - 骨架留出、事件家族留出和微调后泛化必须分别报告。
+primary_evaluation:
+  objective: 固定计算预算下独立物理验证通过的去重通道数，及达到相同覆盖的计算成本
+  count_costs: [候选生成, 失败计算, 半经验调用, 参考方法调用, 频率与IRC, 必需预处理]
+  modes: [共同候选池诊断, 开放事件提议]
+  pooling_unit: 独立母反应体系或反应家族，不是轨迹帧
+  sealed_test_feedback_to_training: false

@@ -1,0 +1,239 @@
+schema: mechai-public-first-proposal/v1
+prepared_on: '2026-09-25'
+status: proposal_not_execution_authorization
+source_resources:
+  filename: 3bebd6c6-c97a-422e-9df2-ec6f68c2902e.yaml
+  sha256: 7f026039eea451925762b8fc090253a622bd55f2cc45834f4fd8133a6809489d
+  authoritative_permissions_unchanged: true
+decisions:
+  new_wet_lab_experiments: deferred_by_owner_in_conversation
+  initial_mode: public_data_module_prototypes
+  fresh_dft_required_for_first_training: false
+  fresh_dft_required_for_new_candidate_reference_validation: true
+  target_claim: constrained joint flow matching plus calibrated semiempirical saddle-aware
+    proposal
+  not_a_startup_claim:
+  - aqueous_mechanism_confirmed
+  - independent_family_generalization_proven
+  - reference_validated_new_TS
+calculator_candidates:
+  semiempirical:
+    package: xtbloom
+    repository: https://github.com/jinzhezenggroup/xtbloom
+    method: GFN2-xTB
+    installed_version: null
+    frozen_commit: null
+    executable_or_api_verified: false
+    phase1_environment: nonperiodic gas-phase systems only; finite water clusters
+      permitted only as explicitly labeled technical probes
+    native_implicit_solvent: not_supported_in_reviewed_docs
+    native_periodic_execution: not_supported_in_reviewed_docs
+    autograd: positions first derivative of energy only; not differentiable force/Hessian
+      loss through engine
+    numerical_hessian: finite differences of analytic forces; final small-system checks,
+      not every flow step
+    conformance_oracle: separately pinned grimme-lab/xtb or tblite under matched settings
+    use_authorized: false
+  reference:
+    package: CP2K
+    role: first fresh-reference E/F and validated path calculator
+    installed_version: null
+    binary_or_container_hash: null
+    theory_protocol_id: null
+    software_license_source: https://www.cp2k.org/
+    license_review_completed: false
+    execution_authorized: false
+    smoke_tests_passed: false
+    required_protocol_fields:
+    - functional
+    - basis_and_file_hash
+    - pseudopotential_or_all_electron_definition
+    - dispersion
+    - grid_cutoffs
+    - cell_and_boundary_conditions
+    - charge
+    - multiplicity
+    - solvent_definition
+    - scf_thresholds
+    - energy_definition
+    - force_units
+    path_driver: native dimer/NEB or external verified driver; IRC integration must
+      be independently smoke-tested
+  future_reference_candidate:
+    package: jinzhezenggroup/vibeqc
+    repository: https://github.com/jinzhezenggroup/vibeqc
+    not_the_other_project: vibe-qc
+    promotion_status: not_qualified
+    reviewed_public_table_dft_properties:
+    - energy
+    promotion_requirements:
+    - reinspect exact frozen method/backend capabilities
+    - qualify DFT forces for chosen functional and grid
+    - cross-code development-set E/F and relative-energy bridge
+    - validate charge/spin/sulfur/solvent/boundary support
+    - freeze a new reference protocol rather than silently mix labels
+roles_by_gate:
+  research_owner:
+    identity: null
+    required_for: budget and permission approval
+  quantum_chemistry_reviewer:
+    identity: null
+    blocks_readonly_audit: false
+    blocks_public_label_module_prototype: false
+    review_needed_before: production fresh-reference data and mechanistic claims
+  sealed_test_custodian:
+    identity: null
+    initial_arrangement: owner-controlled labels or isolated evaluation process; do
+      not claim independent third-party validation
+    needed_before: final holdout evaluation
+  experiment_collaborator:
+    identity: null
+    required_now: false
+    status: deferred
+manifests:
+  public_manifest:
+    path: null
+    status: to_be_generated_from_authorized_local_assets
+    kind: public_diagnostic_not_independent_reactant_input
+    required_fields:
+    - source_dataset
+    - source_release_or_checksum
+    - record_id
+    - parent_reaction_id
+    - split_group
+    - geometry_locator
+    - geometry_hash
+    - geometry_origin
+    - reference_protocol_id
+    - energy_units
+    - force_units
+    - available_label_mask
+    - charge_and_spin_evidence
+    - license_record
+    - pretraining_overlap_audit
+    rules:
+    - never fabricate source IDs or file paths
+    - no default neutral/singlet without evidence
+    - no random-frame train/test split
+    - preserve existing approved exclusions
+    - reference products and TS may be labels, never covert discovery inputs
+  prospective_seed_manifest:
+    path: null
+    status: deferred_until_independent_data_production
+    required_before: new independent reactant-only competition experiment
+    rules:
+    - generate before target search
+    - no TS-selected waters
+    - keep complete atom pool and explicit microstate
+    - freeze generation protocol and input hash before search
+phases:
+- id: P0
+  name: read_existing_assets_and_prepare_patch
+  fresh_dft: 0
+  training: false
+  current_config_read_access: true
+  execution_approval: false
+  outputs:
+  - existing asset evidence index
+  - public subset extraction specification
+  - calculator adapter patch proposal
+  - explicit approvals required to write code and runs
+  permission_note: Only currently authorized paths. Existing allowed write root is
+    the starter directory; source repo and remote run dirs are not authorized write
+    roots.
+- id: P1
+  name: public_data_and_semiempirical_module_pilot
+  approval: false
+  fresh_dft: 0
+  proposed_caps_not_runtime_estimates:
+    gpu_hours_total_including_semiempirical: 24
+    cpu_core_hours: 200
+    semiempirical_system_evaluations: 10000
+    new_retained_storage_gb: 50
+    max_concurrent_jobs: 1
+    max_retries_per_job: 1
+    max_wall_minutes_per_job: 120
+  suggested_subset_bounds:
+    parent_reactions_min: 100
+    parent_reactions_max: 300
+    geometries_max: 10000
+    graph_events_max: 20000
+  work:
+  - FlowER-style event prior and conservation tests using authorized existing assets
+  - Transition1x derivative-compatible reference labels with same-geometry GFN2-xTB
+    E/F
+  - fit small scalar delta-energy model and force correction
+  - test geometry/flow guidance only as diagnostic
+  - keep all baselines on identical calculator/postprocessing budget
+  acceptance:
+  - verified unit/sign/parity and failure handling
+  - conservation and symmetry tests
+  - held-out group delta E/F against bare semiempirical and direct ML baseline
+  - original and postprocessed geometry results labeled by evidence level
+  - real cost and failures recorded
+  prohibited_claims:
+  - new reference-validated channels
+  - bulk aqueous kinetics
+  - reaction-family discovery from benchmark endpoints
+- id: P2a
+  name: cp2k_calculator_and_domain_bridge
+  approval: false
+  proposed_caps_not_runtime_estimates:
+    fresh_dft_energy_force_calls: 100
+    cpu_core_hours: 400
+    max_concurrent_jobs: 1
+    max_retries_per_job: 1
+  work:
+  - qualify selected reference protocol on development structures
+  - paired E/F in charged sulfur and finite water environments
+  - include semiempirical-failed or low-ranked candidates in reference audits
+  - benchmark throughput before path budgets are assigned
+  full_ts_paths_authorized: false
+- id: P2b
+  name: new_candidate_reference_path_validation
+  approval: false
+  budget: null
+  requires:
+  - reviewed protocol
+  - independent seed manifest
+  - measured E/F costs
+  - separate capped path budget
+  work:
+  - reference saddle optimization
+  - frequency/mode check
+  - bidirectional IRC or explicitly identified validated endpoint method
+  - comparison of diverse competing proposals under matched budgets
+  minimum_label: reference-calculator verified, not experimentally confirmed
+- id: P3
+  name: computation_only_target_study
+  approval: false
+  budget: null
+  requirements:
+  - quantified domain of applicability
+  - independent reactant microstates and solvent sampling
+  - consistent free-energy reference
+  - competition network and product-fate alternatives
+  - literature constraints separated from prospective predictions
+  - held-out computational verification
+  claim_boundary: computationally supported interpretation and testable predictions;
+    no new experimental verification claimed
+reproducibility:
+  reported_current_head: df20cc446f1d655ccb428fb3eeea1a7abe66357b
+  reported_working_tree_dirty: true
+  actual_frozen_commit: null
+  instruction: Prepare an explicit patch; owner reviews/stages intended files only.
+    Do not git add all or discard changes. Freeze a runnable commit before comparable
+    runs; verify execution mirror identity and data/environment hashes.
+  do_not_use_as_frozen_commit: df20cc446f1d655ccb428fb3eeea1a7abe66357b
+approval_proposal:
+  approved: false
+  approver: null
+  date: null
+  write_roots_to_approve: []
+  notes:
+  - Approve a scratch/worktree and output directories explicitly, or keep all edits
+    as patches within the existing allowed starter directory.
+  - Metadata-only network policy does not authorize large dataset downloads or arbitrary
+    package installation.
+  - Do not infer remote installation, valid licensing review, computational success,
+    or human identities from this plan.

@@ -93,6 +93,11 @@
       "bytes": 542
     },
     {
+      "path": "configs/public_data_manifest.yaml",
+      "sha256": "786cf66f5514666835bdce3bc8cb10ffe0d497d1125876f255b89bd0eaa8f633",
+      "bytes": 4101
+    },
+    {
       "path": "configs/public_first_plan.yaml",
       "sha256": "2ea96b7e01f90cf766afa9de181f56666e405e74f9b442b74ce2a874107fafc3",
       "bytes": 4396
@@ -113,9 +118,14 @@
       "bytes": 2026
     },
     {
+      "path": "docs/LEGACY_ASSET_INDEX.md",
+      "sha256": "a77341b92895bd13449f8f3d5b81a96fb3a16369f557189565d4d6c7d62a2a5e",
+      "bytes": 3501
+    },
+    {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "cd716c753774917be743a8ae7ca44adb5ee6864fce2b9cf2be2af93ad549f969",
-      "bytes": 1343
+      "sha256": "3c0c86fb1cffe66d9b018465d4a3150e6fc3188e946fd4fb8300a8d8c725b014",
+      "bytes": 1520
     },
     {
       "path": "docs/PROVENANCE.md",

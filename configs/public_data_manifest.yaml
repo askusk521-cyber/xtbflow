@@ -1,0 +1,91 @@
+schema: xtbflow-public-data-manifest/v1
+status: audited_sources_and_limits_only
+purpose: >-
+  Small provenance manifest for public-data module work. It records real source
+  identities and the strongest task claim currently supported by the inherited
+  audits. It is not a training split and contains no synthetic seed records.
+generated_on: '2026-09-25'
+source_project: mechai
+source_project_materials_are_imported: false
+datasets:
+  - id: units_lib_formula_oos
+    source: https://modelscope.cn/models/XuLiCheng2025/UniTS-Gen-v1
+    source_revision: a7147021becc4e13887be2c756fefc8b5983f390
+    source_manifest: configs/data/units_assets.json
+    record_count: 4391
+    role: official_formula_oos_geometry_baseline
+    license_status: source_license_and_model_terms_require_recheck_before_redistribution
+    task_status: geometry_baseline_only
+    claim_limit: >-
+      Does not provide product-free event discovery, explicit solvent labels or
+      a family-independent mechanism benchmark.
+
+  - id: uspto_15k_reactant_edits
+    source: https://github.com/wengong-jin/nips17-rexgen
+    source_revision: fb7dea369b0721b88cd0133a7d66348d244f65d3
+    source_manifest: data/manifests/uspto_core_v1.json
+    record_count: 15000
+    role: reactant_side_net_edit_diagnostic
+    license_status: preprocessing_repository_mit; source_reaction_data_original_terms_apply
+    task_status: product_free_net_edit_task_ready
+    claim_limit: >-
+      Net graph edits are not complete electron flow, explicit solvent
+      participation or a water-phase mechanism.
+
+  - id: transition1x_preprocessed
+    source: https://zenodo.org/records/13119868
+    source_revision: train_rpsb_all.pkl_sha256=36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65
+    source_manifest: data/manifests/transition1x_public.json
+    record_count: 10073
+    role: endpoint_conditioned_geometry_diagnostic
+    task_status: endpoint_geometry_only
+    holdout_status: >-
+      The original 1073-row complement contains training-side reactant identity
+      repeats; the later 34-row exact-input diagnostic is not family-certified.
+    claim_limit: >-
+      No explicit graph, formal charge, multiplicity, solvent or product-free
+      event-label contract.
+
+  - id: flower_v2
+    source: https://doi.org/10.6084/m9.figshare.28359407.v3
+    source_revision: release_v2_figshare_v3
+    source_manifest: data/manifests/flower_v2_public.json
+    audited_rows: 3797405
+    role: auxiliary_graph_step_and_state_contract_audit
+    task_status: no_automatic_training
+    holdout_status: >-
+      Input identity grouping was audited, but global family-independent
+      mechanism holdout and product-to-evaluation overlap remain unresolved.
+    claim_limit: >-
+      No multiplicity, 3D solvent ensemble, independent DFT validation or
+      complete competition-path supervision.
+
+  - id: kingfisher_ch2o
+    source: https://doi.org/10.5281/zenodo.15297813
+    source_revision: '1.1'
+    source_manifest: data/manifests/kingfisher_ch2o.json
+    audited_subset: 50_records_21_source_groups
+    role: searched_ts_and_solvent_diagnostic
+    license_status: cc-by-4.0_source_record
+    task_status: diagnostic_only
+    claim_limit: >-
+      Source transition-state geometry and search-selected water create a
+      shortcut; the archive is not an independent reactant-only discovery set.
+
+  - id: rgd1_aggregate_features
+    source: https://doi.org/10.6084/m9.figshare.21066901.v6
+    source_revision: archive_sha256=41285e3a5eda123ea5209d2343c7035fab9a6fad768933d4daab7301a2a50b1c
+    source_manifest: data/manifests/rgd1_public.json
+    record_count: 176992
+    role: metadata_only_diagnostic
+    task_status: not_training_ready
+    claim_limit: >-
+      The available archive lacks the README-referenced atom-mapped SMILES and
+      HDF5 geometry assets.
+
+evidence_policy:
+  source_group_is_statistical_unit: true
+  trajectory_frames_are_not_independent_reactions: true
+  missing_charge_or_spin_is_unknown: true
+  failed_or_unsearched_is_not_physical_negative: true
+  public_data_manifest_is_not_independent_reactant_seed_manifest: true

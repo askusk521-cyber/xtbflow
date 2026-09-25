@@ -21,10 +21,10 @@ GitHub 接口可读取 `askusk521-cyber/xtbflow`，仓库可见性为 public、�
 ```text
 remote: git@github.com:askusk521-cyber/xtbflow.git
 branch: main
-sha: bb3cbdde007b9143f59e0bda51ee4b9bd16742a5
+sha: 329da0199d5ececd06978103ed4421bbc4536bed
 ```
 
-验证命令 `git ls-remote origin refs/heads/main` 返回同一 SHA。此次推送没有使用 force push。
+验证命令 `git ls-remote origin refs/heads/main` 返回同一 SHA。此次及前一次推送均没有使用 force push。
 
 ## 本地交付
 

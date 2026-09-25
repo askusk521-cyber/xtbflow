@@ -6,13 +6,25 @@
 
 GitHub 接口可读取 `askusk521-cyber/xtbflow`，仓库可见性为 public、默认分支为 main，读取时为空。仓库元数据返回账户层面的 push/admin 等权限。
 
-首次实际写入调用（创建 README.md）返回：
+首次实际写入调用（创建 README.md）曾返回：
 
 ```text
 403 Resource not accessible by integration
 ```
 
-因此账户显示的仓库权限没有转化为当前连接可用的 Contents 写入能力。当前 GitHub 插件已经安装，但本次没有成功远程提交；没有擅自更改应用连接、账户授权或其他仓库设置。
+这说明当时的 GitHub 集成写入路径不可用；没有擅自更改应用连接、账户授权或其他仓库设置。随后在具备目标仓库实际 Git 写入凭据的执行环境中，bundle 已通过 SSH 推送成功。
+
+## 当前远端状态
+
+远端 `main` 已创建并核验：
+
+```text
+remote: git@github.com:askusk521-cyber/xtbflow.git
+branch: main
+sha: bb3cbdde007b9143f59e0bda51ee4b9bd16742a5
+```
+
+验证命令 `git ls-remote origin refs/heads/main` 返回同一 SHA。此次推送没有使用 force push。
 
 ## 本地交付
 
@@ -20,7 +32,7 @@ GitHub 接口可读取 `askusk521-cyber/xtbflow`，仓库可见性为 public、�
 
 旧工程、主机、GPU、Slurm、真实数据集和量化程序没有在本次连接或执行。没有产生模型性能或机理结论。
 
-## 从 Git bundle 推送
+## 从 Git bundle 推送（已完成；供复核）
 
 以下命令由已经对目标仓库拥有真实写入凭据的执行环境运行，不需要把凭据交给聊天：
 
@@ -32,6 +44,6 @@ git remote set-url origin git@github.com:askusk521-cyber/xtbflow.git
 git push -u origin main
 ```
 
-不会使用 force push。若远端在这期间产生新提交，应先获取并审查，不覆盖。推送后用 `git ls-remote origin refs/heads/main` 验证远端 SHA；只有实际成功后才将 `configs/resources.yaml` 的远端写入状态改为 true，并记录证据。
+不会使用 force push。若远端在这期间产生新提交，应先获取并审查，不覆盖。此次已按该流程完成，并将 `configs/resources.yaml` 的远端写入状态更新为 true。
 
 单纯在聊天中再次批准不能保证消除 GitHub 返回的 403；需要执行环境或连接在 GitHub 一侧具有可用的仓库内容写入授权。

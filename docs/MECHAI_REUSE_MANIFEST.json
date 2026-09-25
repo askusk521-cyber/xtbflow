@@ -1,0 +1,135 @@
+{
+  "schema": "xtbflow-mechai-reuse-manifest/v1",
+  "generated_on": "2026-09-26",
+  "source_project": "mechai",
+  "source_commit": "df20cc446f1d655ccb428fb3eeea1a7abe66357b",
+  "source_worktree_dirty": true,
+  "source_content_was_read_locally": true,
+  "scientific_claims_included": false,
+  "files": [
+    {
+      "source_relative_path": "src/mechai/data/events.py",
+      "source_sha256": "e2105d80c2ce4cd111dcdc184c764ec66b4a47a5233322b2ad9b46c7ffaf2dfc",
+      "target_path": "vendor/mechai_reusable/mechai/data/events.py",
+      "target_sha256": "e2105d80c2ce4cd111dcdc184c764ec66b4a47a5233322b2ad9b46c7ffaf2dfc",
+      "bytes": 7128
+    },
+    {
+      "source_relative_path": "src/mechai/data/proposals.py",
+      "source_sha256": "7571dc9554adc70fa44904f2a4250832ae1ec2d498b21dc20a6eedfcd0081cd5",
+      "target_path": "vendor/mechai_reusable/mechai/data/proposals.py",
+      "target_sha256": "7571dc9554adc70fa44904f2a4250832ae1ec2d498b21dc20a6eedfcd0081cd5",
+      "bytes": 8721
+    },
+    {
+      "source_relative_path": "src/mechai/data/sample_manifest.py",
+      "source_sha256": "2563b948b55b7ea97bb32d9a0c6905a7152149cf8154bb29cd2728d0851a3745",
+      "target_path": "vendor/mechai_reusable/mechai/data/sample_manifest.py",
+      "target_sha256": "2563b948b55b7ea97bb32d9a0c6905a7152149cf8154bb29cd2728d0851a3745",
+      "bytes": 15801
+    },
+    {
+      "source_relative_path": "src/mechai/models/conditioning.py",
+      "source_sha256": "f354d9ed0684dc9e87c9b0e35bb3e535b457032f941a3882f748b38db420d8d7",
+      "target_path": "vendor/mechai_reusable/mechai/models/conditioning.py",
+      "target_sha256": "f354d9ed0684dc9e87c9b0e35bb3e535b457032f941a3882f748b38db420d8d7",
+      "bytes": 13963
+    },
+    {
+      "source_relative_path": "src/mechai/models/event_geometry.py",
+      "source_sha256": "0f980f3dd588519ca15957f044e917f14ac1edc4d9f34f9be0cfa1defc1af3fa",
+      "target_path": "vendor/mechai_reusable/mechai/models/event_geometry.py",
+      "target_sha256": "0f980f3dd588519ca15957f044e917f14ac1edc4d9f34f9be0cfa1defc1af3fa",
+      "bytes": 21647
+    },
+    {
+      "source_relative_path": "src/mechai/evaluation/event_geometry.py",
+      "source_sha256": "f57a55736d8fa49574fe6bbb95b5f014ea15c37915ed160aad5401e5b8bbd310",
+      "target_path": "vendor/mechai_reusable/mechai/evaluation/event_geometry.py",
+      "target_sha256": "f57a55736d8fa49574fe6bbb95b5f014ea15c37915ed160aad5401e5b8bbd310",
+      "bytes": 23479
+    },
+    {
+      "source_relative_path": "tests/test_events.py",
+      "source_sha256": "c7a9073d3ecf36e29df5200b23e06cfca4d3e47136fa3d50b8a8fe1ebb9e03d5",
+      "target_path": "tests/reusable/test_events.py",
+      "target_sha256": "c7a9073d3ecf36e29df5200b23e06cfca4d3e47136fa3d50b8a8fe1ebb9e03d5",
+      "bytes": 3757
+    },
+    {
+      "source_relative_path": "tests/test_proposals.py",
+      "source_sha256": "7f0403e54217735fcba12d389114fdaa9b8dde8a534e17711393c260a22ec9ae",
+      "target_path": "tests/reusable/test_proposals.py",
+      "target_sha256": "7f0403e54217735fcba12d389114fdaa9b8dde8a534e17711393c260a22ec9ae",
+      "bytes": 7447
+    },
+    {
+      "source_relative_path": "tests/test_sample_manifest.py",
+      "source_sha256": "d0f9b86ec7e81a88af9d8c25f277c3fce50da3bb99946d04ea29a4230eff7348",
+      "target_path": "tests/reusable/test_sample_manifest.py",
+      "target_sha256": "418a63ea5eab662bdd5dfa8cf56a30714dcb080bd0e432ca61d0ea5ab2fed6e4",
+      "bytes": 4529,
+      "transformation": "updated example directory from configs/samples to configs/reusable"
+    },
+    {
+      "source_relative_path": "tests/test_event_geometry.py",
+      "source_sha256": "7f7d1d90513fd4e2a77f48422031f106bc3be1b827d5fc8e62cc1b0fb76f23ac",
+      "target_path": "tests/reusable/test_event_geometry.py",
+      "target_sha256": "7f7d1d90513fd4e2a77f48422031f106bc3be1b827d5fc8e62cc1b0fb76f23ac",
+      "bytes": 18764
+    },
+    {
+      "source_relative_path": "tests/test_event_geometry_decoding.py",
+      "source_sha256": "64d7f35cb188b47791cc51c81810d94c384c402f12c12b451cd319743c3bcbab",
+      "target_path": "tests/reusable/test_event_geometry_decoding.py",
+      "target_sha256": "64d7f35cb188b47791cc51c81810d94c384c402f12c12b451cd319743c3bcbab",
+      "bytes": 13800
+    },
+    {
+      "source_relative_path": "configs/schemas/event_geometry_sample_manifest_v1.schema.json",
+      "source_sha256": "da8b62a2753e46432dcc5be1404934843708c00be30132b7c57478554ea09800",
+      "target_path": "schemas/event_geometry_sample_manifest_v1.schema.json",
+      "target_sha256": "da8b62a2753e46432dcc5be1404934843708c00be30132b7c57478554ea09800",
+      "bytes": 9504
+    },
+    {
+      "source_relative_path": "configs/samples/event_geometry_manifest_v1/endpoint_geometry.json",
+      "source_sha256": "c0f0fd04ad637a8e4b579b936879cc7e5aa1b15712427b6e78a9cfd3620f9cb7",
+      "target_path": "configs/reusable/event_geometry_manifest_v1/endpoint_geometry.json",
+      "target_sha256": "c0f0fd04ad637a8e4b579b936879cc7e5aa1b15712427b6e78a9cfd3620f9cb7",
+      "bytes": 3412
+    },
+    {
+      "source_relative_path": "configs/samples/event_geometry_manifest_v1/intent_event_geometry.json",
+      "source_sha256": "5b16bf2384796438f407016dae3fba29f4527646ac7db66e2c74faf7c75f6a03",
+      "target_path": "configs/reusable/event_geometry_manifest_v1/intent_event_geometry.json",
+      "target_sha256": "5b16bf2384796438f407016dae3fba29f4527646ac7db66e2c74faf7c75f6a03",
+      "bytes": 4027
+    },
+    {
+      "source_relative_path": "configs/samples/event_geometry_manifest_v1/endpoint_microsequence_geometry.json",
+      "source_sha256": "6b2f28366c4b39c0e6398c6742329c1e56f295948b24927c944a629157beb885",
+      "target_path": "configs/reusable/event_geometry_manifest_v1/endpoint_microsequence_geometry.json",
+      "target_sha256": "6b2f28366c4b39c0e6398c6742329c1e56f295948b24927c944a629157beb885",
+      "bytes": 3635
+    }
+  ],
+  "evidence_documents": [
+    "docs/STATUS.md",
+    "docs/MAINLINE_EXECUTION_V1.md",
+    "docs/EVENT_GEOMETRY_DATA_CONTRACT_V1.md",
+    "docs/FLOWER_STATE_CONTRACT_RESULTS.md",
+    "docs/TRANSITION1X_ENDPOINT_READINESS_V1.md",
+    "docs/SCIENCE_VALIDATION_PROTOCOL_V1.md",
+    "reports/model/event-geometry-v1/real-sampler-cost-pilot-v1/multi-seed-summary.json",
+    "reports/public/family-split-v1/manifest-holdout-readiness-v1.json"
+  ],
+  "excluded": [
+    "raw_data_and_archives",
+    "weights_and_checkpoints",
+    "complete_run_directories",
+    "private_host_paths",
+    "sealed_test_labels"
+  ],
+  "notes": "Source-relative evidence paths refer to the original mechai project and are not copied into this repository."
+}

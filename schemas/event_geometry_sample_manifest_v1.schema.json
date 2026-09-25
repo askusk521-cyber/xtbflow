@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mechai.local/schema/event-geometry-sample-manifest-v1.json",
+  "title": "mechai unified event-geometry sample manifest v1",
+  "description": "Provenance and task-definition contract; not a joined training sample.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "sample_id", "task_mode", "source", "atoms", "condition", "variables", "candidate_pool", "geometry", "labels", "gate"],
+  "properties": {
+    "schema_version": {"const": "event-geometry-sample-v1"},
+    "sample_id": {"type": "string", "minLength": 1},
+    "task_mode": {"enum": ["endpoint_geometry", "intent_event_geometry", "endpoint_microsequence_geometry"]},
+    "source": {"$ref": "#/$defs/source"},
+    "atoms": {"$ref": "#/$defs/atoms"},
+    "condition": {"$ref": "#/$defs/condition"},
+    "variables": {"$ref": "#/$defs/variables"},
+    "candidate_pool": {"$ref": "#/$defs/candidatePool"},
+    "geometry": {"$ref": "#/$defs/geometry"},
+    "labels": {"$ref": "#/$defs/labels"},
+    "gate": {"$ref": "#/$defs/gate"}
+  },
+  "$defs": {
+    "status": {"enum": ["observed", "declared", "derived_under_contract", "unknown", "ambiguous", "unavailable"]},
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "status", "source_ref"],
+      "properties": {
+        "value": {},
+        "status": {"$ref": "#/$defs/status"},
+        "source_ref": {"type": ["string", "null"]}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dataset", "revision", "raw_record_id", "family_evidence"],
+      "properties": {
+        "dataset": {"type": "string", "minLength": 1},
+        "revision": {"type": "string", "minLength": 1},
+        "raw_sha256": {"type": ["string", "null"]},
+        "raw_record_id": {"type": "string", "minLength": 1},
+        "parent_calculation_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "source_group_id": {"type": ["string", "null"]},
+        "family_id": {"type": ["string", "null"]},
+        "family_evidence": {"$ref": "#/$defs/status"},
+        "split_manifest_sha256": {"type": ["string", "null"]}
+      }
+    },
+    "atoms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["atomic_numbers", "coordinate_unit"],
+      "properties": {
+        "atomic_numbers": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 1}},
+        "isotopes": {"type": ["array", "null"], "items": {"type": ["integer", "null"]}},
+        "map_ids": {"type": ["array", "null"], "items": {"type": ["integer", "null"]}},
+        "stereo": {"type": ["array", "null"], "items": {"type": ["string", "null"]}},
+        "coordinate_unit": {"const": "angstrom"}
+      }
+    },
+    "coordinateProvenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "selected_by_reference"],
+      "properties": {
+        "role": {"enum": ["unavailable", "independent_metadata", "declared_endpoint", "generated_candidate", "reference_derived"]},
+        "selected_by_reference": {"type": ["boolean", "null"]}
+      }
+    },
+    "solventMember": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["solvent_id", "atom_indices", "status", "source_ref"],
+      "properties": {
+        "solvent_id": {"type": "string", "minLength": 1},
+        "atom_indices": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+        "status": {"$ref": "#/$defs/status"},
+        "source_ref": {"type": ["string", "null"]}
+      }
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["current_graph", "formal_charge", "multiplicity", "microstate", "input_coordinates", "coordinate_provenance", "solvent_membership", "known_condition"],
+      "properties": {
+        "current_graph": {"$ref": "#/$defs/evidence"},
+        "formal_charge": {"$ref": "#/$defs/evidence"},
+        "multiplicity": {"$ref": "#/$defs/evidence"},
+        "microstate": {"$ref": "#/$defs/evidence"},
+        "input_coordinates": {"$ref": "#/$defs/evidence"},
+        "coordinate_provenance": {"$ref": "#/$defs/coordinateProvenance"},
+        "solvent_membership": {"type": "array", "items": {"$ref": "#/$defs/solventMember"}},
+        "known_condition": {"$ref": "#/$defs/knownCondition"}
+      }
+    },
+    "knownCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["permission_mode", "already_given_variables", "variables_to_infer"],
+      "properties": {
+        "net_heavy_atom_edits": {"$ref": "#/$defs/evidence"},
+        "reactive_atom_indices": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+        "product_graph": {"$ref": "#/$defs/evidence"},
+        "product_coordinates": {"$ref": "#/$defs/evidence"},
+        "permission_mode": {"enum": ["none", "declared_net_intent", "declared_center", "declared_endpoints", "full_mapped_product"]},
+        "already_given_variables": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "variables_to_infer": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "variables": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["known", "unknown", "prediction_targets"],
+      "properties": {
+        "known": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "unknown": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "prediction_targets": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_id", "origin", "representation_valid"],
+      "properties": {
+        "event_id": {"type": "string", "minLength": 1},
+        "delta_be": {"type": ["number", "null"]},
+        "proton_transfers": {"type": "array"},
+        "net_active_solvent_ids": {"type": "array", "items": {"type": "string"}},
+        "origin": {"type": "string", "minLength": 1},
+        "proposal_source_ref": {"type": ["string", "null"]},
+        "representation_valid": {"type": ["boolean", "null"]},
+        "out_of_domain_reason": {"type": ["string", "null"]}
+      }
+    },
+    "candidatePool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generator_revision", "uses_reference_labels", "events"],
+      "properties": {
+        "generator_revision": {"type": ["string", "null"]},
+        "uses_reference_labels": {"type": "boolean"},
+        "enumeration_attempts": {"type": ["integer", "null"], "minimum": 0},
+        "pre_cap_count": {"type": ["integer", "null"], "minimum": 0},
+        "event_cap": {"type": ["integer", "null"], "minimum": 1},
+        "truncated": {"type": ["boolean", "null"]},
+        "events": {"type": "array", "items": {"$ref": "#/$defs/event"}}
+      }
+    },
+    "geometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_geometry_source", "coordinates_ref", "geometry_validity"],
+      "properties": {
+        "candidate_geometry_source": {"enum": ["generated_candidate", "independent_initial_guess", "declared_endpoint", "reference_ts_oracle"]},
+        "coordinates_ref": {"$ref": "#/$defs/evidence"},
+        "geometry_validity": {"$ref": "#/$defs/evidence"}
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference_id", "event_id_or_unknown", "event_evidence", "ts_coordinates_ref", "atom_correspondence", "electronic_structure_level", "environment_protocol", "frequency_evidence", "irc_evidence", "endpoint_optimization_evidence"],
+      "properties": {
+        "reference_id": {"type": "string", "minLength": 1},
+        "event_id_or_unknown": {"type": ["string", "null"]},
+        "event_evidence": {"$ref": "#/$defs/status"},
+        "ts_coordinates_ref": {"type": ["string", "null"]},
+        "atom_correspondence": {"type": ["object", "string", "null"]},
+        "electronic_structure_level": {"type": ["string", "null"]},
+        "environment_protocol": {"type": ["string", "null"]},
+        "frequency_evidence": {"type": ["string", "null"]},
+        "irc_evidence": {"type": ["string", "null"]},
+        "endpoint_optimization_evidence": {"type": ["string", "null"]}
+      }
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["references", "competing_channel_coverage", "physical_negative_labels_available"],
+      "properties": {
+        "references": {"type": "array", "items": {"$ref": "#/$defs/reference"}},
+        "competing_channel_coverage": {"enum": ["known", "partial", "unknown", "none"]},
+        "physical_negative_labels_available": {"type": "boolean"}
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["geometry_only", "event_geometry_matched", "independent_evaluation", "failure_reasons"],
+      "properties": {
+        "geometry_only": {"enum": ["pending", "pass", "blocked", "unknown"]},
+        "event_geometry_matched": {"enum": ["pending", "pass", "blocked", "unknown"]},
+        "independent_evaluation": {"enum": ["pending", "pass", "blocked", "unknown"]},
+        "failure_reasons": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "schema_version": "event-geometry-sample-v1",
+  "sample_id": "example:intent-event",
+  "task_mode": "intent_event_geometry",
+  "source": {
+    "dataset": "Kingfisher-example",
+    "revision": "illustrative",
+    "raw_record_id": "example-41",
+    "raw_sha256": null,
+    "parent_calculation_ids": [],
+    "source_group_id": "group-0",
+    "family_id": null,
+    "family_evidence": "unknown",
+    "split_manifest_sha256": null
+  },
+  "atoms": {
+    "atomic_numbers": [
+      6,
+      8,
+      1,
+      1,
+      8,
+      1,
+      1
+    ],
+    "isotopes": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "map_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "stereo": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "coordinate_unit": "angstrom"
+  },
+  "condition": {
+    "current_graph": {
+      "value": {
+        "format": "mapped_graph"
+      },
+      "status": "declared",
+      "source_ref": "example:current-state"
+    },
+    "formal_charge": {
+      "value": {
+        "total": 0
+      },
+      "status": "declared",
+      "source_ref": "example:current-state"
+    },
+    "multiplicity": {
+      "value": null,
+      "status": "unknown",
+      "source_ref": null
+    },
+    "microstate": {
+      "value": null,
+      "status": "unknown",
+      "source_ref": null
+    },
+    "input_coordinates": {
+      "value": {
+        "ref": "source-selected-ts"
+      },
+      "status": "derived_under_contract",
+      "source_ref": "example:search"
+    },
+    "coordinate_provenance": {
+      "role": "reference_derived",
+      "selected_by_reference": true
+    },
+    "solvent_membership": [
+      {
+        "solvent_id": "water-0",
+        "atom_indices": [
+          4,
+          5,
+          6
+        ],
+        "status": "declared",
+        "source_ref": "example:template"
+      }
+    ],
+    "known_condition": {
+      "permission_mode": "declared_net_intent",
+      "already_given_variables": [
+        "current_graph",
+        "formal_charge",
+        "reactive_centers",
+        "net_heavy_atom_edits",
+        "solvent_membership"
+      ],
+      "variables_to_infer": [
+        "event_identity",
+        "proton_transfer_assignment",
+        "active_solvent_ids",
+        "ts_geometry"
+      ],
+      "net_heavy_atom_edits": {
+        "value": {
+          "centers": [
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        "status": "declared",
+        "source_ref": "example:intent"
+      },
+      "reactive_atom_indices": [
+        0,
+        1
+      ]
+    }
+  },
+  "variables": {
+    "known": [
+      "current_graph",
+      "formal_charge",
+      "reactive_centers",
+      "net_heavy_atom_edits",
+      "solvent_membership"
+    ],
+    "unknown": [
+      "event_identity",
+      "proton_transfer_assignment",
+      "active_solvent_ids",
+      "ts_geometry"
+    ],
+    "prediction_targets": [
+      "event_identity",
+      "proton_transfer_assignment",
+      "active_solvent_ids",
+      "ts_geometry"
+    ]
+  },
+  "candidate_pool": {
+    "generator_revision": null,
+    "uses_reference_labels": false,
+    "enumeration_attempts": null,
+    "pre_cap_count": null,
+    "event_cap": 32,
+    "truncated": null,
+    "events": []
+  },
+  "geometry": {
+    "candidate_geometry_source": "reference_ts_oracle",
+    "coordinates_ref": {
+      "value": {
+        "ref": "archive-ts"
+      },
+      "status": "declared",
+      "source_ref": "example:archive"
+    },
+    "geometry_validity": {
+      "value": null,
+      "status": "unknown",
+      "source_ref": null
+    }
+  },
+  "labels": {
+    "references": [],
+    "competing_channel_coverage": "unknown",
+    "physical_negative_labels_available": false
+  },
+  "gate": {
+    "geometry_only": "blocked",
+    "event_geometry_matched": "blocked",
+    "independent_evaluation": "blocked",
+    "failure_reasons": [
+      "reference-derived coordinates",
+      "family and independent environment unknown"
+    ]
+  }
+}

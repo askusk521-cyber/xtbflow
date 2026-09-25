@@ -108,6 +108,21 @@
       "bytes": 5191
     },
     {
+      "path": "configs/reusable/event_geometry_manifest_v1/endpoint_geometry.json",
+      "sha256": "c0f0fd04ad637a8e4b579b936879cc7e5aa1b15712427b6e78a9cfd3620f9cb7",
+      "bytes": 3412
+    },
+    {
+      "path": "configs/reusable/event_geometry_manifest_v1/endpoint_microsequence_geometry.json",
+      "sha256": "6b2f28366c4b39c0e6398c6742329c1e56f295948b24927c944a629157beb885",
+      "bytes": 3635
+    },
+    {
+      "path": "configs/reusable/event_geometry_manifest_v1/intent_event_geometry.json",
+      "sha256": "5b16bf2384796438f407016dae3fba29f4527646ac7db66e2c74faf7c75f6a03",
+      "bytes": 4027
+    },
+    {
       "path": "configs/task.yaml",
       "sha256": "497be8a98bebc3c52b402877a0039ef0be0caa27c282507cd97ace36e4a92b0a",
       "bytes": 2838
@@ -123,9 +138,19 @@
       "bytes": 3501
     },
     {
+      "path": "docs/MECHAI_RESEARCH_HANDOFF.md",
+      "sha256": "b9b9011b6825d950926e4d7fd906a6a370038dde26407ea1c5fefaaf456058ac",
+      "bytes": 5331
+    },
+    {
+      "path": "docs/MECHAI_REUSE_MANIFEST.json",
+      "sha256": "2b3a1f89841edac9f74545c19377391eeba815f3083d2f6a915d91b1bc01f8fb",
+      "bytes": 6609
+    },
+    {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "3c0c86fb1cffe66d9b018465d4a3150e6fc3188e946fd4fb8300a8d8c725b014",
-      "bytes": 1520
+      "sha256": "c461a727a0cf7a10cced255945eb8cd8419dc9f1082b67697322f8e8e9b6a37c",
+      "bytes": 1728
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -148,6 +173,11 @@
       "bytes": 3700
     },
     {
+      "path": "schemas/event_geometry_sample_manifest_v1.schema.json",
+      "sha256": "da8b62a2753e46432dcc5be1404934843708c00be30132b7c57478554ea09800",
+      "bytes": 9504
+    },
+    {
       "path": "schemas/independent_reactant_seed.schema.json",
       "sha256": "e88a0b48f18b96f5133b3a6c87b1deb0252d5e48d0c6929d97e1bfe38f415851",
       "bytes": 2252
@@ -156,6 +186,86 @@
       "path": "scripts/validate_bootstrap.py",
       "sha256": "47dd56659b5663d44691397ac0d15ab053b7bbc0d0398cf79ebc7781a4dbb318",
       "bytes": 3503
+    },
+    {
+      "path": "tests/reusable/test_event_geometry.py",
+      "sha256": "7f7d1d90513fd4e2a77f48422031f106bc3be1b827d5fc8e62cc1b0fb76f23ac",
+      "bytes": 18764
+    },
+    {
+      "path": "tests/reusable/test_event_geometry_decoding.py",
+      "sha256": "64d7f35cb188b47791cc51c81810d94c384c402f12c12b451cd319743c3bcbab",
+      "bytes": 13800
+    },
+    {
+      "path": "tests/reusable/test_events.py",
+      "sha256": "c7a9073d3ecf36e29df5200b23e06cfca4d3e47136fa3d50b8a8fe1ebb9e03d5",
+      "bytes": 3757
+    },
+    {
+      "path": "tests/reusable/test_proposals.py",
+      "sha256": "7f0403e54217735fcba12d389114fdaa9b8dde8a534e17711393c260a22ec9ae",
+      "bytes": 7447
+    },
+    {
+      "path": "tests/reusable/test_sample_manifest.py",
+      "sha256": "418a63ea5eab662bdd5dfa8cf56a30714dcb080bd0e432ca61d0ea5ab2fed6e4",
+      "bytes": 4529
+    },
+    {
+      "path": "vendor/mechai_reusable/README.md",
+      "sha256": "9c390d8e5c0bb0af891f75e3d8dda7083a86689b3ee7ea6df87ddd3cc78865de",
+      "bytes": 1228
+    },
+    {
+      "path": "vendor/mechai_reusable/mechai/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "vendor/mechai_reusable/mechai/data/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "vendor/mechai_reusable/mechai/data/events.py",
+      "sha256": "e2105d80c2ce4cd111dcdc184c764ec66b4a47a5233322b2ad9b46c7ffaf2dfc",
+      "bytes": 7128
+    },
+    {
+      "path": "vendor/mechai_reusable/mechai/data/proposals.py",
+      "sha256": "7571dc9554adc70fa44904f2a4250832ae1ec2d498b21dc20a6eedfcd0081cd5",
+      "bytes": 8721
+    },
+    {
+      "path": "vendor/mechai_reusable/mechai/data/sample_manifest.py",
+      "sha256": "2563b948b55b7ea97bb32d9a0c6905a7152149cf8154bb29cd2728d0851a3745",
+      "bytes": 15801
+    },
+    {
+      "path": "vendor/mechai_reusable/mechai/evaluation/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "vendor/mechai_reusable/mechai/evaluation/event_geometry.py",
+      "sha256": "f57a55736d8fa49574fe6bbb95b5f014ea15c37915ed160aad5401e5b8bbd310",
+      "bytes": 23479
+    },
+    {
+      "path": "vendor/mechai_reusable/mechai/models/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "vendor/mechai_reusable/mechai/models/conditioning.py",
+      "sha256": "f354d9ed0684dc9e87c9b0e35bb3e535b457032f941a3882f748b38db420d8d7",
+      "bytes": 13963
+    },
+    {
+      "path": "vendor/mechai_reusable/mechai/models/event_geometry.py",
+      "sha256": "0f980f3dd588519ca15957f044e917f14ac1edc4d9f34f9be0cfa1defc1af3fa",
+      "bytes": 21647
     }
   ]
 }

@@ -24,6 +24,8 @@ configs/*.local.json
 raw_data/
 data/raw/
 data/private/
+!data/manifests/
+!data/manifests/**
 data/sealed/
 sealed_tests/
 checkpoints/

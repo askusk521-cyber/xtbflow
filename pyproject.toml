@@ -25,6 +25,7 @@ include-package-data = true
 packages = [
   "xtbflow",
   "xtbflow.runtime",
+  "xtbflow.data",
   "mechai",
   "mechai.data",
   "mechai.evaluation",

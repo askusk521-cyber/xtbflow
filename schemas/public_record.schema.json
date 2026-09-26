@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xtbflow.local/schemas/public_record.schema.json",
+  "title": "xtbflow public record contract",
+  "type": "object",
+  "required": ["source_dataset", "source_revision", "record_id", "parent_reaction_id", "split_group", "geometry_locator", "geometry_hash", "geometry_origin", "reference_protocol_id", "units", "available_label_mask", "charge_spin_evidence", "license_record", "pretraining_overlap_audit", "record_status", "admission", "input_data", "label_data", "claim_limit"],
+  "additionalProperties": false,
+  "properties": {
+    "source_dataset": {"type": "string", "minLength": 1},
+    "source_revision": {"type": "string", "minLength": 1},
+    "record_id": {"type": "string", "minLength": 1},
+    "parent_reaction_id": {"type": "string", "minLength": 1},
+    "split_group": {"type": "string", "minLength": 1},
+    "geometry_locator": {"type": "string", "minLength": 1},
+    "geometry_hash": {"type": "string", "minLength": 1},
+    "geometry_origin": {"type": "string", "minLength": 1},
+    "reference_protocol_id": {"type": "string", "minLength": 1},
+    "units": {"type": "object", "additionalProperties": {"type": "string"}},
+    "available_label_mask": {"type": "object", "additionalProperties": {"type": "boolean"}},
+    "charge_spin_evidence": {"type": "string", "minLength": 1},
+    "license_record": {"type": "string", "minLength": 1},
+    "pretraining_overlap_audit": {"type": "string", "minLength": 1},
+    "record_status": {"type": "string", "minLength": 1},
+    "admission": {"enum": ["quarantine", "train", "validation", "test", "diagnostic"]},
+    "input_data": {"type": "object"},
+    "label_data": {"type": "object"},
+    "claim_limit": {"type": "string"}
+  }
+}

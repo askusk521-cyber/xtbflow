@@ -1,11 +1,18 @@
 schema: xtbflow-public-data-manifest/v1
-status: audited_sources_and_limits_only
+status: source_audit_quarantine_manifest
 purpose: >-
   Small provenance manifest for public-data module work. It records real source
   identities and the strongest task claim currently supported by the inherited
   audits. It is not a training split and contains no synthetic seed records.
-generated_on: '2026-09-25'
+generated_on: '2026-09-26'
 source_project: mechai
+records_manifest: data/manifests/public_records.v1.jsonl
+admitted_record_count: 0
+accessible_record_bytes_verified: false
+quarantine_reason: >-
+  Source identities and inherited audit claims are present, but this checkout
+  does not contain verified per-record geometry bytes, charge/spin evidence or
+  reference E/F labels. No record is admitted or used as a synthetic placeholder.
 source_project_materials_are_imported: false
 datasets:
   - id: units_lib_formula_oos

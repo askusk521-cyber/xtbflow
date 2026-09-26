@@ -69,7 +69,7 @@ def module(name: str) -> ModuleType:
     copying or mutating the vendor implementation.
     """
 
-    if not name.startswith("mechai."):
+    if name != "mechai" and not name.startswith("mechai."):
         raise ValueError("Only the mechai compatibility namespace is supported")
     return import_module(name)
 

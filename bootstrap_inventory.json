@@ -3,6 +3,11 @@
   "purpose": "File integrity only; no scientific validation implied.",
   "files": [
     {
+      "path": ".github/workflows/cpu-tests.yml",
+      "sha256": "070adf0207d892fb1dd484e363dead4c615baf7be36731e0f23f9027a328c89a",
+      "bytes": 936
+    },
+    {
       "path": ".gitignore",
       "sha256": "7cc9de51e06a0e46827f54b39fd44b9f9b3de9c6c98a7d0c6b93beac31187f5f",
       "bytes": 608
@@ -14,8 +19,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "618472b209a82addb2f28f8039d601734a979ce87f1e6710b7bf2f708ebec987",
-      "bytes": 3203
+      "sha256": "adfff219648185a256e6e6f7a27e4460133f88112afdfc39b527a1401ea6e620",
+      "bytes": 4005
     },
     {
       "path": "archive/README.md",
@@ -88,6 +93,11 @@
       "bytes": 2350
     },
     {
+      "path": "configs/environment-n2.yml",
+      "sha256": "8634e9029b113a53a4a4e79f106bbef711cfd0ded544ae2cfd82afb0912dcd64",
+      "bytes": 2609
+    },
+    {
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
@@ -126,6 +136,11 @@
       "path": "configs/task.yaml",
       "sha256": "497be8a98bebc3c52b402877a0039ef0be0caa27c282507cd97ace36e4a92b0a",
       "bytes": 2838
+    },
+    {
+      "path": "docs/ENVIRONMENT_N2.md",
+      "sha256": "40245656778b1ad7f64f542a2621d8402e8378b7e741db00ec055bea3bf35139",
+      "bytes": 2447
     },
     {
       "path": "docs/HANDOFF_STATUS.md",
@@ -173,6 +188,11 @@
       "bytes": 3700
     },
     {
+      "path": "pyproject.toml",
+      "sha256": "710bff103942db0c5ac7fa9cb6bb59ef173bbe3e90037c038058cbb968b26807",
+      "bytes": 886
+    },
+    {
       "path": "schemas/event_geometry_sample_manifest_v1.schema.json",
       "sha256": "da8b62a2753e46432dcc5be1404934843708c00be30132b7c57478554ea09800",
       "bytes": 9504
@@ -186,6 +206,16 @@
       "path": "scripts/validate_bootstrap.py",
       "sha256": "47dd56659b5663d44691397ac0d15ab053b7bbc0d0398cf79ebc7781a4dbb318",
       "bytes": 3503
+    },
+    {
+      "path": "src/xtbflow/__init__.py",
+      "sha256": "81d4dab35ddeb3d8a5e4c41a358db6519b9602325158b153ff794ddabd246c38",
+      "bytes": 243
+    },
+    {
+      "path": "src/xtbflow/legacy.py",
+      "sha256": "c20e7ce55b4fab01ffc2f62b5c99c1ec36d66207660b44ca1b41b39fa3f6d391",
+      "bytes": 3402
     },
     {
       "path": "tests/reusable/test_event_geometry.py",
@@ -213,9 +243,14 @@
       "bytes": 4529
     },
     {
+      "path": "tests/test_package.py",
+      "sha256": "8248556a4837d6925363c9992339d4b4005e764791faf8d7dc375dad1e753bb3",
+      "bytes": 912
+    },
+    {
       "path": "vendor/mechai_reusable/README.md",
-      "sha256": "9c390d8e5c0bb0af891f75e3d8dda7083a86689b3ee7ea6df87ddd3cc78865de",
-      "bytes": 1228
+      "sha256": "04de3724a42fae29b72afee3c5d7c40b2a47f6a7d51774090fda9b9210c73370",
+      "bytes": 1316
     },
     {
       "path": "vendor/mechai_reusable/mechai/__init__.py",

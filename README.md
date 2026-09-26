@@ -43,3 +43,22 @@ python scripts/validate_bootstrap.py
 该命令只检查初始化文件完整性，不运行量化计算或训练。后续修改清单覆盖的文件时，应在同一提交更新 `bootstrap_inventory.json`。
 
 本次连接状态见 `docs/HANDOFF_STATUS.md`。GitHub 仓库授权不会自动提供 SSH、Slurm、GPU 或软件安装。
+
+## Current software status
+
+The first packaged software slice is now available under `src/xtbflow`. It
+exposes an explicit adapter to the immutable `vendor/mechai_reusable` snapshot;
+new xtbflow algorithms will be added under `src/xtbflow` instead of modifying
+the snapshot in place. Install the package and run the complete current test
+slice with:
+
+```bash
+python -m pip install -e ".[test]"
+python -m unittest discover -s tests/reusable -p "test_*.py"
+python -m pytest -q tests/test_package.py
+```
+
+The current package contains contracts and untrained compatibility prototypes.
+It does not yet contain a trained flow model, xTBloom or CP2K calculator
+backend, a reference energy/force dataset, or a chemical validation result.
+Those remain separate issues with their own evidence and budget gates.

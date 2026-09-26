@@ -27,6 +27,7 @@ packages = [
   "xtbflow.runtime",
   "xtbflow.data",
   "xtbflow.proposals",
+  "xtbflow.calculators",
   "mechai",
   "mechai.data",
   "mechai.evaluation",

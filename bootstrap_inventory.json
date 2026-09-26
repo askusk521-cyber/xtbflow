@@ -4,8 +4,8 @@
   "files": [
     {
       "path": ".github/workflows/cpu-tests.yml",
-      "sha256": "0cb2554e95b4d511178e54028b84767d209755204000211f7a8d1ce4ec39deb9",
-      "bytes": 1013
+      "sha256": "07ddd8ec4f459e4eb535df5e690a7a6c617dafe671092a0242fbe7e269203edf",
+      "bytes": 1047
     },
     {
       "path": ".gitignore",
@@ -91,6 +91,11 @@
       "path": "archive/user_resources.redacted.yaml",
       "sha256": "d46770a204004cb541216ee7762d6dfe8b01ad37c5c986bc30b6de327e5a1a3c",
       "bytes": 2350
+    },
+    {
+      "path": "configs/calculators/protocols.yaml",
+      "sha256": "977a71df5756f2de4bfd7bdf2df08b717d29ff2abc926c3e73c6535972ef035b",
+      "bytes": 1382
     },
     {
       "path": "configs/environment-n2.yml",
@@ -219,8 +224,13 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "cc0ad40470d88e23da05b70795ec344ce59261082e0860f35029e834390e1ed0",
-      "bytes": 948
+      "sha256": "99edf8c21dfd321cd95db0045b3818c635c22b78ca443cb29515784356cfbe99",
+      "bytes": 973
+    },
+    {
+      "path": "schemas/calculator_protocol.schema.json",
+      "sha256": "d41a9ebb867bc4f4b5a0dd1500d09e9d24ae124616820d34727759ef9aef932a",
+      "bytes": 882
     },
     {
       "path": "schemas/event_geometry_sample_manifest_v1.schema.json",
@@ -256,6 +266,26 @@
       "path": "src/xtbflow/__init__.py",
       "sha256": "81d4dab35ddeb3d8a5e4c41a358db6519b9602325158b153ff794ddabd246c38",
       "bytes": 243
+    },
+    {
+      "path": "src/xtbflow/calculators/__init__.py",
+      "sha256": "c822d1b3fc59bdda2786dc3fc7d664a95c00e7d78080630c1ccd0c8634ba6151",
+      "bytes": 823
+    },
+    {
+      "path": "src/xtbflow/calculators/base.py",
+      "sha256": "619a7600c14237425daab2b791a3241bbcf1470fa0e2efa269f04c2f45ae199c",
+      "bytes": 16139
+    },
+    {
+      "path": "src/xtbflow/calculators/xtb_oracle.py",
+      "sha256": "6b3cfa5d4e8fa39974ca91cb23cdde5923b0c0116cc59ed6bb9896e2a4ed9fd4",
+      "bytes": 3389
+    },
+    {
+      "path": "src/xtbflow/calculators/xtbloom.py",
+      "sha256": "58a428be39c3b759f41247b2ac2d21ec20c3de3b959a5a7f2a859ab0613ae24a",
+      "bytes": 3214
     },
     {
       "path": "src/xtbflow/data/__init__.py",
@@ -351,6 +381,11 @@
       "path": "tests/test_architecture_contract.py",
       "sha256": "6167428cf23743895ea2da869fdd07b778409303f9af9d684df2396348ede649",
       "bytes": 2402
+    },
+    {
+      "path": "tests/test_calculator_contract.py",
+      "sha256": "10ca6ae9d3d7a8bbcedf42acd13cd2bb257b8dbbf1e7612a58a294547a2408e7",
+      "bytes": 4295
     },
     {
       "path": "tests/test_core_proposals.py",

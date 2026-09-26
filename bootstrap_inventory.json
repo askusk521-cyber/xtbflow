@@ -4,8 +4,8 @@
   "files": [
     {
       "path": ".github/workflows/cpu-tests.yml",
-      "sha256": "f3b1a5252e23b8e32ed250bdc593cdd5ad4bc29dd8738071a91c17212775d5be",
-      "bytes": 1216
+      "sha256": "9d890047c6f2820ebcd92e78762b60f99a8ada66d15f4c2e3f1306e96806434a",
+      "bytes": 1241
     },
     {
       "path": ".gitignore",
@@ -121,6 +121,11 @@
       "path": "configs/models/geometry_flow_v0.1.yaml",
       "sha256": "a67c849958081a29ca7bef14a888a60a9c533e2b6ae8ab34c0530dc6dd045da2",
       "bytes": 1130
+    },
+    {
+      "path": "configs/models/joint_flow_v0.1.yaml",
+      "sha256": "59422f59e47b537e1fcc71e23bcf7d204e44928d5274cde76baba50208f072c2",
+      "bytes": 577
     },
     {
       "path": "configs/models/physical_guidance_v0.1.yaml",
@@ -244,8 +249,8 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "f86a7383d54001a3cba4715aa8992700df1a2b3a259c6c50653a76cd291e0f97",
-      "bytes": 1058
+      "sha256": "264a27005f0b8968d6c32594cdaa56ba2cf5660d25c335700fa35d82861b1fc6",
+      "bytes": 1082
     },
     {
       "path": "schemas/calculator_protocol.schema.json",
@@ -363,14 +368,24 @@
       "bytes": 4778
     },
     {
+      "path": "src/xtbflow/evaluation/__init__.py",
+      "sha256": "3ce11bcb9a4e818840099636abb2dbdf3253b377d759cee931642f9c45c63960",
+      "bytes": 199
+    },
+    {
+      "path": "src/xtbflow/evaluation/terminal.py",
+      "sha256": "a2ee8b3947aa9d55b04aabe52193cfaab0f91f443dde9b68b98a07bf1d91ff3a",
+      "bytes": 1744
+    },
+    {
       "path": "src/xtbflow/legacy.py",
       "sha256": "c20e7ce55b4fab01ffc2f62b5c99c1ec36d66207660b44ca1b41b39fa3f6d391",
       "bytes": 3402
     },
     {
       "path": "src/xtbflow/models/__init__.py",
-      "sha256": "50237c46138bbeee0785b23e127be765bf4a95bba43024d74f4be6cac8989b38",
-      "bytes": 1160
+      "sha256": "66ce3aabfe50f8b2ef050acf43747a8f6518ea8b76194c601cc0ee01b697e5be",
+      "bytes": 1321
     },
     {
       "path": "src/xtbflow/models/conserved_be.py",
@@ -401,6 +416,11 @@
       "path": "src/xtbflow/models/geometry_flow.py",
       "sha256": "f01fef2a80da83e655816eb4a0c3bd831f38414bb0d14a133ec565103204fcaf",
       "bytes": 6054
+    },
+    {
+      "path": "src/xtbflow/models/joint_flow.py",
+      "sha256": "49f9e1d053c932ec146b5e24d40d893769ae13aaa6fd995df8414e92531a1540",
+      "bytes": 6798
     },
     {
       "path": "src/xtbflow/models/reaction_direction.py",
@@ -474,8 +494,8 @@
     },
     {
       "path": "src/xtbflow/training/__init__.py",
-      "sha256": "0dcd44b064cd594c763b25c283ce8f53d9ec232c8895f4351afe90615b64b882",
-      "bytes": 683
+      "sha256": "cef11d4497e08a3277421964945083011e287c05bdd2f250a046111d5409f608",
+      "bytes": 791
     },
     {
       "path": "src/xtbflow/training/energy.py",
@@ -491,6 +511,11 @@
       "path": "src/xtbflow/training/geometry_flow.py",
       "sha256": "fcd76e4a6720cb3892505ddf24324c75867e1d1a88f288cfacc8e509590b2533",
       "bytes": 2677
+    },
+    {
+      "path": "src/xtbflow/training/joint.py",
+      "sha256": "65c18a35910caa4425c7818fa7b563693eda51b04b678848a09dcacfa1885563",
+      "bytes": 3035
     },
     {
       "path": "tests/reusable/test_event_geometry.py",
@@ -556,6 +581,11 @@
       "path": "tests/test_input_firewall.py",
       "sha256": "9b5832a98e7006e43ebfb3ce38d478892da63cdbe6ed88ca863f06180cf2f354",
       "bytes": 2921
+    },
+    {
+      "path": "tests/test_joint_flow.py",
+      "sha256": "a07c6fe2c98bc45e39a4f25b361f9d8149f03428049b0e1391aee7639058d7ed",
+      "bytes": 3070
     },
     {
       "path": "tests/test_package.py",

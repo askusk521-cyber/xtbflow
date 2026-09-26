@@ -1,0 +1,33 @@
+{
+  "schema": "xtbflow-geometry-flow/v0.1",
+  "task_modes": {
+    "endpoint_geometry": {
+      "input": ["coordinates", "atom_mask", "declared_endpoint_coordinates"],
+      "target": ["endpoint_coordinates"],
+      "information_access": "declared_endpoint_diagnostic"
+    },
+    "reactant_event_geometry": {
+      "input": ["reactant_coordinates", "atom_mask", "event_features", "pair_edits"],
+      "target": ["optional_direction_or_geometry_supervision"],
+      "forbidden_input": ["product_coordinates", "ts_coordinates", "target_derived_water", "sealed_test_label"],
+      "information_access": "reactant_only"
+    }
+  },
+  "equivariance": {
+    "translations": true,
+    "proper_rotations": true,
+    "atom_permutations": true,
+    "reflection_alignment": false,
+    "padding_mask_deletes_atoms": false
+  },
+  "direction": {
+    "normalized": true,
+    "sign_invariant_loss": true,
+    "missing_reference_direction": "mask"
+  },
+  "claim_boundaries": {
+    "flow_parameter_is_physical_time": false,
+    "geometry_similarity_is_transition_state": false,
+    "generated_geometry_replaced_by_physical_optimization": false
+  }
+}

@@ -4,8 +4,8 @@
   "files": [
     {
       "path": ".github/workflows/cpu-tests.yml",
-      "sha256": "874905ca3c57a3949d541a7b28db0939679124da98ca9c4fa40f8ee790789cfe",
-      "bytes": 1076
+      "sha256": "aa30fbbcd9aaf951a552dd85c12fca118a667482d2f89ddbe6ea0d23cd7dad24",
+      "bytes": 1104
     },
     {
       "path": ".gitignore",
@@ -106,6 +106,11 @@
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
+    },
+    {
+      "path": "configs/models/geometry_flow_v0.1.yaml",
+      "sha256": "a67c849958081a29ca7bef14a888a60a9c533e2b6ae8ab34c0530dc6dd045da2",
+      "bytes": 1130
     },
     {
       "path": "configs/models/xtbflow_v0.1.yaml",
@@ -289,8 +294,8 @@
     },
     {
       "path": "src/xtbflow/data/__init__.py",
-      "sha256": "1cbf2515b419703a821e48812bc6129ad1ca396785bf7f6fc0b229288d2c5c0d",
-      "bytes": 520
+      "sha256": "facacd33ea2ac3504f637530946dd5ea9bce7cb7ddb15666c5dc7d7eb9047c91",
+      "bytes": 768
     },
     {
       "path": "src/xtbflow/data/public_sources.py",
@@ -308,14 +313,19 @@
       "bytes": 2573
     },
     {
+      "path": "src/xtbflow/data/task_views.py",
+      "sha256": "0c8f62c459d916491f147846af7d0a4714f04f4482a004cea7e35bb25b72b4c6",
+      "bytes": 4778
+    },
+    {
       "path": "src/xtbflow/legacy.py",
       "sha256": "c20e7ce55b4fab01ffc2f62b5c99c1ec36d66207660b44ca1b41b39fa3f6d391",
       "bytes": 3402
     },
     {
       "path": "src/xtbflow/models/__init__.py",
-      "sha256": "101a838f875fe8eacf3a53d6a7a9114ec45112583439483eb9a5862adb29c4e2",
-      "bytes": 654
+      "sha256": "7d27310f02701870bc623c8ef9db93691ac08482dfa23d8ad0dcc75fe0ce3a19",
+      "bytes": 983
     },
     {
       "path": "src/xtbflow/models/conserved_be.py",
@@ -331,6 +341,16 @@
       "path": "src/xtbflow/models/event_flow.py",
       "sha256": "45491b727b8660dff0cfbf4144fef381d94f33ad62163be434ad90fb8c14a17b",
       "bytes": 1835
+    },
+    {
+      "path": "src/xtbflow/models/geometry_flow.py",
+      "sha256": "f01fef2a80da83e655816eb4a0c3bd831f38414bb0d14a133ec565103204fcaf",
+      "bytes": 6054
+    },
+    {
+      "path": "src/xtbflow/models/reaction_direction.py",
+      "sha256": "cee63ed6f1edc68e90fcf8ae3d9c592a8cd577d644dd759f964d59f388f852a7",
+      "bytes": 3090
     },
     {
       "path": "src/xtbflow/proposals/__init__.py",
@@ -374,13 +394,18 @@
     },
     {
       "path": "src/xtbflow/training/__init__.py",
-      "sha256": "9004fc8215d778e9e526a642de24eae286960d65e5fc734364e308f56cdeeab8",
-      "bytes": 218
+      "sha256": "4e1fd5be620332ac2a10325a5c58d5127c2c77206ed77400f7f4888701e47797",
+      "bytes": 432
     },
     {
       "path": "src/xtbflow/training/event_flow.py",
       "sha256": "8135af0f35844bae8d524ad10216e2c9e367bed63c367f684d01bb061251e1af",
       "bytes": 2036
+    },
+    {
+      "path": "src/xtbflow/training/geometry_flow.py",
+      "sha256": "fcd76e4a6720cb3892505ddf24324c75867e1d1a88f288cfacc8e509590b2533",
+      "bytes": 2677
     },
     {
       "path": "tests/reusable/test_event_geometry.py",
@@ -426,6 +451,11 @@
       "path": "tests/test_core_proposals.py",
       "sha256": "fffd0fec0407a9a6f077a0a765c11964285ac0bbfa2e69586ebfe445ee9a9752",
       "bytes": 6608
+    },
+    {
+      "path": "tests/test_geometry_flow.py",
+      "sha256": "5650352d1519c2c67b60c5a474d3d2bd85350708c70071c3360719a810965fde",
+      "bytes": 4661
     },
     {
       "path": "tests/test_input_firewall.py",

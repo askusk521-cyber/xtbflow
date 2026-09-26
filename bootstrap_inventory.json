@@ -514,8 +514,8 @@
     },
     {
       "path": "src/xtbflow/training/joint.py",
-      "sha256": "65c18a35910caa4425c7818fa7b563693eda51b04b678848a09dcacfa1885563",
-      "bytes": 3035
+      "sha256": "b934030dd8f78df449b0eec4e26f9a32b6c02e09527de5edd50b73c641453571",
+      "bytes": 3060
     },
     {
       "path": "tests/reusable/test_event_geometry.py",

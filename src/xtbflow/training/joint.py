@@ -47,5 +47,4 @@ def coupled_control_manifest(*, modes: tuple[str, ...] = ("serial_independent", 
         raise ValueError("unsupported coupling control")
     if coupling_strength < 0 or guidance_strength < 0:
         raise ValueError("control strengths must be nonnegative")
-    return {"schema": "xtbflow-joint-control/v1", "modes": list(modes), "coupling_strength": float(coupling_strength), "guidance_strength": float(guidance_strength), "same_generation_weights": True, "same_physical_budget": True}
-
+    return {"schema": "xtbflow-joint-control/v1", "modes": list(modes), "coupling_strength": float(coupling_strength), "guidance_strength": float(guidance_strength), "same_generation_weights_for_controls": True, "same_physical_budget_for_controls": True}

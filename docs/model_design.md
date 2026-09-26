@@ -1,3 +1,5 @@
+> Canonical v0.1 interface: [docs/architecture/architecture_v0.1.md](architecture/architecture_v0.1.md) and [configs/models/xtbflow_v0.1.yaml](../configs/models/xtbflow_v0.1.yaml). This file retains exploratory rationale; it is not a second active contract.
+
 # 待检验的方法设计：守恒事件—几何流 + 鞍点感知物理先验
 
 这是一份候选研究设计，不是已证明的收敛算法，也不主张各模块本身首创。必须与 sources.md 中的相关工作逐项对照。

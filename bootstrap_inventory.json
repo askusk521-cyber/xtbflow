@@ -103,6 +103,11 @@
       "bytes": 542
     },
     {
+      "path": "configs/models/xtbflow_v0.1.yaml",
+      "sha256": "ad8353098ea13bc018a037cb1065ed44405568e79b4d2517be1e71f12ff7071d",
+      "bytes": 5312
+    },
+    {
       "path": "configs/public_data_manifest.yaml",
       "sha256": "a2b3ce2bc02f4eef03ac62c254ad0160206dfc10d68e9039fc33c8972f53edf7",
       "bytes": 4485
@@ -188,14 +193,19 @@
       "bytes": 1895
     },
     {
+      "path": "docs/architecture/architecture_v0.1.md",
+      "sha256": "1a3d3da0775f39f3a9e27f2f1a5fe234f5967eb68283393dabe0c347ee095c76",
+      "bytes": 5533
+    },
+    {
       "path": "docs/data_contract.md",
       "sha256": "9964999089df7e67b9d5c0af99dcf5bd426974bca5128bee2623c928473d42a9",
       "bytes": 4036
     },
     {
       "path": "docs/model_design.md",
-      "sha256": "45991d09d8039b8212904c7767e4525e446352f309e2fbf8a4ab1de1abaad695",
-      "bytes": 3974
+      "sha256": "bdf387e56ea531479b11068b397e98912004ae24c8e784fb37339106cdcb87ef",
+      "bytes": 4233
     },
     {
       "path": "docs/sources.md",
@@ -216,6 +226,11 @@
       "path": "schemas/independent_reactant_seed.schema.json",
       "sha256": "e88a0b48f18b96f5133b3a6c87b1deb0252d5e48d0c6929d97e1bfe38f415851",
       "bytes": 2252
+    },
+    {
+      "path": "schemas/model_contract.schema.json",
+      "sha256": "f9a2ccf37a2c04c1af2a3cd0536731ec86bd56f75000275bfa6e6e10d6f71351",
+      "bytes": 2110
     },
     {
       "path": "schemas/public_record.schema.json",
@@ -306,6 +321,11 @@
       "path": "tests/reusable/test_sample_manifest.py",
       "sha256": "418a63ea5eab662bdd5dfa8cf56a30714dcb080bd0e432ca61d0ea5ab2fed6e4",
       "bytes": 4529
+    },
+    {
+      "path": "tests/test_architecture_contract.py",
+      "sha256": "6167428cf23743895ea2da869fdd07b778409303f9af9d684df2396348ede649",
+      "bytes": 2402
     },
     {
       "path": "tests/test_input_firewall.py",

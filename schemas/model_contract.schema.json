@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xtbflow.local/schemas/model_contract.schema.json",
+  "title": "XTBFlow v0.1 model contract",
+  "type": "object",
+  "required": ["schema", "model_id", "status", "scope", "inputs", "outputs", "representation", "flow", "conservation", "physical_guidance", "training_label_views", "freeze_levels", "baselines", "out_of_scope", "open_items"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "xtbflow-model-config/v1"},
+    "model_id": {"const": "xtbflow-v0.1"},
+    "status": {"type": "string", "minLength": 1},
+    "scope": {"type": "object", "required": ["elements", "explicit_hydrogen", "fixed_atom_pool", "allowed_multiplicities", "unsupported"]},
+    "inputs": {"type": "object", "required": ["required", "forbidden_at_inference", "pH_role"]},
+    "outputs": {"type": "object", "required": ["event_candidates", "geometry_candidates", "physical_validation"]},
+    "representation": {"type": "object", "required": ["message_passing_blocks", "scalar_channels", "vector_channels", "pair_feature_channels"]},
+    "flow": {"type": "object", "required": ["time_domain", "time_meaning", "event_velocity", "coordinate_velocity", "coupling_modes"]},
+    "conservation": {"type": "object", "required": ["constraint", "projection", "initial_state", "velocity", "symmetric_be_upper_triangle_weights", "discrete_decoder"]},
+    "physical_guidance": {"type": "object", "required": ["corrected_potential", "force", "saddle_guidance", "stage", "trust_region", "scf_failure_policy", "zero_strength_behavior"]},
+    "training_label_views": {"type": "object", "required": ["reactant_input", "training_supervision", "reference_validation", "input_supervision_isolation"]},
+    "freeze_levels": {"type": "object", "required": ["interface_now", "development_after_selection", "confirmatory_before_test"]},
+    "baselines": {"type": "array", "minItems": 4, "items": {"type": "string"}},
+    "out_of_scope": {"type": "array", "items": {"type": "string"}},
+    "open_items": {"type": "array", "items": {"type": "string"}}
+  }
+}

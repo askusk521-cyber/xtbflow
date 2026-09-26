@@ -55,8 +55,8 @@ def test_direction_head_and_loss_are_proper_rotation_and_sign_invariant():
     rotation = torch.tensor([[torch.cos(theta), 0.0, torch.sin(theta)], [0.0, 1.0, 0.0], [-torch.sin(theta), 0.0, torch.cos(theta)]])
     rotated = head(features, torch.matmul(coords, rotation.T), mask)
     assert torch.allclose(rotated, torch.matmul(direction, rotation.T), atol=1e-8, rtol=1e-7)
-    assert sign_invariant_direction_loss(direction, direction, mask) == pytest.approx(0.0, abs=1e-7)
-    assert sign_invariant_direction_loss(direction, -direction, mask) == pytest.approx(0.0, abs=1e-7)
+    assert sign_invariant_direction_loss(direction, direction, mask).item() == pytest.approx(0.0, abs=1e-7)
+    assert sign_invariant_direction_loss(direction, -direction, mask).item() == pytest.approx(0.0, abs=1e-7)
 
 
 def test_task_views_keep_endpoint_and_reactant_modes_separate():

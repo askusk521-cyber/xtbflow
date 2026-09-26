@@ -1,0 +1,30 @@
+{
+  "schema": "xtbflow-cp2k-reference/v0.1",
+  "status": "contract_only_until_installed_and_qualified",
+  "protocol": {
+    "protocol_id": "cp2k-reference-v0.1-unqualified",
+    "functional": "REPLACE_WITH_FROZEN_FUNCTIONAL",
+    "basis_set": "REPLACE_WITH_FROZEN_BASIS_SET",
+    "pseudopotential": "REPLACE_WITH_FROZEN_PSEUDOPOTENTIAL",
+    "dispersion": "REPLACE_WITH_FROZEN_DISPERSION",
+    "cutoff_ry": "REQUIRED_EXPLICIT_VALUE",
+    "relative_cutoff_ry": "REQUIRED_EXPLICIT_VALUE",
+    "scf_epsilon": "REQUIRED_EXPLICIT_VALUE",
+    "max_scf": "REQUIRED_EXPLICIT_VALUE",
+    "charge": "REQUIRED_PER_SYSTEM",
+    "multiplicity": "REQUIRED_PER_SYSTEM",
+    "build_hash": "REQUIRED_OBSERVED_BUILD_HASH",
+    "cp2k_version": "REQUIRED_OBSERVED_VERSION",
+    "boundary": "isolated",
+    "solvent_model": "none_or_explicitly_frozen",
+    "path_status": "not_requested",
+    "parameters": {"energy_unit": "hartree", "force_unit": "hartree/bohr", "path_validation_separate": true}
+  },
+  "boundaries": {
+    "missing_setting": "reject_before_run",
+    "truncated_output": "reject",
+    "scf_failure": "not_converged",
+    "cp2k_name_is_dft_label": false,
+    "path_validation_implied_by_energy_force": false
+  }
+}

@@ -81,7 +81,7 @@ class CP2KProtocol:
 def render_cp2k_input(system: MolecularSystem, protocol: CP2KProtocol, *, project: str = "xtbflow") -> str:
     if system.charge != protocol.charge or system.multiplicity != protocol.multiplicity:
         raise CalculatorProtocolError("system charge/multiplicity does not match the frozen CP2K protocol")
-    rows = ["&GLOBAL", f"  PROJECT {project}", "  RUN_TYPE ENERGY_FORCE", "&END GLOBAL", "&FORCE_EVAL", "  METHOD QS", "  &DFT", f"    BASIS_SET_FILE_NAME {protocol.basis_set}", f"    POTENTIAL_FILE_NAME {protocol.pseudopotential}", f"    CHARGE {protocol.charge}", f"    MULTIPLICITY {protocol.multiplicity}", f"    &SCF", f"      EPS_SCF {protocol.scf_epsilon:.12g}", f"      MAX_SCF {protocol.max_scf}", "    &END SCF", "    &XC", f"      &XC_FUNCTIONAL {protocol.functional}", "      &END XC_FUNCTIONAL", f"      &VDW_POTENTIAL", f"        POTENTIAL_TYPE {protocol.dispersion}", "      &END VDW_POTENTIAL", "    &END XC", "  &END DFT", "  &SUBSYS"]
+    rows = ["&GLOBAL", f"  PROJECT {project}", "  RUN_TYPE ENERGY_FORCE", "&END GLOBAL", "&FORCE_EVAL", "  METHOD QS", "  &DFT", f"    BASIS_SET_FILE_NAME {protocol.basis_set}", f"    POTENTIAL_FILE_NAME {protocol.pseudopotential}", f"    CHARGE {protocol.charge}", f"    MULTIPLICITY {protocol.multiplicity}", "    &MGRID", f"      CUTOFF {protocol.cutoff_ry:.12g}", f"      REL_CUTOFF {protocol.relative_cutoff_ry:.12g}", "    &END MGRID", f"    &SCF", f"      EPS_SCF {protocol.scf_epsilon:.12g}", f"      MAX_SCF {protocol.max_scf}", "    &END SCF", "    &XC", f"      &XC_FUNCTIONAL {protocol.functional}", "      &END XC_FUNCTIONAL", f"      &VDW_POTENTIAL", f"        POTENTIAL_TYPE {protocol.dispersion}", "      &END VDW_POTENTIAL", "    &END XC", "  &END DFT", "  &SUBSYS"]
     if protocol.boundary == "periodic":
         rows.extend(["    &CELL", "      ABC 20 20 20", "    &END CELL"])
     rows.append("    &COORD")
@@ -91,7 +91,7 @@ def render_cp2k_input(system: MolecularSystem, protocol: CP2KProtocol, *, projec
     return "\n".join(rows)
 
 
-_ENERGY = re.compile(r"ENERGY\|.*?energy.*?([-+]?\d+(?:\.\d*)?(?:[Ee][-+]?\d+)?)\s*$", re.IGNORECASE)
+_ENERGY = re.compile(r"ENERGY\|.*?energy.*?([-+]?\d+(?:\.\d*)?(?:[Ee][-+]?\d+)?)\s*$", re.IGNORECASE | re.MULTILINE)
 _FORCE_HEADER = re.compile(r"ATOMIC FORCES.*?\[a\.u\.\]", re.IGNORECASE)
 _FLOAT = r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[Ee][-+]?\d+)?"
 

@@ -299,8 +299,8 @@
     },
     {
       "path": "src/xtbflow/calculators/cp2k.py",
-      "sha256": "ae7c4c194c62064c97f4a06fc5b3bcdbe9e86abec3785ce2829884fad6541058",
-      "bytes": 10076
+      "sha256": "8043e008ecd2100e27d767bad851f09ee2363fe78fc46783c94997fa5cb40e5c",
+      "bytes": 10222
     },
     {
       "path": "src/xtbflow/calculators/xtb_oracle.py",

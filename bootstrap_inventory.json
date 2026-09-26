@@ -4,8 +4,8 @@
   "files": [
     {
       "path": ".github/workflows/cpu-tests.yml",
-      "sha256": "72b5e279ecd09a4b60dd69b9fa4f70d1c2146301b5b241ea5eeb4efd7673c56b",
-      "bytes": 1188
+      "sha256": "f3b1a5252e23b8e32ed250bdc593cdd5ad4bc29dd8738071a91c17212775d5be",
+      "bytes": 1216
     },
     {
       "path": ".gitignore",
@@ -253,6 +253,11 @@
       "bytes": 882
     },
     {
+      "path": "schemas/ef_pair.schema.json",
+      "sha256": "502a4b408b5623bc30430053261029dc979ad02921cc5b968872184f565abb8b",
+      "bytes": 1799
+    },
+    {
       "path": "schemas/event_geometry_sample_manifest_v1.schema.json",
       "sha256": "da8b62a2753e46432dcc5be1404934843708c00be30132b7c57478554ea09800",
       "bytes": 9504
@@ -281,6 +286,11 @@
       "path": "schemas/run_manifest.schema.json",
       "sha256": "e1693486038345e40dd8565577cbe19f960680606d40c8e13b903e7da5b54d51",
       "bytes": 1485
+    },
+    {
+      "path": "scripts/build_ef_pairs.py",
+      "sha256": "679908f9041cd6bf94f4d603e5229eeb23767564de4304a7390782ad96fab69e",
+      "bytes": 3491
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -319,8 +329,18 @@
     },
     {
       "path": "src/xtbflow/data/__init__.py",
-      "sha256": "facacd33ea2ac3504f637530946dd5ea9bce7cb7ddb15666c5dc7d7eb9047c91",
-      "bytes": 768
+      "sha256": "91339cf3985804bd4f5c3954c485c63277bbb2f887c15de4cf9ef1523752e8ba",
+      "bytes": 998
+    },
+    {
+      "path": "src/xtbflow/data/cache.py",
+      "sha256": "1f805c1b6498e0d4451fe340285106f2ea5d78499037548d44adf13b2084819f",
+      "bytes": 2167
+    },
+    {
+      "path": "src/xtbflow/data/pairing.py",
+      "sha256": "f4145f9af27ed5c53f97511d11234b042a45fda2fb5af06a7eaf4a7d4ce557c3",
+      "bytes": 9255
     },
     {
       "path": "src/xtbflow/data/public_sources.py",
@@ -541,6 +561,11 @@
       "path": "tests/test_package.py",
       "sha256": "8248556a4837d6925363c9992339d4b4005e764791faf8d7dc375dad1e753bb3",
       "bytes": 912
+    },
+    {
+      "path": "tests/test_pair_identity.py",
+      "sha256": "2144aeebc4d795e6bd23c6a388a84a84f3c5da68098264e0b53cb0d36d7b47df",
+      "bytes": 2234
     },
     {
       "path": "tests/test_runtime_budget.py",

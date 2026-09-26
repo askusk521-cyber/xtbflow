@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xtbflow.org/schemas/reference_protocol.schema.json",
+  "title": "XTBFlow reference electronic-structure protocol",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol_id", "functional", "basis_set", "pseudopotential", "dispersion", "cutoff_ry", "relative_cutoff_ry", "scf_epsilon", "max_scf", "charge", "multiplicity", "build_hash", "cp2k_version", "boundary", "solvent_model", "path_status", "parameters"],
+  "properties": {
+    "protocol_id": {"type": "string", "minLength": 1},
+    "functional": {"type": "string", "minLength": 1},
+    "basis_set": {"type": "string", "minLength": 1},
+    "pseudopotential": {"type": "string", "minLength": 1},
+    "dispersion": {"type": "string", "minLength": 1},
+    "cutoff_ry": {"type": "number", "exclusiveMinimum": 0},
+    "relative_cutoff_ry": {"type": "number", "exclusiveMinimum": 0},
+    "scf_epsilon": {"type": "number", "exclusiveMinimum": 0},
+    "max_scf": {"type": "integer", "minimum": 1},
+    "charge": {"type": "integer"},
+    "multiplicity": {"type": "integer", "minimum": 1},
+    "build_hash": {"type": "string", "minLength": 1},
+    "cp2k_version": {"type": "string", "minLength": 1},
+    "boundary": {"enum": ["isolated", "periodic"]},
+    "solvent_model": {"type": "string", "minLength": 1},
+    "path_status": {"enum": ["not_requested", "not_run", "not_validated", "validated"]},
+    "parameters": {"type": "object", "additionalProperties": true}
+  }
+}

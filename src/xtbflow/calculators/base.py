@@ -176,6 +176,9 @@ class CalculationResult:
     error_message: str | None = None
     cache_hit: bool = False
     calculator_calls: int = 1
+    calculator_build_hash: str | None = None
+    input_file_hash: str | None = None
+    path_status: str = "not_requested"
 
     def __post_init__(self) -> None:
         for name in ("calculator", "protocol_id", "input_hash"):
@@ -208,6 +211,12 @@ class CalculationResult:
             raise ValueError("cache hits must record zero calculator calls")
         if type(self.calculator_calls) is not int or self.calculator_calls < 0:
             raise ValueError("calculator_calls must be a nonnegative integer")
+        for name in ("calculator_build_hash", "input_file_hash"):
+            value = getattr(self, name)
+            if value is not None and (not isinstance(value, str) or not value.strip()):
+                raise ValueError(f"{name} must be a nonempty string when provided")
+        if self.path_status not in {"not_requested", "not_run", "not_validated", "validated"}:
+            raise ValueError("unsupported path validation status")
 
     @classmethod
     def failure(cls, system: MolecularSystem, protocol: CalculatorProtocol, operation: str, *, status: str, category: str, message: str, calculator_calls: int = 0) -> "CalculationResult":

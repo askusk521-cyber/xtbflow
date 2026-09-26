@@ -8,4 +8,7 @@ __all__ = [
     "SourceAudit", "hash_file", "verify_local_asset", "PublicRecord", "canonical_hash",
     "load_jsonl", "write_jsonl", "SplitError", "admitted_records",
     "assign_group_splits", "audit_no_group_leakage",
+    "EndpointGeometryInput", "GeometryFlowResult", "GeometryTarget", "GeometryTaskMode", "ReactantEventGeometryInput",
 ]
+
+from .task_views import EndpointGeometryInput, GeometryFlowResult, GeometryTarget, GeometryTaskMode, ReactantEventGeometryInput

@@ -4,8 +4,8 @@
   "files": [
     {
       "path": ".github/workflows/cpu-tests.yml",
-      "sha256": "9d890047c6f2820ebcd92e78762b60f99a8ada66d15f4c2e3f1306e96806434a",
-      "bytes": 1241
+      "sha256": "34f20a148969e3964f86091774c863a3f52a74ae3c3a4ca249f498fd27c6f505",
+      "bytes": 1267
     },
     {
       "path": ".gitignore",
@@ -183,6 +183,11 @@
       "bytes": 2838
     },
     {
+      "path": "configs/validation/ts_v0.1.yaml",
+      "sha256": "8599350fceb794e375719a918731d85f76d22e01c5e64446bd071cbf7ef5086b",
+      "bytes": 434
+    },
+    {
       "path": "data/manifests/README.md",
       "sha256": "f5b53024d99c7382234cdd63e9a92cccf4ef1d7161d00b5e351579a5ed8cbb01",
       "bytes": 706
@@ -249,8 +254,8 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "264a27005f0b8968d6c32594cdaa56ba2cf5660d25c335700fa35d82861b1fc6",
-      "bytes": 1082
+      "sha256": "aa9f4cbae25e121975f9743fa2f10febd654e492d530d6169ca5ae1ced845779",
+      "bytes": 1106
     },
     {
       "path": "schemas/calculator_protocol.schema.json",
@@ -518,6 +523,26 @@
       "bytes": 3060
     },
     {
+      "path": "src/xtbflow/validation/__init__.py",
+      "sha256": "baf4fac23b786c162b6e213272476f455684d415322de8133e4aeac41ff9c91d",
+      "bytes": 424
+    },
+    {
+      "path": "src/xtbflow/validation/connectivity.py",
+      "sha256": "5413f4dc2fd2166e91cbbf8d25072a45b643760ee5bb04d5b7641cdced5d9ee6",
+      "bytes": 2201
+    },
+    {
+      "path": "src/xtbflow/validation/modes.py",
+      "sha256": "590d3542632befb16007fbe6c417c7db9afccb305f3ddc59a086c0d0666ef835",
+      "bytes": 1673
+    },
+    {
+      "path": "src/xtbflow/validation/ts_search.py",
+      "sha256": "7860dbdca110a0151d0f2f47b75c2afca2b9896726d5d299522fd78bfdcb02f5",
+      "bytes": 5936
+    },
+    {
       "path": "tests/reusable/test_event_geometry.py",
       "sha256": "7f7d1d90513fd4e2a77f48422031f106bc3be1b827d5fc8e62cc1b0fb76f23ac",
       "bytes": 18764
@@ -596,6 +621,11 @@
       "path": "tests/test_pair_identity.py",
       "sha256": "2144aeebc4d795e6bd23c6a388a84a84f3c5da68098264e0b53cb0d36d7b47df",
       "bytes": 2234
+    },
+    {
+      "path": "tests/test_path_status.py",
+      "sha256": "5d3b494af6ae920e08fa0f47598423258ba56c3ed839e30e0e798af884c3dbdf",
+      "bytes": 1596
     },
     {
       "path": "tests/test_runtime_budget.py",

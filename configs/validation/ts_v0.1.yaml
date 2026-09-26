@@ -1,0 +1,12 @@
+schema: xtbflow-ts-validation/v0.1
+success_requires:
+  converged_stationary_point: true
+  gradient_tolerance: 0.0001
+  negative_mode_threshold: 0.0001
+  negative_mode_count: 1
+  bidirectional_endpoint_path: true
+path_status: validated_only_after_endpoint_connectivity
+missing_evidence: fail_closed
+checkpoint: append_after_each_candidate
+calculator_calls: charge_all_search_and_frequency_evaluations
+input_supervision_isolation: true

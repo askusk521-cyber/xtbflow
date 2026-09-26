@@ -29,6 +29,9 @@ sealed_tests/
 checkpoints/
 weights/
 runs/
+# Public frozen run templates live in the configuration tree.
+!configs/runs/
+!configs/runs/**
 scratch/
 private/
 *.ckpt

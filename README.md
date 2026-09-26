@@ -58,7 +58,8 @@ python -m unittest discover -s tests/reusable -p "test_*.py"
 python -m pytest -q tests/test_package.py
 ```
 
-The current package contains contracts and untrained compatibility prototypes.
+The current package contains contracts, untrained compatibility prototypes, and a standard-library runtime ledger for bounded, resumable execution. The ledger records calculator/protocol identities, per-system attempts, retries, cache hits, resource units, and cumulative stage caps before work is allowed to proceed.
+
 It does not yet contain a trained flow model, xTBloom or CP2K calculator
 backend, a reference energy/force dataset, or a chemical validation result.
 Those remain separate issues with their own evidence and budget gates.

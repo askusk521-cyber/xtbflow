@@ -1,0 +1,17 @@
+schema: xtbflow-joint-flow/v0.1
+event_state: conserved_projected_vector
+geometry_state: equivariant_coordinates
+modes:
+  - serial_independent
+  - joint_bidirectional
+  - both_off
+  - terminal_optimization
+coupling_strength: declared_per_run
+event_geometry_exchange: every_velocity_evaluation
+missing_event_labels: mask
+missing_geometry_labels: mask
+terminal_geometry_slots: shared_across_event_duplicates
+same_generation_weights_for_controls: true
+same_physical_budget_for_controls: true
+flow_parameter: normalized_generation_coordinate
+physical_force_is_event_gradient: false

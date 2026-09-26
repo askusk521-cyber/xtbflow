@@ -1,0 +1,187 @@
+{
+  "schema": "xtbflow-model-config/v1",
+  "model_id": "xtbflow-v0.1",
+  "status": "interface_frozen_implementation_pending",
+  "scope": {
+    "elements": [
+      "H",
+      "C",
+      "N",
+      "O",
+      "S"
+    ],
+    "explicit_hydrogen": true,
+    "fixed_atom_pool": true,
+    "allowed_multiplicities": [
+      1
+    ],
+    "allowed_charge_source": "confirmed_upstream_microstate",
+    "unsupported": [
+      "metals",
+      "radicals",
+      "excited_states",
+      "open_electron_exchange"
+    ]
+  },
+  "inputs": {
+    "required": [
+      "atomic_numbers",
+      "total_charge",
+      "multiplicity",
+      "reactant_electronic_state",
+      "reactant_coordinates",
+      "environment_atom_pool",
+      "reaction_intent"
+    ],
+    "optional": [
+      "temperature",
+      "buffer_identity",
+      "microstate_id"
+    ],
+    "forbidden_at_inference": [
+      "true_product",
+      "reference_ts",
+      "reference_mode",
+      "target_derived_active_water",
+      "sealed_test_label"
+    ],
+    "pH_role": "upstream_microstate_distribution_only"
+  },
+  "outputs": {
+    "event_candidates": "bounded_conserved_event_proposals",
+    "geometry_candidates": "bounded_ts_initial_guesses",
+    "reaction_direction": "optional_sign_invariant_direction_or_projector",
+    "uncertainty": "model_and_input_contract_uncertainty",
+    "physical_validation": "separate_downstream_record"
+  },
+  "representation": {
+    "message_passing_blocks": 6,
+    "scalar_channels": 128,
+    "vector_channels": 32,
+    "pair_feature_channels": 128,
+    "invariant_features": [
+      "element",
+      "charge_state",
+      "microstate",
+      "reaction_intent",
+      "pair_distance"
+    ],
+    "equivariant_features": [
+      "relative_coordinate_vectors"
+    ],
+    "environment_mask_role": "padding_only_and_provenance_audited",
+    "chirality": "preserve_and_test; no mirror_alignment_shortcut"
+  },
+  "flow": {
+    "time_domain": [
+      0.0,
+      1.0
+    ],
+    "time_meaning": "normalized_generation_parameter_not_physical_time",
+    "event_velocity": "db_dtau=f_theta(b_tau,R_tau,tau,c)",
+    "coordinate_velocity": "dR_dtau=g_theta(b_tau,R_tau,tau,c)",
+    "coupling_modes": [
+      "serial_independent",
+      "joint_bidirectional",
+      "both_off"
+    ],
+    "paired_interpolation": "same_sample_level_pair_only",
+    "coordinate_initialization": "independent_reactant_geometry_plus_declared_noise",
+    "neighbor_graph": "radius_or_fixed_k_declared_per_run",
+    "loss_scaling": "recorded_in_run_manifest_before_training"
+  },
+  "conservation": {
+    "constraint": "A_b_equals_c_electronic",
+    "projection": "Pi=I-A^T(AA^T)^+A",
+    "initial_state": "b_0=b_R+Pi_noise",
+    "velocity": "db_dtau=Pi_f_theta",
+    "symmetric_be_upper_triangle_weights": {
+      "diagonal": 1,
+      "off_diagonal": 2
+    },
+    "discrete_decoder": [
+      "constraint_projection",
+      "integerization",
+      "legal_state_check",
+      "rejection_count"
+    ],
+    "meaning_boundary": "global_electron_bookkeeping_is_not_chemical_feasibility"
+  },
+  "physical_guidance": {
+    "corrected_potential": "U_hat(R)=U_GFN2(R)+DeltaU_phi(R)",
+    "force": "F_hat(R)=-grad_R U_hat(R)",
+    "saddle_guidance": "G_sad=(I-2*u*u^T)*F_hat",
+    "direction_norm": "unit_direction_or_projector_uuT",
+    "stage": "late_generation_or_clean_candidate_only",
+    "trust_region": "required",
+    "force_clipping": "required",
+    "scf_failure_policy": "record_failure_and_charge_cost",
+    "differentiable_qc": false,
+    "finite_difference_cost_accounting": "required",
+    "zero_strength_behavior": "exact_downstream_baseline"
+  },
+  "training_label_views": {
+    "reactant_input": [
+      "atomic_numbers",
+      "reactant_coordinates",
+      "confirmed_charge",
+      "confirmed_multiplicity",
+      "declared_environment",
+      "declared_intent"
+    ],
+    "training_supervision": [
+      "event_labels",
+      "endpoint_or_path_geometry",
+      "reference_direction_when_reliable"
+    ],
+    "reference_validation": [
+      "reference_energy_force",
+      "reference_ts_connectivity",
+      "independent_endpoint_evidence"
+    ],
+    "input_supervision_isolation": true
+  },
+  "freeze_levels": {
+    "interface_now": [
+      "scope",
+      "input_output_contract",
+      "conservation_definition",
+      "unit_convention",
+      "forbidden_inputs"
+    ],
+    "development_after_selection": [
+      "capacity",
+      "coupling_mode",
+      "checkpoint",
+      "correction_potential",
+      "candidate_budget"
+    ],
+    "confirmatory_before_test": [
+      "code_commit",
+      "weights",
+      "physical_protocol",
+      "budget",
+      "stopping_rule",
+      "unseen_batch"
+    ]
+  },
+  "baselines": [
+    "strong_rules",
+    "serial_event_then_geometry",
+    "joint_without_physical_guidance",
+    "joint_with_equal_budget_terminal_optimization"
+  ],
+  "open_items": [
+    "select_radius_or_fixed_k_after development data audit",
+    "choose interpolation and loss weights using only development data",
+    "freeze corrected-potential protocol after calculator qualification",
+    "define independent confirmation batch after architecture and application selection"
+  ],
+  "out_of_scope": [
+    "mixture_of_experts",
+    "reinforcement_learning",
+    "learned_full_hessian",
+    "unbounded_multistep_planning",
+    "new_wet_experiments"
+  ]
+}

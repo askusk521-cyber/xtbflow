@@ -21,5 +21,6 @@ a transition-state guarantee, a reaction probability, or a trained checkpoint.
 
 The event/proposal/manifest tests run with the standard library. The
 event--geometry compatibility model and decoder additionally require PyTorch;
-those tests were not run in the current CPU environment because `torch` is not
-installed.
+the n2 `xtbflow` environment runs the complete suite, including those CPU
+model and decoder tests. The vendor snapshot remains untrained and is not a
+chemical validation result.

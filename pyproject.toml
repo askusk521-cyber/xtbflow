@@ -28,6 +28,8 @@ packages = [
   "xtbflow.data",
   "xtbflow.proposals",
   "xtbflow.calculators",
+  "xtbflow.models",
+  "xtbflow.training",
   "mechai",
   "mechai.data",
   "mechai.evaluation",

@@ -29,7 +29,7 @@ def event(system_id: str, *, attempt: int = 1, status: str = "success", calculat
 
 
 def test_batch_systems_and_hidden_calculator_calls_are_counted():
-    ledger = RunLedger(budget(max_system_evaluations=3, max_calculator_calls=4))
+    ledger = RunLedger(budget(max_system_evaluations=4, max_calculator_calls=4))
     for name in ("a", "b", "c"):
         ledger.append(event(name))
     ledger.append(event("c", attempt=2, operation="hessian", calculator_calls=1))

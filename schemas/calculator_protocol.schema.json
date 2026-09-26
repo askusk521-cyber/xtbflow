@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xtbflow.org/schemas/calculator_protocol.schema.json",
+  "title": "XTBFlow calculator protocol",
+  "description": "Frozen energy/force calculator identity; capability is observed separately.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol_id", "calculator", "method", "backend", "coordinate_unit", "energy_unit", "force_unit", "parameters"],
+  "properties": {
+    "protocol_id": {"type": "string", "minLength": 1},
+    "calculator": {"type": "string", "minLength": 1},
+    "method": {"type": "string", "minLength": 1},
+    "backend": {"enum": ["cpu", "cuda"]},
+    "coordinate_unit": {"const": "angstrom"},
+    "energy_unit": {"const": "hartree"},
+    "force_unit": {"const": "hartree/angstrom"},
+    "parameters": {"type": "object", "additionalProperties": true}
+  }
+}

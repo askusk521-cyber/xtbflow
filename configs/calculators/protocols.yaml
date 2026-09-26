@@ -1,0 +1,42 @@
+{
+  "schema": "xtbflow-calculator-protocols/v1",
+  "status": "contract_only_until_qualified",
+  "semiempirical": {
+    "xtbloom": {
+      "protocol_id": "xtbloom-gfn2-v0",
+      "calculator": "xtbloom",
+      "method": "GFN2-xTB",
+      "backend": "cpu",
+      "coordinate_unit": "angstrom",
+      "energy_unit": "hartree",
+      "force_unit": "hartree/angstrom",
+      "parameters": {
+        "scc_tolerance": "required_explicit_value",
+        "electronic_temperature": "required_explicit_value",
+        "initialization": "required_explicit_value",
+        "environment": "explicit_nonperiodic_molecular_system"
+      }
+    },
+    "independent_gfn2": {
+      "protocol_id": "xtb-gfn2-oracle-v0",
+      "calculator": "xtb_oracle",
+      "method": "GFN2-xTB",
+      "backend": "cpu",
+      "coordinate_unit": "angstrom",
+      "energy_unit": "hartree",
+      "force_unit": "hartree/angstrom",
+      "parameters": {
+        "implementation": "xtb_or_tblite_must_be_pinned",
+        "matched_settings": "required_before_comparison"
+      }
+    }
+  },
+  "boundaries": {
+    "missing_charge_or_multiplicity": "reject",
+    "unknown_backend_capability": "reject",
+    "nan_or_infinite_output": "reject",
+    "scc_failure": "record_not_converged",
+    "finite_difference_force_sign": "force_equals_negative_energy_gradient",
+    "gpu_scheduler": "slurm_required_for_real_gpu_runs"
+  }
+}

@@ -9,8 +9,8 @@
     },
     {
       "path": ".gitignore",
-      "sha256": "31efbf08e1b2bc573344e0a8f408fb9b1b0575f8146c561e9ab4b60ca1d9083c",
-      "bytes": 702
+      "sha256": "156537a8a9c1f147e0e0531574e92e3061769a857a6f73de161eaaf8baaab41b",
+      "bytes": 738
     },
     {
       "path": "AGENTS.md",
@@ -19,8 +19,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "da51c2eabf5e7849db2fe164aa7bfa3dde7f5d4f7fdcb5971acaa5b1fc40bc26",
-      "bytes": 4245
+      "sha256": "8b978d691f3ab255ed6041e3408b3a2f2b22a47d150fc5edecc1f5aab2d99e64",
+      "bytes": 4489
     },
     {
       "path": "archive/README.md",
@@ -104,8 +104,8 @@
     },
     {
       "path": "configs/public_data_manifest.yaml",
-      "sha256": "786cf66f5514666835bdce3bc8cb10ffe0d497d1125876f255b89bd0eaa8f633",
-      "bytes": 4101
+      "sha256": "a2b3ce2bc02f4eef03ac62c254ad0160206dfc10d68e9039fc33c8972f53edf7",
+      "bytes": 4485
     },
     {
       "path": "configs/public_first_plan.yaml",
@@ -141,6 +141,16 @@
       "path": "configs/task.yaml",
       "sha256": "497be8a98bebc3c52b402877a0039ef0be0caa27c282507cd97ace36e4a92b0a",
       "bytes": 2838
+    },
+    {
+      "path": "data/manifests/README.md",
+      "sha256": "f5b53024d99c7382234cdd63e9a92cccf4ef1d7161d00b5e351579a5ed8cbb01",
+      "bytes": 706
+    },
+    {
+      "path": "data/manifests/public_records.v1.jsonl",
+      "sha256": "2df7cce5cf6eb9e5dc12e99e1f7d62ff5b34e2a92375b97d5ada4c1a8c561360",
+      "bytes": 5193
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
@@ -194,8 +204,8 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "585ab117e0d2d2b07b89bdb04dfc4178fc292ff58caaa855fb713062ebc319c4",
-      "bytes": 907
+      "sha256": "e1d779fcc7c4099b68feba1c8c81f6ddf720dedf252ad0651899ccae445451eb",
+      "bytes": 925
     },
     {
       "path": "schemas/event_geometry_sample_manifest_v1.schema.json",
@@ -206,6 +216,11 @@
       "path": "schemas/independent_reactant_seed.schema.json",
       "sha256": "e88a0b48f18b96f5133b3a6c87b1deb0252d5e48d0c6929d97e1bfe38f415851",
       "bytes": 2252
+    },
+    {
+      "path": "schemas/public_record.schema.json",
+      "sha256": "9e8281c63a61b3ddfe6be5aaeffde074c891e4124479f5cf394060d926a3b752",
+      "bytes": 1762
     },
     {
       "path": "schemas/run_manifest.schema.json",
@@ -221,6 +236,26 @@
       "path": "src/xtbflow/__init__.py",
       "sha256": "81d4dab35ddeb3d8a5e4c41a358db6519b9602325158b153ff794ddabd246c38",
       "bytes": 243
+    },
+    {
+      "path": "src/xtbflow/data/__init__.py",
+      "sha256": "1cbf2515b419703a821e48812bc6129ad1ca396785bf7f6fc0b229288d2c5c0d",
+      "bytes": 520
+    },
+    {
+      "path": "src/xtbflow/data/public_sources.py",
+      "sha256": "d76fc03a1c1338cb4e5ad795b63c8402584dd4c6c081664acbc297e655149a4d",
+      "bytes": 1679
+    },
+    {
+      "path": "src/xtbflow/data/records.py",
+      "sha256": "2b7a032840a0396fa3437907f252fa293d559b13d9d4cb5f1917f6955df05122",
+      "bytes": 7562
+    },
+    {
+      "path": "src/xtbflow/data/splits.py",
+      "sha256": "db70f17a4691a7b4fe861b89a5e06e4ef5da290a0048051b98afb5b9625f57a2",
+      "bytes": 2573
     },
     {
       "path": "src/xtbflow/legacy.py",
@@ -271,6 +306,11 @@
       "path": "tests/reusable/test_sample_manifest.py",
       "sha256": "418a63ea5eab662bdd5dfa8cf56a30714dcb080bd0e432ca61d0ea5ab2fed6e4",
       "bytes": 4529
+    },
+    {
+      "path": "tests/test_input_firewall.py",
+      "sha256": "9b5832a98e7006e43ebfb3ce38d478892da63cdbe6ed88ca863f06180cf2f354",
+      "bytes": 2921
     },
     {
       "path": "tests/test_package.py",

@@ -4,8 +4,8 @@
   "files": [
     {
       "path": ".github/workflows/cpu-tests.yml",
-      "sha256": "aa30fbbcd9aaf951a552dd85c12fca118a667482d2f89ddbe6ea0d23cd7dad24",
-      "bytes": 1104
+      "sha256": "a4d837e0b0568a7d7c4d3a48b55dc4ee7cf1865ac4fb5c50cd19030cb3a71e66",
+      "bytes": 1134
     },
     {
       "path": ".gitignore",
@@ -111,6 +111,11 @@
       "path": "configs/models/geometry_flow_v0.1.yaml",
       "sha256": "a67c849958081a29ca7bef14a888a60a9c533e2b6ae8ab34c0530dc6dd045da2",
       "bytes": 1130
+    },
+    {
+      "path": "configs/models/physical_guidance_v0.1.yaml",
+      "sha256": "4e9773f1d7b0e740b0bef6f9dac7ca3ed27cd79fe6b7bcba136679134813cf3f",
+      "bytes": 848
     },
     {
       "path": "configs/models/xtbflow_v0.1.yaml",
@@ -229,8 +234,8 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "5658e80c7fa27a1eccc45b3ed71bef130f6c071e17f7eba5db0243a0cc64023a",
-      "bytes": 1015
+      "sha256": "f86a7383d54001a3cba4715aa8992700df1a2b3a259c6c50653a76cd291e0f97",
+      "bytes": 1058
     },
     {
       "path": "schemas/calculator_protocol.schema.json",
@@ -353,6 +358,21 @@
       "bytes": 3090
     },
     {
+      "path": "src/xtbflow/physics/__init__.py",
+      "sha256": "bf39b6d50442d4881cbb399711fc05c98dac2a82158fa0d62443ceef9a27b693",
+      "bytes": 575
+    },
+    {
+      "path": "src/xtbflow/physics/curvature.py",
+      "sha256": "86e8dcc217eccac88aea600f6d293da5db3fa6a9f0474218ee675ccc032dcb32",
+      "bytes": 3033
+    },
+    {
+      "path": "src/xtbflow/physics/saddle.py",
+      "sha256": "539064983a9dda15993f1ea856b2bad9b633867141b749f8c2ae85f591adf08a",
+      "bytes": 10106
+    },
+    {
       "path": "src/xtbflow/proposals/__init__.py",
       "sha256": "8eea55adcdbccb1b3b0b330c8a9102aa5255564a2426894e3a4126c587a988ca",
       "bytes": 451
@@ -391,6 +411,16 @@
       "path": "src/xtbflow/runtime/runner.py",
       "sha256": "d880a808cfe140cb01a76862dd2871dda1f8b89dcbafdc91d9a96d0a69fef1b0",
       "bytes": 7793
+    },
+    {
+      "path": "src/xtbflow/sampling/__init__.py",
+      "sha256": "d8b9795c8376324c72a28caace296bdf7fde5f56a86733fe2b283dc7cc69a2ec",
+      "bytes": 137
+    },
+    {
+      "path": "src/xtbflow/sampling/guidance.py",
+      "sha256": "c7e5c4ea65de4ca89508904352bbbbbe44627e372d1168a88134334c3a222207",
+      "bytes": 1273
     },
     {
       "path": "src/xtbflow/training/__init__.py",
@@ -471,6 +501,11 @@
       "path": "tests/test_runtime_budget.py",
       "sha256": "1ca8900bfe283ced083ac603bffceec660a92fac1ffe4ebb8d9c7c20d12d723f",
       "bytes": 4488
+    },
+    {
+      "path": "tests/test_saddle_guidance.py",
+      "sha256": "80376ebff131aeae4c1c36cdaf0c66c9031863ca3f98895d97dc9f17710e5059",
+      "bytes": 4324
     },
     {
       "path": "vendor/mechai_reusable/README.md",

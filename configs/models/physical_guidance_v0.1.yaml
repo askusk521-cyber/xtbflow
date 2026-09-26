@@ -1,0 +1,25 @@
+{
+  "schema": "xtbflow-physical-guidance/v0.1",
+  "guidance": {
+    "modes": ["none", "energy_descent", "saddle"],
+    "saddle_formula": "G=(I-2uu^T)F",
+    "force_meaning": "physical_or_corrected_potential_force_only",
+    "direction_normalization": "global_l2",
+    "strength_applied_once": true,
+    "zero_strength_exact_baseline": true
+  },
+  "bounds": {
+    "collision_check_before_calculator": true,
+    "trust_region_required": true,
+    "force_clipping_optional": true,
+    "max_calculator_calls_required": true,
+    "dense_hessian_default": false
+  },
+  "failure_policy": ["reject", "skip", "stop"],
+  "separation": {
+    "event_bookkeeping_is_physical_force": false,
+    "compatibility_score_gradient_is_physical_force": false,
+    "generated_geometry_is_postprocessed_geometry": false,
+    "flow_parameter_is_physical_time": false
+  }
+}

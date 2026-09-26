@@ -1,0 +1,16 @@
+schema: xtbflow-energy-model/v1
+model: delta
+num_species: 128
+hidden_dim: 64
+radial_features: 16
+distance_scale: 8.0
+energy_unit: hartree
+force_unit: hartree/angstrom
+charge_and_multiplicity: required
+baseline: cached_external_energy_and_force
+training:
+  energy_loss: mse
+  force_loss: mse
+  energy_weight: 1.0
+  force_weight: 1.0
+  missing_labels: mask

@@ -214,8 +214,8 @@
     },
     {
       "path": "src/xtbflow/legacy.py",
-      "sha256": "14a94a35a830774bc2cb50029904e26f479f56f2509d19205d30c7307ade6b83",
-      "bytes": 3381
+      "sha256": "c20e7ce55b4fab01ffc2f62b5c99c1ec36d66207660b44ca1b41b39fa3f6d391",
+      "bytes": 3402
     },
     {
       "path": "tests/reusable/test_event_geometry.py",

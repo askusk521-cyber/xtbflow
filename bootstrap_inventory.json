@@ -4,8 +4,8 @@
   "files": [
     {
       "path": ".github/workflows/cpu-tests.yml",
-      "sha256": "be9f647d38a83709a753db6e97709957a8f34b55365aeea0f8f8a49663dad916",
-      "bytes": 1160
+      "sha256": "72b5e279ecd09a4b60dd69b9fa4f70d1c2146301b5b241ea5eeb4efd7673c56b",
+      "bytes": 1188
     },
     {
       "path": ".gitignore",
@@ -111,6 +111,11 @@
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
+    },
+    {
+      "path": "configs/models/delta_small.yaml",
+      "sha256": "309e26ce346c5243a761ba769370b7da4e89bd231976557fb310ff2b3b3f10df",
+      "bytes": 355
     },
     {
       "path": "configs/models/geometry_flow_v0.1.yaml",
@@ -344,13 +349,23 @@
     },
     {
       "path": "src/xtbflow/models/__init__.py",
-      "sha256": "7d27310f02701870bc623c8ef9db93691ac08482dfa23d8ad0dcc75fe0ce3a19",
-      "bytes": 983
+      "sha256": "50237c46138bbeee0785b23e127be765bf4a95bba43024d74f4be6cac8989b38",
+      "bytes": 1160
     },
     {
       "path": "src/xtbflow/models/conserved_be.py",
       "sha256": "fcd9d3405d9f897b83ff037be14563de5eca0a4e313e181d691d6dcf5cd3ed20",
       "bytes": 4759
+    },
+    {
+      "path": "src/xtbflow/models/delta_energy.py",
+      "sha256": "adcb8f432b32b43d2a479e56ad381b19115aa737365d1162a176880bae8b3fa8",
+      "bytes": 8220
+    },
+    {
+      "path": "src/xtbflow/models/direct_energy.py",
+      "sha256": "f4e4cacccc634c085df403b8c06354560b3291221faa2a1a11403f7b2464b026",
+      "bytes": 1672
     },
     {
       "path": "src/xtbflow/models/event_decoder.py",
@@ -439,8 +454,13 @@
     },
     {
       "path": "src/xtbflow/training/__init__.py",
-      "sha256": "4e1fd5be620332ac2a10325a5c58d5127c2c77206ed77400f7f4888701e47797",
-      "bytes": 432
+      "sha256": "0dcd44b064cd594c763b25c283ce8f53d9ec232c8895f4351afe90615b64b882",
+      "bytes": 683
+    },
+    {
+      "path": "src/xtbflow/training/energy.py",
+      "sha256": "b5f49aae63324a2139fef5f351ea1ede14f356ac7e107bffffea209ce4d4bafd",
+      "bytes": 6501
     },
     {
       "path": "src/xtbflow/training/event_flow.py",
@@ -501,6 +521,11 @@
       "path": "tests/test_cp2k_parser.py",
       "sha256": "18d6067d0066d6dff09c772968523e52eaffc5ecc8c43bf3fb9d8339d9e68332",
       "bytes": 2842
+    },
+    {
+      "path": "tests/test_energy_forces.py",
+      "sha256": "4d8c1d0e91d9a0fc1e221f026c32c52b60dcff05faf241109c02ae94a49b9261",
+      "bytes": 4416
     },
     {
       "path": "tests/test_geometry_flow.py",

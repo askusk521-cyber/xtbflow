@@ -104,8 +104,8 @@
     },
     {
       "path": "configs/resources.yaml",
-      "sha256": "a8fa0b0bc66352c858b265be74eebe191fb4d0d60d54ed6bf4e4d107820c32d7",
-      "bytes": 5191
+      "sha256": "1a81aeece792ef6d44dd71019cbb2ce86f7910ffd29b193f82bb8c1bfbc13c6a",
+      "bytes": 5989
     },
     {
       "path": "configs/reusable/event_geometry_manifest_v1/endpoint_geometry.json",

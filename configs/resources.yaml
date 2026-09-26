@@ -46,7 +46,7 @@ runtime_verification:
   remote_files_uploaded: true
   remote_bootstrap_sha: bb3cbdde007b9143f59e0bda51ee4b9bd16742a5
   p0_handoff_sha: 329da0199d5ececd06978103ed4421bbc4536bed
-  cluster_access_verified: false
+  cluster_access_verified: true
   calculator_installations_verified: false
   training_or_qc_executed: false
 compute:
@@ -133,3 +133,38 @@ scientific_validation:
   sealed_test_completed: false
   chemical_mechanism_established: false
   note: scientific evidence status is separate from operational authorization
+
+observed_runtime:
+  observed_on: '2026-09-26'
+  ssh_alias: n2
+  hostname: node2
+  repository_root: /home/lhshen/xtbflow/xtbflow
+  branch: main
+  scheduler: slurm-21.08.5
+  partition: main
+  gres: gpu:pro6000:4
+  gpu_model: NVIDIA RTX PRO 6000 Blackwell Workstation Edition
+  gpu_count: 4
+  gpu_memory_mib_per_gpu: 97887
+  nvidia_driver: '595.91.07'
+  cpu_logical_count: 192
+  memory_mib: 500000
+  python_environment: xtbflow
+  python: '3.10.19'
+  pytorch: '2.10.0+cu128'
+  cuda_runtime: '12.8'
+  rdkit: '2024.03.3'
+  numpy: '1.26.4'
+  scipy: '1.15.3'
+  ase: '3.29.0'
+  cmake: '4.3.0'
+  ninja: '1.13.2'
+  validation:
+    reusable_tests: '56 passed, 68 subtests passed'
+    gpu_smoke: passed
+    bootstrap_inventory: passed
+  not_installed_or_unverified:
+  - nvcc
+  - CP2K
+  - xTBloom
+  - disk_quota

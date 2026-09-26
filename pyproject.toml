@@ -33,6 +33,7 @@ packages = [
   "xtbflow.physics",
   "xtbflow.sampling",
   "xtbflow.evaluation",
+  "xtbflow.validation",
   "mechai",
   "mechai.data",
   "mechai.evaluation",

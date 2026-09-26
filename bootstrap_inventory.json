@@ -4,8 +4,8 @@
   "files": [
     {
       "path": ".github/workflows/cpu-tests.yml",
-      "sha256": "ddd8434070ebfe88dc39a4361452f9b600919b77425a3fe7d793306803963f05",
-      "bytes": 984
+      "sha256": "0cb2554e95b4d511178e54028b84767d209755204000211f7a8d1ce4ec39deb9",
+      "bytes": 1013
     },
     {
       "path": ".gitignore",
@@ -138,6 +138,11 @@
       "bytes": 4027
     },
     {
+      "path": "configs/rules/core_v1.yaml",
+      "sha256": "a4de309daad0bab9d502028976cef7b57f91691de5895ed6d4dc1d1c764b2941",
+      "bytes": 903
+    },
+    {
       "path": "configs/runs/README.md",
       "sha256": "7831f0d6ddc4e766db79d48eaf5a8d87bf45c68f1bbb0dad04d258e05e4b313b",
       "bytes": 381
@@ -214,8 +219,8 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "e1d779fcc7c4099b68feba1c8c81f6ddf720dedf252ad0651899ccae445451eb",
-      "bytes": 925
+      "sha256": "cc0ad40470d88e23da05b70795ec344ce59261082e0860f35029e834390e1ed0",
+      "bytes": 948
     },
     {
       "path": "schemas/event_geometry_sample_manifest_v1.schema.json",
@@ -278,6 +283,26 @@
       "bytes": 3402
     },
     {
+      "path": "src/xtbflow/proposals/__init__.py",
+      "sha256": "8eea55adcdbccb1b3b0b330c8a9102aa5255564a2426894e3a4126c587a988ca",
+      "bytes": 451
+    },
+    {
+      "path": "src/xtbflow/proposals/core_rules.py",
+      "sha256": "9c8c673f907755965c8b74b40600f74df9ffb71c8d0a93d7d95fe0825744ca94",
+      "bytes": 8260
+    },
+    {
+      "path": "src/xtbflow/proposals/pool.py",
+      "sha256": "bd88ea49f76ecf9954ef81081d7614da15ac239e5cac126e614210740ff23488",
+      "bytes": 2737
+    },
+    {
+      "path": "src/xtbflow/proposals/roles.py",
+      "sha256": "cb430a028cf64265dffd79a0ddb2399051ca24e349eb82ccfc3ac7964a6bb155",
+      "bytes": 2667
+    },
+    {
       "path": "src/xtbflow/runtime/__init__.py",
       "sha256": "b2c7b53c3ffbcdeb41a30457e69dd475e5a010bf3911bab000f8227551f0f59d",
       "bytes": 560
@@ -326,6 +351,11 @@
       "path": "tests/test_architecture_contract.py",
       "sha256": "6167428cf23743895ea2da869fdd07b778409303f9af9d684df2396348ede649",
       "bytes": 2402
+    },
+    {
+      "path": "tests/test_core_proposals.py",
+      "sha256": "fffd0fec0407a9a6f077a0a765c11964285ac0bbfa2e69586ebfe445ee9a9752",
+      "bytes": 6608
     },
     {
       "path": "tests/test_input_firewall.py",

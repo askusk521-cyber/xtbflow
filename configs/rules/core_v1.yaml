@@ -1,0 +1,28 @@
+{
+  "schema": "xtbflow-core-rules/v1",
+  "status": "bounded_reactant_only_hypotheses",
+  "allowed_intents": ["addition", "substitution", "bond_break"],
+  "unsupported_intents": ["elimination", "cycloaddition", "pericyclic", "radical", "open_shell_exchange"],
+  "max_candidates": 64,
+  "max_attempts": 10000,
+  "max_bond_order": 3,
+  "provenance": "core-rule-v1",
+  "bookkeeping": {
+    "closed_shell_pair_edits": true,
+    "addition_electron_pair_assignment": "nucleophile",
+    "bond_break_electron_pair_assignment": "either_endpoint",
+    "physical_feasibility_claim": false
+  },
+  "relay": {
+    "max_participating_waters": 2,
+    "max_candidates": 32,
+    "whole_tie_truncation": true,
+    "neutral_water_only": true
+  },
+  "boundaries": {
+    "target_product_allowed": false,
+    "target_ts_allowed": false,
+    "target_derived_water_allowed": false,
+    "candidate_is_physical_claim": false
+  }
+}

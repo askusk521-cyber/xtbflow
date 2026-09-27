@@ -57,3 +57,30 @@ def test_control_manifest_keeps_equal_budget_statement():
     with pytest.raises(ValueError):
         coupled_control_manifest(modes=("unknown",))
 
+
+def test_joint_coordinate_and_parameter_gradients_stay_finite_at_self_and_collision_pairs():
+    torch.manual_seed(9)
+    event, coordinates, node, mask = inputs()
+    coordinates = coordinates.detach().requires_grad_(True)
+    coordinates.data[:, 1] = coordinates.data[:, 0]
+    projector = ConservationProjector(torch.tensor([[1.0, 1.0, 1.0]], dtype=torch.float64))
+    model = JointEventGeometryFlow(projector, 4, hidden_dim=8, radial_features=4).double()
+    output = model(event, coordinates, node, mask)
+    loss = output.geometry_velocity.square().sum() + output.event_velocity.square().sum()
+    loss.backward()
+    assert torch.isfinite(coordinates.grad).all()
+    assert all(parameter.grad is None or torch.isfinite(parameter.grad).all() for parameter in model.parameters())
+
+
+def test_joint_loss_masks_nan_unobserved_labels_before_arithmetic():
+    torch.manual_seed(10)
+    event, coordinates, node, mask = inputs()
+    projector = ConservationProjector(torch.tensor([[1.0, 1.0, 1.0]], dtype=torch.float64))
+    model = JointEventGeometryFlow(projector, 4, hidden_dim=8, radial_features=4).double()
+    output = model(event, coordinates, node, mask)
+    target_event = torch.zeros_like(output.event_velocity)
+    target_event[:, 1] = float("nan")
+    losses = joint_flow_loss(output, target_event, torch.zeros_like(output.geometry_velocity), event_mask=torch.tensor([[True, False, True]]), atom_mask=mask)
+    losses["total"].backward()
+    assert torch.isfinite(losses["total"])
+    assert all(parameter.grad is None or torch.isfinite(parameter.grad).all() for parameter in model.parameters())

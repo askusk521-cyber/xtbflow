@@ -75,8 +75,15 @@ class JointEventGeometryFlow(nn.Module):
         masked_nodes = torch.where(atom_mask[..., None], node_features, torch.zeros_like(node_features))
         node_mean = masked_nodes.sum(dim=1) / atom_mask.sum(dim=1, keepdim=True).clamp_min(1).to(dtype=node_features.dtype)
         displacement = coordinates[:, :, None, :] - coordinates[:, None, :, :]
-        distances = displacement.square().sum(dim=-1).sqrt()
-        pair_mask = atom_mask[:, :, None] & atom_mask[:, None, :]
+        squared_distances = displacement.square().sum(dim=-1)
+        # ``sqrt(0)`` has an undefined derivative.  Clamp before the square
+        # root so padded/self pairs and coincident atoms produce a finite,
+        # explicitly regularized summary and therefore a usable coordinate
+        # gradient.  Self pairs are excluded from the mean below, so the
+        # regularizer cannot change the value for any valid pair.
+        distances = squared_distances.clamp_min(torch.finfo(coordinates.dtype).eps).sqrt()
+        off_diagonal = ~torch.eye(atoms, dtype=torch.bool, device=coordinates.device)[None, :, :]
+        pair_mask = atom_mask[:, :, None] & atom_mask[:, None, :] & off_diagonal
         distance_mean = torch.where(pair_mask, distances, torch.zeros_like(distances)).sum(dim=(1, 2)) / pair_mask.sum(dim=(1, 2)).clamp_min(1).to(dtype=distances.dtype)
         geometry_summary = torch.cat((node_mean, distance_mean[:, None]), dim=-1)
         event_message = self.geometry_to_event(geometry_summary)

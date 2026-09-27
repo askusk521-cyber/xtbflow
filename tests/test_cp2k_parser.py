@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from xtbflow.calculators import CP2KAdapter, CP2KProtocol, CalculatorProtocolError, MolecularSystem, render_cp2k_input
+from xtbflow.calculators import BOHR_IN_ANGSTROM, CP2KAdapter, CP2KProtocol, CalculatorProtocolError, MolecularSystem, render_cp2k_input
 
 
 def protocol(**changes):
@@ -37,6 +37,7 @@ def output():
       2      2      H        4.0            5.0            6.0
       3      2      H        7.0            8.0            9.0
   SUM OF ATOMIC FORCES
+  PROGRAM ENDED AT 2026-01-01 00:00:00
 """
 
 
@@ -45,7 +46,9 @@ def test_cp2k_parser_returns_energy_force_identity_and_units():
     result = adapter.evaluate(system())
     assert result.status == "success"
     assert result.energy == pytest.approx(-75.123456789)
-    assert result.forces == ((1.0, 2.0, 3.0), (4.0, 5.0, 6.0), (7.0, 8.0, 9.0))
+    assert result.forces == pytest.approx(tuple(tuple(value / BOHR_IN_ANGSTROM for value in row) for row in ((1.0, 2.0, 3.0), (4.0, 5.0, 6.0), (7.0, 8.0, 9.0))))
+    assert result.metadata["raw_force_unit"] == "hartree/bohr"
+    assert result.metadata["normalized_force_unit"] == "hartree/angstrom"
     assert result.calculator_build_hash == "cp2k-fixture-build"
     assert result.input_file_hash
     assert result.path_status == "not_requested"
@@ -63,7 +66,7 @@ def test_scf_failure_and_truncated_output_fail_closed():
     result = failed.evaluate(system())
     assert result.status == "not_converged"
     assert result.error_category == "convergence"
-    truncated = CP2KAdapter(protocol(), runner=lambda rendered, item: output().split("      3")[0])
+    truncated = CP2KAdapter(protocol(), runner=lambda rendered, item: output().replace("      3      2      H        7.0            8.0            9.0\n", ""))
     with pytest.raises(CalculatorProtocolError, match="force section"):
         truncated.evaluate(system())
 
@@ -75,3 +78,11 @@ def test_missing_protocol_state_and_backend_are_explicit():
     assert unavailable.capabilities.status in {"unavailable", "unknown"}
     with pytest.raises(Exception):
         unavailable.evaluate(system())
+
+
+def test_cp2k_parser_requires_completion_and_preserves_atom_order():
+    with pytest.raises(CalculatorProtocolError, match="completion marker"):
+        CP2KAdapter(protocol(), runner=lambda rendered, item: output().replace("  PROGRAM ENDED AT 2026-01-01 00:00:00", "")).evaluate(system())
+    reordered = output().replace("      1      1      O", "      2      1      O", 1)
+    with pytest.raises(CalculatorProtocolError, match="atom order"):
+        CP2KAdapter(protocol(), runner=lambda rendered, item: reordered).evaluate(system())

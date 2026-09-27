@@ -179,6 +179,10 @@ class CalculationResult:
     calculator_build_hash: str | None = None
     input_file_hash: str | None = None
     path_status: str = "not_requested"
+    # Backend-specific provenance is retained alongside the normalized result
+    # so unit conversions and parser versions remain auditable without making
+    # the common calculator contract depend on one backend's schema.
+    metadata: Mapping[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
         for name in ("calculator", "protocol_id", "input_hash"):
@@ -217,6 +221,7 @@ class CalculationResult:
                 raise ValueError(f"{name} must be a nonempty string when provided")
         if self.path_status not in {"not_requested", "not_run", "not_validated", "validated"}:
             raise ValueError("unsupported path validation status")
+        _mapping(self.metadata, "metadata")
 
     @classmethod
     def failure(cls, system: MolecularSystem, protocol: CalculatorProtocol, operation: str, *, status: str, category: str, message: str, calculator_calls: int = 0) -> "CalculationResult":

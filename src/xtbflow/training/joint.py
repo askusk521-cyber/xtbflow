@@ -11,7 +11,12 @@ def _masked_mse(predicted: Tensor, target: Tensor, mask: Tensor | None, *, name:
     if predicted.shape != target.shape:
         raise ValueError(f"{name} prediction and target shapes must match")
     if mask is None:
-        mask = torch.ones(predicted.shape[:-1] if predicted.ndim > 1 else predicted.shape, dtype=torch.bool, device=predicted.device)
+        if predicted.ndim == 2:
+            mask = torch.ones_like(predicted, dtype=torch.bool)
+        elif predicted.ndim == 3:
+            mask = torch.ones(predicted.shape[:2], dtype=torch.bool, device=predicted.device)
+        else:
+            raise ValueError(f"{name} tensors must be [B,F] or [B,N,3]")
     if predicted.ndim == 2:
         if mask.shape != predicted.shape:
             raise ValueError(f"{name} mask must match [B,F]")
@@ -26,7 +31,13 @@ def _masked_mse(predicted: Tensor, target: Tensor, mask: Tensor | None, *, name:
     if bool(mask.any()) and (not bool(torch.isfinite(predicted[mask]).all()) or not bool(torch.isfinite(target[mask]).all())):
         raise ValueError(f"observed {name} values must be finite")
     count = mask.sum().clamp_min(1)
-    return torch.where(mask, (predicted - target).square(), torch.zeros_like(predicted)).sum() / count
+    # Mask before arithmetic.  An unobserved NaN target must not enter a
+    # subtraction and later be hidden by ``where``; doing so can still poison
+    # autograd in some backends even when the selected loss is finite.
+    safe_predicted = torch.where(mask, predicted, torch.zeros_like(predicted))
+    safe_target = torch.where(mask, target, torch.zeros_like(target))
+    squared_error = (safe_predicted - safe_target).square()
+    return torch.where(mask, squared_error, torch.zeros_like(squared_error)).sum() / count
 
 
 def joint_flow_loss(output: JointFlowOutput, target_event_velocity: Tensor, target_geometry_velocity: Tensor, *, event_mask: Tensor | None = None, atom_mask: Tensor | None = None, event_weight: float = 1.0, geometry_weight: float = 1.0) -> dict[str, Tensor]:

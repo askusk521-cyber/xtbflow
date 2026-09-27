@@ -2,7 +2,6 @@
 
 from .connectivity import ConnectivityEvidence, observed_event
 from .modes import ModeEvidence, validate_mode
-from .ts_search import TSValidationConfig, TSValidationRecord, validate_ts_evidence
+from .ts_search import TSValidationConfig, TSValidationRecord, candidate_content_hash, run_resumable_validation, validate_ts_evidence, validation_cache_key
 
-__all__ = ["ConnectivityEvidence", "observed_event", "ModeEvidence", "validate_mode", "TSValidationConfig", "TSValidationRecord", "validate_ts_evidence"]
-
+__all__ = ["ConnectivityEvidence", "observed_event", "ModeEvidence", "validate_mode", "TSValidationConfig", "TSValidationRecord", "candidate_content_hash", "validation_cache_key", "run_resumable_validation", "validate_ts_evidence"]

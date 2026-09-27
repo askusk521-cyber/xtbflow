@@ -24,6 +24,12 @@ from .base import (
 )
 
 
+# CP2K's ``[a.u.]`` force table is Hartree/Bohr.  The public calculator
+# contract is Hartree/Angstrom, so conversion belongs at this parser boundary.
+BOHR_IN_ANGSTROM = 0.529177210903
+FORCE_CONVERSION_VERSION = "bohr_to_angstrom_codata2018"
+
+
 @dataclass(frozen=True)
 class CP2KProtocol:
     """All physical settings needed to reproduce one CP2K E/F protocol."""
@@ -60,10 +66,27 @@ class CP2KProtocol:
             raise ValueError("charge and multiplicity must be explicit")
         if self.boundary not in {"isolated", "periodic"}:
             raise ValueError("boundary must be isolated or periodic")
+        if self.solvent_model != "none":
+            raise ValueError("only solvent_model='none' is implemented; unsupported solvent settings fail closed")
         if self.path_status not in {"not_requested", "not_run", "not_validated", "validated"}:
             raise ValueError("unsupported path validation status")
         if not isinstance(self.parameters, Mapping):
             raise ValueError("parameters must be a mapping")
+        for name in ("basis_set_file", "pseudopotential_file"):
+            value = self.parameters.get(name)
+            if value is not None and (not isinstance(value, str) or not value.strip()):
+                raise ValueError(f"{name} must be a nonempty string when provided")
+        for name in ("basis_by_element", "pseudopotential_by_element"):
+            value = self.parameters.get(name, {})
+            if not isinstance(value, Mapping) or any(not isinstance(key, str) or not isinstance(item, str) or not item.strip() for key, item in value.items()):
+                raise ValueError(f"{name} must map element symbols to nonempty labels")
+        cell = self.parameters.get("cell_angstrom")
+        if self.boundary == "periodic" and cell is None:
+            raise ValueError("periodic CP2K protocols require explicit parameters.cell_angstrom")
+        if cell is not None and (not isinstance(cell, (tuple, list)) or len(cell) != 3 or any(not isinstance(value, (int, float)) or not math.isfinite(float(value)) or float(value) <= 0 for value in cell)):
+            raise ValueError("parameters.cell_angstrom must contain three positive finite lengths")
+        if self.dispersion not in {"none", "DFTD3(BJ)"}:
+            raise ValueError("unsupported CP2K dispersion setting")
 
     @property
     def identity(self) -> str:
@@ -81,54 +104,79 @@ class CP2KProtocol:
 def render_cp2k_input(system: MolecularSystem, protocol: CP2KProtocol, *, project: str = "xtbflow") -> str:
     if system.charge != protocol.charge or system.multiplicity != protocol.multiplicity:
         raise CalculatorProtocolError("system charge/multiplicity does not match the frozen CP2K protocol")
-    rows = ["&GLOBAL", f"  PROJECT {project}", "  RUN_TYPE ENERGY_FORCE", "&END GLOBAL", "&FORCE_EVAL", "  METHOD QS", "  &DFT", f"    BASIS_SET_FILE_NAME {protocol.basis_set}", f"    POTENTIAL_FILE_NAME {protocol.pseudopotential}", f"    CHARGE {protocol.charge}", f"    MULTIPLICITY {protocol.multiplicity}", "    &MGRID", f"      CUTOFF {protocol.cutoff_ry:.12g}", f"      REL_CUTOFF {protocol.relative_cutoff_ry:.12g}", "    &END MGRID", f"    &SCF", f"      EPS_SCF {protocol.scf_epsilon:.12g}", f"      MAX_SCF {protocol.max_scf}", "    &END SCF", "    &XC", f"      &XC_FUNCTIONAL {protocol.functional}", "      &END XC_FUNCTIONAL", f"      &VDW_POTENTIAL", f"        POTENTIAL_TYPE {protocol.dispersion}", "      &END VDW_POTENTIAL", "    &END XC", "  &END DFT", "  &SUBSYS"]
-    if protocol.boundary == "periodic":
-        rows.extend(["    &CELL", "      ABC 20 20 20", "    &END CELL"])
-    rows.append("    &COORD")
+    rows = ["&GLOBAL", f"  PROJECT {project}", "  RUN_TYPE ENERGY_FORCE", "&END GLOBAL", "&FORCE_EVAL", "  METHOD QS", "  &DFT"]
+    # Labels and library filenames are distinct CP2K concepts.  Do not place
+    # a basis label in BASIS_SET_FILE_NAME merely because the old adapter had
+    # only one string field for both values.
+    if protocol.parameters.get("basis_set_file"):
+        rows.append(f"    BASIS_SET_FILE_NAME {protocol.parameters['basis_set_file']}")
+    if protocol.parameters.get("pseudopotential_file"):
+        rows.append(f"    POTENTIAL_FILE_NAME {protocol.parameters['pseudopotential_file']}")
+    rows.extend([f"    CHARGE {protocol.charge}", f"    MULTIPLICITY {protocol.multiplicity}", "    &MGRID", f"      CUTOFF {protocol.cutoff_ry:.12g}", f"      REL_CUTOFF {protocol.relative_cutoff_ry:.12g}", "    &END MGRID", "    &SCF", f"      EPS_SCF {protocol.scf_epsilon:.12g}", f"      MAX_SCF {protocol.max_scf}", "    &END SCF", "    &XC", f"      &XC_FUNCTIONAL {protocol.functional}", "      &END XC_FUNCTIONAL"])
+    if protocol.dispersion == "DFTD3(BJ)":
+        rows.extend(["      &VDW_POTENTIAL", "        POTENTIAL_TYPE PAIR_POTENTIAL", "        &PAIR_POTENTIAL", "          TYPE DFTD3(BJ)", "        &END PAIR_POTENTIAL", "      &END VDW_POTENTIAL"])
+    rows.append("    &END XC")
+    if protocol.boundary == "isolated":
+        rows.extend(["    &POISSON", "      PERIODIC NONE", "    &END POISSON"])
+    rows.extend(["  &END DFT", "  &SUBSYS", "    &CELL"])
+    cell = protocol.parameters.get("cell_angstrom", (20.0, 20.0, 20.0))
+    rows.extend(["      ABC " + " ".join(f"{float(value):.12g}" for value in cell), "      PERIODIC " + ("XYZ" if protocol.boundary == "periodic" else "NONE"), "    &END CELL", "    &COORD"])
     for symbol, coordinate in zip(system.symbols, system.coordinates):
         rows.append("      " + symbol + " " + " ".join(f"{value:.16g}" for value in coordinate))
-    rows.extend(["    &END COORD", "  &END SUBSYS", "&END FORCE_EVAL", ""])
+    rows.append("    &END COORD")
+    basis_by_element = protocol.parameters.get("basis_by_element", {})
+    potential_by_element = protocol.parameters.get("pseudopotential_by_element", {})
+    for symbol in dict.fromkeys(system.symbols):
+        rows.extend([f"    &KIND {symbol}", f"      BASIS_SET {basis_by_element.get(symbol, protocol.basis_set)}", f"      POTENTIAL {potential_by_element.get(symbol, protocol.pseudopotential)}", "    &END KIND"])
+    rows.extend(["  &END SUBSYS", "&END FORCE_EVAL", ""])
     return "\n".join(rows)
 
 
 _ENERGY = re.compile(r"ENERGY\|.*?energy.*?([-+]?\d+(?:\.\d*)?(?:[Ee][-+]?\d+)?)\s*$", re.IGNORECASE | re.MULTILINE)
 _FORCE_HEADER = re.compile(r"ATOMIC FORCES.*?\[a\.u\.\]", re.IGNORECASE)
 _FLOAT = r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[Ee][-+]?\d+)?"
+_FORCE_ROW = re.compile(r"^\s*(\d+)\s+\d+\s+([A-Za-z][A-Za-z0-9]*)\s+(" + _FLOAT + r")\s+(" + _FLOAT + r")\s+(" + _FLOAT + r")\s*$")
 
 
 def parse_cp2k_output(text: str, system: MolecularSystem, protocol: CP2KProtocol, *, input_file_hash: str) -> CalculationResult:
     if not isinstance(text, str) or not text.strip():
         raise CalculatorProtocolError("CP2K output is empty")
-    energy_match = _ENERGY.search(text)
     not_converged = bool(re.search(r"SCF.*(?:NOT CONVERGED|FAILED)|SCF run NOT converged", text, re.IGNORECASE))
     if not_converged:
         return CalculationResult(protocol.calculator_protocol().calculator, protocol.protocol_id, system.input_hash, system.charge, system.multiplicity, "energy_forces", status="not_converged", converged=False, error_category="convergence", error_message="CP2K SCF did not converge", calculator_calls=1, calculator_build_hash=protocol.build_hash, input_file_hash=input_file_hash, path_status=protocol.path_status)
-    if energy_match is None:
+    if "PROGRAM ENDED AT" not in text:
+        raise CalculatorProtocolError("CP2K completion marker was not found")
+    energy_matches = list(_ENERGY.finditer(text))
+    if len(energy_matches) != 1:
         raise CalculatorProtocolError("CP2K energy line was not found")
-    energy = float(energy_match.group(1))
+    energy = float(energy_matches[0].group(1))
     lines = text.splitlines()
-    force_start = next((index for index, line in enumerate(lines) if _FORCE_HEADER.search(line)), None)
-    if force_start is None:
+    force_headers = [index for index, line in enumerate(lines) if _FORCE_HEADER.search(line)]
+    if len(force_headers) != 1:
         raise CalculatorProtocolError("CP2K atomic-force section was not found")
+    force_start = force_headers[0]
     forces: list[tuple[float, float, float]] = []
+    raw_forces: list[tuple[float, float, float]] = []
     for line in lines[force_start + 1:]:
-        numbers = re.findall(_FLOAT, line)
-        if len(numbers) < 3:
-            if forces:
-                break
-            continue
-        # CP2K force rows carry atom/kind/element columns before the final xyz.
-        try:
-            candidate = tuple(float(value) for value in numbers[-3:])
-        except ValueError:
-            continue
-        if all(math.isfinite(value) for value in candidate):
-            forces.append(candidate)
-        if len(forces) == len(system.symbols):
+        if "SUM OF ATOMIC FORCES" in line.upper():
             break
+        match = _FORCE_ROW.match(line)
+        if match is None:
+            continue
+        if len(raw_forces) >= len(system.symbols):
+            raise CalculatorProtocolError("CP2K force section contains more rows than the requested atom inventory")
+        index = int(match.group(1))
+        symbol = match.group(2)
+        if index != len(raw_forces) + 1 or symbol != system.symbols[len(raw_forces)]:
+            raise CalculatorProtocolError("CP2K force rows do not match the requested atom order")
+        raw = tuple(float(match.group(axis)) for axis in (3, 4, 5))
+        if not all(math.isfinite(value) for value in raw):
+            raise CalculatorProtocolError("CP2K force row contains a non-finite value")
+        raw_forces.append(raw)
+        forces.append(tuple(value / BOHR_IN_ANGSTROM for value in raw))
     if len(forces) != len(system.symbols):
         raise CalculatorProtocolError(f"CP2K force section has {len(forces)} rows; expected {len(system.symbols)}")
-    return CalculationResult(protocol.calculator_protocol().calculator, protocol.protocol_id, system.input_hash, system.charge, system.multiplicity, "energy_forces", energy=energy, forces=tuple(forces), calculator_calls=1, calculator_build_hash=protocol.build_hash, input_file_hash=input_file_hash, path_status=protocol.path_status)
+    return CalculationResult(protocol.calculator_protocol().calculator, protocol.protocol_id, system.input_hash, system.charge, system.multiplicity, "energy_forces", energy=energy, forces=tuple(forces), calculator_calls=1, calculator_build_hash=protocol.build_hash, input_file_hash=input_file_hash, path_status=protocol.path_status, metadata={"raw_force_unit": "hartree/bohr", "normalized_force_unit": "hartree/angstrom", "force_conversion_version": FORCE_CONVERSION_VERSION, "raw_forces": raw_forces})
 
 
 class CP2KAdapter(CalculatorBackend):
@@ -146,7 +194,7 @@ class CP2KAdapter(CalculatorBackend):
     @property
     def capabilities(self) -> CalculatorCapabilities:
         if self.runner is not None:
-            return CalculatorCapabilities("cp2k", "pass", "injected runner; installation not asserted", self.cp2k_protocol.cp2k_version, self.cp2k_protocol.build_hash, ("energy_forces",), ("cpu",))
+            return CalculatorCapabilities("cp2k", "unknown", "injected runner; physical installation and protocol qualification are not asserted", self.cp2k_protocol.cp2k_version, self.cp2k_protocol.build_hash, ("energy_forces",), ("cpu",))
         if self.executable is None:
             return CalculatorCapabilities("cp2k", "unavailable", "no CP2K executable was observed")
         return CalculatorCapabilities("cp2k", "unknown", "CP2K executable observed but protocol qualification is pending", self.cp2k_protocol.cp2k_version, self.cp2k_protocol.build_hash, ("energy_forces",), ("cpu",))
@@ -175,6 +223,8 @@ class CP2KAdapter(CalculatorBackend):
                 raise CalculatorError("CP2K execution timed out") from exc
             except OSError as exc:
                 raise CalculatorUnavailable(f"CP2K executable could not be started: {exc}") from exc
-            if completed.returncode != 0 and not output_path.exists():
+            if completed.returncode != 0:
                 raise CalculatorError(f"CP2K exited with code {completed.returncode}: {completed.stderr[-500:]}")
+            if not output_path.exists():
+                raise CalculatorError("CP2K completed without producing an output file")
             return parse_cp2k_output(output_path.read_text(encoding="utf-8", errors="replace"), system, self.cp2k_protocol, input_file_hash=input_hash)

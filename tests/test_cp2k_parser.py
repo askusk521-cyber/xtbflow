@@ -46,7 +46,8 @@ def test_cp2k_parser_returns_energy_force_identity_and_units():
     result = adapter.evaluate(system())
     assert result.status == "success"
     assert result.energy == pytest.approx(-75.123456789)
-    assert result.forces == pytest.approx(tuple(tuple(value / BOHR_IN_ANGSTROM for value in row) for row in ((1.0, 2.0, 3.0), (4.0, 5.0, 6.0), (7.0, 8.0, 9.0))))
+    expected_forces = tuple(tuple(value / BOHR_IN_ANGSTROM for value in row) for row in ((1.0, 2.0, 3.0), (4.0, 5.0, 6.0), (7.0, 8.0, 9.0)))
+    assert all(actual == pytest.approx(expected) for actual, expected in zip(result.forces, expected_forces))
     assert result.metadata["raw_force_unit"] == "hartree/bohr"
     assert result.metadata["normalized_force_unit"] == "hartree/angstrom"
     assert result.calculator_build_hash == "cp2k-fixture-build"

@@ -82,7 +82,7 @@ class JointEventGeometryFlow(nn.Module):
         # gradient.  Self pairs are excluded from the mean below, so the
         # regularizer cannot change the value for any valid pair.
         distances = squared_distances.clamp_min(torch.finfo(coordinates.dtype).eps).sqrt()
-        off_diagonal = ~torch.eye(atoms, dtype=torch.bool, device=coordinates.device)[None, :, :]
+        off_diagonal = ~torch.eye(coordinates.shape[1], dtype=torch.bool, device=coordinates.device)[None, :, :]
         pair_mask = atom_mask[:, :, None] & atom_mask[:, None, :] & off_diagonal
         distance_mean = torch.where(pair_mask, distances, torch.zeros_like(distances)).sum(dim=(1, 2)) / pair_mask.sum(dim=(1, 2)).clamp_min(1).to(dtype=distances.dtype)
         geometry_summary = torch.cat((node_mean, distance_mean[:, None]), dim=-1)

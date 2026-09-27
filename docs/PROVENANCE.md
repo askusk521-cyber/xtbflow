@@ -31,7 +31,7 @@
   "new_files": "root instructions, current configs, provenance/status, ignore rules and validator",
   "remote_intent": "git@github.com:askusk521-cyber/xtbflow.git",
   "legacy_full_repository_imported": false,
-  "scientific_calculations_performed": false
+  "scientific_calculations_performed": "diagnostic_only: tblite GFN2 small-batch checks on n2; no CP2K, no admitted training labels"
 }
 ```
 

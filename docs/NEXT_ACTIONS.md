@@ -22,3 +22,10 @@
 - 对 UniTS 原始库的 32 条记录完成同构型 tblite 求值：30 条成功、2 条 SCF 未收敛，平均批次墙钟约 41.5 秒。原始标签的方法与单位仍未知，所有记录继续处于诊断隔离状态。
 - 联合流完成 8 步诊断训练、权重保存、恢复和 4 步采样；恢复输出逐位一致，守恒残差小于 `6e-17`。该运行使用合成零速度目标，只证明软件链路，不构成科学性能结果。
 - 运行账本新增原子化 calculator-call reservation，可在 TS 搜索器调用前拒绝超预算计划。
+
+## 2026-09-27 provenance 与联合流增量
+
+- n2 已完成 UniTS-Lib 首批 64 条记录的可复现 provenance audit；64/64 条通过坐标、能量、力、原子清单、反应位点、RDKit 原子数和图特征结构检查，图特征中的全局电荷／多重度编码与原始字段一致。证据见 [`docs/evidence/units_provenance_audit_20260927.json`](evidence/units_provenance_audit_20260927.json)。
+- 原始 object array 没有逐记录声明坐标、能量和力单位；B3LYP-D3(BJ)/def2-SVP 只能由 UniTS-Gen 论文及其 SI 作为数据集级方法证据追溯。因此该切片结论为 `diagnostic_only`，公开清单准入数继续保持 0，不生成带有假定单位的正式 E/F 训练缓存。
+- 联合流 v2 烟测增加了真正独立的保存前／恢复后前向比较：事件速度、几何速度和两类消息的最大绝对差均为 0；4 步采样有限，守恒残差最大 `6.94e-18`。证据见 [`docs/evidence/joint_flow_smoke_20260927_v2.json`](evidence/joint_flow_smoke_20260927_v2.json)。
+- 将当前源码同步到 n2 后，完整 pytest 为 `135 passed`、`68 subtests passed`；唯一输出是既有的测试代码 tensor-to-scalar 警告。下一项区分力最大的工作是继续追踪 UniTS 原始单位声明或转向明确单位的公开 E/F 来源，再运行 Delta／direct 留出对照。

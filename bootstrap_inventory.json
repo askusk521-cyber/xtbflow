@@ -199,8 +199,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "6414f23aa6afc52ce1be5e8eed5310f51763610b2b5e0be1f603e612710cb7c3",
-      "bytes": 3064
+      "sha256": "ec8cd746d0278210b2a9d8178296be2843b9a1a56477ce5c6d564ac6ef2dbb72",
+      "bytes": 3251
     },
     {
       "path": "docs/HANDOFF_STATUS.md",
@@ -224,13 +224,13 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "ea47645d5b37e37b8689af60d200080c2f84ea55eb4de1ce4e2fd3a24807b83d",
-      "bytes": 2503
+      "sha256": "5e547fc01233d2794379f387a4ba07d3b686e3f13c83ed07b3f49d71efd7e297",
+      "bytes": 3856
     },
     {
       "path": "docs/PROVENANCE.md",
-      "sha256": "851afa940559696d45ce4c9a590dbb01fe94bb10a10965ab34cba60464a3817b",
-      "bytes": 1895
+      "sha256": "07b8e206c34433ec1ff0c22ee34d259e0a37e2784db996d38fddf304f96e8390",
+      "bytes": 1983
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -251,6 +251,16 @@
       "path": "docs/evidence/joint_flow_smoke_20260927.json",
       "sha256": "2a9803f4ac535aa5a9bb59225fe77ee62602734d80af448bf4b065d9a56a61ca",
       "bytes": 670
+    },
+    {
+      "path": "docs/evidence/joint_flow_smoke_20260927_v2.json",
+      "sha256": "c73d5603723e5620ce5d7236306c0ae6fde3d51188a46b8f13bea3b385fa300c",
+      "bytes": 1212
+    },
+    {
+      "path": "docs/evidence/units_provenance_audit_20260927.json",
+      "sha256": "e0b4a1d6dfba65e5c532f479b9f16ab8f009e31644985edd46dceba0d444ba17",
+      "bytes": 155056
     },
     {
       "path": "docs/model_design.md",
@@ -308,9 +318,19 @@
       "bytes": 1485
     },
     {
+      "path": "scripts/audit_units_provenance.py",
+      "sha256": "23e817315fc43717fa2ad516bf0b5af5ab3f19ecc08e1067226017d0b077a47e",
+      "bytes": 11980
+    },
+    {
       "path": "scripts/build_ef_pairs.py",
       "sha256": "679908f9041cd6bf94f4d603e5229eeb23767564de4304a7390782ad96fab69e",
       "bytes": 3491
+    },
+    {
+      "path": "scripts/joint_flow_smoke.py",
+      "sha256": "c156c1854587b7c7a9dc679bde45d6089e3b997dcacbc1639d8d1acdef2e4032",
+      "bytes": 6132
     },
     {
       "path": "scripts/validate_bootstrap.py",

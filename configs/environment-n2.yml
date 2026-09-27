@@ -106,5 +106,7 @@ dependencies:
       - torchdiffeq==0.2.4
       - torchvision==0.25.0+cu128
       - triton==3.6.0
+      - tblite==0.7.0
       - typing-extensions==4.15.0
       - typing-inspection==0.4.4
+      - xtb==22.1

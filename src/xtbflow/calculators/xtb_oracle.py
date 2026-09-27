@@ -1,13 +1,27 @@
-"""Independent original-xTB/tblite GFN2 comparison adapter boundary."""
+"""Independent original-xTB/tblite GFN2 comparison adapter boundary.
+
+The public contract uses Angstrom coordinates, Hartree energies and
+Hartree/Angstrom forces.  The original xTB bindings expose atomic-unit
+coordinates and gradients, while tblite's Python wrapper accepts Angstrom
+coordinates and returns Hartree/Angstrom gradients.  This module performs the
+backend-specific conversion in one place and retains package identity in
+result metadata.
+"""
 from __future__ import annotations
 
+import hashlib
+import importlib
+import importlib.metadata
 from importlib.util import find_spec
 from shutil import which
 from typing import Any, Callable, Mapping
 
+import numpy as np
+
 from .base import (
     CalculatorBackend,
     CalculatorCapabilities,
+    CalculatorConvergenceError,
     CalculatorError,
     CalculatorProtocol,
     CalculatorProtocolError,
@@ -16,6 +30,134 @@ from .base import (
     MolecularSystem,
     coerce_backend_output,
 )
+
+
+BOHR_IN_ANGSTROM = 0.529177210903
+KELVIN_TO_HARTREE = 3.166811563e-6
+
+
+def _package_identity(implementation: str) -> tuple[str | None, str | None, str | None]:
+    """Return version, module path and a content hash for an installed package."""
+
+    try:
+        module = importlib.import_module(implementation)
+    except Exception:
+        return None, None, None
+    path = getattr(module, "__file__", None)
+    version = getattr(module, "__version__", None)
+    try:
+        distribution = "xtb" if implementation == "xtb" else "tblite"
+        version = version or importlib.metadata.version(distribution)
+    except importlib.metadata.PackageNotFoundError:
+        pass
+    build_hash = None
+    if path:
+        try:
+            with open(path, "rb") as handle:
+                build_hash = hashlib.sha256(handle.read()).hexdigest()
+        except OSError:
+            build_hash = None
+    return str(version) if version is not None else None, path, build_hash
+
+
+def _required_parameter(parameters: Mapping[str, Any], name: str) -> Any:
+    """Read a protocol setting without silently selecting a backend default."""
+
+    if name not in parameters:
+        raise CalculatorProtocolError(f"protocol.parameters must explicitly define {name}")
+    return parameters[name]
+
+
+def _validate_environment(system: MolecularSystem) -> None:
+    """Reject periodic inputs; the oracle path is molecular and non-periodic."""
+
+    periodic = system.environment.get("periodic", False)
+    if type(periodic) is not bool:
+        raise CalculatorProtocolError("environment.periodic must be a boolean when provided")
+    if periodic:
+        raise CalculatorProtocolError("the GFN2 oracle adapter only supports non-periodic molecular systems")
+
+
+def _xtb_evaluator(system: MolecularSystem, operation: str, parameters: Mapping[str, Any], protocol: CalculatorProtocol) -> CalculationResult:
+    """Evaluate one system through the original xTB Python API."""
+
+    from xtb.interface import Calculator, Param
+
+    _validate_environment(system)
+    numbers = np.asarray([_atomic_number(symbol) for symbol in system.symbols], dtype=np.int32)
+    positions = np.asarray(system.coordinates, dtype=np.float64) / BOHR_IN_ANGSTROM
+    # The original Python bindings identify the method with an enum even
+    # though the public protocol uses the canonical ``GFN2-xTB`` spelling.
+    calc = Calculator(Param.GFN2xTB, numbers, positions, system.charge, system.multiplicity - 1)
+    calc.set_verbosity("muted")
+    calc.set_accuracy(float(_required_parameter(parameters, "accuracy")))
+    calc.set_max_iterations(int(_required_parameter(parameters, "max_iterations")))
+    calc.set_electronic_temperature(int(_required_parameter(parameters, "electronic_temperature")))
+    solvent = _required_parameter(parameters, "solvent")
+    if solvent not in {None, "none", "None"}:
+        raise CalculatorProtocolError("direct xTB oracle currently requires solvent=None")
+    result = calc.singlepoint()
+    energy = float(result.get_energy())
+    gradient = np.asarray(result.get_gradient(), dtype=np.float64)
+    # dE/dR_angstrom = dE/dR_bohr / (angstrom-per-bohr).
+    forces = -gradient / BOHR_IN_ANGSTROM
+    return _normalized_result(system, operation, energy, forces, implementation="xtb", native_gradient_unit="hartree/bohr", force_conversion="-gradient_hartree_per_bohr / 0.529177210903 = force_hartree_per_angstrom", protocol=protocol)
+
+
+def _tblite_evaluator(system: MolecularSystem, operation: str, parameters: Mapping[str, Any], protocol: CalculatorProtocol) -> CalculationResult:
+    """Evaluate one system through tblite's direct GFN2 interface."""
+
+    from tblite.interface import Calculator
+
+    _validate_environment(system)
+    numbers = np.asarray([_atomic_number(symbol) for symbol in system.symbols], dtype=np.int32)
+    # tblite's Python ``Structure`` wrapper consumes Cartesian coordinates in
+    # Angstrom and returns gradients in Hartree/Angstrom (despite the native
+    # library's atomic-unit internals).
+    positions = np.asarray(system.coordinates, dtype=np.float64)
+    calc = Calculator("GFN2-xTB", numbers, positions, charge=system.charge, uhf=system.multiplicity - 1)
+    calc.set("verbosity", 0)
+    calc.set("accuracy", float(_required_parameter(parameters, "accuracy")))
+    calc.set("max-iter", int(_required_parameter(parameters, "max_iterations")))
+    # tblite's temperature setter uses Hartree while the shared protocol
+    # records the conventional Kelvin value used by xTB.
+    calc.set("temperature", float(_required_parameter(parameters, "electronic_temperature")) * KELVIN_TO_HARTREE)
+    solvent = _required_parameter(parameters, "solvent")
+    if solvent not in {None, "none", "None"}:
+        raise CalculatorProtocolError("direct tblite oracle currently requires solvent=None")
+    result = calc.singlepoint()
+    energy = float(result.get("energy"))
+    gradient = np.asarray(result.get("gradient"), dtype=np.float64)
+    forces = -gradient
+    return _normalized_result(system, operation, energy, forces, implementation="tblite", native_gradient_unit="hartree/angstrom", force_conversion="-gradient_hartree_per_angstrom = force_hartree_per_angstrom", protocol=protocol)
+
+
+def _normalized_result(system: MolecularSystem, operation: str, energy: float, forces: np.ndarray, *, implementation: str, native_gradient_unit: str, force_conversion: str, protocol: CalculatorProtocol) -> CalculationResult:
+    if operation == "energy":
+        forces_value = None
+    else:
+        forces_value = tuple(tuple(float(value) for value in row) for row in forces.tolist())
+    return CalculationResult(
+        calculator=protocol.calculator,
+        protocol_id=protocol.protocol_id,
+        input_hash=system.input_hash,
+        charge=system.charge,
+        multiplicity=system.multiplicity,
+        operation=operation,
+        energy=energy if operation in {"energy", "energy_forces"} else None,
+        forces=forces_value,
+        metadata={"implementation": implementation, "native_gradient_unit": native_gradient_unit, "force_conversion": force_conversion},
+    )
+
+
+def _atomic_number(symbol: str) -> int:
+    """Resolve an element symbol without adding a chemistry dependency."""
+
+    symbols = ("H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Fr Ra Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og").split()
+    try:
+        return symbols.index(symbol) + 1
+    except ValueError as exc:
+        raise CalculatorProtocolError(f"unsupported element symbol: {symbol}") from exc
 
 
 class XTBOracleAdapter(CalculatorBackend):
@@ -44,13 +186,24 @@ class XTBOracleAdapter(CalculatorBackend):
         if self.protocol.calculator != "xtb_oracle":
             raise CalculatorProtocolError("xTB oracle adapter requires a protocol with calculator='xtb_oracle'")
         self._evaluator = evaluator or evaluate_fn
-        self.version = version
-        self.build_hash = build_hash
+        self._direct_backend = False
+        observed_version, self.module_path, observed_hash = _package_identity(implementation)
+        self.version = version or observed_version
+        self.build_hash = build_hash or observed_hash
+        required = {"accuracy", "max_iterations", "electronic_temperature", "solvent"}
+        if self._evaluator is None and implementation in {"xtb", "tblite"} and required.issubset(self.protocol.parameters):
+            self._direct_backend = True
+            self._evaluator = lambda item, operation: (
+                _xtb_evaluator(item, operation, self.protocol.parameters, self.protocol)
+                if implementation == "xtb"
+                else _tblite_evaluator(item, operation, self.protocol.parameters, self.protocol)
+            )
 
     @property
     def capabilities(self) -> CalculatorCapabilities:
         if self._evaluator is not None:
-            return CalculatorCapabilities("xtb_oracle", "pass", "injected evaluator; external installation not asserted", self.version, self.build_hash, tuple(sorted({"energy", "forces", "energy_forces"})), (self.protocol.backend,))
+            detail = "direct installed backend" if self._direct_backend else "injected evaluator; external installation not asserted"
+            return CalculatorCapabilities("xtb_oracle", "pass", detail, self.version, self.build_hash, tuple(sorted({"energy", "forces", "energy_forces"})), (self.protocol.backend,))
         module = find_spec(self.implementation)
         executable = which(self.implementation)
         if module is None and executable is None:
@@ -67,6 +220,8 @@ class XTBOracleAdapter(CalculatorBackend):
         except CalculatorError:
             raise
         except Exception as exc:
+            if self._direct_backend and ("converg" in str(exc).lower() or "scf" in str(exc).lower()):
+                raise CalculatorConvergenceError(f"independent evaluator did not converge: {exc}") from exc
             raise RuntimeError(f"independent evaluator failed before producing a contract result: {exc}") from exc
         return coerce_backend_output(output, system, self.protocol, operation=operation)
 

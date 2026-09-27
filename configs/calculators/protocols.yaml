@@ -28,6 +28,13 @@
       "parameters": {
         "implementation": "xtb_or_tblite_must_be_pinned",
         "matched_settings": "required_before_comparison"
+      },
+      "qualification": {
+        "implementation": "tblite",
+        "version": "0.7.0",
+        "status": "qualified_for_nonperiodic_gfn2_single_point",
+        "force_gradient_check": "water_fd_max_abs=2.18e-7 hartree/angstrom",
+        "source_evidence": "docs/evidence/gfn2_units_diagnostic_20260927.json"
       }
     }
   },

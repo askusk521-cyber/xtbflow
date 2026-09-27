@@ -1,0 +1,18 @@
+{
+  "checkpoint_path": "runs/joint_flow_smoke_20260927.pt",
+  "checkpoint_sha256": "37f01850d20e8c06d74c4e5f9a74e363e05487aba4fdc595480a5c42123fd499",
+  "conservation_residual_max_abs": 5.551115123125783e-17,
+  "data_status": "diagnostic_synthetic_zero_velocity_target",
+  "elapsed_seconds": 0.18836877797730267,
+  "execution_host": "n2",
+  "execution_worktree": "xtbflow-exec-107d0de",
+  "final_loss": 0.012066113829555596,
+  "initial_loss": 0.04255262351071389,
+  "restore_max_abs_difference": 0.0,
+  "sample_steps": 4,
+  "sampled_event_finite": true,
+  "sampled_geometry_finite": true,
+  "schema": "xtbflow-joint-flow-smoke/v1",
+  "seed": 11,
+  "training_steps": 8
+}

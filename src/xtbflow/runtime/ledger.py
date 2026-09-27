@@ -195,6 +195,43 @@ class RunLedger:
             if limit is not None and totals[name] > limit + 1e-12:
                 raise BudgetExceeded(f"{name}={totals[name]} exceeds budget {limit}")
 
+    def reserve_calculator_calls(self, reservation_id: str, calls: int, *, metadata: Mapping[str, Any] | None = None) -> dict[str, Any]:
+        """Reserve calculator calls before a searcher or backend is invoked.
+
+        Reservations close the race between a planner's estimate and the
+        underlying call.  They are included in the persisted ledger payload
+        and are checked against completed events plus other reservations; a
+        duplicate reservation is idempotent only when its call count and
+        metadata match exactly.
+        """
+
+        if not isinstance(reservation_id, str) or not reservation_id.strip():
+            raise ValueError("reservation_id must be a non-empty string")
+        if type(calls) is not int or calls < 1:
+            raise ValueError("reserved calls must be a positive integer")
+        payload = {"calculator_calls": calls, **dict(metadata or {})}
+        with self._lock:
+            existing = self.reservations.get(reservation_id)
+            if existing is not None:
+                if existing != payload:
+                    raise ValueError("reservation_id already exists with different contents")
+                return dict(existing)
+            limit = self.budget.max_calculator_calls
+            reserved = sum(int(item.get("calculator_calls", 0)) for item in self.reservations.values())
+            used = int(self._totals()["calculator_calls"])
+            if limit is not None and used + reserved + calls > limit:
+                raise BudgetExceeded(f"calculator_calls reservation would exceed budget {limit}")
+            self.reservations[reservation_id] = payload
+            return dict(payload)
+
+    def release_calculator_reservation(self, reservation_id: str) -> None:
+        """Release a pending reservation after its result is recorded."""
+
+        if not isinstance(reservation_id, str) or not reservation_id.strip():
+            raise ValueError("reservation_id must be a non-empty string")
+        with self._lock:
+            self.reservations.pop(reservation_id, None)
+
     def projected(self, event: LedgerEvent) -> dict[str, float | int]:
         with self._lock:
             self.check_budget([*self.events, event])

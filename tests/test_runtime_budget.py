@@ -65,6 +65,19 @@ def test_cache_hit_records_a_system_but_no_calculator_call():
     assert ledger.summary()["totals"]["cache_hits"] == 1
 
 
+def test_calculator_call_reservations_are_atomic_and_budgeted():
+    ledger = RunLedger(budget(max_calculator_calls=3))
+    assert ledger.reserve_calculator_calls("candidate-a", 2, metadata={"protocol": "ts-v1"})["calculator_calls"] == 2
+    # Retrying the same reservation is idempotent; changing its identity is not.
+    assert ledger.reserve_calculator_calls("candidate-a", 2, metadata={"protocol": "ts-v1"})["protocol"] == "ts-v1"
+    with pytest.raises(ValueError, match="different contents"):
+        ledger.reserve_calculator_calls("candidate-a", 1)
+    with pytest.raises(BudgetExceeded):
+        ledger.reserve_calculator_calls("candidate-b", 2)
+    ledger.release_calculator_reservation("candidate-a")
+    ledger.reserve_calculator_calls("candidate-b", 2)
+
+
 def test_persistence_and_resume_are_idempotent(tmp_path: Path):
     ledger = RunLedger(budget(max_system_evaluations=4), ledger_id="ledger")
     manager = RunManager(ledger, tmp_path / "runs")

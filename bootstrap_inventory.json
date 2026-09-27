@@ -99,13 +99,13 @@
     },
     {
       "path": "configs/calculators/protocols.yaml",
-      "sha256": "977a71df5756f2de4bfd7bdf2df08b717d29ff2abc926c3e73c6535972ef035b",
-      "bytes": 1382
+      "sha256": "f49e3653ef9b89724e76d7777c058e0a9151037175eb0f901e7b9e84382fadc9",
+      "bytes": 1701
     },
     {
       "path": "configs/environment-n2.yml",
-      "sha256": "8634e9029b113a53a4a4e79f106bbef711cfd0ded544ae2cfd82afb0912dcd64",
-      "bytes": 2609
+      "sha256": "c32b79967d84df1a6c7cbd8d6c3afd902303f87a57fe921bf81b0624dd5c426d",
+      "bytes": 2649
     },
     {
       "path": "configs/host.local.example.yaml",
@@ -199,8 +199,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "40245656778b1ad7f64f542a2621d8402e8378b7e741db00ec055bea3bf35139",
-      "bytes": 2447
+      "sha256": "6414f23aa6afc52ce1be5e8eed5310f51763610b2b5e0be1f603e612710cb7c3",
+      "bytes": 3064
     },
     {
       "path": "docs/HANDOFF_STATUS.md",
@@ -224,8 +224,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "c461a727a0cf7a10cced255945eb8cd8419dc9f1082b67697322f8e8e9b6a37c",
-      "bytes": 1728
+      "sha256": "ea47645d5b37e37b8689af60d200080c2f84ea55eb4de1ce4e2fd3a24807b83d",
+      "bytes": 2503
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -241,6 +241,16 @@
       "path": "docs/data_contract.md",
       "sha256": "9964999089df7e67b9d5c0af99dcf5bd426974bca5128bee2623c928473d42a9",
       "bytes": 4036
+    },
+    {
+      "path": "docs/evidence/gfn2_units_diagnostic_20260927.json",
+      "sha256": "58ce3ca92d5d5733eb2d7b153f7f180a5fb25552647b4b0c25a926281b6b36e7",
+      "bytes": 21013
+    },
+    {
+      "path": "docs/evidence/joint_flow_smoke_20260927.json",
+      "sha256": "2a9803f4ac535aa5a9bb59225fe77ee62602734d80af448bf4b065d9a56a61ca",
+      "bytes": 670
     },
     {
       "path": "docs/model_design.md",
@@ -329,8 +339,8 @@
     },
     {
       "path": "src/xtbflow/calculators/xtb_oracle.py",
-      "sha256": "6b3cfa5d4e8fa39974ca91cb23cdde5923b0c0116cc59ed6bb9896e2a4ed9fd4",
-      "bytes": 3389
+      "sha256": "57a6c1d45b466d216170299d0a23a5d06157848b23371dedffb9f93e1835d4d7",
+      "bytes": 11629
     },
     {
       "path": "src/xtbflow/calculators/xtbloom.py",
@@ -474,8 +484,8 @@
     },
     {
       "path": "src/xtbflow/runtime/ledger.py",
-      "sha256": "1e5dd94dc69e9ef08b8be979e4a5ab776d5e49a38923a7f9fb7eb18dc34c746e",
-      "bytes": 12874
+      "sha256": "ec2c893fcabe434fcb1c886c77f731a42b20e7bf2313e054f594aba7c0784c25",
+      "bytes": 14929
     },
     {
       "path": "src/xtbflow/runtime/probe.py",
@@ -629,8 +639,8 @@
     },
     {
       "path": "tests/test_runtime_budget.py",
-      "sha256": "1ca8900bfe283ced083ac603bffceec660a92fac1ffe4ebb8d9c7c20d12d723f",
-      "bytes": 4488
+      "sha256": "de230c035520b9c175ea9d88fd500bcf0e648622b5ffd95f46fd9ff379b69b2a",
+      "bytes": 5256
     },
     {
       "path": "tests/test_saddle_guidance.py",

@@ -8,6 +8,7 @@ from typing import Sequence
 import torch
 
 from xtbflow.calculators import CalculatorBackend, MolecularSystem
+from xtbflow.runtime import BudgetExceeded, BudgetTokenRequired, CalculatorCallToken
 
 
 @dataclass(frozen=True)
@@ -19,7 +20,14 @@ class HVPResult:
     error: str | None = None
 
 
-def finite_difference_hvp(backend: CalculatorBackend, system: MolecularSystem, vector: Sequence[Sequence[float]] | torch.Tensor, *, step: float = 1e-4) -> HVPResult:
+def finite_difference_hvp(
+    backend: CalculatorBackend,
+    system: MolecularSystem,
+    vector: Sequence[Sequence[float]] | torch.Tensor,
+    *,
+    step: float = 1e-4,
+    budget_token: CalculatorCallToken | None = None,
+) -> HVPResult:
     """Estimate ``H v = -(F(R+h v)-F(R-h v))/(2h)`` with two E/F calls."""
 
     if not isinstance(step, (int, float)) or not math.isfinite(float(step)) or step <= 0:
@@ -32,18 +40,35 @@ def finite_difference_hvp(backend: CalculatorBackend, system: MolecularSystem, v
     if float(norm) == 0:
         raise ValueError("vector must be nonzero")
     direction = direction / norm
+    calls_before = budget_token.consumed_calls if budget_token is not None else 0
     coordinates = torch.tensor(system.coordinates, dtype=torch.float64)
     plus = system.with_coordinates((coordinates + float(step) * direction).tolist())
     minus = system.with_coordinates((coordinates - float(step) * direction).tolist())
     try:
-        plus_result = backend.evaluate(plus, operation="energy_forces")
+        if budget_token is None:
+            plus_result = backend.evaluate(plus, operation="energy_forces")
+        else:
+            plus_result = backend.evaluate(plus, operation="energy_forces", budget_token=budget_token)
+    except (BudgetExceeded, BudgetTokenRequired):
+        raise
     except Exception as exc:
-        return HVPResult(tuple(map(tuple, direction.tolist())), None, 1, "failed", f"{type(exc).__name__}: {exc}")
+        calls = (budget_token.consumed_calls - calls_before) if budget_token is not None else 1
+        return HVPResult(tuple(map(tuple, direction.tolist())), None, calls, "failed", f"{type(exc).__name__}: {exc}")
     try:
-        minus_result = backend.evaluate(minus, operation="energy_forces")
+        if budget_token is None:
+            minus_result = backend.evaluate(minus, operation="energy_forces")
+        else:
+            minus_result = backend.evaluate(minus, operation="energy_forces", budget_token=budget_token)
+    except (BudgetExceeded, BudgetTokenRequired):
+        raise
     except Exception as exc:
-        return HVPResult(tuple(map(tuple, direction.tolist())), None, plus_result.calculator_calls + 1, "failed", f"{type(exc).__name__}: {exc}")
-    calls = plus_result.calculator_calls + minus_result.calculator_calls
+        calls = (budget_token.consumed_calls - calls_before) if budget_token is not None else plus_result.calculator_calls + 1
+        return HVPResult(tuple(map(tuple, direction.tolist())), None, calls, "failed", f"{type(exc).__name__}: {exc}")
+    calls = (
+        budget_token.consumed_calls - calls_before
+        if budget_token is not None
+        else plus_result.calculator_calls + minus_result.calculator_calls
+    )
     if plus_result.status != "success" or minus_result.status != "success" or plus_result.forces is None or minus_result.forces is None:
         error = plus_result.error_message or plus_result.error_category or minus_result.error_message or minus_result.error_category
         return HVPResult(tuple(map(tuple, direction.tolist())), None, calls, "failed", error)

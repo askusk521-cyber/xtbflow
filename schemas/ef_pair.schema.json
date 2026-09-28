@@ -17,7 +17,7 @@
     "environment": {"type": "object"},
     "semi_empirical_protocol_id": {"type": "string", "minLength": 1},
     "reference_protocol_id": {"type": "string", "minLength": 1},
-    "units": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string"}},
+    "units": {"type": "object", "properties": {"coordinate": {"const": "angstrom"}, "energy": {"const": "hartree"}, "force": {"const": "hartree/angstrom"}}, "required": ["coordinate", "energy", "force"], "additionalProperties": false},
     "status": {"enum": ["success", "failure"]},
     "semi_empirical_energy": {"type": ["number", "null"]},
     "semi_empirical_forces": {"type": ["array", "null"]},

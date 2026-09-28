@@ -1,10 +1,16 @@
 from __future__ import annotations
 
-import json
-
 import pytest
 
-from xtbflow.validation import ConnectivityEvidence, ModeEvidence, TSValidationConfig, run_resumable_validation, validate_mode, validate_ts_evidence
+from xtbflow.runtime import RunLedger, StageBudget
+from xtbflow.validation import (
+    ConnectivityEvidence,
+    ModeEvidence,
+    TSValidationConfig,
+    run_resumable_validation,
+    validate_mode,
+    validate_ts_evidence,
+)
 
 
 def connectivity(path=True):
@@ -12,7 +18,13 @@ def connectivity(path=True):
 
 
 def good(path=True):
-    return {"converged": True, "gradient_norm": 1e-6, "hessian_eigenvalues": (-0.5, 0.2, 0.3), "connectivity": connectivity(path), "path_connected": path}
+    return {
+        "converged": True,
+        "gradient_norm": 1e-6,
+        "hessian_eigenvalues": (-0.5, 0.2, 0.3),
+        "connectivity": connectivity(path),
+        "path_connected": path,
+    }
 
 
 def test_ts_success_requires_mode_and_bidirectional_connectivity():
@@ -47,6 +59,47 @@ def test_ts_validation_rejects_string_booleans():
     evidence = good()
     evidence["path_connected"] = "false"
     assert validate_ts_evidence("string-path", "fixture", evidence, TSValidationConfig()).status == "failure"
+
+
+def test_strict_validation_requires_token_factory_and_binds_calls(tmp_path):
+    config = TSValidationConfig(max_calls=2)
+    candidate = {"coordinates": [[0.0, 0.0, 0.0]], "charge": 0, "multiplicity": 1}
+    called = []
+    with pytest.raises(ValueError, match="budget_token_factory"):
+        run_resumable_validation(
+            {"candidate": candidate},
+            lambda *args: called.append(args),
+            config,
+            tmp_path / "strict.json",
+            require_budget_token=True,
+        )
+    assert called == []
+
+    ledger = RunLedger(StageBudget("P1", max_calculator_calls=2))
+    checkpoint = tmp_path / "strict.json"
+    ledger_path = tmp_path / "ledger.json"
+
+    def factory(token_id, item, calls, metadata):
+        assert token_id == metadata["cache_key"]
+        return ledger.issue_calculator_token(token_id, calls, metadata=metadata, persist_path=ledger_path)
+
+    def search(candidate_id, item, token):
+        token.consume()
+        evidence = good()
+        evidence.update(source="fixture", calculator_calls=1)
+        return evidence
+
+    records = run_resumable_validation(
+        {"candidate": candidate},
+        search,
+        config,
+        checkpoint,
+        budget_token_factory=factory,
+        require_budget_token=True,
+    )
+    assert records[0].status == "success"
+    assert ledger.summary()["totals"]["calculator_calls"] == 1
+    assert called == []
 
 
 def test_resumable_validation_binds_cache_to_candidate_and_checks_budget_before_search(tmp_path):

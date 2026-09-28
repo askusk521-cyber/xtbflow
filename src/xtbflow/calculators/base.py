@@ -16,6 +16,8 @@ import json
 import math
 from typing import Any, Callable, Iterable, Mapping, Sequence
 
+from xtbflow.runtime.ledger import BudgetExceeded, BudgetTokenRequired, CalculatorCallToken
+
 
 OPERATIONS = frozenset({"energy", "forces", "energy_forces"})
 RESULT_STATUSES = frozenset({"success", "failure", "unavailable", "not_converged"})
@@ -139,7 +141,13 @@ class MolecularSystem:
 
 @dataclass(frozen=True)
 class CalculatorCapabilities:
-    """Observed capability matrix; unknown is distinct from unavailable."""
+    """Observed capability matrix; qualification is separate from callability.
+
+    An injected callable proves only that a test seam exists.  ``qualification``
+    keeps that fact distinct from an installed backend, a unit-tested adapter,
+    and a numerically qualified production path; only the last state may report
+    ``status="pass"``.
+    """
 
     calculator: str
     status: str
@@ -148,10 +156,15 @@ class CalculatorCapabilities:
     build_hash: str | None = None
     operations: tuple[str, ...] = ()
     backends: tuple[str, ...] = ()
+    qualification: str = "unknown"
 
     def __post_init__(self) -> None:
         if not self.calculator.strip() or self.status not in {"pass", "unknown", "unavailable"} or not self.detail.strip():
             raise ValueError("capability identity, status, and detail are required")
+        if self.qualification not in {"unavailable", "callable", "installed", "unit-tested", "numerically-qualified", "unknown"}:
+            raise ValueError("unsupported capability qualification state")
+        if self.status == "pass" and self.qualification != "numerically-qualified":
+            raise ValueError("only numerically-qualified capabilities may report pass")
         if any(operation not in OPERATIONS for operation in self.operations):
             raise ValueError("capabilities contain an unsupported operation")
         if any(backend not in {"cpu", "cuda"} for backend in self.backends):
@@ -293,21 +306,45 @@ class CalculatorBackend(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def evaluate(self, system: MolecularSystem, *, operation: str = "energy_forces") -> CalculationResult:
+    def evaluate(
+        self,
+        system: MolecularSystem,
+        *,
+        operation: str = "energy_forces",
+        budget_token: CalculatorCallToken | None = None,
+    ) -> CalculationResult:
         raise NotImplementedError
 
-    def evaluate_batch(self, systems: Iterable[MolecularSystem], *, operation: str = "energy_forces") -> tuple[CalculationResult, ...]:
-        """Evaluate ragged inputs while recording one explicit result per system."""
+    def evaluate_batch(
+        self,
+        systems: Iterable[MolecularSystem],
+        *,
+        operation: str = "energy_forces",
+        budget_token: CalculatorCallToken | None = None,
+    ) -> tuple[CalculationResult, ...]:
+        """Evaluate ragged inputs while recording one explicit result per system.
+
+        A supplied token is forwarded only to token-aware implementations.  A
+        budget failure is deliberately propagated rather than converted into a
+        fabricated backend call count.
+        """
 
         results: list[CalculationResult] = []
         for system in systems:
+            before_calls = budget_token.consumed_calls if budget_token is not None else 0
             try:
-                results.append(self.evaluate(system, operation=operation))
+                if budget_token is None:
+                    results.append(self.evaluate(system, operation=operation))
+                else:
+                    results.append(self.evaluate(system, operation=operation, budget_token=budget_token))
+            except (BudgetExceeded, BudgetTokenRequired):
+                raise
             except CalculatorError as exc:
-                calls = 0 if exc.category in {"unavailable", "input", "protocol"} else 1
+                calls = (budget_token.consumed_calls - before_calls) if budget_token is not None else (0 if exc.category in {"unavailable", "input", "protocol"} else 1)
                 results.append(CalculationResult.failure(system, self.protocol, operation, status="failure", category=exc.category, message=str(exc), calculator_calls=calls))
             except Exception as exc:  # Backend failures must not erase neighboring systems.
-                results.append(CalculationResult.failure(system, self.protocol, operation, status="failure", category="execution", message=f"{type(exc).__name__}: {exc}", calculator_calls=1))
+                calls = (budget_token.consumed_calls - before_calls) if budget_token is not None else 1
+                results.append(CalculationResult.failure(system, self.protocol, operation, status="failure", category="execution", message=f"{type(exc).__name__}: {exc}", calculator_calls=calls))
         return tuple(results)
 
 
@@ -355,7 +392,13 @@ def coerce_backend_output(
     return result
 
 
-def finite_difference_forces(backend: CalculatorBackend, system: MolecularSystem, *, step: float = 1e-4) -> tuple[tuple[float, float, float], ...]:
+def finite_difference_forces(
+    backend: CalculatorBackend,
+    system: MolecularSystem,
+    *,
+    step: float = 1e-4,
+    budget_token: CalculatorCallToken | None = None,
+) -> tuple[tuple[float, float, float], ...]:
     """Estimate ``F=-dE/dR`` using central differences and energy calls only."""
 
     step = _finite_number("step", step)
@@ -368,8 +411,12 @@ def finite_difference_forces(backend: CalculatorBackend, system: MolecularSystem
             minus = [list(row) for row in system.coordinates]
             plus[atom][axis] += step
             minus[atom][axis] -= step
-            plus_result = backend.evaluate(system.with_coordinates(plus), operation="energy")
-            minus_result = backend.evaluate(system.with_coordinates(minus), operation="energy")
+            if budget_token is None:
+                plus_result = backend.evaluate(system.with_coordinates(plus), operation="energy")
+                minus_result = backend.evaluate(system.with_coordinates(minus), operation="energy")
+            else:
+                plus_result = backend.evaluate(system.with_coordinates(plus), operation="energy", budget_token=budget_token)
+                minus_result = backend.evaluate(system.with_coordinates(minus), operation="energy", budget_token=budget_token)
             if plus_result.status != "success" or minus_result.status != "success" or plus_result.energy is None or minus_result.energy is None:
                 raise CalculatorError("finite-difference force requires two converged energy results")
             values[atom][axis] = -(plus_result.energy - minus_result.energy) / (2.0 * step)

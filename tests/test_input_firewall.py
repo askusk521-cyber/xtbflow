@@ -1,10 +1,11 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
 
 import pytest
 
-from xtbflow.data.records import PublicRecord, load_jsonl
+from xtbflow.data.records import CHNOS_ELEMENTS, PublicRecord, RecordPolicy, filter_records, load_jsonl, write_jsonl
 from xtbflow.data.splits import SplitError, assign_group_splits, audit_no_group_leakage, admitted_records
 
 
@@ -60,3 +61,47 @@ def test_source_audit_manifest_is_explicitly_quarantined():
     assert len(rows) == 6
     assert all(row.admission == "quarantine" for row in rows)
     assert not admitted_records(rows, assign_group_splits(rows))
+
+
+def test_record_policy_quarantines_out_of_scope_and_parity_rows_deterministically():
+    valid = record(record_id="valid")
+    out_of_scope = record(
+        record_id="out-of-scope",
+        input_data={"atomic_numbers": [8, 1, 9], "reactant_coordinates": [[0, 0, 0], [1, 0, 0], [-1, 0, 0]], "charge": 0, "multiplicity": 1},
+    )
+    parity_mismatch = record(
+        record_id="parity-mismatch",
+        input_data={"atomic_numbers": [1], "reactant_coordinates": [[0, 0, 0]], "charge": 0, "multiplicity": 1},
+    )
+    policy = RecordPolicy(allowed_elements=CHNOS_ELEMENTS)
+    result = filter_records([parity_mismatch, valid, out_of_scope], policy)
+
+    assert [row.record_id for row in result.accepted] == ["valid"]
+    assert [row.record_id for row in result.quarantined] == ["out-of-scope", "parity-mismatch"]
+    assert result.policy_digest == policy.digest
+    assert result.quarantined[0].admission == "quarantine"
+    assert result.quarantined[0].quarantine_reasons == ("elements_out_of_scope",)
+    assert result.quarantined[1].quarantine_reasons == ("electron_spin_parity_mismatch",)
+
+
+def test_public_record_rejects_boolean_charge_and_multiplicity():
+    base = record(admission="quarantine")
+    for key in ("charge", "multiplicity"):
+        payload = base.to_dict()
+        payload["input_data"] = dict(base.input_data)
+        payload["input_data"][key] = True
+        with pytest.raises(ValueError, match="strict integer"):
+            PublicRecord.from_dict(payload)
+
+
+def test_jsonl_load_rejects_duplicate_ids_and_write_is_sorted(tmp_path):
+    first = record(record_id="z")
+    second = record(record_id="a")
+    path = tmp_path / "records.jsonl"
+    write_jsonl(path, [first, second])
+    assert [row.record_id for row in load_jsonl(path)] == ["a", "z"]
+
+    duplicate = tmp_path / "duplicate.jsonl"
+    duplicate.write_text(json.dumps(first.to_dict()) + "\n" + json.dumps(first.to_dict()) + "\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="duplicate public record_id"):
+        load_jsonl(duplicate)

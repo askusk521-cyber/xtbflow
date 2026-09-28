@@ -14,4 +14,10 @@ terminal_geometry_slots: shared_across_event_duplicates
 same_generation_weights_for_controls: true
 same_physical_budget_for_controls: true
 flow_parameter: normalized_generation_coordinate
+tau:
+  domain: [0.0, 1.0]
+  meaning: normalized_generation_coordinate
+  per_sample: true
+integrator: explicit_euler_dt
+dt_required: true
 physical_force_is_event_gradient: false

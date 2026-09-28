@@ -49,3 +49,38 @@ def test_failure_rows_are_retained_and_cache_conflicts_fail(tmp_path):
     with pytest.raises(ValueError, match="conflicting"):
         load_pair_cache(path)
 
+
+def test_pair_from_dict_rejects_tampered_identity_delta_and_units():
+    item = system()
+    pair = build_ef_pair(item, result("gfn2", item, -1.0, 0.1), result("ref", item, -1.2, 0.2), source_record_id="row-1")
+
+    tampered = pair.to_dict()
+    tampered["delta_energy"] = 99.0
+    with pytest.raises(ValueError, match="delta_energy"):
+        type(pair).from_dict(tampered)
+
+    tampered = pair.to_dict()
+    tampered["geometry_hash"] = "wrong"
+    with pytest.raises(ValueError, match="geometry_hash"):
+        type(pair).from_dict(tampered)
+
+    tampered = pair.to_dict()
+    tampered["units"] = {"energy": "eV", "force": "eV/angstrom", "coordinate": "angstrom"}
+    with pytest.raises(ValueError, match="canonical"):
+        type(pair).from_dict(tampered)
+
+
+def test_pair_from_dict_rejects_bool_state_and_unknown_fields():
+    item = system()
+    pair = build_ef_pair(item, result("gfn2", item, -1.0, 0.1), result("ref", item, -1.2, 0.2), source_record_id="row-1")
+
+    tampered = pair.to_dict()
+    tampered["charge"] = False
+    with pytest.raises(ValueError, match="strict integers"):
+        type(pair).from_dict(tampered)
+
+    tampered = pair.to_dict()
+    tampered["unexpected"] = "payload"
+    with pytest.raises(ValueError, match="unsupported"):
+        type(pair).from_dict(tampered)
+

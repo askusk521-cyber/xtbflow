@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Run a bounded joint-flow train/save/restore/sample smoke test.
 
-This is a software-chain check using a synthetic zero-velocity target.  It is
-deliberately labelled as such: the run does not establish chemical accuracy,
-physical time interpretation, or performance on admitted reference data.
+This is a software-chain check using a deterministic nonzero synthetic
+velocity target.  It is deliberately labelled as such: the run does not
+establish chemical accuracy, physical time interpretation, or performance on
+admitted reference data.
 """
 from __future__ import annotations
 
@@ -18,7 +19,8 @@ import time
 import torch
 
 from xtbflow.models import ConservationProjector, JointEventGeometryFlow
-from xtbflow.training import joint_flow_loss
+from xtbflow.sampling import euler_step
+from xtbflow.training import joint_flow_loss, load_joint_checkpoint, save_joint_checkpoint
 
 
 def _state_digest(model: torch.nn.Module) -> str:
@@ -40,9 +42,13 @@ def main() -> int:
     parser.add_argument("--seed", type=int, default=11)
     parser.add_argument("--training-steps", type=int, default=8)
     parser.add_argument("--sample-steps", type=int, default=4)
+    parser.add_argument("--dt", type=float, default=None, help="explicit normalized Euler step; defaults to 1/sample_steps")
     args = parser.parse_args()
     if args.training_steps < 1 or args.sample_steps < 1:
         raise SystemExit("training and sample steps must be positive")
+    dt = 1.0 / args.sample_steps if args.dt is None else args.dt
+    if not 0 < dt <= 1 or args.sample_steps * dt > 1 + 1e-12:
+        raise SystemExit("dt must be positive and sample_steps*dt must be at most one")
     started = time.monotonic()
     torch.manual_seed(args.seed)
     dtype = torch.float64
@@ -54,29 +60,39 @@ def main() -> int:
 
     model = JointEventGeometryFlow(projector, 4, hidden_dim=8, radial_features=4).to(dtype=dtype)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-2)
-    target_event = torch.zeros_like(event)
+    target_event = torch.tensor([[0.2, -0.1, -0.1]], dtype=dtype)
     target_geometry = torch.zeros_like(coordinates)
+    target_geometry[:, 1, 0] = 0.15
+    target_geometry[:, 2, 1] = -0.1
     losses: list[float] = []
     for _ in range(args.training_steps):
         optimizer.zero_grad(set_to_none=True)
-        output = model(event, coordinates, node_features, atom_mask)
-        loss = joint_flow_loss(output, target_event, target_geometry, atom_mask=atom_mask)["total"]
+        output = model(event, coordinates, node_features, atom_mask, tau=0.5)
+        loss = joint_flow_loss(output, target_event, target_geometry, atom_mask=atom_mask, require_nonzero_target=True)["total"]
         loss.backward()
         optimizer.step()
         losses.append(float(loss.detach()))
 
     model.eval()
     with torch.no_grad():
-        pre_save = model(event, coordinates, node_features, atom_mask)
+        pre_save = model(event, coordinates, node_features, atom_mask, tau=0.5)
     state_digest_before = _state_digest(model)
     args.checkpoint.parent.mkdir(parents=True, exist_ok=True)
-    torch.save({"model": model.state_dict(), "optimizer": optimizer.state_dict(), "seed": args.seed}, args.checkpoint)
+    save_joint_checkpoint(
+        args.checkpoint,
+        model,
+        optimizer,
+        loop={"global_step": args.training_steps, "tau": 0.5, "dt": dt, "data_order": list(range(args.training_steps))},
+        sampler_state={"event_state": torch.zeros_like(event), "coordinates": coordinates.clone(), "node_features": node_features.clone(), "atom_mask": atom_mask.clone()},
+        metadata={"target": "diagnostic_nonzero_synthetic_velocity"},
+    )
 
     restored = JointEventGeometryFlow(projector, 4, hidden_dim=8, radial_features=4).to(dtype=dtype)
-    restored.load_state_dict(torch.load(args.checkpoint, map_location="cpu", weights_only=True)["model"], strict=True)
+    restored_optimizer = torch.optim.Adam(restored.parameters(), lr=1e-2)
+    restore_info = load_joint_checkpoint(args.checkpoint, restored, restored_optimizer)
     restored.eval()
     with torch.no_grad():
-        post_restore = restored(event, coordinates, node_features, atom_mask)
+        post_restore = restored(event, coordinates, node_features, atom_mask, tau=0.5)
     restore_differences = {
         "event_velocity": _max_abs(pre_save.event_velocity, post_restore.event_velocity),
         "geometry_velocity": _max_abs(pre_save.geometry_velocity, post_restore.geometry_velocity),
@@ -91,22 +107,31 @@ def main() -> int:
     sample_coordinates = coordinates.clone()
     residuals: list[float] = []
     with torch.no_grad():
-        for _ in range(args.sample_steps):
-            sample_output = restored(sample_event, sample_coordinates, node_features, atom_mask)
-            dt = 1.0 / args.sample_steps
-            sample_event = sample_event + dt * sample_output.event_velocity
-            sample_coordinates = sample_coordinates + dt * sample_output.geometry_velocity
+        for step in range(args.sample_steps):
+            tau = step * dt
+            sample_event, sample_coordinates, sample_output = euler_step(
+                restored,
+                sample_event,
+                sample_coordinates,
+                node_features,
+                atom_mask,
+                tau=tau,
+                dt=dt,
+            )
             residuals.append(float((sample_event @ projector.constraint_matrix.T).abs().max()))
 
     report = {
         "schema": "xtbflow-joint-flow-smoke/v2",
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "execution_host": platform.node(),
-        "data_status": "diagnostic_synthetic_zero_velocity_target",
+        "data_status": "diagnostic_synthetic_nonzero_velocity_target",
         "seed": args.seed,
         "training_steps": args.training_steps,
         "sample_steps": args.sample_steps,
-        "initial_loss": losses[0],
+        "dt": dt,
+        "tau_domain": [0.0, min(1.0, args.sample_steps * dt)],
+        "checkpoint_schema": restore_info["schema"],
+        "complete_resume": restore_info["complete_resume"],
         "final_loss": losses[-1],
         "checkpoint_path": str(args.checkpoint),
         "checkpoint_sha256": hashlib.sha256(args.checkpoint.read_bytes()).hexdigest(),
@@ -119,7 +144,7 @@ def main() -> int:
         "conservation_residual_max_abs": max(residuals),
         "elapsed_seconds": time.monotonic() - started,
         "limits": [
-            "Synthetic zero-velocity targets only test the software chain.",
+            "Synthetic nonzero targets only test the software chain.",
             "The checkpoint is a local smoke artefact and is not a trained scientific model.",
         ],
     }

@@ -32,9 +32,11 @@
       "qualification": {
         "implementation": "tblite",
         "version": "0.7.0",
-        "status": "qualified_for_nonperiodic_gfn2_single_point",
-        "force_gradient_check": "water_fd_max_abs=2.18e-7 hartree/angstrom",
-        "source_evidence": "docs/evidence/gfn2_units_diagnostic_20260927.json"
+        "adapter_revision": "xtb-oracle-native-units-v1",
+        "status": "requalification_required",
+        "reason": "historical qualification used incorrect native tblite coordinate and gradient units",
+        "superseded_evidence": "docs/evidence/gfn2_units_diagnostic_20260927.json",
+        "source_evidence": "pending post-fix native/ASE parity and non-stationary finite-difference evidence"
       }
     }
   },

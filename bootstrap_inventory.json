@@ -99,8 +99,8 @@
     },
     {
       "path": "configs/calculators/protocols.yaml",
-      "sha256": "f49e3653ef9b89724e76d7777c058e0a9151037175eb0f901e7b9e84382fadc9",
-      "bytes": 1701
+      "sha256": "c6ea3ae04336372b2db4f901ff4b1d44e7051492662715ad0532b8ef09bc82c7",
+      "bytes": 1883
     },
     {
       "path": "configs/environment-n2.yml",
@@ -124,8 +124,8 @@
     },
     {
       "path": "configs/models/joint_flow_v0.1.yaml",
-      "sha256": "59422f59e47b537e1fcc71e23bcf7d204e44928d5274cde76baba50208f072c2",
-      "bytes": 577
+      "sha256": "05ba101ee0f236f3710e9723651403165f03af85fe2ea11ae05449907f806abb",
+      "bytes": 714
     },
     {
       "path": "configs/models/physical_guidance_v0.1.yaml",
@@ -199,8 +199,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "ec8cd746d0278210b2a9d8178296be2843b9a1a56477ce5c6d564ac6ef2dbb72",
-      "bytes": 3251
+      "sha256": "2f0040cd56d9c09dcbbe0a0c1f854afa41fb7c1976d3cf1b6a7893659e219164",
+      "bytes": 3491
     },
     {
       "path": "docs/HANDOFF_STATUS.md",
@@ -224,8 +224,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "5e547fc01233d2794379f387a4ba07d3b686e3f13c83ed07b3f49d71efd7e297",
-      "bytes": 3856
+      "sha256": "73a5bb84d45371f0a6cc064397a4db97f3657d63097338a984fe64531f967e07",
+      "bytes": 3999
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -284,8 +284,8 @@
     },
     {
       "path": "schemas/ef_pair.schema.json",
-      "sha256": "502a4b408b5623bc30430053261029dc979ad02921cc5b968872184f565abb8b",
-      "bytes": 1799
+      "sha256": "5c1a8ca387e8ba2f4aee832366f364d5743f773a95c736df003111698e6446ed",
+      "bytes": 1938
     },
     {
       "path": "schemas/event_geometry_sample_manifest_v1.schema.json",
@@ -304,8 +304,8 @@
     },
     {
       "path": "schemas/public_record.schema.json",
-      "sha256": "9e8281c63a61b3ddfe6be5aaeffde074c891e4124479f5cf394060d926a3b752",
-      "bytes": 1762
+      "sha256": "43a6c76ea4229ddf42a4eda5e4dd1d3d2a4a73cfab4a6fc33aa0a648327aa298",
+      "bytes": 1873
     },
     {
       "path": "schemas/reference_protocol.schema.json",
@@ -329,8 +329,13 @@
     },
     {
       "path": "scripts/joint_flow_smoke.py",
-      "sha256": "c156c1854587b7c7a9dc679bde45d6089e3b997dcacbc1639d8d1acdef2e4032",
-      "bytes": 6132
+      "sha256": "391943e07bb23f76915c52b696f5a2ed76f99fe67fdaf51caef26cebb6d6cc94",
+      "bytes": 7273
+    },
+    {
+      "path": "scripts/run_gfn2_diagnostic.py",
+      "sha256": "e92991954cb0037dc3e6d40e716c79fe165c436fab29fcfa56cf4041f8a63615",
+      "bytes": 15124
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -339,8 +344,8 @@
     },
     {
       "path": "src/xtbflow/__init__.py",
-      "sha256": "81d4dab35ddeb3d8a5e4c41a358db6519b9602325158b153ff794ddabd246c38",
-      "bytes": 243
+      "sha256": "aae4ab20d62b3b8f021c101973d2997c057d3c39cf2fefdc7f9a6fff55da8fa4",
+      "bytes": 1705
     },
     {
       "path": "src/xtbflow/calculators/__init__.py",
@@ -349,28 +354,28 @@
     },
     {
       "path": "src/xtbflow/calculators/base.py",
-      "sha256": "77f170523552abe99c624312c8d6848dd62890363873cfc2c1426280b513a267",
-      "bytes": 17033
+      "sha256": "74761022fd084a5b580d57e920645314fd993ea6f10601f55b91c7a19cb3fc2d",
+      "bytes": 19129
     },
     {
       "path": "src/xtbflow/calculators/cp2k.py",
-      "sha256": "7181cba1fea0edc82270f4e2fb5c2645545aa4c3d0407ae7f43adf943bbfeb72",
-      "bytes": 14227
+      "sha256": "4b63ff2004cdf87e4b680ef9980642fff594610c6f538a6211642a9ceeb5ce19",
+      "bytes": 14978
     },
     {
       "path": "src/xtbflow/calculators/xtb_oracle.py",
-      "sha256": "57a6c1d45b466d216170299d0a23a5d06157848b23371dedffb9f93e1835d4d7",
-      "bytes": 11629
+      "sha256": "d4e282c1b6e72f2761612635c4eb4724bd2c346c1faf1ba8e0fb6e92e2f8a70f",
+      "bytes": 14029
     },
     {
       "path": "src/xtbflow/calculators/xtbloom.py",
-      "sha256": "58a428be39c3b759f41247b2ac2d21ec20c3de3b959a5a7f2a859ab0613ae24a",
-      "bytes": 3214
+      "sha256": "fa5dfcc9a05c2de1a95499d615569dee93e61291f0fb0a27128cd9df3cb66a83",
+      "bytes": 3974
     },
     {
       "path": "src/xtbflow/data/__init__.py",
-      "sha256": "91339cf3985804bd4f5c3954c485c63277bbb2f887c15de4cf9ef1523752e8ba",
-      "bytes": 998
+      "sha256": "903270d283cf9226b0e810ea0711da34d74217a1dfc5454c54619702975ea958",
+      "bytes": 1873
     },
     {
       "path": "src/xtbflow/data/cache.py",
@@ -379,8 +384,8 @@
     },
     {
       "path": "src/xtbflow/data/pairing.py",
-      "sha256": "f4145f9af27ed5c53f97511d11234b042a45fda2fb5af06a7eaf4a7d4ce557c3",
-      "bytes": 9255
+      "sha256": "e3c7f6042e547abb3696d4c80fe98f1d6d99fd3957ddb0715973ef5ccaa06218",
+      "bytes": 16480
     },
     {
       "path": "src/xtbflow/data/public_sources.py",
@@ -389,8 +394,8 @@
     },
     {
       "path": "src/xtbflow/data/records.py",
-      "sha256": "2b7a032840a0396fa3437907f252fa293d559b13d9d4cb5f1917f6955df05122",
-      "bytes": 7562
+      "sha256": "c732356802fb8bd381acfc8d77e0f749d6dd9d342fc35427e38f8a0b96744a9f",
+      "bytes": 25978
     },
     {
       "path": "src/xtbflow/data/splits.py",
@@ -454,8 +459,8 @@
     },
     {
       "path": "src/xtbflow/models/joint_flow.py",
-      "sha256": "a1505124d3cb777d96a1d6afd5e2d35222259b16313e766586cbf8fef79f5851",
-      "bytes": 7383
+      "sha256": "74260fb2054e1be4c5db72dd1ecefe469bc3eb787139aa8f7d240f0b2b111639",
+      "bytes": 9316
     },
     {
       "path": "src/xtbflow/models/reaction_direction.py",
@@ -469,13 +474,13 @@
     },
     {
       "path": "src/xtbflow/physics/curvature.py",
-      "sha256": "86e8dcc217eccac88aea600f6d293da5db3fa6a9f0474218ee675ccc032dcb32",
-      "bytes": 3033
+      "sha256": "d303f9aed9564ef95318feb52adf47b63961fff9479b47bda447a4018f2ebf52",
+      "bytes": 4022
     },
     {
       "path": "src/xtbflow/physics/saddle.py",
-      "sha256": "539064983a9dda15993f1ea856b2bad9b633867141b749f8c2ae85f591adf08a",
-      "bytes": 10106
+      "sha256": "b54def841bc816972f877fef0e2a7bb1397b0344cdb0d3d81c1cfa7004b86574",
+      "bytes": 10762
     },
     {
       "path": "src/xtbflow/proposals/__init__.py",
@@ -499,13 +504,13 @@
     },
     {
       "path": "src/xtbflow/runtime/__init__.py",
-      "sha256": "b2c7b53c3ffbcdeb41a30457e69dd475e5a010bf3911bab000f8227551f0f59d",
-      "bytes": 560
+      "sha256": "c025dd9de553aa2395f9dff81b06961355ff8956319073bee1d8f47572fd508f",
+      "bytes": 648
     },
     {
       "path": "src/xtbflow/runtime/ledger.py",
-      "sha256": "ec2c893fcabe434fcb1c886c77f731a42b20e7bf2313e054f594aba7c0784c25",
-      "bytes": 14929
+      "sha256": "f88d13f3fdfca47123ff1ff47e7c7e1361f8131e6eba921d0c4c2a77bb9c95d4",
+      "bytes": 27540
     },
     {
       "path": "src/xtbflow/runtime/probe.py",
@@ -519,8 +524,8 @@
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
-      "sha256": "d8b9795c8376324c72a28caace296bdf7fde5f56a86733fe2b283dc7cc69a2ec",
-      "bytes": 137
+      "sha256": "776805edde8ed0365ca095f3cd206ff4c91b415c2e6343089287f0166fa87bc7",
+      "bytes": 186
     },
     {
       "path": "src/xtbflow/sampling/guidance.py",
@@ -528,9 +533,19 @@
       "bytes": 1273
     },
     {
+      "path": "src/xtbflow/sampling/integrator.py",
+      "sha256": "8e23eba2c291031479f45aba4ee9018a05fbb09be50b6da67c05946835c39ea0",
+      "bytes": 1652
+    },
+    {
       "path": "src/xtbflow/training/__init__.py",
-      "sha256": "cef11d4497e08a3277421964945083011e287c05bdd2f250a046111d5409f608",
-      "bytes": 791
+      "sha256": "e0ad8dd934098ccd0e6e9d268facbc5a28cf1ead32945f6241e2bedcc12ccfe4",
+      "bytes": 887
+    },
+    {
+      "path": "src/xtbflow/training/checkpoint.py",
+      "sha256": "13bf0c21bb46224f0567fc2ffad62aaa9c18d723ca4d2909c21172286169f77c",
+      "bytes": 3370
     },
     {
       "path": "src/xtbflow/training/energy.py",
@@ -549,8 +564,8 @@
     },
     {
       "path": "src/xtbflow/training/joint.py",
-      "sha256": "ecdc8339afd361063d421614d3f811aa734b61c14fdb1e375879951c844918ac",
-      "bytes": 3656
+      "sha256": "4501d80a3332d04872496d3ac30316d8c4b6c6d27ece5cf2a135a9243f623563",
+      "bytes": 4626
     },
     {
       "path": "src/xtbflow/validation/__init__.py",
@@ -569,8 +584,8 @@
     },
     {
       "path": "src/xtbflow/validation/ts_search.py",
-      "sha256": "e1bbc9f3964ebf2bd1eaeaf50383b7085b7028cb7947f5d8400a7b3ffe262325",
-      "bytes": 10854
+      "sha256": "7c0a8125f35af9f6f150f694ad32e979d092fef4c0399b93e699f36d5871c79d",
+      "bytes": 18051
     },
     {
       "path": "tests/reusable/test_event_geometry.py",
@@ -604,8 +619,8 @@
     },
     {
       "path": "tests/test_calculator_contract.py",
-      "sha256": "10ca6ae9d3d7a8bbcedf42acd13cd2bb257b8dbbf1e7612a58a294547a2408e7",
-      "bytes": 4295
+      "sha256": "7c87738099f210990322ddfc016ef69e21cd7475d07e1fb1c06714f4608fe55c",
+      "bytes": 7285
     },
     {
       "path": "tests/test_conserved_flow.py",
@@ -634,8 +649,8 @@
     },
     {
       "path": "tests/test_input_firewall.py",
-      "sha256": "9b5832a98e7006e43ebfb3ce38d478892da63cdbe6ed88ca863f06180cf2f354",
-      "bytes": 2921
+      "sha256": "9a95a2c9f0a35e2e6e801cbad22ef7241cf62462342cd28369b19a62582bc7b3",
+      "bytes": 5035
     },
     {
       "path": "tests/test_joint_flow.py",
@@ -649,18 +664,18 @@
     },
     {
       "path": "tests/test_pair_identity.py",
-      "sha256": "2144aeebc4d795e6bd23c6a388a84a84f3c5da68098264e0b53cb0d36d7b47df",
-      "bytes": 2234
+      "sha256": "5b40881957a884534c601076683d457d6bceaebe288abe5e9cdcd6b7cb4a9de5",
+      "bytes": 3533
     },
     {
       "path": "tests/test_path_status.py",
-      "sha256": "667fe83a858388ff733a8729d3f71859b753a26c9e3debef391be759078ad7d7",
-      "bytes": 3289
+      "sha256": "f756123ca3e35aaa151fb21f3b35b5e571537b03a80605c8b684e2b896b084c2",
+      "bytes": 4816
     },
     {
       "path": "tests/test_runtime_budget.py",
-      "sha256": "de230c035520b9c175ea9d88fd500bcf0e648622b5ffd95f46fd9ff379b69b2a",
-      "bytes": 5256
+      "sha256": "1704ff8e53ecfb180acc58e6edaea4f85d49c8f4eb4a2cf58fbc38ceba842193",
+      "bytes": 6690
     },
     {
       "path": "tests/test_saddle_guidance.py",

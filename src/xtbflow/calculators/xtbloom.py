@@ -21,6 +21,7 @@ from .base import (
     MolecularSystem,
     coerce_backend_output,
 )
+from xtbflow.runtime.ledger import BudgetTokenRequired, CalculatorCallToken
 
 
 class XTBloomAdapter(CalculatorBackend):
@@ -34,6 +35,7 @@ class XTBloomAdapter(CalculatorBackend):
         evaluate_fn: Callable[[MolecularSystem, str], CalculationResult | Mapping[str, Any]] | None = None,
         version: str | None = None,
         build_hash: str | None = None,
+        require_budget_token: bool = False,
     ) -> None:
         if evaluator is not None and evaluate_fn is not None:
             raise ValueError("provide either evaluator or evaluate_fn, not both")
@@ -47,22 +49,42 @@ class XTBloomAdapter(CalculatorBackend):
         self._evaluator = evaluator or evaluate_fn
         self.version = version
         self.build_hash = build_hash
+        self.require_budget_token = bool(require_budget_token)
 
     @property
     def capabilities(self) -> CalculatorCapabilities:
         if self._evaluator is not None:
-            return CalculatorCapabilities("xtbloom", "pass", "injected evaluator; external installation not asserted", self.version, self.build_hash, tuple(sorted({"energy", "forces", "energy_forces"})), (self.protocol.backend,))
+            return CalculatorCapabilities(
+                "xtbloom",
+                "unknown",
+                "injected evaluator; external installation and numerical qualification are not asserted",
+                self.version,
+                self.build_hash,
+                tuple(sorted({"energy", "forces", "energy_forces"})),
+                (self.protocol.backend,),
+                "callable",
+            )
         module = find_spec("xtbloom")
         executable = which("xtbloom")
         if module is None and executable is None:
-            return CalculatorCapabilities("xtbloom", "unavailable", "no xtbloom module or executable was observed")
-        return CalculatorCapabilities("xtbloom", "unknown", "xtbloom was observed but its API is not qualified", self.version, self.build_hash)
+            return CalculatorCapabilities("xtbloom", "unavailable", "no xtbloom module or executable was observed", qualification="unavailable")
+        return CalculatorCapabilities("xtbloom", "unknown", "xtbloom was observed but its API is not qualified", self.version, self.build_hash, qualification="installed")
 
-    def evaluate(self, system: MolecularSystem, *, operation: str = "energy_forces") -> CalculationResult:
+    def evaluate(
+        self,
+        system: MolecularSystem,
+        *,
+        operation: str = "energy_forces",
+        budget_token: CalculatorCallToken | None = None,
+    ) -> CalculationResult:
         if operation not in {"energy", "forces", "energy_forces"}:
             raise CalculatorProtocolError(f"unsupported operation: {operation}")
         if self._evaluator is None:
             raise CalculatorUnavailable("xTBloom is not qualified or injected in this environment")
+        if self.require_budget_token and budget_token is None:
+            raise BudgetTokenRequired("xTBloom production calls require a calculator budget token")
+        if budget_token is not None:
+            budget_token.consume()
         try:
             output = self._evaluator(system, operation)
         except CalculatorError:

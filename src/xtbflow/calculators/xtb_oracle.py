@@ -1,11 +1,10 @@
 """Independent original-xTB/tblite GFN2 comparison adapter boundary.
 
 The public contract uses Angstrom coordinates, Hartree energies and
-Hartree/Angstrom forces.  The original xTB bindings expose atomic-unit
-coordinates and gradients, while tblite's Python wrapper accepts Angstrom
-coordinates and returns Hartree/Angstrom gradients.  This module performs the
-backend-specific conversion in one place and retains package identity in
-result metadata.
+Hartree/Angstrom forces.  Both direct native APIs used here consume atomic-unit
+coordinates and return Hartree/Bohr gradients; their adapters perform the
+conversion at this boundary and retain implementation identity in result
+metadata.  The ASE tblite wrapper is deliberately not used by this module.
 """
 from __future__ import annotations
 
@@ -30,14 +29,21 @@ from .base import (
     MolecularSystem,
     coerce_backend_output,
 )
+from xtbflow.runtime.ledger import BudgetTokenRequired, CalculatorCallToken
 
 
 BOHR_IN_ANGSTROM = 0.529177210903
 KELVIN_TO_HARTREE = 3.166811563e-6
+ADAPTER_REVISION = "xtb-oracle-native-units-v1"
 
 
 def _package_identity(implementation: str) -> tuple[str | None, str | None, str | None]:
-    """Return version, module path and a content hash for an installed package."""
+    """Return version, module path and hashes for the observed implementation.
+
+    The native interface module is included for tblite when available.  Hashing
+    only the package ``__init__`` can miss a changed Python-to-native boundary,
+    so the identity deliberately covers the file that defines ``Calculator``.
+    """
 
     try:
         module = importlib.import_module(implementation)
@@ -50,14 +56,38 @@ def _package_identity(implementation: str) -> tuple[str | None, str | None, str 
         version = version or importlib.metadata.version(distribution)
     except importlib.metadata.PackageNotFoundError:
         pass
-    build_hash = None
-    if path:
+    identity_paths = [path] if path else []
+    if implementation == "tblite":
         try:
-            with open(path, "rb") as handle:
-                build_hash = hashlib.sha256(handle.read()).hexdigest()
+            interface = importlib.import_module("tblite.interface")
+        except Exception:
+            interface = None
+        interface_path = getattr(interface, "__file__", None)
+        if interface_path:
+            identity_paths.append(interface_path)
+    digest = hashlib.sha256()
+    observed = False
+    for identity_path in identity_paths:
+        try:
+            with open(identity_path, "rb") as handle:
+                contents = handle.read()
+            digest.update(str(identity_path).encode())
+            digest.update(contents)
+            observed = True
         except OSError:
-            build_hash = None
+            continue
+    build_hash = digest.hexdigest() if observed else None
     return str(version) if version is not None else None, path, build_hash
+
+
+def _adapter_code_hash() -> str:
+    """Hash this adapter source so cache identities include conversion code."""
+
+    try:
+        with open(__file__, "rb") as handle:
+            return hashlib.sha256(handle.read()).hexdigest()
+    except OSError:
+        return "unavailable"
 
 
 def _required_parameter(parameters: Mapping[str, Any], name: str) -> Any:
@@ -111,10 +141,8 @@ def _tblite_evaluator(system: MolecularSystem, operation: str, parameters: Mappi
 
     _validate_environment(system)
     numbers = np.asarray([_atomic_number(symbol) for symbol in system.symbols], dtype=np.int32)
-    # tblite's Python ``Structure`` wrapper consumes Cartesian coordinates in
-    # Angstrom and returns gradients in Hartree/Angstrom (despite the native
-    # library's atomic-unit internals).
-    positions = np.asarray(system.coordinates, dtype=np.float64)
+    # The direct native interface consumes Bohr, unlike the public contract.
+    positions = np.asarray(system.coordinates, dtype=np.float64) / BOHR_IN_ANGSTROM
     calc = Calculator("GFN2-xTB", numbers, positions, charge=system.charge, uhf=system.multiplicity - 1)
     calc.set("verbosity", 0)
     calc.set("accuracy", float(_required_parameter(parameters, "accuracy")))
@@ -128,8 +156,8 @@ def _tblite_evaluator(system: MolecularSystem, operation: str, parameters: Mappi
     result = calc.singlepoint()
     energy = float(result.get("energy"))
     gradient = np.asarray(result.get("gradient"), dtype=np.float64)
-    forces = -gradient
-    return _normalized_result(system, operation, energy, forces, implementation="tblite", native_gradient_unit="hartree/angstrom", force_conversion="-gradient_hartree_per_angstrom = force_hartree_per_angstrom", protocol=protocol)
+    forces = -gradient / BOHR_IN_ANGSTROM
+    return _normalized_result(system, operation, energy, forces, implementation="tblite", native_gradient_unit="hartree/bohr", force_conversion="-gradient_hartree_per_bohr / 0.529177210903 = force_hartree_per_angstrom", protocol=protocol)
 
 
 def _normalized_result(system: MolecularSystem, operation: str, energy: float, forces: np.ndarray, *, implementation: str, native_gradient_unit: str, force_conversion: str, protocol: CalculatorProtocol) -> CalculationResult:
@@ -146,7 +174,17 @@ def _normalized_result(system: MolecularSystem, operation: str, energy: float, f
         operation=operation,
         energy=energy if operation in {"energy", "energy_forces"} else None,
         forces=forces_value,
-        metadata={"implementation": implementation, "native_gradient_unit": native_gradient_unit, "force_conversion": force_conversion},
+        metadata={
+            "implementation": implementation,
+            "adapter_revision": ADAPTER_REVISION,
+            "adapter_code_hash": _adapter_code_hash(),
+            "public_coordinate_unit": "angstrom",
+            "native_coordinate_unit": "bohr",
+            "native_energy_unit": "hartree",
+            "native_gradient_unit": native_gradient_unit,
+            "normalized_force_unit": "hartree/angstrom",
+            "force_conversion": force_conversion,
+        },
     )
 
 
@@ -172,6 +210,7 @@ class XTBOracleAdapter(CalculatorBackend):
         implementation: str = "xtb",
         version: str | None = None,
         build_hash: str | None = None,
+        require_budget_token: bool = False,
     ) -> None:
         if implementation not in {"xtb", "tblite"}:
             raise ValueError("implementation must be 'xtb' or 'tblite'")
@@ -190,6 +229,7 @@ class XTBOracleAdapter(CalculatorBackend):
         observed_version, self.module_path, observed_hash = _package_identity(implementation)
         self.version = version or observed_version
         self.build_hash = build_hash or observed_hash
+        self.require_budget_token = bool(require_budget_token)
         required = {"accuracy", "max_iterations", "electronic_temperature", "solvent"}
         if self._evaluator is None and implementation in {"xtb", "tblite"} and required.issubset(self.protocol.parameters):
             self._direct_backend = True
@@ -202,19 +242,43 @@ class XTBOracleAdapter(CalculatorBackend):
     @property
     def capabilities(self) -> CalculatorCapabilities:
         if self._evaluator is not None:
-            detail = "direct installed backend" if self._direct_backend else "injected evaluator; external installation not asserted"
-            return CalculatorCapabilities("xtb_oracle", "pass", detail, self.version, self.build_hash, tuple(sorted({"energy", "forces", "energy_forces"})), (self.protocol.backend,))
+            if self._direct_backend:
+                detail = "direct backend is callable; numerical qualification is not asserted"
+                qualification = "installed" if self.version and self.build_hash else "callable"
+            else:
+                detail = "injected evaluator; external installation and numerical qualification are not asserted"
+                qualification = "callable"
+            return CalculatorCapabilities(
+                "xtb_oracle",
+                "unknown",
+                detail,
+                self.version,
+                self.build_hash,
+                tuple(sorted({"energy", "forces", "energy_forces"})),
+                (self.protocol.backend,),
+                qualification,
+            )
         module = find_spec(self.implementation)
         executable = which(self.implementation)
         if module is None and executable is None:
-            return CalculatorCapabilities("xtb_oracle", "unavailable", f"no {self.implementation} module or executable was observed")
-        return CalculatorCapabilities("xtb_oracle", "unknown", f"{self.implementation} was observed but its API is not qualified", self.version, self.build_hash)
+            return CalculatorCapabilities("xtb_oracle", "unavailable", f"no {self.implementation} module or executable was observed", qualification="unavailable")
+        return CalculatorCapabilities("xtb_oracle", "unknown", f"{self.implementation} was observed but its API is not qualified", self.version, self.build_hash, qualification="installed")
 
-    def evaluate(self, system: MolecularSystem, *, operation: str = "energy_forces") -> CalculationResult:
+    def evaluate(
+        self,
+        system: MolecularSystem,
+        *,
+        operation: str = "energy_forces",
+        budget_token: CalculatorCallToken | None = None,
+    ) -> CalculationResult:
         if operation not in {"energy", "forces", "energy_forces"}:
             raise CalculatorProtocolError(f"unsupported operation: {operation}")
         if self._evaluator is None:
             raise CalculatorUnavailable(f"independent {self.implementation} backend is not qualified or injected")
+        if self.require_budget_token and budget_token is None:
+            raise BudgetTokenRequired("xTB oracle production calls require a calculator budget token")
+        if budget_token is not None:
+            budget_token.consume()
         try:
             output = self._evaluator(system, operation)
         except CalculatorError:

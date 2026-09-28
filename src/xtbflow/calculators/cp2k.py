@@ -22,6 +22,7 @@ from .base import (
     CalculationResult,
     MolecularSystem,
 )
+from xtbflow.runtime.ledger import BudgetTokenRequired, CalculatorCallToken
 
 
 # CP2K's ``[a.u.]`` force table is Hartree/Bohr.  The public calculator
@@ -182,7 +183,7 @@ def parse_cp2k_output(text: str, system: MolecularSystem, protocol: CP2KProtocol
 class CP2KAdapter(CalculatorBackend):
     """Run CP2K only when an executable or explicitly injected runner exists."""
 
-    def __init__(self, protocol: CP2KProtocol, *, executable: str | None = None, runner: Callable[[str, MolecularSystem], str] | None = None, timeout_seconds: float = 120.0):
+    def __init__(self, protocol: CP2KProtocol, *, executable: str | None = None, runner: Callable[[str, MolecularSystem], str] | None = None, timeout_seconds: float = 120.0, require_budget_token: bool = False):
         self.cp2k_protocol = protocol
         self.protocol = protocol.calculator_protocol()
         self.executable = executable or shutil.which("cp2k.psmp") or shutil.which("cp2k.popt") or shutil.which("cp2k")
@@ -190,6 +191,7 @@ class CP2KAdapter(CalculatorBackend):
         if timeout_seconds <= 0 or not math.isfinite(timeout_seconds):
             raise ValueError("timeout_seconds must be finite and positive")
         self.timeout_seconds = float(timeout_seconds)
+        self.require_budget_token = bool(require_budget_token)
 
     @property
     def capabilities(self) -> CalculatorCapabilities:
@@ -199,12 +201,22 @@ class CP2KAdapter(CalculatorBackend):
             return CalculatorCapabilities("cp2k", "unavailable", "no CP2K executable was observed")
         return CalculatorCapabilities("cp2k", "unknown", "CP2K executable observed but protocol qualification is pending", self.cp2k_protocol.cp2k_version, self.cp2k_protocol.build_hash, ("energy_forces",), ("cpu",))
 
-    def evaluate(self, system: MolecularSystem, *, operation: str = "energy_forces") -> CalculationResult:
+    def evaluate(
+        self,
+        system: MolecularSystem,
+        *,
+        operation: str = "energy_forces",
+        budget_token: CalculatorCallToken | None = None,
+    ) -> CalculationResult:
         if operation != "energy_forces":
             raise CalculatorProtocolError("CP2K v0 adapter supports energy_forces only")
         rendered = render_cp2k_input(system, self.cp2k_protocol)
         input_hash = hashlib.sha256(rendered.encode()).hexdigest()
         if self.runner is not None:
+            if self.require_budget_token and budget_token is None:
+                raise BudgetTokenRequired("CP2K production calls require a calculator budget token")
+            if budget_token is not None:
+                budget_token.consume()
             try:
                 text = self.runner(rendered, system)
             except Exception as exc:
@@ -212,6 +224,10 @@ class CP2KAdapter(CalculatorBackend):
             return parse_cp2k_output(text, system, self.cp2k_protocol, input_file_hash=input_hash)
         if self.executable is None:
             raise CalculatorUnavailable("CP2K is not installed or injected")
+        if self.require_budget_token and budget_token is None:
+            raise BudgetTokenRequired("CP2K production calls require a calculator budget token")
+        if budget_token is not None:
+            budget_token.consume()
         with tempfile.TemporaryDirectory(prefix="xtbflow-cp2k-") as directory:
             root = Path(directory)
             input_path = root / "input.inp"

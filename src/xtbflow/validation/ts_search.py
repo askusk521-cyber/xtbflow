@@ -8,6 +8,8 @@ import math
 from pathlib import Path
 from typing import Any, Callable, Mapping
 
+from xtbflow.runtime import BudgetExceeded, BudgetTokenRequired, CalculatorCallToken
+
 from .connectivity import ConnectivityEvidence, observed_event
 from .modes import ModeEvidence, validate_mode
 
@@ -111,6 +113,8 @@ def validate_ts_evidence(candidate_id: str, source: str, evidence: Mapping[str, 
 
     if not candidate_id.strip() or not source.strip():
         raise ValueError("candidate_id and source are required")
+    if type(calls) is not int or calls < 0:
+        return _record(candidate_id, source, "failure", "not_validated", None, "call_budget", None, 0, "calculator calls must be a nonnegative integer", candidate_hash=candidate_hash, validation_identity=validation_identity, cache_key=cache_key)
     try:
         gradient = float(evidence["gradient_norm"])
         converged = evidence["converged"]
@@ -144,36 +148,183 @@ def validate_ts_evidence(candidate_id: str, source: str, evidence: Mapping[str, 
     return _record(candidate_id, source, "success", path_status, gradient, mode_status, observed, calls, None, candidate_hash=candidate_hash, validation_identity=validation_identity, cache_key=cache_key)
 
 
-def run_resumable_validation(candidates: Mapping[str, Any], searcher: Callable[[str, Any], Mapping[str, Any]], config: TSValidationConfig, checkpoint: str | Path, *, reserve_calls: Callable[[str, Any], None] | None = None) -> tuple[TSValidationRecord, ...]:
-    """Run candidates with an identity-bound checkpoint and pre-call budget gate.
+def _load_checkpoint(path: Path) -> dict[str, dict[str, Any]]:
+    """Load a strict candidate-keyed checkpoint or fail closed."""
 
-    ``reserve_calls`` is intentionally required by production callers.  It
-    must reserve the finite calculator allowance before invoking ``searcher``;
-    tests may inject a recorder to prove ordering without running a calculator.
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"invalid TS validation checkpoint: {exc}") from exc
+    if not isinstance(payload, dict) or any(not isinstance(key, str) or not isinstance(value, dict) for key, value in payload.items()):
+        raise ValueError("TS validation checkpoint must map candidate IDs to record objects")
+    return payload
+
+
+def _cached_record(cached: Mapping[str, Any], *, candidate_id: str, candidate_hash: str, validation_identity: str, cache_key: str) -> TSValidationRecord | None:
+    """Validate all cache identity and record fields before bypassing work."""
+
+    if cached.get("candidate_id") != candidate_id or cached.get("cache_key") != cache_key or cached.get("candidate_hash") != candidate_hash or cached.get("validation_identity") != validation_identity:
+        return None
+    try:
+        record = TSValidationRecord(**dict(cached))
+    except (TypeError, ValueError, KeyError):
+        raise ValueError(f"malformed cached TS validation record for {candidate_id}")
+    if record.status not in {"success", "failure"}:
+        return None
+    return record
+
+
+def _write_checkpoint(path: Path, payload: Mapping[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.tmp")
+    temporary.write_text(json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+    temporary.replace(path)
+
+
+def _finish_token_record(
+    token: CalculatorCallToken,
+    candidate_id: str,
+    record: TSValidationRecord,
+    prior: dict[str, dict[str, Any]],
+    checkpoint: Path,
+) -> None:
+    """Persist a result before releasing and settling its calculator token.
+
+    The ordering is intentional: a crash after token settlement must not erase
+    the durable result that explains the consumed calls.  If checkpoint I/O
+    fails, the active reservation remains recoverable instead of disappearing
+    from the ledger.
     """
 
+    prior[candidate_id] = record.to_dict()
+    _write_checkpoint(checkpoint, prior)
+    token.release()
+    token.commit(recorded_calls=record.calculator_calls)
+
+
+def run_resumable_validation(
+    candidates: Mapping[str, Any],
+    searcher: Callable[..., Mapping[str, Any]],
+    config: TSValidationConfig,
+    checkpoint: str | Path,
+    *,
+    reserve_calls: Callable[[str, Any], None] | None = None,
+    budget_token_factory: Callable[[str, Any, int, Mapping[str, Any]], CalculatorCallToken] | None = None,
+    require_budget_token: bool = False,
+) -> tuple[TSValidationRecord, ...]:
+    """Run candidates with an identity-bound checkpoint and optional strict budget tokens.
+
+    Legacy callers retain the two-argument searcher and recorder callback.  A
+    production caller opts into ``require_budget_token``; in that mode no
+    searcher work begins until a token is issued and the returned call count
+    exactly matches the token's pre-invocation accounting.
+    """
+
+    if require_budget_token and budget_token_factory is None:
+        raise ValueError("production TS validation requires budget_token_factory")
     target = Path(checkpoint)
-    prior: dict[str, dict[str, Any]] = {}
-    if target.exists():
-        prior = json.loads(target.read_text(encoding="utf-8"))
+    prior = _load_checkpoint(target)
     output: list[TSValidationRecord] = []
     for candidate_id, candidate in candidates.items():
+        if not isinstance(candidate_id, str) or not candidate_id.strip():
+            raise ValueError("candidate IDs must be nonempty strings")
         candidate_hash, validation_identity, cache_key = validation_cache_key(candidate_id, candidate, config)
         cached = prior.get(candidate_id)
-        if cached is not None and cached.get("cache_key") == cache_key and cached.get("candidate_hash") == candidate_hash and cached.get("validation_identity") == validation_identity:
-            output.append(TSValidationRecord(**cached))
-            continue
-        if reserve_calls is not None:
-            reserve_calls(candidate_id, candidate)
-        evidence = searcher(candidate_id, candidate)
-        raw_calls = evidence.get("calculator_calls")
-        if type(raw_calls) is not int:
-            raise ValueError("searcher must return an integer calculator_calls field")
+        if cached is not None:
+            record = _cached_record(cached, candidate_id=candidate_id, candidate_hash=candidate_hash, validation_identity=validation_identity, cache_key=cache_key)
+            if record is not None:
+                output.append(record)
+                continue
+        token: CalculatorCallToken | None = None
+        if require_budget_token:
+            token = budget_token_factory(cache_key, candidate, config.max_calls, {"candidate_id": candidate_id, "candidate_hash": candidate_hash, "validation_identity": validation_identity, "cache_key": cache_key})
+            if not isinstance(token, CalculatorCallToken):
+                raise TypeError("budget_token_factory must return CalculatorCallToken")
+            if not token.durable or token.persist_path is None:
+                raise ValueError("production TS validation requires a durable calculator token")
+            if token.token_id != cache_key:
+                raise ValueError("budget token identity must equal the validation cache key")
+            if token.reserved_calls < config.max_calls:
+                raise ValueError("budget token capacity is smaller than TS validation max_calls")
+            evidence: Mapping[str, Any]
+            try:
+                evidence = searcher(candidate_id, candidate, token)
+            except (BudgetExceeded, BudgetTokenRequired):
+                raise
+            except Exception as exc:
+                consumed = token.consumed_calls
+                failure = _record(candidate_id, "searcher", "failure", "not_validated", None, "searcher_exception", None, consumed, f"{type(exc).__name__}: {exc}", candidate_hash=candidate_hash, validation_identity=validation_identity, cache_key=cache_key)
+                _finish_token_record(token, candidate_id, failure, prior, target)
+                output.append(failure)
+                continue
+            if not isinstance(evidence, Mapping):
+                failure = _record(
+                    candidate_id,
+                    "searcher",
+                    "failure",
+                    "not_validated",
+                    None,
+                    "malformed_evidence",
+                    None,
+                    token.consumed_calls,
+                    "searcher must return a mapping",
+                    candidate_hash=candidate_hash,
+                    validation_identity=validation_identity,
+                    cache_key=cache_key,
+                )
+                _finish_token_record(token, candidate_id, failure, prior, target)
+                raise ValueError("searcher must return a mapping")
+            raw_calls = evidence.get("calculator_calls")
+            if type(raw_calls) is not int:
+                failure = _record(
+                    candidate_id,
+                    "searcher",
+                    "failure",
+                    "not_validated",
+                    None,
+                    "malformed_evidence",
+                    None,
+                    token.consumed_calls,
+                    "searcher must return an integer calculator_calls field",
+                    candidate_hash=candidate_hash,
+                    validation_identity=validation_identity,
+                    cache_key=cache_key,
+                )
+                _finish_token_record(token, candidate_id, failure, prior, target)
+                raise ValueError("searcher must return an integer calculator_calls field")
+            if raw_calls != token.consumed_calls:
+                failure = _record(
+                    candidate_id,
+                    "searcher",
+                    "failure",
+                    "not_validated",
+                    None,
+                    "call_budget",
+                    None,
+                    token.consumed_calls,
+                    "searcher calculator_calls does not match consumed token calls",
+                    candidate_hash=candidate_hash,
+                    validation_identity=validation_identity,
+                    cache_key=cache_key,
+                )
+                _finish_token_record(token, candidate_id, failure, prior, target)
+                raise ValueError("searcher calculator_calls does not match consumed token calls")
+        else:
+            if reserve_calls is not None:
+                reserve_calls(candidate_id, candidate)
+            evidence = searcher(candidate_id, candidate)
+            if not isinstance(evidence, Mapping):
+                raise ValueError("searcher must return a mapping")
+            raw_calls = evidence.get("calculator_calls")
+            if type(raw_calls) is not int:
+                raise ValueError("searcher must return an integer calculator_calls field")
         record = validate_ts_evidence(candidate_id, str(evidence.get("source", "injected")), evidence, config, calls=raw_calls, candidate_hash=candidate_hash, validation_identity=validation_identity, cache_key=cache_key)
         prior[candidate_id] = record.to_dict()
-        target.parent.mkdir(parents=True, exist_ok=True)
-        temporary = target.with_name(f".{target.name}.tmp")
-        temporary.write_text(json.dumps(prior, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
-        temporary.replace(target)
+        _write_checkpoint(target, prior)
+        if token is not None:
+            token.release()
+            token.commit(recorded_calls=record.calculator_calls)
         output.append(record)
     return tuple(output)

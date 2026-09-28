@@ -43,7 +43,7 @@ srun --partition=main --gres=gpu:pro6000:1 --nodes=1 --ntasks=1 \
 
 当前节点没有系统 `nvcc`、CP2K 或已验证的 xTBloom 安装；PyTorch CUDA runtime 已在 Slurm 分配的 GPU 上完成运行时冒烟测试。
 
-`xtbflow` 环境还安装了 `tblite 0.7.0` 和 `xtb 22.1` 分发包（导入的 `xtb` 模块报告版本 `20.2`）。直接 oracle 适配器已对非周期、显式电荷与多重度的 GFN2 单点完成 tblite 资格测试：水分子的有限差分力最大绝对差为 `2.18e-7 Hartree/Å`。原始 xTB 绑定保留作独立比较，但其力—能量梯度差异仍需解决后才可资格化。32 条真实 UniTS 几何的小批诊断见 [`docs/evidence/gfn2_units_diagnostic_20260927.json`](evidence/gfn2_units_diagnostic_20260927.json)；64 条来源结构审计见 [`docs/evidence/units_provenance_audit_20260927.json`](evidence/units_provenance_audit_20260927.json)。因来源方法和单位尚未核准，原始标签仍保持隔离。
+`xtbflow` 环境还安装了 `tblite 0.7.0` 和 `xtb 22.1` 分发包（导入的 `xtb` 模块报告版本 `20.2`）。直接 oracle 适配器的当前单位修复仍需重新资格化；原始 xTB 绑定也保留作独立比较，因力—能量梯度差异尚未解决而不能资格化。历史 32 条 UniTS 几何诊断 [`docs/evidence/gfn2_units_diagnostic_20260927.json`](evidence/gfn2_units_diagnostic_20260927.json) 已被标为 superseded，不得作为当前单位证据。新的有界入口是 [`scripts/run_gfn2_diagnostic.py`](../scripts/run_gfn2_diagnostic.py)：它要求源文件和输入清单的 SHA-256、逐条显式电荷／多重度与输入哈希，`--count` 硬上限为 64，并始终输出 `diagnostic_quarantine`。本次代码变更不运行真实计算；64 条来源结构审计仍见 [`docs/evidence/units_provenance_audit_20260927.json`](evidence/units_provenance_audit_20260927.json)。因来源方法和单位尚未核准，原始标签仍保持隔离。
 
 ## 已完成验证
 

@@ -8,6 +8,7 @@ import pytest
 
 from xtbflow.runtime import (
     BudgetExceeded,
+    CalculatorCallToken,
     ExecutionResult,
     LedgerEvent,
     RunLedger,
@@ -76,6 +77,40 @@ def test_calculator_call_reservations_are_atomic_and_budgeted():
         ledger.reserve_calculator_calls("candidate-b", 2)
     ledger.release_calculator_reservation("candidate-a")
     ledger.reserve_calculator_calls("candidate-b", 2)
+
+
+def test_calculator_token_consumes_releases_and_commits_persisted_calls(tmp_path: Path):
+    ledger = RunLedger(budget(max_calculator_calls=3))
+    path = tmp_path / "ledger.json"
+    token = ledger.issue_calculator_token("cache-key", 3, metadata={"cache_key": "cache-key"}, persist_path=path)
+    token.consume()
+    assert token.consumed_calls == 1
+    assert token.remaining_calls == 2
+    token.release()
+    assert token.remaining_calls == 0
+    token.commit(recorded_calls=1, persist_path=path)
+    assert token.closed is True
+    assert ledger.summary()["totals"]["calculator_calls"] == 1
+    restored = RunLedger.load(path)
+    assert restored.summary()["totals"]["calculator_calls"] == 1
+    assert restored.reservations == {}
+    with pytest.raises(BudgetExceeded):
+        restored.issue_calculator_token("another", 3)
+
+
+def test_calculator_token_rejects_metadata_collisions_and_overconsumption():
+    ledger = RunLedger(budget(max_calculator_calls=3))
+    with pytest.raises(ValueError, match="accounting fields"):
+        ledger.issue_calculator_token("bad", 1, metadata={"calculator_calls": 99})
+    token = ledger.issue_calculator_token("good", 2)
+    assert token.durable is False
+    with pytest.raises(ValueError):
+        token.consume(True)
+    with pytest.raises(ValueError):
+        token.consume(0)
+    token.consume(2)
+    with pytest.raises(BudgetExceeded):
+        token.consume()
 
 
 def test_persistence_and_resume_are_idempotent(tmp_path: Path):

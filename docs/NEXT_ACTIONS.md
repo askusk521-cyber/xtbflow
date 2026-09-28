@@ -18,9 +18,8 @@
 
 ## 2026-09-27 n2 增量证据
 
-- 直接 tblite GFN2 oracle 已完成安装、版本和单位边界核对；有限差分力检查通过，原始 xTB Python 绑定仍因力—梯度差异保持未资格化。
-- 对 UniTS 原始库的 32 条记录完成同构型 tblite 求值：30 条成功、2 条 SCF 未收敛，平均批次墙钟约 41.5 秒。原始标签的方法与单位仍未知，所有记录继续处于诊断隔离状态。
-- 联合流完成 8 步诊断训练、权重保存、恢复和 4 步采样；恢复输出逐位一致，守恒残差小于 `6e-17`。该运行使用合成零速度目标，只证明软件链路，不构成科学性能结果。
+- 直接 tblite GFN2 oracle 的单位适配已修复，需用新的入口 [`scripts/run_gfn2_diagnostic.py`](../scripts/run_gfn2_diagnostic.py) 重新资格化；历史证据 [`docs/evidence/gfn2_units_diagnostic_20260927.json`](evidence/gfn2_units_diagnostic_20260927.json) 已 superseded。该入口要求显式源／输入哈希和电荷／多重度，`--count` 不得超过 64，输出固定为 `diagnostic_quarantine`；本次仅补脚本和文档，不运行真实计算。
+- 历史联合流证据完成 8 步诊断训练、权重保存、恢复和 4 步采样；恢复输出逐位一致，守恒残差小于 `6e-17`。该历史运行使用合成零速度目标，仅证明当时的软件链路，不代表当前非零目标 smoke，也不构成科学性能结果。
 - 运行账本新增原子化 calculator-call reservation，可在 TS 搜索器调用前拒绝超预算计划。
 
 ## 2026-09-27 provenance 与联合流增量

@@ -22,6 +22,7 @@
     "pretraining_overlap_audit": {"type": "string", "minLength": 1},
     "record_status": {"type": "string", "minLength": 1},
     "admission": {"enum": ["quarantine", "train", "validation", "test", "diagnostic"]},
+    "quarantine_reasons": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
     "input_data": {"type": "object"},
     "label_data": {"type": "object"},
     "claim_limit": {"type": "string"}

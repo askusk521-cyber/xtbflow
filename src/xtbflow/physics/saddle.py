@@ -9,6 +9,7 @@ from typing import Sequence
 import torch
 
 from xtbflow.calculators import CalculatorBackend, CalculationResult, MolecularSystem
+from xtbflow.runtime import BudgetExceeded, BudgetTokenRequired, CalculatorCallToken
 
 
 class GuidanceMode(str, Enum):
@@ -132,6 +133,7 @@ def apply_guidance(
     config: GuidanceConfig,
     *,
     reaction_direction: Sequence[Sequence[float]] | torch.Tensor | None = None,
+    budget_token: CalculatorCallToken | None = None,
 ) -> GuidanceResult:
     """Evaluate physical forces and take one bounded coordinate guidance step.
 
@@ -143,15 +145,22 @@ def apply_guidance(
 
     coordinates = _tensor_coordinates(system)
     zero = torch.zeros_like(coordinates)
+    calls_before = budget_token.consumed_calls if budget_token is not None else 0
     if config.mode is GuidanceMode.NONE or config.strength == 0:
         return GuidanceResult("unchanged", config.mode, tuple(map(tuple, coordinates.tolist())), None, tuple(map(tuple, zero.tolist())), 0)
     if _collision(coordinates, config.collision_distance):
         return GuidanceResult("collision_rejected", config.mode, tuple(map(tuple, coordinates.tolist())), None, tuple(map(tuple, zero.tolist())), 0, "input geometry is inside collision distance", True)
     try:
-        result = backend.evaluate(system, operation="energy_forces")
+        if budget_token is None:
+            result = backend.evaluate(system, operation="energy_forces")
+        else:
+            result = backend.evaluate(system, operation="energy_forces", budget_token=budget_token)
+    except (BudgetExceeded, BudgetTokenRequired):
+        raise
     except Exception as exc:
         status = "stopped" if config.failure_policy is FailurePolicy.STOP else "skipped" if config.failure_policy is FailurePolicy.SKIP else "rejected"
-        return GuidanceResult(status, config.mode, tuple(map(tuple, coordinates.tolist())), None, tuple(map(tuple, zero.tolist())), 1, f"{type(exc).__name__}: {exc}")
+        calls = budget_token.consumed_calls - calls_before if budget_token is not None else 1
+        return GuidanceResult(status, config.mode, tuple(map(tuple, coordinates.tolist())), None, tuple(map(tuple, zero.tolist())), calls, f"{type(exc).__name__}: {exc}")
     if result.status != "success" or result.forces is None:
         status = "stopped" if config.failure_policy is FailurePolicy.STOP else "skipped" if config.failure_policy is FailurePolicy.SKIP else "rejected"
         return GuidanceResult(status, config.mode, tuple(map(tuple, coordinates.tolist())), None, tuple(map(tuple, zero.tolist())), result.calculator_calls, result.error_message or result.error_category)
@@ -187,11 +196,17 @@ class PhysicalPostProcessor:
         self.max_calls = max_calls
         self.stop_force_norm = stop_force_norm
 
-    def run(self, system: MolecularSystem, *, reaction_direction: Sequence[Sequence[float]] | torch.Tensor | None = None) -> tuple[GuidanceResult, ...]:
+    def run(
+        self,
+        system: MolecularSystem,
+        *,
+        reaction_direction: Sequence[Sequence[float]] | torch.Tensor | None = None,
+        budget_token: CalculatorCallToken | None = None,
+    ) -> tuple[GuidanceResult, ...]:
         results: list[GuidanceResult] = []
         current = system
         for _ in range(self.max_calls):
-            result = apply_guidance(self.backend, current, self.config, reaction_direction=reaction_direction)
+            result = apply_guidance(self.backend, current, self.config, reaction_direction=reaction_direction, budget_token=budget_token)
             results.append(result)
             if result.status != "updated" or result.forces is None:
                 break

@@ -6,6 +6,10 @@ from torch import Tensor
 
 from xtbflow.models.joint_flow import JointFlowOutput
 
+from .checkpoint import load_joint_checkpoint, save_joint_checkpoint
+
+__all__ = ["joint_flow_loss", "coupled_control_manifest", "save_joint_checkpoint", "load_joint_checkpoint"]
+
 
 def _masked_mse(predicted: Tensor, target: Tensor, mask: Tensor | None, *, name: str) -> Tensor:
     if predicted.shape != target.shape:
@@ -40,11 +44,22 @@ def _masked_mse(predicted: Tensor, target: Tensor, mask: Tensor | None, *, name:
     return torch.where(mask, squared_error, torch.zeros_like(squared_error)).sum() / count
 
 
-def joint_flow_loss(output: JointFlowOutput, target_event_velocity: Tensor, target_geometry_velocity: Tensor, *, event_mask: Tensor | None = None, atom_mask: Tensor | None = None, event_weight: float = 1.0, geometry_weight: float = 1.0) -> dict[str, Tensor]:
-    """Compute separately masked event and geometry losses."""
+def joint_flow_loss(output: JointFlowOutput, target_event_velocity: Tensor, target_geometry_velocity: Tensor, *, event_mask: Tensor | None = None, atom_mask: Tensor | None = None, event_weight: float = 1.0, geometry_weight: float = 1.0, require_nonzero_target: bool = False) -> dict[str, Tensor]:
+    """Compute separately masked event and geometry losses.
+
+    ``require_nonzero_target`` is an opt-in guard for real flow-matching
+    experiments; synthetic compatibility tests may continue to use zero
+    targets explicitly by leaving it disabled.
+    """
 
     if event_weight < 0 or geometry_weight < 0:
         raise ValueError("loss weights must be nonnegative")
+    if require_nonzero_target:
+        event_observed = target_event_velocity if event_mask is None else target_event_velocity[event_mask]
+        geometry_observed = target_geometry_velocity if atom_mask is None else target_geometry_velocity[atom_mask]
+        observed = torch.cat((event_observed.reshape(-1), geometry_observed.reshape(-1)))
+        if observed.numel() == 0 or not bool(torch.isfinite(observed).all()) or not bool((observed.abs() > 0).any()):
+            raise ValueError("flow targets must contain a finite nonzero observed velocity")
     event = _masked_mse(output.event_velocity, target_event_velocity, event_mask, name="event")
     geometry = _masked_mse(output.geometry_velocity, target_geometry_velocity, atom_mask, name="geometry")
     return {"event": event, "geometry": geometry, "total": event_weight * event + geometry_weight * geometry}

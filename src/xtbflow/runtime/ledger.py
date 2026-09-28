@@ -133,8 +133,163 @@ class BudgetExceeded(RuntimeError):
     """Raised before an event or reservation would exceed a hard stage cap."""
 
 
+class BudgetTokenRequired(RuntimeError):
+    """Raised when a production calculator call has no accounting token."""
+
+
 class ConcurrentJobLimit(RuntimeError):
     """Raised when a runner would exceed the shared concurrent-job limit."""
+
+
+class CalculatorCallToken:
+    """A capability for metering individual calculator invocations.
+
+    The token owns one reservation in a :class:`RunLedger`.  ``consume`` must
+    be called immediately before each real backend invocation; claims are kept
+    even when that invocation raises, so failed calls cannot disappear from the
+    audit trail.  Unused allowance may be released, but consumed allowance is
+    committed to the ledger only after a durable result or failure record exists.
+    """
+
+    def __init__(self, ledger: "RunLedger", reservation_id: str, *, persist_path: Path | None = None) -> None:
+        self._ledger = ledger
+        self.reservation_id = reservation_id
+        self._persist_path = persist_path
+        self._closed = False
+        with ledger._lock:
+            payload = ledger.reservations.get(reservation_id)
+            if payload is None or payload.get("token") is not True:
+                raise ValueError(f"calculator reservation is not an active token: {reservation_id}")
+            self._reserved_snapshot = int(payload.get("calculator_calls", 0))
+            self._consumed_snapshot = int(payload.get("consumed_calls", 0))
+            self._released_snapshot = int(payload.get("released_calls", 0))
+
+    @property
+    def token_id(self) -> str:
+        """Stable reservation identity used to bind a token to a validation key."""
+
+        return self.reservation_id
+
+    @property
+    def persist_path(self) -> Path | None:
+        """Durable ledger path used for atomic token state updates, if any."""
+
+        return self._persist_path
+
+    @property
+    def durable(self) -> bool:
+        """Whether token accounting is persisted outside the current process."""
+
+        return self._persist_path is not None
+
+    def _value(self, name: str) -> int:
+        with self._ledger._lock:
+            payload = self._ledger.reservations.get(self.reservation_id)
+            if payload is not None:
+                return int(payload.get(name, 0))
+            if self._closed:
+                return {
+                    "calculator_calls": self._reserved_snapshot,
+                    "consumed_calls": self._consumed_snapshot,
+                    "released_calls": self._released_snapshot,
+                }[name]
+            raise ValueError(f"unknown calculator token: {self.reservation_id}")
+
+    @property
+    def reserved_calls(self) -> int:
+        return self._value("calculator_calls")
+
+    @property
+    def consumed_calls(self) -> int:
+        return self._value("consumed_calls")
+
+    @property
+    def released_calls(self) -> int:
+        return self._value("released_calls")
+
+    @property
+    def remaining_calls(self) -> int:
+        return self.reserved_calls - self.consumed_calls - self.released_calls
+
+    @property
+    def closed(self) -> bool:
+        with self._ledger._lock:
+            payload = self._ledger.reservations.get(self.reservation_id)
+            return self._closed or payload is None or bool(payload.get("finalized", False))
+
+    def consume(self, calls: int = 1) -> None:
+        """Atomically claim calls before entering a calculator backend."""
+
+        if type(calls) is not int or calls < 1:
+            raise ValueError("calls must be a positive integer")
+        with self._ledger._lock:
+            payload = self._ledger._active_token(self.reservation_id)
+            remaining = int(payload["calculator_calls"]) - int(payload.get("consumed_calls", 0)) - int(payload.get("released_calls", 0))
+            if calls > remaining:
+                raise BudgetExceeded(f"calculator token {self.reservation_id} has only {remaining} calls remaining")
+            payload["consumed_calls"] = int(payload.get("consumed_calls", 0)) + calls
+            self._consumed_snapshot = int(payload["consumed_calls"])
+            self._ledger._persist_reservation(self._persist_path)
+
+    def release(self, calls: int | None = None) -> int:
+        """Release only unconsumed allowance and return the released amount."""
+
+        with self._ledger._lock:
+            payload = self._ledger._active_token(self.reservation_id)
+            remaining = int(payload["calculator_calls"]) - int(payload.get("consumed_calls", 0)) - int(payload.get("released_calls", 0))
+            if calls is None:
+                calls = remaining
+            if type(calls) is not int or calls < 0 or calls > remaining:
+                raise ValueError("release amount must be a nonnegative integer within remaining allowance")
+            payload["released_calls"] = int(payload.get("released_calls", 0)) + calls
+            self._released_snapshot = int(payload["released_calls"])
+            self._ledger._persist_reservation(self._persist_path)
+            return calls
+
+    def settle(self, recorded_calls: int | None = None, *, persist_path: Path | None = None) -> None:
+        """Commit consumed calls after a durable result or failure is recorded."""
+
+        path = self._persist_path if persist_path is None else persist_path
+        with self._ledger._lock:
+            if self._closed:
+                if recorded_calls is not None and (type(recorded_calls) is not int or recorded_calls != self._consumed_snapshot):
+                    raise ValueError("recorded_calls must equal consumed token calls")
+                return
+            payload = self._ledger._active_token(self.reservation_id)
+            consumed = int(payload.get("consumed_calls", 0))
+            if recorded_calls is not None and (type(recorded_calls) is not int or recorded_calls != consumed):
+                raise ValueError("recorded_calls must equal consumed token calls")
+            reserved = int(payload["calculator_calls"])
+            released = int(payload.get("released_calls", 0))
+            if self.reservation_id in self._ledger.committed_tokens:
+                raise ValueError(f"calculator token is already committed: {self.reservation_id}")
+            self._ledger.committed_calculator_calls += consumed
+            self._ledger.committed_tokens[self.reservation_id] = {
+                "calculator_calls": reserved,
+                "consumed_calls": consumed,
+                "released_calls": released + reserved - consumed - released,
+            }
+            self._reserved_snapshot = reserved
+            self._consumed_snapshot = consumed
+            self._released_snapshot = released + reserved - consumed - released
+            del self._ledger.reservations[self.reservation_id]
+            self._closed = True
+            self._ledger._persist_reservation(path)
+
+    def recover(self, recorded_calls: int | None = None, *, persist_path: Path | None = None) -> None:
+        """Finish a token after replaying a durable result during recovery."""
+
+        self.settle(recorded_calls, persist_path=persist_path)
+
+    def commit(self, recorded_calls: int | None = None, *, persist_path: Path | None = None) -> None:
+        """Explicit alias for :meth:`settle` used by durable runners."""
+
+        self.settle(recorded_calls, persist_path=persist_path)
+
+    def finalize(self) -> None:
+        """Compatibility alias for settlement."""
+
+        self.settle()
 
 
 class RunLedger:
@@ -150,11 +305,17 @@ class RunLedger:
     schema = "xtbflow-run-ledger/v1"
 
     def __init__(self, budget: StageBudget, *, ledger_id: str | None = None,
-                 events: Iterable[LedgerEvent] = (), reservations: Mapping[str, Mapping[str, Any]] | None = None) -> None:
+                 events: Iterable[LedgerEvent] = (), reservations: Mapping[str, Mapping[str, Any]] | None = None,
+                 committed_calculator_calls: int = 0,
+                 committed_tokens: Mapping[str, Mapping[str, Any]] | None = None) -> None:
         self.budget = budget
         self.ledger_id = ledger_id or uuid4().hex
         self.events = list(events)
         self.reservations: dict[str, dict[str, Any]] = dict(reservations or {})
+        if type(committed_calculator_calls) is not int or committed_calculator_calls < 0:
+            raise ValueError("committed_calculator_calls must be a nonnegative integer")
+        self.committed_calculator_calls = committed_calculator_calls
+        self.committed_tokens: dict[str, dict[str, Any]] = {str(key): dict(value) for key, value in (committed_tokens or {}).items()}
         self._active_jobs: set[str] = set()
         self._lock = RLock()
         self._validate_events()
@@ -173,7 +334,7 @@ class RunLedger:
             "gpu_hours": sum(e.gpu_seconds for e in rows) / 3600.0,
             "cpu_core_hours": sum(e.cpu_core_seconds for e in rows) / 3600.0,
             "system_evaluations": sum(e.system_evaluations for e in rows),
-            "calculator_calls": sum(e.calculator_calls for e in rows),
+            "calculator_calls": sum(e.calculator_calls for e in rows) + self.committed_calculator_calls,
             "storage_gb": sum(e.storage_bytes for e in rows) / (1024**3),
             "attempts": len(rows),
             "failures": sum(e.status in {"failure", "timeout", "cancelled"} for e in rows),
@@ -192,8 +353,110 @@ class RunLedger:
             ("storage_gb", self.budget.max_storage_gb),
         )
         for name, limit in checks:
-            if limit is not None and totals[name] > limit + 1e-12:
-                raise BudgetExceeded(f"{name}={totals[name]} exceeds budget {limit}")
+            if limit is not None:
+                value = totals[name]
+                if name == "calculator_calls":
+                    value += self._active_reserved_calculator_calls()
+                if value > limit + 1e-12:
+                    raise BudgetExceeded(f"{name}={value} exceeds budget {limit}")
+
+    def _active_token(self, reservation_id: str) -> dict[str, Any]:
+        payload = self.reservations.get(reservation_id)
+        if payload is None or payload.get("token") is not True or payload.get("finalized", False):
+            raise ValueError(f"calculator reservation is not active: {reservation_id}")
+        return payload
+
+    def _token_value(self, reservation_id: str, name: str) -> int:
+        with self._lock:
+            payload = self.reservations.get(reservation_id)
+            if payload is None:
+                raise ValueError(f"unknown calculator token: {reservation_id}")
+            return int(payload.get(name, 0))
+
+    def _active_reserved_calculator_calls(self) -> int:
+        """Return allowance still held by open reservations."""
+
+        return sum(
+            max(0, int(item.get("calculator_calls", 0)) - int(item.get("released_calls", 0)))
+            for item in self.reservations.values()
+            if not bool(item.get("finalized", False))
+        )
+
+    def _persist_reservation(self, persist_path: Path | None) -> None:
+        if persist_path is not None:
+            self.save(persist_path)
+
+    def _reserve_payload(self, reservation_id: str, payload: Mapping[str, Any]) -> dict[str, Any]:
+        """Insert or replay a reservation after validating its full identity."""
+
+        with self._lock:
+            committed = self.committed_tokens.get(reservation_id)
+            if committed is not None:
+                raise ValueError(f"reservation_id is already committed: {reservation_id}")
+            existing = self.reservations.get(reservation_id)
+            if existing is not None:
+                if existing.get("token") is True and payload.get("token") is True:
+                    mutable = {"consumed_calls", "released_calls", "finalized"}
+                    same_identity = existing.get("calculator_calls") == payload.get("calculator_calls") and {
+                        key: value for key, value in existing.items() if key not in mutable
+                    } == {key: value for key, value in payload.items() if key not in mutable}
+                    if same_identity:
+                        return dict(existing)
+                if existing != dict(payload):
+                    raise ValueError("reservation_id already exists with different contents")
+                return dict(existing)
+            calls = payload.get("calculator_calls")
+            if type(calls) is not int or calls < 1:
+                raise ValueError("reserved calls must be a positive integer")
+            limit = self.budget.max_calculator_calls
+            reserved = self._active_reserved_calculator_calls()
+            used = int(self._totals()["calculator_calls"])
+            if limit is not None and used + reserved + calls > limit:
+                raise BudgetExceeded(f"calculator_calls reservation would exceed budget {limit}")
+            self.reservations[reservation_id] = dict(payload)
+            return dict(payload)
+
+    @staticmethod
+    def _reservation_metadata(metadata: Mapping[str, Any] | None) -> dict[str, Any]:
+        """Validate user metadata without allowing accounting fields to be forged."""
+
+        if metadata is None:
+            return {}
+        if not isinstance(metadata, Mapping):
+            raise ValueError("reservation metadata must be a mapping")
+        reserved = {"calculator_calls", "token", "consumed_calls", "released_calls", "finalized"}
+        collisions = reserved.intersection(metadata)
+        if collisions:
+            raise ValueError(f"reservation metadata cannot override accounting fields: {sorted(collisions)}")
+        payload = dict(metadata)
+        try:
+            json.dumps(payload, ensure_ascii=False, sort_keys=True, allow_nan=False)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("reservation metadata must be finite JSON-compatible data") from exc
+        return payload
+
+    def issue_calculator_token(
+        self,
+        reservation_id: str,
+        calls: int,
+        *,
+        metadata: Mapping[str, Any] | None = None,
+        persist_path: Path | None = None,
+    ) -> CalculatorCallToken:
+        """Create a per-call token from an atomic calculator-call reservation."""
+
+        user_metadata = self._reservation_metadata(metadata)
+        payload = {
+            "calculator_calls": calls,
+            **user_metadata,
+            "token": True,
+            "consumed_calls": 0,
+            "released_calls": 0,
+            "finalized": False,
+        }
+        self._reserve_payload(reservation_id, payload)
+        self._persist_reservation(persist_path)
+        return CalculatorCallToken(self, reservation_id, persist_path=persist_path)
 
     def reserve_calculator_calls(self, reservation_id: str, calls: int, *, metadata: Mapping[str, Any] | None = None) -> dict[str, Any]:
         """Reserve calculator calls before a searcher or backend is invoked.
@@ -209,28 +472,22 @@ class RunLedger:
             raise ValueError("reservation_id must be a non-empty string")
         if type(calls) is not int or calls < 1:
             raise ValueError("reserved calls must be a positive integer")
-        payload = {"calculator_calls": calls, **dict(metadata or {})}
-        with self._lock:
-            existing = self.reservations.get(reservation_id)
-            if existing is not None:
-                if existing != payload:
-                    raise ValueError("reservation_id already exists with different contents")
-                return dict(existing)
-            limit = self.budget.max_calculator_calls
-            reserved = sum(int(item.get("calculator_calls", 0)) for item in self.reservations.values())
-            used = int(self._totals()["calculator_calls"])
-            if limit is not None and used + reserved + calls > limit:
-                raise BudgetExceeded(f"calculator_calls reservation would exceed budget {limit}")
-            self.reservations[reservation_id] = payload
-            return dict(payload)
+        payload = {"calculator_calls": calls, **self._reservation_metadata(metadata)}
+        return self._reserve_payload(reservation_id, payload)
 
     def release_calculator_reservation(self, reservation_id: str) -> None:
-        """Release a pending reservation after its result is recorded."""
+        """Release a pending whole reservation after its result is recorded."""
 
         if not isinstance(reservation_id, str) or not reservation_id.strip():
             raise ValueError("reservation_id must be a non-empty string")
         with self._lock:
-            self.reservations.pop(reservation_id, None)
+            payload = self.reservations.get(reservation_id)
+            if payload is not None and payload.get("token") is True:
+                token = CalculatorCallToken(self, reservation_id)
+                token.release()
+                token.finalize()
+            else:
+                self.reservations.pop(reservation_id, None)
 
     def projected(self, event: LedgerEvent) -> dict[str, float | int]:
         with self._lock:
@@ -298,6 +555,8 @@ class RunLedger:
                 "budget": asdict(self.budget),
                 "events": [asdict(e) for e in self.events],
                 "reservations": self.reservations,
+                "committed_calculator_calls": self.committed_calculator_calls,
+                "committed_tokens": self.committed_tokens,
             }
 
     @classmethod
@@ -306,7 +565,14 @@ class RunLedger:
             raise ValueError("unsupported run ledger schema")
         budget = StageBudget(**payload["budget"])
         events = [LedgerEvent(**row) for row in payload.get("events", [])]
-        return cls(budget, ledger_id=payload["ledger_id"], events=events, reservations=payload.get("reservations"))
+        return cls(
+            budget,
+            ledger_id=payload["ledger_id"],
+            events=events,
+            reservations=payload.get("reservations"),
+            committed_calculator_calls=payload.get("committed_calculator_calls", 0),
+            committed_tokens=payload.get("committed_tokens"),
+        )
 
     def save(self, path: Path) -> None:
         path = Path(path)

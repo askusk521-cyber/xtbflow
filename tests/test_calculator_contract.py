@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import math
+import sys
+import types
 
+import numpy as np
 import pytest
 
 from xtbflow.calculators import (
@@ -14,6 +17,7 @@ from xtbflow.calculators import (
     XTBOracleAdapter,
     finite_difference_forces,
 )
+from xtbflow.runtime import BudgetExceeded, RunLedger, StageBudget
 
 
 def system(*, system_id: str = "water") -> MolecularSystem:
@@ -76,10 +80,78 @@ def test_batch_isolates_backend_failures_and_preserves_protocol_identity():
     results = adapter.evaluate_batch((system(system_id="good"), system(system_id="bad")), operation="energy")
     assert [item.status for item in results] == ["success", "failure"]
     assert results[1].error_category == "execution"
-    assert adapter.capabilities.status == "pass"
+    assert adapter.capabilities.status == "unknown"
+    assert adapter.capabilities.qualification == "callable"
 
 
-def test_unqualified_backend_fails_closed():
+def test_tblite_native_adapter_converts_public_units_at_the_boundary(monkeypatch):
+    captured = {}
+
+    class FakeResult:
+        def get(self, name):
+            if name == "energy":
+                return -1.25
+            if name == "gradient":
+                return np.asarray([[0.25, -0.5, 0.0]], dtype=np.float64)
+            raise AssertionError(name)
+
+    class FakeCalculator:
+        def __init__(self, method, numbers, positions, **kwargs):
+            captured.update(method=method, numbers=numbers, positions=positions, kwargs=kwargs)
+
+        def set(self, name, value):
+            captured.setdefault("settings", {})[name] = value
+
+        def singlepoint(self):
+            return FakeResult()
+
+    tblite = types.ModuleType("tblite")
+    interface = types.ModuleType("tblite.interface")
+    interface.Calculator = FakeCalculator
+    tblite.interface = interface
+    monkeypatch.setitem(sys.modules, "tblite", tblite)
+    monkeypatch.setitem(sys.modules, "tblite.interface", interface)
+
+    native_protocol = CalculatorProtocol(
+        protocol_id="tblite-gfn2-native-bohr-v1",
+        calculator="xtb_oracle",
+        method="GFN2-xTB",
+        parameters={"accuracy": 1.0, "max_iterations": 100, "electronic_temperature": 300.0, "solvent": None},
+    )
+    item = MolecularSystem(("H",), ((1.0, 0.0, 0.0),), 0, 3)
+    adapter = XTBOracleAdapter(protocol=native_protocol, implementation="tblite")
+    result = adapter.evaluate(item)
+
+    assert captured["method"] == "GFN2-xTB"
+    assert captured["numbers"].tolist() == [1]
+    assert captured["positions"][0, 0] == pytest.approx(1.0 / 0.529177210903)
+    assert captured["kwargs"] == {"charge": 0, "uhf": 2}
+    assert result.forces[0][0] == pytest.approx(-0.25 / 0.529177210903)
+    assert result.metadata["native_coordinate_unit"] == "bohr"
+    assert result.metadata["native_gradient_unit"] == "hartree/bohr"
+    assert result.metadata["normalized_force_unit"] == "hartree/angstrom"
+    assert result.metadata["adapter_revision"] == "xtb-oracle-native-units-v1"
+
+def test_calculator_token_is_consumed_at_adapter_boundary():
+    ledger = RunLedger(StageBudget("P1", max_calculator_calls=2))
+    token = ledger.issue_calculator_token("adapter", 2)
+    calls = []
+
+    def evaluator(item, operation):
+        calls.append(operation)
+        return quadratic(item, operation)
+
+    adapter = XTBloomAdapter(protocol=protocol(), evaluator=evaluator)
+    adapter.evaluate(system(), operation="energy", budget_token=token)
+    assert calls == ["energy"]
+    assert token.consumed_calls == 1
+    adapter.evaluate(system(), operation="energy", budget_token=token)
+    assert calls == ["energy", "energy"]
+    assert token.consumed_calls == 2
+    with pytest.raises(BudgetExceeded):
+        adapter.evaluate(system(), operation="energy", budget_token=token)
+    assert token.consumed_calls == 2
+
     adapter = XTBloomAdapter()
     with pytest.raises(CalculatorUnavailable):
         adapter.evaluate(system(), operation="energy")

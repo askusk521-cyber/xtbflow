@@ -258,6 +258,11 @@
       "bytes": 1212
     },
     {
+      "path": "docs/evidence/ts_budget_contract_20260929.json",
+      "sha256": "2dd251b61961e03154efc283d9246e5a9e9f4198b4cf7b32b902ff065ac179e5",
+      "bytes": 1391
+    },
+    {
       "path": "docs/evidence/units_provenance_audit_20260927.json",
       "sha256": "e0b4a1d6dfba65e5c532f479b9f16ab8f009e31644985edd46dceba0d444ba17",
       "bytes": 155056
@@ -584,8 +589,8 @@
     },
     {
       "path": "src/xtbflow/validation/ts_search.py",
-      "sha256": "7c0a8125f35af9f6f150f694ad32e979d092fef4c0399b93e699f36d5871c79d",
-      "bytes": 18051
+      "sha256": "f161bddb807d39930bbaa52f180de61289962c7a5125462424ecffb0f0740abe",
+      "bytes": 19268
     },
     {
       "path": "tests/reusable/test_event_geometry.py",
@@ -619,8 +624,8 @@
     },
     {
       "path": "tests/test_calculator_contract.py",
-      "sha256": "7c87738099f210990322ddfc016ef69e21cd7475d07e1fb1c06714f4608fe55c",
-      "bytes": 7285
+      "sha256": "4197024ebb054724c7f2b28436cff94f4d1742e90a53e3a44fcfb28b1aac0bb4",
+      "bytes": 8012
     },
     {
       "path": "tests/test_checkpoint.py",
@@ -674,8 +679,8 @@
     },
     {
       "path": "tests/test_path_status.py",
-      "sha256": "f756123ca3e35aaa151fb21f3b35b5e571537b03a80605c8b684e2b896b084c2",
-      "bytes": 4816
+      "sha256": "d21c98450bd3b45ff971d19ebcbad60f3e8f9f4a9105a2eaf7131df388f4422e",
+      "bytes": 7810
     },
     {
       "path": "tests/test_runtime_budget.py",

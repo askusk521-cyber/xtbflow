@@ -44,3 +44,41 @@ def euler_step(
         coordinates + float(dt) * output.geometry_velocity,
         output,
     )
+
+
+def serial_euler_step(
+    model: Any,
+    event_state: Tensor,
+    coordinates: Tensor,
+    node_features: Tensor,
+    atom_mask: Tensor,
+    *,
+    tau: float | Tensor,
+    dt: float,
+):
+    """Advance the serial control with its explicit ``dt`` argument.
+
+    SerialEventGeometryFlow intentionally has a different call contract from
+    the bidirectional joint flow: it accepts ``dt`` and does not accept a
+    coupling strength.  Keeping this entry point explicit prevents a control
+    arm from being accidentally routed through the joint-only integrator.
+    """
+
+    if isinstance(dt, bool) or not isinstance(dt, (int, float)) or not math.isfinite(float(dt)) or dt <= 0:
+        raise ValueError("dt must be a finite positive number")
+    if isinstance(tau, Tensor):
+        if tau.numel() != 1:
+            raise ValueError("serial_euler_step requires a scalar tau")
+        tau_value = float(tau.detach().item())
+    elif isinstance(tau, (int, float)) and not isinstance(tau, bool):
+        tau_value = float(tau)
+    else:
+        raise ValueError("tau must be a finite scalar")
+    if not math.isfinite(tau_value) or not 0 <= tau_value <= 1 or tau_value + float(dt) > 1 + 1e-12:
+        raise ValueError("tau and dt must remain within the normalized flow domain")
+    output = model(event_state, coordinates, node_features, atom_mask, tau=tau, dt=dt)
+    return (
+        event_state + float(dt) * output.event_velocity,
+        coordinates + float(dt) * output.geometry_velocity,
+        output,
+    )

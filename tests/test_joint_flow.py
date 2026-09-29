@@ -4,6 +4,7 @@ import pytest
 import torch
 
 from xtbflow.models import ConservationProjector, JointEventGeometryFlow, SerialEventGeometryFlow
+from xtbflow.sampling import euler_step, serial_euler_step
 from xtbflow.training import coupled_control_manifest, joint_flow_loss
 from xtbflow.evaluation import TerminalCandidate, deduplicate_terminal_candidates
 
@@ -70,6 +71,33 @@ def test_joint_coordinate_and_parameter_gradients_stay_finite_at_self_and_collis
     loss.backward()
     assert torch.isfinite(coordinates.grad).all()
     assert all(parameter.grad is None or torch.isfinite(parameter.grad).all() for parameter in model.parameters())
+
+
+def test_time_condition_is_explicit_across_multiple_tau_values_and_preserves_event_constraint():
+    torch.manual_seed(12)
+    event, coordinates, node, mask = inputs()
+    projector = ConservationProjector(torch.tensor([[1.0, 1.0, 1.0]], dtype=torch.float64))
+    model = JointEventGeometryFlow(projector, 4, hidden_dim=8, radial_features=4).double()
+    outputs = [model(event, coordinates, node, mask, tau=tau) for tau in (0.1, 0.5, 0.9)]
+    assert all(torch.isfinite(output.event_velocity).all() and torch.isfinite(output.geometry_velocity).all() for output in outputs)
+    assert max((outputs[0].event_velocity - output.event_velocity).abs().max().item() for output in outputs[1:]) > 0
+    for output in outputs:
+        residual = output.event_velocity @ projector.constraint_matrix.T
+        assert torch.allclose(residual, torch.zeros_like(residual), atol=1e-7)
+
+
+def test_joint_and_serial_integrators_use_their_declared_call_contracts():
+    torch.manual_seed(13)
+    event, coordinates, node, mask = inputs()
+    projector = ConservationProjector(torch.tensor([[1.0, 1.0, 1.0]], dtype=torch.float64))
+    joint = JointEventGeometryFlow(projector, 4, hidden_dim=8, radial_features=4).double()
+    serial = SerialEventGeometryFlow(projector, 4, hidden_dim=8, radial_features=4).double()
+    _, _, joint_output = euler_step(joint, event, coordinates, node, mask, tau=0.0, dt=0.25, coupling_strength=0.0)
+    _, _, serial_output = serial_euler_step(serial, event, coordinates, node, mask, tau=0.0, dt=0.25)
+    assert joint_output.event_velocity.shape == serial_output.event_velocity.shape
+    assert joint_output.geometry_velocity.shape == serial_output.geometry_velocity.shape
+    with pytest.raises(ValueError):
+        serial_euler_step(serial, event, coordinates, node, mask, tau=0.9, dt=0.2)
 
 
 def test_joint_loss_masks_nan_unobserved_labels_before_arithmetic():

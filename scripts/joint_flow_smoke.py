@@ -60,14 +60,16 @@ def main() -> int:
 
     model = JointEventGeometryFlow(projector, 4, hidden_dim=8, radial_features=4).to(dtype=dtype)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-2)
-    target_event = torch.tensor([[0.2, -0.1, -0.1]], dtype=dtype)
-    target_geometry = torch.zeros_like(coordinates)
-    target_geometry[:, 1, 0] = 0.15
-    target_geometry[:, 2, 1] = -0.1
+    tau_schedule = (0.2, 0.5, 0.8)
     losses: list[float] = []
-    for _ in range(args.training_steps):
+    for step in range(args.training_steps):
+        tau = tau_schedule[step % len(tau_schedule)]
+        target_event = torch.tensor([[0.2 * tau, -0.1 * tau, -0.1 * tau]], dtype=dtype)
+        target_geometry = torch.zeros_like(coordinates)
+        target_geometry[:, 1, 0] = 0.15 * tau
+        target_geometry[:, 2, 1] = -0.1 * tau
         optimizer.zero_grad(set_to_none=True)
-        output = model(event, coordinates, node_features, atom_mask, tau=0.5)
+        output = model(event, coordinates, node_features, atom_mask, tau=tau)
         loss = joint_flow_loss(output, target_event, target_geometry, atom_mask=atom_mask, require_nonzero_target=True)["total"]
         loss.backward()
         optimizer.step()
@@ -82,7 +84,7 @@ def main() -> int:
         args.checkpoint,
         model,
         optimizer,
-        loop={"global_step": args.training_steps, "tau": 0.5, "dt": dt, "data_order": list(range(args.training_steps))},
+        loop={"global_step": args.training_steps, "tau_schedule": list(tau_schedule), "dt": dt, "data_order": list(range(args.training_steps))},
         sampler_state={"event_state": torch.zeros_like(event), "coordinates": coordinates.clone(), "node_features": node_features.clone(), "atom_mask": atom_mask.clone()},
         metadata={"target": "diagnostic_nonzero_synthetic_velocity"},
     )
@@ -99,6 +101,12 @@ def main() -> int:
         "event_message": _max_abs(pre_save.event_message, post_restore.event_message),
         "geometry_message": _max_abs(pre_save.geometry_message, post_restore.geometry_message),
     }
+    with torch.no_grad():
+        tau_probe = [restored(event, coordinates, node_features, atom_mask, tau=tau) for tau in tau_schedule]
+    time_conditioned_variation = max(
+        float((tau_probe[0].event_velocity - output.event_velocity).abs().max().item())
+        for output in tau_probe[1:]
+    )
 
     # A short deterministic Euler rollout checks that the restored model can
     # produce finite states while the projected event velocity remains in the
@@ -120,6 +128,17 @@ def main() -> int:
             )
             residuals.append(float((sample_event @ projector.constraint_matrix.T).abs().max()))
 
+    if restore_info["resume_kind"] != "training" or not restore_info["complete_resume"]:
+        raise RuntimeError("checkpoint did not provide a complete training resume")
+    if max(restore_differences.values()) > 1e-12:
+        raise RuntimeError(f"checkpoint restore changed model output: {max(restore_differences.values())}")
+    if not bool(torch.isfinite(sample_event).all()) or not bool(torch.isfinite(sample_coordinates).all()):
+        raise RuntimeError("Euler rollout produced a non-finite state")
+    if max(residuals) > 1e-8:
+        raise RuntimeError(f"conservation residual exceeded tolerance: {max(residuals)}")
+    if time_conditioned_variation <= 1e-12:
+        raise RuntimeError("multiple tau values did not change the conditioned velocity")
+
     report = {
         "schema": "xtbflow-joint-flow-smoke/v2",
         "created_utc": datetime.now(timezone.utc).isoformat(),
@@ -132,6 +151,9 @@ def main() -> int:
         "tau_domain": [0.0, min(1.0, args.sample_steps * dt)],
         "checkpoint_schema": restore_info["schema"],
         "complete_resume": restore_info["complete_resume"],
+        "resume_kind": restore_info["resume_kind"],
+        "tau_schedule": list(tau_schedule),
+        "time_conditioned_variation": time_conditioned_variation,
         "final_loss": losses[-1],
         "checkpoint_path": str(args.checkpoint),
         "checkpoint_sha256": hashlib.sha256(args.checkpoint.read_bytes()).hexdigest(),

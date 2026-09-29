@@ -304,8 +304,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "66835fffcbf04c020f1b26a012c2710e28055f5d55ba30cad7d37fa61b876a11",
-      "bytes": 19894
+      "sha256": "45089b9c300f0d684575dcb296b2494a9e1d803f331523090177663c58d4ef02",
+      "bytes": 20763
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -316,6 +316,11 @@
       "path": "docs/TRACK_B_DATA_GATE.md",
       "sha256": "7d4237a25238a6a84fd4f87b255a52ae3e8d2dec84ec280a05ff97ba97953a99",
       "bytes": 10677
+    },
+    {
+      "path": "docs/TRANSITION1X_JOINT_DEVELOPMENT.md",
+      "sha256": "bb0b3162e0f74e203c9311aadff64779f5f2d1d5f9a84d8168cd1ba81c022371",
+      "bytes": 2328
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -521,6 +526,11 @@
       "path": "docs/evidence/track_b_source_audit_20260929.json",
       "sha256": "2013d23d86491a80d3d158ca99e0eef33f9b397261c75999b5d74d1081e6c7f0",
       "bytes": 8575
+    },
+    {
+      "path": "docs/evidence/transition1x_joint_development_20260930.json",
+      "sha256": "4cc396d47cc2245de881285004c942b9be14048391337e80f06e39ff38377d11",
+      "bytes": 9412
     },
     {
       "path": "docs/evidence/transition1x_track_b_audit_20260929.json",

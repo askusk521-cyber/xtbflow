@@ -197,3 +197,18 @@
   direction coupling are not claimed complete, and scientific comparison is
   blocked until #58 admits sample-level paired event/TS supervision. SPICE E/F
   records remain unsuitable for that supervision.
+
+## 2026-09-30 Transition1x quarantine-bound real-data development
+
+- A bounded runner now loads the hash-pinned `train_rpsb_all.pkl` through the
+  restricted NumPy deserializer, derives a declared endpoint-distance event
+  diagnostic, and trains the current joint-flow prototype on real
+  reactant-to-TS displacements.
+- The n2 run selected 32 rows from the 10,073-record audited asset with a
+  deterministic 24/4/4 train/validation/test split and completed the three
+  registered control evaluations. Evidence is in
+  `docs/evidence/transition1x_joint_development_20260930.json`.
+- The result remains `quarantine_development_only`: the source audit still
+  reports unresolved charge/multiplicity, event-label, atom-mapping, family
+  holdout and redistribution-license requirements. It does not open the
+  Track-B gate or support a product-free scientific comparison.

@@ -1,0 +1,255 @@
+{
+  "schema": "xtbflow-transition1x-joint-development/v1",
+  "created_utc": "2026-09-29T21:16:54.076373+00:00",
+  "execution_host": "node2",
+  "git": {
+    "commit": "190118dc25fa334e82cf75d1dd6a4f653a3a2835",
+    "dirty": false,
+    "dirty_entries": []
+  },
+  "asset": {
+    "path": "/home/lhshen/.cache/xtbflow/transition1x-rpsb-13119869/train_rpsb_all.pkl",
+    "sha256": "36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+    "size_bytes": 55458032,
+    "source_id": "transition1x_preprocessed",
+    "source_revision": "train_rpsb_all.pkl_sha256=36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+    "source_audit": {
+      "schema_version": "xtbflow-transition1x-source-audit/v1",
+      "source": {
+        "source_id": "transition1x_preprocessed",
+        "source_locator": "https://doi.org/10.5281/zenodo.13119869",
+        "source_revision": "train_rpsb_all.pkl_sha256=36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+        "license_record": "unspecified on Zenodo record 13119869; redistribution not admitted",
+        "license_status": "unspecified",
+        "upstream_code_commit": "08f728925d76e22ce04ec1ab3b75770d32e617ca",
+        "asset_name": "train_rpsb_all.pkl",
+        "size_bytes": 55458032,
+        "sha256": "36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+        "md5": "701a457634cce7a6cae5318e8cd18082",
+        "identity_verified_before_deserialization": true,
+        "deserializer": "restricted_numpy_pickle",
+        "archive_code_executed": false
+      },
+      "structure": {
+        "record_count": 10073,
+        "top_level_fields": [
+          "product",
+          "reactant",
+          "single_fragment",
+          "transition_state",
+          "ts_guess",
+          "ts_guess_NEBCI-xtb",
+          "ts_guess_sbv1",
+          "ts_guess_true",
+          "use_ind"
+        ],
+        "branch_fields": {
+          "reactant": [
+            "charges",
+            "formula",
+            "fragments",
+            "num_atoms",
+            "positions",
+            "rxn",
+            "wB97x_6-31G(d).atomization_energy",
+            "wB97x_6-31G(d).energy",
+            "wB97x_6-31G(d).forces",
+            "xtb_positions"
+          ],
+          "product": [
+            "charges",
+            "formula",
+            "fragments",
+            "num_atoms",
+            "positions",
+            "rxn",
+            "wB97x_6-31G(d).atomization_energy",
+            "wB97x_6-31G(d).energy",
+            "wB97x_6-31G(d).forces",
+            "xtb_positions"
+          ],
+          "transition_state": [
+            "charges",
+            "formula",
+            "fragments",
+            "num_atoms",
+            "positions",
+            "rxn",
+            "wB97x_6-31G(d).atomization_energy",
+            "wB97x_6-31G(d).energy",
+            "wB97x_6-31G(d).forces"
+          ]
+        },
+        "shared_alignment": {
+          "rxn": {
+            "present": true,
+            "aligned": true
+          },
+          "formula": {
+            "present": true,
+            "aligned": true
+          },
+          "num_atoms": {
+            "present": true,
+            "aligned": true
+          }
+        },
+        "split": {
+          "representation": "index_list",
+          "selected_count": 9000,
+          "complement_count": 1073,
+          "selected_indices_sha256": "40f314ad1d43ea98bbe28a13dee1642f06e756dc556938539c5cdaca0d70abc5"
+        },
+        "records_checked": 10073,
+        "atom_count_min": 4,
+        "atom_count_max": 23,
+        "atomic_number_counts": {
+          "1": 72326,
+          "6": 45051,
+          "7": 8216,
+          "8": 10963
+        },
+        "endpoint_atom_rows_match": true,
+        "endpoint_coordinate_shapes_match": true,
+        "all_coordinates_finite": true
+      },
+      "field_evidence": {
+        "positions_unit": "angstrom",
+        "positions_unit_source": "pinned upstream code at upstream_code_commit; not embedded as a per-record unit field",
+        "charges_field_interpretation": "atomic_numbers",
+        "formal_charge_field_present": false,
+        "multiplicity_field_present": false,
+        "event_label_fields": [],
+        "family_fields": [],
+        "explicit_license_present": false,
+        "atom_correspondence": "same row order and atomic numbers across R/P/TS; not an independently certified chemical atom mapping"
+      },
+      "track_b_gate": {
+        "source_identity_verified": true,
+        "endpoint_geometry_diagnostic_ready": true,
+        "event_geometry_training_ready": false,
+        "admission": "quarantine_diagnostic_only",
+        "blocking_reasons": [
+          "explicit formal charge is absent",
+          "explicit multiplicity is absent",
+          "trusted Track-B event labels are absent",
+          "family-certified holdout metadata is absent",
+          "same-row endpoint correspondence is not a certified atom mapping",
+          "the pinned source record has no explicit redistribution license"
+        ]
+      },
+      "scientific_claim_allowed": false,
+      "claim_boundary": "Source-identity and endpoint-structure evidence only. This report does not admit Track-B records, validate transition states, or support a joint-versus-serial model claim."
+    }
+  },
+  "data_status": "quarantine_development_only",
+  "claim_limit": "Endpoint-derived event labels and source metadata do not qualify product-free Track-B training or scientific benchmark claims.",
+  "selection": {
+    "source_record_count": 10073,
+    "candidate_count": 10073,
+    "selected_count": 32,
+    "max_atoms": 9,
+    "split_counts": {
+      "test": 4,
+      "train": 24,
+      "validation": 4
+    },
+    "train_count": 24,
+    "heldout_count": 8,
+    "element_scope": "H/C/N/O",
+    "event_label": "covalent-radius-binary-endpoint-edit-v1",
+    "electronic_state": "unresolved; condition features are zero-filled and excluded from claims"
+  },
+  "runtime_config": {
+    "class": "xtbflow.models.JointEventGeometryFlow",
+    "model_id": "xtbflow-packed-pair-prototype-v0.1",
+    "status": "software_prototype_not_scientifically_trained",
+    "node_feature_dim": 8,
+    "condition_feature_dim": 4,
+    "hidden_dim": 64,
+    "radial_features": 16,
+    "control_modes": [
+      "both_off",
+      "serial_independent",
+      "joint_bidirectional"
+    ]
+  },
+  "runtime_config_sha256": "58c52fdba6a8a803a11983e54dc1de87e7dcfacb45f23cb8c43842f2bb674c00",
+  "seed": 20260930,
+  "steps": 2,
+  "initial_loss": 0.1868871152799845,
+  "final_loss": 0.24890419364248906,
+  "model_identity": {
+    "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+    "state_sha256": "7702eeed926363159c44ee4849f050395229e67d3e4f43d69b540fe328679319",
+    "total_parameters": 23387,
+    "trainable_parameters": 23387
+  },
+  "controls": {
+    "both_off": {
+      "event_velocity_mse": 0.1477113544658347,
+      "geometry_velocity_mse": 0.07881224580348865,
+      "one_step_geometry_endpoint_mse": 0.07881224580348865
+    },
+    "serial_independent": {
+      "event_velocity_mse": 0.1477113544658347,
+      "geometry_velocity_mse": 0.07731342978204123,
+      "one_step_geometry_endpoint_mse": 0.07731342978204123
+    },
+    "joint_bidirectional": {
+      "event_velocity_mse": 0.1509097206104978,
+      "geometry_velocity_mse": 0.07695820135040002,
+      "one_step_geometry_endpoint_mse": 0.07695820135040002
+    }
+  },
+  "control_manifest": {
+    "schema": "xtbflow-joint-control/v2",
+    "modes": [
+      "both_off",
+      "serial_independent",
+      "joint_bidirectional"
+    ],
+    "coupling_strength": 1.0,
+    "guidance_strength": 0.0,
+    "dataset_fingerprint": "36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+    "split_fingerprint": "64ba83db228aa71c7a6259f99de83eb31cfd2118ecf87f2eaf18f265489ec5a3",
+    "input_view_fingerprint": "transition1x-reactant-ts-development-v1",
+    "model_identity_status": "measured",
+    "model_identities": {
+      "both_off": {
+        "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+        "state_sha256": "7702eeed926363159c44ee4849f050395229e67d3e4f43d69b540fe328679319",
+        "total_parameters": 23387,
+        "trainable_parameters": 23387
+      },
+      "serial_independent": {
+        "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+        "state_sha256": "7702eeed926363159c44ee4849f050395229e67d3e4f43d69b540fe328679319",
+        "total_parameters": 23387,
+        "trainable_parameters": 23387
+      },
+      "joint_bidirectional": {
+        "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+        "state_sha256": "7702eeed926363159c44ee4849f050395229e67d3e4f43d69b540fe328679319",
+        "total_parameters": 23387,
+        "trainable_parameters": 23387
+      }
+    },
+    "same_generation_weights_for_controls": true,
+    "physical_budget_status": "measured",
+    "physical_call_budgets": {
+      "both_off": 0,
+      "serial_independent": 0,
+      "joint_bidirectional": 0
+    },
+    "same_physical_budget_for_controls": true
+  },
+  "conservation_residual_max_abs": 0.0,
+  "elapsed_seconds": 4.134663698961958,
+  "limits": [
+    "The source remains outside the repository and is hash-gated before deserialization.",
+    "The product endpoint is used to derive the diagnostic event label.",
+    "No calculator calls or independent reactant seed searches were made.",
+    "Results are software/data-pipeline development evidence only."
+  ]
+}

@@ -269,12 +269,12 @@
     },
     {
       "path": "docs/evidence/xtbloom_adapter_contract_20260929.json",
-      "sha256": "3722cdcbf0260123d05328270151064ae20e7537ece05cfaaa8fee5ec4eb281f",
+      "sha256": "eae546a8d196601995f168b3d850d211c8ad4ea171dc769c3abb2d8b7c75c774",
       "bytes": 2344
     },
     {
       "path": "docs/evidence/xtbloom_cpu_smoke_20260929.json",
-      "sha256": "5189ebbb5562e40a6c526f18c6ca019b426961589f2ed9e6e4a426562c0b0307",
+      "sha256": "0a1da44eea592da8a75ee27deb9a7db28e4c12693b84c38550889deb69024883",
       "bytes": 2857
     },
     {
@@ -384,8 +384,8 @@
     },
     {
       "path": "src/xtbflow/calculators/xtbloom.py",
-      "sha256": "b951893c5f1476a8b250b188e81b2d4ed1a486ffaf810352e8cab19e377c7898",
-      "bytes": 11112
+      "sha256": "7385ec2f61ca3365e87e75c788a156b4803449359a476b97f9bed278bf43b98a",
+      "bytes": 11989
     },
     {
       "path": "src/xtbflow/data/__init__.py",

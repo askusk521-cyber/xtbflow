@@ -1,7 +1,7 @@
 {
   "schema": "xtbflow-xtbloom-adapter-contract/v1",
   "status": "software_contract_verified",
-  "source_commit": "24edd1226cff7e323b1c8108ac8d76c05286479a",
+  "source_commit": "19225787911a177e85a18fc1dc2aec5dfc7add9b",
   "cp2k_dependency": false,
   "scientific_qualification": false,
   "protocol": {

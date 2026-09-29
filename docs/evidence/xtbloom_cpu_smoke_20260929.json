@@ -1,7 +1,7 @@
 {
   "schema": "xtbflow-xtbloom-cpu-smoke/v1",
   "status": "diagnostic_quarantine",
-  "source_commit": "a1b504598ec3a2a102d25893018c74c70c84a202",
+  "source_commit": "19225787911a177e85a18fc1dc2aec5dfc7add9b",
   "cp2k_dependency": false,
   "scientific_qualification": false,
   "xtbloom_source": {
@@ -51,8 +51,8 @@
   },
   "adapter_identity": {
     "backend_version": "0.2.3",
-    "wrapper_interface_library_hash": "c499950834ffa7a0f07c46b132d82ce9102a0e4bc3b360f1a6f2ea433679b909",
-    "adapter_code_hash": "b951893c5f1476a8b250b188e81b2d4ed1a486ffaf810352e8cab19e377c7898",
+    "wrapper_interface_library_hash": "6b9e07e713506ffb42fc17b991ebaab845f2ebddce4506bfe7c093273e60ef1d",
+    "adapter_code_hash": "7385ec2f61ca3365e87e75c788a156b4803449359a476b97f9bed278bf43b98a",
     "capability_status": "unknown",
     "capability_qualification": "installed"
   },

@@ -157,6 +157,24 @@ def test_calculator_token_is_consumed_at_adapter_boundary():
         adapter.evaluate(system(), operation="energy")
 
 
+def test_production_adapter_blocks_the_fourth_call_before_evaluator():
+    ledger = RunLedger(StageBudget("P1", max_calculator_calls=3))
+    token = ledger.issue_calculator_token("xtbloom-production", 3)
+    calls = []
+
+    def evaluator(item, operation):
+        calls.append((item.input_hash, operation))
+        return quadratic(item, operation)
+
+    adapter = XTBloomAdapter(protocol=protocol(), evaluator=evaluator, require_budget_token=True)
+    for _ in range(3):
+        adapter.evaluate(system(), operation="energy", budget_token=token)
+    with pytest.raises(BudgetExceeded):
+        adapter.evaluate(system(), operation="energy", budget_token=token)
+    assert len(calls) == 3
+    assert token.consumed_calls == 3
+
+
 def test_missing_or_nonfinite_contract_fields_are_rejected():
     with pytest.raises(ValueError, match="coordinate"):
         MolecularSystem(("H",), ((math.nan, 0.0, 0.0),), 0, 1)

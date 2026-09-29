@@ -128,3 +128,79 @@ def test_resumable_validation_binds_cache_to_candidate_and_checks_budget_before_
     changed = {"candidate": {"coordinates": [[0.1, 0.0, 0.0]], "charge": 0, "multiplicity": 1}}
     run_resumable_validation(changed, search, TSValidationConfig(), checkpoint, reserve_calls=reserve)
     assert calls == ["candidate", "candidate"]
+
+
+def test_production_token_budget_failure_is_recorded_and_later_candidates_continue(tmp_path):
+    ledger = RunLedger(StageBudget("P1", max_calculator_calls=6))
+    ledger_path = tmp_path / "ledger.json"
+    checkpoint = tmp_path / "ts.json"
+    candidates = {
+        "over-budget": {"coordinates": [[0.0, 0.0, 0.0]], "charge": 0, "multiplicity": 1},
+        "after-failure": {"coordinates": [[0.2, 0.0, 0.0]], "charge": 0, "multiplicity": 1},
+    }
+
+    def factory(token_id, item, calls, metadata):
+        return ledger.issue_calculator_token(token_id, calls, metadata=metadata, persist_path=ledger_path)
+
+    seen = []
+
+    def search(candidate_id, item, token):
+        seen.append(candidate_id)
+        if candidate_id == "over-budget":
+            token.consume(3)
+            token.consume()  # Fails before a fourth backend call can occur.
+        token.consume()
+        evidence = good()
+        evidence.update(source="fixture", calculator_calls=token.consumed_calls)
+        return evidence
+
+    records = run_resumable_validation(
+        candidates,
+        search,
+        TSValidationConfig(max_calls=3),
+        checkpoint,
+        budget_token_factory=factory,
+        require_budget_token=True,
+    )
+    assert [record.status for record in records] == ["failure", "success"]
+    assert records[0].mode_status == "call_budget"
+    assert records[0].calculator_calls == 3
+    assert seen == ["over-budget", "after-failure"]
+    assert ledger.summary()["totals"]["calculator_calls"] == 4
+    assert ledger.reservations == {}
+    restored = run_resumable_validation(
+        candidates,
+        lambda *args: (_ for _ in ()).throw(AssertionError("cached records must not rerun")),
+        TSValidationConfig(max_calls=3),
+        checkpoint,
+        budget_token_factory=factory,
+        require_budget_token=True,
+    )
+    assert [record.status for record in restored] == ["failure", "success"]
+
+
+def test_production_searcher_exception_settles_partial_calls_and_preserves_checkpoint(tmp_path):
+    ledger = RunLedger(StageBudget("P1", max_calculator_calls=4))
+    ledger_path = tmp_path / "ledger.json"
+    checkpoint = tmp_path / "ts.json"
+
+    def factory(token_id, item, calls, metadata):
+        return ledger.issue_calculator_token(token_id, calls, metadata=metadata, persist_path=ledger_path)
+
+    def search(candidate_id, item, token):
+        token.consume()
+        raise RuntimeError("fixture search failed after one calculation")
+
+    records = run_resumable_validation(
+        {"candidate": {"coordinates": [[0.0, 0.0, 0.0]], "charge": 0, "multiplicity": 1}},
+        search,
+        TSValidationConfig(max_calls=3),
+        checkpoint,
+        budget_token_factory=factory,
+        require_budget_token=True,
+    )
+    assert records[0].status == "failure"
+    assert records[0].mode_status == "searcher_exception"
+    assert records[0].calculator_calls == 1
+    assert ledger.summary()["totals"]["calculator_calls"] == 1
+    assert ledger.reservations == {}

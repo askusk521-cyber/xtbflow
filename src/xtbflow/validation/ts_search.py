@@ -251,8 +251,32 @@ def run_resumable_validation(
             evidence: Mapping[str, Any]
             try:
                 evidence = searcher(candidate_id, candidate, token)
-            except (BudgetExceeded, BudgetTokenRequired):
-                raise
+            except (BudgetExceeded, BudgetTokenRequired) as exc:
+                # A token failure is itself a candidate outcome.  Persist the
+                # calls already consumed before the guard fired, release any
+                # unused allowance, and continue with later candidates.  This
+                # keeps a malformed/over-budget candidate from erasing the
+                # recovery boundary for the rest of the batch.  If the shared
+                # stage budget is exhausted, the next token factory call will
+                # still raise before any new search work begins.
+                consumed = token.consumed_calls
+                failure = _record(
+                    candidate_id,
+                    "searcher",
+                    "failure",
+                    "not_validated",
+                    None,
+                    "call_budget",
+                    None,
+                    consumed,
+                    f"{type(exc).__name__}: {exc}",
+                    candidate_hash=candidate_hash,
+                    validation_identity=validation_identity,
+                    cache_key=cache_key,
+                )
+                _finish_token_record(token, candidate_id, failure, prior, target)
+                output.append(failure)
+                continue
             except Exception as exc:
                 consumed = token.consumed_calls
                 failure = _record(candidate_id, "searcher", "failure", "not_validated", None, "searcher_exception", None, consumed, f"{type(exc).__name__}: {exc}", candidate_hash=candidate_hash, validation_identity=validation_identity, cache_key=cache_key)

@@ -439,7 +439,13 @@ class TrackBRecord:
         return json.loads(json.dumps(view, ensure_ascii=False, sort_keys=True))
 
     def input_fingerprint(self) -> str:
-        """Hash exact scientific input identity, excluding paths and provenance."""
+        """Hash model-visible input identity, excluding provenance metadata.
+
+        ``declared_intent`` records a proposal/source-side explanation and may
+        vary between records for the same reactant input. It must not split
+        exact-input leakage detection. The microstate identity is part of the
+        scientific input and is included explicitly.
+        """
 
         return canonical_hash(
             {
@@ -451,7 +457,7 @@ class TrackBRecord:
                 "coordinate_unit": self.reactant.get("coordinate_unit"),
                 "charge": self.reactant.get("charge"),
                 "multiplicity": self.reactant.get("multiplicity"),
-                "declared_intent": self.reactant.get("declared_intent"),
+                "microstate_id": self.reactant.get("microstate_id"),
             }
         )
 

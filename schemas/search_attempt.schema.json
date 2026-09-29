@@ -8,10 +8,12 @@
       "type": "string"
     },
     "attempt_version": {
+      "description": "Append-only cumulative snapshot version. Cost and status fields are totals through this version; final audits use the latest version per attempt.",
       "minimum": 1,
       "type": "integer"
     },
     "calculator_calls": {
+      "description": "Cumulative calculator-call totals through this attempt version, keyed by protocol ID.",
       "additionalProperties": {
         "minimum": 0,
         "type": "integer"
@@ -146,6 +148,7 @@
       "type": "string"
     },
     "wall_seconds": {
+      "description": "Cumulative wall-clock seconds through this attempt version.",
       "minimum": 0,
       "type": "number"
     }

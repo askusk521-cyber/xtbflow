@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 import json
 import re
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Iterable, Mapping
 
 from .records import canonical_hash
 
@@ -100,7 +100,13 @@ def _validate_protocol(payload: Mapping[str, Any]) -> dict[str, Any]:
 
 @dataclass(frozen=True)
 class SearchAttempt:
-    """One immutable attempt version; later updates append a new version."""
+    """One immutable cumulative attempt snapshot.
+
+    ``calculator_calls``, ``wall_seconds`` and ``retry_count`` are cumulative
+    totals for this attempt through the recorded version. Later updates append
+    a new snapshot; consumers must use the latest version for final state and
+    cost aggregation.
+    """
 
     attempt_id: str
     attempt_version: int
@@ -314,6 +320,7 @@ def _audit_attempt_history(rows: list[SearchAttempt]) -> None:
                 f"expected {expected}, found {actual}"
             )
         baseline = versions[0]
+        previous = baseline
         for row in versions[1:]:
             changed = [
                 name
@@ -325,6 +332,27 @@ def _audit_attempt_history(rows: list[SearchAttempt]) -> None:
                     f"attempt {attempt_id} rewrites immutable fields: "
                     f"{changed}"
                 )
+            protocol_ids = set(previous.calculator_calls) | set(row.calculator_calls)
+            if any(
+                row.calculator_calls.get(protocol_id, 0)
+                < previous.calculator_calls.get(protocol_id, 0)
+                for protocol_id in protocol_ids
+            ):
+                raise ValueError(
+                    f"attempt {attempt_id} cumulative calculator calls decrease at "
+                    f"version {row.attempt_version}"
+                )
+            if row.wall_seconds < previous.wall_seconds:
+                raise ValueError(
+                    f"attempt {attempt_id} cumulative wall_seconds decrease at "
+                    f"version {row.attempt_version}"
+                )
+            if row.retry_count < previous.retry_count:
+                raise ValueError(
+                    f"attempt {attempt_id} cumulative retry_count decrease at "
+                    f"version {row.attempt_version}"
+                )
+            previous = row
 
 
 def load_attempt_jsonl(path: str | Path) -> list[SearchAttempt]:
@@ -353,6 +381,17 @@ def load_attempt_jsonl(path: str | Path) -> list[SearchAttempt]:
     rows.sort(key=lambda row: (row.attempt_id, row.attempt_version))
     _audit_attempt_history(rows)
     return rows
+
+
+def latest_attempt_versions(rows: Iterable[SearchAttempt]) -> list[SearchAttempt]:
+    """Return one latest cumulative snapshot per attempt in stable order."""
+
+    latest: dict[str, SearchAttempt] = {}
+    for row in rows:
+        previous = latest.get(row.attempt_id)
+        if previous is None or row.attempt_version > previous.attempt_version:
+            latest[row.attempt_id] = row
+    return [latest[key] for key in sorted(latest)]
 
 
 def append_attempt_jsonl(

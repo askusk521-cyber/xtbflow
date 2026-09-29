@@ -9,7 +9,9 @@ from xtbflow.data.attempts import (
     SearchAttempt,
     append_attempt_jsonl,
     load_attempt_jsonl,
+    latest_attempt_versions,
 )
+from scripts.audit_search_attempts import build_report as build_attempt_audit_report
 from xtbflow.data.independent_seeds import (
     IndependentReactantSeed,
     SeedLeakageError,
@@ -371,6 +373,32 @@ def test_exact_input_leakage_ignores_record_identity():
         )
 
 
+def test_exact_input_fingerprint_excludes_declared_intent_provenance():
+    first_intent = {
+        "permission_mode": "declared_center",
+        "reactive_map_ids": [0],
+        "net_bond_edits": [],
+        "provenance": "proposal-source-a",
+        "uses_reference_labels": False,
+    }
+    second_intent = {**first_intent, "provenance": "proposal-source-b"}
+    first = track_record(
+        reactant={**track_record().reactant, "declared_intent": first_intent}
+    )
+    second = track_record(
+        record_id="record-provenance",
+        source_record_id="source-provenance",
+        parent_reaction_id="parent-provenance",
+        family_id="family-provenance",
+        split_group="group-provenance",
+        admission="development_test",
+        reactant={**track_record().reactant, "declared_intent": second_intent},
+    )
+    assert first.input_fingerprint() == second.input_fingerprint()
+    with pytest.raises(TrackBLeakageError, match="input_fingerprint"):
+        audit_track_b_leakage([first, second], strict_family_holdout=False)
+
+
 def test_source_record_payload_cannot_cross_splits():
     training = track_record()
     held_out = track_record(
@@ -500,6 +528,68 @@ def test_attempt_load_rejects_version_gaps(tmp_path):
     )
     with pytest.raises(ValueError, match="version gap"):
         load_attempt_jsonl(path)
+
+
+def test_attempt_load_rejects_decreasing_cumulative_cost(tmp_path):
+    path = tmp_path / "decreasing-attempts.jsonl"
+    rows = [
+        attempt_record(
+            evidence_status="attempted_unresolved",
+            calculator_protocols=(calculator_protocol(),),
+            calculator_calls={"gfn2-v1": 3},
+            raw_log_locator="logs/attempt-1-v1.json",
+            raw_log_sha256="7" * 64,
+            wall_seconds=3.0,
+        ),
+        attempt_record(
+            attempt_version=2,
+            evidence_status="attempted_unresolved",
+            calculator_protocols=(calculator_protocol(),),
+            calculator_calls={"gfn2-v1": 2},
+            raw_log_locator="logs/attempt-1-v2.json",
+            raw_log_sha256="8" * 64,
+            wall_seconds=2.0,
+        ),
+    ]
+    path.write_text(
+        "".join(json.dumps(row.to_dict(), sort_keys=True) + "\n" for row in rows),
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="cumulative calculator calls decrease"):
+        load_attempt_jsonl(path)
+
+
+def test_attempt_audit_uses_latest_cumulative_snapshot(tmp_path):
+    path = tmp_path / "versioned-attempts.jsonl"
+    first = attempt_record(
+        evidence_status="attempted_unresolved",
+        calculator_protocols=(calculator_protocol(),),
+        calculator_calls={"gfn2-v1": 3},
+        raw_log_locator="logs/attempt-1-v1.json",
+        raw_log_sha256="7" * 64,
+        wall_seconds=1.25,
+    )
+    second = attempt_record(
+        attempt_version=2,
+        evidence_status="valid_alternative",
+        calculator_protocols=(calculator_protocol(),),
+        calculator_calls={"gfn2-v1": 12},
+        observed_event={"bond_edits": [[0, 1, "break"]]},
+        raw_log_locator="logs/attempt-1-v2.json",
+        raw_log_sha256="8" * 64,
+        wall_seconds=4.5,
+    )
+    append_attempt_jsonl(path, first)
+    append_attempt_jsonl(path, second)
+
+    rows = load_attempt_jsonl(path)
+    assert [row.attempt_version for row in latest_attempt_versions(rows)] == [2]
+    report = build_attempt_audit_report(path, repository_base_commit="test")
+    assert report["version_record_count"] == 2
+    assert report["cost_semantics"] == "latest_cumulative_snapshot_per_attempt"
+    assert report["status_counts"] == {"valid_alternative": 1}
+    assert report["total_calculator_calls"] == 12
+    assert report["total_wall_seconds"] == pytest.approx(4.5)
 
 
 def test_json_schemas_match_serialized_record_fields():

@@ -274,8 +274,8 @@
     },
     {
       "path": "docs/WORKFLOW_C2_REFERENCE_VALIDATION.md",
-      "sha256": "03d420dcaec22ef5f5fc311b41d45233e2b59b7bd4cde682c6042e517ce3b413",
-      "bytes": 4976
+      "sha256": "0bac2155131e462d09a37b0e85eaef73f3cc41645b1a55b30ce3f8fdb0b2d3ab",
+      "bytes": 5994
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -286,6 +286,11 @@
       "path": "docs/data_contract.md",
       "sha256": "9964999089df7e67b9d5c0af99dcf5bd426974bca5128bee2623c928473d42a9",
       "bytes": 4036
+    },
+    {
+      "path": "docs/evidence/cp2k_calibration_current_f135428.json",
+      "sha256": "37d80e7a01127248d5a1a9d91af7d7c894a2dac81686eef626e5daa95b5a507d",
+      "bytes": 9583
     },
     {
       "path": "docs/evidence/cp2k_calibration_smoke.json",
@@ -429,8 +434,8 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "848653cea3a7ba86e90a675782096ada6d35e71a14818c8387e6d0d4d6f9303f",
-      "bytes": 1204
+      "sha256": "7ee4bda4cc9a559e041538e32b8e685ccf43ad76d3049e5ec8bde99d762733cd",
+      "bytes": 1258
     },
     {
       "path": "schemas/calculator_protocol.schema.json",
@@ -489,8 +494,8 @@
     },
     {
       "path": "scripts/cp2k_convergence_smoke.py",
-      "sha256": "3eb1237a4fc7274b5ed29b13d6e7ababa7519edf97b190242668c12388f1aa57",
-      "bytes": 7287
+      "sha256": "6824097f14943713ec8014b10f4c8b16c124ee66097bb1d198e480652dbae3db",
+      "bytes": 11487
     },
     {
       "path": "scripts/cp2k_force_fd_smoke.py",
@@ -511,6 +516,16 @@
       "path": "scripts/prepare_spice_openff_pilot.py",
       "sha256": "4670fce9e9cf91de9bc43036673d6c2bd288af5299c74f602242102a1b6c2a1b",
       "bytes": 16740
+    },
+    {
+      "path": "scripts/publish_cp2k_calibration_evidence.py",
+      "sha256": "1761db39cff23603d72d41fb6452e98aea7451432973118a68cd7c4a16bb6a65",
+      "bytes": 2284
+    },
+    {
+      "path": "scripts/publish_cp2k_convergence_evidence.py",
+      "sha256": "b1cad4b48bcee2b9eb23b9159b58cdd8571d35322af8e68c92c72080eec934cc",
+      "bytes": 2537
     },
     {
       "path": "scripts/run_energy_baselines.py",
@@ -679,13 +694,13 @@
     },
     {
       "path": "src/xtbflow/physics/__init__.py",
-      "sha256": "bf39b6d50442d4881cbb399711fc05c98dac2a82158fa0d62443ceef9a27b693",
-      "bytes": 575
+      "sha256": "04eede84f0f3bb717f4d2db29283cce5612d0c6a558c0452bb791c2cb5419a8e",
+      "bytes": 665
     },
     {
       "path": "src/xtbflow/physics/curvature.py",
-      "sha256": "d303f9aed9564ef95318feb52adf47b63961fff9479b47bda447a4018f2ebf52",
-      "bytes": 4022
+      "sha256": "3fbd42b8f13ef9382636a818073fe25b9f2ccbe7e25fe185ccf302615d19d841",
+      "bytes": 7596
     },
     {
       "path": "src/xtbflow/physics/saddle.py",
@@ -779,13 +794,23 @@
     },
     {
       "path": "src/xtbflow/validation/__init__.py",
-      "sha256": "548e485320b47aad26f4e3faf66c310366e92c839ba4e592ccbab4e3f760d533",
-      "bytes": 810
+      "sha256": "2a75d8e14fa676d3f759b5b239c0a6e91079f8f5e22c5eed2d83ab212ce82221",
+      "bytes": 1072
+    },
+    {
+      "path": "src/xtbflow/validation/ase_calculator.py",
+      "sha256": "c41ca3460854f5f6ae6cfeec482a04de103e332f87f67612b5c0e910baa15017",
+      "bytes": 3148
     },
     {
       "path": "src/xtbflow/validation/connectivity.py",
       "sha256": "5413f4dc2fd2166e91cbbf8d25072a45b643760ee5bb04d5b7641cdced5d9ee6",
       "bytes": 2201
+    },
+    {
+      "path": "src/xtbflow/validation/evidence.py",
+      "sha256": "c8d5d5d6554c01b04ae308e2b5ebb7ac32cd2460548b3c044817ef7a332de00b",
+      "bytes": 5764
     },
     {
       "path": "src/xtbflow/validation/modes.py",
@@ -831,6 +856,16 @@
       "path": "tests/test_architecture_contract.py",
       "sha256": "6167428cf23743895ea2da869fdd07b778409303f9af9d684df2396348ede649",
       "bytes": 2402
+    },
+    {
+      "path": "tests/test_ase_calculator.py",
+      "sha256": "ed634efbc5534812221d3844741fd966ab43aa134dc5997d425198d8cc58de28",
+      "bytes": 2142
+    },
+    {
+      "path": "tests/test_c2_evidence.py",
+      "sha256": "7f57ca7be02b8641afc4fadab950aead15b2c3755ea5fa4abbabd7f683a35a97",
+      "bytes": 4424
     },
     {
       "path": "tests/test_calculator_contract.py",
@@ -914,8 +949,8 @@
     },
     {
       "path": "tests/test_saddle_guidance.py",
-      "sha256": "80376ebff131aeae4c1c36cdaf0c66c9031863ca3f98895d97dc9f17710e5059",
-      "bytes": 4324
+      "sha256": "60d623477754f0454d79752fcc97d0c9ceb06d9cf704473c762ee182671117a7",
+      "bytes": 5538
     },
     {
       "path": "vendor/mechai_reusable/README.md",

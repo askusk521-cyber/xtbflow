@@ -1,0 +1,295 @@
+{
+  "artifact_index": [
+    {
+      "relative_path": "hydrogen-cation-doublet/xtbflow-cp2k-_kehonsu/input.inp",
+      "sha256": "492bece95377780f9646fed3f59994f94f5f356391bfed82a1ba335785c1730a",
+      "size_bytes": 1181
+    },
+    {
+      "relative_path": "hydrogen-cation-doublet/xtbflow-cp2k-_kehonsu/output.out",
+      "sha256": "694dfbafab395f32e744bbde4878936fb394b8d24cf9feaddeb0ad19c0252ced",
+      "size_bytes": 49724
+    },
+    {
+      "relative_path": "hydrogen-cation-doublet/xtbflow-cp2k-_kehonsu/stderr.txt",
+      "sha256": "7748a5893801e7d5c85fc6295e0861aab07904df99f5e33c6562f1e6aca71ba4",
+      "size_bytes": 167
+    },
+    {
+      "relative_path": "hydrogen-cation-doublet/xtbflow-cp2k-_kehonsu/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "relative_path": "hydrogen-cation-doublet/xtbflow-cp2k-_kehonsu/xtbflow-RESTART.wfn",
+      "sha256": "a5aa444ea0850a4ebebf08ed05f07828a4679e8dfeeda09c650cec4bcd9120c7",
+      "size_bytes": 228
+    },
+    {
+      "relative_path": "hydrogen-sulfide-neutral-singlet/xtbflow-cp2k-b6anrle1/input.inp",
+      "sha256": "fa400cccb5520298dd89ef6f1fa6268fb63b5a111acaea88032fbf20b69a7907",
+      "size_bytes": 1276
+    },
+    {
+      "relative_path": "hydrogen-sulfide-neutral-singlet/xtbflow-cp2k-b6anrle1/output.out",
+      "sha256": "9161e04eab438c44c9c75065841eccdcd4fdd60850aa9724eeff50c9ab45b348",
+      "size_bytes": 61259
+    },
+    {
+      "relative_path": "hydrogen-sulfide-neutral-singlet/xtbflow-cp2k-b6anrle1/stderr.txt",
+      "sha256": "60e50b446b940702fd721808bd21b54db8f50cd27f6eb9e32091e3db9c75b169",
+      "size_bytes": 167
+    },
+    {
+      "relative_path": "hydrogen-sulfide-neutral-singlet/xtbflow-cp2k-b6anrle1/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "relative_path": "hydrogen-sulfide-neutral-singlet/xtbflow-cp2k-b6anrle1/xtbflow-RESTART.wfn",
+      "sha256": "4622616075dc0bb4a9b5b9aa6bc4a6a9002d5eca7674809ed4f50e17f8bbed77",
+      "size_bytes": 1000
+    },
+    {
+      "relative_path": "water-neutral-singlet/xtbflow-cp2k-xkeg_40x/input.inp",
+      "sha256": "367e39ec0b2960fb230c77c7c901d9a4ee56d0adca37755e5d02debc8284e83e",
+      "size_bytes": 1295
+    },
+    {
+      "relative_path": "water-neutral-singlet/xtbflow-cp2k-xkeg_40x/output.out",
+      "sha256": "8649e7bd5bc9ef2637b4e8f96afec9250282260cf7cdb17d5deecf60daa91db3",
+      "size_bytes": 62445
+    },
+    {
+      "relative_path": "water-neutral-singlet/xtbflow-cp2k-xkeg_40x/stderr.txt",
+      "sha256": "50fa8bf7de76fd7fdd19529522c5748fcef42529b76202c8e9446344c78c0891",
+      "size_bytes": 167
+    },
+    {
+      "relative_path": "water-neutral-singlet/xtbflow-cp2k-xkeg_40x/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "relative_path": "water-neutral-singlet/xtbflow-cp2k-xkeg_40x/xtbflow-RESTART.wfn",
+      "sha256": "89f02cb1927fc131603eeefc9eddca6a40cb3a6f32e7a6bb371dfef033d94a85",
+      "size_bytes": 1000
+    }
+  ],
+  "build_hash": "cp2k-2024.2-8222f9c",
+  "calculator": "cp2k",
+  "calibration_script_sha256": "0e13ebd3d8f571a23c496531ba5d0c8068119b0f5cbd54e2cb7d8e7585557289",
+  "cases": [
+    {
+      "calculator_calls": 1,
+      "charge": 0,
+      "energy_hartree": -17.212927903519038,
+      "error_category": null,
+      "error_message": null,
+      "forces_hartree_per_angstrom": [
+        [
+          0.0,
+          0.0,
+          -0.1699951134450677
+        ],
+        [
+          0.09759505688438788,
+          0.0,
+          0.08486686326375474
+        ],
+        [
+          -0.09759505688438788,
+          0.0,
+          0.08486686326375474
+        ]
+      ],
+      "input_file_hash": "367e39ec0b2960fb230c77c7c901d9a4ee56d0adca37755e5d02debc8284e83e",
+      "input_hash": "ed6a1609ea00e7c28321d3cef54a06ba20c943c937bcb12d132031170ea2f748",
+      "metadata": {
+        "artifact_directory_recorded_in_private_run": true,
+        "artifact_files": [
+          "input.inp",
+          "output.out",
+          "stderr.txt",
+          "stdout.txt",
+          "xtbflow-RESTART.wfn"
+        ],
+        "artifact_persistence": "persistent",
+        "force_conversion_version": "bohr_to_angstrom_codata2018",
+        "normalized_force_unit": "hartree/angstrom",
+        "raw_force_unit": "hartree/bohr",
+        "raw_forces": [
+          [
+            0.0,
+            0.0,
+            -0.08995754
+          ],
+          [
+            0.05164508,
+            0.0,
+            0.04490961
+          ],
+          [
+            -0.05164508,
+            0.0,
+            0.04490961
+          ]
+        ],
+        "scf_convergence_evidence": "positive_marker"
+      },
+      "multiplicity": 1,
+      "protocol_id": "cp2k-reference-v0.1-pbe-d3bj:q0:m1",
+      "protocol_identity": "4e0fdb9859a48708311172c19e70bc6c0c6528ffa977da2888bc3c5171c61d55",
+      "status": "success",
+      "symbols": [
+        "O",
+        "H",
+        "H"
+      ],
+      "system_id": "water-neutral-singlet"
+    },
+    {
+      "calculator_calls": 1,
+      "charge": 1,
+      "energy_hartree": -0.568936297499297,
+      "error_category": null,
+      "error_message": null,
+      "forces_hartree_per_angstrom": [
+        [
+          -0.2931849989066119,
+          0.0,
+          0.0
+        ],
+        [
+          0.29318530126279185,
+          0.0,
+          0.0
+        ]
+      ],
+      "input_file_hash": "492bece95377780f9646fed3f59994f94f5f356391bfed82a1ba335785c1730a",
+      "input_hash": "bceb1a09ded947d7477de996cd4e2047aeffe95a4b0e182d7acb8d51023db0b4",
+      "metadata": {
+        "artifact_directory_recorded_in_private_run": true,
+        "artifact_files": [
+          "input.inp",
+          "output.out",
+          "stderr.txt",
+          "stdout.txt",
+          "xtbflow-RESTART.wfn"
+        ],
+        "artifact_persistence": "persistent",
+        "force_conversion_version": "bohr_to_angstrom_codata2018",
+        "normalized_force_unit": "hartree/angstrom",
+        "raw_force_unit": "hartree/bohr",
+        "raw_forces": [
+          [
+            -0.15514682,
+            0.0,
+            0.0
+          ],
+          [
+            0.15514698,
+            0.0,
+            0.0
+          ]
+        ],
+        "scf_convergence_evidence": "positive_marker"
+      },
+      "multiplicity": 2,
+      "protocol_id": "cp2k-reference-v0.1-pbe-d3bj:q1:m2",
+      "protocol_identity": "c6c28f326de4b189c9ac4c320075df0f815fdcd35efe1589656672225d69f35a",
+      "status": "success",
+      "symbols": [
+        "H",
+        "H"
+      ],
+      "system_id": "hydrogen-cation-doublet"
+    },
+    {
+      "calculator_calls": 1,
+      "charge": 0,
+      "energy_hartree": -11.380629907570825,
+      "error_category": null,
+      "error_message": null,
+      "forces_hartree_per_angstrom": [
+        [
+          -0.04176132218976234,
+          -0.06215874252005421,
+          -0.0
+        ],
+        [
+          0.00976292987217661,
+          0.03815096263414232,
+          0.0
+        ],
+        [
+          0.03199867577650443,
+          0.024008327906488037,
+          0.0
+        ]
+      ],
+      "input_file_hash": "fa400cccb5520298dd89ef6f1fa6268fb63b5a111acaea88032fbf20b69a7907",
+      "input_hash": "009fba4a0fa21deabe3ca80323b0ae04fbbca80369958db54e65279bc5b860ff",
+      "metadata": {
+        "artifact_directory_recorded_in_private_run": true,
+        "artifact_files": [
+          "input.inp",
+          "output.out",
+          "stderr.txt",
+          "stdout.txt",
+          "xtbflow-RESTART.wfn"
+        ],
+        "artifact_persistence": "persistent",
+        "force_conversion_version": "bohr_to_angstrom_codata2018",
+        "normalized_force_unit": "hartree/angstrom",
+        "raw_force_unit": "hartree/bohr",
+        "raw_forces": [
+          [
+            -0.02209914,
+            -0.03289299,
+            -0.0
+          ],
+          [
+            0.00516632,
+            0.02018862,
+            0.0
+          ],
+          [
+            0.01693297,
+            0.01270466,
+            0.0
+          ]
+        ],
+        "scf_convergence_evidence": "positive_marker"
+      },
+      "multiplicity": 1,
+      "protocol_id": "cp2k-reference-v0.1-pbe-d3bj:q0:m1",
+      "protocol_identity": "4e0fdb9859a48708311172c19e70bc6c0c6528ffa977da2888bc3c5171c61d55",
+      "status": "success",
+      "symbols": [
+        "S",
+        "H",
+        "H"
+      ],
+      "system_id": "hydrogen-sulfide-neutral-singlet"
+    }
+  ],
+  "claim_limits": [
+    "This is a real installation/state/element E/F replay with persistent artifacts.",
+    "It does not establish cutoff or basis convergence, broad chemical accuracy, transition-state validity, or endpoint connectivity.",
+    "The full private artifact root is intentionally omitted; relative filenames, sizes, and SHA-256 values are retained."
+  ],
+  "cp2k_adapter_sha256": "5c96e28d9995f4c1d7a18c6eaa96d305b4cd49c3de419a82558c51e2bacd1b97",
+  "cp2k_version": "2024.2",
+  "cutoff_ry": 600.0,
+  "evidence_schema": "xtbflow-cp2k-calibration-public/v1",
+  "private_report_sha256": "43375c04d25eea8270d75a855cbfc104870a41f94e9a76655fde9a5c713e03ec",
+  "protocol_family": "cp2k-reference-v0.1-pbe-d3bj",
+  "runtime_threads": 4,
+  "schema": "xtbflow-cp2k-calibration-smoke/v1",
+  "scientific_qualification": false,
+  "scope": "installation and state/element E/F smoke only; not convergence or path qualification",
+  "source_commit": "f13542816c5ee949221f139cb36db6d23b86dcf2",
+  "source_revision": "8222f9c",
+  "status": "pass"
+}

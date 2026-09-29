@@ -88,7 +88,28 @@ python scripts/run_reference_bridge.py \
 
 ## Gate C2.4：截断与协议收敛
 
-当前 600 Ry 协议仍标记为 provisional。600→700 Ry 的既有结果显示力差较小，但严格绝对能量阈值没有通过。完成新的持久化重放并审阅预先冻结的能量、力和成本阈值之前，不得把该协议升级为正式参考标签。
+当前 600 Ry 协议仍标记为 provisional。收敛脚本使用同一非平衡水构型，按预先声明的 cutoff 梯度逐次调用 CP2K；每次底层 E/F 调用都必须先消耗持久化 ledger token，并保留独立 artifact。
+
+```bash
+python scripts/cp2k_convergence_smoke.py \
+  --output "$RUN_ROOT/cp2k-convergence/report.json" \
+  --ledger "$RUN_ROOT/cp2k-convergence/ledger.json" \
+  --artifact-dir "$RUN_ROOT/cp2k-convergence/artifacts" \
+  --cp2k-executable "$XTBFlow_CP2K_EXECUTABLE" \
+  --cp2k-data-dir "$XTBFlow_CP2K_DATA_DIR" \
+  --threads 4 \
+  --cutoffs 500 600 700 \
+  --energy-tolerance 1e-5 \
+  --force-tolerance 1e-4
+
+python scripts/publish_cp2k_convergence_evidence.py \
+  --private-report "$RUN_ROOT/cp2k-convergence/report.json" \
+  --ledger "$RUN_ROOT/cp2k-convergence/ledger.json" \
+  --artifact-root "$RUN_ROOT/cp2k-convergence/artifacts" \
+  --output docs/evidence/cp2k_convergence_<commit>.json
+```
+
+退出码 `2` 表示真实计算完成但冻结阈值未通过；它是有效负结果，不得删除或放宽阈值后冒充通过。只有所有 cutoff 成功且相对于最高 cutoff 的能量、力差同时通过时，gate 才标记为 `pass`。无论正负，单一水构型的结果都不等于基组、SCF、广泛化学精度或 TS 路径资格。
 
 ## Gate C2.5：真实 TS/模态/连通性
 

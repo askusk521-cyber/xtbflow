@@ -23,6 +23,10 @@ data = [
   "h5py>=3.11,<4",
   "rdkit>=2024.3",
 ]
+reference = [
+  "ase>=3.29,<4",
+  "scipy>=1.15,<2",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

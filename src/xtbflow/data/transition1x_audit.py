@@ -67,6 +67,38 @@ def _load_numeric_pickle(path: Path) -> Any:
         ) from exc
 
 
+def load_transition1x_pickle(
+    path: Path,
+    *,
+    expected_sha256: str,
+    expected_size_bytes: int | None = None,
+) -> Mapping[str, Any]:
+    """Load a pinned numeric Transition1x pickle after byte identity checks.
+
+    This is intentionally a small public boundary for development consumers.
+    It performs the same hash gate and restricted NumPy-only deserialization as
+    :func:`audit_transition1x_pickle`, but does not claim that the resulting
+    payload satisfies the Track-B scientific admission contract.
+    """
+
+    if not isinstance(expected_sha256, str) or len(expected_sha256) != _SHA256_LENGTH:
+        raise Transition1xAuditError("expected_sha256 must be a lowercase SHA-256")
+    if any(character not in "0123456789abcdef" for character in expected_sha256):
+        raise Transition1xAuditError("expected_sha256 must be a lowercase SHA-256")
+    if not path.is_file():
+        raise Transition1xAuditError("Transition1x asset does not exist")
+    observed_size = path.stat().st_size
+    if expected_size_bytes is not None and observed_size != expected_size_bytes:
+        raise Transition1xAuditError(
+            f"asset size mismatch: expected {expected_size_bytes}, observed {observed_size}"
+        )
+    observed_sha256 = hash_file(path)
+    if observed_sha256 != expected_sha256:
+        raise Transition1xAuditError("asset SHA-256 mismatch; refusing to unpickle")
+    payload = _load_numeric_pickle(path)
+    return _require_mapping(payload, "Transition1x payload")
+
+
 def _require_mapping(value: Any, name: str) -> Mapping[str, Any]:
     if not isinstance(value, Mapping):
         raise Transition1xAuditError(f"{name} must be a mapping")

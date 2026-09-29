@@ -47,6 +47,23 @@ def audit_no_group_leakage(records: Iterable[PublicRecord], assignments: Mapping
         raise SplitError(f"split-group leakage: {leaking}")
 
 
+def audit_no_input_fingerprint_leakage(records: Iterable[PublicRecord], assignments: Mapping[str, str]) -> None:
+    """Reject identical reactant-only inputs assigned to different splits."""
+
+    fingerprints: dict[str, set[str]] = defaultdict(set)
+    for record in records:
+        split = assignments.get(record.record_id, QUARANTINED)
+        if split != QUARANTINED:
+            fingerprints[record.input_fingerprint()].add(split)
+    leaking = {
+        fingerprint: sorted(splits)
+        for fingerprint, splits in fingerprints.items()
+        if len(splits) > 1
+    }
+    if leaking:
+        raise SplitError(f"input-fingerprint leakage: {leaking}")
+
+
 def admitted_records(records: Iterable[PublicRecord], assignments: Mapping[str, str]) -> list[PublicRecord]:
     """Return only records that passed contracts and a usable group split."""
 

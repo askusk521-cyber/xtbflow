@@ -21,9 +21,23 @@ from .records import (
     load_jsonl,
     write_jsonl,
 )
-from .splits import SplitError, admitted_records, assign_group_splits, audit_no_group_leakage
+from .splits import SplitError, admitted_records, assign_group_splits, audit_no_group_leakage, audit_no_input_fingerprint_leakage
 from .pairing import EFPair, PAIR_CANONICAL_UNITS, build_ef_pair, failure_pair, geometry_hash
 from .cache import append_pair_cache, load_pair_cache
+from .reaction_qm import (
+    Bond,
+    EVENT_RULE_VERSION,
+    MappedGraph,
+    PublicSourceConfig,
+    REACTION_QM_SOURCE,
+    RGD1_SOURCE,
+    ReactionQMLoader,
+    ReactionQMRecord,
+    SourceFile,
+    audit_source_files,
+    derive_event_label,
+    source_configs,
+)
 
 _TASK_VIEW_EXPORTS = (
     "EndpointGeometryInput",
@@ -47,7 +61,9 @@ __all__ = [
     "SourceAudit", "hash_file", "verify_local_asset", "PublicRecord", "canonical_hash",
     "PUBLIC_CANONICAL_UNITS", "CHNOS_ELEMENTS", "RecordPolicy", "RecordFilterResult",
     "filter_records", "load_jsonl", "write_jsonl", "SplitError", "admitted_records",
-    "assign_group_splits", "audit_no_group_leakage",
+    "assign_group_splits", "audit_no_group_leakage", "audit_no_input_fingerprint_leakage",
     "EFPair", "PAIR_CANONICAL_UNITS", "build_ef_pair", "failure_pair", "geometry_hash", "append_pair_cache", "load_pair_cache",
+    "Bond", "EVENT_RULE_VERSION", "MappedGraph", "PublicSourceConfig", "REACTION_QM_SOURCE", "RGD1_SOURCE",
+    "ReactionQMLoader", "ReactionQMRecord", "SourceFile", "audit_source_files", "derive_event_label", "source_configs",
     *_TASK_VIEW_EXPORTS,
 ]

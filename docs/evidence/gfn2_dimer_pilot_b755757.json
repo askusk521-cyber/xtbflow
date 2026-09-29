@@ -1,0 +1,192 @@
+{
+  "artifact_index": [
+    {
+      "relative_path": "dimer.log",
+      "sha256": "dec23516169daec2cb5d9a439be4f9a3a45690bed311e0ca4d120d4bc870d528",
+      "size_bytes": 2701
+    },
+    {
+      "relative_path": "eigenmode.log",
+      "sha256": "17e5380c195f8f534483e1aad1082dca2aae53d8231d90d3654dfc74fc0598a3",
+      "size_bytes": 8866
+    },
+    {
+      "relative_path": "optimizer.log",
+      "sha256": "a81f5e88e6f93970917873dd884fd83f829b40b7aadf9af47eef509e4d47014f",
+      "size_bytes": 6435
+    },
+    {
+      "relative_path": "trajectory.traj",
+      "sha256": "ec6e7e03905d158293838fd2b9a9d7d20682e4222d561190870c11277e29757a",
+      "size_bytes": 9110
+    }
+  ],
+  "ase_dimer_driver_sha256": "bb4baf18d79d5e368ebf6c6ef49e889d0856aa27b638dba10dab497b87233662",
+  "calculator_accounting": {
+    "committed_calculator_calls": 96,
+    "committed_tokens": {
+      "gfn2-dimer-development-pilot": {
+        "calculator_calls": 96,
+        "consumed_calls": 96,
+        "released_calls": 0
+      }
+    },
+    "pending_reservations": {},
+    "settled": true
+  },
+  "claim_limits": [
+    "This is a low-cost GFN2 driver-development pilot, not a reference DFT transition-state validation.",
+    "Dimer convergence and negative local curvature do not establish exactly one relevant imaginary mode.",
+    "No IRC, bidirectional endpoint connectivity, intended-event match, mechanism, or barrier claim is permitted.",
+    "Passing this driver gate remains insufficient for #19 until independent Hessian/mode and bidirectional endpoint evidence are attached."
+  ],
+  "config_sha256": "224f7d971c4414c062c63999496d31bf4aebea9cdcc859217c9db63f39f0823c",
+  "driver_result": {
+    "artifact_files": [
+      "dimer.log",
+      "eigenmode.log",
+      "optimizer.log",
+      "trajectory.traj"
+    ],
+    "calculator_calls": 96,
+    "config_identity": "5d1ead1323f903f4abe9f7e5b18cb35280f414e281bbad8539d94c394034ffdc",
+    "converged": false,
+    "coordinates_angstrom": [
+      [
+        -0.548318771800955,
+        0.0,
+        0.0
+      ],
+      [
+        -0.17788207199807607,
+        0.0,
+        0.0
+      ],
+      [
+        0.044040472396516844,
+        0.0,
+        0.0
+      ]
+    ],
+    "curvature_eV_per_angstrom2": null,
+    "eigenmode": null,
+    "energy_hartree": null,
+    "error": "BudgetExceeded: calculator token gfn2-dimer-development-pilot has only 0 calls remaining",
+    "forces_hartree_per_angstrom": null,
+    "gradient_norm_hartree_per_angstrom": null,
+    "optimizer_steps": 0,
+    "status": "failure"
+  },
+  "gate_evaluation": {
+    "driver_gate_pass": false,
+    "full_ts_validation": false,
+    "gradient_norm_hartree_per_angstrom": null,
+    "max_gradient_norm_hartree_per_angstrom": 0.001,
+    "negative_dimer_curvature": false,
+    "optimizer_converged": false
+  },
+  "input": {
+    "gate": {
+      "max_gradient_norm_hartree_per_angstrom": 0.001,
+      "require_negative_dimer_curvature": true,
+      "require_optimizer_converged": true
+    },
+    "initial_mode": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        -2.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "search": {
+      "dimer_separation_angstrom": 0.001,
+      "fmax_eV_per_angstrom": 0.02,
+      "max_num_rot": 1,
+      "max_steps": 60,
+      "maximum_translation_angstrom": 0.05,
+      "random_seed": 20260929,
+      "trial_translation_step_angstrom": 0.001
+    },
+    "system": {
+      "charge": 0,
+      "coordinates_angstrom": [
+        [
+          -0.93,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.93,
+          0.0,
+          0.0
+        ]
+      ],
+      "environment": {
+        "periodic": false
+      },
+      "multiplicity": 2,
+      "symbols": [
+        "H",
+        "H",
+        "H"
+      ],
+      "system_id": "h3-linear-symmetric-doublet-development"
+    }
+  },
+  "ledger_sha256": "92b8d3f0bd71c8741436b502c5c38d84ff86498f8e89c0d2c77838f20b2c96eb",
+  "protocol": {
+    "backend": "cpu",
+    "method": "GFN2-xTB",
+    "parameters": {
+      "accuracy": 1.0,
+      "electronic_temperature": 300.0,
+      "implementation": "tblite",
+      "max_iterations": 250,
+      "solvent": null
+    },
+    "protocol_id": "tblite-gfn2-h3-dimer-pilot-v1",
+    "protocol_identity": "50eb05924d67fbedf022fde63331afb7631ed98a9450ef30aacd4dbb52facb84"
+  },
+  "runtime": {
+    "build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+    "capabilities": {
+      "backends": [
+        "cpu"
+      ],
+      "build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+      "calculator": "xtb_oracle",
+      "detail": "direct backend is callable; numerical qualification is not asserted",
+      "operations": [
+        "energy",
+        "energy_forces",
+        "forces"
+      ],
+      "qualification": "installed",
+      "status": "unknown",
+      "version": "0.7.0"
+    },
+    "implementation": "tblite",
+    "version": "0.7.0"
+  },
+  "schema": "xtbflow-gfn2-dimer-pilot-result/v1",
+  "scientific_qualification": false,
+  "script_sha256": "41465aae8b0e2c72f44d4e6d52a9b5bab3c2af499a399a52f198db0783bec90a",
+  "source_commit": "b755757f749b8506156570e6ef9cc6fcc3171b6e",
+  "status": "fail",
+  "xtb_oracle_adapter_sha256": "dc223169709870f61b657e359419958b26931e9c8d562af8d6093f9c3c512189"
+}

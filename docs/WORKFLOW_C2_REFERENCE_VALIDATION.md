@@ -133,6 +133,12 @@ python scripts/publish_cp2k_convergence_evidence.py \
 
 在此 gate 完成前，`path_status` 必须保持 `not_requested`、`not_run` 或 `not_validated`，不得写成 `validated`。
 
+### 2026-09-29 首次 GFN2 dimer 开发试验（source commit `b755757`）
+
+单个线性 H₃ 双重态候选在冻结的 96-call、并发 1、重试 0 预算下运行 ASE dimer 驱动。ledger 恰好结算 96 次 GFN2 调用，无 pending reservation；运行因预算耗尽而以 **fail** 结束。轨迹显示最低模态逐步转成近似整体平移 `[0.576, 0.579, 0.578]`，结构随后偏离声明的对称候选。该结果暴露了驱动未剔除平移/转动自由度，而不是参考 TS 证据。
+
+路径清理后的负结果见 `docs/evidence/gfn2_dimer_pilot_b755757.json`。该记录不得删除或重新标记为通过；后续驱动必须在新提交、新 ledger 和新 artifact 目录中加入刚体模态投影后重放。即使后续 dimer 搜索收敛，仍须单独完成 Hessian/相关虚频和双向端点验证，才能改变 `path_status`。
+
 ## 证据发布规则
 
 公共证据可以包含：

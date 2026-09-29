@@ -12,6 +12,7 @@ from xtbflow.validation.ase_dimer import (
     project_rigid_body_components,
     rigid_body_basis,
     run_ase_dimer_search,
+    run_dimer_preflight,
 )
 
 
@@ -62,6 +63,45 @@ def _token(tmp_path, calls: int):
         persist_path=tmp_path / "ledger.json",
     )
     return ledger, token
+
+
+def test_dimer_preflight_measures_force_and_negative_curvature(tmp_path):
+    calls: list[str] = []
+    _, token = _token(tmp_path, 3)
+    result = run_dimer_preflight(
+        _backend(calls),
+        _system(),
+        ((1.0, 0.0, 0.0),),
+        budget_token=token,
+        step_angstrom=1.0e-4,
+        config=ASEDimerConfig(remove_rigid_body_modes=False),
+    )
+
+    assert result.status == "success"
+    assert result.calculator_calls == token.consumed_calls == len(calls) == 3
+    assert result.rigid_body_rank == 0
+    assert result.mode_curvature_hartree_per_angstrom2 == pytest.approx(-1.0)
+    assert result.mode_curvature_eV_per_angstrom2 == pytest.approx(-27.211386245988)
+    assert result.projected_force_norm_hartree_per_angstrom == pytest.approx(
+        0.22**0.5
+    )
+
+
+def test_dimer_preflight_fails_closed_when_three_call_budget_is_missing(tmp_path):
+    calls: list[str] = []
+    _, token = _token(tmp_path, 2)
+    result = run_dimer_preflight(
+        _backend(calls),
+        _system(),
+        ((1.0, 0.0, 0.0),),
+        budget_token=token,
+        config=ASEDimerConfig(remove_rigid_body_modes=False),
+    )
+
+    assert result.status == "failure"
+    assert result.calculator_calls == token.consumed_calls == len(calls) == 2
+    assert "BudgetExceeded" in result.error
+    assert result.mode_curvature_hartree_per_angstrom2 is None
 
 
 def test_ase_dimer_converges_analytic_first_order_saddle(tmp_path):
@@ -145,6 +185,26 @@ def test_gfn2_dimer_pilot_config_is_bounded_and_nonconfirmatory():
     mode = document["initial_mode"]
     assert [sum(row[axis] for row in mode) for axis in range(3)] == [0.0, 0.0, 0.0]
     assert any("not a reference DFT" in item for item in document["claim_limits"])
+
+
+def test_nh3_dimer_pilot_declares_separate_three_call_preflight():
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[1]
+    document = json.loads(
+        (root / "configs/validation/gfn2_dimer_nh3_pilot_v0.1.json").read_text()
+    )
+    assert document["status"] == "development_pilot_not_reference_admission"
+    assert document["preflight"]["budget"]["max_calculator_calls"] == 3
+    assert document["preflight"]["budget"]["max_concurrent_jobs"] == 1
+    assert document["preflight"]["budget"]["max_retries_per_job"] == 0
+    assert document["preflight"]["gate"]["require_negative_mode_curvature"] is True
+    assert document["budget"]["max_calculator_calls"] == 128
+    assert document["system"]["symbols"] == ["N", "H", "H", "H"]
+    assert document["system"]["multiplicity"] == 1
+    assert document["search"]["remove_rigid_body_modes"] is True
+    assert any("three-call preflight" in item for item in document["claim_limits"])
 
 
 def test_rigid_body_projection_removes_five_linear_molecule_modes():

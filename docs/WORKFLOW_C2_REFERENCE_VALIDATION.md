@@ -133,6 +133,29 @@ python scripts/publish_cp2k_convergence_evidence.py \
 
 在此 gate 完成前，`path_status` 必须保持 `not_requested`、`not_run` 或 `not_validated`，不得写成 `validated`。
 
+### 低成本候选准入预检
+
+为避免在明显不处于鞍点邻域的候选上直接消耗完整 dimer 预算，带有
+`preflight` 配置的开发试验先使用独立持久化账本完成最多 3 次 GFN2 E/F
+调用：一次声明几何的能量/力，以及沿声明内部模态正、负位移的两次计算。
+预检记录刚体投影后的力范数和方向曲率
+`v^T H v`；只有曲率符号和力阈值同时通过，runner 才创建正式 dimer
+预算。预检失败是有效负结果，正式 dimer ledger 不得产生。
+
+NH₃ 反转开发候选冻结在
+`configs/validation/gfn2_dimer_nh3_pilot_v0.1.json`。该筛选仅用于低成本
+候选准入，不是完整 Hessian、相关虚频或端点连通验证；即使后续 dimer
+收敛，也不能直接改变 #19 的 `path_status`。
+
+```bash
+python scripts/run_gfn2_dimer_pilot.py \
+  --config configs/validation/gfn2_dimer_nh3_pilot_v0.1.json \
+  --output "$RUN_ROOT/nh3-dimer/report.json" \
+  --ledger "$RUN_ROOT/nh3-dimer/dimer-ledger.json" \
+  --preflight-ledger "$RUN_ROOT/nh3-dimer/preflight-ledger.json" \
+  --artifact-dir "$RUN_ROOT/nh3-dimer/artifacts"
+```
+
 ### 2026-09-29 首次 GFN2 dimer 开发试验（source commit `b755757`）
 
 单个线性 H₃ 双重态候选在冻结的 96-call、并发 1、重试 0 预算下运行 ASE dimer 驱动。ledger 恰好结算 96 次 GFN2 调用，无 pending reservation；运行因预算耗尽而以 **fail** 结束。轨迹显示最低模态逐步转成近似整体平移 `[0.576, 0.579, 0.578]`，结构随后偏离声明的对称候选。该结果暴露了驱动未剔除平移/转动自由度，而不是参考 TS 证据。

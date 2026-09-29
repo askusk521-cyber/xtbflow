@@ -127,6 +127,38 @@ class ASEDimerResult:
             "config_identity": self.config_identity,
         }
 
+
+@dataclass(frozen=True)
+class DimerPreflightResult:
+    """Three-call force/curvature screen before a bounded dimer search."""
+
+    status: str
+    normalized_mode: tuple[tuple[float, float, float], ...]
+    energy_hartree: float | None
+    projected_forces_hartree_per_angstrom: (
+        tuple[tuple[float, float, float], ...] | None
+    )
+    projected_force_norm_hartree_per_angstrom: float | None
+    hessian_vector_product_hartree_per_angstrom2: (
+        tuple[tuple[float, float, float], ...] | None
+    )
+    mode_curvature_hartree_per_angstrom2: float | None
+    mode_curvature_eV_per_angstrom2: float | None
+    rigid_body_rank: int
+    calculator_calls: int
+    error: str | None = None
+
+    def __post_init__(self) -> None:
+        if self.status not in {"success", "failure"}:
+            raise ValueError("unsupported dimer preflight status")
+        if type(self.rigid_body_rank) is not int or self.rigid_body_rank < 0:
+            raise ValueError("rigid_body_rank must be nonnegative")
+        if type(self.calculator_calls) is not int or self.calculator_calls < 0:
+            raise ValueError("calculator_calls must be nonnegative")
+        if self.status == "success" and self.error is not None:
+            raise ValueError("successful preflight cannot carry an error")
+
+
 def rigid_body_basis(
     coordinates: Sequence[Sequence[float]],
     *,
@@ -233,6 +265,154 @@ def _normalized_mode(
 
 def _coordinates(value: Any) -> tuple[tuple[float, float, float], ...]:
     return tuple(tuple(float(item) for item in row) for row in value)
+
+
+def run_dimer_preflight(
+    backend: CalculatorBackend,
+    system: MolecularSystem,
+    initial_mode: Sequence[Sequence[float]],
+    *,
+    budget_token: CalculatorCallToken,
+    step_angstrom: float = 1.0e-3,
+    config: ASEDimerConfig = ASEDimerConfig(),
+    require_durable_token: bool = True,
+) -> DimerPreflightResult:
+    """Measure projected force and directional curvature with at most 3 calls.
+
+    One E/F call evaluates the declared geometry. Two additional E/F calls
+    form a central finite-difference Hessian-vector product along the declared
+    internal mode. The numerical result is deliberately separate from the
+    caller's pass/fail thresholds.
+    """
+
+    from xtbflow.physics.curvature import finite_difference_hvp
+
+    if not isinstance(budget_token, CalculatorCallToken):
+        raise BudgetTokenRequired("dimer preflight requires a calculator token")
+    if require_durable_token and not budget_token.durable:
+        raise ValueError("production dimer preflight requires a durable token")
+    if (
+        not isinstance(step_angstrom, (int, float))
+        or not math.isfinite(float(step_angstrom))
+        or float(step_angstrom) <= 0.0
+    ):
+        raise ValueError("step_angstrom must be finite and positive")
+
+    mode, rigid_body_rank = _normalized_mode(
+        initial_mode, system.coordinates, config
+    )
+    calls_before = budget_token.consumed_calls
+    normalized_mode = _coordinates(mode)
+
+    try:
+        base = backend.evaluate(
+            system, operation="energy_forces", budget_token=budget_token
+        )
+    except Exception as error:
+        return DimerPreflightResult(
+            status="failure",
+            normalized_mode=normalized_mode,
+            energy_hartree=None,
+            projected_forces_hartree_per_angstrom=None,
+            projected_force_norm_hartree_per_angstrom=None,
+            hessian_vector_product_hartree_per_angstrom2=None,
+            mode_curvature_hartree_per_angstrom2=None,
+            mode_curvature_eV_per_angstrom2=None,
+            rigid_body_rank=rigid_body_rank,
+            calculator_calls=budget_token.consumed_calls - calls_before,
+            error=f"{type(error).__name__}: {error}",
+        )
+
+    if base.status != "success" or base.energy is None or base.forces is None:
+        detail = base.error_message or base.error_category or (
+            "base energy/force evaluation did not return complete evidence"
+        )
+        return DimerPreflightResult(
+            status="failure",
+            normalized_mode=normalized_mode,
+            energy_hartree=base.energy,
+            projected_forces_hartree_per_angstrom=None,
+            projected_force_norm_hartree_per_angstrom=None,
+            hessian_vector_product_hartree_per_angstrom2=None,
+            mode_curvature_hartree_per_angstrom2=None,
+            mode_curvature_eV_per_angstrom2=None,
+            rigid_body_rank=rigid_body_rank,
+            calculator_calls=budget_token.consumed_calls - calls_before,
+            error=detail,
+        )
+
+    if config.remove_rigid_body_modes:
+        projected_forces, projected_rank = project_rigid_body_components(
+            system.coordinates,
+            base.forces,
+            tolerance=config.rigid_body_tolerance,
+        )
+        if projected_rank != rigid_body_rank:
+            raise RuntimeError("inconsistent rigid-body rank during dimer preflight")
+    else:
+        projected_forces = np.asarray(base.forces, dtype=float)
+    projected_force_norm = float(np.linalg.norm(projected_forces))
+
+    try:
+        hvp_result = finite_difference_hvp(
+            backend,
+            system,
+            mode,
+            step=float(step_angstrom),
+            budget_token=budget_token,
+        )
+    except Exception as error:
+        return DimerPreflightResult(
+            status="failure",
+            normalized_mode=normalized_mode,
+            energy_hartree=float(base.energy),
+            projected_forces_hartree_per_angstrom=_coordinates(projected_forces),
+            projected_force_norm_hartree_per_angstrom=projected_force_norm,
+            hessian_vector_product_hartree_per_angstrom2=None,
+            mode_curvature_hartree_per_angstrom2=None,
+            mode_curvature_eV_per_angstrom2=None,
+            rigid_body_rank=rigid_body_rank,
+            calculator_calls=budget_token.consumed_calls - calls_before,
+            error=f"{type(error).__name__}: {error}",
+        )
+
+    if (
+        hvp_result.status != "success"
+        or hvp_result.hessian_vector_product is None
+    ):
+        return DimerPreflightResult(
+            status="failure",
+            normalized_mode=normalized_mode,
+            energy_hartree=float(base.energy),
+            projected_forces_hartree_per_angstrom=_coordinates(projected_forces),
+            projected_force_norm_hartree_per_angstrom=projected_force_norm,
+            hessian_vector_product_hartree_per_angstrom2=None,
+            mode_curvature_hartree_per_angstrom2=None,
+            mode_curvature_eV_per_angstrom2=None,
+            rigid_body_rank=rigid_body_rank,
+            calculator_calls=budget_token.consumed_calls - calls_before,
+            error=hvp_result.error or "directional curvature evaluation failed",
+        )
+
+    hessian_vector = np.asarray(
+        hvp_result.hessian_vector_product, dtype=float
+    )
+    curvature_hartree = float(np.sum(mode * hessian_vector))
+    return DimerPreflightResult(
+        status="success",
+        normalized_mode=normalized_mode,
+        energy_hartree=float(base.energy),
+        projected_forces_hartree_per_angstrom=_coordinates(projected_forces),
+        projected_force_norm_hartree_per_angstrom=projected_force_norm,
+        hessian_vector_product_hartree_per_angstrom2=_coordinates(
+            hessian_vector
+        ),
+        mode_curvature_hartree_per_angstrom2=curvature_hartree,
+        mode_curvature_eV_per_angstrom2=curvature_hartree * Hartree,
+        rigid_body_rank=rigid_body_rank,
+        calculator_calls=budget_token.consumed_calls - calls_before,
+        error=None,
+    )
 
 
 def _artifact_index(root: Path) -> tuple[str, ...]:

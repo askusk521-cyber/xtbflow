@@ -1,0 +1,132 @@
+{
+  "audit_date": "2026-09-29",
+  "claim_boundary": "Source-identity and endpoint-structure evidence only. This report does not admit Track-B records, validate transition states, or support a joint-versus-serial model claim.",
+  "field_evidence": {
+    "atom_correspondence": "same row order and atomic numbers across R/P/TS; not an independently certified chemical atom mapping",
+    "charges_field_interpretation": "atomic_numbers",
+    "event_label_fields": [],
+    "explicit_license_present": false,
+    "family_fields": [],
+    "formal_charge_field_present": false,
+    "multiplicity_field_present": false,
+    "positions_unit": "angstrom",
+    "positions_unit_source": "pinned upstream code at upstream_code_commit; not embedded as a per-record unit field"
+  },
+  "repository_base_commit": "0116d45747ca474ecf4877d59752646e5fdd363e",
+  "schema_version": "xtbflow-transition1x-source-audit/v1",
+  "scientific_claim_allowed": false,
+  "source": {
+    "archive_code_executed": false,
+    "asset_name": "train_rpsb_all.pkl",
+    "deserializer": "restricted_numpy_pickle",
+    "identity_verified_before_deserialization": true,
+    "license_record": "unspecified on Zenodo record 13119869; redistribution not admitted",
+    "license_status": "unspecified",
+    "md5": "701a457634cce7a6cae5318e8cd18082",
+    "sha256": "36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+    "size_bytes": 55458032,
+    "source_id": "transition1x_preprocessed",
+    "source_locator": "https://doi.org/10.5281/zenodo.13119869",
+    "source_revision": "train_rpsb_all.pkl_sha256=36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+    "upstream_code_commit": "08f728925d76e22ce04ec1ab3b75770d32e617ca"
+  },
+  "source_config": "configs/data/track_b_source_candidates_v1.json",
+  "source_config_sha256": "4cf3eecebe4c09f1ccdf7ba2053f38e7e73c3a5e76f230015e0ccd77cdb5d895",
+  "structure": {
+    "all_coordinates_finite": true,
+    "atom_count_max": 23,
+    "atom_count_min": 4,
+    "atomic_number_counts": {
+      "1": 72326,
+      "6": 45051,
+      "7": 8216,
+      "8": 10963
+    },
+    "branch_fields": {
+      "product": [
+        "charges",
+        "formula",
+        "fragments",
+        "num_atoms",
+        "positions",
+        "rxn",
+        "wB97x_6-31G(d).atomization_energy",
+        "wB97x_6-31G(d).energy",
+        "wB97x_6-31G(d).forces",
+        "xtb_positions"
+      ],
+      "reactant": [
+        "charges",
+        "formula",
+        "fragments",
+        "num_atoms",
+        "positions",
+        "rxn",
+        "wB97x_6-31G(d).atomization_energy",
+        "wB97x_6-31G(d).energy",
+        "wB97x_6-31G(d).forces",
+        "xtb_positions"
+      ],
+      "transition_state": [
+        "charges",
+        "formula",
+        "fragments",
+        "num_atoms",
+        "positions",
+        "rxn",
+        "wB97x_6-31G(d).atomization_energy",
+        "wB97x_6-31G(d).energy",
+        "wB97x_6-31G(d).forces"
+      ]
+    },
+    "endpoint_atom_rows_match": true,
+    "endpoint_coordinate_shapes_match": true,
+    "record_count": 10073,
+    "records_checked": 10073,
+    "shared_alignment": {
+      "formula": {
+        "aligned": true,
+        "present": true
+      },
+      "num_atoms": {
+        "aligned": true,
+        "present": true
+      },
+      "rxn": {
+        "aligned": true,
+        "present": true
+      }
+    },
+    "split": {
+      "complement_count": 1073,
+      "representation": "index_list",
+      "selected_count": 9000,
+      "selected_indices_sha256": "40f314ad1d43ea98bbe28a13dee1642f06e756dc556938539c5cdaca0d70abc5"
+    },
+    "top_level_fields": [
+      "product",
+      "reactant",
+      "single_fragment",
+      "transition_state",
+      "ts_guess",
+      "ts_guess_NEBCI-xtb",
+      "ts_guess_sbv1",
+      "ts_guess_true",
+      "use_ind"
+    ]
+  },
+  "track_b_gate": {
+    "admission": "quarantine_diagnostic_only",
+    "blocking_reasons": [
+      "explicit formal charge is absent",
+      "explicit multiplicity is absent",
+      "trusted Track-B event labels are absent",
+      "family-certified holdout metadata is absent",
+      "same-row endpoint correspondence is not a certified atom mapping",
+      "the pinned source record has no explicit redistribution license"
+    ],
+    "endpoint_geometry_diagnostic_ready": true,
+    "event_geometry_training_ready": false,
+    "source_identity_verified": true
+  }
+}

@@ -71,12 +71,12 @@ unsuccessful intended channel from being rewritten as a negative example when a 
 ## Source audit on 2026-09-29
 
 The source comparison registry is
-`configs/data/track_b_source_candidates_v1.json`; the reproducible audit is
-`docs/evidence/track_b_source_audit_20260929.json`. Rebuild it with
-`scripts/audit_track_b_sources.py` and explicit local asset paths; the report
-stores only configured locators, basenames, sizes and hashes. Seven candidate
+`configs/data/track_b_source_candidates_v1.json`; the reproducible aggregate
+audit is `docs/evidence/track_b_source_audit_20260929.json`. Seven candidate
 sources were compared and none is currently admitted:
 
+- SPICE2 remains Track-A E/F calibration data, while USPTO-derived edits and
+  FlowER graph states lack the required three-dimensional TS supervision.
 - The local Kingfisher export has real searched events, but its input geometry
   was extracted from the archived transition structure and its water selection
   is not independent of that search.
@@ -84,36 +84,74 @@ sources were compared and none is currently admitted:
   are not embedded in the inspected raw object array, the event conversion is
   not frozen under this contract, and some records exceed the current CHNOS
   scope.
-- SPICE2 remains Track-A E/F calibration data, while USPTO-derived edits and
-  FlowER graph states lack the required three-dimensional TS supervision.
-- No pinned local Transition1x asset was available for a byte-level audit;
-  the local RGD1 archive is missing its referenced per-record geometry assets.
+- The exact public Transition1x endpoint asset is now byte- and structure-
+  audited. It contains aligned reactant, product and transition-state endpoint
+  coordinates, but it lacks explicit formal charge, multiplicity, trusted
+  Track-B event labels, certified reaction-family holdouts and an independently
+  certified chemical atom mapping. Its pinned Zenodo record does not state an
+  explicit redistribution license, so raw bytes are not copied into this
+  repository.
+- The local RGD1 archive is still missing its README-referenced per-record
+  geometry assets.
 
-The 2026-09-29 audit also observed two cached assets without copying their raw
-bytes into this repository:
+Three cached assets were observed without copying their raw bytes into this
+repository:
 
+- Transition1x `train_rpsb_all.pkl`: 55,458,032 bytes, SHA-256
+  `36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65`,
+  MD5 `701a457634cce7a6cae5318e8cd18082`;
 - `UniTS_Lib.npy`: 1,439,687,943 bytes, SHA-256
   `6a8fff071330603600276e200e65feef3ab5e4d285f81091a3eb0cc13bdb70e2`;
 - Kingfisher `events.jsonl`: 429,234 bytes, 41 non-empty rows, SHA-256
   `ee277408552e4b10149b350902796100ee4ade7ba30e8b836dfdc557ee4da5ae`.
 
-Both hashes match the candidate registry. Rebuild the source audit with local
-paths supplied explicitly rather than embedding machine-specific locations:
+All observed sizes and hashes match the candidate registry. Rebuild the
+aggregate source audit with explicit local paths rather than embedding
+machine-specific locations:
 
 ```bash
 PYTHONPATH=src python scripts/audit_track_b_sources.py \
   --config configs/data/track_b_source_candidates_v1.json \
+  --asset transition1x_preprocessed="$TRANSITION1X_TRAIN" \
   --asset units_lib="$UNITS_LIB" \
   --asset kingfisher_ch2o_events_v2="$KINGFISHER_EVENTS" \
   --audit-date 2026-09-29 \
-  --repository-base-commit abee6248daaf0c81cde2e676b0b139f4b5d26d1e \
+  --repository-base-commit 0116d45747ca474ecf4877d59752646e5fdd363e \
   --output docs/evidence/track_b_source_audit_20260929.json
 ```
 
-These assets remain diagnostic. Matching bytes do not resolve the missing
-independent reactant inputs, product/event conversion, coordinate-unit,
-licensing, family-diversity or environment-selection requirements, so neither
-asset is admitted for blind reactant-only training or confirmatory evidence.
+All three observed assets remain diagnostic. Matching bytes do not resolve
+missing independent reactant inputs, electronic state, product/event
+conversion, family diversity, environment independence, atom mapping or
+licensing requirements. None is admitted for blind reactant-only joint
+training or confirmatory evidence.
+
+### Transition1x endpoint audit
+
+The specialized report is
+`docs/evidence/transition1x_track_b_audit_20260929.json`. It verifies exact
+size, SHA-256 and MD5 before using a NumPy-only restricted unpickler; no archive
+or project code is executed. The full 10,073 records were checked. Atom counts
+range from 4 to 23, all reactant/product/TS coordinate shapes and atomic-number
+rows match, and the shared `rxn`, `formula` and `num_atoms` fields align. The
+published `use_ind` list contains 9,000 indices with a 1,073-record complement.
+
+Rebuild it with:
+
+```bash
+PYTHONPATH=src python scripts/audit_transition1x_track_b.py \
+  --asset "$TRANSITION1X_TRAIN" \
+  --audit-date 2026-09-29 \
+  --repository-base-commit 0116d45747ca474ecf4877d59752646e5fdd363e \
+  --output docs/evidence/transition1x_track_b_audit_20260929.json
+```
+
+This supports an endpoint-conditioned geometry diagnostic only. The field named
+`charges` stores atomic numbers, not formal charge. The source has no explicit
+multiplicity or trusted event label, and row-preserving endpoint correspondence
+is not a certified chemical atom map. Coordinates must not be converted into a
+Track-B event label without a separately frozen and validated graph-perception
+and event-representation contract.
 
 ## Gate for issue #58
 

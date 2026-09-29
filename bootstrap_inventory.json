@@ -304,8 +304,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "88012cbbd059afc72f4e23df25484da4292fe47273c43b5b45b013aecc2ef199",
-      "bytes": 17397
+      "sha256": "c90d3c193e95d4992f5c28c3c5b4a5ca62cb9bf6a7f5172223cbc2f1423b1b4a",
+      "bytes": 18682
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -314,8 +314,8 @@
     },
     {
       "path": "docs/TRACK_B_DATA_GATE.md",
-      "sha256": "f12b86d2db91678c5431b333cf342f967b33fa9545eba503e0f3c62d94513482",
-      "bytes": 7075
+      "sha256": "a85e8c18a32c614118c0e82a3b8a52b70652f74a06a1d677dce97e87ce16027e",
+      "bytes": 8854
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -514,8 +514,13 @@
     },
     {
       "path": "docs/evidence/track_b_source_audit_20260929.json",
-      "sha256": "84dacfa1746cbbfdea8676e1d2d6a75e8c0ff424ef056ae0822afd470e79c7cd",
-      "bytes": 7371
+      "sha256": "2013d23d86491a80d3d158ca99e0eef33f9b397261c75999b5d74d1081e6c7f0",
+      "bytes": 8575
+    },
+    {
+      "path": "docs/evidence/transition1x_track_b_audit_20260929.json",
+      "sha256": "0e1e9cde9173f9f88e15c6f4e8f787edf8d19930f9d604fa84b31487c556eb59",
+      "bytes": 4364
     },
     {
       "path": "docs/evidence/ts_budget_contract_20260929.json",

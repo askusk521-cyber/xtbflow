@@ -1,0 +1,65 @@
+{
+  "schema": "xtbflow-xtbloom-cpu-smoke/v1",
+  "status": "diagnostic_quarantine",
+  "source_commit": "a1b504598ec3a2a102d25893018c74c70c84a202",
+  "cp2k_dependency": false,
+  "scientific_qualification": false,
+  "xtbloom_source": {
+    "commit": "2cbdf1db8661ccbd5cb7d3d4bfc868a848cbbff3",
+    "version": "0.2.3",
+    "native_library_sha256": "5afb71636c7346cdd8720bb1f3b060c11a25f4a365a813c4648528ce6141de60",
+    "build": "CPU-only CMake/Ninja build; XTBLOOM_BUILD_TESTS=OFF; XTBLOOM_ENABLE_CUDA=OFF",
+    "cuda": "not built or tested"
+  },
+  "runtime_provider": {
+    "provider": "xtb Python distribution OpenBLAS LP64 library",
+    "provider_sha256": "428500d64a0ead72ff7d9b8a73dae0e50d0e23891334c009278a593a740109f0",
+    "shim": "temporary /tmp shim exports openblas_set_num_threads_local through the provider's global thread setter",
+    "production_status": "not qualified; shim is only a diagnostic bridge"
+  },
+  "protocol": {
+    "protocol_id": "xtbloom-gfn2-native-bohr-v1",
+    "calculator": "xtbloom",
+    "method": "GFN2-xTB",
+    "backend": "cpu",
+    "max_scc_iterations": 250,
+    "charge_tolerance": 1e-6,
+    "energy_tolerance": 1e-8,
+    "electronic_temperature_kelvin": 300.0,
+    "initialization": "fresh",
+    "charge": 0,
+    "multiplicity": 1
+  },
+  "case": {
+    "system": "H2O",
+    "atom_count": 3,
+    "input_coordinates_unit": "angstrom",
+    "input_hash": "not_persisted_in_public_record",
+    "energy_hartree": -5.068467435320866,
+    "finite_difference_step_angstrom": 0.0001,
+    "finite_difference_max_abs_force_error_hartree_per_angstrom": 6.041832499581457e-08,
+    "finite_difference_rms_force_error_hartree_per_angstrom": 2.8242216789567514e-08,
+    "force_sign": "adapter force matched negative energy derivative"
+  },
+  "failure_isolation": {
+    "low_iteration_probe": {
+      "max_scc_iterations": 1,
+      "observed_exception": "CalculatorConvergenceError",
+      "message_class": "xTBloom batch inference produced failed systems: SCC not converged",
+      "backend_call_is_not_reported_as_success": true
+    }
+  },
+  "adapter_identity": {
+    "backend_version": "0.2.3",
+    "wrapper_interface_library_hash": "c499950834ffa7a0f07c46b132d82ce9102a0e4bc3b360f1a6f2ea433679b909",
+    "adapter_code_hash": "b951893c5f1476a8b250b188e81b2d4ed1a486ffaf810352e8cab19e377c7898",
+    "capability_status": "unknown",
+    "capability_qualification": "installed"
+  },
+  "limits": [
+    "This is one CPU water smoke through a source-built xTBloom library and a temporary OpenBLAS thread-control shim.",
+    "The shim is not a production dependency and the result does not qualify a released xTBloom build.",
+    "No CUDA parity, multi-system failure isolation, broader finite-difference set, or independent reference comparison is claimed.",
+    "No CP2K, DFT, transition-state search, or training result is claimed."
+  ]
+}

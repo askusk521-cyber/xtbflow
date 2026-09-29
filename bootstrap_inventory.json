@@ -224,8 +224,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "31ded07a2ef1a3540937c7fb590097813305f46d9e52642c132585f806fab18a",
-      "bytes": 5729
+      "sha256": "394d7428d655f8075e6a8414d3280047c257e7d1f8c981ded1e937a953119571",
+      "bytes": 6677
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -269,8 +269,13 @@
     },
     {
       "path": "docs/evidence/xtbloom_adapter_contract_20260929.json",
-      "sha256": "d9cb132b3d85b1c19005970911017f9bd5d9d67ecefc1d972c446cbe0c56720d",
-      "bytes": 2298
+      "sha256": "3722cdcbf0260123d05328270151064ae20e7537ece05cfaaa8fee5ec4eb281f",
+      "bytes": 2344
+    },
+    {
+      "path": "docs/evidence/xtbloom_cpu_smoke_20260929.json",
+      "sha256": "5189ebbb5562e40a6c526f18c6ca019b426961589f2ed9e6e4a426562c0b0307",
+      "bytes": 2857
     },
     {
       "path": "docs/model_design.md",

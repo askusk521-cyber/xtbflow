@@ -50,6 +50,22 @@
   package, so real energy/force, finite-difference, CPU/CUDA, and qualification
   runs remain open.
 
+## 2026-09-29 xTBloom CPU source smoke
+
+- A CPU-only xTBloom source build completed from source commit
+  `2cbdf1db8661ccbd5cb7d3d4bfc868a848cbbff3`. The native runtime initially
+  stopped at its required LP64 OpenBLAS thread-control check; a temporary
+  diagnostic shim around the existing LP64 provider enabled one local run.
+- The real adapter then evaluated one neutral singlet H2O geometry and its
+  central finite-difference force check. The maximum force discrepancy was
+  `6.04e-8 Hartree/Å` at a `1e-4 Å` step. This is diagnostic evidence only,
+  because the shim maps local thread control to a global setter and has not
+  been accepted as a production dependency.
+- Full details and native/provider hashes are in
+  [`docs/evidence/xtbloom_cpu_smoke_20260929.json`](evidence/xtbloom_cpu_smoke_20260929.json).
+  CUDA parity, multi-system failure isolation, independent reference matching,
+  and a release-grade LP64 provider remain open.
+
 ## 2026-09-27 provenance 与联合流增量
 
 - n2 已完成 UniTS-Lib 首批 64 条记录的可复现 provenance audit；64/64 条通过坐标、能量、力、原子清单、反应位点、RDKit 原子数和图特征结构检查，图特征中的全局电荷／多重度编码与原始字段一致。证据见 [`docs/evidence/units_provenance_audit_20260927.json`](evidence/units_provenance_audit_20260927.json)。

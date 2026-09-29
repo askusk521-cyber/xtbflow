@@ -22,6 +22,10 @@ def protocol(**changes):
         multiplicity=1,
         build_hash="cp2k-fixture-build",
         cp2k_version="2025.1-fixture",
+        parameters={
+            "dispersion_parameter_file": "/tmp/dftd3.dat",
+            "reference_functional": "PBE",
+        },
     )
     values.update(changes)
     return CP2KProtocol(**values)

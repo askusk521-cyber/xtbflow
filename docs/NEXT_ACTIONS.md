@@ -94,3 +94,10 @@
 - 原始 object array 没有逐记录声明坐标、能量和力单位；B3LYP-D3(BJ)/def2-SVP 只能由 UniTS-Gen 论文及其 SI 作为数据集级方法证据追溯。因此该切片结论为 `diagnostic_only`，公开清单准入数继续保持 0，不生成带有假定单位的正式 E/F 训练缓存。
 - 联合流 v2 烟测增加了真正独立的保存前／恢复后前向比较：事件速度、几何速度和两类消息的最大绝对差均为 0；4 步采样有限，守恒残差最大 `6.94e-18`。证据见 [`docs/evidence/joint_flow_smoke_20260927_v2.json`](evidence/joint_flow_smoke_20260927_v2.json)。
 - 将当前源码同步到 n2 后，完整 pytest 为 `135 passed`、`68 subtests passed`；唯一输出是既有的测试代码 tensor-to-scalar 警告。下一项区分力最大的工作是继续追踪 UniTS 原始单位声明或转向明确单位的公开 E/F 来源，再运行 Delta／direct 留出对照。
+
+## 2026-09-29 bounded GFN2 numerical qualification
+
+- The predeclared six-fixture qualification run is preserved in docs/evidence/gfn2_qualification_20260929.json. Its aggregate status is qualification_failed: adapter/native tblite parity, repeatability, and Angstrom finite differences passed, while the deliberately strict ASE force parity threshold and direct xTB analytic-gradient parity did not all pass.
+- Follow-up diagnosis did not relax those gates. scripts/run_gfn2_independent_fd.py used the independent xTB implementation only as an energy evaluator and differentiated every coordinate component at the same 1e-4 Angstrom step. Across six fixtures (57 components, 126 calls), xTB energy parity and full-coordinate finite-difference force parity both passed the fixed 1e-4 Hartree / 5e-5 Hartree/Angstrom thresholds.
+- The largest independent xTB finite-difference versus tblite analytic-force difference was about 2.32e-6 Hartree/Angstrom; the largest direct xTB analytic-gradient discrepancy was about 5.48e-3 Hartree/Angstrom. Therefore the installed xTB analytic gradient is not admitted as a force reference, while tblite CPU is numerically qualified only for the bounded tested non-periodic closed-shell H/C/N/O/S neutral/+1/-1 pilot scope.
+- The original failed report is not rewritten. The interpretation record is docs/evidence/gfn2_qualification_interpretation_20260929.json. This limited qualification is sufficient to begin a small public-E/F same-geometry pairing pilot; it is not CUDA, CP2K, TS, or broad chemical-accuracy qualification.

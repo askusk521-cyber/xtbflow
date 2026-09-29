@@ -1,0 +1,194 @@
+{
+  "calculator_calls_recorded": 126,
+  "fixtures": [
+    {
+      "atom_count": 3,
+      "calculator_calls": 20,
+      "charge": 0,
+      "energy_abs_delta_hartree": 2.672706500561617e-09,
+      "energy_pass": true,
+      "fixture_id": "water_perturbed",
+      "input_hash": "408af8286419d3a80c2fff6b41162acf95c7c672a08cfdbf49a1a5b49dd754cf",
+      "multiplicity": 1,
+      "timings_seconds": {
+        "baseline_pair": 1.2545050849439576,
+        "xtb_full_fd": 3.3749640760943294
+      },
+      "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 0.0007625588183718462,
+      "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 0.0007625472834865185,
+      "xtb_analytic_worst_component": [
+        0,
+        2
+      ],
+      "xtb_fd_force_pass": true,
+      "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 2.3688054893653e-07,
+      "xtb_fd_worst_component": [
+        0,
+        1
+      ]
+    },
+    {
+      "atom_count": 4,
+      "calculator_calls": 26,
+      "charge": 0,
+      "energy_abs_delta_hartree": 3.5304887902043447e-09,
+      "energy_pass": true,
+      "fixture_id": "ammonia_perturbed",
+      "input_hash": "17e2b64a519d2258e0bf9fe53dd7b8e246f84c57205c8ba9102272168b5dfe8a",
+      "multiplicity": 1,
+      "timings_seconds": {
+        "baseline_pair": 0.9247801689198241,
+        "xtb_full_fd": 6.102912759059109
+      },
+      "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 0.002426863688446613,
+      "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 0.0024268759052379686,
+      "xtb_analytic_worst_component": [
+        1,
+        1
+      ],
+      "xtb_fd_force_pass": true,
+      "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 2.32053226033313e-06,
+      "xtb_fd_worst_component": [
+        0,
+        2
+      ]
+    },
+    {
+      "atom_count": 3,
+      "calculator_calls": 20,
+      "charge": 0,
+      "energy_abs_delta_hartree": 4.985434287618773e-11,
+      "energy_pass": true,
+      "fixture_id": "hydrogen_sulfide_perturbed",
+      "input_hash": "332cb6b026c26796fc2f141c30bc1b4c0a934f5485bf9ab9a6beae3a97f18e17",
+      "multiplicity": 1,
+      "timings_seconds": {
+        "baseline_pair": 0.8899220599560067,
+        "xtb_full_fd": 4.592930790036917
+      },
+      "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 3.4509275726269485e-05,
+      "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 3.4505157808410866e-05,
+      "xtb_analytic_worst_component": [
+        1,
+        2
+      ],
+      "xtb_fd_force_pass": true,
+      "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 5.384241633307751e-07,
+      "xtb_fd_worst_component": [
+        0,
+        1
+      ]
+    },
+    {
+      "atom_count": 3,
+      "calculator_calls": 20,
+      "charge": 0,
+      "energy_abs_delta_hartree": 3.259045477932432e-09,
+      "energy_pass": true,
+      "fixture_id": "hydrogen_cyanide_perturbed",
+      "input_hash": "5699aa886a548d0ae50f349d7b36fe71f43932f14e7533a452da5891dc73fc6e",
+      "multiplicity": 1,
+      "timings_seconds": {
+        "baseline_pair": 0.4139250840526074,
+        "xtb_full_fd": 5.229936336982064
+      },
+      "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 0.0038295340665079397,
+      "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 0.003829545268299591,
+      "xtb_analytic_worst_component": [
+        0,
+        2
+      ],
+      "xtb_fd_force_pass": true,
+      "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 5.510450264839539e-07,
+      "xtb_fd_worst_component": [
+        1,
+        0
+      ]
+    },
+    {
+      "atom_count": 4,
+      "calculator_calls": 26,
+      "charge": 1,
+      "energy_abs_delta_hartree": 6.219887715985806e-09,
+      "energy_pass": true,
+      "fixture_id": "hydronium_perturbed",
+      "input_hash": "c360f667cb1122aa4b4d75a23e6dcecb63a9edc917ac7f36d37a5f829cc70d12",
+      "multiplicity": 1,
+      "timings_seconds": {
+        "baseline_pair": 0.6399122599978,
+        "xtb_full_fd": 5.621935554081574
+      },
+      "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 0.005483105748616962,
+      "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 0.005483153847554947,
+      "xtb_analytic_worst_component": [
+        0,
+        1
+      ],
+      "xtb_fd_force_pass": true,
+      "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 8.891305955799345e-07,
+      "xtb_fd_worst_component": [
+        0,
+        2
+      ]
+    },
+    {
+      "atom_count": 2,
+      "calculator_calls": 14,
+      "charge": -1,
+      "energy_abs_delta_hartree": 5.271330039136046e-10,
+      "energy_pass": true,
+      "fixture_id": "hydroxide_perturbed",
+      "input_hash": "ca5cf9a4a2431a6f18830bd735f0bef5986f92cee10e7c0d718da1ad859bda47",
+      "multiplicity": 1,
+      "timings_seconds": {
+        "baseline_pair": 0.8679293839959428,
+        "xtb_full_fd": 1.1051776870153844
+      },
+      "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 1.3672306073408969e-07,
+      "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 8.339856731251483e-08,
+      "xtb_analytic_worst_component": [
+        0,
+        0
+      ],
+      "xtb_fd_force_pass": true,
+      "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 2.201216280466045e-07,
+      "xtb_fd_worst_component": [
+        0,
+        0
+      ]
+    }
+  ],
+  "gates": {
+    "independent_xtb_energy_fd_force_parity": true,
+    "independent_xtb_energy_parity": true
+  },
+  "interpretation": "Independent xTB energy surfaces and numerical energy derivatives agree with tblite in the tested scope.",
+  "limits": [
+    "xTB analytic gradients are recorded as diagnostics but are not used as the force-parity gate because the preceding qualification run found self-inconsistency on several components.",
+    "The force gate uses only independent xTB energy evaluations and central finite differences at the predeclared 1e-4 Angstrom step.",
+    "This does not qualify xTB analytic gradients, CUDA, open-shell states, solvent, periodic systems, CP2K, or broader chemical accuracy."
+  ],
+  "planned_max_calls": 126,
+  "protocol": {
+    "accuracy": 1.0,
+    "electronic_temperature": 300.0,
+    "max_iterations": 250,
+    "solvent": null
+  },
+  "runtime": {
+    "host": "node2",
+    "numpy": "1.26.4",
+    "python": "3.10.19",
+    "tblite": "0.7.0",
+    "xtb": "22.1"
+  },
+  "schema": "xtbflow-gfn2-independent-fd/v1",
+  "script_sha256": "71fef4bf7f32839b8578a1281ed7e5f95a3f511fe368586932aacb40dd1f730b",
+  "source_commit": "68d85ec5153a753117d1de85550e419bc7f27bf6",
+  "status": "pass",
+  "step_angstrom": 0.0001,
+  "thresholds_predeclared": {
+    "energy_abs_hartree": 0.0001,
+    "independent_xtb_fd_force_max_abs_hartree_per_angstrom": 5e-05
+  }
+}

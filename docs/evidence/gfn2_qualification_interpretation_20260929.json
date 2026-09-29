@@ -1,0 +1,44 @@
+{
+  "calculator_calls_total_recorded": 163,
+  "date": "2026-09-29",
+  "decision": {
+    "allowed_next_step": "bounded public-EF admission and same-geometry tblite pairing within the tested small closed-shell nonperiodic scope",
+    "tblite_cpu_tested_scope": "numerically_qualified_for_bounded_pairing",
+    "xtb_analytic_gradient": "not_qualified_as_force_reference_in_this_environment",
+    "xtb_energy_surface": "independent_parity_pass_via_full_coordinate_finite_difference"
+  },
+  "independent_fd_gates": {
+    "independent_xtb_energy_fd_force_parity": true,
+    "independent_xtb_energy_parity": true
+  },
+  "independent_fd_report": "docs/evidence/gfn2_independent_fd_20260929.json",
+  "independent_fd_status": "pass",
+  "limits": [
+    "The original predeclared all-gates qualification remains failed and is not rewritten.",
+    "ASE wrapper force differences near 1e-9 to 3.5e-9 Hartree/Angstrom are retained as observed.",
+    "Independent xTB analytic gradients failed self-consistency on several components, while xTB energy finite differences matched tblite across all 57 tested coordinate components.",
+    "CUDA, open-shell states, solvent, periodic systems, larger domains, CP2K, TS discovery, and model accuracy remain unqualified."
+  ],
+  "maxima": {
+    "adapter_native_energy_abs_hartree": 0.0,
+    "adapter_native_force_max_abs_hartree_per_angstrom": 5.551115123125783e-17,
+    "native_ase_energy_abs_hartree": 6.337774749454184e-11,
+    "native_ase_force_max_abs_hartree_per_angstrom": 3.415890854896464e-09,
+    "tblite_finite_difference_abs_hartree_per_angstrom": 5.723968356935449e-07,
+    "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 0.005483105748616962,
+    "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 0.005483153847554947,
+    "xtb_energy_abs_hartree": 6.219887715985806e-09,
+    "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 2.32053226033313e-06
+  },
+  "primary_gates": {
+    "all_fixtures_completed": true,
+    "angstrom_finite_difference": true,
+    "independent_xtb_parity": false,
+    "repeatability": true,
+    "tblite_interface_parity": false
+  },
+  "primary_report": "docs/evidence/gfn2_qualification_20260929.json",
+  "primary_status": "qualification_failed",
+  "qualified_scope": "Small non-periodic closed-shell H/C/N/O/S neutral, +1, and -1 fixtures under the recorded GFN2 CPU protocol. Numerical backend qualification for bounded pilot pairing only.",
+  "schema": "xtbflow-gfn2-qualification-interpretation/v1"
+}

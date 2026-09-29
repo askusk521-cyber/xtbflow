@@ -1,0 +1,913 @@
+{
+  "backend_identity": {
+    "tblite": {
+      "build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+      "qualification": "installed",
+      "version": "0.7.0"
+    },
+    "xtb": {
+      "build_hash": "18afc60dc1dc07b3239b8baa6ceaf2985173fd89ae140010a57472ee00fc3126",
+      "qualification": "installed",
+      "version": "20.2"
+    }
+  },
+  "calculator_calls_recorded": 37,
+  "finite_difference_step_angstrom": 0.0001,
+  "fixtures": [
+    {
+      "charge": 0,
+      "checks": {
+        "adapter_native_energy_abs_hartree": true,
+        "adapter_native_force_max_abs_hartree_per_angstrom": true,
+        "finite_difference_abs_hartree_per_angstrom": true,
+        "native_ase_energy_abs_hartree": true,
+        "native_ase_force_max_abs_hartree_per_angstrom": false,
+        "xtb_energy_abs_hartree": true,
+        "xtb_force_max_abs_hartree_per_angstrom": true
+      },
+      "coordinates_angstrom": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.97,
+          0.03,
+          0.0
+        ],
+        [
+          -0.25,
+          0.91,
+          0.04
+        ]
+      ],
+      "deltas": {
+        "adapter_native_energy_abs_hartree": 0.0,
+        "adapter_native_force_max_abs_hartree_per_angstrom": 8.673617379884035e-18,
+        "finite_difference_abs_hartree_per_angstrom": 5.630243259981127e-08,
+        "native_ase_energy_abs_hartree": 8.617107027930615e-12,
+        "native_ase_force_max_abs_hartree_per_angstrom": 1.1041524430877026e-09,
+        "xtb_energy_abs_hartree": 2.672706500561617e-09,
+        "xtb_force_max_abs_hartree_per_angstrom": 0.0007625588183718466
+      },
+      "energies_hartree": {
+        "tblite_adapter": -5.069953863773185,
+        "tblite_ase": -5.0699538637818025,
+        "tblite_native": -5.069953863773185,
+        "xtb": -5.069953861100479
+      },
+      "fd_coordinate": [
+        1,
+        0
+      ],
+      "finite_difference_force_hartree_per_angstrom": -0.014419546849886444,
+      "fixture_id": "water_perturbed",
+      "forces_hartree_per_angstrom": {
+        "tblite_adapter": [
+          [
+            0.03173603291541256,
+            -0.015584138640701167,
+            -0.0007220263072993979
+          ],
+          [
+            -0.014419603152319044,
+            -0.010077462776812224,
+            -0.000419795587460505
+          ],
+          [
+            -0.017316429763093524,
+            0.025661601417513353,
+            0.001141821894759902
+          ]
+        ],
+        "tblite_ase": [
+          [
+            0.03173603355083353,
+            -0.015584137571066104,
+            -0.0007220262615347538
+          ],
+          [
+            -0.014419604161129796,
+            -0.010077462742294813,
+            -0.00041979558459646774
+          ],
+          [
+            -0.017316429389703767,
+            0.02566160031336091,
+            0.0011418218461312197
+          ]
+        ],
+        "tblite_native": [
+          [
+            0.03173603291541256,
+            -0.015584138640701175,
+            -0.0007220263072993977
+          ],
+          [
+            -0.01441960315231904,
+            -0.010077462776812226,
+            -0.0004197955874605049
+          ],
+          [
+            -0.017316429763093524,
+            0.025661601417513353,
+            0.001141821894759902
+          ]
+        ],
+        "xtb": [
+          [
+            0.03173630254876193,
+            -0.015583702729754513,
+            4.053251107244866e-05
+          ],
+          [
+            -0.014419714820883252,
+            -0.010077671197347642,
+            -0.001182344703439349
+          ],
+          [
+            -0.017316587727878672,
+            0.02566137392710216,
+            0.001141812192366902
+          ]
+        ]
+      },
+      "input_hash": "408af8286419d3a80c2fff6b41162acf95c7c672a08cfdbf49a1a5b49dd754cf",
+      "multiplicity": 1,
+      "status": "success",
+      "symbols": [
+        "O",
+        "H",
+        "H"
+      ],
+      "timings_seconds": {
+        "finite_difference_pair": 0.48253497295081615,
+        "tblite_adapter": 0.8233152109896764,
+        "tblite_ase": 0.5834756590193138,
+        "tblite_native": 0.7786384880309924,
+        "xtb": 0.4332258029608056
+      }
+    },
+    {
+      "charge": 0,
+      "checks": {
+        "adapter_native_energy_abs_hartree": true,
+        "adapter_native_force_max_abs_hartree_per_angstrom": true,
+        "finite_difference_abs_hartree_per_angstrom": true,
+        "native_ase_energy_abs_hartree": true,
+        "native_ase_force_max_abs_hartree_per_angstrom": false,
+        "xtb_energy_abs_hartree": true,
+        "xtb_force_max_abs_hartree_per_angstrom": false
+      },
+      "coordinates_angstrom": [
+        [
+          0.0,
+          0.0,
+          0.08
+        ],
+        [
+          0.94,
+          0.0,
+          -0.28
+        ],
+        [
+          -0.47,
+          0.82,
+          -0.34
+        ],
+        [
+          -0.43,
+          -0.78,
+          -0.25
+        ]
+      ],
+      "deltas": {
+        "adapter_native_energy_abs_hartree": 0.0,
+        "adapter_native_force_max_abs_hartree_per_angstrom": 5.551115123125783e-17,
+        "finite_difference_abs_hartree_per_angstrom": 5.14964293273773e-07,
+        "native_ase_energy_abs_hartree": 6.337774749454184e-11,
+        "native_ase_force_max_abs_hartree_per_angstrom": 1.1870106841893602e-09,
+        "xtb_energy_abs_hartree": 3.5304887902043447e-09,
+        "xtb_force_max_abs_hartree_per_angstrom": 0.002426863688446612
+      },
+      "energies_hartree": {
+        "tblite_adapter": -4.422312396741005,
+        "tblite_ase": -4.422312396804383,
+        "tblite_native": -4.422312396741005,
+        "xtb": -4.422312393210516
+      },
+      "fd_coordinate": [
+        1,
+        0
+      ],
+      "finite_difference_force_hartree_per_angstrom": 0.01293464952478729,
+      "fixture_id": "ammonia_perturbed",
+      "forces_hartree_per_angstrom": {
+        "tblite_adapter": [
+          [
+            0.033226241494142834,
+            0.1197340350980018,
+            0.02476740710926581
+          ],
+          [
+            0.012935164489080563,
+            0.00171704592776556,
+            -0.000412300800331146
+          ],
+          [
+            0.011681091111445675,
+            -0.0214413893897548,
+            0.013995903919551779
+          ],
+          [
+            -0.05784249709466911,
+            -0.1000096916360125,
+            -0.0383510102284865
+          ]
+        ],
+        "tblite_ase": [
+          [
+            0.03322624141931679,
+            0.11973403467226697,
+            0.024767406121375624
+          ],
+          [
+            0.012935163473532291,
+            0.0017170459203461337,
+            -0.00041230050572711486
+          ],
+          [
+            0.011681091541080529,
+            -0.021441390143611364,
+            0.013995904212264858
+          ],
+          [
+            -0.05784249643392964,
+            -0.10000969044900182,
+            -0.03835100982791335
+          ]
+        ],
+        "tblite_native": [
+          [
+            0.033226241494142834,
+            0.1197340350980018,
+            0.024767407109265865
+          ],
+          [
+            0.012935164489080563,
+            0.0017170459277655592,
+            -0.000412300800331146
+          ],
+          [
+            0.01168109111144567,
+            -0.0214413893897548,
+            0.013995903919551777
+          ],
+          [
+            -0.05784249709466911,
+            -0.1000096916360125,
+            -0.0383510102284865
+          ]
+        ],
+        "xtb": [
+          [
+            0.03322634369298583,
+            0.12216081459092804,
+            0.024764738898410958
+          ],
+          [
+            0.01293414549872695,
+            -0.0007098177606810515,
+            -0.00041141998181394655
+          ],
+          [
+            0.011681558957834149,
+            -0.021442174456000752,
+            0.013996772403424514
+          ],
+          [
+            -0.057842048149546965,
+            -0.10000882237424628,
+            -0.03835009132002153
+          ]
+        ]
+      },
+      "input_hash": "17e2b64a519d2258e0bf9fe53dd7b8e246f84c57205c8ba9102272168b5dfe8a",
+      "multiplicity": 1,
+      "status": "success",
+      "symbols": [
+        "N",
+        "H",
+        "H",
+        "H"
+      ],
+      "timings_seconds": {
+        "finite_difference_pair": 1.0387687850743532,
+        "tblite_adapter": 0.009376863949000835,
+        "tblite_ase": 0.00950690102763474,
+        "tblite_native": 0.008919636020436883,
+        "xtb": 0.2830786439590156
+      }
+    },
+    {
+      "charge": 0,
+      "checks": {
+        "adapter_native_energy_abs_hartree": true,
+        "adapter_native_force_max_abs_hartree_per_angstrom": true,
+        "finite_difference_abs_hartree_per_angstrom": true,
+        "native_ase_energy_abs_hartree": true,
+        "native_ase_force_max_abs_hartree_per_angstrom": true,
+        "xtb_energy_abs_hartree": true,
+        "xtb_force_max_abs_hartree_per_angstrom": true
+      },
+      "coordinates_angstrom": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.33,
+          0.05,
+          0.0
+        ],
+        [
+          -0.04,
+          1.34,
+          0.05
+        ]
+      ],
+      "deltas": {
+        "adapter_native_energy_abs_hartree": 0.0,
+        "adapter_native_force_max_abs_hartree_per_angstrom": 0.0,
+        "finite_difference_abs_hartree_per_angstrom": 3.891119399182172e-07,
+        "native_ase_energy_abs_hartree": 1.1077361250499962e-11,
+        "native_ase_force_max_abs_hartree_per_angstrom": 6.798463103238617e-10,
+        "xtb_energy_abs_hartree": 4.985434287618773e-11,
+        "xtb_force_max_abs_hartree_per_angstrom": 3.4509275726269485e-05
+      },
+      "energies_hartree": {
+        "tblite_adapter": -4.256013460735785,
+        "tblite_ase": -4.2560134607247075,
+        "tblite_native": -4.256013460735785,
+        "xtb": -4.256013460785639
+      },
+      "fd_coordinate": [
+        1,
+        0
+      ],
+      "finite_difference_force_hartree_per_angstrom": -0.0021970462427134407,
+      "fixture_id": "hydrogen_sulfide_perturbed",
+      "forces_hartree_per_angstrom": {
+        "tblite_adapter": [
+          [
+            0.00742226102338003,
+            0.01631611311239981,
+            0.0005977277600135435
+          ],
+          [
+            -0.0021966571307735225,
+            -0.005667725881439031,
+            -0.00020816731772714067
+          ],
+          [
+            -0.005225603892606514,
+            -0.010648387230960779,
+            -0.00038956044228640266
+          ]
+        ],
+        "tblite_ase": [
+          [
+            0.007422261659104889,
+            0.0163161137577036,
+            0.0005977277831742656
+          ],
+          [
+            -0.002196657810619833,
+            -0.005667725881936747,
+            -0.00020816731679308597
+          ],
+          [
+            -0.005225603848485089,
+            -0.01064838787576684,
+            -0.00038956046638118015
+          ]
+        ],
+        "tblite_native": [
+          [
+            0.00742226102338003,
+            0.01631611311239981,
+            0.0005977277600135435
+          ],
+          [
+            -0.0021966571307735225,
+            -0.005667725881439031,
+            -0.00020816731772714067
+          ],
+          [
+            -0.005225603892606514,
+            -0.010648387230960779,
+            -0.00038956044228640266
+          ]
+        ],
+        "xtb": [
+          [
+            0.007421279456856308,
+            0.01631517510052294,
+            0.0006322067714512119
+          ],
+          [
+            -0.002195761369259734,
+            -0.005667603088452959,
+            -0.00024267659345341016
+          ],
+          [
+            -0.005225518087596574,
+            -0.010647572012069992,
+            -0.0003895301779978019
+          ]
+        ]
+      },
+      "input_hash": "332cb6b026c26796fc2f141c30bc1b4c0a934f5485bf9ab9a6beae3a97f18e17",
+      "multiplicity": 1,
+      "status": "success",
+      "symbols": [
+        "S",
+        "H",
+        "H"
+      ],
+      "timings_seconds": {
+        "finite_difference_pair": 0.5377399119315669,
+        "tblite_adapter": 0.010737885953858495,
+        "tblite_ase": 0.01086939696688205,
+        "tblite_native": 0.010377467959187925,
+        "xtb": 0.26075820496771485
+      }
+    },
+    {
+      "charge": 0,
+      "checks": {
+        "adapter_native_energy_abs_hartree": true,
+        "adapter_native_force_max_abs_hartree_per_angstrom": true,
+        "finite_difference_abs_hartree_per_angstrom": true,
+        "native_ase_energy_abs_hartree": true,
+        "native_ase_force_max_abs_hartree_per_angstrom": false,
+        "xtb_energy_abs_hartree": true,
+        "xtb_force_max_abs_hartree_per_angstrom": false
+      },
+      "coordinates_angstrom": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.05,
+          0.02,
+          0.0
+        ],
+        [
+          2.2,
+          -0.01,
+          0.03
+        ]
+      ],
+      "deltas": {
+        "adapter_native_energy_abs_hartree": 0.0,
+        "adapter_native_force_max_abs_hartree_per_angstrom": 2.7755575615628914e-17,
+        "finite_difference_abs_hartree_per_angstrom": 5.723968356935449e-07,
+        "native_ase_energy_abs_hartree": 3.82867071380133e-11,
+        "native_ase_force_max_abs_hartree_per_angstrom": 3.415890854896464e-09,
+        "xtb_energy_abs_hartree": 3.259045477932432e-09,
+        "xtb_force_max_abs_hartree_per_angstrom": 0.0038295340665079397
+      },
+      "energies_hartree": {
+        "tblite_adapter": -5.503524821508896,
+        "tblite_ase": -5.503524821470609,
+        "tblite_native": -5.503524821508896,
+        "xtb": -5.503524818249851
+      },
+      "fd_coordinate": [
+        1,
+        0
+      ],
+      "finite_difference_force_hartree_per_angstrom": 0.07163335007831506,
+      "fixture_id": "hydrogen_cyanide_perturbed",
+      "forces_hartree_per_angstrom": {
+        "tblite_adapter": [
+          [
+            -0.010415844389935675,
+            0.002598168367471426,
+            -0.0016163634900790522
+          ],
+          [
+            0.07163277768147937,
+            -0.006748537174751322,
+            0.004689148396579045
+          ],
+          [
+            -0.06121693329154367,
+            0.0041503688072798885,
+            -0.0030727849064999947
+          ]
+        ],
+        "tblite_ase": [
+          [
+            -0.010415843410714545,
+            0.0025981683805392994,
+            -0.001616363486851635
+          ],
+          [
+            0.07163278011814915,
+            -0.006748537271831667,
+            0.004689148479515163
+          ],
+          [
+            -0.06121693670743453,
+            0.0041503688912923635,
+            -0.003072784992663525
+          ]
+        ],
+        "tblite_native": [
+          [
+            -0.010415844389935681,
+            0.002598168367471426,
+            -0.0016163634900790522
+          ],
+          [
+            0.0716327776814794,
+            -0.006748537174751321,
+            0.004689148396579046
+          ],
+          [
+            -0.06121693329154367,
+            0.0041503688072798885,
+            -0.0030727849064999947
+          ]
+        ],
+        "xtb": [
+          [
+            -0.010416322399880515,
+            0.002598167437129806,
+            0.0022131705764288877
+          ],
+          [
+            0.07163342071457303,
+            -0.006748542785791456,
+            0.0008596199276385169
+          ],
+          [
+            -0.061217098314692506,
+            0.0041503753486616494,
+            -0.003072790504067406
+          ]
+        ]
+      },
+      "input_hash": "5699aa886a548d0ae50f349d7b36fe71f43932f14e7533a452da5891dc73fc6e",
+      "multiplicity": 1,
+      "status": "success",
+      "symbols": [
+        "H",
+        "C",
+        "N"
+      ],
+      "timings_seconds": {
+        "finite_difference_pair": 0.367913207039237,
+        "tblite_adapter": 0.01059567998163402,
+        "tblite_ase": 0.011000436032190919,
+        "tblite_native": 0.010212635970674455,
+        "xtb": 0.3089346090564504
+      }
+    },
+    {
+      "charge": 1,
+      "checks": {
+        "adapter_native_energy_abs_hartree": true,
+        "adapter_native_force_max_abs_hartree_per_angstrom": true,
+        "finite_difference_abs_hartree_per_angstrom": true,
+        "native_ase_energy_abs_hartree": true,
+        "native_ase_force_max_abs_hartree_per_angstrom": false,
+        "xtb_energy_abs_hartree": true,
+        "xtb_force_max_abs_hartree_per_angstrom": false
+      },
+      "coordinates_angstrom": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.98,
+          0.0,
+          0.05
+        ],
+        [
+          -0.49,
+          0.85,
+          -0.02
+        ],
+        [
+          -0.46,
+          -0.79,
+          0.12
+        ]
+      ],
+      "deltas": {
+        "adapter_native_energy_abs_hartree": 0.0,
+        "adapter_native_force_max_abs_hartree_per_angstrom": 9.540979117872439e-18,
+        "finite_difference_abs_hartree_per_angstrom": 3.746871100988869e-07,
+        "native_ase_energy_abs_hartree": 4.937028563745116e-11,
+        "native_ase_force_max_abs_hartree_per_angstrom": 1.1296991259124312e-09,
+        "xtb_energy_abs_hartree": 6.219887715985806e-09,
+        "xtb_force_max_abs_hartree_per_angstrom": 0.005483105748616962
+      },
+      "energies_hartree": {
+        "tblite_adapter": -5.081995893698306,
+        "tblite_ase": -5.081995893747676,
+        "tblite_native": -5.081995893698306,
+        "xtb": -5.081995887478418
+      },
+      "fd_coordinate": [
+        1,
+        0
+      ],
+      "finite_difference_force_hartree_per_angstrom": -0.006052571097647785,
+      "fixture_id": "hydronium_perturbed",
+      "forces_hartree_per_angstrom": {
+        "tblite_adapter": [
+          [
+            0.0496933489414642,
+            0.08385622207692993,
+            -0.02233751107900274
+          ],
+          [
+            -0.0060521964105376864,
+            0.0022973614621787757,
+            0.0029147132675796565
+          ],
+          [
+            0.00459390265525998,
+            -0.004281589049989814,
+            0.00348772070224025
+          ],
+          [
+            -0.048235055186186516,
+            -0.08187199448911887,
+            0.01593507710918281
+          ]
+        ],
+        "tblite_ase": [
+          [
+            0.04969334875893641,
+            0.08385622176782971,
+            -0.022337510920965552
+          ],
+          [
+            -0.0060521973528957955,
+            0.002297361459202379,
+            0.002914713233348544
+          ],
+          [
+            0.004593903122769769,
+            -0.004281589867612414,
+            0.0034877207351431297
+          ],
+          [
+            -0.048235054528810425,
+            -0.08187199335941975,
+            0.015935076952473877
+          ]
+        ],
+        "tblite_native": [
+          [
+            0.0496933489414642,
+            0.08385622207692993,
+            -0.02233751107900274
+          ],
+          [
+            -0.006052196410537677,
+            0.0022973614621787757,
+            0.002914713267579657
+          ],
+          [
+            0.004593902655259978,
+            -0.0042815890499898175,
+            0.00348772070224025
+          ],
+          [
+            -0.048235055186186516,
+            -0.08187199448911887,
+            0.01593507710918281
+          ]
+        ],
+        "xtb": [
+          [
+            0.04969332792133491,
+            0.08933932782554689,
+            -0.02233555759945873
+          ],
+          [
+            -0.006052645663460227,
+            -0.0031853830190001976,
+            0.0029140477291858197
+          ],
+          [
+            0.004594378518513584,
+            -0.004281882497883636,
+            0.003487098555788322
+          ],
+          [
+            -0.048235060776388256,
+            -0.08187206230866304,
+            0.0159344113144846
+          ]
+        ]
+      },
+      "input_hash": "c360f667cb1122aa4b4d75a23e6dcecb63a9edc917ac7f36d37a5f829cc70d12",
+      "multiplicity": 1,
+      "status": "success",
+      "symbols": [
+        "O",
+        "H",
+        "H",
+        "H"
+      ],
+      "timings_seconds": {
+        "finite_difference_pair": 0.924097892944701,
+        "tblite_adapter": 0.009221998043358326,
+        "tblite_ase": 0.009631952038034797,
+        "tblite_native": 0.009224861045368016,
+        "xtb": 0.29452317603863776
+      }
+    },
+    {
+      "charge": -1,
+      "checks": {
+        "adapter_native_energy_abs_hartree": true,
+        "adapter_native_force_max_abs_hartree_per_angstrom": true,
+        "finite_difference_abs_hartree_per_angstrom": true,
+        "native_ase_energy_abs_hartree": true,
+        "native_ase_force_max_abs_hartree_per_angstrom": true,
+        "xtb_energy_abs_hartree": true,
+        "xtb_force_max_abs_hartree_per_angstrom": true
+      },
+      "coordinates_angstrom": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.99,
+          0.03,
+          0.02
+        ]
+      ],
+      "deltas": {
+        "adapter_native_energy_abs_hartree": 0.0,
+        "adapter_native_force_max_abs_hartree_per_angstrom": 0.0,
+        "finite_difference_abs_hartree_per_angstrom": 2.2515759968630422e-07,
+        "native_ase_energy_abs_hartree": 1.06403774680075e-11,
+        "native_ase_force_max_abs_hartree_per_angstrom": 8.649979968411436e-10,
+        "xtb_energy_abs_hartree": 5.271330039136046e-10,
+        "xtb_force_max_abs_hartree_per_angstrom": 1.3672306073408969e-07
+      },
+      "energies_hartree": {
+        "tblite_adapter": -4.681569163075852,
+        "tblite_ase": -4.681569163065212,
+        "tblite_native": -4.681569163075852,
+        "xtb": -4.681569162548719
+      },
+      "fd_coordinate": [
+        1,
+        0
+      ],
+      "finite_difference_force_hartree_per_angstrom": -0.016747879976186653,
+      "fixture_id": "hydroxide_perturbed",
+      "forces_hartree_per_angstrom": {
+        "tblite_adapter": [
+          [
+            0.016747654818586966,
+            0.0005075046914723286,
+            0.0003383364609815187
+          ],
+          [
+            -0.016747654818586966,
+            -0.0005075046914723286,
+            -0.0003383364609815187
+          ]
+        ],
+        "tblite_ase": [
+          [
+            0.016747655683584963,
+            0.0005075047176843942,
+            0.0003383364784562462
+          ],
+          [
+            -0.016747655683584963,
+            -0.0005075047176843942,
+            -0.0003383364784562462
+          ]
+        ],
+        "tblite_native": [
+          [
+            0.016747654818586966,
+            0.0005075046914723286,
+            0.0003383364609815187
+          ],
+          [
+            -0.016747654818586966,
+            -0.0005075046914723286,
+            -0.0003383364609815187
+          ]
+        ],
+        "xtb": [
+          [
+            0.0167477915416477,
+            0.0005075088345953679,
+            0.0003383392230636266
+          ],
+          [
+            -0.016747791541647697,
+            -0.0005075088345953679,
+            -0.00033833922306362654
+          ]
+        ]
+      },
+      "input_hash": "ca5cf9a4a2431a6f18830bd735f0bef5986f92cee10e7c0d718da1ad859bda47",
+      "multiplicity": 1,
+      "status": "success",
+      "symbols": [
+        "O",
+        "H"
+      ],
+      "timings_seconds": {
+        "finite_difference_pair": 0.06208896590396762,
+        "tblite_adapter": 0.010318348067812622,
+        "tblite_ase": 0.00990832201205194,
+        "tblite_native": 0.009589516906999052,
+        "xtb": 0.26650423696264625
+      }
+    }
+  ],
+  "gates": {
+    "all_fixtures_completed": true,
+    "angstrom_finite_difference": true,
+    "independent_xtb_parity": false,
+    "repeatability": true,
+    "tblite_interface_parity": false
+  },
+  "limits": [
+    "Fixtures are explicit qualification geometries, not training data and not equilibrium claims.",
+    "tblite adapter/native/ASE are three unit/interface paths over the same implementation, not independent physical methods.",
+    "xTB is the independent GFN2 implementation check; passing does not establish broad chemical accuracy.",
+    "No CUDA, CP2K, transition-state, dataset-admission, model-training, or mechanism result is claimed.",
+    "The tested scope may seed bounded same-domain pairing only; untested charge, spin, periodic, solvent, and larger-domain cases remain unknown."
+  ],
+  "planned_max_calls": 37,
+  "protocol": {
+    "accuracy": 1.0,
+    "electronic_temperature": 300.0,
+    "max_iterations": 250,
+    "solvent": null
+  },
+  "qualified_scope": "none",
+  "repeatability": {
+    "checks": {
+      "repeat_energy_abs_hartree": true,
+      "repeat_force_max_abs_hartree_per_angstrom": true
+    },
+    "deltas": {
+      "repeat_energy_abs_hartree": 0.0,
+      "repeat_force_max_abs_hartree_per_angstrom": 8.673617379884035e-18
+    },
+    "fixture_id": "water_perturbed",
+    "status": "success",
+    "timing_seconds": 0.009791434975340962
+  },
+  "runtime": {
+    "ase": "3.29.0",
+    "host": "node2",
+    "numpy": "1.26.4",
+    "python": "3.10.19",
+    "tblite": "0.7.0",
+    "xtb": "22.1"
+  },
+  "schema": "xtbflow-gfn2-qualification/v1",
+  "scientific_qualification": false,
+  "script_sha256": "84706cb111d799fa2ef9761fa59539ac5d8269566a398c0c0bd46a9d38e6db7a",
+  "source_commit": "68d85ec5153a753117d1de85550e419bc7f27bf6",
+  "status": "qualification_failed",
+  "thresholds_predeclared": {
+    "adapter_native_energy_abs_hartree": 1e-12,
+    "adapter_native_force_max_abs_hartree_per_angstrom": 1e-10,
+    "finite_difference_abs_hartree_per_angstrom": 5e-05,
+    "native_ase_energy_abs_hartree": 1e-10,
+    "native_ase_force_max_abs_hartree_per_angstrom": 1e-09,
+    "repeat_energy_abs_hartree": 1e-12,
+    "repeat_force_max_abs_hartree_per_angstrom": 1e-10,
+    "xtb_energy_abs_hartree": 0.0001,
+    "xtb_force_max_abs_hartree_per_angstrom": 0.001
+  }
+}

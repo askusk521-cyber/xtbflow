@@ -139,6 +139,12 @@ python scripts/publish_cp2k_convergence_evidence.py \
 
 路径清理后的负结果见 `docs/evidence/gfn2_dimer_pilot_b755757.json`。该记录不得删除或重新标记为通过；后续驱动必须在新提交、新 ledger 和新 artifact 目录中加入刚体模态投影后重放。即使后续 dimer 搜索收敛，仍须单独完成 Hessian/相关虚频和双向端点验证，才能改变 `path_status`。
 
+### 2026-09-29 刚体投影后重放（source commit `ae3da3c`）
+
+修复版正确识别线性 H₃ 的 5 个刚体自由度；预算耗尽时的最终模态为 `[0.596, 0.186, -0.782]`，分量和约为 `-2.36e-9`，不再是整体平移。新 ledger 再次恰好结算 96 次调用、无 pending reservation，并保留 11 个优化步和 JSONL 轨迹。
+
+该重放仍为 **fail**：起始对称构型的外侧 H 实际力约为 `±0.08054 Ha/Å`，声明反应模态曲率为正 `18.35 eV/Å²`；搜索过程中曲率升至 `101.19 eV/Å²`。因此问题从“驱动刚体污染”收敛为“该 H₃/GFN2 初猜不在负曲率 TS 区域”。不得通过增加预算把它改写成成功；后续应改用经过低成本力/曲率筛选的候选。机器可读证据见 `docs/evidence/gfn2_dimer_pilot_ae3da3c.json`。
+
 ## 证据发布规则
 
 公共证据可以包含：

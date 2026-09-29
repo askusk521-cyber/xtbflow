@@ -304,8 +304,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "c90d3c193e95d4992f5c28c3c5b4a5ca62cb9bf6a7f5172223cbc2f1423b1b4a",
-      "bytes": 18682
+      "sha256": "66835fffcbf04c020f1b26a012c2710e28055f5d55ba30cad7d37fa61b876a11",
+      "bytes": 19894
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -314,8 +314,8 @@
     },
     {
       "path": "docs/TRACK_B_DATA_GATE.md",
-      "sha256": "a85e8c18a32c614118c0e82a3b8a52b70652f74a06a1d677dce97e87ce16027e",
-      "bytes": 8854
+      "sha256": "7d4237a25238a6a84fd4f87b255a52ae3e8d2dec84ec280a05ff97ba97953a99",
+      "bytes": 10677
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -396,6 +396,11 @@
       "path": "docs/evidence/joint_flow_smoke_20260929_v3.json",
       "sha256": "41555c2528ef65c71a18e4ff7908ae3f86affa75dad52fef7ed078eacbd6d0cd",
       "bytes": 4826
+    },
+    {
+      "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
+      "sha256": "cbdd9b63b5cad70fbadf0ae8060e00a0aff4e439a10864bbbd7aec87ce8b9bbd",
+      "bytes": 7458
     },
     {
       "path": "docs/evidence/search_attempt_manifest_audit_20260929.json",

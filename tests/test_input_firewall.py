@@ -60,9 +60,9 @@ def test_public_manifest_preserves_quarantine_and_reconstructs_spice_pilot_split
     rows = load_jsonl(Path("data/manifests/public_records.v1.jsonl"))
     historical = [row for row in rows if row.source_dataset != "spice2_openff_v1.1_pilot"]
     spice = [row for row in rows if row.source_dataset == "spice2_openff_v1.1_pilot"]
-    assert len(rows) == 70
+    assert len(rows) == 262
     assert len(historical) == 6 and all(row.admission == "quarantine" for row in historical)
-    assert len(spice) == 64
+    assert len(spice) == 256
     assignments = assign_group_splits(
         rows,
         seed="spice2-openff-pilot-v1-7",
@@ -70,7 +70,18 @@ def test_public_manifest_preserves_quarantine_and_reconstructs_spice_pilot_split
     )
     audit_no_group_leakage(rows, assignments)
     assert all(assignments[row.record_id] == row.admission for row in spice)
-    assert len(admitted_records(rows, assignments)) == 64
+    assert len(admitted_records(rows, assignments)) == 256
+    groups = {}
+    for row in spice:
+        groups.setdefault(row.split_group, []).append(row)
+    assert len(groups) == 64
+    assert {len(group) for group in groups.values()} == {4}
+    parent_splits = {"train": 0, "validation": 0, "test": 0}
+    for group in groups.values():
+        split_values = {row.admission for row in group}
+        assert len(split_values) == 1
+        parent_splits[split_values.pop()] += 1
+    assert parent_splits == {"train": 48, "validation": 8, "test": 8}
 
 
 def test_record_policy_quarantines_out_of_scope_and_parity_rows_deterministically():

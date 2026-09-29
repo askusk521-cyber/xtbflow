@@ -1,0 +1,139 @@
+{
+  "admission_status": "pilot_admitted",
+  "canonical_conversion": {
+    "angstrom_per_nm": 10.0,
+    "hartree_kj_per_mol": 2625.499639479163
+  },
+  "charge_counts": {
+    "-1": 48,
+    "0": 156,
+    "1": 52
+  },
+  "config_indices": [
+    0,
+    3,
+    6,
+    9
+  ],
+  "eligible_records": 81,
+  "frozen_parent_manifest": "data/manifests/spice2_openff_pilot_20260929.jsonl",
+  "limits": [
+    "This is a 64-independent-parent development set with 4 frozen configuration indices per parent.",
+    "Records with varying charge, charge outside -1/0/+1, radicals, odd electron count, or elements outside H/C/N/O/S are excluded.",
+    "Multiplicity=1 is admitted only for radical-free explicit-H SMILES with even electron count under the documented SPICE/QCSchema closed-shell workflow.",
+    "Source labels are reference E/F; no new DFT is generated."
+  ],
+  "observed_source_configs": 1000,
+  "observed_source_records": 100,
+  "parent_split_counts": {
+    "test": 8,
+    "train": 48,
+    "validation": 8
+  },
+  "reference_method": "B3LYP-D3BJ/DZVP",
+  "rejected_records": 19,
+  "rejections": [
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "ala-gln_C11H20N4O4"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "ala-hip_C12H20N5O3"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "ala-lys_C12H25N4O3"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "ala-trp_C17H22N4O3"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "arg-arg_C15H33N9O3"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "ash-glh_C12H19N3O7"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "asp-ala_C10H16N3O5"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "cys-asn_C10H18N4O4S"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "cys-glu_C11H18N3O5S"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "cyx-asn_C10H17N4O4S"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "cyx-glh_C11H18N3O5S"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "cyx-glu_C11H17N3O5S"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "cyx-gly_C8H14N3O3S"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "cyx-met_C11H20N3O3S2"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "cyx-val_C11H20N3O3S"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "glh-hie_C14H21N5O5"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "gln-arg_C14H28N7O4"
+    },
+    {
+      "reason": "charge_varies_across_configs",
+      "record_id": "glu-ala_C11H18N3O5"
+    },
+    {
+      "reason": "charge_outside_pilot_scope",
+      "record_id": "glu-asp_C12H17N3O7"
+    }
+  ],
+  "schema": "xtbflow-spice2-openff-admission/v1",
+  "selected_configs": 256,
+  "selected_records": 64,
+  "selection_policy": "parent identities and splits frozen from prior manifest; explicit config indices only; no result-based selection",
+  "source": "spice_2_openff_dataset_v1.1_ntc_1000_HCNOFClS.hdf5",
+  "source_reference": "modelforge curated SPICE2 OpenFF v1.1 ntc_1000_HCNOFClS",
+  "source_sha256": "711a88d2bbc6fe3d39478ddf28cca186a65d882975edb07cb42798cf445c6213",
+  "source_units": {
+    "dft_total_energy": "kilojoule_per_mole",
+    "dft_total_force": "kilojoule_per_mole / nanometer",
+    "positions": "nanometer",
+    "total_charge": "elementary_charge"
+  },
+  "split_contract": "same SHA-256 seed/group bucket rule as xtbflow.data.splits.assign_group_splits",
+  "split_counts": {
+    "test": 32,
+    "train": 192,
+    "validation": 32
+  },
+  "split_ratios": {
+    "test": 0.125,
+    "train": 0.75,
+    "validation": 0.125
+  },
+  "split_seed": "spice2-openff-pilot-v1-7",
+  "sulfur_records": 68
+}

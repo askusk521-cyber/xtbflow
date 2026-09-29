@@ -24,6 +24,32 @@ from .records import (
 from .splits import SplitError, admitted_records, assign_group_splits, audit_no_group_leakage
 from .pairing import EFPair, PAIR_CANONICAL_UNITS, build_ef_pair, failure_pair, geometry_hash
 from .cache import append_pair_cache, load_pair_cache
+from .track_b import (
+    TRACK_B_SCHEMA,
+    TrackBFilterResult,
+    TrackBLeakageError,
+    TrackBRecord,
+    audit_track_b_leakage,
+    filter_track_b_records,
+    load_track_b_jsonl,
+    write_track_b_jsonl,
+)
+from .independent_seeds import (
+    INDEPENDENT_SEED_SCHEMA,
+    SEED_SPLIT_ROLES,
+    IndependentReactantSeed,
+    SeedLeakageError,
+    audit_seed_leakage,
+    load_seed_jsonl,
+    write_seed_jsonl,
+)
+from .attempts import (
+    EVIDENCE_STATES,
+    SEARCH_ATTEMPT_SCHEMA,
+    SearchAttempt,
+    append_attempt_jsonl,
+    load_attempt_jsonl,
+)
 
 _TASK_VIEW_EXPORTS = (
     "EndpointGeometryInput",
@@ -49,5 +75,10 @@ __all__ = [
     "filter_records", "load_jsonl", "write_jsonl", "SplitError", "admitted_records",
     "assign_group_splits", "audit_no_group_leakage",
     "EFPair", "PAIR_CANONICAL_UNITS", "build_ef_pair", "failure_pair", "geometry_hash", "append_pair_cache", "load_pair_cache",
+    "TRACK_B_SCHEMA", "TrackBRecord", "TrackBFilterResult", "TrackBLeakageError",
+    "filter_track_b_records", "audit_track_b_leakage", "load_track_b_jsonl", "write_track_b_jsonl",
+    "INDEPENDENT_SEED_SCHEMA", "SEED_SPLIT_ROLES", "IndependentReactantSeed",
+    "SeedLeakageError", "audit_seed_leakage", "load_seed_jsonl", "write_seed_jsonl",
+    "SEARCH_ATTEMPT_SCHEMA", "EVIDENCE_STATES", "SearchAttempt", "append_attempt_jsonl", "load_attempt_jsonl",
     *_TASK_VIEW_EXPORTS,
 ]

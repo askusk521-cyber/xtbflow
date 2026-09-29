@@ -309,8 +309,8 @@
     },
     {
       "path": "docs/WORKFLOW_C2_REFERENCE_VALIDATION.md",
-      "sha256": "3bed18b1e6e57ecc73befabfe66cc8d9e7d6d8ebbcb175a31592f2763f416c99",
-      "bytes": 13115
+      "sha256": "e48d74a80153d453ad89427221b8575a8b5ae50906693df056bca060aa202c61",
+      "bytes": 14565
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -386,6 +386,11 @@
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
       "sha256": "a8f35cecb50117422a0dd28953d079634aa780dd5336baf6ee23cfd817952d57",
       "bytes": 6712
+    },
+    {
+      "path": "docs/evidence/gfn2_nh3_path_409e906.json",
+      "sha256": "83784da69ad637625b05ca532c2f391c5bada90876622d4519bcc980ca1a5896",
+      "bytes": 20922
     },
     {
       "path": "docs/evidence/gfn2_qualification_20260929.json",

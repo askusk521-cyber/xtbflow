@@ -1,0 +1,739 @@
+{
+  "artifact_index": [
+    {
+      "relative_path": "endpoints/minus/bfgs.restart.json",
+      "sha256": "cbc0465d8401b1d992644bd76603fbf59ba27c3c48297d4d49d534fa6437d14e",
+      "size_bytes": 3714
+    },
+    {
+      "relative_path": "endpoints/minus/optimizer.log",
+      "sha256": "4337692ce74ff4ad6b5dfa565289463f33b38789c1bc309ff67a3a4173e9b819",
+      "size_bytes": 414
+    },
+    {
+      "relative_path": "endpoints/minus/summary.json",
+      "sha256": "dbd0dd29eba6c0ac653e05d351c2076154716a4dd5d6b5b6e483ae593b45ccd7",
+      "size_bytes": 2866
+    },
+    {
+      "relative_path": "endpoints/minus/trajectory.jsonl",
+      "sha256": "f162d54803137704e034bcb1eb73a25625bcd8ff0a22c17a35e7dcea34e0eb48",
+      "size_bytes": 5204
+    },
+    {
+      "relative_path": "endpoints/plus/bfgs.restart.json",
+      "sha256": "c1dcabde3473372c56f3f8ea3bcd40b463c3077cb09f7ebe48cb1d39e232c945",
+      "size_bytes": 3698
+    },
+    {
+      "relative_path": "endpoints/plus/optimizer.log",
+      "sha256": "4337692ce74ff4ad6b5dfa565289463f33b38789c1bc309ff67a3a4173e9b819",
+      "size_bytes": 414
+    },
+    {
+      "relative_path": "endpoints/plus/summary.json",
+      "sha256": "a17a368546bcfb6b467a709d3fd052238b7282f163055afe78da6c951129084e",
+      "size_bytes": 2862
+    },
+    {
+      "relative_path": "endpoints/plus/trajectory.jsonl",
+      "sha256": "d905b2d296931b52a6ceb41fd0488c30062e17701fb8440324178bbe758b71d4",
+      "size_bytes": 5241
+    },
+    {
+      "relative_path": "hessian.json",
+      "sha256": "01f1fdd6762a17ac2b245a395b8c25aced9ac9f742b42b1abddabbbbc10b809b",
+      "size_bytes": 7422
+    }
+  ],
+  "ase_path_driver_sha256": "9021a0b294aa6bc60b69d2d3454138defdf31a2fa50f1b6394a45117445cb35a",
+  "calculator_accounting": {
+    "endpoint_calls": 14,
+    "hessian_calls": 13,
+    "total_calls": 27
+  },
+  "claim_limits": [
+    "This is a GFN2 development path for validating software and low-cost physical gates, not a CP2K or higher-level reference transition state.",
+    "The internal Cartesian Hessian is reported in energy-per-length-squared units; no harmonic frequencies or thermochemistry are claimed.",
+    "NH3 inversion preserves bond connectivity, so the observed bond-edit event is empty and must not be presented as a bond-changing reaction.",
+    "Opposite pyramidal endpoint descriptors establish a conformational double-well path only within this finite gas-phase GFN2 model.",
+    "No solution-phase mechanism, barrier accuracy, kinetic dominance, or general TS-search accuracy claim is permitted."
+  ],
+  "config_sha256": "03e04a1fc52c2cff578fc10d3a99f9f3f17b1a03e8534352724db9f7fce3887d",
+  "curvature_driver_sha256": "3fbd42b8f13ef9382636a818073fe25b9f2ccbe7e25fe185ccf302615d19d841",
+  "development_path_status": "validated",
+  "endpoint_pair_gate": {
+    "endpoint_pair_gate_pass": true,
+    "minus_signed_distance_angstrom": -0.36683693584121835,
+    "observed_bond_event": [],
+    "opposite_signs": true,
+    "plus_signed_distance_angstrom": 0.36683693584122057,
+    "require_opposite_signs": true,
+    "same_bond_connectivity_expected": true
+  },
+  "endpoints": {
+    "minus": {
+      "calculator_accounting": {
+        "committed_calculator_calls": 7,
+        "committed_tokens": {
+          "gfn2-endpoint-minus": {
+            "calculator_calls": 96,
+            "consumed_calls": 7,
+            "released_calls": 89
+          }
+        },
+        "ledger_sha256": "58fcf8e3eab06da375ff57edcfad1988a75701407ef3345dfe17cd7234c2a2f3",
+        "pending_reservations": {},
+        "settled": true
+      },
+      "direction": "minus",
+      "energy_delta_from_transition_state_hartree": -0.009737215869297877,
+      "gate_evaluation": {
+        "distance_gate_pass": true,
+        "endpoint_gate_pass": true,
+        "energy_below_transition_state": true,
+        "gradient_norm_hartree_per_angstrom": 1.169795474760643e-06,
+        "max_gradient_norm_hartree_per_angstrom": 0.0005,
+        "minimum_absolute_distance_angstrom": 0.1,
+        "optimizer_converged": true,
+        "require_energy_below_transition_state": true
+      },
+      "initial_coordinates_angstrom": [
+        [
+          -1.5014152811245638e-11,
+          2.4001257377962413e-13,
+          -0.17320508075688773
+        ],
+        [
+          0.9927345316435577,
+          -4.013142464986451e-13,
+          0.05773502691662563
+        ],
+        [
+          -0.49636726581455004,
+          0.8597333236235859,
+          0.05773502692013104
+        ],
+        [
+          -0.4963672658139935,
+          -0.8597333236234247,
+          0.05773502692013105
+        ]
+      ],
+      "order_parameter": {
+        "error": null,
+        "kind": "signed_atom_plane_distance",
+        "signed_distance_angstrom": -0.36683693584121835
+      },
+      "relaxation_result": {
+        "artifact_files": [
+          "bfgs.restart.json",
+          "optimizer.log",
+          "trajectory.jsonl"
+        ],
+        "calculator_calls": 7,
+        "config_identity": "a67ee97a6f74261dc0d742860713f20377aa427fa7d9ea87c1b57b979713dec8",
+        "converged": true,
+        "coordinates_angstrom": [
+          [
+            -1.3178648058453366e-12,
+            -3.669563797240036e-15,
+            -0.2751277018809138
+          ],
+          [
+            0.9438862033025438,
+            3.3816346928657114e-14,
+            0.09170923395614712
+          ],
+          [
+            -0.4719431016505847,
+            0.8174294303393668,
+            0.09170923396242724
+          ],
+          [
+            -0.4719431016506411,
+            -0.8174294303393971,
+            0.09170923396233942
+          ]
+        ],
+        "energy_hartree": -4.4262440404530405,
+        "error": null,
+        "forces_hartree_per_angstrom": [
+          [
+            2.0104342400179955e-12,
+            2.839699405234517e-16,
+            2.8762022948525386e-07
+          ],
+          [
+            6.475888931747653e-07,
+            -1.7394477801139422e-14,
+            -9.587393066835496e-08
+          ],
+          [
+            -3.2379546669859793e-07,
+            5.608308923434593e-07,
+            -9.587314958780877e-08
+          ],
+          [
+            -3.237954369326847e-07,
+            -5.608308752399944e-07,
+            -9.587314920284856e-08
+          ]
+        ],
+        "gradient_norm_hartree_per_angstrom": 1.169795474760643e-06,
+        "optimizer_steps": 6,
+        "rigid_body_rank": 6,
+        "status": "success"
+      },
+      "status": "pass"
+    },
+    "plus": {
+      "calculator_accounting": {
+        "committed_calculator_calls": 7,
+        "committed_tokens": {
+          "gfn2-endpoint-plus": {
+            "calculator_calls": 96,
+            "consumed_calls": 7,
+            "released_calls": 89
+          }
+        },
+        "ledger_sha256": "d2d9dc833316f11860de8a117d0e2a7e9de4e7c9c642438fed1b2f2b60acf343",
+        "pending_reservations": {},
+        "settled": true
+      },
+      "direction": "plus",
+      "energy_delta_from_transition_state_hartree": -0.009737215869293436,
+      "gate_evaluation": {
+        "distance_gate_pass": true,
+        "endpoint_gate_pass": true,
+        "energy_below_transition_state": true,
+        "gradient_norm_hartree_per_angstrom": 1.1697954752503368e-06,
+        "max_gradient_norm_hartree_per_angstrom": 0.0005,
+        "minimum_absolute_distance_angstrom": 0.1,
+        "optimizer_converged": true,
+        "require_energy_below_transition_state": true
+      },
+      "initial_coordinates_angstrom": [
+        [
+          -1.512308789442186e-11,
+          -2.40025657607801e-13,
+          0.17320508075688773
+        ],
+        [
+          0.9927345316435278,
+          4.0126597800288046e-13,
+          -0.05773502691662563
+        ],
+        [
+          -0.4963672658139241,
+          0.859733323623468,
+          -0.05773502692013104
+        ],
+        [
+          -0.49636726581448054,
+          -0.8597333236236292,
+          -0.05773502692013105
+        ]
+      ],
+      "order_parameter": {
+        "error": null,
+        "kind": "signed_atom_plane_distance",
+        "signed_distance_angstrom": 0.36683693584122057
+      },
+      "relaxation_result": {
+        "artifact_files": [
+          "bfgs.restart.json",
+          "optimizer.log",
+          "trajectory.jsonl"
+        ],
+        "calculator_calls": 7,
+        "config_identity": "a67ee97a6f74261dc0d742860713f20377aa427fa7d9ea87c1b57b979713dec8",
+        "converged": true,
+        "coordinates_angstrom": [
+          [
+            -1.3217981261839859e-12,
+            3.2243309073813375e-15,
+            0.27512770188091545
+          ],
+          [
+            0.9438862033025536,
+            -3.363575720244695e-14,
+            -0.09170923395613208
+          ],
+          [
+            -0.47194310165064407,
+            0.8174294303393889,
+            -0.09170923396234783
+          ],
+          [
+            -0.47194310165058767,
+            -0.8174294303393586,
+            -0.09170923396243552
+          ]
+        ],
+        "energy_hartree": -4.426244040453036,
+        "error": null,
+        "forces_hartree_per_angstrom": [
+          [
+            2.022817613887182e-12,
+            6.312491967913092e-16,
+            -2.8762022926259563e-07
+          ],
+          [
+            6.475888814148423e-07,
+            1.7342750863245098e-14,
+            9.587393379572809e-08
+          ],
+          [
+            -3.237954369554949e-07,
+            5.60830882003514e-07,
+            9.587314780421778e-08
+          ],
+          [
+            -3.2379546731859524e-07,
+            -5.60830899961565e-07,
+            9.587314763640398e-08
+          ]
+        ],
+        "gradient_norm_hartree_per_angstrom": 1.1697954752503368e-06,
+        "optimizer_steps": 6,
+        "rigid_body_rank": 6,
+        "status": "success"
+      },
+      "status": "pass"
+    }
+  },
+  "hessian": {
+    "base_evaluation": {
+      "energy_hartree": -4.416506824583743,
+      "error": null,
+      "gradient_norm_hartree_per_angstrom": 3.275187997245202e-07,
+      "status": "success"
+    },
+    "calculator_accounting": {
+      "committed_calculator_calls": 13,
+      "committed_tokens": {
+        "gfn2-internal-hessian": {
+          "calculator_calls": 13,
+          "consumed_calls": 13,
+          "released_calls": 0
+        }
+      },
+      "ledger_sha256": "46a5396aa8342f4f3f8b1d84167f9c77162af3a09c7eec2623c8c42d4440c314",
+      "pending_reservations": {},
+      "settled": true
+    },
+    "dimer_mode_absolute_overlap": 1.0,
+    "dimer_mode_signed_overlap": 1.0,
+    "eigenvalues_eV_per_angstrom2": [
+      -11.50769202063407,
+      11.57138783593002,
+      11.571483670328618,
+      48.38121301877529,
+      115.98489473916612,
+      115.98527348336009
+    ],
+    "eigenvalues_hartree_per_angstrom2": [
+      -0.42289988500876674,
+      0.4252406630653829,
+      0.4252441849146012,
+      1.7779767989565434,
+      4.262366298993517,
+      4.262380217586037
+    ],
+    "finite_difference_result": {
+      "basis": [
+        [
+          [
+            -0.7500000000015299,
+            -4.381797008568001e-12,
+            1.838320860872102e-17
+          ],
+          [
+            0.2500000000025499,
+            0.2886751345962736,
+            -1.532187913521571e-17
+          ],
+          [
+            0.49999999999643036,
+            -0.14433756729594593,
+            -1.6444290138202647e-18
+          ],
+          [
+            2.5498630984444052e-12,
+            -0.1443375672959459,
+            -1.4169004596850586e-18
+          ]
+        ],
+        [
+          [
+            -0.14433756729360275,
+            -0.5000000000025286,
+            4.730929308984736e-17
+          ],
+          [
+            0.24056261215600458,
+            -4.570899214684232e-12,
+            -2.015342516840315e-17
+          ],
+          [
+            -0.19245008972568697,
+            0.7500000000035497,
+            -1.5030485933458696e-17
+          ],
+          [
+            0.09622504486328513,
+            -0.24999999999645028,
+            -1.2125381987985682e-17
+          ]
+        ],
+        [
+          [
+            -0.20412420623877897,
+            0.3535534962552439,
+            -0.6123722526776454
+          ],
+          [
+            0.34020701039796497,
+            -0.3535534962581268,
+            0.20412408421761943
+          ],
+          [
+            -0.2721656083196211,
+            1.4414283923218593e-12,
+            0.20412408423001302
+          ],
+          [
+            0.13608280416043514,
+            1.441442270109667e-12,
+            0.20412408423001296
+          ]
+        ],
+        [
+          [
+            -0.24999999999847008,
+            4.381797008568e-12,
+            -1.7340293849917475e-17
+          ],
+          [
+            -0.5833333333358831,
+            -0.28867513459627353,
+            1.188061520109476e-17
+          ],
+          [
+            0.1666666666702364,
+            0.1443375672959459,
+            2.8436036014789677e-18
+          ],
+          [
+            0.6666666666641169,
+            0.14433756729594588,
+            2.616075047343763e-18
+          ]
+        ],
+        [
+          [
+            -0.14433756729360273,
+            -0.5000000000025285,
+            4.7309293055226926e-17
+          ],
+          [
+            0.24056261215600455,
+            -4.570889962825693e-12,
+            -2.015342515686303e-17
+          ],
+          [
+            -0.19245008972568692,
+            -0.24999999999645026,
+            -1.4935904078106035e-17
+          ],
+          [
+            0.09622504486328512,
+            0.7500000000035497,
+            -1.2219963820258228e-17
+          ]
+        ],
+        [
+          [
+            0.20412408422669773,
+            -0.3535532849241202,
+            -0.6123726187138889
+          ],
+          [
+            -0.34020680704449624,
+            0.35355328492700305,
+            0.20412420622970068
+          ],
+          [
+            0.2721654456368461,
+            -1.4414191404672312e-12,
+            0.20412420624209407
+          ],
+          [
+            -0.13608272281904762,
+            -1.4414468960428468e-12,
+            0.20412420624209424
+          ]
+        ]
+      ],
+      "calculator_calls": 12,
+      "eigenvalues": [
+        -0.42289988500876674,
+        0.4252406630653829,
+        0.4252441849146012,
+        1.7779767989565434,
+        4.262366298993517,
+        4.262380217586037
+      ],
+      "eigenvectors": [
+        [
+          -1.663577641627521e-12,
+          -0.4898519978868562,
+          0.3101688842935793,
+          2.559248632144861e-06,
+          -0.8052839963306268,
+          0.12392727153277255
+        ],
+        [
+          -1.0960523501474034e-13,
+          -0.34382236952304335,
+          -0.14500025052257093,
+          0.6666681932485465,
+          0.24514813180946138,
+          0.5968391903561638
+        ],
+        [
+          0.7071065698570875,
+          0.28912782163378653,
+          -0.4717549084565623,
+          0.23570116618556874,
+          -0.3669090907980002,
+          -0.060624972725217
+        ],
+        [
+          1.134578864853382e-12,
+          -0.4580582144744845,
+          -0.6428409156520782,
+          -0.5773483332115967,
+          0.06173256170715405,
+          0.19948990520552223
+        ],
+        [
+          1.067310693938974e-13,
+          0.5146107033309992,
+          0.15627100330311455,
+          -0.33333528042163624,
+          -0.13551667301698964,
+          0.76241590992348
+        ],
+        [
+          0.7071069925159446,
+          -0.2891276488140461,
+          0.4717546264763536,
+          -0.23570102529889925,
+          0.36690887148360096,
+          0.06062493648781858
+        ]
+      ],
+      "error": null,
+      "matrix": [
+        [
+          2.972479785157139,
+          -0.47368696803237226,
+          1.1049117713830932,
+          -0.09589214320658962,
+          0.7812910333543142,
+          -1.1049111109365508
+        ],
+        [
+          -0.47368696803237226,
+          2.623916031756014,
+          -0.2714171224396291,
+          -0.005735033204950366,
+          1.3179645756858809,
+          0.2714169602047195
+        ],
+        [
+          1.1049117713830932,
+          -0.2714171224396291,
+          0.6069883153971881,
+          -0.31739997558391253,
+          -0.09284879616889194,
+          -1.0298875848080993
+        ],
+        [
+          -0.09589214320658962,
+          -0.005735033204950366,
+          -0.31739997558391253,
+          1.0434777356626868,
+          0.8118408606775848,
+          0.31739978586181605
+        ],
+        [
+          0.7812910333543142,
+          1.3179645756858809,
+          -0.09284879616889194,
+          0.8118408606775848,
+          2.8764593263324434,
+          0.09284874067064927
+        ],
+        [
+          -1.1049111109365508,
+          0.2714169602047195,
+          -1.0298875848080993,
+          0.31739978586181605,
+          0.09284874067064927,
+          0.6069870842018452
+        ]
+      ],
+      "status": "success"
+    },
+    "gate_evaluation": {
+      "expected_negative_modes": 1,
+      "gradient_within_limit": true,
+      "hessian_gate_pass": true,
+      "max_gradient_norm_hartree_per_angstrom": 0.0005,
+      "minimum_absolute_dimer_mode_overlap": 0.95,
+      "mode_overlap_pass": true,
+      "negative_threshold_eV_per_angstrom2": 0.05,
+      "observed_negative_modes": 1
+    },
+    "internal_dimension": 6,
+    "negative_mode_indices": [
+      0
+    ],
+    "rigid_body_rank": 6,
+    "selected_negative_mode": [
+      [
+        -2.7233770794055085e-13,
+        -1.2000955784685628e-12,
+        0.8660254037844386
+      ],
+      [
+        -7.510658761589183e-14,
+        2.0064505612538138e-12,
+        -0.28867513458312816
+      ],
+      [
+        1.5649981310872359e-12,
+        -2.9499834226786083e-13,
+        -0.2886751346006552
+      ],
+      [
+        -1.2175260799551777e-12,
+        -5.113248335898334e-13,
+        -0.28867513460065525
+      ]
+    ],
+    "status": "pass"
+  },
+  "observed_bond_event": [],
+  "parent_evidence": {
+    "relative_path": "docs/evidence/gfn2_dimer_nh3_refine_89cfed9.json",
+    "sha256": "3f21c58be89860c641d0f8e70fbed8135047104020dcb08cb8a54fb6a51c2d2c",
+    "source_commit": "89cfed9feb48a829be387d1b6bb78d2c60e255f2"
+  },
+  "protocol": {
+    "backend": "cpu",
+    "method": "GFN2-xTB",
+    "parameters": {
+      "accuracy": 1.0,
+      "electronic_temperature": 300.0,
+      "implementation": "tblite",
+      "max_iterations": 250,
+      "solvent": null
+    },
+    "protocol_id": "tblite-gfn2-nh3-inversion-path-v1",
+    "protocol_identity": "e780cf79be397674839a6f8ed5899ed886c7ab43f78384077fa9103a6fbfc56a"
+  },
+  "reference_path_status": "not_validated",
+  "runtime": {
+    "build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+    "capabilities": {
+      "backends": [
+        "cpu"
+      ],
+      "build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+      "calculator": "xtb_oracle",
+      "detail": "direct backend is callable; numerical qualification is not asserted",
+      "operations": [
+        "energy",
+        "energy_forces",
+        "forces"
+      ],
+      "qualification": "installed",
+      "status": "unknown",
+      "version": "0.7.0"
+    },
+    "implementation": "tblite",
+    "version": "0.7.0"
+  },
+  "schema": "xtbflow-gfn2-path-pilot-result/v1",
+  "scientific_qualification": false,
+  "script_sha256": "d620e1ca58bf605e1c005334d4dcccc9dba9c77f8e64c41fe26a1abae0a87297",
+  "source_commit": "409e9064240b237a80b93dfb24e6905003844921",
+  "status": "pass",
+  "transition_state": {
+    "dimer_mode": [
+      [
+        5.158627121885577e-29,
+        7.752152869208478e-29,
+        0.8660254037844387
+      ],
+      [
+        -6.394725066145847e-29,
+        2.2241601374292e-17,
+        -0.28867513459366023
+      ],
+      [
+        -1.9261791812668965e-17,
+        -1.1120800687184768e-17,
+        -0.2886751345953894
+      ],
+      [
+        1.9261791812681328e-17,
+        -1.1120800687184759e-17,
+        -0.2886751345953891
+      ]
+    ],
+    "energy_hartree": -4.416506824583743,
+    "gradient_norm_hartree_per_angstrom": 3.275187997245202e-07,
+    "system": {
+      "charge": 0,
+      "coordinates_angstrom": [
+        [
+          -1.506862035283375e-11,
+          -6.541914088417008e-18,
+          3.712540687867957e-18
+        ],
+        [
+          0.9927345316435428,
+          -2.4134247882337458e-17,
+          -1.797684685073142e-18
+        ],
+        [
+          -0.49636726581423707,
+          0.859733323623527,
+          -1.2013734902066459e-18
+        ],
+        [
+          -0.496367265814237,
+          -0.859733323623527,
+          -1.0387431643338202e-18
+        ]
+      ],
+      "environment": {
+        "periodic": false
+      },
+      "multiplicity": 1,
+      "symbols": [
+        "N",
+        "H",
+        "H",
+        "H"
+      ],
+      "system_id": "nh3-planar-inversion-path-development-v1"
+    }
+  },
+  "xtb_oracle_adapter_sha256": "dc223169709870f61b657e359419958b26931e9c8d562af8d6093f9c3c512189"
+}

@@ -156,6 +156,33 @@ python scripts/run_gfn2_dimer_pilot.py \
   --artifact-dir "$RUN_ROOT/nh3-dimer/artifacts"
 ```
 
+### 2026-09-29 NH₃ 内部 Hessian 与双向端点实测（source commit `409e906`）
+
+冻结的平面驻点在本次独立阶段重新计算得到梯度范数
+`3.275187997245202e-7 Ha/Å`。6 维内部 Cartesian Hessian 的特征值为：
+
+```text
+[-11.5076920, 11.5713878, 11.5714837,
+  48.3812130, 115.9848947, 115.9852735] eV/Å²
+```
+
+仅第一个模态低于 `-0.05 eV/Å²`，观察到的负模态数恰为 1；该模态与此前
+dimer 模态的绝对重叠为 `1.0`。Hessian 阶段使用 13 次调用，其中 1 次为冻结
+驻点 E/F，12 次为 6 个内部基方向的中央差分。
+
+沿独立 Hessian 负模态正负各位移 0.2 Å 后，两侧 BFGS 各使用 7 次调用并收敛。
+最终 N 到有序 H₃ 平面的带符号距离分别为
+`+0.36683693584122057 Å` 与 `-0.36683693584121835 Å`；两侧梯度范数约为
+`1.17e-6 Ha/Å`，能量均比平面驻点低约 `0.0097372 Ha`。全部 ledger 均已结算，
+无 pending reservation，总调用数为 27。
+
+因此本轮的 `development_path_status` 为 `validated`，但
+`reference_path_status` 被明确保留为 `not_validated`。原因是全部证据仍来自
+有限气相 GFN2 模型，内部 Hessian 只报告能量/长度平方特征值而非谐振频率，且
+NH₃ 反转的 `observed_bond_event` 为空。机器可读证据见
+`docs/evidence/gfn2_nh3_path_409e906.json`。此前 H₃ 正曲率候选继续作为有效失败
+控制，不得删除或重标记。
+
 ### NH₃ 独立内部 Hessian 与双向端点开发门槛
 
 `configs/validation/gfn2_nh3_path_v0.1.json` 将通过的 dimer 驻点绑定到父证据

@@ -119,7 +119,7 @@ def test_tblite_native_adapter_converts_public_units_at_the_boundary(monkeypatch
         parameters={"accuracy": 1.0, "max_iterations": 100, "electronic_temperature": 300.0, "solvent": None},
     )
     item = MolecularSystem(("H",), ((1.0, 0.0, 0.0),), 0, 3)
-    adapter = XTBOracleAdapter(protocol=native_protocol, implementation="tblite")
+    adapter = XTBOracleAdapter(protocol=native_protocol, implementation="tblite", version="0.7.0-fixture", build_hash="tblite-fixture-build")
     result = adapter.evaluate(item)
 
     assert captured["method"] == "GFN2-xTB"
@@ -131,6 +131,9 @@ def test_tblite_native_adapter_converts_public_units_at_the_boundary(monkeypatch
     assert result.metadata["native_gradient_unit"] == "hartree/bohr"
     assert result.metadata["normalized_force_unit"] == "hartree/angstrom"
     assert result.metadata["adapter_revision"] == "xtb-oracle-native-units-v1"
+    assert result.calculator_build_hash == "tblite-fixture-build"
+    assert result.metadata["implementation_version"] == "0.7.0-fixture"
+    assert result.metadata["implementation_build_hash"] == "tblite-fixture-build"
 
 def test_calculator_token_is_consumed_at_adapter_boundary():
     ledger = RunLedger(StageBudget("P1", max_calculator_calls=2))

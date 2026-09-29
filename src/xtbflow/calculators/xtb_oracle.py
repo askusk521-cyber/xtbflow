@@ -11,7 +11,9 @@ from __future__ import annotations
 import hashlib
 import importlib
 import importlib.metadata
+from dataclasses import replace
 from importlib.util import find_spec
+from pathlib import Path
 from shutil import which
 from typing import Any, Callable, Mapping
 
@@ -37,7 +39,7 @@ KELVIN_TO_HARTREE = 3.166811563e-6
 ADAPTER_REVISION = "xtb-oracle-native-units-v1"
 
 
-def _package_identity(implementation: str) -> tuple[str | None, str | None, str | None]:
+def _package_identity(implementation: str) -> tuple[str | None, str | None, str | None, tuple[str, ...]]:
     """Return version, module path and hashes for the observed implementation.
 
     The native interface module is included for tblite when available.  Hashing
@@ -48,7 +50,7 @@ def _package_identity(implementation: str) -> tuple[str | None, str | None, str 
     try:
         module = importlib.import_module(implementation)
     except Exception:
-        return None, None, None
+        return None, None, None, ()
     path = getattr(module, "__file__", None)
     version = getattr(module, "__version__", None)
     try:
@@ -65,6 +67,23 @@ def _package_identity(implementation: str) -> tuple[str | None, str | None, str 
         interface_path = getattr(interface, "__file__", None)
         if interface_path:
             identity_paths.append(interface_path)
+    package_root = Path(path).parent if path else None
+    if package_root is not None and package_root.is_dir():
+        identity_paths.extend(
+            str(candidate)
+            for candidate in sorted(package_root.rglob("*"))
+            if candidate.is_file() and candidate.suffix.lower() in {".so", ".dylib", ".dll", ".pyd"}
+        )
+    try:
+        distribution = importlib.metadata.distribution("xtb" if implementation == "xtb" else "tblite")
+        for relative in distribution.files or ():
+            if str(relative).endswith(".dist-info/RECORD"):
+                record_path = Path(distribution.locate_file(relative))
+                if record_path.is_file():
+                    identity_paths.append(str(record_path))
+    except importlib.metadata.PackageNotFoundError:
+        pass
+    identity_paths = list(dict.fromkeys(identity_paths))
     digest = hashlib.sha256()
     observed = False
     for identity_path in identity_paths:
@@ -77,7 +96,7 @@ def _package_identity(implementation: str) -> tuple[str | None, str | None, str 
         except OSError:
             continue
     build_hash = digest.hexdigest() if observed else None
-    return str(version) if version is not None else None, path, build_hash
+    return str(version) if version is not None else None, path, build_hash, tuple(identity_paths)
 
 
 def _adapter_code_hash() -> str:
@@ -108,7 +127,7 @@ def _validate_environment(system: MolecularSystem) -> None:
         raise CalculatorProtocolError("the GFN2 oracle adapter only supports non-periodic molecular systems")
 
 
-def _xtb_evaluator(system: MolecularSystem, operation: str, parameters: Mapping[str, Any], protocol: CalculatorProtocol) -> CalculationResult:
+def _xtb_evaluator(system: MolecularSystem, operation: str, parameters: Mapping[str, Any], protocol: CalculatorProtocol, *, version: str | None, build_hash: str | None, identity_paths: tuple[str, ...]) -> CalculationResult:
     """Evaluate one system through the original xTB Python API."""
 
     from xtb.interface import Calculator, Param
@@ -131,10 +150,10 @@ def _xtb_evaluator(system: MolecularSystem, operation: str, parameters: Mapping[
     gradient = np.asarray(result.get_gradient(), dtype=np.float64)
     # dE/dR_angstrom = dE/dR_bohr / (angstrom-per-bohr).
     forces = -gradient / BOHR_IN_ANGSTROM
-    return _normalized_result(system, operation, energy, forces, implementation="xtb", native_gradient_unit="hartree/bohr", force_conversion="-gradient_hartree_per_bohr / 0.529177210903 = force_hartree_per_angstrom", protocol=protocol)
+    return _normalized_result(system, operation, energy, forces, implementation="xtb", native_gradient_unit="hartree/bohr", force_conversion="-gradient_hartree_per_bohr / 0.529177210903 = force_hartree_per_angstrom", protocol=protocol, implementation_version=version, implementation_build_hash=build_hash, identity_paths=identity_paths)
 
 
-def _tblite_evaluator(system: MolecularSystem, operation: str, parameters: Mapping[str, Any], protocol: CalculatorProtocol) -> CalculationResult:
+def _tblite_evaluator(system: MolecularSystem, operation: str, parameters: Mapping[str, Any], protocol: CalculatorProtocol, *, version: str | None, build_hash: str | None, identity_paths: tuple[str, ...]) -> CalculationResult:
     """Evaluate one system through tblite's direct GFN2 interface."""
 
     from tblite.interface import Calculator
@@ -157,10 +176,10 @@ def _tblite_evaluator(system: MolecularSystem, operation: str, parameters: Mappi
     energy = float(result.get("energy"))
     gradient = np.asarray(result.get("gradient"), dtype=np.float64)
     forces = -gradient / BOHR_IN_ANGSTROM
-    return _normalized_result(system, operation, energy, forces, implementation="tblite", native_gradient_unit="hartree/bohr", force_conversion="-gradient_hartree_per_bohr / 0.529177210903 = force_hartree_per_angstrom", protocol=protocol)
+    return _normalized_result(system, operation, energy, forces, implementation="tblite", native_gradient_unit="hartree/bohr", force_conversion="-gradient_hartree_per_bohr / 0.529177210903 = force_hartree_per_angstrom", protocol=protocol, implementation_version=version, implementation_build_hash=build_hash, identity_paths=identity_paths)
 
 
-def _normalized_result(system: MolecularSystem, operation: str, energy: float, forces: np.ndarray, *, implementation: str, native_gradient_unit: str, force_conversion: str, protocol: CalculatorProtocol) -> CalculationResult:
+def _normalized_result(system: MolecularSystem, operation: str, energy: float, forces: np.ndarray, *, implementation: str, native_gradient_unit: str, force_conversion: str, protocol: CalculatorProtocol, implementation_version: str | None, implementation_build_hash: str | None, identity_paths: tuple[str, ...]) -> CalculationResult:
     if operation == "energy":
         forces_value = None
     else:
@@ -174,8 +193,12 @@ def _normalized_result(system: MolecularSystem, operation: str, energy: float, f
         operation=operation,
         energy=energy if operation in {"energy", "energy_forces"} else None,
         forces=forces_value,
+        calculator_build_hash=implementation_build_hash,
         metadata={
             "implementation": implementation,
+            "implementation_version": implementation_version,
+            "implementation_build_hash": implementation_build_hash,
+            "implementation_identity_paths": list(identity_paths),
             "adapter_revision": ADAPTER_REVISION,
             "adapter_code_hash": _adapter_code_hash(),
             "public_coordinate_unit": "angstrom",
@@ -226,7 +249,7 @@ class XTBOracleAdapter(CalculatorBackend):
             raise CalculatorProtocolError("xTB oracle adapter requires a protocol with calculator='xtb_oracle'")
         self._evaluator = evaluator or evaluate_fn
         self._direct_backend = False
-        observed_version, self.module_path, observed_hash = _package_identity(implementation)
+        observed_version, self.module_path, observed_hash, self.identity_paths = _package_identity(implementation)
         self.version = version or observed_version
         self.build_hash = build_hash or observed_hash
         self.require_budget_token = bool(require_budget_token)
@@ -234,9 +257,9 @@ class XTBOracleAdapter(CalculatorBackend):
         if self._evaluator is None and implementation in {"xtb", "tblite"} and required.issubset(self.protocol.parameters):
             self._direct_backend = True
             self._evaluator = lambda item, operation: (
-                _xtb_evaluator(item, operation, self.protocol.parameters, self.protocol)
+                _xtb_evaluator(item, operation, self.protocol.parameters, self.protocol, version=self.version, build_hash=self.build_hash, identity_paths=self.identity_paths)
                 if implementation == "xtb"
-                else _tblite_evaluator(item, operation, self.protocol.parameters, self.protocol)
+                else _tblite_evaluator(item, operation, self.protocol.parameters, self.protocol, version=self.version, build_hash=self.build_hash, identity_paths=self.identity_paths)
             )
 
     @property
@@ -287,7 +310,16 @@ class XTBOracleAdapter(CalculatorBackend):
             if self._direct_backend and ("converg" in str(exc).lower() or "scf" in str(exc).lower()):
                 raise CalculatorConvergenceError(f"independent evaluator did not converge: {exc}") from exc
             raise RuntimeError(f"independent evaluator failed before producing a contract result: {exc}") from exc
-        return coerce_backend_output(output, system, self.protocol, operation=operation)
+        result = coerce_backend_output(output, system, self.protocol, operation=operation)
+        metadata = dict(result.metadata)
+        metadata.setdefault("implementation", self.implementation)
+        metadata.setdefault("implementation_version", self.version)
+        metadata.setdefault("implementation_build_hash", self.build_hash)
+        metadata.setdefault("implementation_identity_paths", list(self.identity_paths))
+        metadata.setdefault("adapter_code_hash", _adapter_code_hash())
+        if result.calculator_build_hash is None and self.build_hash is not None:
+            result = replace(result, calculator_build_hash=self.build_hash)
+        return replace(result, metadata=metadata)
 
 
 GFN2OracleAdapter = XTBOracleAdapter

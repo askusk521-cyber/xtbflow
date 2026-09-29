@@ -1,7 +1,8 @@
 """Versioned CP2K reference E/F protocol, renderer, parser, and adapter."""
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
+from contextlib import contextmanager
 import hashlib
 import json
 import math
@@ -10,7 +11,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
-from typing import Any, Callable, Mapping
+from typing import Any, Callable, Iterator, Mapping
 
 from .base import (
     CalculatorBackend,
@@ -29,6 +30,15 @@ from xtbflow.runtime.ledger import BudgetTokenRequired, CalculatorCallToken
 # contract is Hartree/Angstrom, so conversion belongs at this parser boundary.
 BOHR_IN_ANGSTROM = 0.529177210903
 FORCE_CONVERSION_VERSION = "bohr_to_angstrom_codata2018"
+_SUPPORTED_PARAMETER_KEYS = frozenset(
+    {
+        "basis_set_file",
+        "pseudopotential_file",
+        "basis_by_element",
+        "pseudopotential_by_element",
+        "cell_angstrom",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -73,6 +83,14 @@ class CP2KProtocol:
             raise ValueError("unsupported path validation status")
         if not isinstance(self.parameters, Mapping):
             raise ValueError("parameters must be a mapping")
+        if any(not isinstance(key, str) or not key.strip() for key in self.parameters):
+            raise ValueError("CP2K protocol parameter names must be nonempty strings")
+        unsupported = sorted(set(self.parameters) - _SUPPORTED_PARAMETER_KEYS)
+        if unsupported:
+            raise ValueError(
+                "unsupported CP2K protocol parameters would not affect rendered input: "
+                + ", ".join(str(item) for item in unsupported)
+            )
         for name in ("basis_set_file", "pseudopotential_file"):
             value = self.parameters.get(name)
             if value is not None and (not isinstance(value, str) or not value.strip()):
@@ -135,18 +153,30 @@ def render_cp2k_input(system: MolecularSystem, protocol: CP2KProtocol, *, projec
 
 _ENERGY = re.compile(r"ENERGY\|.*?energy.*?([-+]?\d+(?:\.\d*)?(?:[Ee][-+]?\d+)?)\s*$", re.IGNORECASE | re.MULTILINE)
 _FORCE_HEADER = re.compile(r"ATOMIC FORCES.*?\[a\.u\.\]", re.IGNORECASE)
+_SCF_CONVERGED = re.compile(r"(?:SCF[^\n]*?(?:converged|convergence achieved)|(?:converged|convergence achieved)[^\n]*?SCF)", re.IGNORECASE)
 _FLOAT = r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[Ee][-+]?\d+)?"
 _FORCE_ROW = re.compile(r"^\s*(\d+)\s+\d+\s+([A-Za-z][A-Za-z0-9]*)\s+(" + _FLOAT + r")\s+(" + _FLOAT + r")\s+(" + _FLOAT + r")\s*$")
 
 
-def parse_cp2k_output(text: str, system: MolecularSystem, protocol: CP2KProtocol, *, input_file_hash: str) -> CalculationResult:
+def parse_cp2k_output(
+    text: str,
+    system: MolecularSystem,
+    protocol: CP2KProtocol,
+    *,
+    input_file_hash: str,
+    metadata_extra: Mapping[str, Any] | None = None,
+) -> CalculationResult:
     if not isinstance(text, str) or not text.strip():
         raise CalculatorProtocolError("CP2K output is empty")
     not_converged = bool(re.search(r"SCF.*(?:NOT CONVERGED|FAILED)|SCF run NOT converged", text, re.IGNORECASE))
     if not_converged:
-        return CalculationResult(protocol.calculator_protocol().calculator, protocol.protocol_id, system.input_hash, system.charge, system.multiplicity, "energy_forces", status="not_converged", converged=False, error_category="convergence", error_message="CP2K SCF did not converge", calculator_calls=1, calculator_build_hash=protocol.build_hash, input_file_hash=input_file_hash, path_status=protocol.path_status)
+        metadata = dict(metadata_extra or {})
+        metadata.update({"scf_convergence_evidence": "negative_failure_marker"})
+        return CalculationResult(protocol.calculator_protocol().calculator, protocol.protocol_id, system.input_hash, system.charge, system.multiplicity, "energy_forces", status="not_converged", converged=False, error_category="convergence", error_message="CP2K SCF did not converge", calculator_calls=1, calculator_build_hash=protocol.build_hash, input_file_hash=input_file_hash, path_status=protocol.path_status, metadata=metadata)
     if "PROGRAM ENDED AT" not in text:
         raise CalculatorProtocolError("CP2K completion marker was not found")
+    if not _SCF_CONVERGED.search(text):
+        raise CalculatorProtocolError("CP2K positive SCF convergence marker was not found")
     energy_matches = list(_ENERGY.finditer(text))
     if len(energy_matches) != 1:
         raise CalculatorProtocolError("CP2K energy line was not found")
@@ -177,13 +207,66 @@ def parse_cp2k_output(text: str, system: MolecularSystem, protocol: CP2KProtocol
         forces.append(tuple(value / BOHR_IN_ANGSTROM for value in raw))
     if len(forces) != len(system.symbols):
         raise CalculatorProtocolError(f"CP2K force section has {len(forces)} rows; expected {len(system.symbols)}")
-    return CalculationResult(protocol.calculator_protocol().calculator, protocol.protocol_id, system.input_hash, system.charge, system.multiplicity, "energy_forces", energy=energy, forces=tuple(forces), calculator_calls=1, calculator_build_hash=protocol.build_hash, input_file_hash=input_file_hash, path_status=protocol.path_status, metadata={"raw_force_unit": "hartree/bohr", "normalized_force_unit": "hartree/angstrom", "force_conversion_version": FORCE_CONVERSION_VERSION, "raw_forces": raw_forces})
+    metadata = dict(metadata_extra or {})
+    metadata.update({"raw_force_unit": "hartree/bohr", "normalized_force_unit": "hartree/angstrom", "force_conversion_version": FORCE_CONVERSION_VERSION, "raw_forces": raw_forces, "scf_convergence_evidence": "positive_marker"})
+    return CalculationResult(protocol.calculator_protocol().calculator, protocol.protocol_id, system.input_hash, system.charge, system.multiplicity, "energy_forces", energy=energy, forces=tuple(forces), calculator_calls=1, calculator_build_hash=protocol.build_hash, input_file_hash=input_file_hash, path_status=protocol.path_status, metadata=metadata)
+
+
+@dataclass(frozen=True)
+class CP2KRunnerResult:
+    """Explicit result returned by an injected runner.
+
+    A plain output string remains accepted for small compatibility fixtures.  A
+    structured result is required when a runner needs to expose return codes,
+    stdout, stderr, and the completed CP2K output separately.
+    """
+
+    output: str
+    stdout: str = ""
+    stderr: str = ""
+    returncode: int = 0
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.output, str):
+            raise ValueError("CP2K runner output must be text")
+        if not isinstance(self.stdout, str) or not isinstance(self.stderr, str):
+            raise ValueError("CP2K runner stdout/stderr must be text")
+        if type(self.returncode) is not int:
+            raise ValueError("CP2K runner returncode must be an integer")
+
+
+def _coerce_runner_result(value: str | CP2KRunnerResult | Mapping[str, Any]) -> CP2KRunnerResult:
+    if isinstance(value, CP2KRunnerResult):
+        return value
+    if isinstance(value, str):
+        return CP2KRunnerResult(output=value)
+    if isinstance(value, Mapping):
+        try:
+            return CP2KRunnerResult(
+                output=value["output"],
+                stdout=value.get("stdout", ""),
+                stderr=value.get("stderr", ""),
+                returncode=value.get("returncode", 0),
+            )
+        except (KeyError, TypeError, ValueError) as exc:
+            raise CalculatorProtocolError(f"invalid structured CP2K runner result: {exc}") from exc
+    raise CalculatorProtocolError("CP2K runner must return text or a structured result")
 
 
 class CP2KAdapter(CalculatorBackend):
     """Run CP2K only when an executable or explicitly injected runner exists."""
 
-    def __init__(self, protocol: CP2KProtocol, *, executable: str | None = None, runner: Callable[[str, MolecularSystem], str] | None = None, timeout_seconds: float = 120.0, require_budget_token: bool = False):
+    def __init__(
+        self,
+        protocol: CP2KProtocol,
+        *,
+        executable: str | None = None,
+        runner: Callable[[str, MolecularSystem], str | CP2KRunnerResult | Mapping[str, Any]] | None = None,
+        timeout_seconds: float = 120.0,
+        require_budget_token: bool = False,
+        artifact_dir: str | Path | None = None,
+        require_artifacts: bool = False,
+    ):
         self.cp2k_protocol = protocol
         self.protocol = protocol.calculator_protocol()
         self.executable = executable or shutil.which("cp2k.psmp") or shutil.which("cp2k.popt") or shutil.which("cp2k")
@@ -192,14 +275,25 @@ class CP2KAdapter(CalculatorBackend):
             raise ValueError("timeout_seconds must be finite and positive")
         self.timeout_seconds = float(timeout_seconds)
         self.require_budget_token = bool(require_budget_token)
+        self.artifact_dir = Path(artifact_dir) if artifact_dir is not None else None
+        self.require_artifacts = bool(require_artifacts)
+        if self.require_artifacts and self.artifact_dir is None:
+            raise ValueError("require_artifacts requires artifact_dir")
+        if self.artifact_dir is not None:
+            self.artifact_dir.mkdir(parents=True, exist_ok=True)
 
     @property
     def capabilities(self) -> CalculatorCapabilities:
         if self.runner is not None:
-            return CalculatorCapabilities("cp2k", "unknown", "injected runner; physical installation and protocol qualification are not asserted", self.cp2k_protocol.cp2k_version, self.cp2k_protocol.build_hash, ("energy_forces",), ("cpu",))
+            return CalculatorCapabilities("cp2k", "unknown", "injected runner; physical installation and protocol qualification are not asserted", self.cp2k_protocol.cp2k_version, self.cp2k_protocol.build_hash, ("energy", "forces", "energy_forces"), ("cpu",), "callable")
+        if not self._executable_observed():
+            return CalculatorCapabilities("cp2k", "unavailable", "no CP2K executable was observed", qualification="unavailable")
+        return CalculatorCapabilities("cp2k", "unknown", "CP2K executable observed but protocol qualification is pending", self.cp2k_protocol.cp2k_version, self.cp2k_protocol.build_hash, ("energy", "forces", "energy_forces"), ("cpu",), "installed")
+
+    def _executable_observed(self) -> bool:
         if self.executable is None:
-            return CalculatorCapabilities("cp2k", "unavailable", "no CP2K executable was observed")
-        return CalculatorCapabilities("cp2k", "unknown", "CP2K executable observed but protocol qualification is pending", self.cp2k_protocol.cp2k_version, self.cp2k_protocol.build_hash, ("energy_forces",), ("cpu",))
+            return False
+        return Path(self.executable).is_file() or shutil.which(self.executable) is not None
 
     def evaluate(
         self,
@@ -208,8 +302,8 @@ class CP2KAdapter(CalculatorBackend):
         operation: str = "energy_forces",
         budget_token: CalculatorCallToken | None = None,
     ) -> CalculationResult:
-        if operation != "energy_forces":
-            raise CalculatorProtocolError("CP2K v0 adapter supports energy_forces only")
+        if operation not in {"energy", "forces", "energy_forces"}:
+            raise CalculatorProtocolError(f"CP2K v0 adapter does not support operation: {operation}")
         rendered = render_cp2k_input(system, self.cp2k_protocol)
         input_hash = hashlib.sha256(rendered.encode()).hexdigest()
         if self.runner is not None:
@@ -217,30 +311,72 @@ class CP2KAdapter(CalculatorBackend):
                 raise BudgetTokenRequired("CP2K production calls require a calculator budget token")
             if budget_token is not None:
                 budget_token.consume()
-            try:
-                text = self.runner(rendered, system)
-            except Exception as exc:
-                raise CalculatorError(f"CP2K runner failed: {exc}") from exc
-            return parse_cp2k_output(text, system, self.cp2k_protocol, input_file_hash=input_hash)
+            return self._evaluate_runner(rendered, system, input_hash, operation)
         if self.executable is None:
             raise CalculatorUnavailable("CP2K is not installed or injected")
         if self.require_budget_token and budget_token is None:
             raise BudgetTokenRequired("CP2K production calls require a calculator budget token")
         if budget_token is not None:
             budget_token.consume()
-        with tempfile.TemporaryDirectory(prefix="xtbflow-cp2k-") as directory:
-            root = Path(directory)
+        with self._artifact_workspace() as root:
             input_path = root / "input.inp"
             output_path = root / "output.out"
             input_path.write_text(rendered, encoding="utf-8")
             try:
-                completed = subprocess.run([self.executable, "-i", str(input_path), "-o", str(output_path)], check=False, capture_output=True, text=True, timeout=self.timeout_seconds)
+                completed = subprocess.run([self.executable, "-i", str(input_path), "-o", str(output_path)], check=False, capture_output=True, text=True, timeout=self.timeout_seconds, cwd=root)
             except subprocess.TimeoutExpired as exc:
+                (root / "stdout.txt").write_text(exc.stdout or "", encoding="utf-8")
+                (root / "stderr.txt").write_text(exc.stderr or "", encoding="utf-8")
                 raise CalculatorError("CP2K execution timed out") from exc
             except OSError as exc:
                 raise CalculatorUnavailable(f"CP2K executable could not be started: {exc}") from exc
+            (root / "stdout.txt").write_text(completed.stdout or "", encoding="utf-8")
+            (root / "stderr.txt").write_text(completed.stderr or "", encoding="utf-8")
             if completed.returncode != 0:
                 raise CalculatorError(f"CP2K exited with code {completed.returncode}: {completed.stderr[-500:]}")
             if not output_path.exists():
                 raise CalculatorError("CP2K completed without producing an output file")
-            return parse_cp2k_output(output_path.read_text(encoding="utf-8", errors="replace"), system, self.cp2k_protocol, input_file_hash=input_hash)
+            metadata = self._artifact_metadata(root, persisted=self.artifact_dir is not None)
+            parsed = parse_cp2k_output(output_path.read_text(encoding="utf-8", errors="replace"), system, self.cp2k_protocol, input_file_hash=input_hash, metadata_extra=metadata)
+            return self._select_operation(parsed, operation)
+
+    def _artifact_metadata(self, root: Path, *, persisted: bool) -> dict[str, Any]:
+        return {
+            "artifact_persistence": "persistent" if persisted else "temporary",
+            "artifact_directory": str(root) if persisted else None,
+            "artifact_files": sorted(path.name for path in root.iterdir() if path.is_file()),
+        }
+
+    @contextmanager
+    def _artifact_workspace(self) -> Iterator[Path]:
+        if self.artifact_dir is not None:
+            yield Path(tempfile.mkdtemp(prefix="xtbflow-cp2k-", dir=self.artifact_dir))
+            return
+        with tempfile.TemporaryDirectory(prefix="xtbflow-cp2k-") as directory:
+            yield Path(directory)
+
+    @staticmethod
+    def _select_operation(result: CalculationResult, operation: str) -> CalculationResult:
+        if operation == "energy":
+            return replace(result, operation="energy", forces=None)
+        if operation == "forces":
+            return replace(result, operation="forces", energy=None)
+        return result
+
+    def _evaluate_runner(self, rendered: str, system: MolecularSystem, input_hash: str, operation: str) -> CalculationResult:
+        with self._artifact_workspace() as root:
+            (root / "input.inp").write_text(rendered, encoding="utf-8")
+            try:
+                result = _coerce_runner_result(self.runner(rendered, system))
+            except Exception as exc:
+                (root / "stdout.txt").write_text("", encoding="utf-8")
+                (root / "stderr.txt").write_text(str(exc), encoding="utf-8")
+                raise CalculatorError(f"CP2K runner failed: {exc}") from exc
+            (root / "stdout.txt").write_text(result.stdout, encoding="utf-8")
+            (root / "stderr.txt").write_text(result.stderr, encoding="utf-8")
+            (root / "output.out").write_text(result.output, encoding="utf-8")
+            if result.returncode != 0:
+                raise CalculatorError(f"CP2K exited with code {result.returncode}: {result.stderr[-500:]}")
+            metadata = self._artifact_metadata(root, persisted=self.artifact_dir is not None)
+            parsed = parse_cp2k_output(result.output, system, self.cp2k_protocol, input_file_hash=input_hash, metadata_extra=metadata)
+            return self._select_operation(parsed, operation)

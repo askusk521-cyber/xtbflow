@@ -18,7 +18,7 @@
     "boundary": "isolated",
     "solvent_model": "none_or_explicitly_frozen",
     "path_status": "not_requested",
-    "parameters": {"energy_unit": "hartree", "force_unit": "hartree/bohr", "path_validation_separate": true}
+    "parameters": {"energy_unit": "hartree", "raw_force_unit": "hartree/bohr", "force_unit": "hartree/angstrom", "path_validation_separate": true, "persistent_artifacts_required": true}
   },
   "boundaries": {
     "missing_setting": "reject_before_run",

@@ -61,9 +61,17 @@ def main() -> int:
     parser.add_argument("--public-records-base", type=Path)
     parser.add_argument("--public-records-output", type=Path)
     parser.add_argument("--count", type=int, default=64)
+    parser.add_argument("--frozen-parent-manifest", type=Path)
+    parser.add_argument("--config-indices", default="0")
     args = parser.parse_args()
     if args.count != 64:
         parser.error("the v1 pilot is frozen at exactly 64 independent source records")
+    try:
+        config_indices = tuple(int(value) for value in args.config_indices.split(","))
+    except ValueError as exc:
+        parser.error(f"--config-indices must be comma-separated integers: {exc}")
+    if not config_indices or config_indices != tuple(sorted(set(config_indices))) or config_indices[0] < 0:
+        parser.error("--config-indices must be unique nonnegative integers in ascending order")
     if _sha256(args.source) != args.source_sha256.lower():
         parser.error("source SHA-256 does not match")
 
@@ -131,65 +139,93 @@ def main() -> int:
                 }
             )
 
-        charged = [row for row in candidates if row["charge"] != 0]
-        sulfur = [row for row in candidates if row["contains_sulfur"] and row not in charged]
-        ordinary = [row for row in candidates if row not in charged and row not in sulfur]
-        selected = (sorted(charged, key=lambda row: row["record_id"]) +
-                    sorted(sulfur, key=lambda row: row["record_id"]) +
-                    sorted(ordinary, key=lambda row: row["record_id"]))[:args.count]
-        if len(selected) != args.count:
-            raise SystemExit(f"only {len(selected)} eligible independent records; expected {args.count}")
-        splits = _split_map([row["record_id"] for row in selected])
+        if args.frozen_parent_manifest is None:
+            charged = [row for row in candidates if row["charge"] != 0]
+            sulfur = [row for row in candidates if row["contains_sulfur"] and row not in charged]
+            ordinary = [row for row in candidates if row not in charged and row not in sulfur]
+            selected = (sorted(charged, key=lambda row: row["record_id"]) +
+                        sorted(sulfur, key=lambda row: row["record_id"]) +
+                        sorted(ordinary, key=lambda row: row["record_id"]))[:args.count]
+            if len(selected) != args.count:
+                raise SystemExit(f"only {len(selected)} eligible independent records; expected {args.count}")
+            splits = _split_map([row["record_id"] for row in selected])
+            selection_policy = "all eligible charged records first, then sulfur-bearing records, then remaining records; lexical record-id order within strata; no result-based selection"
+        else:
+            frozen_rows = [
+                json.loads(line) for line in args.frozen_parent_manifest.read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
+            frozen_splits: dict[str, str] = {}
+            for frozen in frozen_rows:
+                parent_id = str(frozen["parent_record_id"])
+                split = str(frozen["split"])
+                if parent_id in frozen_splits and frozen_splits[parent_id] != split:
+                    raise SystemExit(f"frozen parent {parent_id} appears in multiple splits")
+                frozen_splits[parent_id] = split
+            if len(frozen_splits) != args.count:
+                raise SystemExit(f"frozen parent manifest has {len(frozen_splits)} parents; expected {args.count}")
+            candidate_by_id = {row["record_id"]: row for row in candidates}
+            missing = sorted(set(frozen_splits) - set(candidate_by_id))
+            if missing:
+                raise SystemExit(f"frozen parents are no longer eligible: {missing}")
+            selected = [candidate_by_id[parent_id] for parent_id in sorted(frozen_splits)]
+            splits = dict(frozen_splits)
+            selection_policy = "parent identities and splits frozen from prior manifest; explicit config indices only; no result-based selection"
+
+        for row in selected:
+            unavailable = [index for index in config_indices if index >= row["n_configs"]]
+            if unavailable:
+                raise SystemExit(f"parent {row['record_id']} lacks requested config indices {unavailable}")
 
         output_rows = []
         for row in selected:
             group = handle[row["record_id"]]
-            config_index = 0
-            positions_nm = np.asarray(group["positions"][config_index], dtype=float)
-            energy_kj_mol = float(np.asarray(group["dft_total_energy"][config_index]).reshape(-1)[0])
-            force_kj_mol_nm = np.asarray(group["dft_total_force"][config_index], dtype=float)
-            output_rows.append(
-                {
-                    "schema": "xtbflow-spice2-openff-pilot-record/v1",
-                    "source_record_id": f"spice2-openff:{row['record_id']}:config-{config_index}",
-                    "parent_record_id": row["record_id"],
-                    "config_index": config_index,
-                    "split": splits[row["record_id"]],
-                    "source_collection": row["source"],
-                    "source_file_sha256": args.source_sha256.lower(),
-                    "smiles": row["smiles"],
-                    "closed_shell_evidence": {
-                        "rdkit_radical_electrons": 0,
-                        "electron_count_parity": "even",
-                        "multiplicity": 1,
-                        "basis": "explicit-H mapped SMILES has no radicals; even electron count; SPICE QCSchema workflow uses explicit molecular multiplicity and singlet closed-shell inputs",
-                    },
-                    "system": {
-                        "symbols": row["symbols"],
-                        "coordinates": (positions_nm * ANGSTROM_PER_NM).tolist(),
-                        "charge": row["charge"],
-                        "multiplicity": 1,
-                        "environment": {
-                            "periodic": False,
-                            "source_dataset": "SPICE2 OpenFF",
-                            "source_record_id": row["record_id"],
-                            "source_config_index": config_index,
+            for config_index in config_indices:
+                positions_nm = np.asarray(group["positions"][config_index], dtype=float)
+                energy_kj_mol = float(np.asarray(group["dft_total_energy"][config_index]).reshape(-1)[0])
+                force_kj_mol_nm = np.asarray(group["dft_total_force"][config_index], dtype=float)
+                output_rows.append(
+                    {
+                        "schema": "xtbflow-spice2-openff-pilot-record/v1",
+                        "source_record_id": f"spice2-openff:{row['record_id']}:config-{config_index}",
+                        "parent_record_id": row["record_id"],
+                        "config_index": config_index,
+                        "split": splits[row["record_id"]],
+                        "source_collection": row["source"],
+                        "source_file_sha256": args.source_sha256.lower(),
+                        "smiles": row["smiles"],
+                        "closed_shell_evidence": {
+                            "rdkit_radical_electrons": 0,
+                            "electron_count_parity": "even",
+                            "multiplicity": 1,
+                            "basis": "explicit-H mapped SMILES has no radicals; even electron count; SPICE QCSchema workflow uses explicit molecular multiplicity and singlet closed-shell inputs",
                         },
-                        "system_id": f"spice2-openff:{row['record_id']}:config-{config_index}",
-                    },
-                    "reference_protocol_id": REFERENCE_PROTOCOL_ID,
-                    "reference": {
-                        "energy_hartree": energy_kj_mol / HARTREE_KJ_PER_MOL,
-                        "forces_hartree_per_angstrom": (force_kj_mol_nm / (HARTREE_KJ_PER_MOL * ANGSTROM_PER_NM)).tolist(),
-                    },
-                    "source_units": unit_contract,
-                    "canonical_units": {
-                        "coordinate": "angstrom",
-                        "energy": "hartree",
-                        "force": "hartree/angstrom",
-                    },
-                }
-            )
+                        "system": {
+                            "symbols": row["symbols"],
+                            "coordinates": (positions_nm * ANGSTROM_PER_NM).tolist(),
+                            "charge": row["charge"],
+                            "multiplicity": 1,
+                            "environment": {
+                                "periodic": False,
+                                "source_dataset": "SPICE2 OpenFF",
+                                "source_record_id": row["record_id"],
+                                "source_config_index": config_index,
+                            },
+                            "system_id": f"spice2-openff:{row['record_id']}:config-{config_index}",
+                        },
+                        "reference_protocol_id": REFERENCE_PROTOCOL_ID,
+                        "reference": {
+                            "energy_hartree": energy_kj_mol / HARTREE_KJ_PER_MOL,
+                            "forces_hartree_per_angstrom": (force_kj_mol_nm / (HARTREE_KJ_PER_MOL * ANGSTROM_PER_NM)).tolist(),
+                        },
+                        "source_units": unit_contract,
+                        "canonical_units": {
+                            "coordinate": "angstrom",
+                            "energy": "hartree",
+                            "force": "hartree/angstrom",
+                        },
+                    }
+                )
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", encoding="utf-8") as handle:
@@ -248,18 +284,21 @@ def main() -> int:
         "observed_source_configs": total_configs,
         "eligible_records": len(candidates),
         "rejected_records": len(rejected),
-        "selected_records": len(output_rows),
+        "selected_records": len(selected),
         "selected_configs": len(output_rows),
-        "selection_policy": "all eligible charged records first, then sulfur-bearing records, then remaining records; lexical record-id order within strata; config_index=0; no result-based selection",
+        "config_indices": list(config_indices),
+        "frozen_parent_manifest": str(args.frozen_parent_manifest) if args.frozen_parent_manifest is not None else None,
+        "selection_policy": selection_policy,
         "split_seed": SPLIT_SEED,
         "split_ratios": SPLIT_RATIOS,
         "split_contract": "same SHA-256 seed/group bucket rule as xtbflow.data.splits.assign_group_splits",
+        "parent_split_counts": {name: sum(splits[row["record_id"]] == name for row in selected) for name in ("train", "validation", "test")},
         "split_counts": {name: sum(row["split"] == name for row in output_rows) for name in ("train", "validation", "test")},
         "charge_counts": {str(charge): sum(row["system"]["charge"] == charge for row in output_rows) for charge in (-1, 0, 1)},
         "sulfur_records": sum("S" in row["system"]["symbols"] for row in output_rows),
         "admission_status": "pilot_admitted",
         "limits": [
-            "This is a 64-independent-record pilot, one configuration per parent record.",
+            f"This is a 64-independent-parent development set with {len(config_indices)} frozen configuration indices per parent.",
             "Records with varying charge, charge outside -1/0/+1, radicals, odd electron count, or elements outside H/C/N/O/S are excluded.",
             "Multiplicity=1 is admitted only for radical-free explicit-H SMILES with even electron count under the documented SPICE/QCSchema closed-shell workflow.",
             "Source labels are reference E/F; no new DFT is generated.",

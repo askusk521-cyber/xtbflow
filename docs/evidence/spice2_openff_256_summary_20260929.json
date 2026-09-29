@@ -1,0 +1,139 @@
+{
+  "bare_gfn2": {
+    "test": {
+      "energy_mae_kcal_per_mol": 52.552862309949546,
+      "energy_max_abs_kcal_per_mol": 98.09095323223164,
+      "energy_rmse_kcal_per_mol": 57.901992275711244,
+      "force_component_mae_hartree_per_angstrom": 0.008508620292923746,
+      "force_component_p95_abs_hartree_per_angstrom": 0.032070136565363366,
+      "force_component_rmse_hartree_per_angstrom": 0.013249987885515558,
+      "systems": 32
+    },
+    "validation": {
+      "energy_mae_kcal_per_mol": 13.883298885833259,
+      "energy_max_abs_kcal_per_mol": 34.545194956177234,
+      "energy_rmse_kcal_per_mol": 16.944889017152708,
+      "force_component_mae_hartree_per_angstrom": 0.009115758964685847,
+      "force_component_p95_abs_hartree_per_angstrom": 0.03282922609079562,
+      "force_component_rmse_hartree_per_angstrom": 0.013883101598546886,
+      "systems": 32
+    }
+  },
+  "comparisons": {
+    "delta_test_energy_mae_fraction_improvement_vs_bare": 0.5895531000392279,
+    "delta_test_force_mae_fraction_improvement_vs_bare": 0.4663726600745057,
+    "delta_validation_energy_mae_fraction_improvement_vs_bare": 0.0833289624059306,
+    "delta_validation_force_mae_fraction_improvement_vs_bare": 0.4655564869310744,
+    "pilot64_delta_test_energy_mae_fraction_improvement_vs_bare": -0.09457910709517073,
+    "pilot64_delta_test_force_mae_fraction_improvement_vs_bare": 0.41979472602504664
+  },
+  "decision": {
+    "delta": "supported development gain on energy and force at 256 configurations; one seed and eight independent test parents are insufficient for a final claim",
+    "direct": "no supported joint energy/force gain: test energy improves but validation energy and forces, and test forces, remain worse than bare GFN2",
+    "next": "freeze hyperparameters and run nested train-parent sizes with multiple training seeds; keep validation/test parent identities fixed and do not use test results for selection"
+  },
+  "delta": {
+    "best_epoch": 77,
+    "test": {
+      "energy_mae_kcal_per_mol": 21.57015941918409,
+      "energy_max_abs_kcal_per_mol": 46.95597016609867,
+      "energy_rmse_kcal_per_mol": 25.280033740681002,
+      "evaluation_wall_seconds": 0.025327748036943376,
+      "force_component_mae_hartree_per_angstrom": 0.004540432413348979,
+      "force_component_p95_abs_hartree_per_angstrom": 0.013399072922766209,
+      "force_component_rmse_hartree_per_angstrom": 0.00635461465254505,
+      "systems": 32
+    },
+    "training_wall_seconds": 33.04978335602209,
+    "validation": {
+      "energy_mae_kcal_per_mol": 12.726417994905361,
+      "energy_max_abs_kcal_per_mol": 30.563510760641712,
+      "energy_rmse_kcal_per_mol": 14.704879607803354,
+      "evaluation_wall_seconds": 0.025204444071277976,
+      "force_component_mae_hartree_per_angstrom": 0.004871858245376256,
+      "force_component_p95_abs_hartree_per_angstrom": 0.01428136294707655,
+      "force_component_rmse_hartree_per_angstrom": 0.0068045206314176505,
+      "systems": 32
+    }
+  },
+  "direct": {
+    "best_epoch": 71,
+    "test": {
+      "energy_mae_kcal_per_mol": 31.61676457758112,
+      "energy_max_abs_kcal_per_mol": 125.01165303600821,
+      "energy_rmse_kcal_per_mol": 48.11068870829223,
+      "evaluation_wall_seconds": 0.024751660996116698,
+      "force_component_mae_hartree_per_angstrom": 0.024407126103251606,
+      "force_component_p95_abs_hartree_per_angstrom": 0.07604949362576008,
+      "force_component_rmse_hartree_per_angstrom": 0.03482265353473174,
+      "systems": 32
+    },
+    "training_wall_seconds": 36.31751810701098,
+    "validation": {
+      "energy_mae_kcal_per_mol": 47.36889353751241,
+      "energy_max_abs_kcal_per_mol": 130.52687302289092,
+      "energy_rmse_kcal_per_mol": 57.863605898766984,
+      "evaluation_wall_seconds": 0.024736668914556503,
+      "force_component_mae_hartree_per_angstrom": 0.026913289624535635,
+      "force_component_p95_abs_hartree_per_angstrom": 0.07972839027643196,
+      "force_component_rmse_hartree_per_angstrom": 0.037830928311938676,
+      "systems": 32
+    }
+  },
+  "gfn2_pairing": {
+    "calculator_accounting": {
+      "committed_calculator_calls": 256,
+      "committed_tokens": {
+        "spice2-openff-pilot-256": {
+          "calculator_calls": 256,
+          "consumed_calls": 256,
+          "released_calls": 0
+        }
+      },
+      "pending_reservations": {}
+    },
+    "calculator_calls": 256,
+    "failure": 0,
+    "success": 256,
+    "wall_seconds_max": 0.3455956589896232,
+    "wall_seconds_mean": 0.11014462073580944,
+    "wall_seconds_total": 28.197022908367217
+  },
+  "limits": [
+    "The 32 test configurations come from only 8 independent parent molecules.",
+    "The 64-configuration pilot had a negative Delta test-energy result, so the 256-configuration positive result must be checked across seeds and nested train sizes.",
+    "All checkpoint selection uses validation only; the test split is reported after selection.",
+    "These results are public E/F development evidence, not reaction-discovery, transition-state, mechanism, or experimental evidence."
+  ],
+  "schema": "xtbflow-spice2-openff-256-summary/v1",
+  "selection": {
+    "config_indices": [
+      0,
+      3,
+      6,
+      9
+    ],
+    "configurations": 256,
+    "parent_records": 64,
+    "parent_split_counts": {
+      "test": 8,
+      "train": 48,
+      "validation": 8
+    },
+    "row_split_counts": {
+      "test": 32,
+      "train": 192,
+      "validation": 32
+    },
+    "selection_policy": "parent identities and splits frozen from prior manifest; explicit config indices only; no result-based selection",
+    "split_seed": "spice2-openff-pilot-v1-7"
+  },
+  "source": {
+    "dataset": "SPICE2 OpenFF v1.1 ntc_1000_HCNOFClS",
+    "hdf5_sha256": "711a88d2bbc6fe3d39478ddf28cca186a65d882975edb07cb42798cf445c6213",
+    "reference_method": "B3LYP-D3BJ/DZVP",
+    "source_configs": 1000,
+    "source_parent_records": 100
+  },
+  "status": "development_256_complete_multiseed_next"
+}

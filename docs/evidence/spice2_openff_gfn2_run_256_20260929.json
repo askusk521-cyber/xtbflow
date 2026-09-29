@@ -1,0 +1,42 @@
+{
+  "backend_capabilities": {
+    "backends": [
+      "cpu"
+    ],
+    "build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+    "calculator": "xtb_oracle",
+    "detail": "direct backend is callable; numerical qualification is not asserted",
+    "operations": [
+      "energy",
+      "energy_forces",
+      "forces"
+    ],
+    "qualification": "installed",
+    "status": "unknown",
+    "version": "0.7.0"
+  },
+  "calculator_accounting": {
+    "committed_calculator_calls": 256,
+    "committed_tokens": {
+      "spice2-openff-pilot-256": {
+        "calculator_calls": 256,
+        "consumed_calls": 256,
+        "released_calls": 0
+      }
+    },
+    "pending_reservations": {}
+  },
+  "calculator_calls": 256,
+  "failure": 0,
+  "ledger": "runs/spice2_openff_256/ledger.json",
+  "output": "runs/spice2_openff_256/observed.jsonl",
+  "protocol_id": "tblite-gfn2-spice2-openff-pilot-v1",
+  "protocol_identity": "cad07ec4cdecd8598c5b983e42713f97ff42d325c6998a8790d064990c29766e",
+  "rows": 256,
+  "schema": "xtbflow-spice2-openff-gfn2-run/v1",
+  "scope": "bounded CPU tblite pairing pilot; observed calls only, no new DFT",
+  "success": 256,
+  "wall_seconds_max": 0.3455956589896232,
+  "wall_seconds_mean": 0.11014462073580944,
+  "wall_seconds_total": 28.197022908367217
+}

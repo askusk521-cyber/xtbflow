@@ -37,8 +37,8 @@ def _sha256(path: Path) -> str:
 
 
 def _load(pair_path: Path, manifest_path: Path) -> list[dict]:
-    split_by_id = {
-        row["source_record_id"]: row["split"]
+    manifest_by_id = {
+        row["source_record_id"]: row
         for row in map(json.loads, manifest_path.read_text(encoding="utf-8").splitlines())
         if row
     }
@@ -46,7 +46,12 @@ def _load(pair_path: Path, manifest_path: Path) -> list[dict]:
     for row in map(json.loads, pair_path.read_text(encoding="utf-8").splitlines()):
         if row["status"] != "success":
             continue
-        row["split"] = split_by_id[row["source_record_id"]]
+        source_id = row["source_record_id"]
+        if source_id not in manifest_by_id:
+            raise SystemExit(f"pair source_record_id is absent from manifest: {source_id}")
+        manifest_row = manifest_by_id[source_id]
+        row["split"] = manifest_row["split"]
+        row["parent_record_id"] = manifest_row["parent_record_id"]
         rows.append(row)
     return rows
 
@@ -298,8 +303,27 @@ def main() -> int:
     device = torch.device(args.device if args.device != "cuda" or torch.cuda.is_available() else "cpu")
     rows = _load(args.pairs, args.manifest)
     split = {name: [row for row in rows if row["split"] == name] for name in ("train", "validation", "test")}
-    if {name: len(value) for name, value in split.items()} != {"train": 48, "validation": 8, "test": 8}:
-        raise SystemExit(f"unexpected split sizes: { {name: len(value) for name, value in split.items()} }")
+    parent_to_split: dict[str, str] = {}
+    parent_counts: dict[str, int] = {}
+    for row in rows:
+        parent = row["parent_record_id"]
+        observed = parent_to_split.setdefault(parent, row["split"])
+        if observed != row["split"]:
+            raise SystemExit(f"parent group leaks across splits: {parent}")
+        parent_counts[parent] = parent_counts.get(parent, 0) + 1
+    parent_split_counts = {
+        name: sum(split_name == name for split_name in parent_to_split.values())
+        for name in ("train", "validation", "test")
+    }
+    if parent_split_counts != {"train": 48, "validation": 8, "test": 8}:
+        raise SystemExit(f"unexpected parent split sizes: {parent_split_counts}")
+    configs_per_parent_values = sorted(set(parent_counts.values()))
+    if len(configs_per_parent_values) != 1 or configs_per_parent_values[0] not in {1, 4}:
+        raise SystemExit(f"unexpected configurations per parent: {configs_per_parent_values}")
+    configs_per_parent = configs_per_parent_values[0]
+    expected_split_sizes = {name: count * configs_per_parent for name, count in parent_split_counts.items()}
+    if {name: len(value) for name, value in split.items()} != expected_split_sizes:
+        raise SystemExit(f"unexpected row split sizes: { {name: len(value) for name, value in split.items()} }")
     baseline_coefficients = _fit_offsets(split["train"], "delta")
     baseline = {
         "element_offsets_hartree": {str(z): float(value) for z, value in zip(ELEMENTS, baseline_coefficients)},
@@ -322,6 +346,8 @@ def main() -> int:
             "manifest_sha256": _sha256(args.manifest),
             "pair_count": len(rows),
             "split_counts": {name: len(value) for name, value in split.items()},
+            "parent_split_counts": parent_split_counts,
+            "configs_per_parent": configs_per_parent,
         },
         "protocol": {
             "seed": SEED,
@@ -342,6 +368,7 @@ def main() -> int:
             "Element offsets are fit on train only and are constant with respect to coordinates, so they contribute no force.",
             "Direct and Delta use identical invariant network capacity and optimization budget.",
             "The test split is evaluated only after validation selects the checkpoint.",
+            "Parent identities and split assignments are frozen; additional configurations never cross parent-group split boundaries.",
         ],
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -149,8 +149,8 @@
     },
     {
       "path": "configs/public_data_manifest.yaml",
-      "sha256": "b0a562d45af4f3fa5a394779301c218458e6c6b95b961f9634196dad4f77dfae",
-      "bytes": 5536
+      "sha256": "74e7ebd3ee6f0c8f4def549959e7330c399a421ed7f7380edd3d3be988c2b756",
+      "bytes": 5722
     },
     {
       "path": "configs/public_first_plan.yaml",
@@ -204,13 +204,23 @@
     },
     {
       "path": "data/manifests/public_records.v1.jsonl",
-      "sha256": "a3e4d6d53945a37180b577fbf305f613319cb5b2d11852c65831f42e2f38cd2d",
-      "bytes": 523077
+      "sha256": "d765532eeb691ffc6c095d51c8354d25dc8a2d0273efd375f07abe605d3acd7a",
+      "bytes": 2075949
+    },
+    {
+      "path": "data/manifests/spice2_openff_256_20260929.jsonl",
+      "sha256": "0b185f28650d0f36da0287769fcf1361ada2afc01feed9991979234a313c4444",
+      "bytes": 2241684
     },
     {
       "path": "data/manifests/spice2_openff_pilot_20260929.jsonl",
       "sha256": "dd466dc7b77514ef041ab78e5803fcb0f64e4c5bec31d5a68f34554d4558fc8f",
       "bytes": 560616
+    },
+    {
+      "path": "data/pairs/spice2_openff_256_20260929.jsonl",
+      "sha256": "f7c462b58d45ee4ced7ddc9eee2eadc5df72b8b526e8df2feef1d341be9a1fc2",
+      "bytes": 3890116
     },
     {
       "path": "data/pairs/spice2_openff_pilot_20260929.jsonl",
@@ -249,8 +259,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "72d9146b9b7cfd1a150b5e5bc1167e6433637b3999e0d75ae43d6ba99293f2b2",
-      "bytes": 12302
+      "sha256": "f7432f17b15990b2db98811ecf60473fe06831dd240839044382ba30f5beb43f",
+      "bytes": 13595
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -323,14 +333,29 @@
       "bytes": 1212
     },
     {
+      "path": "docs/evidence/spice2_openff_256_summary_20260929.json",
+      "sha256": "0675b4c91a93a8408cad0079d3c32cf9bf509e5e93e9bc3728ff666fc0c3ac70",
+      "bytes": 5940
+    },
+    {
       "path": "docs/evidence/spice2_openff_admission_20260929.json",
       "sha256": "98fb2cb07a05370c1a65f401c6219be5677698deda675a7509b1f359d567c2cb",
       "bytes": 3844
     },
     {
+      "path": "docs/evidence/spice2_openff_admission_256_20260929.json",
+      "sha256": "f3d0d022b647af57cd59ea5895925904e2599818b5fce830e2eff0f80ff0fcb8",
+      "bytes": 4031
+    },
+    {
       "path": "docs/evidence/spice2_openff_energy_baselines_20260929.json",
       "sha256": "5104d0442b7b7b25a469ac259d6e0fed91fb4a4be48d3ae19f182b6b6bf5062d",
       "bytes": 77494
+    },
+    {
+      "path": "docs/evidence/spice2_openff_energy_baselines_256_20260929.json",
+      "sha256": "a7f3d9bf13606ada7bad7eded1cf17f7434ed269c3f0c2ff7f7f2c277cef59cf",
+      "bytes": 77835
     },
     {
       "path": "docs/evidence/spice2_openff_energy_baselines_pre_split_v1_20260929.json",
@@ -346,6 +371,11 @@
       "path": "docs/evidence/spice2_openff_gfn2_run_20260929.json",
       "sha256": "b7149ce956950f176d707ef3304faceacbf60ac1f02560df5c85f9217bba60e1",
       "bytes": 1291
+    },
+    {
+      "path": "docs/evidence/spice2_openff_gfn2_run_256_20260929.json",
+      "sha256": "a251567a4dc00428d75abde04b26e8de03191a5d5f77357240c45a031d637fc3",
+      "bytes": 1295
     },
     {
       "path": "docs/evidence/spice2_openff_pilot_summary_20260929.json",
@@ -464,13 +494,13 @@
     },
     {
       "path": "scripts/prepare_spice_openff_pilot.py",
-      "sha256": "eb058d6285db25965be453c2b2fb4a08b273063460af19bb7730fbd121ce22fa",
-      "bytes": 13965
+      "sha256": "4670fce9e9cf91de9bc43036673d6c2bd288af5299c74f602242102a1b6c2a1b",
+      "bytes": 16740
     },
     {
       "path": "scripts/run_energy_baselines.py",
-      "sha256": "e3caf6dd3ea9fccd6e9901c04c8d793b34359c5a4d06a7da27e896fdda3e8f8c",
-      "bytes": 16268
+      "sha256": "148e93eec85543128104f265ed36c6db58b619d84888acc9c5a0d045f8fe9181",
+      "bytes": 17898
     },
     {
       "path": "scripts/run_gfn2_diagnostic.py",
@@ -489,8 +519,8 @@
     },
     {
       "path": "scripts/run_spice_openff_pilot.py",
-      "sha256": "179c1c6324d91981a9a3d930b0f8c45b27dede3d0c31ec90bfe6f77467898d90",
-      "bytes": 6617
+      "sha256": "8e2e3f10f7a103a6dcc06ca23a3fbdb8b840208fb7bc98f233da344dd013c864",
+      "bytes": 6840
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -814,8 +844,8 @@
     },
     {
       "path": "tests/test_input_firewall.py",
-      "sha256": "53159606fa3ba645c3888c21bbf68cdb8e25c1e04c4b2136ed4799ff1a214078",
-      "bytes": 5581
+      "sha256": "cafa13707746c3e9f1a7d8d35cc7ac6b34792a18e714f729cdb6cdf8694c4460",
+      "bytes": 6076
     },
     {
       "path": "tests/test_joint_flow.py",

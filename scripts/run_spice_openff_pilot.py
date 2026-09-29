@@ -35,14 +35,15 @@ def main() -> int:
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--ledger", required=True, type=Path)
     parser.add_argument("--summary", required=True, type=Path)
+    parser.add_argument("--expected-count", type=int, choices=(64, 256), default=64)
     args = parser.parse_args()
     rows = [json.loads(line) for line in args.input.read_text(encoding="utf-8").splitlines() if line.strip()]
-    if len(rows) != 64:
-        parser.error("pilot manifest must contain exactly 64 rows")
-    ledger = RunLedger(StageBudget("P1-spice2-pilot", max_calculator_calls=64, max_system_evaluations=64))
+    if len(rows) != args.expected_count:
+        parser.error(f"pilot manifest must contain exactly {args.expected_count} rows")
+    ledger = RunLedger(StageBudget(f"P1-spice2-pilot-{args.expected_count}", max_calculator_calls=args.expected_count, max_system_evaluations=args.expected_count))
     token = ledger.issue_calculator_token(
-        "spice2-openff-pilot-64",
-        64,
+        f"spice2-openff-pilot-{args.expected_count}",
+        args.expected_count,
         metadata={"protocol_id": PROTOCOL.protocol_id, "source_rows": len(rows)},
         persist_path=args.ledger,
     )
@@ -136,7 +137,7 @@ def main() -> int:
         "rows": len(rows),
         "success": success,
         "failure": failure,
-        "calculator_calls": 64,
+        "calculator_calls": len(rows),
         "wall_seconds_total": sum(timings),
         "wall_seconds_mean": sum(timings) / len(timings),
         "wall_seconds_max": max(timings),

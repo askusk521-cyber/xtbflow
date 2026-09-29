@@ -1,6 +1,6 @@
 {
   "schema": "xtbflow-joint-flow-smoke/v3",
-  "created_utc": "2026-09-29T12:41:48.804242+00:00",
+  "created_utc": "2026-09-29T12:44:12.971931+00:00",
   "execution_host": "node2",
   "data_status": "diagnostic_synthetic_nonzero_time_dependent_velocity_target",
   "seed": 11,
@@ -28,7 +28,7 @@
   "runtime_config_path": "configs/models/joint_flow_runtime_v0.1.json",
   "runtime_config_sha256": "58c52fdba6a8a803a11983e54dc1de87e7dcfacb45f23cb8c43842f2bb674c00",
   "git": {
-    "commit": "7a4fe88c436dbcde3bb50bbc5cc8d7bf6669166a",
+    "commit": "35192b75fdf302a2cf368430bc3b8138feb0e4c6",
     "dirty": false,
     "dirty_entries": []
   },
@@ -42,8 +42,8 @@
   ],
   "initial_loss": 0.012774611022775932,
   "final_loss": 0.005629877203213012,
-  "checkpoint_path": "/tmp/xtbflow-joint-flow-smoke-20260929-v3.pt",
-  "checkpoint_sha256": "7fe2ebcf8c8d95343a234ff809552ce899667d28f79f7e30e1b99033a5ad27fe",
+  "checkpoint_path": "/tmp/xtbflow-joint-flow-smoke-rebased.pt",
+  "checkpoint_sha256": "dd685a773440a0abc5c3741fad44b1714d11a774ae85ee5e089d28f96815ab96",
   "model_identity_before_save": {
     "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
     "state_sha256": "250652031fdb93d4b91839015c3b760ffd3ed03bc7ad0656b7c415cca159f9dd",
@@ -130,7 +130,7 @@
     },
     "same_physical_budget_for_controls": true
   },
-  "elapsed_seconds": 1.3618043810129166,
+  "elapsed_seconds": 1.4131180939730257,
   "limits": [
     "Synthetic targets only test the software chain.",
     "No real event or transition-state supervision was used.",

@@ -150,7 +150,7 @@
 - Clean-commit evidence is preserved in
   `docs/evidence/workflow_b_software_acceptance_20260929.json` and
   `docs/evidence/joint_flow_smoke_20260929_v3.json`, both bound to source commit
-  `7a4fe88c436dbcde3bb50bbc5cc8d7bf6669166a`. The v3 smoke restores every
+  `35192b75fdf302a2cf368430bc3b8138feb0e4c6`. The v3 smoke restores every
   control exactly, reduces its deterministic synthetic loss from about 0.01277
   to 0.00563, and keeps velocity conservation residuals below `5e-16`.
 - This is software evidence only. The canonical six-block capacity and reaction

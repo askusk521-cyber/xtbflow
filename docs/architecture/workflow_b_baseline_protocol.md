@@ -81,7 +81,7 @@ The committed reports are
 and
 [`joint_flow_smoke_20260929_v3.json`](../evidence/joint_flow_smoke_20260929_v3.json).
 Both were produced from clean source commit
-`7a4fe88c436dbcde3bb50bbc5cc8d7bf6669166a`; the checkpoint itself remains a
+`35192b75fdf302a2cf368430bc3b8138feb0e4c6`; the checkpoint itself remains a
 local smoke artefact and is not published as a scientific model.
 
 Run the bounded checks with:

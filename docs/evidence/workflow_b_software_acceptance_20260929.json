@@ -1,13 +1,13 @@
 {
   "schema": "xtbflow-workflow-b-software-acceptance/v1",
-  "created_utc": "2026-09-29T12:41:46.223700+00:00",
+  "created_utc": "2026-09-29T12:44:10.341255+00:00",
   "passed": true,
   "protocol_id": "workflow-b-baseline-ladder-v0.1",
   "protocol_sha256": "30361f3f5ca3b6e7c43d32c7a6590596c007270090a3f0a603d316d24b1cd93d",
   "protocol_schema_sha256": "daa64eda196d0252561135355a66562b4f32d59234d12119e1a178bffaae11e6",
   "runtime_config_sha256": "58c52fdba6a8a803a11983e54dc1de87e7dcfacb45f23cb8c43842f2bb674c00",
   "git": {
-    "commit": "7a4fe88c436dbcde3bb50bbc5cc8d7bf6669166a",
+    "commit": "35192b75fdf302a2cf368430bc3b8138feb0e4c6",
     "dirty": false,
     "dirty_entries": []
   },

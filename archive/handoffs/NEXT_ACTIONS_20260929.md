@@ -128,6 +128,27 @@
 - Keep Delta as the force/local-surface correction module for downstream physics/flow work, but do not claim a stable absolute-energy advantage. Future E/F validation should add independent parent coverage rather than only more conformers of the same test parents.
 - Full aggregate evidence is docs/evidence/spice2_openff_learning_curve_20260929.json; interpretation is docs/evidence/spice2_openff_learning_curve_interpretation_20260929.json; the nine raw run reports and logs are archived under docs/evidence/spice2_learning_curve_runs_20260929/.
 
+## 2026-09-29 Transition1x Track-B source audit
+
+- The exact public `train_rpsb_all.pkl` asset was downloaded into an external
+  cache and verified at 55,458,032 bytes, SHA-256
+  `36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65`
+  and MD5 `701a457634cce7a6cae5318e8cd18082`. Raw bytes are not tracked.
+- A hash-gated, NumPy-only restricted audit checked all 10,073 endpoint triples.
+  Reactant/product/TS atom rows, coordinate shapes, reaction IDs, formulas and
+  atom counts align; the published split contains 9,000 selected indices and a
+  1,073-record complement.
+- Transition1x remains `quarantine_diagnostic_only`: explicit formal charge,
+  multiplicity, trusted event labels, certified chemical atom mapping,
+  family-certified holdouts and an explicit redistribution license are absent.
+  Endpoint alignment is not evidence that the source is ready for reactant-only
+  joint event--geometry training.
+- Track-B admitted record count therefore remains zero and #58 remains blocked.
+  The next differentiating data action is either to locate a source satisfying
+  the complete contract or to generate independently frozen reactant seeds and
+  validated event/TS pairs under #18/#19. Missing electronic or event metadata
+  must not be inferred from coordinates.
+
 ## 2026-09-29 Workflow B shared controls and baseline freeze
 
 - The bounded joint-flow prototype now represents the electronic event state as

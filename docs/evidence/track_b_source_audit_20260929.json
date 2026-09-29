@@ -11,11 +11,11 @@
     "assign parent, family and split groups before training",
     "pass exact-input, source-record, payload, parent and family leakage audit"
   ],
-  "repository_base_commit": "abee6248daaf0c81cde2e676b0b139f4b5d26d1e",
+  "repository_base_commit": "0116d45747ca474ecf4877d59752646e5fdd363e",
   "schema_version": "xtbflow-track-b-source-audit/v1",
   "scientific_claim_allowed": false,
   "source_config": "configs/data/track_b_source_candidates_v1.json",
-  "source_config_sha256": "aae2a5bbd12367a454562d9fa31442b266fef8cfb144745941f19ca63fcdcb68",
+  "source_config_sha256": "4cf3eecebe4c09f1ccdf7ba2053f38e7e73c3a5e76f230015e0ccd77cdb5d895",
   "source_count": 7,
   "sources": [
     {
@@ -82,23 +82,43 @@
     },
     {
       "available": [
-        "endpoint-conditioned transition geometry diagnostic"
+        "reactant, product and transition-state endpoint coordinates",
+        "same-row atomic-number order across endpoint triples",
+        "coordinate units documented as angstrom in pinned upstream code",
+        "immutable public asset identity"
       ],
-      "decision": "quarantine_source_asset_unavailable",
+      "decision": "quarantine_diagnostic_only",
       "declared_record_count": 10073,
-      "local_asset_observed": false,
+      "expected_asset_sha256": "36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+      "expected_asset_size_bytes": 55458032,
+      "license_record": "unspecified on Zenodo record 13119869; redistribution not admitted",
+      "license_status": "unspecified",
+      "local_asset_locator": "external-cache:transition1x-rpsb-13119869/train_rpsb_all.pkl",
+      "local_asset_observed": true,
       "missing_for_track_b": [
-        "pinned local source bytes in the current audit",
-        "reactant-only event-label contract",
-        "explicit formal charge and multiplicity contract",
-        "family-certified holdout"
+        "trusted Track-B event-label representation",
+        "explicit formal charge and multiplicity fields",
+        "independently certified chemical atom mapping",
+        "family-certified holdout metadata",
+        "explicit redistribution license on the pinned Zenodo record"
       ],
+      "observed_asset": {
+        "asset_name": "train_rpsb_all.pkl",
+        "matches_expected_sha256": true,
+        "matches_expected_size": true,
+        "sha256": "36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+        "size_bytes": 55458032
+      },
       "permitted_use": [
+        "endpoint_geometry_diagnostic",
+        "schema_conversion_development",
         "future_source_audit"
       ],
       "source_id": "transition1x_preprocessed",
-      "source_locator": "https://zenodo.org/records/13119868",
-      "source_revision": "train_rpsb_all.pkl_sha256=36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65"
+      "source_locator": "https://doi.org/10.5281/zenodo.13119869",
+      "source_revision": "train_rpsb_all.pkl_sha256=36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+      "upstream_code_commit": "08f728925d76e22ce04ec1ab3b75770d32e617ca",
+      "zenodo_md5": "701a457634cce7a6cae5318e8cd18082"
     },
     {
       "available": [
@@ -122,6 +142,7 @@
       "observed_asset": {
         "asset_name": "UniTS_Lib.npy",
         "matches_expected_sha256": true,
+        "matches_expected_size": true,
         "sha256": "6a8fff071330603600276e200e65feef3ab5e4d285f81091a3eb0cc13bdb70e2",
         "size_bytes": 1439687943
       },
@@ -154,6 +175,7 @@
       "observed_asset": {
         "asset_name": "events.jsonl",
         "matches_expected_sha256": true,
+        "matches_expected_size": true,
         "nonempty_jsonl_rows": 41,
         "sha256": "ee277408552e4b10149b350902796100ee4ade7ba30e8b836dfdc557ee4da5ae",
         "size_bytes": 429234

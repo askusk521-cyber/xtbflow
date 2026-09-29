@@ -1,0 +1,274 @@
+{
+  "schema": "xtbflow-origin-candidates/v0.1",
+  "format_note": "JSON subset of YAML for standard-library validation",
+  "issue": 27,
+  "created_on": "2026-09-29",
+  "status": "literature_seed_quarantined",
+  "decision_use": "exploratory-development",
+  "candidate_count": 6,
+  "runnable_input_count": 0,
+  "family_counts": {
+    "aqueous_thioester_rna_aminoacylation": 2,
+    "sulfide_mediated_aminonitrile_ligation": 2,
+    "aminooxazole_ribonucleotide_precursor": 2
+  },
+  "v0_1_scope": {
+    "allowed_elements": ["C", "H", "N", "O", "S"],
+    "closed_shell_only": true,
+    "fixed_full_atom_pool": true,
+    "metals_radicals_excited_states": "out_of_scope"
+  },
+  "promotion_requires": [
+    "exact_structures_and_atom_mapping",
+    "source_supported_microstate_charge_multiplicity",
+    "reactant_visible_environment_pool",
+    "independent_conformer_and_approach_generation",
+    "input_and_source_hashes",
+    "license_and_provenance_record",
+    "no_target_derived_active_atoms_or_waters"
+  ],
+  "candidates": [
+    {
+      "candidate_id": "origins_acyl_001",
+      "parent_reaction_id": "adenosine_arg_ethanethioester_v0",
+      "mechanism_family_id": "aqueous_thioester_rna_aminoacylation",
+      "title": "L-arginyl ethanethioester plus adenosine 2-prime,3-prime diol",
+      "source": {
+        "doi": "10.1038/s41586-025-09388-y",
+        "locator": "Figure 1 and supporting information",
+        "verified_on": "2026-09-29"
+      },
+      "reactant_identities": [
+        "adenosine model substrate 16A in the source notation",
+        "L-arginyl ethanethioester in the source notation"
+      ],
+      "event_intent": "O-acyl transfer from thioester to the adenosine terminal diol",
+      "competing_events": [
+        "thioester hydrolysis",
+        "amine acylation or peptide formation",
+        "2-prime versus 3-prime O-acylation"
+      ],
+      "source_conditions": {
+        "phase": "aqueous",
+        "pH": 6.5,
+        "temperature": "room_temperature",
+        "note": "Exact concentrations and buffer composition must be copied from the source/SI before admission."
+      },
+      "charge_spin": {
+        "status": "unresolved",
+        "reason": "Arginine and aminoacyl-thioester protonation must be source- and condition-specific."
+      },
+      "structure_status": "not_prepared",
+      "admission": "quarantine",
+      "missing": [
+        "exact source structures",
+        "microstate ensemble",
+        "atom mapping",
+        "reactant conformers and environment pool",
+        "input hashes"
+      ]
+    },
+    {
+      "candidate_id": "origins_acyl_002",
+      "parent_reaction_id": "adenosine_ala_ethanethioester_v0",
+      "mechanism_family_id": "aqueous_thioester_rna_aminoacylation",
+      "title": "L-alanyl ethanethioester plus adenosine 2-prime,3-prime diol",
+      "source": {
+        "doi": "10.1038/s41586-025-09388-y",
+        "locator": "Main text and extended-data aminoacyl-adenosine experiments",
+        "verified_on": "2026-09-29"
+      },
+      "reactant_identities": [
+        "adenosine model substrate 16A in the source notation",
+        "L-alanyl ethanethioester in the source notation"
+      ],
+      "event_intent": "O-acyl transfer from thioester to the adenosine terminal diol",
+      "competing_events": [
+        "thioester hydrolysis",
+        "aminonitrile or amine acylation",
+        "2-prime versus 3-prime O-acylation"
+      ],
+      "source_conditions": {
+        "phase": "aqueous",
+        "pH": 6.5,
+        "temperature": "room_temperature",
+        "note": "Exact source experiment and concentrations require SI extraction."
+      },
+      "charge_spin": {
+        "status": "unresolved",
+        "reason": "Free amine/carboxyl-derived thioester protonation must be frozen from source conditions."
+      },
+      "structure_status": "not_prepared",
+      "admission": "quarantine",
+      "missing": [
+        "exact source structures",
+        "microstate ensemble",
+        "atom mapping",
+        "reactant conformers and environment pool",
+        "input hashes"
+      ]
+    },
+    {
+      "candidate_id": "origins_aminonitrile_001",
+      "parent_reaction_id": "glycine_nitrile_ligation_v0",
+      "mechanism_family_id": "sulfide_mediated_aminonitrile_ligation",
+      "title": "Glycine-nitrile member of the aqueous sulfide-mediated ligation scope",
+      "source": {
+        "doi": "10.1038/s41586-019-1371-4",
+        "locator": "Figure 1 and supporting information",
+        "verified_on": "2026-09-29"
+      },
+      "reactant_identities": [
+        "glycine nitrile (aminoacetonitrile) member",
+        "source-defined N-acyl precursor, sulfide/thioacetate and oxidant system"
+      ],
+      "event_intent": "Chemoselective alpha-aminonitrile coupling to an N-acyl peptide nitrile",
+      "competing_events": [
+        "nitrile hydrolysis",
+        "unproductive sulfur chemistry",
+        "alternative N- versus C-terminal ligation"
+      ],
+      "source_conditions": {
+        "phase": "aqueous",
+        "pH": "neutral_range",
+        "note": "Exact precursor, oxidant, concentrations and step definition must be transcribed from the SI."
+      },
+      "charge_spin": {
+        "status": "unresolved",
+        "reason": "Aminonitrile protonation and sulfur reagent states are condition-specific."
+      },
+      "structure_status": "not_prepared",
+      "admission": "quarantine",
+      "missing": [
+        "exact source reaction instance",
+        "all reagent structures and stoichiometry",
+        "microstate ensemble",
+        "atom mapping",
+        "input hashes"
+      ]
+    },
+    {
+      "candidate_id": "origins_aminonitrile_002",
+      "parent_reaction_id": "alanine_nitrile_ligation_v0",
+      "mechanism_family_id": "sulfide_mediated_aminonitrile_ligation",
+      "title": "Alanine-nitrile member of the aqueous sulfide-mediated ligation scope",
+      "source": {
+        "doi": "10.1038/s41586-019-1371-4",
+        "locator": "Proteinogenic side-chain scope and supporting information",
+        "verified_on": "2026-09-29"
+      },
+      "reactant_identities": [
+        "alanine nitrile member",
+        "source-defined N-acyl precursor, sulfide/thioacetate and oxidant system"
+      ],
+      "event_intent": "Chemoselective alpha-aminonitrile coupling to an N-acyl peptide nitrile",
+      "competing_events": [
+        "nitrile hydrolysis",
+        "epimerization or stereochemical ambiguity",
+        "unproductive sulfur chemistry"
+      ],
+      "source_conditions": {
+        "phase": "aqueous",
+        "pH": "neutral_range",
+        "note": "Exact source reaction and stereochemical form require SI extraction."
+      },
+      "charge_spin": {
+        "status": "unresolved",
+        "reason": "Aminonitrile protonation and sulfur reagent states are condition-specific."
+      },
+      "structure_status": "not_prepared",
+      "admission": "quarantine",
+      "missing": [
+        "exact source reaction instance",
+        "all reagent structures and stoichiometry",
+        "microstate and stereochemical state",
+        "atom mapping",
+        "input hashes"
+      ]
+    },
+    {
+      "candidate_id": "origins_aminooxazole_001",
+      "parent_reaction_id": "glycolaldehyde_cyanamide_aminooxazole_v0",
+      "mechanism_family_id": "aminooxazole_ribonucleotide_precursor",
+      "title": "Glycolaldehyde plus cyanamide formation of 2-aminooxazole",
+      "source": {
+        "doi": "10.1038/nature08013",
+        "locator": "Figure 2 and supporting information",
+        "verified_on": "2026-09-29"
+      },
+      "reactant_identities": [
+        "glycolaldehyde",
+        "cyanamide",
+        "source-declared phosphate/buffer species"
+      ],
+      "event_intent": "Condensation and cyclization to 2-aminooxazole",
+      "competing_events": [
+        "hydrate or oligomer formation",
+        "open-chain condensation intermediates",
+        "hydrolysis"
+      ],
+      "source_conditions": {
+        "phase": "aqueous",
+        "note": "Phosphate roles, pH, concentrations and step sequence require exact SI transcription."
+      },
+      "charge_spin": {
+        "status": "provisional",
+        "charge": 0,
+        "multiplicity": 1,
+        "reason": "Neutral closed-shell reactants are expected; source-condition microstates remain to be frozen."
+      },
+      "structure_status": "not_prepared",
+      "admission": "quarantine",
+      "missing": [
+        "source-exact structures and tautomers",
+        "phosphate/environment atom pool",
+        "atom mapping",
+        "independent conformers and approaches",
+        "input hashes"
+      ]
+    },
+    {
+      "candidate_id": "origins_aminooxazole_002",
+      "parent_reaction_id": "aminooxazole_glyceraldehyde_aminooxazoline_v0",
+      "mechanism_family_id": "aminooxazole_ribonucleotide_precursor",
+      "title": "2-aminooxazole plus glyceraldehyde formation of pentose amino-oxazolines",
+      "source": {
+        "doi": "10.1038/nature08013",
+        "locator": "Figure 3 and supporting information",
+        "verified_on": "2026-09-29"
+      },
+      "reactant_identities": [
+        "2-aminooxazole",
+        "glyceraldehyde stereochemical ensemble",
+        "source-declared phosphate/buffer species"
+      ],
+      "event_intent": "Carbon-carbon bond formation and cyclization to pentose amino-oxazolines",
+      "competing_events": [
+        "diastereomeric amino-oxazoline formation",
+        "open-chain adducts",
+        "hydrolysis or decomposition"
+      ],
+      "source_conditions": {
+        "phase": "aqueous",
+        "note": "Glyceraldehyde stereochemistry, phosphate, pH and concentrations require exact SI transcription."
+      },
+      "charge_spin": {
+        "status": "provisional",
+        "charge": 0,
+        "multiplicity": 1,
+        "reason": "Neutral closed-shell structures are expected; source-condition microstates remain to be frozen."
+      },
+      "structure_status": "not_prepared",
+      "admission": "quarantine",
+      "missing": [
+        "source-exact stereochemical structures",
+        "phosphate/environment atom pool",
+        "atom mapping",
+        "independent conformers and approaches",
+        "input hashes"
+      ]
+    }
+  ],
+  "current_decision": "No main application or transfer family selected.",
+  "next_action": "Extract exact structures, conditions and microstates from the primary papers/SI; then create six hashed reactant-side inputs under issue #18."
+}

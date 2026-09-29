@@ -304,8 +304,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "45089b9c300f0d684575dcb296b2494a9e1d803f331523090177663c58d4ef02",
-      "bytes": 20763
+      "sha256": "b69467d68879380aded2a04ba2981ca209ae40eeb53d02102a94038879f5584e",
+      "bytes": 21372
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -316,6 +316,11 @@
       "path": "docs/TRACK_B_DATA_GATE.md",
       "sha256": "7d4237a25238a6a84fd4f87b255a52ae3e8d2dec84ec280a05ff97ba97953a99",
       "bytes": 10677
+    },
+    {
+      "path": "docs/TRANSITION1X_GEOMETRY_BASELINE.md",
+      "sha256": "7049f388cbb1d48f986fee73481f592a38cb7b23dae4d4a52e6f58c6836350ae",
+      "bytes": 1710
     },
     {
       "path": "docs/TRANSITION1X_JOINT_DEVELOPMENT.md",
@@ -526,6 +531,11 @@
       "path": "docs/evidence/track_b_source_audit_20260929.json",
       "sha256": "2013d23d86491a80d3d158ca99e0eef33f9b397261c75999b5d74d1081e6c7f0",
       "bytes": 8575
+    },
+    {
+      "path": "docs/evidence/transition1x_geometry_baseline_20260930.json",
+      "sha256": "e85a3c6f50bac7a4986dfaa92c0c4e34ca04681c052b0f83baae9e382d423862",
+      "bytes": 11853
     },
     {
       "path": "docs/evidence/transition1x_joint_development_20260930.json",

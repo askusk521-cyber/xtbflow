@@ -1,0 +1,56 @@
+{
+  "schema": "xtbflow-xtbloom-adapter-contract/v1",
+  "status": "software_contract_verified",
+  "source_commit": "24edd1226cff7e323b1c8108ac8d76c05286479a",
+  "cp2k_dependency": false,
+  "scientific_qualification": false,
+  "protocol": {
+    "calculator": "xtbloom",
+    "method": "GFN2-xTB",
+    "backend": "cpu",
+    "public_coordinate_unit": "angstrom",
+    "public_energy_unit": "hartree",
+    "public_force_unit": "hartree/angstrom",
+    "required_parameters": [
+      "max_scc_iterations",
+      "charge_tolerance",
+      "energy_tolerance",
+      "electronic_temperature",
+      "initialization"
+    ]
+  },
+  "native_boundary": {
+    "native_coordinate_unit": "bohr",
+    "native_force_unit": "hartree/bohr",
+    "coordinate_conversion": "angstrom / 0.529177210903 = bohr",
+    "force_conversion": "hartree/bohr / 0.529177210903 = hartree/angstrom",
+    "charge_and_multiplicity": "passed explicitly",
+    "method": "passed from CalculatorProtocol; GFN1/GFN2 aliases are validated",
+    "identity_hash_scope": [
+      "xtbloom package module",
+      "xtbloom.interface wrapper",
+      "xtbloom.library ABI loader",
+      "xtbflow adapter source hash in result metadata"
+    ]
+  },
+  "tests": {
+    "contract_command": "PYTHONPATH=src:vendor/mechai_reusable pytest -q tests/test_calculator_contract.py",
+    "contract_passed": 9,
+    "full_pytest_command": "PYTHONPATH=src:vendor/mechai_reusable pytest -q",
+    "full_pytest_passed": 153,
+    "reusable_unittest_command": "PYTHONPATH=src:vendor/mechai_reusable /group/software/deepmd-kit-3.1.1/bin/python -m unittest discover -s tests/reusable -p 'test_*.py'",
+    "reusable_unittest_passed": 56,
+    "subtests_passed": 68,
+    "git_diff_check": "passed"
+  },
+  "environment": {
+    "xtbloom_python_package": "unavailable in the execution environments checked",
+    "xtbloom_source_checkout": "observed at the local sibling checkout; no installed native package was observed",
+    "direct_energy_force_run": "not_run"
+  },
+  "limits": [
+    "The fake direct Calculator only verifies the adapter boundary and does not produce a chemical result.",
+    "No real xTBloom energy, force, finite-difference, CPU/CUDA parity, or numerical qualification is claimed.",
+    "No CP2K, DFT, transition-state search, or training result is claimed."
+  ]
+}

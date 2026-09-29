@@ -34,6 +34,22 @@
 - This is runtime/accounting evidence only. It does not qualify a TS search,
   a quantum-chemistry backend, a GPU implementation, or any chemical result.
 
+## 2026-09-29 xTBloom adapter boundary
+
+- `XTBloomAdapter` now has a direct native API path when an explicit protocol
+  supplies SCC limits, tolerances, electronic temperature, and fresh/warm
+  initialization. Public Angstrom coordinates and Hartree/Angstrom forces are
+  converted at the boundary to xTBloom's Bohr and Hartree/Bohr interface;
+  charge, multiplicity, method, and backend remain explicit.
+- Package, `interface.py`, `library.py`, and adapter source identities are
+  retained for audit. Direct availability reports `qualification="installed"`
+  with `status="unknown"`; it never implies numerical qualification.
+- The adapter contract and configuration evidence is recorded in
+  [`docs/evidence/xtbloom_adapter_contract_20260929.json`](evidence/xtbloom_adapter_contract_20260929.json).
+  The current execution environments have no installed xTBloom native
+  package, so real energy/force, finite-difference, CPU/CUDA, and qualification
+  runs remain open.
+
 ## 2026-09-27 provenance 与联合流增量
 
 - n2 已完成 UniTS-Lib 首批 64 条记录的可复现 provenance audit；64/64 条通过坐标、能量、力、原子清单、反应位点、RDKit 原子数和图特征结构检查，图特征中的全局电荷／多重度编码与原始字段一致。证据见 [`docs/evidence/units_provenance_audit_20260927.json`](evidence/units_provenance_audit_20260927.json)。

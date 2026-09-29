@@ -99,8 +99,8 @@
     },
     {
       "path": "configs/calculators/protocols.yaml",
-      "sha256": "c6ea3ae04336372b2db4f901ff4b1d44e7051492662715ad0532b8ef09bc82c7",
-      "bytes": 1883
+      "sha256": "3c553dcc05111d4aba0b2c6bb34a4d077e135304dfd23f4c2e3637477ba356ab",
+      "bytes": 1896
     },
     {
       "path": "configs/environment-n2.yml",
@@ -224,8 +224,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "0ffff2d931f6996d8abbf8309ffc04ff2d9c55ce2bfae59380893926dca17a55",
-      "bytes": 4757
+      "sha256": "31ded07a2ef1a3540937c7fb590097813305f46d9e52642c132585f806fab18a",
+      "bytes": 5729
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -266,6 +266,11 @@
       "path": "docs/evidence/units_provenance_audit_20260927.json",
       "sha256": "e0b4a1d6dfba65e5c532f479b9f16ab8f009e31644985edd46dceba0d444ba17",
       "bytes": 155056
+    },
+    {
+      "path": "docs/evidence/xtbloom_adapter_contract_20260929.json",
+      "sha256": "d9cb132b3d85b1c19005970911017f9bd5d9d67ecefc1d972c446cbe0c56720d",
+      "bytes": 2298
     },
     {
       "path": "docs/model_design.md",
@@ -374,8 +379,8 @@
     },
     {
       "path": "src/xtbflow/calculators/xtbloom.py",
-      "sha256": "fa5dfcc9a05c2de1a95499d615569dee93e61291f0fb0a27128cd9df3cb66a83",
-      "bytes": 3974
+      "sha256": "b951893c5f1476a8b250b188e81b2d4ed1a486ffaf810352e8cab19e377c7898",
+      "bytes": 11112
     },
     {
       "path": "src/xtbflow/data/__init__.py",
@@ -624,8 +629,8 @@
     },
     {
       "path": "tests/test_calculator_contract.py",
-      "sha256": "4197024ebb054724c7f2b28436cff94f4d1742e90a53e3a44fcfb28b1aac0bb4",
-      "bytes": 8012
+      "sha256": "05e3972c144c84c6f5aae368f485cf9b44e160e32da90cf78389ab835b7c4cef",
+      "bytes": 10292
     },
     {
       "path": "tests/test_checkpoint.py",

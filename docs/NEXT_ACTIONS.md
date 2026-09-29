@@ -22,6 +22,18 @@
 - 历史联合流证据完成 8 步诊断训练、权重保存、恢复和 4 步采样；恢复输出逐位一致，守恒残差小于 `6e-17`。该历史运行使用合成零速度目标，仅证明当时的软件链路，不代表当前非零目标 smoke，也不构成科学性能结果。
 - 运行账本新增原子化 calculator-call reservation，可在 TS 搜索器调用前拒绝超预算计划。
 
+## 2026-09-29 non-CP2K budget follow-through
+
+- `run_resumable_validation` now settles partial calculator-token consumption
+  when a searcher hits its hard allowance or raises a token/budget error. The
+  candidate failure is written before the remaining candidates continue; the
+  unused reservation is released and the consumed calls remain counted.
+- The production adapter boundary has a regression proving that a fourth call
+  is blocked before the injected evaluator runs. The contract evidence is in
+  [`docs/evidence/ts_budget_contract_20260929.json`](evidence/ts_budget_contract_20260929.json).
+- This is runtime/accounting evidence only. It does not qualify a TS search,
+  a quantum-chemistry backend, a GPU implementation, or any chemical result.
+
 ## 2026-09-27 provenance 与联合流增量
 
 - n2 已完成 UniTS-Lib 首批 64 条记录的可复现 provenance audit；64/64 条通过坐标、能量、力、原子清单、反应位点、RDKit 原子数和图特征结构检查，图特征中的全局电荷／多重度编码与原始字段一致。证据见 [`docs/evidence/units_provenance_audit_20260927.json`](evidence/units_provenance_audit_20260927.json)。

@@ -10,6 +10,7 @@ import hashlib
 import importlib
 import importlib.metadata
 from importlib.util import find_spec
+from pathlib import Path
 from shutil import which
 from typing import Any, Callable, Mapping
 
@@ -46,7 +47,8 @@ def _package_identity() -> tuple[str | None, str | None, str | None]:
         version = version or importlib.metadata.version("xtbloom")
     except importlib.metadata.PackageNotFoundError:
         pass
-    paths = [getattr(module, "__file__", None)]
+    module_path = getattr(module, "__file__", None)
+    paths = [module_path]
     # The public Calculator wrapper lives in interface.py; library.py carries
     # the ctypes ABI loader. Hash both so a changed Python/native boundary
     # cannot silently reuse a stale calculator identity.
@@ -56,6 +58,21 @@ def _package_identity() -> tuple[str | None, str | None, str | None]:
         except Exception:
             continue
         paths.append(getattr(submodule, "__file__", None))
+        if name == "xtbloom.library":
+            locator = getattr(submodule, "library_path", None)
+            if callable(locator):
+                try:
+                    native_path = locator()
+                except Exception:
+                    native_path = None
+                if native_path and Path(native_path).is_file():
+                    paths.append(str(native_path))
+    if module_path:
+        package_dir = Path(module_path).parent
+        for runtime_dir in (package_dir / "lib", package_dir / "lib64", package_dir / "bin"):
+            paths.extend(str(path) for path in sorted(runtime_dir.glob("libxtbloom.so*")))
+            paths.extend(str(path) for path in sorted(runtime_dir.glob("libxtbloom.dylib*")))
+            paths.extend(str(path) for path in sorted(runtime_dir.glob("xtbloom.dll")))
     digest = hashlib.sha256()
     observed = False
     for path in paths:

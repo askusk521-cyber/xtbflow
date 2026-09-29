@@ -55,13 +55,13 @@ slice with:
 ```bash
 python -m pip install -e ".[test]"
 python -m unittest discover -s tests/reusable -p "test_*.py"
-python -m pytest -q tests/test_package.py
+python -m pytest -q
 ```
 
-The current package contains contracts, untrained compatibility prototypes, and a standard-library runtime ledger for bounded, resumable execution. The ledger records calculator/protocol identities, per-system attempts, retries, cache hits, resource units, and cumulative stage caps before work is allowed to proceed.
+The current package contains contracts, untrained compatibility prototypes, and a standard-library runtime ledger for bounded, resumable execution. The ledger records calculator/protocol identities, per-system attempts, retries, cache hits, resource units, and cumulative stage caps before work is allowed to proceed. It also includes a CP2K energy/force adapter; the CP2K runtime is installed separately in the `xtbflow-cp2k` environment, with the pinned build and protocol documented in `docs/CP2K_SETUP.md`.
 
 The public-data handoff is currently an explicit quarantine manifest: source identities are recorded, but zero scientific records are admitted until per-record geometry bytes, charge/spin evidence, licenses, and reference labels are verified.
 
-It does not yet contain a trained flow model, xTBloom or CP2K calculator
-backend, a reference energy/force dataset, or a chemical validation result.
-Those remain separate issues with their own evidence and budget gates.
+It does not yet contain a trained flow model, a reference energy/force dataset,
+or a chemical validation result. Those remain separate issues with their own
+evidence and budget gates.

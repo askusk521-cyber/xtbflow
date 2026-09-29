@@ -19,8 +19,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "8b978d691f3ab255ed6041e3408b3a2f2b22a47d150fc5edecc1f5aab2d99e64",
-      "bytes": 4489
+      "sha256": "99062dd8c0542b7196a4a2edd1026fa2b179505aa38e00bcc2bda1de4ca66bfa",
+      "bytes": 4624
     },
     {
       "path": "archive/README.md",
@@ -93,9 +93,19 @@
       "bytes": 2350
     },
     {
+      "path": "configs/calculators/cp2k/environment.yml",
+      "sha256": "c75d298ff3320631533591f44e292e77692ad544fa4fb4fa00b2f60de0f0a650",
+      "bytes": 181
+    },
+    {
       "path": "configs/calculators/cp2k/protocol_v0.1.yaml",
       "sha256": "d96eafdf9dbe0b65de472d5a04477cd84b417b59a0b0a7270a78c5ba361abdf6",
       "bytes": 1210
+    },
+    {
+      "path": "configs/calculators/cp2k/slurm_calibration_smoke.sbatch",
+      "sha256": "062bb440a3a608c06c18fc719ff6d954ad8c190d4b4830615de6a3893fadb40b",
+      "bytes": 945
     },
     {
       "path": "configs/calculators/protocols.yaml",
@@ -109,8 +119,8 @@
     },
     {
       "path": "configs/host.local.example.yaml",
-      "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
-      "bytes": 542
+      "sha256": "582d9fae20d7554df111f04c0450e6a6e9afe5cb7ea556873e91134f492ef90f",
+      "bytes": 744
     },
     {
       "path": "configs/models/delta_small.yaml",
@@ -149,8 +159,8 @@
     },
     {
       "path": "configs/resources.yaml",
-      "sha256": "1a81aeece792ef6d44dd71019cbb2ce86f7910ffd29b193f82bb8c1bfbc13c6a",
-      "bytes": 5989
+      "sha256": "db66596f33d9c41c593e9ce06d0abfa54d2288a5f85a9d759f6570c5e25c179f",
+      "bytes": 6164
     },
     {
       "path": "configs/reusable/event_geometry_manifest_v1/endpoint_geometry.json",
@@ -198,9 +208,14 @@
       "bytes": 5193
     },
     {
+      "path": "docs/CP2K_SETUP.md",
+      "sha256": "efb48c96021f96b5b10a333f3eb75b2d200d813495b2a391129ab998a1729135",
+      "bytes": 2824
+    },
+    {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "ec8cd746d0278210b2a9d8178296be2843b9a1a56477ce5c6d564ac6ef2dbb72",
-      "bytes": 3251
+      "sha256": "9d332c2fda197ac860a592b722f2e2e35859f03dfe6d69f598333cc61dd09642",
+      "bytes": 3568
     },
     {
       "path": "docs/HANDOFF_STATUS.md",
@@ -241,6 +256,26 @@
       "path": "docs/data_contract.md",
       "sha256": "9964999089df7e67b9d5c0af99dcf5bd426974bca5128bee2623c928473d42a9",
       "bytes": 4036
+    },
+    {
+      "path": "docs/evidence/cp2k_calibration_smoke.json",
+      "sha256": "9b8c43a6f5ca121e01a14d3f42eafd19351c540e2a74af1b9d1518532c39cb76",
+      "bytes": 4611
+    },
+    {
+      "path": "docs/evidence/cp2k_convergence_500_600.json",
+      "sha256": "1812d098a02c2c0fc5652b126146487daf0e4781048f7512285d9cb9309bbbc4",
+      "bytes": 2281
+    },
+    {
+      "path": "docs/evidence/cp2k_convergence_600_700.json",
+      "sha256": "45acc5fa8e69a453fab662afc1934c4eafafda5290a56f4ba30c153d38a0478f",
+      "bytes": 2282
+    },
+    {
+      "path": "docs/evidence/cp2k_convergence_smoke.json",
+      "sha256": "2c392bdd78e90302b690857726d55fc29cc3877d63ceae35e67fc52360a81e4e",
+      "bytes": 3234
     },
     {
       "path": "docs/evidence/gfn2_units_diagnostic_20260927.json",
@@ -348,6 +383,21 @@
       "bytes": 3491
     },
     {
+      "path": "scripts/cp2k_calibration_smoke.py",
+      "sha256": "dc162b1b6a046ae6a4446f617dcac0f2729240ad2c029d541e3433b913f19c95",
+      "bytes": 6763
+    },
+    {
+      "path": "scripts/cp2k_convergence_smoke.py",
+      "sha256": "daebd86d441e6d19a11803aa209f86e0971f2e7c0b52219161c4b755809ec306",
+      "bytes": 6696
+    },
+    {
+      "path": "scripts/cp2k_smoke.py",
+      "sha256": "23e34d4055bfd783631669cfa8291765299b075f16a0a7781e277d0d3df46d88",
+      "bytes": 3790
+    },
+    {
       "path": "scripts/joint_flow_smoke.py",
       "sha256": "29f20fa8549a6d18781a6a5a4ecdda0103e8f4b8d7cf640e2fb656de877e34e2",
       "bytes": 8665
@@ -379,8 +429,8 @@
     },
     {
       "path": "src/xtbflow/calculators/cp2k.py",
-      "sha256": "4b63ff2004cdf87e4b680ef9980642fff594610c6f538a6211642a9ceeb5ce19",
-      "bytes": 14978
+      "sha256": "4357220938a9c0b0861f376ddddee4c82f7be7b2d68372cb27d19fa012f7bae0",
+      "bytes": 16961
     },
     {
       "path": "src/xtbflow/calculators/xtb_oracle.py",
@@ -656,6 +706,11 @@
       "path": "tests/test_core_proposals.py",
       "sha256": "fffd0fec0407a9a6f077a0a765c11964285ac0bbfa2e69586ebfe445ee9a9752",
       "bytes": 6608
+    },
+    {
+      "path": "tests/test_cp2k.py",
+      "sha256": "15ee4a4a9dee00a330deefe5d3f1cd473c00d11f70de190ca7c3404f696b91cb",
+      "bytes": 4259
     },
     {
       "path": "tests/test_cp2k_parser.py",

@@ -1,7 +1,7 @@
 """Versioned CP2K reference E/F protocol, renderer, parser, and adapter."""
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 import hashlib
 import json
 import math
@@ -29,6 +29,11 @@ from xtbflow.runtime.ledger import BudgetTokenRequired, CalculatorCallToken
 # contract is Hartree/Angstrom, so conversion belongs at this parser boundary.
 BOHR_IN_ANGSTROM = 0.529177210903
 FORCE_CONVERSION_VERSION = "bohr_to_angstrom_codata2018"
+_SUPPORTED_PARAMETER_KEYS = frozenset({
+    "basis_set_file", "pseudopotential_file", "basis_by_element",
+    "pseudopotential_by_element", "cell_angstrom", "dispersion_parameter_file",
+    "reference_functional", "threads",
+})
 
 
 @dataclass(frozen=True)
@@ -73,6 +78,12 @@ class CP2KProtocol:
             raise ValueError("unsupported path validation status")
         if not isinstance(self.parameters, Mapping):
             raise ValueError("parameters must be a mapping")
+        unsupported = sorted(set(self.parameters) - _SUPPORTED_PARAMETER_KEYS)
+        if unsupported:
+            raise ValueError("unsupported CP2K protocol parameters: " + ", ".join(unsupported))
+        threads = self.parameters.get("threads")
+        if threads is not None and (type(threads) is not int or threads < 1):
+            raise ValueError("parameters.threads must be a positive integer")
         for name in ("basis_set_file", "pseudopotential_file"):
             value = self.parameters.get(name)
             if value is not None and (not isinstance(value, str) or not value.strip()):
@@ -81,6 +92,10 @@ class CP2KProtocol:
             value = self.parameters.get(name, {})
             if not isinstance(value, Mapping) or any(not isinstance(key, str) or not isinstance(item, str) or not item.strip() for key, item in value.items()):
                 raise ValueError(f"{name} must map element symbols to nonempty labels")
+        for name in ("dispersion_parameter_file", "reference_functional"):
+            value = self.parameters.get(name)
+            if value is not None and (not isinstance(value, str) or not value.strip()):
+                raise ValueError(f"{name} must be a nonempty string when provided")
         cell = self.parameters.get("cell_angstrom")
         if self.boundary == "periodic" and cell is None:
             raise ValueError("periodic CP2K protocols require explicit parameters.cell_angstrom")
@@ -88,6 +103,8 @@ class CP2KProtocol:
             raise ValueError("parameters.cell_angstrom must contain three positive finite lengths")
         if self.dispersion not in {"none", "DFTD3(BJ)"}:
             raise ValueError("unsupported CP2K dispersion setting")
+        if self.dispersion == "DFTD3(BJ)" and not self.parameters.get("dispersion_parameter_file"):
+            raise ValueError("DFTD3(BJ) requires parameters.dispersion_parameter_file")
 
     @property
     def identity(self) -> str:
@@ -101,11 +118,18 @@ class CP2KProtocol:
             parameters=asdict(self),
         )
 
+    def for_state(self, charge: int, multiplicity: int, *, protocol_id: str | None = None) -> "CP2KProtocol":
+        if type(charge) is not int:
+            raise ValueError("charge must be an explicit integer")
+        if type(multiplicity) is not int or multiplicity < 1:
+            raise ValueError("multiplicity must be an explicit positive integer")
+        return replace(self, protocol_id=protocol_id or f"{self.protocol_id}:q{charge}:m{multiplicity}", charge=charge, multiplicity=multiplicity)
+
 
 def render_cp2k_input(system: MolecularSystem, protocol: CP2KProtocol, *, project: str = "xtbflow") -> str:
     if system.charge != protocol.charge or system.multiplicity != protocol.multiplicity:
         raise CalculatorProtocolError("system charge/multiplicity does not match the frozen CP2K protocol")
-    rows = ["&GLOBAL", f"  PROJECT {project}", "  RUN_TYPE ENERGY_FORCE", "&END GLOBAL", "&FORCE_EVAL", "  METHOD QS", "  &DFT"]
+    rows = ["&GLOBAL", f"  PROJECT {project}", "  RUN_TYPE ENERGY_FORCE", "&END GLOBAL", "&FORCE_EVAL", "  METHOD QS", "  &PRINT", "    &FORCES", "    &END FORCES", "  &END PRINT", "  &DFT"]
     # Labels and library filenames are distinct CP2K concepts.  Do not place
     # a basis label in BASIS_SET_FILE_NAME merely because the old adapter had
     # only one string field for both values.
@@ -113,12 +137,15 @@ def render_cp2k_input(system: MolecularSystem, protocol: CP2KProtocol, *, projec
         rows.append(f"    BASIS_SET_FILE_NAME {protocol.parameters['basis_set_file']}")
     if protocol.parameters.get("pseudopotential_file"):
         rows.append(f"    POTENTIAL_FILE_NAME {protocol.parameters['pseudopotential_file']}")
-    rows.extend([f"    CHARGE {protocol.charge}", f"    MULTIPLICITY {protocol.multiplicity}", "    &MGRID", f"      CUTOFF {protocol.cutoff_ry:.12g}", f"      REL_CUTOFF {protocol.relative_cutoff_ry:.12g}", "    &END MGRID", "    &SCF", f"      EPS_SCF {protocol.scf_epsilon:.12g}", f"      MAX_SCF {protocol.max_scf}", "    &END SCF", "    &XC", f"      &XC_FUNCTIONAL {protocol.functional}", "      &END XC_FUNCTIONAL"])
+    rows.extend([f"    CHARGE {protocol.charge}", f"    MULTIPLICITY {protocol.multiplicity}"])
+    if protocol.multiplicity > 1:
+        rows.append("    LSD")
+    rows.extend(["    &MGRID", f"      CUTOFF {protocol.cutoff_ry:.12g}", f"      REL_CUTOFF {protocol.relative_cutoff_ry:.12g}", "    &END MGRID", "    &SCF", f"      EPS_SCF {protocol.scf_epsilon:.12g}", f"      MAX_SCF {protocol.max_scf}", "    &END SCF", "    &XC", f"      &XC_FUNCTIONAL {protocol.functional}", "      &END XC_FUNCTIONAL"])
     if protocol.dispersion == "DFTD3(BJ)":
-        rows.extend(["      &VDW_POTENTIAL", "        POTENTIAL_TYPE PAIR_POTENTIAL", "        &PAIR_POTENTIAL", "          TYPE DFTD3(BJ)", "        &END PAIR_POTENTIAL", "      &END VDW_POTENTIAL"])
+        rows.extend(["      &VDW_POTENTIAL", "        POTENTIAL_TYPE PAIR_POTENTIAL", "        &PAIR_POTENTIAL", "          TYPE DFTD3(BJ)", f"          PARAMETER_FILE_NAME {protocol.parameters['dispersion_parameter_file']}", f"          REFERENCE_FUNCTIONAL {protocol.parameters.get('reference_functional', protocol.functional)}", "        &END PAIR_POTENTIAL", "      &END VDW_POTENTIAL"])
     rows.append("    &END XC")
     if protocol.boundary == "isolated":
-        rows.extend(["    &POISSON", "      PERIODIC NONE", "    &END POISSON"])
+        rows.extend(["    &POISSON", "      PERIODIC NONE", "      PSOLVER MT", "    &END POISSON"])
     rows.extend(["  &END DFT", "  &SUBSYS", "    &CELL"])
     cell = protocol.parameters.get("cell_angstrom", (20.0, 20.0, 20.0))
     rows.extend(["      ABC " + " ".join(f"{float(value):.12g}" for value in cell), "      PERIODIC " + ("XYZ" if protocol.boundary == "periodic" else "NONE"), "    &END CELL", "    &COORD"])

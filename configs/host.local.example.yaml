@@ -10,6 +10,12 @@ run_root: null
 scheduler: slurm
 queue: null
 credentials_provider: operating_system_or_cluster_secret_manager
+calculators:
+  cp2k:
+    environment: xtbflow-cp2k
+    executable: /path/to/miniconda3/envs/xtbflow-cp2k/bin/cp2k.psmp
+    data_dir: /path/to/miniconda3/envs/xtbflow-cp2k/share/cp2k/data
+    threads: 4
 verified:
   ssh: false
   scheduler: false

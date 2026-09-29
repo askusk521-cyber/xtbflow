@@ -1,6 +1,6 @@
 # n2 运行环境
 
-这份记录描述 `xtbflow` 在 n2 上的实际接管环境。它记录已观察到的软件和硬件身份，不代表 CP2K、xTBloom 或训练流程已经安装，也不构成科学结果。
+这份记录描述 `xtbflow` 在 n2 上的实际接管环境。它记录已观察到的软件和硬件身份，不构成科学结果。
 
 ## 代码与主机
 
@@ -41,7 +41,12 @@ srun --partition=main --gres=gpu:pro6000:1 --nodes=1 --ntasks=1 \
 - PyYAML 6.0.3，pytest 9.1.1，pydantic 2.13.5
 - CMake 4.3.0，Ninja 1.13.2
 
-当前节点没有系统 `nvcc`、CP2K 或已验证的 xTBloom 安装；PyTorch CUDA runtime 已在 Slurm 分配的 GPU 上完成运行时冒烟测试。
+CP2K 专用环境为 `xtbflow-cp2k`：CP2K 2024.2，conda-forge build
+`openblas_openmpi_hae4b963_0`，可执行文件为
+`~/miniconda3/envs/xtbflow-cp2k/bin/cp2k.psmp`。协议与重建命令见
+[`CP2K_SETUP.md`](CP2K_SETUP.md)。
+
+当前节点没有系统 `nvcc` 或已验证的 xTBloom 安装；CP2K 2024.2 已安装在独立的 `xtbflow-cp2k` Conda 环境，并完成 PBE-D3(BJ) 的水分子、中性含硫和带电双重态 E/F 校准冒烟。PyTorch CUDA runtime 已在 Slurm 分配的 GPU 上完成运行时冒烟测试。
 
 `xtbflow` 环境还安装了 `tblite 0.7.0` 和 `xtb 22.1` 分发包（导入的 `xtb` 模块报告版本 `20.2`）。直接 oracle 适配器已对非周期、显式电荷与多重度的 GFN2 单点完成 tblite 资格测试：水分子的有限差分力最大绝对差为 `2.18e-7 Hartree/Å`。原始 xTB 绑定保留作独立比较，但其力—能量梯度差异仍需解决后才可资格化。32 条真实 UniTS 几何的小批诊断见 [`docs/evidence/gfn2_units_diagnostic_20260927.json`](evidence/gfn2_units_diagnostic_20260927.json)；64 条来源结构审计见 [`docs/evidence/units_provenance_audit_20260927.json`](evidence/units_provenance_audit_20260927.json)。因来源方法和单位尚未核准，原始标签仍保持隔离。
 

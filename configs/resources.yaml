@@ -47,7 +47,7 @@ runtime_verification:
   remote_bootstrap_sha: bb3cbdde007b9143f59e0bda51ee4b9bd16742a5
   p0_handoff_sha: 329da0199d5ececd06978103ed4421bbc4536bed
   cluster_access_verified: true
-  calculator_installations_verified: false
+  calculator_installations_verified: true
   training_or_qc_executed: false
 compute:
   scheduler_user_reported: slurm
@@ -77,10 +77,13 @@ calculators:
   reference:
     selected: CP2K
     execution_authorized: true
-    installed_version: null
-    theory_protocol_id: null
+    installed_version: 2024.2
+    build_hash: cp2k-2024.2-8222f9c
+    theory_protocol_id: cp2k-reference-v0.1-pbe-d3bj
     license_review_completed: false
-    energy_force_smoke_passed: false
+    energy_force_smoke_passed: true
+    target_domain_calibration_smoke_passed: true
+    cutoff_convergence_status: provisional_600ry_force_pass_energy_pending
     path_validation_smoke_passed: false
     first_public_training_needs_fresh_dft: false
   future_reference:
@@ -165,6 +168,5 @@ observed_runtime:
     bootstrap_inventory: passed
   not_installed_or_unverified:
   - nvcc
-  - CP2K
   - xTBloom
   - disk_quota

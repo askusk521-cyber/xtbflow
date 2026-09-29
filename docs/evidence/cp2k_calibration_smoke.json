@@ -1,0 +1,176 @@
+{
+  "build_hash": "cp2k-2024.2-8222f9c",
+  "calculator": "cp2k",
+  "cases": [
+    {
+      "calculator_calls": 1,
+      "charge": 0,
+      "energy_hartree": -17.212927903519034,
+      "error_category": null,
+      "error_message": null,
+      "forces_hartree_per_angstrom": [
+        [
+          0.0,
+          0.0,
+          -0.1699951134450677
+        ],
+        [
+          0.09759505688438788,
+          0.0,
+          0.08486686326375474
+        ],
+        [
+          -0.09759505688438788,
+          0.0,
+          0.08486686326375474
+        ]
+      ],
+      "input_file_hash": "367e39ec0b2960fb230c77c7c901d9a4ee56d0adca37755e5d02debc8284e83e",
+      "input_hash": "ed6a1609ea00e7c28321d3cef54a06ba20c943c937bcb12d132031170ea2f748",
+      "metadata": {
+        "force_conversion_version": "bohr_to_angstrom_codata2018",
+        "normalized_force_unit": "hartree/angstrom",
+        "raw_force_unit": "hartree/bohr",
+        "raw_forces": [
+          [
+            0.0,
+            0.0,
+            -0.08995754
+          ],
+          [
+            0.05164508,
+            0.0,
+            0.04490961
+          ],
+          [
+            -0.05164508,
+            0.0,
+            0.04490961
+          ]
+        ]
+      },
+      "multiplicity": 1,
+      "protocol_id": "cp2k-reference-v0.1-pbe-d3bj:q0:m1",
+      "protocol_identity": "f9362a4df5a6fd7c6b6d507b7d74ab1c65e7da2d9612fafa51a6024753260bdd",
+      "status": "success",
+      "symbols": [
+        "O",
+        "H",
+        "H"
+      ],
+      "system_id": "water-neutral-singlet"
+    },
+    {
+      "calculator_calls": 1,
+      "charge": 1,
+      "energy_hartree": -0.568936297499297,
+      "error_category": null,
+      "error_message": null,
+      "forces_hartree_per_angstrom": [
+        [
+          -0.2931849989066119,
+          0.0,
+          0.0
+        ],
+        [
+          0.29318530126279185,
+          0.0,
+          0.0
+        ]
+      ],
+      "input_file_hash": "e226c2843cb10069e258a334c057dadf514fd630d70335e2119e109a11c6d1ba",
+      "input_hash": "bceb1a09ded947d7477de996cd4e2047aeffe95a4b0e182d7acb8d51023db0b4",
+      "metadata": {
+        "force_conversion_version": "bohr_to_angstrom_codata2018",
+        "normalized_force_unit": "hartree/angstrom",
+        "raw_force_unit": "hartree/bohr",
+        "raw_forces": [
+          [
+            -0.15514682,
+            0.0,
+            0.0
+          ],
+          [
+            0.15514698,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "multiplicity": 2,
+      "protocol_id": "cp2k-reference-v0.1-pbe-d3bj:q1:m2",
+      "protocol_identity": "8926a139fd4fefa3001d985774363e98cc3f8d1a8491edfed89d777823703efb",
+      "status": "success",
+      "symbols": [
+        "H",
+        "H"
+      ],
+      "system_id": "hydrogen-cation-doublet"
+    },
+    {
+      "calculator_calls": 1,
+      "charge": 0,
+      "energy_hartree": -11.380629907570828,
+      "error_category": null,
+      "error_message": null,
+      "forces_hartree_per_angstrom": [
+        [
+          -0.04176132218976234,
+          -0.06215874252005421,
+          -0.0
+        ],
+        [
+          0.00976292987217661,
+          0.03815096263414232,
+          0.0
+        ],
+        [
+          0.03199867577650443,
+          0.024008327906488037,
+          0.0
+        ]
+      ],
+      "input_file_hash": "fa400cccb5520298dd89ef6f1fa6268fb63b5a111acaea88032fbf20b69a7907",
+      "input_hash": "009fba4a0fa21deabe3ca80323b0ae04fbbca80369958db54e65279bc5b860ff",
+      "metadata": {
+        "force_conversion_version": "bohr_to_angstrom_codata2018",
+        "normalized_force_unit": "hartree/angstrom",
+        "raw_force_unit": "hartree/bohr",
+        "raw_forces": [
+          [
+            -0.02209914,
+            -0.03289299,
+            -0.0
+          ],
+          [
+            0.00516632,
+            0.02018862,
+            0.0
+          ],
+          [
+            0.01693297,
+            0.01270466,
+            0.0
+          ]
+        ]
+      },
+      "multiplicity": 1,
+      "protocol_id": "cp2k-reference-v0.1-pbe-d3bj:q0:m1",
+      "protocol_identity": "f9362a4df5a6fd7c6b6d507b7d74ab1c65e7da2d9612fafa51a6024753260bdd",
+      "status": "success",
+      "symbols": [
+        "S",
+        "H",
+        "H"
+      ],
+      "system_id": "hydrogen-sulfide-neutral-singlet"
+    }
+  ],
+  "cp2k_version": "2024.2",
+  "cutoff_ry": 600.0,
+  "protocol_family": "cp2k-reference-v0.1-pbe-d3bj",
+  "schema": "xtbflow-cp2k-calibration-smoke/v1",
+  "scope": "installation and state/element E/F smoke only; not convergence or path qualification",
+  "source_revision": "8222f9c",
+  "status": "pass"
+}

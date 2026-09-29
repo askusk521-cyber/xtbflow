@@ -1,0 +1,37 @@
+{
+  "schema": "xtbflow-spice2-energy-learning-curve/v1",
+  "prepared_on": "2026-09-29",
+  "pairs": {
+    "path": "data/pairs/spice2_openff_256_20260929.jsonl",
+    "sha256": "f7c462b58d45ee4ced7ddc9eee2eadc5df72b8b526e8df2feef1d341be9a1fc2"
+  },
+  "manifest": {
+    "path": "data/manifests/spice2_openff_256_20260929.jsonl",
+    "sha256": "0b185f28650d0f36da0287769fcf1361ada2afc01feed9991979234a313c4444"
+  },
+  "parent_split_counts": {"train": 48, "validation": 8, "test": 8},
+  "configs_per_parent": 4,
+  "train_parent_rank_seed": "spice2-openff-learning-curve-v1",
+  "train_parent_counts": [12, 24, 48],
+  "training_seeds": [20260929, 20260930, 20261001],
+  "learned_arms": ["direct", "delta"],
+  "training": {
+    "epochs": 80,
+    "batch_size": 4,
+    "learning_rate": 0.001,
+    "force_weight": 10.0,
+    "gradient_clip": 10.0,
+    "hidden_dim": 32,
+    "radial_features": 8,
+    "distance_scale_angstrom": 8.0,
+    "validation_score": "energy_mae_kcal_per_mol/50 + force_component_mae_hartree_per_angstrom/0.01"
+  },
+  "force_direction_min_reference_norm_hartree_per_angstrom": 1e-6,
+  "bootstrap": {"resamples": 10000, "seed": 20260929, "unit": "independent_test_parent"},
+  "execution": {
+    "max_single_gpu_hours": 0.5,
+    "new_semiempirical_calls": 0,
+    "new_dft_calls": 0,
+    "test_driven_tuning": false
+  }
+}

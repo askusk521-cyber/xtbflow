@@ -123,6 +123,11 @@
       "bytes": 3164
     },
     {
+      "path": "configs/experiments/spice2_energy_learning_curve_v1.json",
+      "sha256": "bb2f6bcd8033f3202c950adbb64019806cb08d04b21e5d8035f9dc63aa267360",
+      "bytes": 1328
+    },
+    {
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
@@ -138,9 +143,14 @@
       "bytes": 1130
     },
     {
+      "path": "configs/models/joint_flow_runtime_v0.1.json",
+      "sha256": "58c52fdba6a8a803a11983e54dc1de87e7dcfacb45f23cb8c43842f2bb674c00",
+      "bytes": 906
+    },
+    {
       "path": "configs/models/joint_flow_v0.1.yaml",
-      "sha256": "05ba101ee0f236f3710e9723651403165f03af85fe2ea11ae05449907f806abb",
-      "bytes": 714
+      "sha256": "ffa643897d591946bd12c286212cd1c261424a4f7c729d901dd69c97a3a05213",
+      "bytes": 1331
     },
     {
       "path": "configs/models/physical_guidance_v0.1.yaml",
@@ -191,6 +201,11 @@
       "path": "configs/runs/README.md",
       "sha256": "7831f0d6ddc4e766db79d48eaf5a8d87bf45c68f1bbb0dad04d258e05e4b313b",
       "bytes": 381
+    },
+    {
+      "path": "configs/runs/workflow_b_baseline_ladder_v0.1.json",
+      "sha256": "30361f3f5ca3b6e7c43d32c7a6590596c007270090a3f0a603d316d24b1cd93d",
+      "bytes": 3943
     },
     {
       "path": "configs/task.yaml",
@@ -264,8 +279,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "f7432f17b15990b2db98811ecf60473fe06831dd240839044382ba30f5beb43f",
-      "bytes": 13595
+      "sha256": "88012cbbd059afc72f4e23df25484da4292fe47273c43b5b45b013aecc2ef199",
+      "bytes": 17397
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -279,8 +294,13 @@
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
-      "sha256": "1a3d3da0775f39f3a9e27f2f1a5fe234f5967eb68283393dabe0c347ee095c76",
-      "bytes": 5533
+      "sha256": "f7e7cdeb8afb97ecbb6aacf132ab217a8f750e68dfbf924daf1e48f298bdd4a1",
+      "bytes": 5963
+    },
+    {
+      "path": "docs/architecture/workflow_b_baseline_protocol.md",
+      "sha256": "9e4b2a7d650857036e072b00107e9dc3c68738484c7f3a446b9b50d22b20971f",
+      "bytes": 4884
     },
     {
       "path": "docs/data_contract.md",
@@ -353,6 +373,56 @@
       "bytes": 1212
     },
     {
+      "path": "docs/evidence/joint_flow_smoke_20260929_v3.json",
+      "sha256": "41555c2528ef65c71a18e4ff7908ae3f86affa75dad52fef7ed078eacbd6d0cd",
+      "bytes": 4826
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size12_seed20260929.json",
+      "sha256": "f3f9de42e5533cf8955e65a2ac900013d8b887d38ec37a7edbebe631fa63dd91",
+      "bytes": 151412
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size12_seed20260930.json",
+      "sha256": "d0b6c21966ebb22f86ad050ce028e230baba3d2b4b99199fd674cba67d7376f9",
+      "bytes": 151352
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size12_seed20261001.json",
+      "sha256": "e21d4d6ee4ed369d529befb09076e6cb9905c730c6bae4d56969cd88539425b0",
+      "bytes": 151383
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size24_seed20260929.json",
+      "sha256": "9da107fe73918c22d397ad8376c6bb6f20fc2dc5fd053033f6f9aaace06ceaef",
+      "bytes": 167867
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size24_seed20260930.json",
+      "sha256": "8e27e40bb5048ef322b8b42a91f795fec1e87810d25d9e07e65d7a4c1593a1bb",
+      "bytes": 167895
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size24_seed20261001.json",
+      "sha256": "e8581418f3c964a23c94aad123f0370368ebabe6f638b4a76c96864ea6172ffc",
+      "bytes": 167896
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size48_seed20260929.json",
+      "sha256": "16779d260536bd8922417048322c80a79dc6dd210bc0459360a339bbeb4cbb9a",
+      "bytes": 200934
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size48_seed20260930.json",
+      "sha256": "066e15bced76b4742ac8e82b8cf7d2fcc0d70a054d8d276c7fa6bbf606278749",
+      "bytes": 201002
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size48_seed20261001.json",
+      "sha256": "fdeca1896f482b198d190a359bc6f2ff8a43737eedecf61333f11fec693a6f2f",
+      "bytes": 200975
+    },
+    {
       "path": "docs/evidence/spice2_openff_256_summary_20260929.json",
       "sha256": "0675b4c91a93a8408cad0079d3c32cf9bf509e5e93e9bc3728ff666fc0c3ac70",
       "bytes": 5940
@@ -398,6 +468,16 @@
       "bytes": 1295
     },
     {
+      "path": "docs/evidence/spice2_openff_learning_curve_20260929.json",
+      "sha256": "dde6a389072d7b47d4d947b01a2376baf319d0283d6327aedf8b3cc305bea9b7",
+      "bytes": 225390
+    },
+    {
+      "path": "docs/evidence/spice2_openff_learning_curve_interpretation_20260929.json",
+      "sha256": "8a02012847c60859ffdf41d4070ad933252b52002c4863d3c614881872a81292",
+      "bytes": 4791
+    },
+    {
       "path": "docs/evidence/spice2_openff_pilot_summary_20260929.json",
       "sha256": "5b935bf54871deeb2adf20817bbea7c761e79dcd059fdfdfd8e06b90cfdaf011",
       "bytes": 9263
@@ -411,6 +491,11 @@
       "path": "docs/evidence/units_provenance_audit_20260927.json",
       "sha256": "e0b4a1d6dfba65e5c532f479b9f16ab8f009e31644985edd46dceba0d444ba17",
       "bytes": 155056
+    },
+    {
+      "path": "docs/evidence/workflow_b_software_acceptance_20260929.json",
+      "sha256": "2fe89dcd76c896b6f9949e7aec55781568b37f6bc2c1c89a5fb3bfd210080da9",
+      "bytes": 4166
     },
     {
       "path": "docs/evidence/xtbloom_adapter_contract_20260929.json",
@@ -483,6 +568,11 @@
       "bytes": 1485
     },
     {
+      "path": "schemas/workflow_b_baseline.schema.json",
+      "sha256": "daa64eda196d0252561135355a66562b4f32d59234d12119e1a178bffaae11e6",
+      "bytes": 1169
+    },
+    {
       "path": "scripts/audit_units_provenance.py",
       "sha256": "23e817315fc43717fa2ad516bf0b5af5ab3f19ecc08e1067226017d0b077a47e",
       "bytes": 11980
@@ -514,8 +604,8 @@
     },
     {
       "path": "scripts/joint_flow_smoke.py",
-      "sha256": "29f20fa8549a6d18781a6a5a4ecdda0103e8f4b8d7cf640e2fb656de877e34e2",
-      "bytes": 8665
+      "sha256": "be9cab15cb5032dd57fa8e9be21c2d815bd0966c1675a4fe48c25314dd081207",
+      "bytes": 11435
     },
     {
       "path": "scripts/prepare_spice_openff_pilot.py",
@@ -534,8 +624,13 @@
     },
     {
       "path": "scripts/run_energy_baselines.py",
-      "sha256": "148e93eec85543128104f265ed36c6db58b619d84888acc9c5a0d045f8fe9181",
-      "bytes": 17898
+      "sha256": "b8386b137eb59e4afa0d6c066b076658590f0c3326e4169bed045fb415773def",
+      "bytes": 26062
+    },
+    {
+      "path": "scripts/run_energy_learning_curve.py",
+      "sha256": "6f0843d3d61b056de69e06c08a8b1baf73c438eef7a013341fb3ff54dcbd2d2a",
+      "bytes": 15114
     },
     {
       "path": "scripts/run_gfn2_diagnostic.py",
@@ -566,6 +661,11 @@
       "path": "scripts/validate_bootstrap.py",
       "sha256": "47dd56659b5663d44691397ac0d15ab053b7bbc0d0398cf79ebc7781a4dbb318",
       "bytes": 3503
+    },
+    {
+      "path": "scripts/validate_workflow_b.py",
+      "sha256": "68b0b5bc11bc453e0c1212c1b1fb5d2382bef91e410457ed38f7b39e1decc0a0",
+      "bytes": 11137
     },
     {
       "path": "src/xtbflow/__init__.py",
@@ -654,13 +754,13 @@
     },
     {
       "path": "src/xtbflow/models/__init__.py",
-      "sha256": "66ce3aabfe50f8b2ef050acf43747a8f6518ea8b76194c601cc0ee01b697e5be",
-      "bytes": 1321
+      "sha256": "bf6fb7c8d6ff3abe27ccd5240df05e3467064d24b2fc5217b3240faa9e80de6f",
+      "bytes": 1476
     },
     {
       "path": "src/xtbflow/models/conserved_be.py",
-      "sha256": "fcd9d3405d9f897b83ff037be14563de5eca0a4e313e181d691d6dcf5cd3ed20",
-      "bytes": 4759
+      "sha256": "ff1b2db42fa6ce4be5b66c7f8bbc47aca3ad3ba67d27c222cda38494066b50e8",
+      "bytes": 6574
     },
     {
       "path": "src/xtbflow/models/delta_energy.py",
@@ -688,9 +788,14 @@
       "bytes": 6054
     },
     {
+      "path": "src/xtbflow/models/joint_config.py",
+      "sha256": "a6d240cc661d813e9dfbd99873fa15749b996296d9e3e31f2ecc695073f91402",
+      "bytes": 3561
+    },
+    {
       "path": "src/xtbflow/models/joint_flow.py",
-      "sha256": "74260fb2054e1be4c5db72dd1ecefe469bc3eb787139aa8f7d240f0b2b111639",
-      "bytes": 9316
+      "sha256": "7e8a871bcf1042dff5b557dcff77005a1ebe5bd6cebbc2c011784a70a1a453a5",
+      "bytes": 20166
     },
     {
       "path": "src/xtbflow/models/reaction_direction.py",
@@ -754,8 +859,8 @@
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
-      "sha256": "f2e79ce584ecb2cc4e85a85f27e404a340ace19b80c5a0d9410427b8feeaecda",
-      "bytes": 226
+      "sha256": "1ee6fbf1d03391722d893b58a2318236d3431b61c1c9ddf726efc9bd961cf375",
+      "bytes": 268
     },
     {
       "path": "src/xtbflow/sampling/guidance.py",
@@ -764,13 +869,13 @@
     },
     {
       "path": "src/xtbflow/sampling/integrator.py",
-      "sha256": "135ce5aac7372c23d6c6b0ce5881c78a105b87f18b9e2bc2572cf972cc8a9b05",
-      "bytes": 3168
+      "sha256": "1566d0c21728f3e7bbc9d99eecf57a1a9988d79e0d18b6f5700730886591247a",
+      "bytes": 3165
     },
     {
       "path": "src/xtbflow/training/__init__.py",
-      "sha256": "e0ad8dd934098ccd0e6e9d268facbc5a28cf1ead32945f6241e2bedcc12ccfe4",
-      "bytes": 887
+      "sha256": "aa6e636ad88203568a9e022a5e65f45887988a9e3061799ee21eaf968b7a0408",
+      "bytes": 933
     },
     {
       "path": "src/xtbflow/training/checkpoint.py",
@@ -794,8 +899,8 @@
     },
     {
       "path": "src/xtbflow/training/joint.py",
-      "sha256": "4501d80a3332d04872496d3ac30316d8c4b6c6d27ece5cf2a135a9243f623563",
-      "bytes": 4626
+      "sha256": "4c6c5804e4b2da78081c6e849555041c0bb72b1db1e6f19caec83d2a1c20371b",
+      "bytes": 7728
     },
     {
       "path": "src/xtbflow/validation/__init__.py",
@@ -909,8 +1014,8 @@
     },
     {
       "path": "tests/test_energy_forces.py",
-      "sha256": "f645d165480a8f134e824bd5714e8dcab0a29c4df650baf611369df1d376dbd5",
-      "bytes": 6525
+      "sha256": "79b971518e6e2c05ecf19af765e1c7ef663db34e3761e3582ea8d67d37ac5a0f",
+      "bytes": 9907
     },
     {
       "path": "tests/test_geometry_flow.py",
@@ -924,8 +1029,8 @@
     },
     {
       "path": "tests/test_joint_flow.py",
-      "sha256": "5fadaf8f6619984822f553b0270f1d02c62fd4f9c0a61c9278da2f22c97de1c4",
-      "bytes": 7797
+      "sha256": "d18c71fa4bddb1f3758adf3203a631eeb1f3d1e3969f685ae48979cb20010ba3",
+      "bytes": 14172
     },
     {
       "path": "tests/test_package.py",
@@ -956,6 +1061,11 @@
       "path": "tests/test_saddle_guidance.py",
       "sha256": "60d623477754f0454d79752fcc97d0c9ceb06d9cf704473c762ee182671117a7",
       "bytes": 5538
+    },
+    {
+      "path": "tests/test_workflow_b_protocol.py",
+      "sha256": "0491b26813933fd983b822f97ab0ecc3a4af06e441d04347ea035247442bae59",
+      "bytes": 4527
     },
     {
       "path": "vendor/mechai_reusable/README.md",

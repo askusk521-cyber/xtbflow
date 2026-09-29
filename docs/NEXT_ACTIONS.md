@@ -118,3 +118,42 @@
 - CPU tblite completed 256/256 same-geometry evaluations with no failures in 28.20 s total wall time (0.110 s mean); the hard ledger committed exactly 256 calls. Rebuilding the pair cache immediately produced 256 cache hits and zero new rows.
 - With the same model capacity, optimizer settings, 80-epoch budget and seed as the 64-row pilot, bare GFN2 test MAE is 52.55 kcal/mol energy and 0.00851 Ha/Angstrom force component. Delta selects epoch 77 and reaches 21.57 kcal/mol and 0.00454 Ha/Angstrom; Direct selects epoch 71 and reaches 31.62 kcal/mol but 0.02441 Ha/Angstrom force error.
 - The Delta 256-config result is a positive development signal on both energy and force, but the earlier 64-config run had no test-energy gain. Do not promote the single-seed 256 result to a final claim. Next run nested train-parent sizes and multiple training seeds with the same validation/test parents and no test-driven tuning.
+
+## 2026-09-29 grouped SPICE2 energy/force learning curve
+
+- The preregistered matrix completed 9 size/seed points (18 learned-arm trainings) from committed source ee65f32, using 12/24/48 nested train parents and seeds 20260929/20260930/20261001. Total single-GPU wall time was 403.51 s (0.112 GPU h), below the frozen 0.5 GPU h cap; no new semiempirical or DFT calls were made.
+- Delta force-component MAE and force-direction error improve versus bare GFN2 at all three sizes. Parent-equal-weight bootstrap intervals for bare-minus-Delta force MAE are strictly positive at 12, 24 and 48 parents, and all 8 independent test parents improve. The corresponding direction-error intervals are also strictly positive.
+- Absolute energy is not yet robust. At 12 train parents Delta is worse on average; at 24 and 48 parents the mean energy MAE improves, but the 8-parent bootstrap intervals still cross zero and training-seed variance remains substantial. Relative-energy average improvements at larger sizes likewise have intervals crossing zero.
+- Direct is not supported under the frozen P1 protocol: force, direction, and relative-energy metrics remain worse than bare GFN2. Do not spend the next iteration enlarging Direct hyperparameter searches.
+- Keep Delta as the force/local-surface correction module for downstream physics/flow work, but do not claim a stable absolute-energy advantage. Future E/F validation should add independent parent coverage rather than only more conformers of the same test parents.
+- Full aggregate evidence is docs/evidence/spice2_openff_learning_curve_20260929.json; interpretation is docs/evidence/spice2_openff_learning_curve_interpretation_20260929.json; the nine raw run reports and logs are archived under docs/evidence/spice2_learning_curve_runs_20260929/.
+
+## 2026-09-29 Workflow B shared controls and baseline freeze
+
+- The bounded joint-flow prototype now represents the electronic event state as
+  a packed symmetric bond/electron matrix. Shared atom-pair networks make the
+  event branch permutation equivariant, while the coordinate branch retains
+  translation, proper-rotation, and atom-permutation equivariance.
+- `both_off`, `serial_independent`, and `joint_bidirectional` are real execution
+  paths through one measured parameter state. The serial path uses an explicit
+  integration step and adds no serial-only trainable adapter. Equality of
+  weights and physical budgets is now derived from hashes/counts and ledger
+  values; an unmeasured declaration remains `null` rather than `true`.
+- Padding is excluded inside the conservation projection, unobserved labels are
+  masked before arithmetic, and tests cover local bidirectional dependence,
+  atom permutations, collisions, missing labels, checkpoint continuation, and
+  finite multi-step rollouts.
+- The first #56 matrix is frozen as strong rules, conserved independent geometry,
+  serial event-to-geometry, and joint bidirectional generation. Physics guidance
+  remains deferred to #59. The software acceptance executes all four routes on
+  a tiny reactant-side fixture with zero calculator calls.
+- Clean-commit evidence is preserved in
+  `docs/evidence/workflow_b_software_acceptance_20260929.json` and
+  `docs/evidence/joint_flow_smoke_20260929_v3.json`, both bound to source commit
+  `35192b75fdf302a2cf368430bc3b8138feb0e4c6`. The v3 smoke restores every
+  control exactly, reduces its deterministic synthetic loss from about 0.01277
+  to 0.00563, and keeps velocity conservation residuals below `5e-16`.
+- This is software evidence only. The canonical six-block capacity and reaction
+  direction coupling are not claimed complete, and scientific comparison is
+  blocked until #58 admits sample-level paired event/TS supervision. SPICE E/F
+  records remain unsuitable for that supervision.

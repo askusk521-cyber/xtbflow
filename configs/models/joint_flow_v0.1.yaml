@@ -1,23 +1,29 @@
 schema: xtbflow-joint-flow/v0.1
-event_state: conserved_projected_vector
+event_state: packed_symmetric_bond_electron_matrix
 geometry_state: equivariant_coordinates
+runtime_config: configs/models/joint_flow_runtime_v0.1.json
 modes:
+  - both_off
   - serial_independent
   - joint_bidirectional
-  - both_off
-  - terminal_optimization
+control_semantics:
+  both_off: independently conditioned event and geometry velocities; no generated-state exchange
+  serial_independent: independent event velocity, explicit dt event step, then one-way event-to-geometry conditioning
+  joint_bidirectional: current event and geometry states exchange local pair/atom messages at every velocity evaluation
 coupling_strength: declared_per_run
-event_geometry_exchange: every_velocity_evaluation
-missing_event_labels: mask
-missing_geometry_labels: mask
+event_geometry_exchange: local_atom_and_atom_pair_messages
+missing_event_labels: mask_before_arithmetic
+missing_geometry_labels: mask_before_arithmetic
 terminal_geometry_slots: shared_across_event_duplicates
-same_generation_weights_for_controls: true
-same_physical_budget_for_controls: true
+weight_equality: measured_state_hash_required_per_run
+physical_budget_equality: measured_calculator_ledger_required_per_run
 flow_parameter: normalized_generation_coordinate
 tau:
   domain: [0.0, 1.0]
   meaning: normalized_generation_coordinate
   per_sample: true
 integrator: explicit_euler_dt
-dt_required: true
+dt_required_for_serial: true
 physical_force_is_event_gradient: false
+scientific_status: software_prototype_not_scientifically_trained
+scientific_blocker: issue_58_paired_event_ts_supervision

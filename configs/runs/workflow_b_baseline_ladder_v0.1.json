@@ -1,0 +1,104 @@
+{
+  "schema": "xtbflow-workflow-b-baseline/v1",
+  "protocol_id": "workflow-b-baseline-ladder-v0.1",
+  "status": "software_protocol_frozen_scientific_execution_blocked",
+  "issues": [20, 44, 56, 58],
+  "scientific_question": "Does learned bidirectional event-geometry coupling improve held-out reactant-side TS proposal quality beyond matched independent and serial controls?",
+  "runtime_model_config": "configs/models/joint_flow_runtime_v0.1.json",
+  "blocking_dependency": {
+    "issue": 58,
+    "requirement": "admitted sample-level paired event and transition-state geometry supervision with parent-group splits",
+    "spice_energy_force_is_not_sufficient": true
+  },
+  "first_scientific_matrix": [
+    {
+      "arm_id": "strong_rule",
+      "kind": "reactant_only_rule",
+      "implementation": "xtbflow.proposals.enumerate_core_events",
+      "learned_control_mode": null
+    },
+    {
+      "arm_id": "conserved_independent",
+      "kind": "learned",
+      "implementation": "xtbflow.models.JointEventGeometryFlow.forward_control",
+      "learned_control_mode": "both_off"
+    },
+    {
+      "arm_id": "serial_event_to_geometry",
+      "kind": "learned",
+      "implementation": "xtbflow.models.JointEventGeometryFlow.forward_control",
+      "learned_control_mode": "serial_independent"
+    },
+    {
+      "arm_id": "joint_event_geometry",
+      "kind": "learned",
+      "implementation": "xtbflow.models.JointEventGeometryFlow.forward_control",
+      "learned_control_mode": "joint_bidirectional"
+    }
+  ],
+  "deferred_arms": [
+    {
+      "arm_id": "joint_physical_guidance",
+      "reason": "deferred until the learned coupling establishes a viable generator; tracked by issue 59"
+    }
+  ],
+  "fairness": {
+    "same_admitted_record_ids": true,
+    "same_parent_group_split_fingerprint": true,
+    "same_reactant_input_view_fingerprint": true,
+    "same_forbidden_input_firewall": true,
+    "learned_arms_share_runtime_class": true,
+    "learned_arms_share_trainable_parameter_count": true,
+    "learned_arms_start_from_same_state_per_seed": true,
+    "arm_specific_training_checkpoints_are_recorded": true,
+    "same_optimizer_and_batch_exposures": true,
+    "same_candidate_cap": 64,
+    "training_seeds": [11, 17, 23],
+    "generator_selection_calculator_calls_per_parent": 0,
+    "terminal_refinement": "separate matched-budget stage after generator-only results are frozen"
+  },
+  "required_run_identity": [
+    "code_commit",
+    "runtime_config_sha256",
+    "data_manifest_sha256",
+    "split_fingerprint",
+    "reactant_input_view_fingerprint",
+    "seed",
+    "checkpoint_sha256",
+    "model_state_sha256",
+    "trainable_parameter_count",
+    "candidate_cap",
+    "calculator_call_ledger"
+  ],
+  "metrics": {
+    "generator_only_primary": [
+      "constructive_electron_conservation_rate",
+      "decoded_legal_event_rate",
+      "held_out_event_error",
+      "held_out_geometry_error_when_label_is_admitted",
+      "terminal_unique_geometry_slots_at_k"
+    ],
+    "matched_refinement_secondary": [
+      "refinement_success_rate",
+      "accepted_intended_ts_per_calculator_call",
+      "calculator_calls_per_accepted_intended_ts"
+    ],
+    "statistical_unit": "parent_reaction_or_prespecified_family",
+    "frames_are_not_independent_replicates": true
+  },
+  "decision_gate": {
+    "title_claim_requires_joint_over_serial": true,
+    "comparison": "joint_event_geometry versus serial_event_to_geometry",
+    "must_hold_on": [
+      "frozen parent-group test split",
+      "same candidate cap",
+      "same downstream calculator budget"
+    ],
+    "failure_action": "do not claim joint coupling as a headline contribution; retain the smallest supported control"
+  },
+  "evidence_boundary": [
+    "Synthetic smoke tests establish software behavior only.",
+    "No benchmark row may be populated from SPICE energy/force supervision alone.",
+    "No physics-guidance arm enters the first generator-selection matrix."
+  ]
+}

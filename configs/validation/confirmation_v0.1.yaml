@@ -1,0 +1,98 @@
+{
+  "schema": "xtbflow-confirmation/v0.1",
+  "format_note": "JSON subset of YAML for standard-library validation",
+  "issue": 28,
+  "created_on": "2026-09-29",
+  "status": "draft_not_frozen",
+  "execution_authorized": false,
+  "compute_allocation_created": false,
+  "record_classes": [
+    "exploratory-development",
+    "confirmatory-sealed",
+    "confirmatory-released",
+    "quarantine"
+  ],
+  "grouping": {
+    "statistical_unit": "independent_parent_reaction_or_prespecified_family",
+    "required_keys": [
+      "parent_reaction_id",
+      "mechanism_family_id",
+      "microstate_family_id",
+      "environment_family_id"
+    ],
+    "keep_together": [
+      "frames",
+      "conformers",
+      "microstates",
+      "solvent_arrangements",
+      "multi_fidelity_labels",
+      "augmentations"
+    ]
+  },
+  "forbidden_confirmatory_inputs": [
+    "correct_product",
+    "reference_ts",
+    "reference_mode_or_projector",
+    "target_derived_active_atoms",
+    "target_derived_active_water",
+    "reference_connectivity",
+    "barrier_or_validation_outcome",
+    "label_derived_stopping_signal"
+  ],
+  "freeze_manifest": {
+    "code_commit": null,
+    "clean_tree": null,
+    "architecture_config_hash": null,
+    "checkpoint_hash": null,
+    "calibrated_potential_hash": null,
+    "application_selection_record_hash": null,
+    "public_input_index_hash": null,
+    "sealed_label_custody": null,
+    "input_firewall_test_hash": null,
+    "proposal_budget": null,
+    "physical_protocol_ids": [],
+    "reference_protocol_id": null,
+    "metric_spec_hash": null,
+    "release_rule": null
+  },
+  "budgets": {
+    "proposal_candidates_per_parent": null,
+    "calculator_calls_total": null,
+    "reference_calls_total": null,
+    "retry_policy": null
+  },
+  "evaluation": {
+    "primary_metric": "unique_reference_accepted_intended_ts_per_parent",
+    "cost_metric": "reference_accepted_intended_ts_per_total_calculator_call",
+    "secondary_metrics": [
+      "strict_event_validity",
+      "intended_event_recovery",
+      "refinement_success",
+      "mode_relevance",
+      "endpoint_connectivity",
+      "wall_time"
+    ],
+    "reference_acceptance": {
+      "converged_stationary_point": true,
+      "negative_mode_count": 1,
+      "relevant_mode_required": true,
+      "bidirectional_endpoint_connectivity": true
+    },
+    "interval_unit": "parent_reaction_or_prespecified_family",
+    "random_seed_is_not_chemical_replication": true
+  },
+  "comparison_arms": [
+    "strong_rule_baseline",
+    "serial_event_then_geometry",
+    "joint_event_geometry"
+  ],
+  "downgrade_triggers": [
+    "early_result_access",
+    "post_result_model_or_threshold_change",
+    "selective_rerun",
+    "unplanned_casewise_adjudication",
+    "label_leakage"
+  ],
+  "public_index": "data/manifests/confirmation_public_index.json",
+  "protocol": "docs/validation/exploration_confirmation_contract.md"
+}

@@ -1,0 +1,54 @@
+{
+  "schema": "xtbflow-origins-attempt/v0.1",
+  "attempt_id": null,
+  "created_at": null,
+  "decision_use": "exploratory-development",
+  "candidate_registry_hash": null,
+  "candidate_id": null,
+  "input_manifest_hash": null,
+  "coordinate_hash": null,
+  "atom_pool_hash": null,
+  "group_ids": {
+    "parent_reaction_id": null,
+    "mechanism_family_id": null,
+    "microstate_family_id": null,
+    "environment_family_id": null
+  },
+  "execution": {
+    "code_commit": null,
+    "clean_tree": null,
+    "model_config_hash": null,
+    "checkpoint_hash": null,
+    "proposal_protocol_id": null,
+    "physical_protocol_id": null,
+    "reference_protocol_id": null
+  },
+  "visible_input_fields": [],
+  "proposal": {
+    "source": null,
+    "candidate_rank": null,
+    "event_id": null
+  },
+  "budget": {
+    "calculator_calls_reserved": null,
+    "calculator_calls_consumed": null,
+    "reference_calls_reserved": null,
+    "reference_calls_consumed": null,
+    "wall_time_seconds": null,
+    "retry_count": 0
+  },
+  "outcome": {
+    "status": "not_run",
+    "failure_class": null,
+    "evidence_tier": "identity_only",
+    "stationary_point": null,
+    "relevant_negative_mode": null,
+    "endpoint_connectivity": null,
+    "duplicate_of": null
+  },
+  "selection": {
+    "retained": null,
+    "reason": null,
+    "influenced_model_or_application_selection": null
+  }
+}

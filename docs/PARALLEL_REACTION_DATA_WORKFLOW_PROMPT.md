@@ -143,6 +143,8 @@
 - 保留所有过滤失败记录；
 - 记录每个来源反应的 source hash；
 - 记录独立反应物体系、反应族和路径副本去重规则。
+- 在模型选型、超参数选择和 checkpoint 选择前完成训练库与外部评估库的联合去重；至少按独立反应物输入指纹、母反应／反应族、TS 坐标哈希、事件标签哈希和来源记录哈希交叉检查。
+- RGD1、Transition1x 及其他外部 benchmark 记录在选择阶段冻结为只读评估集；外部标签、外部 split 和外部结果不得参与训练数据筛选、模型选型或阈值调整。
 
 必须生成：
 
@@ -181,6 +183,13 @@
 5. same-integrator one-way control；
 6. both-off control。
 
+7. unconstrained-event control：关闭守恒投影，但保持模型容量、积分器、训练数据、随机种子、训练预算和后处理完全一致。
+
+其中 `joint bidirectional` 与 `serial independent` 是方法竞争力的主比较；
+`same-integrator one-way` 只用于归因几何到事件的反馈贡献；`both-off` 用于
+共享参数和条件化基线；`unconstrained-event` 专门检验守恒表示本身是否降低非法
+事件率。无守恒对照不能被 `both-off`、单向消融或串联模型替代。
+
 所有方法必须使用：
 
 - 相同训练数据；
@@ -190,6 +199,7 @@
 - 相同候选数；
 - 相同后处理；
 - 相同物理验证预算。
+- 相同守恒／无守恒控制实现的其余参数；无守恒对照只能改变守恒投影这一因素。
 
 报告指标：
 
@@ -265,6 +275,14 @@
 
 ## 第七阶段：Transition1x 对外 benchmark 对齐
 
+在任何模型、checkpoint、后处理阈值或候选数选择前，先发布冻结的外部
+benchmark protocol，并对 protocol 文件计算哈希。冻结内容必须包括：官方数据集
+版本和资产哈希、官方 split、reactant-only／product-conditioned 输入视图、是否允许
+reaction center 或 oracle 标签、每个输入的候选数 K、后处理步骤、计算调用预算、
+失败分类、主指标和统计单位。模型选择只能读取训练／开发集；外部 benchmark
+结果只能在 protocol 哈希固定后一次性评估，不能根据结果回改输入条件、划分、预算
+或指标。
+
 保留已有 Transition1x 几何基线，但进一步明确：
 
 1. 采用哪套官方 split；
@@ -281,6 +299,10 @@
     - best-of-K；
     - blind-selected；
     - physical validation success。
+
+训练库与 benchmark 库必须在同一份联合 leakage audit 中检查输入指纹、母反应、
+反应族、重复 TS、事件标签和来源记录；命中任何一项时，记录必须从训练或外部
+评估中隔离并保留原因。不得在看过外部 benchmark 结果后重新选择模型或阈值。
 
 完成后创建 PR，例如：
 

@@ -1,0 +1,137 @@
+{
+  "schema": "xtbflow-gfn2-path-pilot/v1",
+  "status": "development_path_validation_not_reference_admission",
+  "provenance": {
+    "parent_evidence": "docs/evidence/gfn2_dimer_nh3_refine_89cfed9.json",
+    "parent_evidence_sha256": "3f21c58be89860c641d0f8e70fbed8135047104020dcb08cb8a54fb6a51c2d2c",
+    "parent_source_commit": "89cfed9feb48a829be387d1b6bb78d2c60e255f2",
+    "parent_gate": "gfn2_dimer_stationary_refinement_pass"
+  },
+  "protocol": {
+    "protocol_id": "tblite-gfn2-nh3-inversion-path-v1",
+    "calculator": "xtb_oracle",
+    "method": "GFN2-xTB",
+    "backend": "cpu",
+    "parameters": {
+      "accuracy": 1.0,
+      "max_iterations": 250,
+      "electronic_temperature": 300.0,
+      "implementation": "tblite",
+      "solvent": null
+    }
+  },
+  "transition_state": {
+    "system": {
+      "system_id": "nh3-planar-inversion-path-development-v1",
+      "symbols": [
+        "N",
+        "H",
+        "H",
+        "H"
+      ],
+      "coordinates_angstrom": [
+        [
+          -1.506862035283375e-11,
+          -6.541914088417008e-18,
+          3.712540687867957e-18
+        ],
+        [
+          0.9927345316435428,
+          -2.4134247882337458e-17,
+          -1.797684685073142e-18
+        ],
+        [
+          -0.49636726581423707,
+          0.859733323623527,
+          -1.2013734902066459e-18
+        ],
+        [
+          -0.496367265814237,
+          -0.859733323623527,
+          -1.0387431643338202e-18
+        ]
+      ],
+      "charge": 0,
+      "multiplicity": 1,
+      "environment": {
+        "periodic": false
+      }
+    },
+    "dimer_mode": [
+      [
+        5.158627121885577e-29,
+        7.752152869208478e-29,
+        0.8660254037844387
+      ],
+      [
+        -6.394725066145847e-29,
+        2.2241601374292e-17,
+        -0.28867513459366023
+      ],
+      [
+        -1.9261791812668965e-17,
+        -1.1120800687184768e-17,
+        -0.2886751345953894
+      ],
+      [
+        1.9261791812681328e-17,
+        -1.1120800687184759e-17,
+        -0.2886751345953891
+      ]
+    ],
+    "energy_hartree": -4.416506824583743,
+    "gradient_norm_hartree_per_angstrom": 3.275187997245202e-07
+  },
+  "hessian": {
+    "step_angstrom": 0.001,
+    "orthonormal_tolerance": 1e-07,
+    "negative_threshold_eV_per_angstrom2": 0.05,
+    "expected_negative_modes": 1,
+    "minimum_absolute_dimer_mode_overlap": 0.95,
+    "budget": {
+      "phase": "P1-gfn2-nh3-internal-hessian",
+      "max_calculator_calls": 13,
+      "max_concurrent_jobs": 1,
+      "max_retries_per_job": 0
+    },
+    "max_gradient_norm_hartree_per_angstrom": 0.0005
+  },
+  "endpoints": {
+    "displacement_angstrom": 0.2,
+    "relaxation": {
+      "fmax_eV_per_angstrom": 0.005,
+      "max_steps": 100,
+      "maximum_step_angstrom": 0.05,
+      "remove_rigid_body_modes": true,
+      "rigid_body_tolerance": 1e-10
+    },
+    "budget_per_endpoint": {
+      "phase_prefix": "P1-gfn2-nh3-endpoint",
+      "max_calculator_calls": 96,
+      "max_concurrent_jobs": 1,
+      "max_retries_per_job": 0
+    },
+    "order_parameter": {
+      "kind": "signed_atom_plane_distance",
+      "atom_index": 0,
+      "plane_indices": [
+        1,
+        2,
+        3
+      ],
+      "minimum_absolute_distance_angstrom": 0.1,
+      "require_opposite_signs": true
+    },
+    "gate": {
+      "max_gradient_norm_hartree_per_angstrom": 0.0005,
+      "require_energy_below_transition_state": true
+    }
+  },
+  "claim_limits": [
+    "This is a GFN2 development path for validating software and low-cost physical gates, not a CP2K or higher-level reference transition state.",
+    "The internal Cartesian Hessian is reported in energy-per-length-squared units; no harmonic frequencies or thermochemistry are claimed.",
+    "NH3 inversion preserves bond connectivity, so the observed bond-edit event is empty and must not be presented as a bond-changing reaction.",
+    "Opposite pyramidal endpoint descriptors establish a conformational double-well path only within this finite gas-phase GFN2 model.",
+    "No solution-phase mechanism, barrier accuracy, kinetic dominance, or general TS-search accuracy claim is permitted."
+  ]
+}

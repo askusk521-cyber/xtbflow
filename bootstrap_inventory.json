@@ -228,6 +228,11 @@
       "bytes": 1761
     },
     {
+      "path": "configs/validation/gfn2_nh3_path_v0.1.json",
+      "sha256": "03e04a1fc52c2cff578fc10d3a99f9f3f17b1a03e8534352724db9f7fce3887d",
+      "bytes": 4110
+    },
+    {
       "path": "configs/validation/ts_v0.1.yaml",
       "sha256": "8599350fceb794e375719a918731d85f76d22e01c5e64446bd071cbf7ef5086b",
       "bytes": 434
@@ -304,8 +309,8 @@
     },
     {
       "path": "docs/WORKFLOW_C2_REFERENCE_VALIDATION.md",
-      "sha256": "10287bacd47eb4d293aaf512edef5a9b61ef61256a1491e272297baad35f2672",
-      "bytes": 11805
+      "sha256": "3bed18b1e6e57ecc73befabfe66cc8d9e7d6d8ebbcb175a31592f2763f416c99",
+      "bytes": 13115
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -683,6 +688,11 @@
       "bytes": 6957
     },
     {
+      "path": "scripts/run_gfn2_path_pilot.py",
+      "sha256": "d620e1ca58bf605e1c005334d4dcccc9dba9c77f8e64c41fe26a1abae0a87297",
+      "bytes": 25771
+    },
+    {
       "path": "scripts/run_gfn2_qualification.py",
       "sha256": "84706cb111d799fa2ef9761fa59539ac5d8269566a398c0c0bd46a9d38e6db7a",
       "bytes": 15646
@@ -958,6 +968,11 @@
       "bytes": 24414
     },
     {
+      "path": "src/xtbflow/validation/ase_path.py",
+      "sha256": "9021a0b294aa6bc60b69d2d3454138defdf31a2fa50f1b6394a45117445cb35a",
+      "bytes": 12524
+    },
+    {
       "path": "src/xtbflow/validation/connectivity.py",
       "sha256": "5413f4dc2fd2166e91cbbf8d25072a45b643760ee5bb04d5b7641cdced5d9ee6",
       "bytes": 2201
@@ -1021,6 +1036,11 @@
       "path": "tests/test_ase_dimer.py",
       "sha256": "8a4434a57c35e9ecb799b30dd1764f5d7ba3fd72c509fc0333848c3a4cc7036e",
       "bytes": 12277
+    },
+    {
+      "path": "tests/test_ase_path.py",
+      "sha256": "972bfa3a62cf1b7f693c2453fb5f4f44f9ebf4be0a76c57a301a042659d97f39",
+      "bytes": 6217
     },
     {
       "path": "tests/test_c2_evidence.py",

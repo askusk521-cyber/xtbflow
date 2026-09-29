@@ -156,6 +156,31 @@ python scripts/run_gfn2_dimer_pilot.py \
   --artifact-dir "$RUN_ROOT/nh3-dimer/artifacts"
 ```
 
+### NH₃ 独立内部 Hessian 与双向端点开发门槛
+
+`configs/validation/gfn2_nh3_path_v0.1.json` 将通过的 dimer 驻点绑定到父证据
+SHA-256，并把后续证据拆成三个独立阶段：
+
+1. 在冻结几何重新计算一次 E/F；
+2. 从 6 个刚体自由度的正交补构造 NH₃ 的 6 维内部 Cartesian 基，以中央差分
+   `2 × 6` 次调用计算完整内部 Hessian；
+3. 仅在恰好一个显著负模态且该模态与 dimer 方向绝对重叠不低于 0.95 时，沿
+   正负方向分别位移并使用独立 BFGS 账本松弛端点。
+
+对 NH₃，双向端点使用 N 原子到有序 H₃ 平面的带符号距离区分两个金字塔极小值；
+两侧必须符号相反、绝对距离不低于 0.1 Å、能量低于平面驻点且梯度通过门槛。
+由于该过程不改变键连接，`observed_bond_event` 必须保持为空，不能将其包装成
+键变化反应。即使全部开发 gate 通过，`reference_path_status` 仍保持
+`not_validated`，直到独立 CP2K 或批准的参考协议完成对应证据。
+
+```bash
+python scripts/run_gfn2_path_pilot.py \
+  --config configs/validation/gfn2_nh3_path_v0.1.json \
+  --output "$RUN_ROOT/nh3-path/report.json" \
+  --ledger-dir "$RUN_ROOT/nh3-path/ledgers" \
+  --artifact-dir "$RUN_ROOT/nh3-path/artifacts"
+```
+
 ### 2026-09-29 NH₃ 驻点收紧重放（source commit `89cfed9`）
 
 新的 v0.2 配置从 `2771281` 的最终几何出发，但使用新协议身份、新账本和更严格

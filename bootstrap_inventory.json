@@ -118,6 +118,11 @@
       "bytes": 2649
     },
     {
+      "path": "configs/experiments/cp2k_bridge.yaml",
+      "sha256": "a60c49bfb4f4f0dfe194af484aa593df38cb614e52db739d7221dfd43bacb3b9",
+      "bytes": 3164
+    },
+    {
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
@@ -229,8 +234,8 @@
     },
     {
       "path": "docs/CP2K_SETUP.md",
-      "sha256": "7354ea1558d747026577ab97af8ec0bc1a92fbaaba36f1c8075551be04f9552e",
-      "bytes": 3580
+      "sha256": "c96b774f87bcc6e341415ee740cf9f1256f3c7154998af55573d0bdbc40a9926",
+      "bytes": 4039
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
@@ -266,6 +271,11 @@
       "path": "docs/PROVENANCE.md",
       "sha256": "07b8e206c34433ec1ff0c22ee34d259e0a37e2784db996d38fddf304f96e8390",
       "bytes": 1983
+    },
+    {
+      "path": "docs/WORKFLOW_C2_REFERENCE_VALIDATION.md",
+      "sha256": "03d420dcaec22ef5f5fc311b41d45233e2b59b7bd4cde682c6042e517ce3b413",
+      "bytes": 4976
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -483,6 +493,11 @@
       "bytes": 7287
     },
     {
+      "path": "scripts/cp2k_force_fd_smoke.py",
+      "sha256": "8c72ecf4033228501c93b13848188f6bd47917b02672238f24402a9432659b17",
+      "bytes": 10002
+    },
+    {
       "path": "scripts/cp2k_smoke.py",
       "sha256": "183b80700f75ba2ba53e9608bb9465242532b52d7c25f85a141fc2ef35844c66",
       "bytes": 4125
@@ -518,6 +533,11 @@
       "bytes": 15646
     },
     {
+      "path": "scripts/run_reference_bridge.py",
+      "sha256": "7e473e89383d6a192a51b940e4f7fc756c122c5adcf6b84fc5d9e2a032e4f903",
+      "bytes": 15158
+    },
+    {
       "path": "scripts/run_spice_openff_pilot.py",
       "sha256": "8e2e3f10f7a103a6dcc06ca23a3fbdb8b840208fb7bc98f233da344dd013c864",
       "bytes": 6840
@@ -534,8 +554,8 @@
     },
     {
       "path": "src/xtbflow/calculators/__init__.py",
-      "sha256": "edc331626e0c59435a39769049d330ff037355a28c341d19dc29cbdc39709590",
-      "bytes": 1054
+      "sha256": "50e4cf50caf5ee6ca2f325b1dfe232b71ccdc5f71076065b8c862574006600d7",
+      "bytes": 1593
     },
     {
       "path": "src/xtbflow/calculators/base.py",
@@ -546,6 +566,11 @@
       "path": "src/xtbflow/calculators/cp2k.py",
       "sha256": "5c96e28d9995f4c1d7a18c6eaa96d305b4cd49c3de419a82558c51e2bacd1b97",
       "bytes": 23793
+    },
+    {
+      "path": "src/xtbflow/calculators/cp2k_runtime.py",
+      "sha256": "4c9d2bbf6726688032372721b2cbd8e8974cb98fa364ceaff3a7148fd657d961",
+      "bytes": 7864
     },
     {
       "path": "src/xtbflow/calculators/xtb_oracle.py",
@@ -754,8 +779,8 @@
     },
     {
       "path": "src/xtbflow/validation/__init__.py",
-      "sha256": "9f26a682c6b073b5558141ba61b4eb18003e82e5d965701289c3d068f1689b8c",
-      "bytes": 573
+      "sha256": "548e485320b47aad26f4e3faf66c310366e92c839ba4e592ccbab4e3f760d533",
+      "bytes": 810
     },
     {
       "path": "src/xtbflow/validation/connectivity.py",
@@ -766,6 +791,11 @@
       "path": "src/xtbflow/validation/modes.py",
       "sha256": "590d3542632befb16007fbe6c417c7db9afccb305f3ddc59a086c0d0666ef835",
       "bytes": 1673
+    },
+    {
+      "path": "src/xtbflow/validation/reference_bridge.py",
+      "sha256": "ff3eda0b303c33784dedd35d7a77d9ba59857346422dfb3d36c1907d13f0f45c",
+      "bytes": 4405
     },
     {
       "path": "src/xtbflow/validation/ts_search.py",
@@ -833,6 +863,11 @@
       "bytes": 10362
     },
     {
+      "path": "tests/test_cp2k_runtime.py",
+      "sha256": "5d6cbfd0bee8117b95e910e081e8f4d91fd952a7ff8f41bb248be7fdcc0297a6",
+      "bytes": 5153
+    },
+    {
       "path": "tests/test_energy_forces.py",
       "sha256": "f645d165480a8f134e824bd5714e8dcab0a29c4df650baf611369df1d376dbd5",
       "bytes": 6525
@@ -866,6 +901,11 @@
       "path": "tests/test_path_status.py",
       "sha256": "352d02626c16822ab3aba243c2ba6f7a3f2a78659e19b91c2567cffcf93b1bc3",
       "bytes": 9407
+    },
+    {
+      "path": "tests/test_reference_bridge.py",
+      "sha256": "7a95a14afb663b1097b63c9ff7915935d5fe0fd852b5feb8c4cb6e36160c968e",
+      "bytes": 3682
     },
     {
       "path": "tests/test_runtime_budget.py",

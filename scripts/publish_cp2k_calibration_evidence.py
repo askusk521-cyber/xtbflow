@@ -23,7 +23,11 @@ def main() -> int:
     parser.add_argument("--private-report", type=Path, required=True)
     parser.add_argument("--artifact-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--source-commit")
+    parser.add_argument(
+        "--publication-source-commit", "--source-commit",
+        dest="publication_source_commit",
+        help="commit that publishes this evidence; execution commit is read from the private report",
+    )
     args = parser.parse_args()
     report_path = args.private_report.expanduser().resolve()
     artifact_root = args.artifact_root.expanduser().resolve()
@@ -31,12 +35,16 @@ def main() -> int:
         payload = json.loads(report_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         parser.error(f"invalid private calibration report: {exc}")
-    source_commit = args.source_commit or subprocess.check_output(
+    execution_source_commit = payload.get("source_commit")
+    if not isinstance(execution_source_commit, str) or not execution_source_commit.strip():
+        parser.error("private calibration report must contain the computation source_commit")
+    publication_source_commit = args.publication_source_commit or subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
     ).strip()
     public = sanitize_cp2k_calibration_report(
         payload,
-        source_commit=source_commit,
+        execution_source_commit=execution_source_commit,
+        publication_source_commit=publication_source_commit,
         private_report_sha256=sha256_file(report_path),
         calibration_script_sha256=sha256_file(
             ROOT / "scripts/cp2k_calibration_smoke.py"

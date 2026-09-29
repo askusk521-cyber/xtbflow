@@ -4,6 +4,22 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Sequence
 
+import numpy as np
+
+
+_COVALENT_RADII_ANGSTROM = {
+    "H": 0.31,
+    "C": 0.76,
+    "N": 0.71,
+    "O": 0.66,
+    "F": 0.57,
+    "P": 1.07,
+    "S": 1.05,
+    "Cl": 1.02,
+    "Br": 1.20,
+    "I": 1.39,
+}
+
 
 def _matrix(value: Sequence[Sequence[int]], name: str) -> tuple[tuple[int, ...], ...]:
     rows = tuple(tuple(int(item) for item in row) for row in value)
@@ -45,9 +61,46 @@ def observed_event(evidence: ConnectivityEvidence) -> tuple[tuple[int, int, int]
     return tuple(edits)
 
 
+def infer_binary_connectivity(
+    symbols: Sequence[str],
+    coordinates_angstrom: Sequence[Sequence[float]],
+    *,
+    scale: float = 1.25,
+) -> tuple[tuple[int, ...], ...]:
+    """Infer an endpoint bond graph from the supplied coordinates.
+
+    This is a declared binary covalent-radius diagnostic. It is intentionally
+    used only to compare the two calculated endpoints; it does not label a
+    mechanism or replace a source-supplied bond order.
+    """
+
+    if (
+        isinstance(scale, bool)
+        or not isinstance(scale, (int, float))
+        or not np.isfinite(scale)
+        or scale <= 0
+    ):
+        raise ValueError("scale must be finite and positive")
+    names = tuple(str(symbol) for symbol in symbols)
+    if not names or any(symbol not in _COVALENT_RADII_ANGSTROM for symbol in names):
+        raise ValueError("symbols contain unsupported elements")
+    coordinates = np.asarray(coordinates_angstrom, dtype=float)
+    if coordinates.shape != (len(names), 3) or not np.isfinite(coordinates).all():
+        raise ValueError("coordinates must be finite [N,3]")
+    radii = np.asarray(
+        [_COVALENT_RADII_ANGSTROM[symbol] for symbol in names], dtype=float
+    )
+    distances = np.linalg.norm(
+        coordinates[:, None, :] - coordinates[None, :, :], axis=-1
+    )
+    threshold = float(scale) * (radii[:, None] + radii[None, :])
+    bonds = (distances > 0.4) & (distances <= threshold)
+    np.fill_diagonal(bonds, False)
+    return tuple(tuple(int(value) for value in row) for row in bonds)
+
+
 def compare_candidate_event(candidate: Sequence[Sequence[int]], evidence: ConnectivityEvidence) -> bool:
     """Compare a proposed event to observed endpoint edits without relabelling it."""
 
     normalized = tuple(tuple(int(item) for item in row) for row in candidate)
     return normalized == observed_event(evidence)
-

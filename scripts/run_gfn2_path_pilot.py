@@ -37,7 +37,17 @@ from xtbflow.validation.ase_path import (  # noqa: E402
     run_ase_minimum_relaxation,
     signed_atom_plane_distance,
 )
-from xtbflow.validation.evidence import index_artifacts, sha256_file  # noqa: E402
+from xtbflow.validation.connectivity import (  # noqa: E402
+    ConnectivityEvidence,
+    infer_binary_connectivity,
+    observed_event,
+)
+from xtbflow.validation.evidence import (  # noqa: E402
+    index_artifacts,
+    sanitize_error_message,
+    sanitize_public_value,
+    sha256_file,
+)
 
 
 def _atomic_json(path: Path, payload: Mapping[str, Any]) -> None:
@@ -303,7 +313,7 @@ def main() -> int:
                 or "base E/F evaluation did not return complete evidence"
             )
     except Exception as error:
-        hessian_error = f"{type(error).__name__}: {error}"
+        hessian_error = sanitize_error_message(f"{type(error).__name__}: {error}")
 
     base_gradient = None
     base_energy = None
@@ -428,6 +438,7 @@ def main() -> int:
     hessian_record["calculator_accounting"] = _settled_accounting(
         hessian_ledger, hessian_ledger_path
     )
+    hessian_record = sanitize_public_value(hessian_record)
     _atomic_json(hessian_artifact, hessian_record)
     report["hessian"] = hessian_record
 
@@ -444,7 +455,7 @@ def main() -> int:
                 "committed_calculator_calls"
             ],
         }
-        _atomic_json(args.output, report)
+        _atomic_json(args.output, sanitize_public_value(report))
         print(
             json.dumps(
                 {
@@ -511,7 +522,7 @@ def main() -> int:
                 plane_indices=order_parameter["plane_indices"],
             )
         except Exception as error:
-            order_error = f"{type(error).__name__}: {error}"
+            order_error = sanitize_error_message(f"{type(error).__name__}: {error}")
         energy_delta = (
             None
             if result.energy_hartree is None
@@ -575,6 +586,7 @@ def main() -> int:
                 "settled": False,
             },
         }
+        endpoint_record = sanitize_public_value(endpoint_record)
         endpoint_summary = endpoint_artifact_dir / "summary.json"
         _atomic_json(endpoint_summary, endpoint_record)
         token.settle(
@@ -610,14 +622,35 @@ def main() -> int:
         and endpoint_records["minus"]["gate_evaluation"]["endpoint_gate_pass"]
         and (opposite_signs or not require_opposite)
     )
+    endpoint_bonds = {
+        label: infer_binary_connectivity(
+            system.symbols,
+            endpoint_records[label]["relaxation_result"]["coordinates_angstrom"],
+        )
+        for label in ("minus", "plus")
+    }
+    connectivity = ConnectivityEvidence(
+        reactant_bonds=endpoint_bonds["minus"],
+        product_bonds=endpoint_bonds["plus"],
+    )
+    observed_bond_event = [list(edit) for edit in observed_event(connectivity)]
     report["endpoints"] = endpoint_records
+    report["endpoint_connectivity"] = {
+        "representation": "covalent-radius-binary-endpoint-comparison-v1",
+        "bond_cutoff_scale": 1.25,
+        "minus_bond_matrix": [list(row) for row in endpoint_bonds["minus"]],
+        "plus_bond_matrix": [list(row) for row in endpoint_bonds["plus"]],
+        "observed_event_from_minus_to_plus": observed_bond_event,
+        "same_bond_connectivity": not observed_bond_event,
+        "source": "calculated_relaxed_endpoint_coordinates",
+    }
     report["endpoint_pair_gate"] = {
         "require_opposite_signs": require_opposite,
         "opposite_signs": opposite_signs,
         "plus_signed_distance_angstrom": plus_distance,
         "minus_signed_distance_angstrom": minus_distance,
-        "same_bond_connectivity_expected": True,
-        "observed_bond_event": [],
+        "same_bond_connectivity": not observed_bond_event,
+        "observed_bond_event": observed_bond_event,
         "endpoint_pair_gate_pass": endpoint_pair_pass,
     }
     report["status"] = "pass" if endpoint_pair_pass else "fail"
@@ -633,7 +666,7 @@ def main() -> int:
         "total_calls": hessian_calls + endpoint_total_calls,
     }
     report["artifact_index"] = index_artifacts(args.artifact_dir)
-    _atomic_json(args.output, report)
+    _atomic_json(args.output, sanitize_public_value(report))
     print(
         json.dumps(
             {

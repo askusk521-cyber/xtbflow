@@ -3,7 +3,13 @@ from __future__ import annotations
 
 import hashlib
 from pathlib import Path
+import re
 from typing import Any, Mapping
+
+
+_PRIVATE_PATH = re.compile(
+    r"(?<![:A-Za-z0-9_])(?:/(?:[^\s\"'`,;)}\]]+/)+[^\s\"'`,;)}\]]+|[A-Za-z]:[\\/])[^\s\"'`,;)}\]]*"
+)
 
 
 def sha256_file(path: str | Path) -> str:
@@ -13,6 +19,26 @@ def sha256_file(path: str | Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def sanitize_error_message(value: Any) -> str | None:
+    """Remove host-local absolute paths from a public error string."""
+
+    if value is None:
+        return None
+    return _PRIVATE_PATH.sub("[private-path]", str(value))
+
+
+def sanitize_public_value(value: Any) -> Any:
+    if isinstance(value, Mapping):
+        return {str(key): sanitize_public_value(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [sanitize_public_value(item) for item in value]
+    if isinstance(value, tuple):
+        return [sanitize_public_value(item) for item in value]
+    if isinstance(value, str):
+        return sanitize_error_message(value)
+    return value
 
 
 def index_artifacts(root: str | Path) -> list[dict[str, Any]]:
@@ -40,7 +66,7 @@ def index_artifacts(root: str | Path) -> list[dict[str, Any]]:
 
 
 def _sanitized_case(case: Mapping[str, Any]) -> dict[str, Any]:
-    result = dict(case)
+    result = sanitize_public_value(dict(case))
     metadata = dict(result.get("metadata", {}))
     if metadata.pop("artifact_directory", None) is not None:
         metadata["artifact_directory_recorded_in_private_run"] = True
@@ -51,7 +77,8 @@ def _sanitized_case(case: Mapping[str, Any]) -> dict[str, Any]:
 def sanitize_cp2k_calibration_report(
     payload: Mapping[str, Any],
     *,
-    source_commit: str,
+    execution_source_commit: str,
+    publication_source_commit: str,
     private_report_sha256: str,
     calibration_script_sha256: str,
     adapter_sha256: str,
@@ -62,8 +89,10 @@ def sanitize_cp2k_calibration_report(
     cases = payload.get("cases")
     if not isinstance(cases, list) or not cases:
         raise ValueError("calibration report must contain nonempty cases")
-    if not source_commit.strip():
-        raise ValueError("source_commit is required")
+    if not execution_source_commit.strip():
+        raise ValueError("execution_source_commit is required")
+    if not publication_source_commit.strip():
+        raise ValueError("publication_source_commit is required")
     public = {
         key: payload[key]
         for key in (
@@ -83,7 +112,8 @@ def sanitize_cp2k_calibration_report(
     public.update(
         {
             "evidence_schema": "xtbflow-cp2k-calibration-public/v1",
-            "source_commit": source_commit,
+            "execution_source_commit": execution_source_commit,
+            "publication_source_commit": publication_source_commit,
             "private_report_sha256": private_report_sha256,
             "calibration_script_sha256": calibration_script_sha256,
             "cp2k_adapter_sha256": adapter_sha256,
@@ -97,13 +127,14 @@ def sanitize_cp2k_calibration_report(
             ],
         }
     )
-    return public
+    return sanitize_public_value(public)
 
 
 def sanitize_cp2k_convergence_report(
     payload: Mapping[str, Any],
     *,
-    source_commit: str,
+    execution_source_commit: str,
+    publication_source_commit: str,
     private_report_sha256: str,
     ledger_sha256: str,
     convergence_script_sha256: str,
@@ -118,8 +149,10 @@ def sanitize_cp2k_convergence_report(
         raise ValueError("convergence report must contain at least two runs")
     if not isinstance(comparisons, list):
         raise ValueError("convergence comparisons must be a list")
-    if not isinstance(source_commit, str) or not source_commit.strip():
-        raise ValueError("source_commit is required")
+    if not isinstance(execution_source_commit, str) or not execution_source_commit.strip():
+        raise ValueError("execution_source_commit is required")
+    if not isinstance(publication_source_commit, str) or not publication_source_commit.strip():
+        raise ValueError("publication_source_commit is required")
     public = {
         key: payload[key]
         for key in (
@@ -141,7 +174,8 @@ def sanitize_cp2k_convergence_report(
     public.update(
         {
             "evidence_schema": "xtbflow-cp2k-convergence-public/v1",
-            "source_commit": source_commit,
+            "execution_source_commit": execution_source_commit,
+            "publication_source_commit": publication_source_commit,
             "private_report_sha256": private_report_sha256,
             "ledger_sha256": ledger_sha256,
             "convergence_script_sha256": convergence_script_sha256,
@@ -160,4 +194,4 @@ def sanitize_cp2k_convergence_report(
         "The private artifact root is omitted; relative paths, sizes, hashes, and the metered ledger hash are retained."
     )
     public["claim_limits"] = limits
-    return public
+    return sanitize_public_value(public)

@@ -1,11 +1,26 @@
 from __future__ import annotations
 
 from xtbflow.validation import (
+    ConnectivityEvidence,
+    infer_binary_connectivity,
+    observed_event,
     index_artifacts,
     sanitize_cp2k_calibration_report,
     sanitize_cp2k_convergence_report,
     sha256_file,
 )
+
+
+def test_endpoint_event_is_derived_from_calculated_connectivity():
+    minus = infer_binary_connectivity(
+        ("H", "H"), ((0.0, 0.0, 0.0), (0.7, 0.0, 0.0))
+    )
+    plus = infer_binary_connectivity(
+        ("H", "H"), ((0.0, 0.0, 0.0), (2.0, 0.0, 0.0))
+    )
+    assert observed_event(
+        ConnectivityEvidence(reactant_bonds=minus, product_bonds=plus)
+    ) == ((0, 1, -1),)
 
 
 def test_artifact_index_is_relative_and_hashed(tmp_path):
@@ -44,7 +59,8 @@ def test_calibration_report_removes_artifact_root_and_case_paths():
     }
     public = sanitize_cp2k_calibration_report(
         payload,
-        source_commit="abc123",
+        execution_source_commit="execution123",
+        publication_source_commit="publication123",
         private_report_sha256="report-hash",
         calibration_script_sha256="script-hash",
         adapter_sha256="adapter-hash",
@@ -58,12 +74,43 @@ def test_calibration_report_removes_artifact_root_and_case_paths():
     )
     assert "artifact_root" not in public
     assert public["scientific_qualification"] is False
+    assert public["execution_source_commit"] == "execution123"
+    assert public["publication_source_commit"] == "publication123"
     assert public["cases"][0]["metadata"] == {
         "artifact_persistence": "persistent",
         "artifact_directory_recorded_in_private_run": True,
     }
     assert "/private/root" not in str(public)
     assert public["artifact_index"][0]["relative_path"] == "water/run/output.out"
+
+
+def test_public_failure_text_redacts_absolute_paths():
+    payload = {
+        "schema": "xtbflow-cp2k-calibration-smoke/v1",
+        "status": "fail",
+        "cases": [
+            {
+                "status": "failure",
+                "metadata": {
+                    "artifact_directory": "/home/private-user/run",
+                    "error": "CP2K failed while reading /scratch/private-user/input.inp",
+                },
+            }
+        ],
+    }
+    public = sanitize_cp2k_calibration_report(
+        payload,
+        execution_source_commit="execution123",
+        publication_source_commit="publication123",
+        private_report_sha256="report-hash",
+        calibration_script_sha256="script-hash",
+        adapter_sha256="adapter-hash",
+        artifacts=[{"relative_path": "run/error.out", "size_bytes": 1, "sha256": "x"}],
+    )
+    encoded = str(public)
+    assert "/home/" not in encoded
+    assert "/scratch/" not in encoded
+    assert "[private-path]" in encoded
 
 
 def test_convergence_report_removes_private_paths_and_retains_ledger_hash():
@@ -95,7 +142,8 @@ def test_convergence_report_removes_private_paths_and_retains_ledger_hash():
     }
     public = sanitize_cp2k_convergence_report(
         payload,
-        source_commit="abc123",
+        execution_source_commit="execution123",
+        publication_source_commit="publication123",
         private_report_sha256="report-hash",
         ledger_sha256="ledger-hash",
         convergence_script_sha256="script-hash",
@@ -109,6 +157,8 @@ def test_convergence_report_removes_private_paths_and_retains_ledger_hash():
         ],
     )
     assert public["status"] == "fail"
+    assert public["execution_source_commit"] == "execution123"
+    assert public["publication_source_commit"] == "publication123"
     assert public["ledger_sha256"] == "ledger-hash"
     assert public["scientific_qualification"] is False
     assert "artifact_root" not in public
@@ -127,7 +177,8 @@ def test_convergence_report_requires_multiple_runs():
                 "runs": [{"status": "success"}],
                 "comparisons_to_highest_cutoff": [],
             },
-            source_commit="abc123",
+            execution_source_commit="execution123",
+            publication_source_commit="publication123",
             private_report_sha256="report-hash",
             ledger_sha256="ledger-hash",
             convergence_script_sha256="script-hash",

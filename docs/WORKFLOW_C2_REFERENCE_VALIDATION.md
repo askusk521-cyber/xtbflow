@@ -178,8 +178,10 @@ dimer 模态的绝对重叠为 `1.0`。Hessian 阶段使用 13 次调用，其�
 
 因此本轮的 `development_path_status` 为 `validated`，但
 `reference_path_status` 被明确保留为 `not_validated`。原因是全部证据仍来自
-有限气相 GFN2 模型，内部 Hessian 只报告能量/长度平方特征值而非谐振频率，且
-NH₃ 反转的 `observed_bond_event` 为空。机器可读证据见
+有限气相 GFN2 模型，内部 Hessian 只报告能量/长度平方特征值而非谐振频率。运行器
+从两端实际松弛后的坐标分别推断二值连接关系，再计算
+`observed_event_from_minus_to_plus`；NH₃ 反转的空事件来自这次端点比较，而不是
+写死的结果。机器可读证据见
 `docs/evidence/gfn2_nh3_path_409e906.json`。此前 H₃ 正曲率候选继续作为有效失败
 控制，不得删除或重标记。
 
@@ -196,8 +198,9 @@ SHA-256，并把后续证据拆成三个独立阶段：
 
 对 NH₃，双向端点使用 N 原子到有序 H₃ 平面的带符号距离区分两个金字塔极小值；
 两侧必须符号相反、绝对距离不低于 0.1 Å、能量低于平面驻点且梯度通过门槛。
-由于该过程不改变键连接，`observed_bond_event` 必须保持为空，不能将其包装成
-键变化反应。即使全部开发 gate 通过，`reference_path_status` 仍保持
+对于 NH₃ 反转，当前物理预期是两端连接相同，但 `endpoint_connectivity` 会同时
+保留两端的矩阵、推断规则和实际事件列表。不能将这个构象路径包装成键变化反应。
+即使全部开发 gate 通过，`reference_path_status` 仍保持
 `not_validated`，直到独立 CP2K 或批准的参考协议完成对应证据。
 
 ```bash
@@ -256,6 +259,10 @@ dimer 曲率为 `-11.560159007366892 eV/Å²`。但完整梯度范数为
 该重放仍为 **fail**：起始对称构型的外侧 H 实际力约为 `±0.08054 Ha/Å`，声明反应模态曲率为正 `18.35 eV/Å²`；搜索过程中曲率升至 `101.19 eV/Å²`。因此问题从“驱动刚体污染”收敛为“该 H₃/GFN2 初猜不在负曲率 TS 区域”。不得通过增加预算把它改写成成功；后续应改用经过低成本力/曲率筛选的候选。机器可读证据见 `docs/evidence/gfn2_dimer_pilot_ae3da3c.json`。
 
 ## 证据发布规则
+
+私有运行报告中的 `source_commit` 是计算发生时的代码版本。发布器另行记录
+`publication_source_commit`，不会用发布工作树的版本覆盖计算版本；两者都会写入
+公共证据。失败消息和嵌套 metadata 中的主机绝对路径在发布时统一清理。
 
 公共证据可以包含：
 

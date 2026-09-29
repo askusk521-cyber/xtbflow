@@ -156,6 +156,25 @@ python scripts/run_gfn2_dimer_pilot.py \
   --artifact-dir "$RUN_ROOT/nh3-dimer/artifacts"
 ```
 
+### 2026-09-29 NH₃ 反转候选预检与 dimer 重放（source commit `2771281`）
+
+平面 NH₃ 反转候选先通过独立的 3-call GFN2 预检：刚体投影后的力范数为
+`0.07576791037668802 Ha/Å`，声明反转模态方向曲率为
+`-8.156935714550215 eV/Å²`。因此 runner 才创建正式 dimer 预算。
+
+后续 dimer 搜索在 2 个优化步、31 次 GFN2 调用后由 ASE 报告收敛，最终
+dimer 曲率为 `-11.560159007366892 eV/Å²`。但完整梯度范数为
+`0.0011264100063743865 Ha/Å`，高于预注册门槛 `0.001 Ha/Å`，故本轮保留为
+**fail**。预检与 dimer 合计 34 次调用，两个 ledger 均无 pending reservation；
+未使用的 97 次 dimer 额度被释放。
+
+该结果说明 NH₃ 候选处于明确负曲率区域，但尚未达到冻结的驻点门槛。不得
+放宽阈值或把 ASE 的 dimer 收敛标志改写成 TS 验证通过。下一步必须使用新的
+配置与新账本进一步收紧驻点，然后独立计算内部 Hessian，并沿唯一负模态执行
+双向端点松弛。机器可读、无主机绝对路径的记录见
+`docs/evidence/gfn2_dimer_nh3_2771281.json`；这仍是 GFN2 开发证据，不是 CP2K
+参考 TS 准入。
+
 ### 2026-09-29 首次 GFN2 dimer 开发试验（source commit `b755757`）
 
 单个线性 H₃ 双重态候选在冻结的 96-call、并发 1、重试 0 预算下运行 ASE dimer 驱动。ledger 恰好结算 96 次 GFN2 调用，无 pending reservation；运行因预算耗尽而以 **fail** 结束。轨迹显示最低模态逐步转成近似整体平移 `[0.576, 0.579, 0.578]`，结构随后偏离声明的对称候选。该结果暴露了驱动未剔除平移/转动自由度，而不是参考 TS 证据。

@@ -1,0 +1,379 @@
+{
+  "artifact_index": [
+    {
+      "relative_path": "dimer.log",
+      "sha256": "376a75b5a7fc61d1dadac50bb0a9ca531b84b86396173a98743102a7a7df58c3",
+      "size_bytes": 1618
+    },
+    {
+      "relative_path": "eigenmode.log",
+      "sha256": "eaa16eacd1b8b32c1ede2d569e3ea77ea9d872519d5140d34ff5f15e6bc3b4ce",
+      "size_bytes": 4735
+    },
+    {
+      "relative_path": "optimizer.log",
+      "sha256": "e8f83f610a5b7bb32427f7d6d8908a92841bdc71c73dade28cb3884cb6a208da",
+      "size_bytes": 594
+    },
+    {
+      "relative_path": "preflight.json",
+      "sha256": "f313abc3ccaa5ce8531c90b612b33f9fe25161e802cb80948a89b5ca83e64309",
+      "size_bytes": 2438
+    },
+    {
+      "relative_path": "trajectory.jsonl",
+      "sha256": "7b7860d4f9b0219834691d5418a66f7ef696023b669304b4c6cae6a1c39d925d",
+      "size_bytes": 3028
+    }
+  ],
+  "ase_dimer_driver_sha256": "3c17a6ce50a2d2d4d5b63ee9b8b309ae4eb655ac48f06445717b511a50f0dac3",
+  "calculator_accounting": {
+    "committed_calculator_calls": 31,
+    "committed_tokens": {
+      "gfn2-dimer-development-pilot": {
+        "calculator_calls": 128,
+        "consumed_calls": 31,
+        "released_calls": 97
+      }
+    },
+    "pending_reservations": {},
+    "preflight_committed_calculator_calls": 3,
+    "settled": true,
+    "total_committed_calculator_calls": 34
+  },
+  "claim_limits": [
+    "This is a low-cost GFN2 driver-development pilot, not a reference DFT transition-state validation.",
+    "The three-call preflight tests only the declared geometry, force, and one declared mode direction.",
+    "Dimer convergence and negative local curvature do not establish exactly one relevant imaginary mode.",
+    "No IRC, bidirectional endpoint connectivity, intended-event match, mechanism, or barrier claim is permitted.",
+    "Passing this driver gate remains insufficient for #19 until independent Hessian/mode and bidirectional endpoint evidence are attached."
+  ],
+  "config_sha256": "1d151837a8979ad5865a36d79b4a9f8cde82120871ca020bbd2786abdca713e4",
+  "driver_result": {
+    "artifact_files": [
+      "dimer.log",
+      "eigenmode.log",
+      "optimizer.log",
+      "preflight.json",
+      "trajectory.jsonl"
+    ],
+    "calculator_calls": 31,
+    "config_identity": "7e52e21812d87e62437cbe14dff92952ff9657217cea78d5f7a02e8482da9e1c",
+    "converged": true,
+    "coordinates_angstrom": [
+      [
+        -1.485983856789073e-12,
+        1.6536067680382087e-16,
+        -1.4238199298010888e-17
+      ],
+      [
+        0.992369372038261,
+        6.798271157933778e-17,
+        4.619576179213607e-18
+      ],
+      [
+        -0.4961846860183874,
+        0.859417086145783,
+        4.727996396462227e-18
+      ],
+      [
+        -0.4961846860183876,
+        -0.8594170861457833,
+        4.673786287837952e-18
+      ]
+    ],
+    "curvature_eV_per_angstrom2": -11.560159007366892,
+    "eigenmode": [
+      [
+        0.0,
+        -1.0674587249590384e-32,
+        0.8660254037844387
+      ],
+      [
+        -3.0247759074990592e-49,
+        7.401486830667335e-17,
+        -0.2886751345948129
+      ],
+      [
+        -6.409875621423213e-17,
+        -3.700743415333667e-17,
+        -0.2886751345948129
+      ],
+      [
+        6.409875621423213e-17,
+        -3.700743415333667e-17,
+        -0.2886751345948129
+      ]
+    ],
+    "energy_hartree": -4.416506468501805,
+    "error": null,
+    "forces_hartree_per_angstrom": [
+      [
+        -2.4190083049180542e-11,
+        -3.3414922335342987e-16,
+        -3.201774861778974e-17
+      ],
+      [
+        0.000650333141772083,
+        -1.7344804950124557e-16,
+        1.0698959645887134e-17
+      ],
+      [
+        -0.00032516655879124667,
+        0.0005632049916601445,
+        1.0659412248807253e-17
+      ],
+      [
+        -0.00032516655879075336,
+        -0.000563204991659637,
+        1.0659376723095368e-17
+      ]
+    ],
+    "gradient_norm_hartree_per_angstrom": 0.0011264100063743865,
+    "optimizer_steps": 2,
+    "rigid_body_rank": 6,
+    "status": "success"
+  },
+  "execution_stage": "dimer",
+  "gate_evaluation": {
+    "driver_gate_pass": false,
+    "full_ts_validation": false,
+    "gradient_norm_hartree_per_angstrom": 0.0011264100063743865,
+    "max_gradient_norm_hartree_per_angstrom": 0.001,
+    "negative_dimer_curvature": true,
+    "optimizer_converged": true,
+    "preflight_gate_pass": true
+  },
+  "input": {
+    "gate": {
+      "max_gradient_norm_hartree_per_angstrom": 0.001,
+      "require_negative_dimer_curvature": true,
+      "require_optimizer_converged": true
+    },
+    "initial_mode": [
+      [
+        0.0,
+        0.0,
+        3.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    ],
+    "preflight": {
+      "budget": {
+        "max_calculator_calls": 3,
+        "max_concurrent_jobs": 1,
+        "max_retries_per_job": 0,
+        "phase": "P1-gfn2-dimer-preflight"
+      },
+      "gate": {
+        "max_projected_force_norm_hartree_per_angstrom": 0.2,
+        "require_negative_mode_curvature": true
+      },
+      "hvp_step_angstrom": 0.001
+    },
+    "search": {
+      "dimer_separation_angstrom": 0.001,
+      "fmax_eV_per_angstrom": 0.02,
+      "max_num_rot": 1,
+      "max_steps": 60,
+      "maximum_translation_angstrom": 0.03,
+      "random_seed": 20260929,
+      "remove_rigid_body_modes": true,
+      "rigid_body_tolerance": 1e-10,
+      "trial_translation_step_angstrom": 0.001
+    },
+    "system": {
+      "charge": 0,
+      "coordinates_angstrom": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.02,
+          0.0,
+          0.0
+        ],
+        [
+          -0.51,
+          0.8833459119,
+          0.0
+        ],
+        [
+          -0.51,
+          -0.8833459119,
+          0.0
+        ]
+      ],
+      "environment": {
+        "periodic": false
+      },
+      "multiplicity": 1,
+      "symbols": [
+        "N",
+        "H",
+        "H",
+        "H"
+      ],
+      "system_id": "nh3-planar-inversion-development"
+    }
+  },
+  "ledger_sha256": "c08aafdc722714fa50481f8082d82aebd65811d890f974b047a373d7c5682b0c",
+  "preflight": {
+    "calculator_accounting": {
+      "committed_calculator_calls": 3,
+      "committed_tokens": {
+        "gfn2-dimer-preflight": {
+          "calculator_calls": 3,
+          "consumed_calls": 3,
+          "released_calls": 0
+        }
+      },
+      "pending_reservations": {},
+      "settled": true
+    },
+    "gate_evaluation": {
+      "calculation_success": true,
+      "max_projected_force_norm_hartree_per_angstrom": 0.2,
+      "mode_curvature_eV_per_angstrom2": -8.156935714550215,
+      "negative_mode_curvature": true,
+      "preflight_gate_pass": true,
+      "projected_force_norm_hartree_per_angstrom": 0.07576791037668802,
+      "projected_force_within_limit": true,
+      "require_negative_mode_curvature": true
+    },
+    "ledger_sha256": "6bc5c041b3acad683d28baa3bdca9d39644ccd4982d2b20feeca955ed33b443c",
+    "result": {
+      "calculator_calls": 3,
+      "energy_hartree": -4.414655196546162,
+      "error": null,
+      "hessian_vector_product_hartree_per_angstrom2": [
+        [
+          -0.0,
+          -0.0,
+          -0.25960138669567534
+        ],
+        [
+          -0.0,
+          -0.0,
+          0.08653379559406901
+        ],
+        [
+          -0.0,
+          -0.0,
+          0.086533795550805
+        ],
+        [
+          -0.0,
+          -0.0,
+          0.08653379555080157
+        ]
+      ],
+      "mode_curvature_eV_per_angstrom2": -8.156935714550215,
+      "mode_curvature_hartree_per_angstrom2": -0.29976186098149665,
+      "normalized_mode": [
+        [
+          0.0,
+          -1.0674587249590384e-32,
+          0.8660254037844387
+        ],
+        [
+          -3.0247759074990592e-49,
+          7.401486830667335e-17,
+          -0.2886751345948129
+        ],
+        [
+          -6.409875621423213e-17,
+          -3.700743415333667e-17,
+          -0.2886751345948129
+        ],
+        [
+          6.409875621423213e-17,
+          -3.700743415333667e-17,
+          -0.2886751345948129
+        ]
+      ],
+      "projected_force_norm_hartree_per_angstrom": 0.07576791037668802,
+      "projected_forces_hartree_per_angstrom": [
+        [
+          -3.822080033452039e-11,
+          1.245081135703245e-16,
+          1.3162505741699212e-17
+        ],
+        [
+          -0.04374462341777705,
+          -6.836467688510642e-17,
+          -4.092640019626528e-18
+        ],
+        [
+          0.021872311727998903,
+          -0.03788395520687608,
+          -4.5349328610363396e-18
+        ],
+        [
+          0.021872311727998948,
+          0.03788395520687602,
+          -4.534932861036349e-18
+        ]
+      ],
+      "rigid_body_rank": 6,
+      "status": "success"
+    },
+    "status": "pass"
+  },
+  "protocol": {
+    "backend": "cpu",
+    "method": "GFN2-xTB",
+    "parameters": {
+      "accuracy": 1.0,
+      "electronic_temperature": 300.0,
+      "implementation": "tblite",
+      "max_iterations": 250,
+      "solvent": null
+    },
+    "protocol_id": "tblite-gfn2-nh3-inversion-dimer-pilot-v1",
+    "protocol_identity": "b6916272726040f4dc120b8b269909c8348d3da535fa49f4b1770633d7cbe3b3"
+  },
+  "runtime": {
+    "build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+    "capabilities": {
+      "backends": [
+        "cpu"
+      ],
+      "build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+      "calculator": "xtb_oracle",
+      "detail": "direct backend is callable; numerical qualification is not asserted",
+      "operations": [
+        "energy",
+        "energy_forces",
+        "forces"
+      ],
+      "qualification": "installed",
+      "status": "unknown",
+      "version": "0.7.0"
+    },
+    "implementation": "tblite",
+    "version": "0.7.0"
+  },
+  "schema": "xtbflow-gfn2-dimer-pilot-result/v1",
+  "scientific_qualification": false,
+  "script_sha256": "bab48a6f11f275279b1c2f35eff0fdecd221a59a92e76067d95d67272d7ef44c",
+  "source_commit": "27712813095ab8b0fcfe45ef48bea59102d99809",
+  "status": "fail",
+  "xtb_oracle_adapter_sha256": "dc223169709870f61b657e359419958b26931e9c8d562af8d6093f9c3c512189"
+}

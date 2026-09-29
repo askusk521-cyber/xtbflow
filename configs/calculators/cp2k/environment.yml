@@ -1,0 +1,6 @@
+name: xtbflow-cp2k
+channels:
+  - conda-forge
+dependencies:
+  # Exact build keeps the executable and linked numerical stack reproducible.
+  - cp2k=2024.2=openblas_openmpi_hae4b963_0

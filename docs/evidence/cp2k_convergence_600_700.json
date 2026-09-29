@@ -1,0 +1,80 @@
+{
+  "comparisons_to_highest_cutoff": [
+    {
+      "abs_energy_delta_hartree": 3.498791186729022e-05,
+      "cutoff_ry": 600.0,
+      "max_force_delta_hartree_per_angstrom": 6.062241407800428e-05,
+      "reference_cutoff_ry": 700.0
+    },
+    {
+      "abs_energy_delta_hartree": 0.0,
+      "cutoff_ry": 700.0,
+      "max_force_delta_hartree_per_angstrom": 0.0,
+      "reference_cutoff_ry": 700.0
+    }
+  ],
+  "cp2k_version": "2024.2",
+  "energy_tolerance_hartree": 1e-05,
+  "force_tolerance_hartree_per_angstrom": 0.0001,
+  "runs": [
+    {
+      "cutoff_ry": 600.0,
+      "energy_hartree": -17.212927903519027,
+      "forces_hartree_per_angstrom": [
+        [
+          0.0,
+          0.0,
+          -0.1699951134450677
+        ],
+        [
+          0.09759505688438788,
+          0.0,
+          0.08486686326375474
+        ],
+        [
+          -0.09759505688438788,
+          0.0,
+          0.08486686326375474
+        ]
+      ],
+      "input_file_hash": "367e39ec0b2960fb230c77c7c901d9a4ee56d0adca37755e5d02debc8284e83e",
+      "protocol_id": "cp2k-reference-v0.1-pbe-d3bj-cutoff-600",
+      "protocol_identity": "f307fa93f7852b95ff97d47d9f9bfd88ec2a42c9b407386d23271f85e7116213",
+      "relative_cutoff_ry": 50.0,
+      "status": "success",
+      "wall_seconds": 148.59
+    },
+    {
+      "cutoff_ry": 700.0,
+      "energy_hartree": -17.21289291560716,
+      "forces_hartree_per_angstrom": [
+        [
+          0.0,
+          0.0,
+          -0.1699344910309897
+        ],
+        [
+          0.09759583167209897,
+          0.0,
+          0.08487037815434655
+        ],
+        [
+          -0.09759583167209897,
+          0.0,
+          0.08487037815434655
+        ]
+      ],
+      "input_file_hash": "c4bc8fdd1bebac87ad1b9bbb8ada5e6e3b061ba3c1a7c22adc1195f9de2c0b8a",
+      "protocol_id": "cp2k-reference-v0.1-pbe-d3bj-cutoff-700",
+      "protocol_identity": "94c748cbbc86e29192089ca0d0f62d9d84c94226d849cf3ba0d617aa37ff450e",
+      "relative_cutoff_ry": 50.0,
+      "status": "success",
+      "wall_seconds": 198.594
+    }
+  ],
+  "schema": "xtbflow-cp2k-convergence-smoke/v1",
+  "scope": "water single-point cutoff smoke; not a full basis, SCF, or path convergence qualification",
+  "source_revision": "8222f9c",
+  "status": "fail",
+  "system_id": "water-neutral-singlet"
+}

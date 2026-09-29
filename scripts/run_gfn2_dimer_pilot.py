@@ -151,6 +151,14 @@ def main() -> int:
         "schema": "xtbflow-gfn2-dimer-pilot-result/v1",
         "status": "initializing",
         "execution_stage": "preflight" if preflight_document is not None else "dimer",
+        "preflight_gate_status": (
+            "pending" if preflight_document is not None else "not_configured"
+        ),
+        "search_status": "not_started",
+        "search_execution": {
+            "status": "not_started",
+            "initial_guess_eligible": False,
+        },
         "scientific_qualification": False,
         "source_commit": source_commit,
         "config_sha256": sha256_file(args.config),
@@ -176,6 +184,12 @@ def main() -> int:
         },
         "input": {
             "system": document["system"],
+            "input_hash": system.input_hash,
+            "electronic_state": {
+                "charge": system.charge,
+                "multiplicity": system.multiplicity,
+                "source": "frozen_config",
+            },
             "initial_mode": document["initial_mode"],
             "search": document["search"],
             "preflight": preflight_document,
@@ -289,6 +303,9 @@ def main() -> int:
         )
         preflight_accounting = preflight_ledger.to_dict()
         preflight_record["status"] = "pass" if preflight_pass else "fail"
+        preflight_record["candidate_decision"] = (
+            "accepted_for_dimer_search" if preflight_pass else "rejected"
+        )
         preflight_record["ledger_sha256"] = sha256_file(
             preflight_ledger_path
         )
@@ -302,10 +319,17 @@ def main() -> int:
         }
         _atomic_json(preflight_artifact, preflight_record)
         report["preflight"] = preflight_record
+        report["preflight_gate_status"] = "passed" if preflight_pass else "rejected"
 
         if not preflight_pass:
             report["status"] = "fail"
             report["execution_stage"] = "preflight"
+            report["search_status"] = "not_executed"
+            report["search_execution"] = {
+                "status": "not_executed",
+                "reason": "preflight_rejected",
+                "initial_guess_eligible": False,
+            }
             report["artifact_index"] = index_artifacts(args.artifact_dir)
             report["calculator_accounting"] = {
                 "dimer_executed": False,
@@ -321,6 +345,9 @@ def main() -> int:
             }
             report["claim_limits"].append(
                 "The dimer search was not started because the separately metered preflight gate failed."
+            )
+            report["claim_limits"].append(
+                "A preflight rejection is not evidence that a complete TS search failed, and this candidate is not an approved dimer initial guess."
             )
             _atomic_json(args.output, report)
             print(
@@ -370,6 +397,12 @@ def main() -> int:
     )
     report["status"] = "pending_settlement"
     report["execution_stage"] = "dimer"
+    report["search_status"] = "running"
+    report["search_execution"] = {
+        "status": "executed",
+        "initial_guess_eligible": True,
+        "eligibility_basis": "preflight_passed" if report["preflight"] is not None else "preflight_not_configured",
+    }
     report["driver_result"] = asdict(result)
     report["artifact_index"] = index_artifacts(args.artifact_dir)
     report["calculator_accounting"] = {
@@ -405,6 +438,7 @@ def main() -> int:
     )
     dimer_calls = int(accounting["committed_calculator_calls"])
     report["status"] = "pass" if gate_pass else "fail"
+    report["search_status"] = "completed_pass" if gate_pass else "completed_fail"
     report["ledger_sha256"] = sha256_file(args.ledger)
     report["calculator_accounting"] = {
         "committed_calculator_calls": dimer_calls,

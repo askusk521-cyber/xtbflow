@@ -1,0 +1,47 @@
+{
+  "schema": "xtbflow-cp2k-runtime-evidence-provenance/v1",
+  "recorded_on": "2026-09-29",
+  "source_pull_request": 48,
+  "source_head": "a2f0a1d24b9fcb8ad67e52a6900ad42a5e191c92",
+  "source_base": "b0e63fb2fdb143f5b4eb24c171f70d632ac88011",
+  "current_replay_base": "42611b3724f118374b2fd6f13f8bf5f477345522",
+  "evidence_files": [
+    {
+      "path": "docs/evidence/cp2k_calibration_smoke.json",
+      "git_blob_sha": "0faa0daa99f2255891416e52300519705c121ec3"
+    },
+    {
+      "path": "docs/evidence/cp2k_convergence_500_600.json",
+      "git_blob_sha": "d7cc1056856ffe3ef035b7b1eea0429b465cf9d3"
+    },
+    {
+      "path": "docs/evidence/cp2k_convergence_600_700.json",
+      "git_blob_sha": "724cc5a271ac371974d4869ea43fb45c0df70eab"
+    },
+    {
+      "path": "docs/evidence/cp2k_convergence_smoke.json",
+      "git_blob_sha": "5f7ef372c56e2772709aa3940556c071b49c764b"
+    }
+  ],
+  "observed_runtime": {
+    "cp2k_version": "2024.2",
+    "source_revision": "8222f9c",
+    "build_label": "cp2k-2024.2-8222f9c"
+  },
+  "interpretation": {
+    "calibration_smoke": "three real E/F executions (H2O neutral singlet, H2+ doublet, H2S neutral singlet) returned success",
+    "cutoff_smokes": "300-700 Ry water cutoff ladders executed; strict 1e-5 Ha energy convergence gate failed",
+    "reference_qualification": false
+  },
+  "superseded_execution_contract": [
+    "source PR predated #49 persistent artifact requirement for qualification runs",
+    "source PR mixed runtime threads/executable into protocol parameters; replay removes them from physical identity",
+    "source PR did not preserve per-run raw artifact directories under the current contract"
+  ],
+  "required_next_step": "rerun bounded calibration/convergence with current replay code and persistent artifacts before #17 reference-label admission",
+  "claim_limits": [
+    "Historical evidence is retained without altering numerical results.",
+    "No transition-state/path qualification is implied.",
+    "No formal DFT training label admission is implied by these files."
+  ]
+}

@@ -714,8 +714,8 @@
     },
     {
       "path": "tests/test_cp2k_parser.py",
-      "sha256": "24bc9b5d310bf5742b0aef52625a6dd3a79a4d4b0448c77646008dd96940723c",
-      "bytes": 3806
+      "sha256": "ee367180169f01d13c1d6182ae5c547e160a8f17a286fbe49049d6788de4f1c6",
+      "bytes": 3940
     },
     {
       "path": "tests/test_energy_forces.py",

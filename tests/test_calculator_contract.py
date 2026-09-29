@@ -240,6 +240,88 @@ def test_xtbloom_direct_adapter_converts_public_units_and_explicit_settings(monk
     assert adapter.capabilities.status == "unknown"
 
 
+def test_xtbloom_warm_start_reuses_one_native_context(monkeypatch):
+    instances = []
+
+    class FakeResult:
+        def get(self, name):
+            if name == "energy":
+                return -1.0
+            if name == "forces":
+                return np.zeros((1, 3), dtype=np.float64)
+            raise AssertionError(name)
+
+    class FakeCalculator:
+        def __init__(self, method, numbers, positions, **kwargs):
+            self.method = method
+            self.positions = positions.copy()
+            self.kwargs = kwargs
+            self.updates = []
+            self.closed = False
+            instances.append(self)
+
+        def update(self, *, positions):
+            self.positions = positions.copy()
+            self.updates.append(self.positions)
+
+        def singlepoint(self):
+            return FakeResult()
+
+        def close(self):
+            self.closed = True
+
+    xtbloom = types.ModuleType("xtbloom")
+    xtbloom.Calculator = FakeCalculator
+    monkeypatch.setitem(sys.modules, "xtbloom", xtbloom)
+
+    native_protocol = CalculatorProtocol(
+        protocol_id="xtbloom-gfn2-warm-v1",
+        calculator="xtbloom",
+        method="GFN2-xTB",
+        parameters={
+            "max_scc_iterations": 250,
+            "charge_tolerance": 1e-6,
+            "energy_tolerance": 1e-8,
+            "electronic_temperature": 300.0,
+            "initialization": "warm",
+        },
+    )
+    adapter = XTBloomAdapter(protocol=native_protocol)
+    item = MolecularSystem(("H",), ((1.0, 0.0, 0.0),), 0, 2)
+    adapter.evaluate(item)
+    adapter.evaluate(item.with_coordinates(((1.1, 0.0, 0.0),)))
+
+    assert len(instances) == 1
+    assert instances[0].kwargs["warm_start"] is True
+    assert len(instances[0].updates) == 1
+
+
+def test_xtbloom_direct_adapter_rejects_unapplied_environment(monkeypatch):
+    class FakeCalculator:
+        def __init__(self, *args, **kwargs):
+            raise AssertionError("backend must not be called for an unapplied environment")
+
+    xtbloom = types.ModuleType("xtbloom")
+    xtbloom.Calculator = FakeCalculator
+    monkeypatch.setitem(sys.modules, "xtbloom", xtbloom)
+    native_protocol = CalculatorProtocol(
+        protocol_id="xtbloom-gfn2-environment-v1",
+        calculator="xtbloom",
+        method="GFN2-xTB",
+        parameters={
+            "max_scc_iterations": 250,
+            "charge_tolerance": 1e-6,
+            "energy_tolerance": 1e-8,
+            "electronic_temperature": 300.0,
+            "initialization": "fresh",
+        },
+    )
+    adapter = XTBloomAdapter(protocol=native_protocol)
+    item = MolecularSystem(("H",), ((1.0, 0.0, 0.0),), 0, 2, {"solvent": "water"})
+    with pytest.raises(CalculatorProtocolError, match="cannot apply environment"):
+        adapter.evaluate(item)
+
+
 def test_missing_or_nonfinite_contract_fields_are_rejected():
     with pytest.raises(ValueError, match="coordinate"):
         MolecularSystem(("H",), ((math.nan, 0.0, 0.0),), 0, 1)

@@ -114,6 +114,12 @@ def _validate_environment(system: MolecularSystem) -> None:
         raise CalculatorProtocolError("environment.periodic must be a boolean when provided")
     if periodic:
         raise CalculatorProtocolError("the xTBloom adapter currently supports non-periodic molecular systems only")
+    unsupported = sorted(set(system.environment) - {"periodic"})
+    if unsupported:
+        raise CalculatorProtocolError(
+            "xTBloom direct adapter cannot apply environment settings: "
+            + ", ".join(unsupported)
+        )
 
 
 def _atomic_number(symbol: str) -> int:
@@ -124,19 +130,64 @@ def _atomic_number(symbol: str) -> int:
         raise CalculatorProtocolError(f"unsupported element symbol: {symbol}") from exc
 
 
-def _xtbloom_evaluator(system: MolecularSystem, operation: str, parameters: Mapping[str, Any], protocol: CalculatorProtocol) -> CalculationResult:
-    """Evaluate one public Å input through xTBloom's atomic-unit API."""
-
-    from xtbloom import Calculator
-
-    _validate_environment(system)
+def _xtbloom_method(protocol: CalculatorProtocol) -> str:
     method = protocol.method
     if method not in {"GFN1", "GFN1-xTB", "GFN2", "GFN2-xTB"}:
         raise CalculatorProtocolError(
             "xTBloom supports only GFN1-xTB or GFN2-xTB methods"
         )
+    return method
+
+
+def _xtbloom_inputs(system: MolecularSystem) -> tuple[np.ndarray, np.ndarray]:
+    _validate_environment(system)
     numbers = np.asarray([_atomic_number(symbol) for symbol in system.symbols], dtype=np.int32)
     positions_bohr = np.asarray(system.coordinates, dtype=np.float64) / BOHR_IN_ANGSTROM
+    return numbers, positions_bohr
+
+
+def _xtbloom_result(
+    system: MolecularSystem,
+    operation: str,
+    result: Any,
+    parameters: Mapping[str, Any],
+    protocol: CalculatorProtocol,
+) -> CalculationResult:
+    energy = float(result.get("energy"))
+    native_forces = np.asarray(result.get("forces"), dtype=np.float64)
+    forces = native_forces / BOHR_IN_ANGSTROM
+    initialization = _required_parameter(parameters, "initialization")
+    return CalculationResult(
+        calculator=protocol.calculator,
+        protocol_id=protocol.protocol_id,
+        input_hash=system.input_hash,
+        charge=system.charge,
+        multiplicity=system.multiplicity,
+        operation=operation,
+        energy=energy if operation in {"energy", "energy_forces"} else None,
+        forces=None if operation == "energy" else tuple(tuple(float(value) for value in row) for row in forces.tolist()),
+        metadata={
+            "implementation": "xtbloom",
+            "adapter_revision": ADAPTER_REVISION,
+            "adapter_code_hash": _adapter_code_hash(),
+            "method": _xtbloom_method(protocol),
+            "native_coordinate_unit": "bohr",
+            "native_force_unit": "hartree/bohr",
+            "normalized_coordinate_unit": "angstrom",
+            "normalized_force_unit": "hartree/angstrom",
+            "force_conversion": "native_force_hartree_per_bohr / 0.529177210903 = force_hartree_per_angstrom",
+            "initialization": initialization,
+        },
+    )
+
+
+def _xtbloom_evaluator(system: MolecularSystem, operation: str, parameters: Mapping[str, Any], protocol: CalculatorProtocol) -> CalculationResult:
+    """Evaluate one public Å input through xTBloom's atomic-unit API."""
+
+    from xtbloom import Calculator
+
+    method = _xtbloom_method(protocol)
+    numbers, positions_bohr = _xtbloom_inputs(system)
     initialization = _required_parameter(parameters, "initialization")
     if initialization not in {"fresh", "warm"}:
         raise CalculatorProtocolError("xTBloom initialization must be 'fresh' or 'warm'")
@@ -154,31 +205,60 @@ def _xtbloom_evaluator(system: MolecularSystem, operation: str, parameters: Mapp
         calc_kwargs["cpu_threads"] = int(parameters["cpu_threads"])
     with Calculator(method, numbers, positions_bohr, **calc_kwargs) as calc:
         result = calc.singlepoint()
-    energy = float(result.get("energy"))
-    native_forces = np.asarray(result.get("forces"), dtype=np.float64)
-    forces = native_forces / BOHR_IN_ANGSTROM
-    return CalculationResult(
-        calculator=protocol.calculator,
-        protocol_id=protocol.protocol_id,
-        input_hash=system.input_hash,
-        charge=system.charge,
-        multiplicity=system.multiplicity,
-        operation=operation,
-        energy=energy if operation in {"energy", "energy_forces"} else None,
-        forces=None if operation == "energy" else tuple(tuple(float(value) for value in row) for row in forces.tolist()),
-        metadata={
-            "implementation": "xtbloom",
-            "adapter_revision": ADAPTER_REVISION,
-            "adapter_code_hash": _adapter_code_hash(),
-            "method": method,
-            "native_coordinate_unit": "bohr",
-            "native_force_unit": "hartree/bohr",
-            "normalized_coordinate_unit": "angstrom",
-            "normalized_force_unit": "hartree/angstrom",
-            "force_conversion": "native_force_hartree_per_bohr / 0.529177210903 = force_hartree_per_angstrom",
-            "initialization": initialization,
-        },
-    )
+    return _xtbloom_result(system, operation, result, parameters, protocol)
+
+
+class _DirectXTBloomEvaluator:
+    """Keep one native context so xTBloom warm-start state can be reused."""
+
+    def __init__(self, parameters: Mapping[str, Any], protocol: CalculatorProtocol) -> None:
+        self.parameters = parameters
+        self.protocol = protocol
+        self._calculator: Any | None = None
+        self._topology: tuple[tuple[str, ...], int, int] | None = None
+
+    def __call__(self, system: MolecularSystem, operation: str) -> CalculationResult:
+        from xtbloom import Calculator
+
+        method = _xtbloom_method(self.protocol)
+        numbers, positions_bohr = _xtbloom_inputs(system)
+        initialization = _required_parameter(self.parameters, "initialization")
+        if initialization not in {"fresh", "warm"}:
+            raise CalculatorProtocolError("xTBloom initialization must be 'fresh' or 'warm'")
+        topology = (system.symbols, system.charge, system.multiplicity)
+        if self._calculator is None or self._topology != topology:
+            self.close()
+            calc_kwargs = {
+                "charge": system.charge,
+                "multiplicity": system.multiplicity,
+                "backend": self.protocol.backend,
+                "max_scc_iterations": int(_required_parameter(self.parameters, "max_scc_iterations")),
+                "charge_tolerance": float(_required_parameter(self.parameters, "charge_tolerance")),
+                "energy_tolerance": float(_required_parameter(self.parameters, "energy_tolerance")),
+                "electronic_temperature": float(_required_parameter(self.parameters, "electronic_temperature")),
+                "warm_start": initialization == "warm",
+            }
+            if "cpu_threads" in self.parameters:
+                calc_kwargs["cpu_threads"] = int(self.parameters["cpu_threads"])
+            self._calculator = Calculator(method, numbers, positions_bohr, **calc_kwargs)
+            self._topology = topology
+        else:
+            self._calculator.update(positions=positions_bohr)
+        return _xtbloom_result(system, operation, self._calculator.singlepoint(), self.parameters, self.protocol)
+
+    def close(self) -> None:
+        if self._calculator is not None:
+            close = getattr(self._calculator, "close", None)
+            if callable(close):
+                close()
+            self._calculator = None
+            self._topology = None
+
+    def __del__(self) -> None:
+        try:
+            self.close()
+        except Exception:
+            pass
 
 
 class XTBloomAdapter(CalculatorBackend):
@@ -218,7 +298,7 @@ class XTBloomAdapter(CalculatorBackend):
             else:
                 if callable(getattr(module, "Calculator", None)):
                     self._direct_backend = True
-                    self._evaluator = lambda item, operation: _xtbloom_evaluator(item, operation, self.protocol.parameters, self.protocol)
+                    self._evaluator = _DirectXTBloomEvaluator(self.protocol.parameters, self.protocol)
 
     @property
     def capabilities(self) -> CalculatorCapabilities:

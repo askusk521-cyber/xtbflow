@@ -424,3 +424,32 @@ def test_control_paths_expose_bidirectional_local_state_dependence():
     )
     assert not torch.allclose(joint.geometry_velocity, joint_changed.geometry_velocity)
     torch.testing.assert_close(off.geometry_velocity, off_changed.geometry_velocity)
+
+
+def test_unconstrained_control_only_disables_event_projection():
+    torch.manual_seed(29)
+    event, coordinates, node, mask, condition = inputs()
+    flow, projector = model()
+    constrained = flow.forward_control(
+        "joint_bidirectional",
+        event,
+        coordinates,
+        node,
+        mask,
+        tau=0.4,
+        condition_features=condition,
+        conservation_projection=True,
+    )
+    unconstrained = flow.forward_control(
+        "joint_bidirectional",
+        event,
+        coordinates,
+        node,
+        mask,
+        tau=0.4,
+        condition_features=condition,
+        conservation_projection=False,
+    )
+    torch.testing.assert_close(unconstrained.geometry_velocity, constrained.geometry_velocity)
+    torch.testing.assert_close(projector.residual(constrained.event_velocity), torch.zeros_like(projector.residual(constrained.event_velocity)), atol=1e-7, rtol=0)
+    assert torch.linalg.vector_norm(projector.residual(unconstrained.event_velocity)) > 1e-8

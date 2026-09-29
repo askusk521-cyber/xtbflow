@@ -28,6 +28,7 @@ def test_workflow_b_protocol_freezes_the_first_matrix_and_scientific_blocker():
         "serial_event_to_geometry",
         "current_event_to_geometry",
         "joint_event_geometry",
+        "unconstrained_event",
     ]
     assert tuple(
         arm["learned_control_mode"]
@@ -38,6 +39,8 @@ def test_workflow_b_protocol_freezes_the_first_matrix_and_scientific_blocker():
     assert len(payload["fairness"]["training_seeds"]) >= 3
     assert payload["decision_gate"]["method_competitiveness_comparison"] == "joint_event_geometry versus serial_event_to_geometry"
     assert payload["decision_gate"]["coupling_attribution_comparison"] == "joint_event_geometry versus current_event_to_geometry"
+    assert payload["decision_gate"]["conservation_ablation_requires_only_projection_toggle"] is True
+    assert payload["first_scientific_matrix"][-1]["conservation_projection"] is False
 
 
 def test_runtime_config_builds_one_model_for_all_registered_controls():
@@ -73,6 +76,7 @@ def test_workflow_b_validation_script_emits_machine_readable_acceptance(tmp_path
     assert report["passed"] is True
     assert report["software_arm_execution"]["strong_rule"]["accepted_candidates"] == 1
     assert set(report["software_arm_execution"]["learned_controls"]) == set(CONTROL_MODES)
+    assert report["software_arm_execution"]["conservation_ablation"]["conservation_residual_max_abs"] > 1e-8
     assert all(
         item["event_velocity_finite"] and item["geometry_velocity_finite"]
         for item in report["software_arm_execution"]["learned_controls"].values()

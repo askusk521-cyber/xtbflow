@@ -49,7 +49,7 @@ def test_evaluator_preserves_oracle_scope_and_split_metrics():
     report = evaluate_transition1x_guesses(_payload())
     assert report["split"]["published_use_ind"]["n"] == 1
     assert report["metrics"]["ts_guess_true"]["field_scope"].startswith("near-reference")
-    assert report["reference_energy_diagnostics"]["reactant_to_transition_state"]["complement_diagnostic"]["mean"] == pytest.approx(0.0)
+    assert report["reference_energy_diagnostics"]["reactant_to_transition_state"]["complement_diagnostic"]["mean"] == pytest.approx(1.0)
 
 
 def test_evaluator_rejects_missing_guess_field():

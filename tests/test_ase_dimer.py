@@ -207,6 +207,29 @@ def test_nh3_dimer_pilot_declares_separate_three_call_preflight():
     assert any("three-call preflight" in item for item in document["claim_limits"])
 
 
+def test_nh3_refinement_config_is_stricter_and_bound_to_parent_evidence():
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[1]
+    document = json.loads(
+        (root / "configs/validation/gfn2_dimer_nh3_refine_v0.2.json").read_text()
+    )
+    assert document["status"] == "development_refinement_not_reference_admission"
+    assert document["provenance"]["parent_evidence"].endswith(
+        "gfn2_dimer_nh3_2771281.json"
+    )
+    assert document["search"]["fmax_eV_per_angstrom"] == 0.005
+    assert document["gate"]["max_gradient_norm_hartree_per_angstrom"] == 0.0005
+    assert document["preflight"]["budget"]["max_calculator_calls"] == 3
+    assert document["budget"]["max_calculator_calls"] == 96
+    assert document["system"]["system_id"].endswith("refinement-v2")
+    assert any(
+        "not an independent discovery" in item
+        for item in document["claim_limits"]
+    )
+
+
 def test_rigid_body_projection_removes_five_linear_molecule_modes():
     import numpy as np
 

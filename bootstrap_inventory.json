@@ -218,6 +218,11 @@
       "bytes": 2275
     },
     {
+      "path": "configs/validation/gfn2_dimer_nh3_refine_v0.2.json",
+      "sha256": "181ecb3e319ec7b54b35d8c9df32a83690269d29b2f97351f5c6e4e86f3a629e",
+      "bytes": 3085
+    },
+    {
       "path": "configs/validation/gfn2_dimer_pilot_v0.1.json",
       "sha256": "c640dbbc1fca011093b9cd1dac8a832e2daffaa17aafe1d086a327e8ee1139b7",
       "bytes": 1761
@@ -1009,8 +1014,8 @@
     },
     {
       "path": "tests/test_ase_dimer.py",
-      "sha256": "00ed845f6428589cc044e25631541bfe630c7771dd3e512d9e8566cc4d35b75a",
-      "bytes": 11345
+      "sha256": "8a4434a57c35e9ecb799b30dd1764f5d7ba3fd72c509fc0333848c3a4cc7036e",
+      "bytes": 12277
     },
     {
       "path": "tests/test_c2_evidence.py",

@@ -1,12 +1,26 @@
 from __future__ import annotations
 
+import importlib.util
+import json
 import math
+from pathlib import Path
 
+import numpy as np
 import pytest
 import torch
 
 from xtbflow.models import DeltaEnergyModel, DirectEnergyModel
 from xtbflow.training import energy_force_loss, make_run_manifest
+
+_SPEC = importlib.util.spec_from_file_location(
+    "run_energy_baselines_for_test",
+    Path(__file__).resolve().parents[1] / "scripts" / "run_energy_baselines.py",
+)
+assert _SPEC is not None and _SPEC.loader is not None
+_RUNNER = importlib.util.module_from_spec(_SPEC)
+_SPEC.loader.exec_module(_RUNNER)
+_prediction_summary = _RUNNER._prediction_summary
+_select_training_parent_ids = _RUNNER._select_training_parent_ids
 
 
 def batch():
@@ -111,3 +125,63 @@ def test_energy_force_loss_masks_missing_labels_and_manifest_splits():
     with pytest.raises(ValueError, match="disjoint"):
         make_run_manifest(model="delta", model_config={}, data_identity="d", calculator_protocol="p", seed=1, train_ids=["same"], validation_ids=["same"])
 
+
+
+def test_learning_curve_parent_subsets_are_deterministic_and_nested():
+    parents = [f"parent-{index:02d}" for index in range(48)]
+    selected_12 = _select_training_parent_ids(parents, 12)
+    selected_24 = _select_training_parent_ids(list(reversed(parents)), 24)
+    selected_48 = _select_training_parent_ids(parents, 48)
+    assert selected_12 == selected_24[:12]
+    assert selected_24 == selected_48[:24]
+    assert set(selected_48) == set(parents)
+
+
+def test_prediction_summary_reports_parent_relative_energy_and_force_direction():
+    predictions = [
+        {
+            "parent_record_id": "parent-a",
+            "config_index": 0,
+            "charge": 0,
+            "contains_sulfur": False,
+            "predicted_energy": 0.0,
+            "reference_energy": 0.0,
+            "predicted_forces": np.asarray([[1.0, 0.0, 0.0]]),
+            "reference_forces": np.asarray([[1.0, 0.0, 0.0]]),
+        },
+        {
+            "parent_record_id": "parent-a",
+            "config_index": 3,
+            "charge": 0,
+            "contains_sulfur": False,
+            "predicted_energy": 1.2,
+            "reference_energy": 1.0,
+            "predicted_forces": np.asarray([[0.0, 1.0, 0.0]]),
+            "reference_forces": np.asarray([[1.0, 0.0, 0.0]]),
+        },
+    ]
+    summary = _prediction_summary(predictions)
+    assert summary["independent_parent_count"] == 1
+    assert summary["relative_energy_comparisons"] == 1
+    assert summary["relative_energy_mae_kcal_per_mol"] == pytest.approx(0.2 * 627.5094740631)
+    assert summary["force_component_mae_hartree_per_angstrom"] == pytest.approx(1.0 / 3.0)
+    assert summary["force_vector_mean_angle_degrees"] == pytest.approx(45.0)
+    parent = summary["parent_metrics"][0]
+    assert parent["configs"] == 2
+    assert parent["relative_energy_mae_kcal_per_mol"] == pytest.approx(0.2 * 627.5094740631)
+
+
+def test_learning_curve_frozen_config_matches_runner_protocol():
+    config_path = Path(__file__).resolve().parents[1] / "configs" / "experiments" / "spice2_energy_learning_curve_v1.json"
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    assert config["train_parent_rank_seed"] == _RUNNER.TRAIN_PARENT_RANK_SEED
+    assert config["train_parent_counts"] == [12, 24, 48]
+    assert config["training_seeds"] == [20260929, 20260930, 20261001]
+    assert config["training"]["epochs"] == _RUNNER.EPOCHS
+    assert config["training"]["batch_size"] == _RUNNER.BATCH_SIZE
+    assert config["training"]["learning_rate"] == _RUNNER.LR
+    assert config["training"]["force_weight"] == _RUNNER.FORCE_WEIGHT
+    assert config["training"]["gradient_clip"] == _RUNNER.GRADIENT_CLIP
+    assert config["training"]["hidden_dim"] == _RUNNER.HIDDEN_DIM
+    assert config["training"]["radial_features"] == _RUNNER.RADIAL_FEATURES
+    assert config["training"]["distance_scale_angstrom"] == _RUNNER.DISTANCE_SCALE

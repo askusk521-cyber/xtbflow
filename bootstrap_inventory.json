@@ -118,6 +118,11 @@
       "bytes": 2649
     },
     {
+      "path": "configs/experiments/spice2_energy_learning_curve_v1.json",
+      "sha256": "bb2f6bcd8033f3202c950adbb64019806cb08d04b21e5d8035f9dc63aa267360",
+      "bytes": 1328
+    },
+    {
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
@@ -499,8 +504,13 @@
     },
     {
       "path": "scripts/run_energy_baselines.py",
-      "sha256": "148e93eec85543128104f265ed36c6db58b619d84888acc9c5a0d045f8fe9181",
-      "bytes": 17898
+      "sha256": "b8386b137eb59e4afa0d6c066b076658590f0c3326e4169bed045fb415773def",
+      "bytes": 26062
+    },
+    {
+      "path": "scripts/run_energy_learning_curve.py",
+      "sha256": "6f0843d3d61b056de69e06c08a8b1baf73c438eef7a013341fb3ff54dcbd2d2a",
+      "bytes": 15114
     },
     {
       "path": "scripts/run_gfn2_diagnostic.py",
@@ -834,8 +844,8 @@
     },
     {
       "path": "tests/test_energy_forces.py",
-      "sha256": "f645d165480a8f134e824bd5714e8dcab0a29c4df650baf611369df1d376dbd5",
-      "bytes": 6525
+      "sha256": "79b971518e6e2c05ecf19af765e1c7ef663db34e3761e3582ea8d67d37ac5a0f",
+      "bytes": 9907
     },
     {
       "path": "tests/test_geometry_flow.py",

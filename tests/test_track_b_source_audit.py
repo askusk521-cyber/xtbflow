@@ -25,6 +25,7 @@ def candidate_config(expected_sha256: str) -> dict[str, object]:
                 "source_locator": "demo-source",
                 "source_revision": "r1",
                 "expected_asset_sha256": expected_sha256,
+                "expected_asset_size_bytes": 10,
                 "declared_record_count": 1,
                 "available": [],
                 "missing_for_track_b": ["event_label"],
@@ -53,6 +54,7 @@ def test_source_audit_verifies_local_asset_hash_and_row_count(tmp_path):
     assert report["asset_failures"] == []
     assert report["admitted_source_count"] == 0
     observed = report["sources"][0]["observed_asset"]
+    assert observed["matches_expected_size"] is True
     assert observed["matches_expected_sha256"] is True
     assert observed["nonempty_jsonl_rows"] == 1
     assert report["scientific_claim_allowed"] is False
@@ -62,8 +64,10 @@ def test_source_audit_reports_hash_mismatch_and_unknown_asset(tmp_path):
     asset = tmp_path / "asset.bin"
     asset.write_bytes(b"real")
     config = tmp_path / "sources.json"
+    payload = candidate_config("0" * 64)
+    payload["sources"][0]["expected_asset_size_bytes"] = 4
     config.write_text(
-        json.dumps(candidate_config("0" * 64)),
+        json.dumps(payload),
         encoding="utf-8",
     )
     report = MODULE.build_report(
@@ -80,3 +84,21 @@ def test_source_audit_reports_hash_mismatch_and_unknown_asset(tmp_path):
             audit_date="2026-09-29",
             repository_base_commit="abc123",
         )
+
+
+def test_source_audit_reports_size_mismatch_before_hash(tmp_path):
+    asset = tmp_path / "asset.bin"
+    asset.write_bytes(b"real")
+    expected = hashlib.sha256(asset.read_bytes()).hexdigest()
+    payload = candidate_config(expected)
+    payload["sources"][0]["expected_asset_size_bytes"] = 5
+    config = tmp_path / "sources.json"
+    config.write_text(json.dumps(payload), encoding="utf-8")
+    report = MODULE.build_report(
+        config,
+        supplied_assets={"demo": asset},
+        audit_date="2026-09-29",
+        repository_base_commit="abc123",
+    )
+    assert report["asset_failures"] == ["asset size mismatch: demo"]
+    assert report["sources"][0]["observed_asset"]["matches_expected_size"] is False

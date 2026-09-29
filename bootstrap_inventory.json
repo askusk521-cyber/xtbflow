@@ -119,8 +119,8 @@
     },
     {
       "path": "configs/data/track_b_source_candidates_v1.json",
-      "sha256": "aae2a5bbd12367a454562d9fa31442b266fef8cfb144745941f19ca63fcdcb68",
-      "bytes": 5908
+      "sha256": "4cf3eecebe4c09f1ccdf7ba2053f38e7e73c3a5e76f230015e0ccd77cdb5d895",
+      "bytes": 6839
     },
     {
       "path": "configs/environment-n2.yml",
@@ -639,8 +639,13 @@
     },
     {
       "path": "scripts/audit_track_b_sources.py",
-      "sha256": "4bb0638d001bcdea5fd73134a9e7a9caf4618fdbed44ccffbf57991e984788b6",
-      "bytes": 6344
+      "sha256": "05297648006ea15dc8d1961ae6b2d639de3625e680c92fc4fdf10967e956d6ae",
+      "bytes": 6675
+    },
+    {
+      "path": "scripts/audit_transition1x_track_b.py",
+      "sha256": "5a572bedf46fd5adb91b0ba3515ceb805bc26e0cc7224f1e9789bbd33bfdfcb2",
+      "bytes": 2613
     },
     {
       "path": "scripts/audit_units_provenance.py",
@@ -796,6 +801,11 @@
       "path": "src/xtbflow/data/track_b.py",
       "sha256": "c122146d93386d04f6f82d6e70cdef0b3aaa60405b8875c2b556118a2b312f46",
       "bytes": 26156
+    },
+    {
+      "path": "src/xtbflow/data/transition1x_audit.py",
+      "sha256": "ae42a064ac447086899eff6208e88fd666c6aa03f93c9dee3e697afd6a9fdd6f",
+      "bytes": 16721
     },
     {
       "path": "src/xtbflow/evaluation/__init__.py",
@@ -1089,13 +1099,18 @@
     },
     {
       "path": "tests/test_track_b_source_audit.py",
-      "sha256": "96e3b629c22f2b43103ff66800a120374c383833190eb5c6fea1827997099eba",
-      "bytes": 2658
+      "sha256": "d6e8ba270d5a635305d6699c4043a1bfb3fbfbf4660d0c5374c7471b8ce1d805",
+      "bytes": 3562
     },
     {
       "path": "tests/test_track_b_workflow.py",
       "sha256": "48957bf34d813a746c71eaf72f1ffe456b1b90a364aa085d13da7e7c6845b0e4",
       "bytes": 19596
+    },
+    {
+      "path": "tests/test_transition1x_track_b_audit.py",
+      "sha256": "48cd4fda1c9dfe68269c157fedcc020bbe9c0dd20cde6eecf5d8b2d3e5c7d104",
+      "bytes": 4964
     },
     {
       "path": "tests/test_workflow_b_protocol.py",

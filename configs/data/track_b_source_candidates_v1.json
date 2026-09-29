@@ -18,7 +18,9 @@
         "parent reaction identity"
       ],
       "decision": "track_a_only",
-      "permitted_use": ["energy_force_calibration"]
+      "permitted_use": [
+        "energy_force_calibration"
+      ]
     },
     {
       "source_id": "uspto_15k_reactant_edits",
@@ -35,7 +37,9 @@
         "independent reactant geometry"
       ],
       "decision": "quarantine_diagnostic_only",
-      "permitted_use": ["event_baseline_diagnostic"]
+      "permitted_use": [
+        "event_baseline_diagnostic"
+      ]
     },
     {
       "source_id": "flower_v2",
@@ -53,24 +57,41 @@
         "resolved product-to-evaluation overlap audit"
       ],
       "decision": "quarantine_diagnostic_only",
-      "permitted_use": ["event_representation_diagnostic"]
+      "permitted_use": [
+        "event_representation_diagnostic"
+      ]
     },
     {
       "source_id": "transition1x_preprocessed",
-      "source_locator": "https://zenodo.org/records/13119868",
+      "source_locator": "https://doi.org/10.5281/zenodo.13119869",
       "source_revision": "train_rpsb_all.pkl_sha256=36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
       "declared_record_count": 10073,
       "available": [
-        "endpoint-conditioned transition geometry diagnostic"
+        "reactant, product and transition-state endpoint coordinates",
+        "same-row atomic-number order across endpoint triples",
+        "coordinate units documented as angstrom in pinned upstream code",
+        "immutable public asset identity"
       ],
       "missing_for_track_b": [
-        "pinned local source bytes in the current audit",
-        "reactant-only event-label contract",
-        "explicit formal charge and multiplicity contract",
-        "family-certified holdout"
+        "trusted Track-B event-label representation",
+        "explicit formal charge and multiplicity fields",
+        "independently certified chemical atom mapping",
+        "family-certified holdout metadata",
+        "explicit redistribution license on the pinned Zenodo record"
       ],
-      "decision": "quarantine_source_asset_unavailable",
-      "permitted_use": ["future_source_audit"]
+      "decision": "quarantine_diagnostic_only",
+      "permitted_use": [
+        "endpoint_geometry_diagnostic",
+        "schema_conversion_development",
+        "future_source_audit"
+      ],
+      "local_asset_locator": "external-cache:transition1x-rpsb-13119869/train_rpsb_all.pkl",
+      "expected_asset_sha256": "36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+      "expected_asset_size_bytes": 55458032,
+      "zenodo_md5": "701a457634cce7a6cae5318e8cd18082",
+      "license_record": "unspecified on Zenodo record 13119869; redistribution not admitted",
+      "upstream_code_commit": "08f728925d76e22ce04ec1ab3b75770d32e617ca",
+      "license_status": "unspecified"
     },
     {
       "source_id": "units_lib",
@@ -138,7 +159,9 @@
         "reconstructible per-record transition geometry"
       ],
       "decision": "quarantine_source_assets_incomplete",
-      "permitted_use": ["metadata_diagnostic"]
+      "permitted_use": [
+        "metadata_diagnostic"
+      ]
     }
   ],
   "admission_decisions": [

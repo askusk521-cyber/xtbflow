@@ -156,6 +156,22 @@ python scripts/run_gfn2_dimer_pilot.py \
   --artifact-dir "$RUN_ROOT/nh3-dimer/artifacts"
 ```
 
+### 2026-09-29 NH₃ 驻点收紧重放（source commit `89cfed9`）
+
+新的 v0.2 配置从 `2771281` 的最终几何出发，但使用新协议身份、新账本和更严格
+门槛；旧的 fail 记录保持不变。3-call 预检再次确认负曲率
+`-11.56015900736597 eV/Å²`。随后 dimer 搜索在 1 个优化步、19 次调用后收敛，
+最终完整梯度范数为 `3.275187997245202e-7 Ha/Å`，dimer 曲率为
+`-11.507484459044218 eV/Å²`，通过预注册的 `5e-4 Ha/Å` 开发门槛。
+预检与 dimer 合计 22 次调用，77 次未使用额度被释放，两个 ledger 均无 pending
+reservation。
+
+该 **pass 只授予驻点/dimer driver gate**。`full_ts_validation` 仍为 `false`：尚未
+独立计算完整内部 Hessian、确认恰好一个负模态，也未完成沿该模态的双向端点
+松弛。机器可读记录见
+`docs/evidence/gfn2_dimer_nh3_refine_89cfed9.json`。它不能被写成 CP2K 参考 TS、
+反应机理或键变化事件证据。
+
 ### 2026-09-29 NH₃ 反转候选预检与 dimer 重放（source commit `2771281`）
 
 平面 NH₃ 反转候选先通过独立的 3-call GFN2 预检：刚体投影后的力范数为

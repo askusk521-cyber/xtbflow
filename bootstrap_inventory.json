@@ -304,8 +304,8 @@
     },
     {
       "path": "docs/WORKFLOW_C2_REFERENCE_VALIDATION.md",
-      "sha256": "18a4038112953a6b69a5701b3ba6595d4af41e331c971c97cacb85d2905a2d4f",
-      "bytes": 10825
+      "sha256": "10287bacd47eb4d293aaf512edef5a9b61ef61256a1491e272297baad35f2672",
+      "bytes": 11805
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -361,6 +361,11 @@
       "path": "docs/evidence/gfn2_dimer_nh3_2771281.json",
       "sha256": "111b6f157f27eeb1429039dbbda3c940c065bad59c58a49c74658a535d46c313",
       "bytes": 10167
+    },
+    {
+      "path": "docs/evidence/gfn2_dimer_nh3_refine_89cfed9.json",
+      "sha256": "3f21c58be89860c641d0f8e70fbed8135047104020dcb08cb8a54fb6a51c2d2c",
+      "bytes": 10754
     },
     {
       "path": "docs/evidence/gfn2_dimer_pilot_ae3da3c.json",

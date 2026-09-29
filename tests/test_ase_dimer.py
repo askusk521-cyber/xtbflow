@@ -6,7 +6,13 @@ pytest.importorskip("ase")
 
 from xtbflow.calculators import CalculatorProtocol, MolecularSystem, XTBloomAdapter
 from xtbflow.runtime import RunLedger, StageBudget
-from xtbflow.validation.ase_dimer import ASEDimerConfig, run_ase_dimer_search
+from xtbflow.validation.ase_dimer import (
+    ASEDimerConfig,
+    RigidBodyProjection,
+    project_rigid_body_components,
+    rigid_body_basis,
+    run_ase_dimer_search,
+)
 
 
 def _protocol() -> CalculatorProtocol:
@@ -72,16 +78,18 @@ def test_ase_dimer_converges_analytic_first_order_saddle(tmp_path):
             max_steps=60,
             max_num_rot=1,
             random_seed=7,
+            remove_rigid_body_modes=False,
         ),
     )
 
     assert result.status == "success"
     assert result.converged is True
     assert result.curvature_eV_per_angstrom2 < 0.0
+    assert result.rigid_body_rank == 0
     assert result.gradient_norm_hartree_per_angstrom < 5.0e-4
     assert max(abs(value) for row in result.coordinates_angstrom for value in row) < 0.01
     assert result.calculator_calls == token.consumed_calls == len(calls)
-    assert "trajectory.traj" in result.artifact_files
+    assert "trajectory.jsonl" in result.artifact_files
     assert "dimer.log" in result.artifact_files
 
 
@@ -94,7 +102,7 @@ def test_ase_dimer_budget_stops_before_extra_backend_call(tmp_path):
         ((1.0, 0.0, 0.0),),
         budget_token=token,
         artifact_dir=tmp_path / "budget-artifacts",
-        config=ASEDimerConfig(max_steps=5),
+        config=ASEDimerConfig(max_steps=5, remove_rigid_body_modes=False),
     )
 
     assert result.status == "failure"
@@ -133,6 +141,122 @@ def test_gfn2_dimer_pilot_config_is_bounded_and_nonconfirmatory():
     assert document["budget"]["max_retries_per_job"] == 0
     assert document["protocol"]["parameters"]["implementation"] == "tblite"
     assert document["system"]["multiplicity"] == 2
+    assert document["search"]["remove_rigid_body_modes"] is True
     mode = document["initial_mode"]
     assert [sum(row[axis] for row in mode) for axis in range(3)] == [0.0, 0.0, 0.0]
     assert any("not a reference DFT" in item for item in document["claim_limits"])
+
+
+def test_rigid_body_projection_removes_five_linear_molecule_modes():
+    import numpy as np
+
+    coordinates = np.asarray([[-0.93, 0.0, 0.0], [0.0, 0.0, 0.0], [0.93, 0.0, 0.0]])
+    basis = rigid_body_basis(coordinates)
+    assert basis.shape == (9, 5)
+    translation = np.asarray([[1.0, -2.0, 0.5]] * 3)
+    projected_translation, rank = project_rigid_body_components(
+        coordinates, translation
+    )
+    assert rank == 5
+    assert np.linalg.norm(projected_translation) < 1.0e-12
+
+    rotation = np.cross(
+        np.broadcast_to(np.asarray([0.0, 1.0, 0.0]), coordinates.shape),
+        coordinates,
+    )
+    projected_rotation, _ = project_rigid_body_components(coordinates, rotation)
+    assert np.linalg.norm(projected_rotation) < 1.0e-12
+
+    reaction_mode = np.asarray([[1.0, 0.0, 0.0], [-2.0, 0.0, 0.0], [1.0, 0.0, 0.0]])
+    projected_reaction, _ = project_rigid_body_components(
+        coordinates, reaction_mode
+    )
+    assert np.linalg.norm(projected_reaction - reaction_mode) < 1.0e-12
+
+
+def test_rigid_body_constraint_projects_forces_and_updates():
+    import numpy as np
+    from ase import Atoms
+
+    atoms = Atoms("H3", positions=[[-0.93, 0.0, 0.0], [0.0, 0.0, 0.0], [0.93, 0.0, 0.0]])
+    constraint = RigidBodyProjection()
+    forces = np.asarray([[1.0, 0.0, 0.0]] * 3)
+    constraint.adjust_forces(atoms, forces)
+    assert np.linalg.norm(forces) < 1.0e-12
+    new = atoms.get_positions() + np.asarray([[0.1, 0.2, 0.0]] * 3)
+    constraint.adjust_positions(atoms, new)
+    assert np.linalg.norm(new - atoms.get_positions()) < 1.0e-12
+
+
+def test_rigid_projected_dimer_converges_three_atom_saddle(tmp_path):
+    import numpy as np
+
+    reference = np.asarray([[-1.0, 0.0, 0.0], [0.0, 0.0, 0.0], [1.0, 0.0, 0.0]])
+    mode = np.asarray([[1.0, 0.0, 0.0], [-2.0, 0.0, 0.0], [1.0, 0.0, 0.0]])
+    mode /= np.linalg.norm(mode)
+    stable = np.asarray([[1.0, 0.0, 0.0], [0.0, 0.0, 0.0], [-1.0, 0.0, 0.0]])
+    stable /= np.linalg.norm(stable)
+    start = reference + 0.12 * mode + 0.05 * stable
+    calls: list[str] = []
+
+    def evaluator(system, operation):
+        calls.append(system.input_hash)
+        displacement = np.asarray(system.coordinates) - reference
+        reaction = float(np.sum(displacement * mode))
+        orthogonal = float(np.sum(displacement * stable))
+        centered_yz = displacement[:, 1:] - displacement[:, 1:].mean(
+            axis=0, keepdims=True
+        )
+        energy = -0.5 * reaction**2 + 1.5 * orthogonal**2 + np.sum(centered_yz**2)
+        gradient = -reaction * mode + 3.0 * orthogonal * stable
+        gradient[:, 1:] += 2.0 * centered_yz
+        return {
+            "charge": 0,
+            "multiplicity": 1,
+            "converged": True,
+            "energy": float(energy),
+            "forces": tuple(map(tuple, -gradient)),
+        }
+    protocol = CalculatorProtocol(
+        "three-atom-saddle-v1",
+        "xtbloom",
+        "analytic-saddle-fixture",
+        parameters={"fixture": True},
+    )
+    backend = XTBloomAdapter(
+        protocol=protocol, evaluator=evaluator, require_budget_token=True
+    )
+    _, token = _token(tmp_path, 200)
+    system = MolecularSystem(
+        ("H", "H", "H"),
+        tuple(map(tuple, start)),
+        0,
+        1,
+        {"periodic": False},
+        "three-atom-saddle",
+    )
+    result = run_ase_dimer_search(
+        backend,
+        system,
+        mode,
+        budget_token=token,
+        artifact_dir=tmp_path / "rigid-dimer-artifacts",
+        config=ASEDimerConfig(
+            fmax_eV_per_angstrom=0.01,
+            max_steps=80,
+            maximum_translation_angstrom=0.05,
+            random_seed=1,
+        ),
+    )
+    assert result.status == "success"
+    assert result.converged is True
+    assert result.rigid_body_rank == 5
+    assert 1 <= result.optimizer_steps <= 10
+    assert result.calculator_calls == token.consumed_calls == len(calls)
+    assert result.curvature_eV_per_angstrom2 < 0.0
+    assert result.gradient_norm_hartree_per_angstrom < 1.0e-10
+    coordinates = np.asarray(result.coordinates_angstrom)
+    assert np.linalg.norm(coordinates.mean(axis=0)) < 1.0e-12
+    assert np.max(np.abs(coordinates - reference)) < 1.0e-10
+    trajectory = tmp_path / "rigid-dimer-artifacts/trajectory.jsonl"
+    assert len(trajectory.read_text().splitlines()) == result.optimizer_steps + 1

@@ -20,6 +20,7 @@ from .ase_calculator import MeteredASECalculator
 
 try:
     from ase import Atoms
+    from ase.constraints import FixConstraint
     from ase.mep import DimerControl, MinModeAtoms, MinModeTranslate
     from ase.units import Hartree
 except ImportError as exc:  # pragma: no cover - optional dependency boundary.
@@ -38,7 +39,9 @@ class ASEDimerConfig:
     maximum_translation_angstrom: float = 0.1
     trial_translation_step_angstrom: float = 1.0e-3
     random_seed: int = 0
-    driver_version: str = "ase-dimer-v1"
+    remove_rigid_body_modes: bool = True
+    rigid_body_tolerance: float = 1.0e-10
+    driver_version: str = "ase-dimer-v2"
 
     def __post_init__(self) -> None:
         for name in (
@@ -46,9 +49,14 @@ class ASEDimerConfig:
             "dimer_separation_angstrom",
             "maximum_translation_angstrom",
             "trial_translation_step_angstrom",
+            "rigid_body_tolerance",
         ):
             value = getattr(self, name)
-            if not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
+            if (
+                not isinstance(value, (int, float))
+                or not math.isfinite(value)
+                or value <= 0
+            ):
                 raise ValueError(f"{name} must be finite and positive")
         if type(self.max_steps) is not int or self.max_steps < 1:
             raise ValueError("max_steps must be a positive integer")
@@ -56,6 +64,8 @@ class ASEDimerConfig:
             raise ValueError("max_num_rot must be a positive integer")
         if type(self.random_seed) is not int:
             raise ValueError("random_seed must be an integer")
+        if type(self.remove_rigid_body_modes) is not bool:
+            raise ValueError("remove_rigid_body_modes must be boolean")
         if not isinstance(self.driver_version, str) or not self.driver_version.strip():
             raise ValueError("driver_version must be a nonempty string")
 
@@ -79,6 +89,7 @@ class ASEDimerResult:
     gradient_norm_hartree_per_angstrom: float | None
     eigenmode: tuple[tuple[float, float, float], ...] | None
     curvature_eV_per_angstrom2: float | None
+    rigid_body_rank: int
     optimizer_steps: int
     calculator_calls: int
     artifact_files: tuple[str, ...]
@@ -89,6 +100,8 @@ class ASEDimerResult:
             raise ValueError("unsupported ASE dimer status")
         if type(self.converged) is not bool:
             raise ValueError("converged must be boolean")
+        if type(self.rigid_body_rank) is not int or self.rigid_body_rank < 0:
+            raise ValueError("rigid_body_rank must be nonnegative")
         if type(self.optimizer_steps) is not int or self.optimizer_steps < 0:
             raise ValueError("optimizer_steps must be nonnegative")
         if type(self.calculator_calls) is not int or self.calculator_calls < 0:
@@ -109,22 +122,113 @@ class ASEDimerResult:
             "search_coordinates_angstrom": self.coordinates_angstrom,
             "dimer_curvature_eV_per_angstrom2": self.curvature_eV_per_angstrom2,
             "dimer_eigenmode": self.eigenmode,
+            "rigid_body_rank": self.rigid_body_rank,
             "artifact_files": self.artifact_files,
             "config_identity": self.config_identity,
         }
 
-def _normalized_mode(
-    value: Sequence[Sequence[float]], atom_count: int
+def rigid_body_basis(
+    coordinates: Sequence[Sequence[float]],
+    *,
+    tolerance: float = 1.0e-10,
 ) -> np.ndarray:
+    """Return an orthonormal Cartesian basis for translations and rotations."""
+
+    positions = np.asarray(coordinates, dtype=float)
+    if positions.ndim != 2 or positions.shape[1:] != (3,) or len(positions) < 1:
+        raise ValueError("coordinates must have shape [N,3] with N >= 1")
+    if not np.isfinite(positions).all():
+        raise ValueError("coordinates must contain finite values")
+    if not math.isfinite(tolerance) or tolerance <= 0:
+        raise ValueError("tolerance must be finite and positive")
+
+    centered = positions - positions.mean(axis=0, keepdims=True)
+    axes = np.eye(3, dtype=float)
+    columns = [np.tile(axis, (len(positions), 1)).reshape(-1) for axis in axes]
+    for axis in axes:
+        angular = np.broadcast_to(axis, centered.shape)
+        columns.append(np.cross(angular, centered).reshape(-1))
+    matrix = np.stack(columns, axis=1)
+    left, singular_values, _ = np.linalg.svd(matrix, full_matrices=False)
+    threshold = tolerance * max(float(singular_values[0]), 1.0)
+    rank = int(np.count_nonzero(singular_values > threshold))
+    return left[:, :rank]
+
+
+def project_rigid_body_components(
+    coordinates: Sequence[Sequence[float]],
+    vectors: Sequence[Sequence[float]],
+    *,
+    tolerance: float = 1.0e-10,
+) -> tuple[np.ndarray, int]:
+    """Remove instantaneous rigid translations and rotations from vectors."""
+
+    positions = np.asarray(coordinates, dtype=float)
+    values = np.asarray(vectors, dtype=float)
+    if values.shape != positions.shape:
+        raise ValueError("vectors must have the same [N,3] shape as coordinates")
+    if not np.isfinite(values).all():
+        raise ValueError("vectors must contain finite values")
+    basis = rigid_body_basis(positions, tolerance=tolerance)
+    flat = values.reshape(-1)
+    projected = flat - basis @ (basis.T @ flat)
+    return projected.reshape(values.shape), int(basis.shape[1])
+
+
+class RigidBodyProjection(FixConstraint):
+    """Project ASE coordinate updates and forces out of rigid-body modes."""
+
+    def __init__(self, tolerance: float = 1.0e-10) -> None:
+        if not math.isfinite(tolerance) or tolerance <= 0:
+            raise ValueError("tolerance must be finite and positive")
+        self.tolerance = float(tolerance)
+
+    def get_removed_dof(self, atoms: Any) -> int:
+        basis = rigid_body_basis(
+            atoms.get_positions(), tolerance=self.tolerance
+        )
+        return int(basis.shape[1])
+
+    def adjust_positions(self, atoms: Any, new: np.ndarray) -> None:
+        current = np.asarray(atoms.get_positions(), dtype=float)
+        projected, _ = project_rigid_body_components(
+            current, np.asarray(new, dtype=float) - current, tolerance=self.tolerance
+        )
+        new[:] = current + projected
+
+    def adjust_forces(self, atoms: Any, forces: np.ndarray) -> None:
+        projected, _ = project_rigid_body_components(
+            atoms.get_positions(), forces, tolerance=self.tolerance
+        )
+        forces[:] = projected
+
+    def todict(self) -> dict[str, Any]:
+        return {
+            "name": self.__class__.__name__,
+            "kwargs": {"tolerance": self.tolerance},
+        }
+
+
+def _normalized_mode(
+    value: Sequence[Sequence[float]],
+    coordinates: Sequence[Sequence[float]],
+    config: ASEDimerConfig,
+) -> tuple[np.ndarray, int]:
     mode = np.asarray(value, dtype=float)
-    if mode.shape != (atom_count, 3):
+    positions = np.asarray(coordinates, dtype=float)
+    if mode.shape != positions.shape or mode.ndim != 2 or mode.shape[1:] != (3,):
         raise ValueError("initial_mode must have shape [N,3]")
     if not np.isfinite(mode).all():
         raise ValueError("initial_mode must contain finite values")
+    rigid_rank = 0
+    if config.remove_rigid_body_modes:
+        mode, rigid_rank = project_rigid_body_components(
+            positions, mode, tolerance=config.rigid_body_tolerance
+        )
     norm = float(np.linalg.norm(mode))
-    if norm == 0.0:
-        raise ValueError("initial_mode must be nonzero")
-    return mode / norm
+    if norm <= config.rigid_body_tolerance:
+        raise ValueError("initial_mode has no internal component after rigid-body projection")
+    return mode / norm, rigid_rank
 
 
 def _coordinates(value: Any) -> tuple[tuple[float, float, float], ...]:
@@ -137,15 +241,66 @@ def _artifact_index(root: Path) -> tuple[str, ...]:
     )
 
 
+def _append_trajectory_frame(
+    path: Path,
+    dimer_atoms: Any,
+    *,
+    step: int,
+    calculator_calls: int,
+) -> None:
+    energy = getattr(dimer_atoms, "energy0", None)
+    forces = getattr(dimer_atoms, "forces0", None)
+    modes = getattr(dimer_atoms, "eigenmodes", None)
+    curvatures = getattr(dimer_atoms, "curvatures", None)
+    payload: dict[str, Any] = {
+        "step": int(step),
+        "calculator_calls": int(calculator_calls),
+        "coordinates_angstrom": [
+            list(row) for row in _coordinates(dimer_atoms.get_positions())
+        ],
+        "energy_hartree": (
+            float(energy) / Hartree
+            if energy is not None and math.isfinite(float(energy))
+            else None
+        ),
+        "forces_hartree_per_angstrom": (
+            [list(row) for row in _coordinates(np.asarray(forces, dtype=float) / Hartree)]
+            if forces is not None
+            else None
+        ),
+        "curvature_eV_per_angstrom2": (
+            float(curvatures[0]) if curvatures else None
+        ),
+        "eigenmode": (
+            [list(row) for row in _coordinates(modes[0])] if modes else None
+        ),
+    }
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(payload, sort_keys=True, allow_nan=False) + "\n")
+
+
 def _failure_result(
     *,
     atoms: Any,
     calls: int,
     steps: int,
+    rigid_body_rank: int,
     root: Path,
     config: ASEDimerConfig,
     error: Exception,
 ) -> ASEDimerResult:
+    eigenmode = None
+    curvature = None
+    modes = getattr(atoms, "eigenmodes", None)
+    curvatures = getattr(atoms, "curvatures", None)
+    if modes:
+        candidate = np.asarray(modes[0], dtype=float)
+        if candidate.ndim == 2 and candidate.shape[1:] == (3,):
+            eigenmode = _coordinates(candidate)
+    if curvatures:
+        candidate_curvature = float(curvatures[0])
+        if math.isfinite(candidate_curvature):
+            curvature = candidate_curvature
     return ASEDimerResult(
         status="failure",
         converged=False,
@@ -153,8 +308,9 @@ def _failure_result(
         energy_hartree=None,
         forces_hartree_per_angstrom=None,
         gradient_norm_hartree_per_angstrom=None,
-        eigenmode=None,
-        curvature_eV_per_angstrom2=None,
+        eigenmode=eigenmode,
+        curvature_eV_per_angstrom2=curvature,
+        rigid_body_rank=rigid_body_rank,
         optimizer_steps=steps,
         calculator_calls=calls,
         artifact_files=_artifact_index(root),
@@ -180,10 +336,14 @@ def run_ase_dimer_search(
         raise BudgetTokenRequired("ASE dimer search requires a calculator token")
     if require_durable_token and not budget_token.durable:
         raise ValueError("production ASE dimer search requires a durable token")
-    mode = _normalized_mode(initial_mode, len(system.symbols))
+    mode, rigid_body_rank = _normalized_mode(
+        initial_mode, system.coordinates, config
+    )
     root = Path(artifact_dir).expanduser().resolve()
     root.mkdir(parents=True, exist_ok=True)
     atoms = Atoms(system.symbols, positions=np.asarray(system.coordinates, dtype=float))
+    if config.remove_rigid_body_modes:
+        atoms.set_constraint(RigidBodyProjection(config.rigid_body_tolerance))
     atoms.calc = MeteredASECalculator(
         backend,
         charge=system.charge,
@@ -194,6 +354,7 @@ def run_ase_dimer_search(
     )
     calls_before = budget_token.consumed_calls
     optimizer_steps = 0
+    optimizer: Any = None
     dimer_atoms: Any = None
     try:
         with DimerControl(
@@ -212,11 +373,23 @@ def run_ase_dimer_search(
                 eigenmodes=[mode.copy()],
                 random_seed=config.random_seed,
             )
+            trajectory_path = root / "trajectory.jsonl"
+            if trajectory_path.exists():
+                raise FileExistsError(f"trajectory already exists: {trajectory_path}")
             with MinModeTranslate(
                 dimer_atoms,
-                trajectory=str(root / "trajectory.traj"),
+                trajectory=None,
                 logfile=str(root / "optimizer.log"),
             ) as optimizer:
+                optimizer.attach(
+                    lambda: _append_trajectory_frame(
+                        trajectory_path,
+                        dimer_atoms,
+                        step=int(optimizer.nsteps),
+                        calculator_calls=budget_token.consumed_calls - calls_before,
+                    ),
+                    interval=1,
+                )
                 converged = bool(
                     optimizer.run(
                         fmax=config.fmax_eV_per_angstrom,
@@ -235,7 +408,8 @@ def run_ase_dimer_search(
         return _failure_result(
             atoms=current,
             calls=budget_token.consumed_calls - calls_before,
-            steps=optimizer_steps,
+            steps=int(getattr(optimizer, "nsteps", optimizer_steps)),
+            rigid_body_rank=rigid_body_rank,
             root=root,
             config=config,
             error=error,
@@ -250,6 +424,7 @@ def run_ase_dimer_search(
         gradient_norm_hartree_per_angstrom=gradient_norm,
         eigenmode=_coordinates(final_mode),
         curvature_eV_per_angstrom2=curvature,
+        rigid_body_rank=rigid_body_rank,
         optimizer_steps=optimizer_steps,
         calculator_calls=budget_token.consumed_calls - calls_before,
         artifact_files=_artifact_index(root),

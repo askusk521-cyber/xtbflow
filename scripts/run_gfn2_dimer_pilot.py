@@ -88,6 +88,8 @@ def _search_config(payload: Mapping[str, Any]) -> ASEDimerConfig:
             payload["trial_translation_step_angstrom"]
         ),
         random_seed=int(payload["random_seed"]),
+        remove_rigid_body_modes=payload["remove_rigid_body_modes"],
+        rigid_body_tolerance=float(payload["rigid_body_tolerance"]),
     )
 
 

@@ -214,8 +214,8 @@
     },
     {
       "path": "configs/validation/gfn2_dimer_pilot_v0.1.json",
-      "sha256": "224f7d971c4414c062c63999496d31bf4aebea9cdcc859217c9db63f39f0823c",
-      "bytes": 1689
+      "sha256": "c640dbbc1fca011093b9cd1dac8a832e2daffaa17aafe1d086a327e8ee1139b7",
+      "bytes": 1761
     },
     {
       "path": "configs/validation/ts_v0.1.yaml",
@@ -649,8 +649,8 @@
     },
     {
       "path": "scripts/run_gfn2_dimer_pilot.py",
-      "sha256": "41465aae8b0e2c72f44d4e6d52a9b5bab3c2af499a399a52f198db0783bec90a",
-      "bytes": 8626
+      "sha256": "f3e6c1a6e204bf4c0ec2195ecc3e51044baa8412e30f055258d45d871886404e",
+      "bytes": 8763
     },
     {
       "path": "scripts/run_gfn2_independent_fd.py",
@@ -929,8 +929,8 @@
     },
     {
       "path": "src/xtbflow/validation/ase_dimer.py",
-      "sha256": "bb4baf18d79d5e368ebf6c6ef49e889d0856aa27b638dba10dab497b87233662",
-      "bytes": 10066
+      "sha256": "3d9543e3b490d44ba4bf5dca1a78b4d29045197a2f74622f58fc2e550784d043",
+      "bytes": 17060
     },
     {
       "path": "src/xtbflow/validation/connectivity.py",
@@ -994,8 +994,8 @@
     },
     {
       "path": "tests/test_ase_dimer.py",
-      "sha256": "157cfb5944e1028d4b9af44ffc8cbe92ee660b08eaee6c0396065ec6a73f830b",
-      "bytes": 4376
+      "sha256": "520f8bb9442f619a1171678f28d4087c7fd70af8bd512be1085e613d3d541ed7",
+      "bytes": 8981
     },
     {
       "path": "tests/test_c2_evidence.py",

@@ -41,6 +41,27 @@ def _write_stage_ledger(path: Path, payload: dict) -> None:
     temporary.replace(path)
 
 
+def _mark_run_failure(
+    ledger_path: Path,
+    stage_ledger: dict,
+    run_entry: dict,
+    error: Exception | str,
+    *,
+    status: str = "failed",
+) -> None:
+    """Settle a child/report failure before control leaves the matrix loop."""
+
+    message = str(error)
+    run_entry["status"] = status
+    run_entry["error"] = message
+    run_entry["wall_seconds"] = time.perf_counter() - float(
+        stage_ledger.get("started_monotonic", time.perf_counter())
+    )
+    stage_ledger["status"] = "failed"
+    stage_ledger["error"] = message
+    _write_stage_ledger(ledger_path, stage_ledger)
+
+
 def _text_output(value: object) -> str:
     if value is None:
         return ""
@@ -220,6 +241,7 @@ def main() -> int:
         "status": "running",
         "source_commit": source_commit,
         "max_seconds": max_seconds,
+        "started_monotonic": time.perf_counter(),
         "runs": [],
     }
     _write_stage_ledger(ledger_path, stage_ledger)
@@ -259,10 +281,13 @@ def main() -> int:
             _write_stage_ledger(ledger_path, stage_ledger)
             remaining = max_seconds - (time.perf_counter() - started)
             if remaining <= 0:
-                run_entry["status"] = "timeout"
-                run_entry["error"] = "no execution budget remained before child launch"
-                stage_ledger["status"] = "failed"
-                _write_stage_ledger(ledger_path, stage_ledger)
+                _mark_run_failure(
+                    ledger_path,
+                    stage_ledger,
+                    run_entry,
+                    "no execution budget remained before child launch",
+                    status="timeout",
+                )
                 raise SystemExit(run_entry["error"])
             run_entry["timeout_seconds"] = remaining
             try:
@@ -280,12 +305,13 @@ def main() -> int:
                     + "\n\nSTDOUT:\n" + stdout + "\nSTDERR:\n" + stderr,
                     encoding="utf-8",
                 )
-                run_entry["status"] = "timeout"
-                run_entry["error"] = f"child exceeded remaining stage budget ({remaining:.6f}s)"
-                run_entry["wall_seconds"] = time.perf_counter() - started
-                stage_ledger["status"] = "failed"
-                stage_ledger["error"] = run_entry["error"]
-                _write_stage_ledger(ledger_path, stage_ledger)
+                _mark_run_failure(
+                    ledger_path,
+                    stage_ledger,
+                    run_entry,
+                    f"child exceeded remaining stage budget ({remaining:.6f}s)",
+                    status="timeout",
+                )
                 raise SystemExit(
                     f"learning-curve run timed out: size={train_parent_count}, seed={seed}; see {log_path}"
                 ) from exc
@@ -295,33 +321,45 @@ def main() -> int:
                 encoding="utf-8",
             )
             if completed.returncode != 0:
-                run_entry["status"] = "failed"
                 run_entry["returncode"] = completed.returncode
-                run_entry["wall_seconds"] = time.perf_counter() - started
-                stage_ledger["status"] = "failed"
-                stage_ledger["error"] = f"child returned {completed.returncode}"
-                _write_stage_ledger(ledger_path, stage_ledger)
+                _mark_run_failure(
+                    ledger_path,
+                    stage_ledger,
+                    run_entry,
+                    f"child returned {completed.returncode}",
+                )
                 raise SystemExit(f"learning-curve run failed: size={train_parent_count}, seed={seed}; see {log_path}")
-            report = json.loads(report_path.read_text(encoding="utf-8"))
-            if report["protocol"]["seed"] != seed or report["protocol"]["train_parent_count"] != train_parent_count:
-                raise RuntimeError("run report identity does not match requested matrix point")
-            if report["protocol"]["training_parent_rank_seed"] != config["train_parent_rank_seed"]:
-                raise RuntimeError("run report parent-ranking seed does not match frozen config")
-            frozen_training = config["training"]
-            observed_training = report["protocol"]
-            for key in ("epochs", "batch_size", "learning_rate", "force_weight", "gradient_clip"):
-                if observed_training[key] != frozen_training[key]:
-                    raise RuntimeError(f"run training protocol drifted for {key}")
-            if observed_training["validation_score_formula"] != frozen_training["validation_score"]:
-                raise RuntimeError("validation checkpoint score drifted from frozen config")
-            for learned in report["results"]:
-                model_config = learned["model_config"]
-                if model_config["hidden_dim"] != frozen_training["hidden_dim"]:
-                    raise RuntimeError("hidden_dim drifted from frozen config")
-                if model_config["radial_features"] != frozen_training["radial_features"]:
-                    raise RuntimeError("radial_features drifted from frozen config")
-                if model_config["distance_scale"] != frozen_training["distance_scale_angstrom"]:
-                    raise RuntimeError("distance_scale drifted from frozen config")
+            try:
+                report = json.loads(report_path.read_text(encoding="utf-8"))
+                if report["protocol"]["seed"] != seed or report["protocol"]["train_parent_count"] != train_parent_count:
+                    raise RuntimeError("run report identity does not match requested matrix point")
+                if report["protocol"]["training_parent_rank_seed"] != config["train_parent_rank_seed"]:
+                    raise RuntimeError("run report parent-ranking seed does not match frozen config")
+                frozen_training = config["training"]
+                observed_training = report["protocol"]
+                for key in ("epochs", "batch_size", "learning_rate", "force_weight", "gradient_clip"):
+                    if observed_training[key] != frozen_training[key]:
+                        raise RuntimeError(f"run training protocol drifted for {key}")
+                if observed_training["validation_score_formula"] != frozen_training["validation_score"]:
+                    raise RuntimeError("validation checkpoint score drifted from frozen config")
+                for learned in report["results"]:
+                    model_config = learned["model_config"]
+                    if model_config["hidden_dim"] != frozen_training["hidden_dim"]:
+                        raise RuntimeError("hidden_dim drifted from frozen config")
+                    if model_config["radial_features"] != frozen_training["radial_features"]:
+                        raise RuntimeError("radial_features drifted from frozen config")
+                    if model_config["distance_scale"] != frozen_training["distance_scale_angstrom"]:
+                        raise RuntimeError("distance_scale drifted from frozen config")
+            except Exception as exc:
+                _mark_run_failure(
+                    ledger_path,
+                    stage_ledger,
+                    run_entry,
+                    f"child report invalid: {type(exc).__name__}: {exc}",
+                )
+                raise SystemExit(
+                    f"learning-curve child report invalid: size={train_parent_count}, seed={seed}; see {log_path}"
+                ) from exc
             reports_by_size[train_parent_count].append(report)
             run_records.append(_compact_run(report, report_path))
             run_entry["status"] = "success"

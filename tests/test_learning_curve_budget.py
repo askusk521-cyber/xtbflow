@@ -52,3 +52,16 @@ def test_short_lived_fake_child_is_hard_stopped_by_remaining_budget(tmp_path):
             started=_RUNNER.time.perf_counter(),
             max_seconds=0.02,
         )
+
+
+def test_invalid_child_report_is_settled_as_failed(tmp_path):
+    ledger_path = tmp_path / "stage-ledger.json"
+    ledger = {"status": "running", "runs": [], "started_monotonic": 0.0}
+    run = {"status": "running"}
+
+    _RUNNER._mark_run_failure(ledger_path, ledger, run, "missing report")
+
+    assert run["status"] == "failed"
+    assert run["error"] == "missing report"
+    assert ledger["status"] == "failed"
+    assert "missing report" in ledger_path.read_text(encoding="utf-8")

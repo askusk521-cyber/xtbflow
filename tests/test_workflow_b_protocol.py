@@ -36,7 +36,8 @@ def test_workflow_b_protocol_freezes_the_first_matrix_and_scientific_blocker():
     ) == CONTROL_MODES
     assert payload["fairness"]["generator_selection_calculator_calls_per_parent"] == 0
     assert len(payload["fairness"]["training_seeds"]) >= 3
-    assert payload["decision_gate"]["comparison"] == "joint_event_geometry versus current_event_to_geometry"
+    assert payload["decision_gate"]["method_competitiveness_comparison"] == "joint_event_geometry versus serial_event_to_geometry"
+    assert payload["decision_gate"]["coupling_attribution_comparison"] == "joint_event_geometry versus current_event_to_geometry"
 
 
 def test_runtime_config_builds_one_model_for_all_registered_controls():

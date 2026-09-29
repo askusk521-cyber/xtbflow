@@ -3,7 +3,7 @@
   "protocol_id": "workflow-b-baseline-ladder-v0.1",
   "status": "software_protocol_frozen_scientific_execution_blocked",
   "issues": [20, 44, 56, 58],
-  "scientific_question": "Does learned bidirectional event-geometry coupling improve held-out reactant-side TS proposal quality beyond the same-integrator current-state one-way control, with independent and serial controls reported separately?",
+  "scientific_question": "Does learned bidirectional event-geometry coupling improve held-out reactant-side TS proposal quality beyond the matched serial control, while the same-integrator current-state one-way control separately attributes the coupling gain?",
   "runtime_model_config": "configs/models/joint_flow_runtime_v0.1.json",
   "blocking_dependency": {
     "issue": 58,
@@ -93,11 +93,13 @@
     "frames_are_not_independent_replicates": true
   },
   "decision_gate": {
-    "title_claim_requires_joint_over_current_one_way": true,
-    "comparison": "joint_event_geometry versus current_event_to_geometry",
+    "title_claim_requires_joint_over_serial": true,
+    "method_competitiveness_comparison": "joint_event_geometry versus serial_event_to_geometry",
+    "coupling_attribution_requires_joint_over_current_one_way": true,
+    "coupling_attribution_comparison": "joint_event_geometry versus current_event_to_geometry",
     "integrator": "explicit Euler; both velocities evaluated at current event and geometry states",
-    "only_changed_factor": "geometry-to-event feedback enabled versus disabled",
-    "serial_comparison": "secondary split-step control; not evidence isolating bidirectional feedback and not a full two-stage generator",
+    "only_changed_factor_for_attribution": "geometry-to-event feedback enabled versus disabled",
+    "serial_comparison": "primary matched serial method baseline; its comparison is required for the headline architecture claim",
     "must_hold_on": [
       "frozen parent-group test split",
       "same candidate cap",

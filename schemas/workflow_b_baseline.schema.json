@@ -36,6 +36,21 @@
         "training_seeds",
         "generator_selection_calculator_calls_per_parent"
       ]
+    },
+    "decision_gate": {
+      "type": "object",
+      "required": [
+        "title_claim_requires_joint_over_serial",
+        "method_competitiveness_comparison",
+        "coupling_attribution_requires_joint_over_current_one_way",
+        "coupling_attribution_comparison"
+      ],
+      "properties": {
+        "title_claim_requires_joint_over_serial": {"const": true},
+        "method_competitiveness_comparison": {"const": "joint_event_geometry versus serial_event_to_geometry"},
+        "coupling_attribution_requires_joint_over_current_one_way": {"const": true},
+        "coupling_attribution_comparison": {"const": "joint_event_geometry versus current_event_to_geometry"}
+      }
     }
   }
 }

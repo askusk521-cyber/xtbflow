@@ -106,7 +106,9 @@ def validate_protocol() -> dict[str, object]:
     if learned_modes != CONTROL_MODES:
         raise ValueError("learned baseline arms must map exactly to the registered control modes")
     gate = protocol.get("decision_gate", {})
-    if gate.get("title_claim_requires_joint_over_current_one_way") is not True or gate.get("comparison") != "joint_event_geometry versus current_event_to_geometry":
+    if gate.get("title_claim_requires_joint_over_serial") is not True or gate.get("method_competitiveness_comparison") != "joint_event_geometry versus serial_event_to_geometry":
+        raise ValueError("the headline architecture claim requires the matched serial comparison")
+    if gate.get("coupling_attribution_requires_joint_over_current_one_way") is not True or gate.get("coupling_attribution_comparison") != "joint_event_geometry versus current_event_to_geometry":
         raise ValueError("coupling attribution requires the current-state one-way control")
 
     fairness = protocol.get("fairness")

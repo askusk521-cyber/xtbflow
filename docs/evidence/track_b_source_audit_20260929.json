@@ -111,7 +111,7 @@
       "declared_record_count": 4391,
       "expected_asset_sha256": "6a8fff071330603600276e200e65feef3ab5e4d285f81091a3eb0cc13bdb70e2",
       "local_asset_locator": "mechai:data/raw/units/UniTS_Lib.npy",
-      "local_asset_observed": false,
+      "local_asset_observed": true,
       "missing_for_track_b": [
         "coordinate units embedded in the inspected raw records",
         "frozen XTBFlow event-label conversion",
@@ -119,6 +119,12 @@
         "reviewed dataset redistribution terms",
         "full compatibility with the current CHNOS scope"
       ],
+      "observed_asset": {
+        "asset_name": "UniTS_Lib.npy",
+        "matches_expected_sha256": true,
+        "sha256": "6a8fff071330603600276e200e65feef3ab5e4d285f81091a3eb0cc13bdb70e2",
+        "size_bytes": 1439687943
+      },
       "permitted_use": [
         "schema_conversion_development",
         "geometry_generation_diagnostic"
@@ -139,12 +145,19 @@
       "declared_record_count": 41,
       "expected_asset_sha256": "ee277408552e4b10149b350902796100ee4ade7ba30e8b836dfdc557ee4da5ae",
       "local_asset_locator": "mechai:data/processed/kingfisher-ch2o-events-v2/events.jsonl",
-      "local_asset_observed": false,
+      "local_asset_observed": true,
       "missing_for_track_b": [
         "independent reactant coordinates",
         "environment selection independent of the archived result",
         "more than one reaction family"
       ],
+      "observed_asset": {
+        "asset_name": "events.jsonl",
+        "matches_expected_sha256": true,
+        "nonempty_jsonl_rows": 41,
+        "sha256": "ee277408552e4b10149b350902796100ee4ade7ba30e8b836dfdc557ee4da5ae",
+        "size_bytes": 429234
+      },
       "permitted_use": [
         "parser_contract_tests",
         "event_representation_tests",

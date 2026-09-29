@@ -89,8 +89,31 @@ sources were compared and none is currently admitted:
 - No pinned local Transition1x asset was available for a byte-level audit;
   the local RGD1 archive is missing its referenced per-record geometry assets.
 
-These assets may remain diagnostic. They cannot be silently promoted to blind
-reactant-only training or confirmatory evidence.
+The 2026-09-29 audit also observed two cached assets without copying their raw
+bytes into this repository:
+
+- `UniTS_Lib.npy`: 1,439,687,943 bytes, SHA-256
+  `6a8fff071330603600276e200e65feef3ab5e4d285f81091a3eb0cc13bdb70e2`;
+- Kingfisher `events.jsonl`: 429,234 bytes, 41 non-empty rows, SHA-256
+  `ee277408552e4b10149b350902796100ee4ade7ba30e8b836dfdc557ee4da5ae`.
+
+Both hashes match the candidate registry. Rebuild the source audit with local
+paths supplied explicitly rather than embedding machine-specific locations:
+
+```bash
+PYTHONPATH=src python scripts/audit_track_b_sources.py \
+  --config configs/data/track_b_source_candidates_v1.json \
+  --asset units_lib="$UNITS_LIB" \
+  --asset kingfisher_ch2o_events_v2="$KINGFISHER_EVENTS" \
+  --audit-date 2026-09-29 \
+  --repository-base-commit abee6248daaf0c81cde2e676b0b139f4b5d26d1e \
+  --output docs/evidence/track_b_source_audit_20260929.json
+```
+
+These assets remain diagnostic. Matching bytes do not resolve the missing
+independent reactant inputs, product/event conversion, coordinate-unit,
+licensing, family-diversity or environment-selection requirements, so neither
+asset is admitted for blind reactant-only training or confirmatory evidence.
 
 ## Gate for issue #58
 

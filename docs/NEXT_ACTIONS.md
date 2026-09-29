@@ -34,6 +34,24 @@
 - This is runtime/accounting evidence only. It does not qualify a TS search,
   a quantum-chemistry backend, a GPU implementation, or any chemical result.
 
+## 2026-09-29 P0 contract hardening
+
+- CP2K parsing now requires both a normal completion marker and a positive SCF
+  convergence marker. Unsupported protocol parameters fail before execution;
+  energy, forces, and energy-forces share one normalized Å/Hartree boundary.
+- A CP2K run can require a persistent artifact directory. Input, stdout,
+  stderr, output, and failed nonzero-return runs are retained with the result's
+  input and protocol identity. Injected runners may return a structured
+  return-code/output record for the same failure checks.
+- Native GFN2 result metadata now includes the adapter revision, adapter source
+  hash, wrapper/interface path, native shared-object and wheel RECORD paths,
+  and implementation build identity. This still reports capability evidence,
+  not numerical qualification.
+- Regression coverage now includes single-atom/padded joint-flow gradients,
+  protocol-sensitive TS cache invalidation, legacy checkpoint revalidation,
+  CP2K Å finite differences, and persistent failure artifacts. Commit:
+  `bb7f9f6`.
+
 ## 2026-09-29 xTBloom adapter boundary
 
 - `XTBloomAdapter` now has a direct native API path when an explicit protocol

@@ -112,3 +112,24 @@ def test_joint_loss_masks_nan_unobserved_labels_before_arithmetic():
     losses["total"].backward()
     assert torch.isfinite(losses["total"])
     assert all(parameter.grad is None or torch.isfinite(parameter.grad).all() for parameter in model.parameters())
+
+
+@pytest.mark.parametrize("atom_mask", [torch.tensor([[True]]), torch.tensor([[True, False, False]])])
+def test_joint_flow_single_atom_and_padding_have_finite_coordinate_gradients(atom_mask):
+    torch.manual_seed(14)
+    atoms = atom_mask.shape[1]
+    event = torch.zeros((1, 3), dtype=torch.float64)
+    coordinates = torch.zeros((1, atoms, 3), dtype=torch.float64, requires_grad=True)
+    if atoms:
+        coordinates.data[0, 0] = torch.tensor([0.4, -0.2, 0.1], dtype=torch.float64)
+    node = torch.randn((1, atoms, 4), dtype=torch.float64)
+    projector = ConservationProjector(torch.tensor([[1.0, 1.0, 1.0]], dtype=torch.float64))
+    model = JointEventGeometryFlow(projector, 4, hidden_dim=8, radial_features=4).double()
+    output = model(event, coordinates, node, atom_mask)
+    target_event = torch.zeros_like(output.event_velocity)
+    target_geometry = torch.zeros_like(output.geometry_velocity)
+    losses = joint_flow_loss(output, target_event, target_geometry, atom_mask=atom_mask)
+    losses["total"].backward()
+    assert torch.isfinite(output.geometry_velocity).all()
+    assert torch.isfinite(coordinates.grad).all()
+    assert all(parameter.grad is None or torch.isfinite(parameter.grad).all() for parameter in model.parameters())

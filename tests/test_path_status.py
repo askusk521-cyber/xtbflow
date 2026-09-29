@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 import pytest
 
 from xtbflow.runtime import RunLedger, StageBudget
@@ -128,6 +130,40 @@ def test_resumable_validation_binds_cache_to_candidate_and_checks_budget_before_
     changed = {"candidate": {"coordinates": [[0.1, 0.0, 0.0]], "charge": 0, "multiplicity": 1}}
     run_resumable_validation(changed, search, TSValidationConfig(), checkpoint, reserve_calls=reserve)
     assert calls == ["candidate", "candidate"]
+
+
+def test_resumable_validation_rechecks_when_reference_or_threshold_changes(tmp_path):
+    checkpoint = tmp_path / "ts.json"
+    candidate = {"coordinates": [[0.0, 0.0, 0.0]], "charge": 0, "multiplicity": 1}
+    calls = []
+
+    def search(candidate_id, item):
+        calls.append(candidate_id)
+        evidence = good()
+        evidence["calculator_calls"] = 1
+        return evidence
+
+    base = TSValidationConfig()
+    run_resumable_validation({"candidate": candidate}, search, base, checkpoint)
+    run_resumable_validation({"candidate": candidate}, search, TSValidationConfig(reference_protocol_id="cp2k-v2"), checkpoint)
+    run_resumable_validation({"candidate": candidate}, search, TSValidationConfig(gradient_tolerance=2e-4), checkpoint)
+    assert calls == ["candidate", "candidate", "candidate"]
+
+
+def test_legacy_checkpoint_without_identity_is_not_upgraded(tmp_path):
+    checkpoint = tmp_path / "legacy.json"
+    checkpoint.write_text(json.dumps({"candidate": {"candidate_id": "candidate", "source": "legacy", "status": "success", "path_status": "validated", "gradient_norm": 1e-6, "mode_status": "mode_count_pass", "observed_event": [], "calculator_calls": 1}}), encoding="utf-8")
+    calls = []
+
+    def search(candidate_id, item):
+        calls.append(candidate_id)
+        evidence = good()
+        evidence["calculator_calls"] = 1
+        return evidence
+
+    records = run_resumable_validation({"candidate": {"coordinates": [[0.0, 0.0, 0.0]]}}, search, TSValidationConfig(), checkpoint)
+    assert records[0].status == "success"
+    assert calls == ["candidate"]
 
 
 def test_production_token_budget_failure_is_recorded_and_later_candidates_continue(tmp_path):

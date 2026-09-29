@@ -94,8 +94,8 @@
     },
     {
       "path": "configs/calculators/cp2k/protocol_v0.1.yaml",
-      "sha256": "d96eafdf9dbe0b65de472d5a04477cd84b417b59a0b0a7270a78c5ba361abdf6",
-      "bytes": 1210
+      "sha256": "015b515e6ee25615ce743853dfb2e5999a77c9777944fbf10896a67fa6ede11b",
+      "bytes": 1287
     },
     {
       "path": "configs/calculators/protocols.yaml",
@@ -224,8 +224,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "100cbd3490f01b85e2b609d8384542043a9aa879d609a5a0f00a8e3aaf0b8629",
-      "bytes": 7019
+      "sha256": "bb7cf18c4a8b76e9538cf059f72df00c0a4e001c2bb57018ff6b455bb8ccf980",
+      "bytes": 8075
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -369,8 +369,8 @@
     },
     {
       "path": "src/xtbflow/calculators/__init__.py",
-      "sha256": "2a4c7ed67d7f3515cc30cb0eb4728b6b882b78f1b2bc4de17607660b2dfe99ec",
-      "bytes": 1016
+      "sha256": "edc331626e0c59435a39769049d330ff037355a28c341d19dc29cbdc39709590",
+      "bytes": 1054
     },
     {
       "path": "src/xtbflow/calculators/base.py",
@@ -379,13 +379,13 @@
     },
     {
       "path": "src/xtbflow/calculators/cp2k.py",
-      "sha256": "4b63ff2004cdf87e4b680ef9980642fff594610c6f538a6211642a9ceeb5ce19",
-      "bytes": 14978
+      "sha256": "2a2ac377544047b07c05251c7f5e769b9a542e1b66e4c17adf3673cca192d854",
+      "bytes": 22121
     },
     {
       "path": "src/xtbflow/calculators/xtb_oracle.py",
-      "sha256": "d4e282c1b6e72f2761612635c4eb4724bd2c346c1faf1ba8e0fb6e92e2f8a70f",
-      "bytes": 14029
+      "sha256": "dc223169709870f61b657e359419958b26931e9c8d562af8d6093f9c3c512189",
+      "bytes": 16528
     },
     {
       "path": "src/xtbflow/calculators/xtbloom.py",
@@ -639,8 +639,8 @@
     },
     {
       "path": "tests/test_calculator_contract.py",
-      "sha256": "fc9e8d90e3b4298901c3bc77491d96310416c16d95a0567a4d46bf6eeaadb367",
-      "bytes": 13056
+      "sha256": "a8ea52f51e54fdd830800c48f208a2db10888273435a8dec464e4df0f0e563b3",
+      "bytes": 13336
     },
     {
       "path": "tests/test_checkpoint.py",
@@ -659,8 +659,8 @@
     },
     {
       "path": "tests/test_cp2k_parser.py",
-      "sha256": "24bc9b5d310bf5742b0aef52625a6dd3a79a4d4b0448c77646008dd96940723c",
-      "bytes": 3806
+      "sha256": "a38adda8b4ed1f2b0281f755cf27d21d638e7d8e65d65580530d7e81b4e6d09d",
+      "bytes": 10228
     },
     {
       "path": "tests/test_energy_forces.py",
@@ -679,8 +679,8 @@
     },
     {
       "path": "tests/test_joint_flow.py",
-      "sha256": "5b58160a370c3ebf56f2c6f2b4bb38afc571b2b0e9ab4caf17f4de2cf81a4ef3",
-      "bytes": 6544
+      "sha256": "5fadaf8f6619984822f553b0270f1d02c62fd4f9c0a61c9278da2f22c97de1c4",
+      "bytes": 7797
     },
     {
       "path": "tests/test_package.py",
@@ -694,8 +694,8 @@
     },
     {
       "path": "tests/test_path_status.py",
-      "sha256": "d21c98450bd3b45ff971d19ebcbad60f3e8f9f4a9105a2eaf7131df388f4422e",
-      "bytes": 7810
+      "sha256": "352d02626c16822ab3aba243c2ba6f7a3f2a78659e19b91c2567cffcf93b1bc3",
+      "bytes": 9407
     },
     {
       "path": "tests/test_runtime_budget.py",

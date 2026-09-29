@@ -738,6 +738,11 @@
       "bytes": 6840
     },
     {
+      "path": "scripts/run_transition1x_geometry_baseline.py",
+      "sha256": "48fdfef3fccdc35ef955f19636fa0be9540c4b1d347d36459d9aaed076941f02",
+      "bytes": 3805
+    },
+    {
       "path": "scripts/run_transition1x_joint_development.py",
       "sha256": "b2ddd1bc47aee8b722e681b8d471bdb8c28b6341f6d0bf89ded35becb7f4b6ac",
       "bytes": 15006
@@ -849,13 +854,18 @@
     },
     {
       "path": "src/xtbflow/evaluation/__init__.py",
-      "sha256": "3ce11bcb9a4e818840099636abb2dbdf3253b377d759cee931642f9c45c63960",
-      "bytes": 199
+      "sha256": "dbdbe8d46cc50ea1b632e25476259d724f1dfd063c67e78a0a95fff796706970",
+      "bytes": 468
     },
     {
       "path": "src/xtbflow/evaluation/terminal.py",
       "sha256": "a2ee8b3947aa9d55b04aabe52193cfaab0f91f443dde9b68b98a07bf1d91ff3a",
       "bytes": 1744
+    },
+    {
+      "path": "src/xtbflow/evaluation/transition1x_geometry.py",
+      "sha256": "949066cd7d4690f556cf7f1327ed1f86fd70663c4a8f86d0aa2c3d19c1c8be2c",
+      "bytes": 7488
     },
     {
       "path": "src/xtbflow/legacy.py",
@@ -1156,6 +1166,11 @@
       "path": "tests/test_transition1x_development.py",
       "sha256": "cc51d41cab61ef2cbf7ccfef583e819656b1738af68234c97dc05454eb5067a4",
       "bytes": 2134
+    },
+    {
+      "path": "tests/test_transition1x_geometry.py",
+      "sha256": "a5f7b3c1ef51326720a9462360e728b6b54c30d03b0ad5e31e19882182ddaa92",
+      "bytes": 2091
     },
     {
       "path": "tests/test_transition1x_track_b_audit.py",

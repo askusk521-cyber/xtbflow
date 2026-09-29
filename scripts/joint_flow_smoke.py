@@ -267,6 +267,7 @@ def main() -> int:
         "runtime_config": runtime.constructor_record(),
         "runtime_config_path": str(args.config),
         "runtime_config_sha256": _config_sha256(args.config),
+        "git": _git_identity(),
         "checkpoint_schema": restore_info["schema"],
         "complete_resume": restore_info["complete_resume"],
         "resume_kind": restore_info["resume_kind"],

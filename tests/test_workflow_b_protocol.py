@@ -77,3 +77,38 @@ def test_workflow_b_validation_script_emits_machine_readable_acceptance(tmp_path
     assert report["measured_control_manifest"]["same_generation_weights_for_controls"] is True
     assert report["measured_control_manifest"]["same_physical_budget_for_controls"] is True
     assert any("No real event/TS training" in item for item in report["limits"])
+
+
+def test_joint_flow_smoke_records_source_identity_and_shared_control_evidence(tmp_path: Path):
+    output = tmp_path / "joint-smoke.json"
+    checkpoint = tmp_path / "joint-smoke.pt"
+    env = os.environ.copy()
+    env["PYTHONPATH"] = os.pathsep.join(
+        [str(ROOT / "src"), str(ROOT / "vendor/mechai_reusable"), env.get("PYTHONPATH", "")]
+    )
+    subprocess.run(
+        [
+            sys.executable,
+            "scripts/joint_flow_smoke.py",
+            "--output",
+            str(output),
+            "--checkpoint",
+            str(checkpoint),
+            "--training-steps",
+            "2",
+            "--sample-steps",
+            "2",
+        ],
+        cwd=ROOT,
+        env=env,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    report = json.loads(output.read_text(encoding="utf-8"))
+    assert report["schema"] == "xtbflow-joint-flow-smoke/v3"
+    assert len(report["git"]["commit"]) == 40
+    assert report["complete_resume"] is True
+    assert report["restore_max_abs_difference"] == 0.0
+    assert report["control_manifest"]["same_generation_weights_for_controls"] is True
+    assert set(report["rollouts"]) == set(CONTROL_MODES)

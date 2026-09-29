@@ -52,7 +52,7 @@
    - 对应反应信息 CSV／JSON；
    - RGD1 官方索引、映射和 TS 记录。
 5. 下载文件只放在 n2 cache，例如：
-   `/home/lhshen/.cache/xtbflow/reaction-qm/...`
+   `<n2-cache>/reaction-qm/...`
    不得放进 git。
 6. 生成第一份审计报告，至少包括：
    - source URL；

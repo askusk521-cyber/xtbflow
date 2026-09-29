@@ -1,0 +1,31 @@
+{
+  "schema": "xtbflow-ts-budget-contract/v1",
+  "status": "software_contract_verified",
+  "source_commit": "eabb80f5d2f6502b6d8a3d31491e3b8bbd670102",
+  "cp2k_dependency": false,
+  "scientific_ts_claim": false,
+  "tests": {
+    "command": "PYTHONPATH=src:vendor/mechai_reusable pytest -q tests/test_path_status.py tests/test_calculator_contract.py",
+    "passed": 16,
+    "failed": 0,
+    "cases": [
+      "production token exhaustion is blocked before the fourth backend invocation",
+      "partial calculator consumption is persisted as a candidate failure",
+      "unused reservation allowance is released and committed calls remain counted",
+      "later candidates continue after a searcher exception or token failure",
+      "identity-matching cached failures recover without rerunning the searcher"
+    ]
+  },
+  "accounting": {
+    "token_calls_are_consumed_at": "calculator adapter boundary",
+    "budget_gate": "before backend invocation",
+    "failure_cost": "committed from consumed token calls",
+    "checkpoint": "atomic JSON replacement",
+    "cross_process_qualification": "not claimed"
+  },
+  "limits": [
+    "This verifies runtime and failure accounting with injected CPU fixtures only.",
+    "No CP2K, DFT, GPU, transition-state search, or chemical result is claimed.",
+    "A real reference backend still requires an available, numerically qualified installation."
+  ]
+}

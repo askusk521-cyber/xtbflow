@@ -59,6 +59,44 @@ def test_direct_model_force_matches_finite_difference():
     assert result.forces[index].item() == pytest.approx(finite_difference_force, rel=2e-4, abs=2e-5)
 
 
+
+def test_energy_models_start_from_zero_residual_and_delta_baseline():
+    coordinates, species, atom_mask, charge, multiplicity = batch()
+    direct = DirectEnergyModel(num_species=16, hidden_dim=8, radial_features=5, distance_scale=4.0).double()
+    delta = DeltaEnergyModel(num_species=16, hidden_dim=8, radial_features=5, distance_scale=4.0).double()
+    direct_result = direct.predict(coordinates, species, atom_mask, charge=charge, multiplicity=multiplicity)
+    baseline_energy = torch.tensor([-1.25], dtype=torch.float64)
+    baseline_forces = torch.tensor([[[0.1, -0.2, 0.0], [0.0, 0.3, -0.1], [0.2, 0.0, -0.2], [0.0, 0.0, 0.0]]], dtype=torch.float64)
+    delta_result = delta.predict(
+        coordinates,
+        species,
+        atom_mask,
+        charge=charge,
+        multiplicity=multiplicity,
+        baseline_energy=baseline_energy,
+        baseline_forces=baseline_forces,
+    )
+    assert torch.equal(direct_result.energy, torch.zeros_like(direct_result.energy))
+    assert torch.equal(direct_result.forces, torch.zeros_like(direct_result.forces))
+    assert torch.equal(delta_result.energy, baseline_energy)
+    assert torch.equal(delta_result.forces, baseline_forces)
+
+
+def test_pair_interactions_have_smooth_finite_cutoff():
+    model = DirectEnergyModel(num_species=16, hidden_dim=8, radial_features=5, distance_scale=2.0).double()
+    with torch.no_grad():
+        model.network.pair_readout[-1].bias.fill_(1.0)
+    species = torch.tensor([[1, 1]], dtype=torch.long)
+    mask = torch.tensor([[True, True]])
+    charge = torch.tensor([0.0], dtype=torch.float64)
+    multiplicity = torch.tensor([1.0], dtype=torch.float64)
+    far = torch.tensor([[[0.0, 0.0, 0.0], [3.0, 0.0, 0.0]]], dtype=torch.float64)
+    just_inside = torch.tensor([[[0.0, 0.0, 0.0], [1.999, 0.0, 0.0]]], dtype=torch.float64)
+    far_energy = model(far, species, mask, charge=charge, multiplicity=multiplicity)
+    inside_energy = model(just_inside, species, mask, charge=charge, multiplicity=multiplicity)
+    assert far_energy.item() == pytest.approx(0.0, abs=1e-12)
+    assert 0.0 < inside_energy.item() < 1e-5
+
 def test_energy_force_loss_masks_missing_labels_and_manifest_splits():
     predicted_energy = torch.tensor([1.0, 2.0])
     target_energy = torch.tensor([0.0, float("nan")])

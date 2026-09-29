@@ -56,11 +56,21 @@ def test_split_audit_rejects_manual_leakage():
         audit_no_group_leakage(records, {"a": "train", "b": "test"})
 
 
-def test_source_audit_manifest_is_explicitly_quarantined():
+def test_public_manifest_preserves_quarantine_and_reconstructs_spice_pilot_splits():
     rows = load_jsonl(Path("data/manifests/public_records.v1.jsonl"))
-    assert len(rows) == 6
-    assert all(row.admission == "quarantine" for row in rows)
-    assert not admitted_records(rows, assign_group_splits(rows))
+    historical = [row for row in rows if row.source_dataset != "spice2_openff_v1.1_pilot"]
+    spice = [row for row in rows if row.source_dataset == "spice2_openff_v1.1_pilot"]
+    assert len(rows) == 70
+    assert len(historical) == 6 and all(row.admission == "quarantine" for row in historical)
+    assert len(spice) == 64
+    assignments = assign_group_splits(
+        rows,
+        seed="spice2-openff-pilot-v1-7",
+        ratios={"train": 0.75, "validation": 0.125, "test": 0.125},
+    )
+    audit_no_group_leakage(rows, assignments)
+    assert all(assignments[row.record_id] == row.admission for row in spice)
+    assert len(admitted_records(rows, assignments)) == 64
 
 
 def test_record_policy_quarantines_out_of_scope_and_parity_rows_deterministically():

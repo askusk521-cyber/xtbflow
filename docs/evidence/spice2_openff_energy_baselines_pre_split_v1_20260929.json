@@ -1,0 +1,1594 @@
+{
+  "data_identity": {
+    "manifest_sha256": "d24a8c71ac63c4caaf39ac521437d4612f35029772889f7864e6eba51323115b",
+    "pair_count": 64,
+    "pairs_sha256": "f948a6d60e0b870ce81c967393fd15bbce732ed0affbb18f3f765d5f503b5f66",
+    "split_counts": {
+      "test": 8,
+      "train": 48,
+      "validation": 8
+    }
+  },
+  "limits": [
+    "One development seed only; this is not a final learning curve.",
+    "Element offsets are fit on train only and are constant with respect to coordinates, so they contribute no force.",
+    "Direct and Delta use identical invariant network capacity and optimization budget.",
+    "The test split is evaluated only after validation selects the checkpoint."
+  ],
+  "protocol": {
+    "batch_size": 4,
+    "epochs": 80,
+    "force_weight": 10.0,
+    "learning_rate": 0.001,
+    "model_capacity_matched": true,
+    "seed": 20260929,
+    "test_used_during_selection": false,
+    "validation_checkpoint_selection": true
+  },
+  "results": [
+    {
+      "element_offsets_hartree": {
+        "1": -0.5926407884176783,
+        "16": -398.2149217404994,
+        "6": -38.133501936943134,
+        "7": -54.72925192018372,
+        "8": -75.25379408049159
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_energy_mse_per_atom": 2.1938320926080146,
+          "train_force_component_mse": 0.0181961531440417,
+          "train_total_loss": 2.3757936333616576,
+          "validation_energy_mae_kcal_per_mol": 18161.27950307295,
+          "validation_force_component_mae_hartree_per_angstrom": 0.0855515865670596,
+          "validation_score": 371.78074871816494
+        },
+        {
+          "epoch": 2,
+          "train_energy_mse_per_atom": 0.8315987152357897,
+          "train_force_component_mse": 0.007552920180993776,
+          "train_total_loss": 0.9071279155711333,
+          "validation_energy_mae_kcal_per_mol": 9498.070570534986,
+          "validation_force_component_mae_hartree_per_angstrom": 0.06295197092965152,
+          "validation_score": 196.25660850366486
+        },
+        {
+          "epoch": 3,
+          "train_energy_mse_per_atom": 0.19326625034833947,
+          "train_force_component_mse": 0.004756284450801711,
+          "train_total_loss": 0.24082909679661194,
+          "validation_energy_mae_kcal_per_mol": 15978.703006024361,
+          "validation_force_component_mae_hartree_per_angstrom": 0.04698036574921745,
+          "validation_score": 324.27209669540895
+        },
+        {
+          "epoch": 4,
+          "train_energy_mse_per_atom": 0.3489256417378783,
+          "train_force_component_mse": 0.0034850767891233168,
+          "train_total_loss": 0.3837764086201787,
+          "validation_energy_mae_kcal_per_mol": 17998.637963668105,
+          "validation_force_component_mae_hartree_per_angstrom": 0.042919676233658215,
+          "validation_score": 364.26472689672795
+        },
+        {
+          "epoch": 5,
+          "train_energy_mse_per_atom": 0.20329003664664924,
+          "train_force_component_mse": 0.003408434335142374,
+          "train_total_loss": 0.2373743855083982,
+          "validation_energy_mae_kcal_per_mol": 9128.632219208788,
+          "validation_force_component_mae_hartree_per_angstrom": 0.04052771244782386,
+          "validation_score": 186.62541562895814
+        },
+        {
+          "epoch": 6,
+          "train_energy_mse_per_atom": 0.19354586054881415,
+          "train_force_component_mse": 0.003139515669317916,
+          "train_total_loss": 0.224941018037498,
+          "validation_energy_mae_kcal_per_mol": 10167.767647483859,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03949546112153673,
+          "validation_score": 207.30489906183087
+        },
+        {
+          "epoch": 7,
+          "train_energy_mse_per_atom": 0.3824129228790601,
+          "train_force_component_mse": 0.002992837078636512,
+          "train_total_loss": 0.4123412960519393,
+          "validation_energy_mae_kcal_per_mol": 12524.059211567204,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03875597208609235,
+          "validation_score": 254.35678143995332
+        },
+        {
+          "epoch": 8,
+          "train_energy_mse_per_atom": 0.11334145612393816,
+          "train_force_component_mse": 0.0028994632496808967,
+          "train_total_loss": 0.14233609180276593,
+          "validation_energy_mae_kcal_per_mol": 10945.94986757749,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03767140622992775,
+          "validation_score": 222.6861379745426
+        },
+        {
+          "epoch": 9,
+          "train_energy_mse_per_atom": 0.10801244503818452,
+          "train_force_component_mse": 0.0027424822619650513,
+          "train_total_loss": 0.1354372693846623,
+          "validation_energy_mae_kcal_per_mol": 5483.4117216111445,
+          "validation_force_component_mae_hartree_per_angstrom": 0.036589125968586614,
+          "validation_score": 113.32714702908154
+        },
+        {
+          "epoch": 10,
+          "train_energy_mse_per_atom": 0.0866579453771313,
+          "train_force_component_mse": 0.002688407461391762,
+          "train_total_loss": 0.1135420190791289,
+          "validation_energy_mae_kcal_per_mol": 6478.82275393118,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03557433096077665,
+          "validation_score": 133.13388817470127
+        },
+        {
+          "epoch": 11,
+          "train_energy_mse_per_atom": 0.06553787396599849,
+          "train_force_component_mse": 0.0025522210247193775,
+          "train_total_loss": 0.0910600849116842,
+          "validation_energy_mae_kcal_per_mol": 3265.6852721808787,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03502516480693431,
+          "validation_score": 68.81622192431101
+        },
+        {
+          "epoch": 12,
+          "train_energy_mse_per_atom": 0.14859330941302082,
+          "train_force_component_mse": 0.002515835784530888,
+          "train_total_loss": 0.1737516662105918,
+          "validation_energy_mae_kcal_per_mol": 13168.803748089313,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03451266683553083,
+          "validation_score": 266.8273416453393
+        },
+        {
+          "epoch": 13,
+          "train_energy_mse_per_atom": 0.34120870133241016,
+          "train_force_component_mse": 0.002467293777347853,
+          "train_total_loss": 0.36588164201627177,
+          "validation_energy_mae_kcal_per_mol": 9368.831539679171,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03450341701656789,
+          "validation_score": 190.8269724952402
+        },
+        {
+          "epoch": 14,
+          "train_energy_mse_per_atom": 0.09330366288001339,
+          "train_force_component_mse": 0.002437402600965773,
+          "train_total_loss": 0.11767768984039624,
+          "validation_energy_mae_kcal_per_mol": 8988.5159489344,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03381318957399465,
+          "validation_score": 183.15163793608747
+        },
+        {
+          "epoch": 15,
+          "train_energy_mse_per_atom": 0.1482320916838944,
+          "train_force_component_mse": 0.0023473716185738644,
+          "train_total_loss": 0.17170581066360077,
+          "validation_energy_mae_kcal_per_mol": 15132.868378261772,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03333886891844623,
+          "validation_score": 305.99125445708006
+        },
+        {
+          "epoch": 16,
+          "train_energy_mse_per_atom": 0.21435292348420867,
+          "train_force_component_mse": 0.002309412326818953,
+          "train_total_loss": 0.23744704807177186,
+          "validation_energy_mae_kcal_per_mol": 5241.053230816037,
+          "validation_force_component_mae_hartree_per_angstrom": 0.032951504812503876,
+          "validation_score": 108.11621509757113
+        },
+        {
+          "epoch": 17,
+          "train_energy_mse_per_atom": 0.04214156453963369,
+          "train_force_component_mse": 0.0022239131309712925,
+          "train_total_loss": 0.06438069666425388,
+          "validation_energy_mae_kcal_per_mol": 5943.592676784021,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03261158837964785,
+          "validation_score": 122.1330123736452
+        },
+        {
+          "epoch": 18,
+          "train_energy_mse_per_atom": 0.40461372475450236,
+          "train_force_component_mse": 0.0022121778941558055,
+          "train_total_loss": 0.42673550608257454,
+          "validation_energy_mae_kcal_per_mol": 32862.98406881853,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03242928571248131,
+          "validation_score": 660.5026099476188
+        },
+        {
+          "epoch": 19,
+          "train_energy_mse_per_atom": 0.7074172658224901,
+          "train_force_component_mse": 0.0022150220756884664,
+          "train_total_loss": 0.7295674942433834,
+          "validation_energy_mae_kcal_per_mol": 21900.42151603749,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03184816771766932,
+          "validation_score": 441.19324709251674
+        },
+        {
+          "epoch": 20,
+          "train_energy_mse_per_atom": 0.31037953387325007,
+          "train_force_component_mse": 0.002176673947057376,
+          "train_total_loss": 0.33214627609898645,
+          "validation_energy_mae_kcal_per_mol": 15878.0741788505,
+          "validation_force_component_mae_hartree_per_angstrom": 0.032090817368337736,
+          "validation_score": 320.77056531384375
+        },
+        {
+          "epoch": 21,
+          "train_energy_mse_per_atom": 0.12011105885418753,
+          "train_force_component_mse": 0.0021775574811423817,
+          "train_total_loss": 0.14188663133730492,
+          "validation_energy_mae_kcal_per_mol": 9467.363434253852,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03182576482295711,
+          "validation_score": 192.52984516737274
+        },
+        {
+          "epoch": 22,
+          "train_energy_mse_per_atom": 0.180111405129234,
+          "train_force_component_mse": 0.0021236042860740176,
+          "train_total_loss": 0.20134745010485253,
+          "validation_energy_mae_kcal_per_mol": 18714.079768893596,
+          "validation_force_component_mae_hartree_per_angstrom": 0.031870333153140175,
+          "validation_score": 377.46862869318596
+        },
+        {
+          "epoch": 23,
+          "train_energy_mse_per_atom": 0.36995871054629487,
+          "train_force_component_mse": 0.0021417275323377303,
+          "train_total_loss": 0.3913759831339121,
+          "validation_energy_mae_kcal_per_mol": 20297.862320942735,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03182671021693134,
+          "validation_score": 409.13991744054783
+        },
+        {
+          "epoch": 24,
+          "train_energy_mse_per_atom": 0.3428006046451628,
+          "train_force_component_mse": 0.002109408136069154,
+          "train_total_loss": 0.36389468408500153,
+          "validation_energy_mae_kcal_per_mol": 14774.321628906198,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03162610967115577,
+          "validation_score": 298.6490435452396
+        },
+        {
+          "epoch": 25,
+          "train_energy_mse_per_atom": 0.15813665587484138,
+          "train_force_component_mse": 0.0021083192356551685,
+          "train_total_loss": 0.1792198478554686,
+          "validation_energy_mae_kcal_per_mol": 2992.437719445348,
+          "validation_force_component_mae_hartree_per_angstrom": 0.030976619974062456,
+          "validation_score": 62.94641638631321
+        },
+        {
+          "epoch": 26,
+          "train_energy_mse_per_atom": 0.050093941878003534,
+          "train_force_component_mse": 0.002053395020387446,
+          "train_total_loss": 0.07062789161379139,
+          "validation_energy_mae_kcal_per_mol": 6970.735374098031,
+          "validation_force_component_mae_hartree_per_angstrom": 0.030817576526079315,
+          "validation_score": 142.49646513456855
+        },
+        {
+          "epoch": 27,
+          "train_energy_mse_per_atom": 0.054316918404462435,
+          "train_force_component_mse": 0.0020496732516524694,
+          "train_total_loss": 0.07481364983444412,
+          "validation_energy_mae_kcal_per_mol": 5581.6132774886955,
+          "validation_force_component_mae_hartree_per_angstrom": 0.030305313915622956,
+          "validation_score": 114.6627969413362
+        },
+        {
+          "epoch": 28,
+          "train_energy_mse_per_atom": 0.03950635064393282,
+          "train_force_component_mse": 0.002012719225604087,
+          "train_total_loss": 0.05963354247311751,
+          "validation_energy_mae_kcal_per_mol": 8279.575592269834,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03026818669289726,
+          "validation_score": 168.6183305146864
+        },
+        {
+          "epoch": 29,
+          "train_energy_mse_per_atom": 0.10272233397699893,
+          "train_force_component_mse": 0.0020008473754084357,
+          "train_total_loss": 0.12273080615947644,
+          "validation_energy_mae_kcal_per_mol": 9201.29715754291,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02975344440689748,
+          "validation_score": 187.00128759154794
+        },
+        {
+          "epoch": 30,
+          "train_energy_mse_per_atom": 0.18319987893725434,
+          "train_force_component_mse": 0.0019593265121026584,
+          "train_total_loss": 0.20279314337919155,
+          "validation_energy_mae_kcal_per_mol": 5485.681004834914,
+          "validation_force_component_mae_hartree_per_angstrom": 0.029513239034402,
+          "validation_score": 112.66494400013849
+        },
+        {
+          "epoch": 31,
+          "train_energy_mse_per_atom": 0.10584046978813906,
+          "train_force_component_mse": 0.0019328174433515717,
+          "train_total_loss": 0.12516864451269308,
+          "validation_energy_mae_kcal_per_mol": 6166.81067321493,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02970779500461392,
+          "validation_score": 126.30699296475998
+        },
+        {
+          "epoch": 32,
+          "train_energy_mse_per_atom": 0.1334629290504381,
+          "train_force_component_mse": 0.0019270174767977248,
+          "train_total_loss": 0.15273310244083405,
+          "validation_energy_mae_kcal_per_mol": 13454.757371871012,
+          "validation_force_component_mae_hartree_per_angstrom": 0.029361054261005232,
+          "validation_score": 272.03125286352076
+        },
+        {
+          "epoch": 33,
+          "train_energy_mse_per_atom": 0.19433633800751218,
+          "train_force_component_mse": 0.001931741271012773,
+          "train_total_loss": 0.21365375335638723,
+          "validation_energy_mae_kcal_per_mol": 3729.3276023976055,
+          "validation_force_component_mae_hartree_per_angstrom": 0.029335420743518928,
+          "validation_score": 77.520094122304
+        },
+        {
+          "epoch": 34,
+          "train_energy_mse_per_atom": 0.06859484363424902,
+          "train_force_component_mse": 0.0019198185473214835,
+          "train_total_loss": 0.0877930309313039,
+          "validation_energy_mae_kcal_per_mol": 5333.236877384984,
+          "validation_force_component_mae_hartree_per_angstrom": 0.029101718812057413,
+          "validation_score": 109.57490942890541
+        },
+        {
+          "epoch": 35,
+          "train_energy_mse_per_atom": 0.05398315177687133,
+          "train_force_component_mse": 0.0018799281291042764,
+          "train_total_loss": 0.07278243343656261,
+          "validation_energy_mae_kcal_per_mol": 5085.880218476765,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02901884469905046,
+          "validation_score": 104.61948883944034
+        },
+        {
+          "epoch": 36,
+          "train_energy_mse_per_atom": 0.03463148002629168,
+          "train_force_component_mse": 0.0018891295282325398,
+          "train_total_loss": 0.0535227763466537,
+          "validation_energy_mae_kcal_per_mol": 11581.909309762854,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02879626970149419,
+          "validation_score": 234.5178131654065
+        },
+        {
+          "epoch": 37,
+          "train_energy_mse_per_atom": 0.057430168749609344,
+          "train_force_component_mse": 0.0018558784407408286,
+          "train_total_loss": 0.07598895222569506,
+          "validation_energy_mae_kcal_per_mol": 3574.7865423484964,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02849953900229152,
+          "validation_score": 74.34568474719909
+        },
+        {
+          "epoch": 38,
+          "train_energy_mse_per_atom": 0.04093914480472449,
+          "train_force_component_mse": 0.0017958520960140352,
+          "train_total_loss": 0.058897666400298476,
+          "validation_energy_mae_kcal_per_mol": 5099.625180787823,
+          "validation_force_component_mae_hartree_per_angstrom": 0.028386266704470964,
+          "validation_score": 104.83113028620356
+        },
+        {
+          "epoch": 39,
+          "train_energy_mse_per_atom": 0.11319549296361704,
+          "train_force_component_mse": 0.0018014217106004555,
+          "train_total_loss": 0.13120970968157053,
+          "validation_energy_mae_kcal_per_mol": 3858.298532281836,
+          "validation_force_component_mae_hartree_per_angstrom": 0.028396080444926024,
+          "validation_score": 80.00557869012933
+        },
+        {
+          "epoch": 40,
+          "train_energy_mse_per_atom": 0.24171241481478015,
+          "train_force_component_mse": 0.0018067410467968632,
+          "train_total_loss": 0.2597798281349242,
+          "validation_energy_mae_kcal_per_mol": 4649.507587084068,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02819283996492505,
+          "validation_score": 95.80943573817386
+        },
+        {
+          "epoch": 41,
+          "train_energy_mse_per_atom": 0.13981055363547057,
+          "train_force_component_mse": 0.0018032816684960078,
+          "train_total_loss": 0.15784337014580765,
+          "validation_energy_mae_kcal_per_mol": 17844.647468114217,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02819172730782601,
+          "validation_score": 359.71212209306697
+        },
+        {
+          "epoch": 42,
+          "train_energy_mse_per_atom": 0.1764407648394505,
+          "train_force_component_mse": 0.001770629295303176,
+          "train_total_loss": 0.1941470600043734,
+          "validation_energy_mae_kcal_per_mol": 10187.57360675967,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02830428384509207,
+          "validation_score": 206.58190051970263
+        },
+        {
+          "epoch": 43,
+          "train_energy_mse_per_atom": 0.18031006671177843,
+          "train_force_component_mse": 0.0017762557545211166,
+          "train_total_loss": 0.1980726229182134,
+          "validation_energy_mae_kcal_per_mol": 4770.224837057373,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02798609496938854,
+          "validation_score": 98.20310623808632
+        },
+        {
+          "epoch": 44,
+          "train_energy_mse_per_atom": 0.09876335070778926,
+          "train_force_component_mse": 0.001781794698520874,
+          "train_total_loss": 0.11658129747956991,
+          "validation_energy_mae_kcal_per_mol": 3879.196045513384,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02784761830044044,
+          "validation_score": 80.36868274031173
+        },
+        {
+          "epoch": 45,
+          "train_energy_mse_per_atom": 0.026712346511582535,
+          "train_force_component_mse": 0.0017775994686720271,
+          "train_total_loss": 0.044488341081887484,
+          "validation_energy_mae_kcal_per_mol": 3481.702842517801,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02793949036327704,
+          "validation_score": 72.42800588668372
+        },
+        {
+          "epoch": 46,
+          "train_energy_mse_per_atom": 0.03654542544488019,
+          "train_force_component_mse": 0.0017529743975804497,
+          "train_total_loss": 0.05407516875614723,
+          "validation_energy_mae_kcal_per_mol": 11925.073765873763,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02755267095659354,
+          "validation_score": 241.25674241313462
+        },
+        {
+          "epoch": 47,
+          "train_energy_mse_per_atom": 0.08440950500274387,
+          "train_force_component_mse": 0.0017309699517985184,
+          "train_total_loss": 0.10171920619904995,
+          "validation_energy_mae_kcal_per_mol": 9351.448064182321,
+          "validation_force_component_mae_hartree_per_angstrom": 0.027648188193802468,
+          "validation_score": 189.79378010302668
+        },
+        {
+          "epoch": 48,
+          "train_energy_mse_per_atom": 0.0495791066205129,
+          "train_force_component_mse": 0.0017498755138755466,
+          "train_total_loss": 0.06707786163315177,
+          "validation_energy_mae_kcal_per_mol": 9666.241692478761,
+          "validation_force_component_mae_hartree_per_angstrom": 0.027845167026134883,
+          "validation_score": 196.10935055218872
+        },
+        {
+          "epoch": 49,
+          "train_energy_mse_per_atom": 0.064108054987931,
+          "train_force_component_mse": 0.0017068214995864157,
+          "train_total_loss": 0.0811762687129279,
+          "validation_energy_mae_kcal_per_mol": 6675.695042386554,
+          "validation_force_component_mae_hartree_per_angstrom": 0.027421597393326568,
+          "validation_score": 136.25606058706373
+        },
+        {
+          "epoch": 50,
+          "train_energy_mse_per_atom": 0.021472802725232516,
+          "train_force_component_mse": 0.0016896039402733247,
+          "train_total_loss": 0.03836884178842107,
+          "validation_energy_mae_kcal_per_mol": 6472.632493997986,
+          "validation_force_component_mae_hartree_per_angstrom": 0.027415210227962006,
+          "validation_score": 132.19417090275593
+        },
+        {
+          "epoch": 51,
+          "train_energy_mse_per_atom": 0.0757793669278423,
+          "train_force_component_mse": 0.001693241996690631,
+          "train_total_loss": 0.09271178549776475,
+          "validation_energy_mae_kcal_per_mol": 2083.9009769534155,
+          "validation_force_component_mae_hartree_per_angstrom": 0.027316479727675973,
+          "validation_score": 44.409667511835906
+        },
+        {
+          "epoch": 52,
+          "train_energy_mse_per_atom": 0.034526585562465094,
+          "train_force_component_mse": 0.0016897248084812115,
+          "train_total_loss": 0.05142383355026444,
+          "validation_energy_mae_kcal_per_mol": 2563.1649762822935,
+          "validation_force_component_mae_hartree_per_angstrom": 0.027202961671734215,
+          "validation_score": 53.98359569281929
+        },
+        {
+          "epoch": 53,
+          "train_energy_mse_per_atom": 0.01798688712491033,
+          "train_force_component_mse": 0.0016807722179995228,
+          "train_total_loss": 0.0347946093728145,
+          "validation_energy_mae_kcal_per_mol": 3203.1459330414264,
+          "validation_force_component_mae_hartree_per_angstrom": 0.027192825219581943,
+          "validation_score": 66.78220118278672
+        },
+        {
+          "epoch": 54,
+          "train_energy_mse_per_atom": 0.013630681360761324,
+          "train_force_component_mse": 0.001657883539640655,
+          "train_total_loss": 0.03020951586465041,
+          "validation_energy_mae_kcal_per_mol": 675.2362345225043,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026914171066776953,
+          "validation_score": 16.19614179712778
+        },
+        {
+          "epoch": 55,
+          "train_energy_mse_per_atom": 0.045522994691661246,
+          "train_force_component_mse": 0.0016474105019976075,
+          "train_total_loss": 0.06199710055564841,
+          "validation_energy_mae_kcal_per_mol": 4756.747975717899,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02692132656709643,
+          "validation_score": 97.82709217106762
+        },
+        {
+          "epoch": 56,
+          "train_energy_mse_per_atom": 0.07498320101876743,
+          "train_force_component_mse": 0.0016599496399673324,
+          "train_total_loss": 0.09158269766097267,
+          "validation_energy_mae_kcal_per_mol": 9639.034231380276,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02670208189744078,
+          "validation_score": 195.4508928173496
+        },
+        {
+          "epoch": 57,
+          "train_energy_mse_per_atom": 0.04424098311574198,
+          "train_force_component_mse": 0.0016380717133870348,
+          "train_total_loss": 0.06062170024961233,
+          "validation_energy_mae_kcal_per_mol": 7922.077309213851,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026962506407127676,
+          "validation_score": 161.13779682498978
+        },
+        {
+          "epoch": 58,
+          "train_energy_mse_per_atom": 0.0254495147188815,
+          "train_force_component_mse": 0.0016358984673085313,
+          "train_total_loss": 0.04180849848004679,
+          "validation_energy_mae_kcal_per_mol": 1450.8236202125856,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026700468774308574,
+          "validation_score": 31.686519281682568
+        },
+        {
+          "epoch": 59,
+          "train_energy_mse_per_atom": 0.007212923699019787,
+          "train_force_component_mse": 0.0016299670533044264,
+          "train_total_loss": 0.023512594401836395,
+          "validation_energy_mae_kcal_per_mol": 2172.1492842608886,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026609615501895445,
+          "validation_score": 46.10394723540732
+        },
+        {
+          "epoch": 60,
+          "train_energy_mse_per_atom": 0.02487264869463009,
+          "train_force_component_mse": 0.0016384040548776586,
+          "train_total_loss": 0.041256689156095185,
+          "validation_energy_mae_kcal_per_mol": 3058.3809834204544,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026583831656278294,
+          "validation_score": 63.82600283403692
+        },
+        {
+          "epoch": 61,
+          "train_energy_mse_per_atom": 0.061709530923205115,
+          "train_force_component_mse": 0.0016305889779080947,
+          "train_total_loss": 0.07801542213807504,
+          "validation_energy_mae_kcal_per_mol": 4698.033862940877,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026375474127657682,
+          "validation_score": 96.59822467158331
+        },
+        {
+          "epoch": 62,
+          "train_energy_mse_per_atom": 0.10545774981437717,
+          "train_force_component_mse": 0.001626803520290802,
+          "train_total_loss": 0.12172578368335962,
+          "validation_energy_mae_kcal_per_mol": 6120.433992648148,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026560609731004523,
+          "validation_score": 125.06474082606341
+        },
+        {
+          "epoch": 63,
+          "train_energy_mse_per_atom": 0.0524689262577643,
+          "train_force_component_mse": 0.0016254604464241613,
+          "train_total_loss": 0.06872353128467996,
+          "validation_energy_mae_kcal_per_mol": 3072.8727984380707,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026401801225567678,
+          "validation_score": 64.09763609131818
+        },
+        {
+          "epoch": 64,
+          "train_energy_mse_per_atom": 0.009030269070838889,
+          "train_force_component_mse": 0.0016029607116555173,
+          "train_total_loss": 0.025059876265004277,
+          "validation_energy_mae_kcal_per_mol": 1417.54558711465,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026418624220682845,
+          "validation_score": 30.992774164361286
+        },
+        {
+          "epoch": 65,
+          "train_energy_mse_per_atom": 0.0059834642355175065,
+          "train_force_component_mse": 0.0016148171368210267,
+          "train_total_loss": 0.022131635574623942,
+          "validation_energy_mae_kcal_per_mol": 3949.969914494362,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026246993360051565,
+          "validation_score": 81.62409762589239
+        },
+        {
+          "epoch": 66,
+          "train_energy_mse_per_atom": 0.018168399925343692,
+          "train_force_component_mse": 0.0016219000632797058,
+          "train_total_loss": 0.03438740068425735,
+          "validation_energy_mae_kcal_per_mol": 1182.4449726217251,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026261394203465172,
+          "validation_score": 26.27503887278102
+        },
+        {
+          "epoch": 67,
+          "train_energy_mse_per_atom": 0.006734943201687808,
+          "train_force_component_mse": 0.0016053496559228126,
+          "train_total_loss": 0.022788439799721043,
+          "validation_energy_mae_kcal_per_mol": 2498.839893171394,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026170879937210977,
+          "validation_score": 52.59388585714898
+        },
+        {
+          "epoch": 68,
+          "train_energy_mse_per_atom": 0.006720618270871152,
+          "train_force_component_mse": 0.0016050556490275387,
+          "train_total_loss": 0.022771174709002178,
+          "validation_energy_mae_kcal_per_mol": 5013.2057051079455,
+          "validation_force_component_mae_hartree_per_angstrom": 0.026019637736059583,
+          "validation_score": 102.86607787576487
+        },
+        {
+          "epoch": 69,
+          "train_energy_mse_per_atom": 0.016497851815074682,
+          "train_force_component_mse": 0.0016057316533988342,
+          "train_total_loss": 0.03255516802892089,
+          "validation_energy_mae_kcal_per_mol": 1308.1364531213942,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02603671000428507,
+          "validation_score": 28.76640006285639
+        },
+        {
+          "epoch": 70,
+          "train_energy_mse_per_atom": 0.007718582608504221,
+          "train_force_component_mse": 0.0015986282717979823,
+          "train_total_loss": 0.023704865016043186,
+          "validation_energy_mae_kcal_per_mol": 1514.3539754434307,
+          "validation_force_component_mae_hartree_per_angstrom": 0.025938674658521427,
+          "validation_score": 32.88094697472076
+        },
+        {
+          "epoch": 71,
+          "train_energy_mse_per_atom": 0.006869068029724683,
+          "train_force_component_mse": 0.001580639722912262,
+          "train_total_loss": 0.022675465637197096,
+          "validation_energy_mae_kcal_per_mol": 908.6803680124245,
+          "validation_force_component_mae_hartree_per_angstrom": 0.025909738558060422,
+          "validation_score": 20.76458121605453
+        },
+        {
+          "epoch": 72,
+          "train_energy_mse_per_atom": 0.0031803597521502525,
+          "train_force_component_mse": 0.0015762895927764475,
+          "train_total_loss": 0.01894325576722622,
+          "validation_energy_mae_kcal_per_mol": 3976.5597858547326,
+          "validation_force_component_mae_hartree_per_angstrom": 0.025794184279650065,
+          "validation_score": 82.11061414505966
+        },
+        {
+          "epoch": 73,
+          "train_energy_mse_per_atom": 0.015493036053764323,
+          "train_force_component_mse": 0.001562106403677414,
+          "train_total_loss": 0.031114100323369105,
+          "validation_energy_mae_kcal_per_mol": 1816.2452444823632,
+          "validation_force_component_mae_hartree_per_angstrom": 0.025815728455405498,
+          "validation_score": 38.90647773518781
+        },
+        {
+          "epoch": 74,
+          "train_energy_mse_per_atom": 0.019295810675733566,
+          "train_force_component_mse": 0.0015427161221547674,
+          "train_total_loss": 0.034722971729934216,
+          "validation_energy_mae_kcal_per_mol": 1320.933486997208,
+          "validation_force_component_mae_hartree_per_angstrom": 0.025790590406899672,
+          "validation_score": 28.997728780634127
+        },
+        {
+          "epoch": 75,
+          "train_energy_mse_per_atom": 0.02627076800854411,
+          "train_force_component_mse": 0.0015401082249203075,
+          "train_total_loss": 0.041671850408116974,
+          "validation_energy_mae_kcal_per_mol": 2271.394518920679,
+          "validation_force_component_mae_hartree_per_angstrom": 0.025853361767687287,
+          "validation_score": 48.01322655518231
+        },
+        {
+          "epoch": 76,
+          "train_energy_mse_per_atom": 0.03533670911080359,
+          "train_force_component_mse": 0.0015398538768446695,
+          "train_total_loss": 0.05073524833035966,
+          "validation_energy_mae_kcal_per_mol": 9299.455625764313,
+          "validation_force_component_mae_hartree_per_angstrom": 0.025853649410786897,
+          "validation_score": 188.57447745636495
+        },
+        {
+          "epoch": 77,
+          "train_energy_mse_per_atom": 0.05195779536249271,
+          "train_force_component_mse": 0.0015487148872731875,
+          "train_total_loss": 0.06744494537512462,
+          "validation_energy_mae_kcal_per_mol": 6833.132550432247,
+          "validation_force_component_mae_hartree_per_angstrom": 0.025849515358955737,
+          "validation_score": 139.2476025445405
+        },
+        {
+          "epoch": 78,
+          "train_energy_mse_per_atom": 0.048089904439014695,
+          "train_force_component_mse": 0.0015247566431450348,
+          "train_total_loss": 0.06333747164656718,
+          "validation_energy_mae_kcal_per_mol": 6489.130278785137,
+          "validation_force_component_mae_hartree_per_angstrom": 0.025754555987089863,
+          "validation_score": 132.35806117441174
+        },
+        {
+          "epoch": 79,
+          "train_energy_mse_per_atom": 0.025315463542938232,
+          "train_force_component_mse": 0.0015352693493089948,
+          "train_total_loss": 0.04066815677409371,
+          "validation_energy_mae_kcal_per_mol": 1241.8149752756597,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02569856101865044,
+          "validation_score": 27.40615560737824
+        },
+        {
+          "epoch": 80,
+          "train_energy_mse_per_atom": 0.009932455141097307,
+          "train_force_component_mse": 0.0015312384736413758,
+          "train_total_loss": 0.02524484011034171,
+          "validation_energy_mae_kcal_per_mol": 3953.8238659608905,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02565904334375001,
+          "validation_score": 81.64238165359282
+        }
+      ],
+      "metrics": {
+        "test": {
+          "energy_mae_kcal_per_mol": 1754.9458723364896,
+          "energy_max_abs_kcal_per_mol": 4945.773523237075,
+          "energy_rmse_kcal_per_mol": 2535.14198594302,
+          "evaluation_wall_seconds": 0.005823918036185205,
+          "force_component_mae_hartree_per_angstrom": 0.03325169477405491,
+          "force_component_p95_abs_hartree_per_angstrom": 0.0915357619524002,
+          "force_component_rmse_hartree_per_angstrom": 0.044986856240556546,
+          "systems": 8
+        },
+        "train": {
+          "energy_mae_kcal_per_mol": 965.5752241965514,
+          "energy_max_abs_kcal_per_mol": 4280.423512041752,
+          "energy_rmse_kcal_per_mol": 1329.201919296562,
+          "evaluation_wall_seconds": 0.03384385898243636,
+          "force_component_mae_hartree_per_angstrom": 0.029319453087708097,
+          "force_component_p95_abs_hartree_per_angstrom": 0.08539470732212066,
+          "force_component_rmse_hartree_per_angstrom": 0.0408323793770864,
+          "systems": 48
+        },
+        "validation": {
+          "energy_mae_kcal_per_mol": 675.2362345225043,
+          "energy_max_abs_kcal_per_mol": 2245.6903382700075,
+          "energy_rmse_kcal_per_mol": 970.0052436802622,
+          "evaluation_wall_seconds": 0.005632758955471218,
+          "force_component_mae_hartree_per_angstrom": 0.026914171066776953,
+          "force_component_p95_abs_hartree_per_angstrom": 0.07782035395503041,
+          "force_component_rmse_hartree_per_angstrom": 0.036910034714698434,
+          "systems": 8
+        }
+      },
+      "model_config": {
+        "distance_scale": 8.0,
+        "hidden_dim": 32,
+        "num_species": 17,
+        "radial_features": 8
+      },
+      "model_kind": "direct",
+      "seed": 20260929,
+      "training": {
+        "batch_size": 4,
+        "best_epoch": 54,
+        "device": "cuda",
+        "epochs": 80,
+        "force_weight": 10.0,
+        "learning_rate": 0.001,
+        "wall_seconds": 7.311221904004924
+      }
+    },
+    {
+      "element_offsets_hartree": {
+        "1": -0.10693630268456843,
+        "16": -394.8477243612161,
+        "6": -35.9459932594841,
+        "7": -51.87459466351666,
+        "8": -71.15496849759563
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_energy_mse_per_atom": 2.204715379824241,
+          "train_force_component_mse": 0.016074005436773103,
+          "train_total_loss": 2.365455405165752,
+          "validation_energy_mae_kcal_per_mol": 23030.577224165525,
+          "validation_force_component_mae_hartree_per_angstrom": 0.07712287757877052,
+          "validation_score": 468.3238322411876
+        },
+        {
+          "epoch": 2,
+          "train_energy_mse_per_atom": 0.81296774931252,
+          "train_force_component_mse": 0.005779554562953611,
+          "train_total_loss": 0.8707632919152578,
+          "validation_energy_mae_kcal_per_mol": 14756.8950657532,
+          "validation_force_component_mae_hartree_per_angstrom": 0.054496978211933896,
+          "validation_score": 300.58759913625744
+        },
+        {
+          "epoch": 3,
+          "train_energy_mse_per_atom": 0.22310064608852068,
+          "train_force_component_mse": 0.003029591840459034,
+          "train_total_loss": 0.25339656323194504,
+          "validation_energy_mae_kcal_per_mol": 25242.841116299755,
+          "validation_force_component_mae_hartree_per_angstrom": 0.03659947840116588,
+          "validation_score": 508.5167701661117
+        },
+        {
+          "epoch": 4,
+          "train_energy_mse_per_atom": 0.40850215886409086,
+          "train_force_component_mse": 0.0018139003950636834,
+          "train_total_loss": 0.42664116869370144,
+          "validation_energy_mae_kcal_per_mol": 15839.606476945464,
+          "validation_force_component_mae_hartree_per_angstrom": 0.031486546218934056,
+          "validation_score": 319.9407841608027
+        },
+        {
+          "epoch": 5,
+          "train_energy_mse_per_atom": 0.15121045460303625,
+          "train_force_component_mse": 0.001627195631347907,
+          "train_total_loss": 0.16748240993668637,
+          "validation_energy_mae_kcal_per_mol": 32007.052566965365,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02844586702669852,
+          "validation_score": 642.9856380419772
+        },
+        {
+          "epoch": 6,
+          "train_energy_mse_per_atom": 0.6004954480255643,
+          "train_force_component_mse": 0.0014694746205350384,
+          "train_total_loss": 0.6151901880900065,
+          "validation_energy_mae_kcal_per_mol": 18257.618714701457,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02719124539152209,
+          "validation_score": 367.87149883318136
+        },
+        {
+          "epoch": 7,
+          "train_energy_mse_per_atom": 0.17156252319303653,
+          "train_force_component_mse": 0.0013391690348119785,
+          "train_total_loss": 0.1849542148411274,
+          "validation_energy_mae_kcal_per_mol": 4619.341440263454,
+          "validation_force_component_mae_hartree_per_angstrom": 0.025830636474289192,
+          "validation_score": 94.969892452698
+        },
+        {
+          "epoch": 8,
+          "train_energy_mse_per_atom": 0.059531894784110286,
+          "train_force_component_mse": 0.0012436769175110385,
+          "train_total_loss": 0.07196866519128282,
+          "validation_energy_mae_kcal_per_mol": 4655.582946600869,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02448932665564911,
+          "validation_score": 95.56059159758229
+        },
+        {
+          "epoch": 9,
+          "train_energy_mse_per_atom": 0.05960760225813525,
+          "train_force_component_mse": 0.0010929537820629776,
+          "train_total_loss": 0.0705371389631182,
+          "validation_energy_mae_kcal_per_mol": 9368.644826502532,
+          "validation_force_component_mae_hartree_per_angstrom": 0.023488569430947296,
+          "validation_score": 189.72175347314536
+        },
+        {
+          "epoch": 10,
+          "train_energy_mse_per_atom": 0.6021238191363713,
+          "train_force_component_mse": 0.0010207218292634934,
+          "train_total_loss": 0.6123310293381413,
+          "validation_energy_mae_kcal_per_mol": 18846.727512102418,
+          "validation_force_component_mae_hartree_per_angstrom": 0.022590680961967046,
+          "validation_score": 379.1936183382451
+        },
+        {
+          "epoch": 11,
+          "train_energy_mse_per_atom": 0.6133739066620668,
+          "train_force_component_mse": 0.0009588478230095158,
+          "train_total_loss": 0.6229623854160309,
+          "validation_energy_mae_kcal_per_mol": 15830.917132955714,
+          "validation_force_component_mae_hartree_per_angstrom": 0.02202621399811473,
+          "validation_score": 318.8209640589257
+        },
+        {
+          "epoch": 12,
+          "train_energy_mse_per_atom": 0.21410435329501828,
+          "train_force_component_mse": 0.0009001394840500628,
+          "train_total_loss": 0.22310574601093927,
+          "validation_energy_mae_kcal_per_mol": 6477.108822719979,
+          "validation_force_component_mae_hartree_per_angstrom": 0.020949127669608745,
+          "validation_score": 131.63708922136044
+        },
+        {
+          "epoch": 13,
+          "train_energy_mse_per_atom": 0.15830074689195803,
+          "train_force_component_mse": 0.0008518484294957792,
+          "train_total_loss": 0.1668192297608281,
+          "validation_energy_mae_kcal_per_mol": 5409.209990207763,
+          "validation_force_component_mae_hartree_per_angstrom": 0.020661679822107714,
+          "validation_score": 110.25036778636604
+        },
+        {
+          "epoch": 14,
+          "train_energy_mse_per_atom": 0.37717720788593095,
+          "train_force_component_mse": 0.0008115101906393344,
+          "train_total_loss": 0.38529230805579573,
+          "validation_energy_mae_kcal_per_mol": 10092.718525509576,
+          "validation_force_component_mae_hartree_per_angstrom": 0.019985461793907672,
+          "validation_score": 203.85291668958226
+        },
+        {
+          "epoch": 15,
+          "train_energy_mse_per_atom": 0.11449719715164974,
+          "train_force_component_mse": 0.0007669921372629082,
+          "train_total_loss": 0.12216711750564475,
+          "validation_energy_mae_kcal_per_mol": 5836.931577749508,
+          "validation_force_component_mae_hartree_per_angstrom": 0.01933247794502462,
+          "validation_score": 118.67187934949261
+        },
+        {
+          "epoch": 16,
+          "train_energy_mse_per_atom": 0.10863527459635709,
+          "train_force_component_mse": 0.000731137862506633,
+          "train_total_loss": 0.11594665120355785,
+          "validation_energy_mae_kcal_per_mol": 5484.278262251445,
+          "validation_force_component_mae_hartree_per_angstrom": 0.018685386990621247,
+          "validation_score": 111.55410394409103
+        },
+        {
+          "epoch": 17,
+          "train_energy_mse_per_atom": 0.02655316005499723,
+          "train_force_component_mse": 0.0006833624526431473,
+          "train_total_loss": 0.033386784217630826,
+          "validation_energy_mae_kcal_per_mol": 3305.3115532845486,
+          "validation_force_component_mae_hartree_per_angstrom": 0.018271944264483392,
+          "validation_score": 67.93342549213932
+        },
+        {
+          "epoch": 18,
+          "train_energy_mse_per_atom": 0.03249628178309649,
+          "train_force_component_mse": 0.000636769533836438,
+          "train_total_loss": 0.03886397757257024,
+          "validation_energy_mae_kcal_per_mol": 7127.684555374051,
+          "validation_force_component_mae_hartree_per_angstrom": 0.017488336802511734,
+          "validation_score": 144.3025247877322
+        },
+        {
+          "epoch": 19,
+          "train_energy_mse_per_atom": 0.07763657489704201,
+          "train_force_component_mse": 0.0005995609681122005,
+          "train_total_loss": 0.08363218368807186,
+          "validation_energy_mae_kcal_per_mol": 5108.142174152984,
+          "validation_force_component_mae_hartree_per_angstrom": 0.016749492253224092,
+          "validation_score": 103.83779270838208
+        },
+        {
+          "epoch": 20,
+          "train_energy_mse_per_atom": 0.1667072350004067,
+          "train_force_component_mse": 0.0005524803345906548,
+          "train_total_loss": 0.1722320377205809,
+          "validation_energy_mae_kcal_per_mol": 5801.815137989278,
+          "validation_force_component_mae_hartree_per_angstrom": 0.016498727383032433,
+          "validation_score": 117.6861754980888
+        },
+        {
+          "epoch": 21,
+          "train_energy_mse_per_atom": 0.05480742310949912,
+          "train_force_component_mse": 0.0005301556520862505,
+          "train_total_loss": 0.06010897954305013,
+          "validation_energy_mae_kcal_per_mol": 4162.703247929374,
+          "validation_force_component_mae_hartree_per_angstrom": 0.016175309811867402,
+          "validation_score": 84.87159593977422
+        },
+        {
+          "epoch": 22,
+          "train_energy_mse_per_atom": 0.03679496352560818,
+          "train_force_component_mse": 0.000496913455814744,
+          "train_total_loss": 0.041764097404666245,
+          "validation_energy_mae_kcal_per_mol": 5940.581328371044,
+          "validation_force_component_mae_hartree_per_angstrom": 0.015596721127318839,
+          "validation_score": 120.37129868015278
+        },
+        {
+          "epoch": 23,
+          "train_energy_mse_per_atom": 0.06395581694475065,
+          "train_force_component_mse": 0.00048176533164223656,
+          "train_total_loss": 0.06877347143987815,
+          "validation_energy_mae_kcal_per_mol": 7160.134347970485,
+          "validation_force_component_mae_hartree_per_angstrom": 0.015078446930115664,
+          "validation_score": 144.71053165242128
+        },
+        {
+          "epoch": 24,
+          "train_energy_mse_per_atom": 0.0693847006962945,
+          "train_force_component_mse": 0.0004502618927896644,
+          "train_total_loss": 0.07388731961448987,
+          "validation_energy_mae_kcal_per_mol": 3822.4160897456504,
+          "validation_force_component_mae_hartree_per_angstrom": 0.0146895770055334,
+          "validation_score": 77.91727949546636
+        },
+        {
+          "epoch": 25,
+          "train_energy_mse_per_atom": 0.07230495405383408,
+          "train_force_component_mse": 0.0004326320267864503,
+          "train_total_loss": 0.07663127407431602,
+          "validation_energy_mae_kcal_per_mol": 9767.569497185681,
+          "validation_force_component_mae_hartree_per_angstrom": 0.014351126661733975,
+          "validation_score": 196.78650260988704
+        },
+        {
+          "epoch": 26,
+          "train_energy_mse_per_atom": 0.07343097384242962,
+          "train_force_component_mse": 0.0004185521902400069,
+          "train_total_loss": 0.07761649570117395,
+          "validation_energy_mae_kcal_per_mol": 3427.785822125203,
+          "validation_force_component_mae_hartree_per_angstrom": 0.014082209848272765,
+          "validation_score": 69.96393742733135
+        },
+        {
+          "epoch": 27,
+          "train_energy_mse_per_atom": 0.02741492500839134,
+          "train_force_component_mse": 0.00040673101708913845,
+          "train_total_loss": 0.03148223529569805,
+          "validation_energy_mae_kcal_per_mol": 8380.13260668345,
+          "validation_force_component_mae_hartree_per_angstrom": 0.013729296205255667,
+          "validation_score": 168.97558175419456
+        },
+        {
+          "epoch": 28,
+          "train_energy_mse_per_atom": 0.0314414541159446,
+          "train_force_component_mse": 0.0003808557836843344,
+          "train_total_loss": 0.03525001183152199,
+          "validation_energy_mae_kcal_per_mol": 4911.317760871107,
+          "validation_force_component_mae_hartree_per_angstrom": 0.013783095781234614,
+          "validation_score": 99.6046647955456
+        },
+        {
+          "epoch": 29,
+          "train_energy_mse_per_atom": 0.04862370737828314,
+          "train_force_component_mse": 0.0003714481645147316,
+          "train_total_loss": 0.05233818921260536,
+          "validation_energy_mae_kcal_per_mol": 8526.171035919448,
+          "validation_force_component_mae_hartree_per_angstrom": 0.013133435944382276,
+          "validation_score": 171.8367643128272
+        },
+        {
+          "epoch": 30,
+          "train_energy_mse_per_atom": 0.10698622523341328,
+          "train_force_component_mse": 0.0003479249450416925,
+          "train_total_loss": 0.11046547399989019,
+          "validation_energy_mae_kcal_per_mol": 7664.987627533641,
+          "validation_force_component_mae_hartree_per_angstrom": 0.012860268884865259,
+          "validation_score": 154.58577943915935
+        },
+        {
+          "epoch": 31,
+          "train_energy_mse_per_atom": 0.053796619875356555,
+          "train_force_component_mse": 0.0003329097780806478,
+          "train_total_loss": 0.057125717673140265,
+          "validation_energy_mae_kcal_per_mol": 4391.039100407138,
+          "validation_force_component_mae_hartree_per_angstrom": 0.012790754558506916,
+          "validation_score": 89.09985746399344
+        },
+        {
+          "epoch": 32,
+          "train_energy_mse_per_atom": 0.03773407375895962,
+          "train_force_component_mse": 0.00032560511560101685,
+          "train_total_loss": 0.040990124825232975,
+          "validation_energy_mae_kcal_per_mol": 12962.710701218368,
+          "validation_force_component_mae_hartree_per_angstrom": 0.012792739936904262,
+          "validation_score": 260.53348801805777
+        },
+        {
+          "epoch": 33,
+          "train_energy_mse_per_atom": 0.06709359019684295,
+          "train_force_component_mse": 0.00031242936408186023,
+          "train_total_loss": 0.07021788399045666,
+          "validation_energy_mae_kcal_per_mol": 4099.651644433501,
+          "validation_force_component_mae_hartree_per_angstrom": 0.012252688954713683,
+          "validation_score": 83.2183017841414
+        },
+        {
+          "epoch": 34,
+          "train_energy_mse_per_atom": 0.028620027432528634,
+          "train_force_component_mse": 0.0002997602023242507,
+          "train_total_loss": 0.031617629302976034,
+          "validation_energy_mae_kcal_per_mol": 2634.048958162316,
+          "validation_force_component_mae_hartree_per_angstrom": 0.0118295578338308,
+          "validation_score": 53.8639349466294
+        },
+        {
+          "epoch": 35,
+          "train_energy_mse_per_atom": 0.03073506922616313,
+          "train_force_component_mse": 0.00028597576238098554,
+          "train_total_loss": 0.033594826818443835,
+          "validation_energy_mae_kcal_per_mol": 4041.4306459435006,
+          "validation_force_component_mae_hartree_per_angstrom": 0.011438256121167107,
+          "validation_score": 81.97243853098672
+        },
+        {
+          "epoch": 36,
+          "train_energy_mse_per_atom": 0.09396121728544433,
+          "train_force_component_mse": 0.0002749921222857665,
+          "train_total_loss": 0.09671113911705713,
+          "validation_energy_mae_kcal_per_mol": 5486.169331604587,
+          "validation_force_component_mae_hartree_per_angstrom": 0.011394672115662013,
+          "validation_score": 110.86285384365793
+        },
+        {
+          "epoch": 37,
+          "train_energy_mse_per_atom": 0.056618507873887815,
+          "train_force_component_mse": 0.00027409867592117126,
+          "train_total_loss": 0.059359495217601456,
+          "validation_energy_mae_kcal_per_mol": 6079.816695453084,
+          "validation_force_component_mae_hartree_per_angstrom": 0.011713773898340232,
+          "validation_score": 122.7677112988957
+        },
+        {
+          "epoch": 38,
+          "train_energy_mse_per_atom": 0.10431075418212761,
+          "train_force_component_mse": 0.00026033684601619217,
+          "train_total_loss": 0.10691412553812067,
+          "validation_energy_mae_kcal_per_mol": 2346.070214541683,
+          "validation_force_component_mae_hartree_per_angstrom": 0.01110455234252371,
+          "validation_score": 48.031859525086034
+        },
+        {
+          "epoch": 39,
+          "train_energy_mse_per_atom": 0.07619526180981968,
+          "train_force_component_mse": 0.00025098486851978424,
+          "train_total_loss": 0.07870510981107752,
+          "validation_energy_mae_kcal_per_mol": 5044.4442558148985,
+          "validation_force_component_mae_hartree_per_angstrom": 0.011296023920500466,
+          "validation_score": 102.01848750834802
+        },
+        {
+          "epoch": 40,
+          "train_energy_mse_per_atom": 0.12829962080771415,
+          "train_force_component_mse": 0.00024954944698644493,
+          "train_total_loss": 0.13079511352892345,
+          "validation_energy_mae_kcal_per_mol": 9260.576197367198,
+          "validation_force_component_mae_hartree_per_angstrom": 0.01079395931947714,
+          "validation_score": 186.29091987929166
+        },
+        {
+          "epoch": 41,
+          "train_energy_mse_per_atom": 0.1769014927558601,
+          "train_force_component_mse": 0.00023960057054258263,
+          "train_total_loss": 0.17929749904821315,
+          "validation_energy_mae_kcal_per_mol": 4979.721808763971,
+          "validation_force_component_mae_hartree_per_angstrom": 0.01072093705857267,
+          "validation_score": 100.6665298811367
+        },
+        {
+          "epoch": 42,
+          "train_energy_mse_per_atom": 0.17187565853237174,
+          "train_force_component_mse": 0.00024426577025830437,
+          "train_total_loss": 0.17431831604335457,
+          "validation_energy_mae_kcal_per_mol": 8104.697158519095,
+          "validation_force_component_mae_hartree_per_angstrom": 0.010758115804900515,
+          "validation_score": 163.16975475087193
+        },
+        {
+          "epoch": 43,
+          "train_energy_mse_per_atom": 0.04555618578160647,
+          "train_force_component_mse": 0.00022638739149745865,
+          "train_total_loss": 0.04782005870947614,
+          "validation_energy_mae_kcal_per_mol": 4694.912401628856,
+          "validation_force_component_mae_hartree_per_angstrom": 0.010359565776572289,
+          "validation_score": 94.93420461023435
+        },
+        {
+          "epoch": 44,
+          "train_energy_mse_per_atom": 0.06290409504435956,
+          "train_force_component_mse": 0.00022603045484477965,
+          "train_total_loss": 0.06516439995417993,
+          "validation_energy_mae_kcal_per_mol": 3713.5096450741157,
+          "validation_force_component_mae_hartree_per_angstrom": 0.01026722755434467,
+          "validation_score": 75.29691565691678
+        },
+        {
+          "epoch": 45,
+          "train_energy_mse_per_atom": 0.15902360474380353,
+          "train_force_component_mse": 0.00021875367504738583,
+          "train_total_loss": 0.1612111427433168,
+          "validation_energy_mae_kcal_per_mol": 13944.041645012863,
+          "validation_force_component_mae_hartree_per_angstrom": 0.010231156185685857,
+          "validation_score": 279.9039485188258
+        },
+        {
+          "epoch": 46,
+          "train_energy_mse_per_atom": 0.10508387081790715,
+          "train_force_component_mse": 0.00021811290813881593,
+          "train_total_loss": 0.10726500166735302,
+          "validation_energy_mae_kcal_per_mol": 7469.62819456078,
+          "validation_force_component_mae_hartree_per_angstrom": 0.010502938009877491,
+          "validation_score": 150.44285769220335
+        },
+        {
+          "epoch": 47,
+          "train_energy_mse_per_atom": 0.08541900260994832,
+          "train_force_component_mse": 0.00021328989896574058,
+          "train_total_loss": 0.08755190018564463,
+          "validation_energy_mae_kcal_per_mol": 7880.598258895837,
+          "validation_force_component_mae_hartree_per_angstrom": 0.010196331795924347,
+          "validation_score": 158.63159835750918
+        },
+        {
+          "epoch": 48,
+          "train_energy_mse_per_atom": 0.05398216636482781,
+          "train_force_component_mse": 0.00020751908959937282,
+          "train_total_loss": 0.05605735775316134,
+          "validation_energy_mae_kcal_per_mol": 10671.424047709585,
+          "validation_force_component_mae_hartree_per_angstrom": 0.010102394547995493,
+          "validation_score": 214.43872040899123
+        },
+        {
+          "epoch": 49,
+          "train_energy_mse_per_atom": 0.05546739730925765,
+          "train_force_component_mse": 0.00020161667877497771,
+          "train_total_loss": 0.057483562850393355,
+          "validation_energy_mae_kcal_per_mol": 4350.15370224049,
+          "validation_force_component_mae_hartree_per_angstrom": 0.009706326395561876,
+          "validation_score": 87.973706684366
+        },
+        {
+          "epoch": 50,
+          "train_energy_mse_per_atom": 0.03525296214017241,
+          "train_force_component_mse": 0.00019808500413394844,
+          "train_total_loss": 0.037233812268823385,
+          "validation_energy_mae_kcal_per_mol": 10001.353544407431,
+          "validation_force_component_mae_hartree_per_angstrom": 0.00971873965005391,
+          "validation_score": 200.998944853154
+        },
+        {
+          "epoch": 51,
+          "train_energy_mse_per_atom": 0.027305660090253998,
+          "train_force_component_mse": 0.0001926224128207347,
+          "train_total_loss": 0.029231884827216465,
+          "validation_energy_mae_kcal_per_mol": 2149.801153272374,
+          "validation_force_component_mae_hartree_per_angstrom": 0.00944084057738077,
+          "validation_score": 43.940107123185555
+        },
+        {
+          "epoch": 52,
+          "train_energy_mse_per_atom": 0.037209463208758585,
+          "train_force_component_mse": 0.00018217109512382498,
+          "train_total_loss": 0.03903117387865981,
+          "validation_energy_mae_kcal_per_mol": 7303.908281500064,
+          "validation_force_component_mae_hartree_per_angstrom": 0.009333205514888709,
+          "validation_score": 147.01148618149014
+        },
+        {
+          "epoch": 53,
+          "train_energy_mse_per_atom": 0.019834511224568512,
+          "train_force_component_mse": 0.00017886978457681835,
+          "train_total_loss": 0.021623209196453292,
+          "validation_energy_mae_kcal_per_mol": 4087.5631631254464,
+          "validation_force_component_mae_hartree_per_angstrom": 0.009239218474358223,
+          "validation_score": 82.67518510994475
+        },
+        {
+          "epoch": 54,
+          "train_energy_mse_per_atom": 0.010059821409716582,
+          "train_force_component_mse": 0.0001749809380271472,
+          "train_total_loss": 0.011809630940357843,
+          "validation_energy_mae_kcal_per_mol": 5252.346984244038,
+          "validation_force_component_mae_hartree_per_angstrom": 0.009068555706789804,
+          "validation_score": 105.95379525555975
+        },
+        {
+          "epoch": 55,
+          "train_energy_mse_per_atom": 0.02072084339548989,
+          "train_force_component_mse": 0.0001682252617077514,
+          "train_total_loss": 0.022403096004078787,
+          "validation_energy_mae_kcal_per_mol": 6425.049359059073,
+          "validation_force_component_mae_hartree_per_angstrom": 0.00896277931622978,
+          "validation_score": 129.39726511280446
+        },
+        {
+          "epoch": 56,
+          "train_energy_mse_per_atom": 0.04620722586696502,
+          "train_force_component_mse": 0.00016335823481009962,
+          "train_total_loss": 0.0478408086928539,
+          "validation_energy_mae_kcal_per_mol": 1501.8441926086005,
+          "validation_force_component_mae_hartree_per_angstrom": 0.008669268240645959,
+          "validation_score": 30.903810676236606
+        },
+        {
+          "epoch": 57,
+          "train_energy_mse_per_atom": 0.1001851885036255,
+          "train_force_component_mse": 0.00015930767161383605,
+          "train_total_loss": 0.10177826508879662,
+          "validation_energy_mae_kcal_per_mol": 15818.847801717058,
+          "validation_force_component_mae_hartree_per_angstrom": 0.008764656971197913,
+          "validation_score": 317.25342173146095
+        },
+        {
+          "epoch": 58,
+          "train_energy_mse_per_atom": 0.13203781751993424,
+          "train_force_component_mse": 0.00015882899242569692,
+          "train_total_loss": 0.13362610673842332,
+          "validation_energy_mae_kcal_per_mol": 6145.056194377781,
+          "validation_force_component_mae_hartree_per_angstrom": 0.00868374967519101,
+          "validation_score": 123.76949885507473
+        },
+        {
+          "epoch": 59,
+          "train_energy_mse_per_atom": 0.35856609667340916,
+          "train_force_component_mse": 0.00018076886832811093,
+          "train_total_loss": 0.3603737947220604,
+          "validation_energy_mae_kcal_per_mol": 11381.757571922919,
+          "validation_force_component_mae_hartree_per_angstrom": 0.009614561417825978,
+          "validation_score": 228.59660758024097
+        },
+        {
+          "epoch": 60,
+          "train_energy_mse_per_atom": 0.09361931060751279,
+          "train_force_component_mse": 0.00016188239169423468,
+          "train_total_loss": 0.09523813457538684,
+          "validation_energy_mae_kcal_per_mol": 4320.619507710039,
+          "validation_force_component_mae_hartree_per_angstrom": 0.00855398492325184,
+          "validation_score": 87.26778864652596
+        },
+        {
+          "epoch": 61,
+          "train_energy_mse_per_atom": 0.053246790213355176,
+          "train_force_component_mse": 0.00015564297185240625,
+          "train_total_loss": 0.05480321942983816,
+          "validation_energy_mae_kcal_per_mol": 2004.6005395725774,
+          "validation_force_component_mae_hartree_per_angstrom": 0.008436710165746987,
+          "validation_score": 40.935681808026246
+        },
+        {
+          "epoch": 62,
+          "train_energy_mse_per_atom": 0.02570776314435837,
+          "train_force_component_mse": 0.00014961025044613052,
+          "train_total_loss": 0.027203865863460425,
+          "validation_energy_mae_kcal_per_mol": 3260.2897401277387,
+          "validation_force_component_mae_hartree_per_angstrom": 0.008504022353410827,
+          "validation_score": 66.05619703789586
+        },
+        {
+          "epoch": 63,
+          "train_energy_mse_per_atom": 0.0139888606366488,
+          "train_force_component_mse": 0.0001471665145800216,
+          "train_total_loss": 0.01546052586248455,
+          "validation_energy_mae_kcal_per_mol": 3109.281867882726,
+          "validation_force_component_mae_hartree_per_angstrom": 0.008284231232169936,
+          "validation_score": 63.014060480871514
+        },
+        {
+          "epoch": 64,
+          "train_energy_mse_per_atom": 0.009168614352044338,
+          "train_force_component_mse": 0.00014275903716528168,
+          "train_total_loss": 0.010596204781904817,
+          "validation_energy_mae_kcal_per_mol": 1074.8263701172664,
+          "validation_force_component_mae_hartree_per_angstrom": 0.00809965978180316,
+          "validation_score": 22.306493380525644
+        },
+        {
+          "epoch": 65,
+          "train_energy_mse_per_atom": 0.007005686001017845,
+          "train_force_component_mse": 0.00013943350071106883,
+          "train_total_loss": 0.008400021062698215,
+          "validation_energy_mae_kcal_per_mol": 1174.7849448621657,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007966970568148792,
+          "validation_score": 24.292395954058193
+        },
+        {
+          "epoch": 66,
+          "train_energy_mse_per_atom": 0.02594964000066587,
+          "train_force_component_mse": 0.00013425970549481767,
+          "train_total_loss": 0.02729223753946523,
+          "validation_energy_mae_kcal_per_mol": 6251.549730305054,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007894888114577418,
+          "validation_score": 125.82048341755883
+        },
+        {
+          "epoch": 67,
+          "train_energy_mse_per_atom": 0.02731220333953388,
+          "train_force_component_mse": 0.00013519738543739854,
+          "train_total_loss": 0.028664177264242124,
+          "validation_energy_mae_kcal_per_mol": 1625.1754270548554,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007749919778703583,
+          "validation_score": 33.27850051896746
+        },
+        {
+          "epoch": 68,
+          "train_energy_mse_per_atom": 0.017391399553162046,
+          "train_force_component_mse": 0.0001297898343182169,
+          "train_total_loss": 0.018689297915746767,
+          "validation_energy_mae_kcal_per_mol": 4272.720396626045,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007842645243943243,
+          "validation_score": 86.23867245691522
+        },
+        {
+          "epoch": 69,
+          "train_energy_mse_per_atom": 0.03369855953496881,
+          "train_force_component_mse": 0.00013080890797330844,
+          "train_total_loss": 0.03500664913250754,
+          "validation_energy_mae_kcal_per_mol": 7411.0433447522,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007679144430523142,
+          "validation_score": 148.98878133809632
+        },
+        {
+          "epoch": 70,
+          "train_energy_mse_per_atom": 0.05322104432464888,
+          "train_force_component_mse": 0.00012691277940272508,
+          "train_total_loss": 0.05449017214899262,
+          "validation_energy_mae_kcal_per_mol": 3601.543976816107,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007601716234666123,
+          "validation_score": 72.79105115978875
+        },
+        {
+          "epoch": 71,
+          "train_energy_mse_per_atom": 0.042033396273230515,
+          "train_force_component_mse": 0.00012674163917836268,
+          "train_total_loss": 0.04330081275353829,
+          "validation_energy_mae_kcal_per_mol": 2294.6044030321436,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007638629304004349,
+          "validation_score": 46.655950991043305
+        },
+        {
+          "epoch": 72,
+          "train_energy_mse_per_atom": 0.018043451481692802,
+          "train_force_component_mse": 0.0001237878568645101,
+          "train_total_loss": 0.019281330052763224,
+          "validation_energy_mae_kcal_per_mol": 2184.7356673733143,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007557790437356665,
+          "validation_score": 44.45049239120195
+        },
+        {
+          "epoch": 73,
+          "train_energy_mse_per_atom": 0.009170033901076144,
+          "train_force_component_mse": 0.00012086084825568832,
+          "train_total_loss": 0.0103786424054609,
+          "validation_energy_mae_kcal_per_mol": 4829.120875493685,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007445604060133973,
+          "validation_score": 97.3269779158871
+        },
+        {
+          "epoch": 74,
+          "train_energy_mse_per_atom": 0.036471667408477515,
+          "train_force_component_mse": 0.00012117228713274623,
+          "train_total_loss": 0.03768338959586496,
+          "validation_energy_mae_kcal_per_mol": 6142.351247075187,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007464573282558016,
+          "validation_score": 123.59348226975953
+        },
+        {
+          "epoch": 75,
+          "train_energy_mse_per_atom": 0.02307642245432362,
+          "train_force_component_mse": 0.00011771617149255083,
+          "train_total_loss": 0.024253583746030927,
+          "validation_energy_mae_kcal_per_mol": 2128.8031021764823,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007285090983289442,
+          "validation_score": 43.30457114185859
+        },
+        {
+          "epoch": 76,
+          "train_energy_mse_per_atom": 0.009699649279355071,
+          "train_force_component_mse": 0.00011495280584009986,
+          "train_total_loss": 0.010849177274697771,
+          "validation_energy_mae_kcal_per_mol": 3558.829747021864,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007220111964409822,
+          "validation_score": 71.89860613687827
+        },
+        {
+          "epoch": 77,
+          "train_energy_mse_per_atom": 0.012294697323037932,
+          "train_force_component_mse": 0.00011292793108926465,
+          "train_total_loss": 0.013423976760047177,
+          "validation_energy_mae_kcal_per_mol": 1463.5871414669514,
+          "validation_force_component_mae_hartree_per_angstrom": 0.00713356343714028,
+          "validation_score": 29.985099173053058
+        },
+        {
+          "epoch": 78,
+          "train_energy_mse_per_atom": 0.005488770268736213,
+          "train_force_component_mse": 0.00011067732278509841,
+          "train_total_loss": 0.006595543653626616,
+          "validation_energy_mae_kcal_per_mol": 5692.25759095818,
+          "validation_force_component_mae_hartree_per_angstrom": 0.007174942984099787,
+          "validation_score": 114.56264611757358
+        },
+        {
+          "epoch": 79,
+          "train_energy_mse_per_atom": 0.049370712445427976,
+          "train_force_component_mse": 0.00011249122508161236,
+          "train_total_loss": 0.050495624697456755,
+          "validation_energy_mae_kcal_per_mol": 1400.4397876240841,
+          "validation_force_component_mae_hartree_per_angstrom": 0.006983904420351823,
+          "validation_score": 28.707186194516865
+        },
+        {
+          "epoch": 80,
+          "train_energy_mse_per_atom": 0.01988775745849125,
+          "train_force_component_mse": 0.00010748180890611063,
+          "train_total_loss": 0.02096257529531916,
+          "validation_energy_mae_kcal_per_mol": 5470.432762076041,
+          "validation_force_component_mae_hartree_per_angstrom": 0.0072557641633360275,
+          "validation_score": 110.13423165785444
+        }
+      ],
+      "metrics": {
+        "test": {
+          "energy_mae_kcal_per_mol": 1621.5847890425619,
+          "energy_max_abs_kcal_per_mol": 10155.358402513373,
+          "energy_rmse_kcal_per_mol": 3622.860691501203,
+          "evaluation_wall_seconds": 0.004691394977271557,
+          "force_component_mae_hartree_per_angstrom": 0.009119788401080764,
+          "force_component_p95_abs_hartree_per_angstrom": 0.02445333451032637,
+          "force_component_rmse_hartree_per_angstrom": 0.012181226515563831,
+          "systems": 8
+        },
+        "train": {
+          "energy_mae_kcal_per_mol": 1785.0505793511163,
+          "energy_max_abs_kcal_per_mol": 10370.758383112181,
+          "energy_rmse_kcal_per_mol": 3328.5626925000424,
+          "evaluation_wall_seconds": 0.027868019067682326,
+          "force_component_mae_hartree_per_angstrom": 0.00867286512277488,
+          "force_component_p95_abs_hartree_per_angstrom": 0.024105773121118543,
+          "force_component_rmse_hartree_per_angstrom": 0.01186623777787795,
+          "systems": 48
+        },
+        "validation": {
+          "energy_mae_kcal_per_mol": 1074.8263701172664,
+          "energy_max_abs_kcal_per_mol": 6397.961585894332,
+          "energy_rmse_kcal_per_mol": 2313.0390643404535,
+          "evaluation_wall_seconds": 0.004647805937565863,
+          "force_component_mae_hartree_per_angstrom": 0.00809965978180316,
+          "force_component_p95_abs_hartree_per_angstrom": 0.021324658580124375,
+          "force_component_rmse_hartree_per_angstrom": 0.01129417770034068,
+          "systems": 8
+        }
+      },
+      "model_config": {
+        "distance_scale": 8.0,
+        "hidden_dim": 32,
+        "num_species": 17,
+        "radial_features": 8
+      },
+      "model_kind": "delta",
+      "seed": 20260929,
+      "training": {
+        "batch_size": 4,
+        "best_epoch": 64,
+        "device": "cuda",
+        "epochs": 80,
+        "force_weight": 10.0,
+        "learning_rate": 0.001,
+        "wall_seconds": 6.879981319070794
+      }
+    }
+  ],
+  "schema": "xtbflow-energy-baseline-run/v1",
+  "status": "superseded_pre_canonical_split_contract",
+  "superseded_by": "spice2-openff-pilot-v1-7 canonical hash-bucket split",
+  "superseded_reason": "Initial no-leakage split was not reconstructible through xtbflow.data.splits.assign_group_splits; retained as engineering evidence only."
+}

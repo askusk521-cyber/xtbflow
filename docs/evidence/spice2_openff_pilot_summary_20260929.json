@@ -1,0 +1,220 @@
+{
+  "admission": {
+    "charge_counts": {
+      "-1": 12,
+      "0": 39,
+      "1": 13
+    },
+    "eligible_parent_records": 81,
+    "selected_configs": 64,
+    "selected_parent_records": 64,
+    "split_counts": {
+      "test": 8,
+      "train": 48,
+      "validation": 8
+    },
+    "split_ratios": {
+      "test": 0.125,
+      "train": 0.75,
+      "validation": 0.125
+    },
+    "split_seed": "spice2-openff-pilot-v1-7",
+    "sulfur_records": 17
+  },
+  "bare_gfn2": {
+    "element_offsets_hartree": {
+      "1": -0.10521012595799062,
+      "16": -394.84734053775964,
+      "6": -35.94592880370446,
+      "7": -51.87835371190954,
+      "8": -71.15784447181507
+    },
+    "metrics": {
+      "test": {
+        "energy_mae_kcal_per_mol": 52.65669790308068,
+        "energy_max_abs_kcal_per_mol": 98.09867918728277,
+        "energy_rmse_kcal_per_mol": 57.95645161935761,
+        "force_component_mae_hartree_per_angstrom": 0.008355471383065197,
+        "force_component_p95_abs_hartree_per_angstrom": 0.030658985233671426,
+        "force_component_rmse_hartree_per_angstrom": 0.013043692700756334,
+        "systems": 8
+      },
+      "train": {
+        "energy_mae_kcal_per_mol": 37.79823677104985,
+        "energy_max_abs_kcal_per_mol": 108.03518263653268,
+        "energy_rmse_kcal_per_mol": 46.125581147349344,
+        "force_component_mae_hartree_per_angstrom": 0.007690792637790773,
+        "force_component_p95_abs_hartree_per_angstrom": 0.027571812323117294,
+        "force_component_rmse_hartree_per_angstrom": 0.012006909367222552,
+        "systems": 48
+      },
+      "validation": {
+        "energy_mae_kcal_per_mol": 15.216449664721203,
+        "energy_max_abs_kcal_per_mol": 36.566131042500416,
+        "energy_rmse_kcal_per_mol": 18.400781232228486,
+        "force_component_mae_hartree_per_angstrom": 0.009183093332100434,
+        "force_component_p95_abs_hartree_per_angstrom": 0.03275474679996918,
+        "force_component_rmse_hartree_per_angstrom": 0.013956160821552405,
+        "systems": 8
+      }
+    },
+    "test_slices": {
+      "charged": {
+        "energy_mae_kcal_per_mol": 90.7727403794424,
+        "energy_max_abs_kcal_per_mol": 98.09867918728277,
+        "energy_rmse_kcal_per_mol": 91.06788553277094,
+        "force_component_mae_hartree_per_angstrom": 0.008711733738950815,
+        "force_component_p95_abs_hartree_per_angstrom": 0.0339946123419977,
+        "force_component_rmse_hartree_per_angstrom": 0.013508216032583325,
+        "systems": 2
+      },
+      "neutral": {
+        "energy_mae_kcal_per_mol": 39.95135041096012,
+        "energy_max_abs_kcal_per_mol": 54.155019042595136,
+        "energy_rmse_kcal_per_mol": 41.40225984902227,
+        "force_component_mae_hartree_per_angstrom": 0.008250967758672083,
+        "force_component_p95_abs_hartree_per_angstrom": 0.029126771168888944,
+        "force_component_rmse_hartree_per_angstrom": 0.012904260981518938,
+        "systems": 6
+      },
+      "no_sulfur": {
+        "energy_mae_kcal_per_mol": 56.738966516735516,
+        "energy_max_abs_kcal_per_mol": 98.09867918728277,
+        "energy_rmse_kcal_per_mol": 61.285883363847674,
+        "force_component_mae_hartree_per_angstrom": 0.008486095092914843,
+        "force_component_p95_abs_hartree_per_angstrom": 0.031145876127802962,
+        "force_component_rmse_hartree_per_angstrom": 0.013281180078940689,
+        "systems": 7
+      },
+      "sulfur": {
+        "energy_mae_kcal_per_mol": 24.080817607496886,
+        "energy_max_abs_kcal_per_mol": 24.080817607496886,
+        "energy_rmse_kcal_per_mol": 24.080817607496886,
+        "force_component_mae_hartree_per_angstrom": 0.007279380820970503,
+        "force_component_p95_abs_hartree_per_angstrom": 0.0258504414765839,
+        "force_component_rmse_hartree_per_angstrom": 0.010891959849623042,
+        "systems": 1
+      }
+    }
+  },
+  "comparisons": {
+    "test_delta_energy_mae_fraction_improvement_vs_bare": -0.09457910709517073,
+    "test_delta_force_mae_fraction_improvement_vs_bare": 0.41979472602504664,
+    "validation_delta_energy_mae_fraction_improvement_vs_bare": 0.383644234051867,
+    "validation_delta_force_mae_fraction_improvement_vs_bare": 0.4056031269220443
+  },
+  "decision": {
+    "delta_energy": "validation gain but no test gain; inconclusive at eight test parent records",
+    "delta_force": "supported_development_gain_on validation and test",
+    "direct": "no_supported_gain_in_this_pilot; validation selected epoch 0",
+    "next": "expand the same frozen parent groups to four configurations each (256 configs), then run nested-size/multi-seed curves without test-driven tuning"
+  },
+  "delta": {
+    "best_epoch": 63,
+    "metrics": {
+      "test": {
+        "energy_mae_kcal_per_mol": 57.636921373334204,
+        "energy_max_abs_kcal_per_mol": 149.9833435321716,
+        "energy_rmse_kcal_per_mol": 69.99327704781815,
+        "evaluation_wall_seconds": 0.006359353079460561,
+        "force_component_mae_hartree_per_angstrom": 0.004847888563001225,
+        "force_component_p95_abs_hartree_per_angstrom": 0.014228208083659405,
+        "force_component_rmse_hartree_per_angstrom": 0.006708415581729236,
+        "systems": 8
+      },
+      "train": {
+        "energy_mae_kcal_per_mol": 49.615436053870674,
+        "energy_max_abs_kcal_per_mol": 174.955034028335,
+        "energy_rmse_kcal_per_mol": 68.42447913261066,
+        "evaluation_wall_seconds": 0.03858174500055611,
+        "force_component_mae_hartree_per_angstrom": 0.004732559297347697,
+        "force_component_p95_abs_hartree_per_angstrom": 0.013719598948955516,
+        "force_component_rmse_hartree_per_angstrom": 0.00651626425082457,
+        "systems": 48
+      },
+      "validation": {
+        "energy_mae_kcal_per_mol": 9.37874648811045,
+        "energy_max_abs_kcal_per_mol": 30.257109650259338,
+        "energy_rmse_kcal_per_mol": 13.368483631371586,
+        "evaluation_wall_seconds": 0.006347646005451679,
+        "force_component_mae_hartree_per_angstrom": 0.0054584019617835225,
+        "force_component_p95_abs_hartree_per_angstrom": 0.01676211878657341,
+        "force_component_rmse_hartree_per_angstrom": 0.007588256961289277,
+        "systems": 8
+      }
+    },
+    "training_wall_seconds": 7.920638316893019
+  },
+  "direct": {
+    "best_epoch": 0,
+    "metrics": {
+      "test": {
+        "energy_mae_kcal_per_mol": 53.28028058508484,
+        "energy_max_abs_kcal_per_mol": 93.06933727864582,
+        "energy_rmse_kcal_per_mol": 57.28942423701517,
+        "evaluation_wall_seconds": 0.006314696045592427,
+        "force_component_mae_hartree_per_angstrom": 0.027901557029480564,
+        "force_component_p95_abs_hartree_per_angstrom": 0.0879290699958801,
+        "force_component_rmse_hartree_per_angstrom": 0.03972596185384636,
+        "systems": 8
+      },
+      "train": {
+        "energy_mae_kcal_per_mol": 34.85073254732007,
+        "energy_max_abs_kcal_per_mol": 106.47438585787464,
+        "energy_rmse_kcal_per_mol": 43.09427411604673,
+        "evaluation_wall_seconds": 0.03766246000304818,
+        "force_component_mae_hartree_per_angstrom": 0.03202009128429498,
+        "force_component_p95_abs_hartree_per_angstrom": 0.09259738661348806,
+        "force_component_rmse_hartree_per_angstrom": 0.04393387265714562,
+        "systems": 48
+      },
+      "validation": {
+        "energy_mae_kcal_per_mol": 39.75075655476318,
+        "energy_max_abs_kcal_per_mol": 77.13647953876242,
+        "energy_rmse_kcal_per_mol": 47.67179097361945,
+        "evaluation_wall_seconds": 0.006223837030120194,
+        "force_component_mae_hartree_per_angstrom": 0.032006525525689784,
+        "force_component_p95_abs_hartree_per_angstrom": 0.09646707028150558,
+        "force_component_rmse_hartree_per_angstrom": 0.04594225333163928,
+        "systems": 8
+      }
+    },
+    "training_wall_seconds": 7.956580601981841
+  },
+  "gfn2_pairing": {
+    "calculator_accounting": {
+      "committed_calculator_calls": 64,
+      "committed_tokens": {
+        "spice2-openff-pilot-64": {
+          "calculator_calls": 64,
+          "consumed_calls": 64,
+          "released_calls": 0
+        }
+      },
+      "pending_reservations": {}
+    },
+    "calculator_calls": 64,
+    "failure": 0,
+    "protocol_id": "tblite-gfn2-spice2-openff-pilot-v1",
+    "protocol_identity": "cad07ec4cdecd8598c5b983e42713f97ff42d325c6998a8790d064990c29766e",
+    "success": 64,
+    "wall_seconds_max": 0.5125923639861867,
+    "wall_seconds_mean": 0.11960784397524549,
+    "wall_seconds_total": 7.654902014415711
+  },
+  "limits": [
+    "Single-seed development pilot, not a final learning curve.",
+    "The test split contains only eight independent parent records and was not used for checkpoint selection or architecture repair.",
+    "Pre-canonical-split runs are retained separately as superseded engineering evidence.",
+    "These E/F results are not reaction-discovery, TS, mechanism, or experimental evidence."
+  ],
+  "schema": "xtbflow-spice2-openff-pilot-summary/v1",
+  "source": {
+    "dataset": "SPICE2 OpenFF v1.1 ntc_1000_HCNOFClS",
+    "hdf5_sha256": "711a88d2bbc6fe3d39478ddf28cca186a65d882975edb07cb42798cf445c6213",
+    "reference_method": "B3LYP-D3BJ/DZVP",
+    "source_configs": 1000,
+    "source_records": 100
+  },
+  "status": "development_pilot_complete_expand_before_conclusion"
+}

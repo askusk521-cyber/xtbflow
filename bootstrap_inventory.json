@@ -149,8 +149,8 @@
     },
     {
       "path": "configs/public_data_manifest.yaml",
-      "sha256": "a2b3ce2bc02f4eef03ac62c254ad0160206dfc10d68e9039fc33c8972f53edf7",
-      "bytes": 4485
+      "sha256": "b0a562d45af4f3fa5a394779301c218458e6c6b95b961f9634196dad4f77dfae",
+      "bytes": 5536
     },
     {
       "path": "configs/public_first_plan.yaml",
@@ -204,8 +204,18 @@
     },
     {
       "path": "data/manifests/public_records.v1.jsonl",
-      "sha256": "2df7cce5cf6eb9e5dc12e99e1f7d62ff5b34e2a92375b97d5ada4c1a8c561360",
-      "bytes": 5193
+      "sha256": "a3e4d6d53945a37180b577fbf305f613319cb5b2d11852c65831f42e2f38cd2d",
+      "bytes": 523077
+    },
+    {
+      "path": "data/manifests/spice2_openff_pilot_20260929.jsonl",
+      "sha256": "dd466dc7b77514ef041ab78e5803fcb0f64e4c5bec31d5a68f34554d4558fc8f",
+      "bytes": 560616
+    },
+    {
+      "path": "data/pairs/spice2_openff_pilot_20260929.jsonl",
+      "sha256": "f948a6d60e0b870ce81c967393fd15bbce732ed0affbb18f3f765d5f503b5f66",
+      "bytes": 973088
     },
     {
       "path": "docs/CP2K_SETUP.md",
@@ -239,8 +249,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "12ea002e6b813f528ed470bb05230d7d902704b4efd597af1a304909c19fc89a",
-      "bytes": 9639
+      "sha256": "72d9146b9b7cfd1a150b5e5bc1167e6433637b3999e0d75ae43d6ba99293f2b2",
+      "bytes": 12302
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -283,6 +293,21 @@
       "bytes": 2049
     },
     {
+      "path": "docs/evidence/gfn2_independent_fd_20260929.json",
+      "sha256": "a8f35cecb50117422a0dd28953d079634aa780dd5336baf6ee23cfd817952d57",
+      "bytes": 6712
+    },
+    {
+      "path": "docs/evidence/gfn2_qualification_20260929.json",
+      "sha256": "6581a76138ef61d140e2df4772b317abe403c586ab5cbac2faa46f1b6a699017",
+      "bytes": 25858
+    },
+    {
+      "path": "docs/evidence/gfn2_qualification_interpretation_20260929.json",
+      "sha256": "cada02222b974c3075a66424f65eadf1017c0bf7a4d5cf4d5bf33b24f095942c",
+      "bytes": 2496
+    },
+    {
       "path": "docs/evidence/gfn2_units_diagnostic_20260927.json",
       "sha256": "58ce3ca92d5d5733eb2d7b153f7f180a5fb25552647b4b0c25a926281b6b36e7",
       "bytes": 21013
@@ -296,6 +321,36 @@
       "path": "docs/evidence/joint_flow_smoke_20260927_v2.json",
       "sha256": "c73d5603723e5620ce5d7236306c0ae6fde3d51188a46b8f13bea3b385fa300c",
       "bytes": 1212
+    },
+    {
+      "path": "docs/evidence/spice2_openff_admission_20260929.json",
+      "sha256": "98fb2cb07a05370c1a65f401c6219be5677698deda675a7509b1f359d567c2cb",
+      "bytes": 3844
+    },
+    {
+      "path": "docs/evidence/spice2_openff_energy_baselines_20260929.json",
+      "sha256": "5104d0442b7b7b25a469ac259d6e0fed91fb4a4be48d3ae19f182b6b6bf5062d",
+      "bytes": 77494
+    },
+    {
+      "path": "docs/evidence/spice2_openff_energy_baselines_pre_split_v1_20260929.json",
+      "sha256": "2b0c72d527ebbdefb145c33779d4240786afaa925f1a0d83d962ce47c06e60da",
+      "bytes": 72949
+    },
+    {
+      "path": "docs/evidence/spice2_openff_energy_baselines_pre_split_v2_20260929.json",
+      "sha256": "9254d0065e8886091555d40cfbc5d54a9cace2b59624c356ed30c281cb6ae38f",
+      "bytes": 74337
+    },
+    {
+      "path": "docs/evidence/spice2_openff_gfn2_run_20260929.json",
+      "sha256": "b7149ce956950f176d707ef3304faceacbf60ac1f02560df5c85f9217bba60e1",
+      "bytes": 1291
+    },
+    {
+      "path": "docs/evidence/spice2_openff_pilot_summary_20260929.json",
+      "sha256": "5b935bf54871deeb2adf20817bbea7c761e79dcd059fdfdfd8e06b90cfdaf011",
+      "bytes": 9263
     },
     {
       "path": "docs/evidence/ts_budget_contract_20260929.json",
@@ -334,8 +389,8 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "aa9f4cbae25e121975f9743fa2f10febd654e492d530d6169ca5ae1ced845779",
-      "bytes": 1106
+      "sha256": "848653cea3a7ba86e90a675782096ada6d35e71a14818c8387e6d0d4d6f9303f",
+      "bytes": 1204
     },
     {
       "path": "schemas/calculator_protocol.schema.json",
@@ -408,14 +463,34 @@
       "bytes": 8665
     },
     {
+      "path": "scripts/prepare_spice_openff_pilot.py",
+      "sha256": "eb058d6285db25965be453c2b2fb4a08b273063460af19bb7730fbd121ce22fa",
+      "bytes": 13965
+    },
+    {
+      "path": "scripts/run_energy_baselines.py",
+      "sha256": "e3caf6dd3ea9fccd6e9901c04c8d793b34359c5a4d06a7da27e896fdda3e8f8c",
+      "bytes": 16268
+    },
+    {
       "path": "scripts/run_gfn2_diagnostic.py",
       "sha256": "e92991954cb0037dc3e6d40e716c79fe165c436fab29fcfa56cf4041f8a63615",
       "bytes": 15124
     },
     {
+      "path": "scripts/run_gfn2_independent_fd.py",
+      "sha256": "71fef4bf7f32839b8578a1281ed7e5f95a3f511fe368586932aacb40dd1f730b",
+      "bytes": 6957
+    },
+    {
       "path": "scripts/run_gfn2_qualification.py",
       "sha256": "84706cb111d799fa2ef9761fa59539ac5d8269566a398c0c0bd46a9d38e6db7a",
       "bytes": 15646
+    },
+    {
+      "path": "scripts/run_spice_openff_pilot.py",
+      "sha256": "179c1c6324d91981a9a3d930b0f8c45b27dede3d0c31ec90bfe6f77467898d90",
+      "bytes": 6617
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -514,8 +589,8 @@
     },
     {
       "path": "src/xtbflow/models/delta_energy.py",
-      "sha256": "adcb8f432b32b43d2a479e56ad381b19115aa737365d1162a176880bae8b3fa8",
-      "bytes": 8220
+      "sha256": "7e8eee1dd2753d7d6f7501a11382bfa5a1dae2bef1712fb4b7525373d026ea4d",
+      "bytes": 9173
     },
     {
       "path": "src/xtbflow/models/direct_energy.py",
@@ -729,8 +804,8 @@
     },
     {
       "path": "tests/test_energy_forces.py",
-      "sha256": "4d8c1d0e91d9a0fc1e221f026c32c52b60dcff05faf241109c02ae94a49b9261",
-      "bytes": 4416
+      "sha256": "f645d165480a8f134e824bd5714e8dcab0a29c4df650baf611369df1d376dbd5",
+      "bytes": 6525
     },
     {
       "path": "tests/test_geometry_flow.py",
@@ -739,8 +814,8 @@
     },
     {
       "path": "tests/test_input_firewall.py",
-      "sha256": "9a95a2c9f0a35e2e6e801cbad22ef7241cf62462342cd28369b19a62582bc7b3",
-      "bytes": 5035
+      "sha256": "53159606fa3ba645c3888c21bbf68cdb8e25c1e04c4b2136ed4799ff1a214078",
+      "bytes": 5581
     },
     {
       "path": "tests/test_joint_flow.py",

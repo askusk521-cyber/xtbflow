@@ -64,6 +64,11 @@ real records in `data/manifests/independent_seeds.v1.jsonl`.
 `SearchAttempt` records the proposal separately from the observed event. Every
 update appends a monotonically increasing version to
 `data/manifests/search_attempts.v1.jsonl`; previous versions are immutable.
+Each version is a cumulative snapshot of that attempt: `calculator_calls`,
+`wall_seconds`, `retry_count` and `evidence_status` describe the attempt
+through that version. Final cost and status audits use only the latest version
+per `attempt_id`; historical rows remain available for provenance and are never
+summed as independent work.
 Calculator protocols carry method, software, version, units and a protocol
 hash; any executed calls require a hashed raw log. This prevents an
 unsuccessful intended channel from being rewritten as a negative example when a different channel or a numerical failure occurred.

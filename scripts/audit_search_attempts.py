@@ -12,6 +12,7 @@ from typing import Any
 from xtbflow.data.attempts import (
     SEARCH_ATTEMPT_SCHEMA,
     load_attempt_jsonl,
+    latest_attempt_versions,
 )
 
 
@@ -29,13 +30,13 @@ def build_report(
     repository_base_commit: str,
 ) -> dict[str, Any]:
     rows = load_attempt_jsonl(manifest)
-    status_counts = Counter(row.evidence_status for row in rows)
+    latest_rows = latest_attempt_versions(rows)
+    status_counts = Counter(row.evidence_status for row in latest_rows)
     call_counts: Counter[str] = Counter()
-    for row in rows:
+    for row in latest_rows:
         call_counts.update(row.calculator_calls)
-    attempt_ids = {row.attempt_id for row in rows}
     return {
-        "schema_version": "xtbflow-search-attempt-audit/v1",
+        "schema_version": "xtbflow-search-attempt-audit/v2",
         "record_schema": SEARCH_ATTEMPT_SCHEMA,
         "manifest": str(manifest),
         "manifest_sha256": hash_file(manifest),
@@ -44,12 +45,14 @@ def build_report(
         "attempt_contract_sha256": hash_file(
             Path("src/xtbflow/data/attempts.py")
         ),
-        "attempt_count": len(attempt_ids),
+        "attempt_count": len(latest_rows),
         "version_record_count": len(rows),
+        "latest_version_count": len(latest_rows),
+        "cost_semantics": "latest_cumulative_snapshot_per_attempt",
         "status_counts": dict(sorted(status_counts.items())),
         "calculator_call_counts": dict(sorted(call_counts.items())),
         "total_calculator_calls": sum(call_counts.values()),
-        "total_wall_seconds": sum(row.wall_seconds for row in rows),
+        "total_wall_seconds": sum(row.wall_seconds for row in latest_rows),
         "scientific_claim_allowed": False,
     }
 

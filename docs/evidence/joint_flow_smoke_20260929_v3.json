@@ -1,0 +1,139 @@
+{
+  "schema": "xtbflow-joint-flow-smoke/v3",
+  "created_utc": "2026-09-29T12:41:48.804242+00:00",
+  "execution_host": "node2",
+  "data_status": "diagnostic_synthetic_nonzero_time_dependent_velocity_target",
+  "seed": 11,
+  "training_steps": 8,
+  "sample_steps": 4,
+  "dt": 0.25,
+  "tau_domain": [
+    0.0,
+    1.0
+  ],
+  "runtime_config": {
+    "class": "xtbflow.models.JointEventGeometryFlow",
+    "model_id": "xtbflow-packed-pair-prototype-v0.1",
+    "status": "software_prototype_not_scientifically_trained",
+    "node_feature_dim": 8,
+    "condition_feature_dim": 4,
+    "hidden_dim": 64,
+    "radial_features": 16,
+    "control_modes": [
+      "both_off",
+      "serial_independent",
+      "joint_bidirectional"
+    ]
+  },
+  "runtime_config_path": "configs/models/joint_flow_runtime_v0.1.json",
+  "runtime_config_sha256": "58c52fdba6a8a803a11983e54dc1de87e7dcfacb45f23cb8c43842f2bb674c00",
+  "git": {
+    "commit": "7a4fe88c436dbcde3bb50bbc5cc8d7bf6669166a",
+    "dirty": false,
+    "dirty_entries": []
+  },
+  "checkpoint_schema": "xtbflow-joint-checkpoint/v1",
+  "complete_resume": true,
+  "resume_kind": "training",
+  "tau_schedule": [
+    0.2,
+    0.5,
+    0.8
+  ],
+  "initial_loss": 0.012774611022775932,
+  "final_loss": 0.005629877203213012,
+  "checkpoint_path": "/tmp/xtbflow-joint-flow-smoke-20260929-v3.pt",
+  "checkpoint_sha256": "7fe2ebcf8c8d95343a234ff809552ce899667d28f79f7e30e1b99033a5ad27fe",
+  "model_identity_before_save": {
+    "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+    "state_sha256": "250652031fdb93d4b91839015c3b760ffd3ed03bc7ad0656b7c415cca159f9dd",
+    "total_parameters": 23387,
+    "trainable_parameters": 23387
+  },
+  "model_identity_after_restore": {
+    "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+    "state_sha256": "250652031fdb93d4b91839015c3b760ffd3ed03bc7ad0656b7c415cca159f9dd",
+    "total_parameters": 23387,
+    "trainable_parameters": 23387
+  },
+  "restore_max_abs_difference": 0.0,
+  "restore_component_max_abs_difference": {
+    "both_off.event_velocity": 0.0,
+    "both_off.geometry_velocity": 0.0,
+    "both_off.event_message": 0.0,
+    "both_off.geometry_message": 0.0,
+    "serial_independent.event_velocity": 0.0,
+    "serial_independent.geometry_velocity": 0.0,
+    "serial_independent.event_message": 0.0,
+    "serial_independent.geometry_message": 0.0,
+    "joint_bidirectional.event_velocity": 0.0,
+    "joint_bidirectional.geometry_velocity": 0.0,
+    "joint_bidirectional.event_message": 0.0,
+    "joint_bidirectional.geometry_message": 0.0
+  },
+  "rollouts": {
+    "both_off": {
+      "event_finite": true,
+      "geometry_finite": true,
+      "velocity_conservation_residual_max_abs": 1.942890293094024e-16
+    },
+    "serial_independent": {
+      "event_finite": true,
+      "geometry_finite": true,
+      "velocity_conservation_residual_max_abs": 1.942890293094024e-16
+    },
+    "joint_bidirectional": {
+      "event_finite": true,
+      "geometry_finite": true,
+      "velocity_conservation_residual_max_abs": 4.0245584642661925e-16
+    }
+  },
+  "control_manifest": {
+    "schema": "xtbflow-joint-control/v2",
+    "modes": [
+      "both_off",
+      "serial_independent",
+      "joint_bidirectional"
+    ],
+    "coupling_strength": 1.0,
+    "guidance_strength": 0.0,
+    "dataset_fingerprint": "synthetic-software-smoke-only",
+    "split_fingerprint": "not-applicable",
+    "input_view_fingerprint": "reactant-side-synthetic-v1",
+    "model_identity_status": "measured",
+    "model_identities": {
+      "both_off": {
+        "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+        "state_sha256": "250652031fdb93d4b91839015c3b760ffd3ed03bc7ad0656b7c415cca159f9dd",
+        "total_parameters": 23387,
+        "trainable_parameters": 23387
+      },
+      "serial_independent": {
+        "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+        "state_sha256": "250652031fdb93d4b91839015c3b760ffd3ed03bc7ad0656b7c415cca159f9dd",
+        "total_parameters": 23387,
+        "trainable_parameters": 23387
+      },
+      "joint_bidirectional": {
+        "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+        "state_sha256": "250652031fdb93d4b91839015c3b760ffd3ed03bc7ad0656b7c415cca159f9dd",
+        "total_parameters": 23387,
+        "trainable_parameters": 23387
+      }
+    },
+    "same_generation_weights_for_controls": true,
+    "physical_budget_status": "measured",
+    "physical_call_budgets": {
+      "both_off": 0,
+      "serial_independent": 0,
+      "joint_bidirectional": 0
+    },
+    "same_physical_budget_for_controls": true
+  },
+  "elapsed_seconds": 1.3618043810129166,
+  "limits": [
+    "Synthetic targets only test the software chain.",
+    "No real event or transition-state supervision was used.",
+    "Zero calculator calls were made and no chemistry result is claimed."
+  ]
+}

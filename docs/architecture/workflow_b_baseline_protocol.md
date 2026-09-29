@@ -76,6 +76,14 @@ These checks establish runnable software only.  Real training still requires
 sample-level paired event and TS-geometry labels admitted under issue #58.
 SPICE energy/force labels cannot satisfy that requirement.
 
+The committed reports are
+[`workflow_b_software_acceptance_20260929.json`](../evidence/workflow_b_software_acceptance_20260929.json)
+and
+[`joint_flow_smoke_20260929_v3.json`](../evidence/joint_flow_smoke_20260929_v3.json).
+Both were produced from clean source commit
+`7a4fe88c436dbcde3bb50bbc5cc8d7bf6669166a`; the checkpoint itself remains a
+local smoke artefact and is not published as a scientific model.
+
 Run the bounded checks with:
 
 ```bash

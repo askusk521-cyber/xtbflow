@@ -54,5 +54,5 @@
     "path_validation_implied_by_energy_force": false,
     "persistent_artifacts_required_for_new_qualification_runs": true
   },
-  "evidence_limit": "Existing 2026-09-29 smoke files establish real execution only. Cutoff energy convergence and current persistent-artifact qualification remain open."
+  "evidence_limit": "A metered 2026-09-29 replay at source commit fcb8049 completed 500/600/700 Ry E/F calls. Relative to 700 Ry, 600 Ry had |dE|=3.398007183719187e-5 Ha and max |dF|=4.176294735423053e-5 Ha/Angstrom. The force tolerance passed but the preregistered 1e-5 Ha energy tolerance failed, so 600 Ry remains provisional and is not reference-qualified. No TS or path qualification is implied."
 }

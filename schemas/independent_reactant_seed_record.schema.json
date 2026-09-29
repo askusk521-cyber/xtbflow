@@ -1,0 +1,166 @@
+{
+  "$id": "https://xtbflow.local/schemas/independent_reactant_seed_record.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_intent": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "approved_split_group": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "approved_split_role": {
+      "enum": [
+        "development_train",
+        "development_validation",
+        "development_test",
+        "confirmatory"
+      ]
+    },
+    "buffer_species_explicit": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "charge": {
+      "type": "integer"
+    },
+    "charge_spin_evidence": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "coordinate_unit": {
+      "const": "angstrom"
+    },
+    "family_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "frozen_at": {
+      "format": "date-time",
+      "minLength": 1,
+      "type": "string"
+    },
+    "geometry_path": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "geometry_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "input_origin": {
+      "const": "independent_reactant"
+    },
+    "license_record": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "mapped_explicit_h_smiles": {
+      "minLength": 1,
+      "pattern": ":(?:0|[1-9][0-9]*)\\]",
+      "type": "string"
+    },
+    "microstate_description": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "multiplicity": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "parent_system_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "ph": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "provenance": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "reactant_generation_protocol": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "reactant_generation_protocol_locator": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "reactant_generation_protocol_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "xtbflow-independent-reactant-seed/v1"
+    },
+    "seed_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "solvent_selection_origin": {
+      "enum": [
+        "none",
+        "independent_reactant",
+        "declared_environment"
+      ]
+    },
+    "solvent_snapshot_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "stereochemistry_description": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "temperature_k": {
+      "exclusiveMinimum": 0,
+      "type": [
+        "number",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "seed_id",
+    "parent_system_id",
+    "family_id",
+    "mapped_explicit_h_smiles",
+    "geometry_path",
+    "geometry_sha256",
+    "coordinate_unit",
+    "charge",
+    "multiplicity",
+    "charge_spin_evidence",
+    "microstate_description",
+    "stereochemistry_description",
+    "solvent_snapshot_id",
+    "solvent_selection_origin",
+    "reactant_generation_protocol",
+    "reactant_generation_protocol_locator",
+    "reactant_generation_protocol_sha256",
+    "provenance",
+    "approved_split_group",
+    "approved_split_role",
+    "frozen_at",
+    "license_record",
+    "input_origin",
+    "allowed_intent",
+    "buffer_species_explicit",
+    "temperature_k",
+    "ph"
+  ],
+  "title": "XTBFlow independent reactant seed JSONL record",
+  "type": "object"
+}

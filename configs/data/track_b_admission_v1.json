@@ -1,0 +1,96 @@
+{
+  "canonical_units": {
+    "coordinates": "angstrom"
+  },
+  "claim_boundary": {
+    "confirmatory": "requires frozen independent inputs and protocol",
+    "development": "model selection and falsification only",
+    "smoke_or_schema_only": "not scientific evidence"
+  },
+  "confirmatory_input_origin": "independent_reactant",
+  "declared_intent_policy": {
+    "allowed_modes": [
+      "none",
+      "declared_center",
+      "declared_net_intent"
+    ],
+    "required_provenance": true,
+    "uses_reference_labels": false
+  },
+  "leakage_dimensions": [
+    "parent_reaction_id",
+    "family_id",
+    "split_group",
+    "input_fingerprint",
+    "source_record",
+    "source_record_bytes"
+  ],
+  "purpose": "real reaction-event and transition-geometry supervision",
+  "quarantine_on": [
+    "unresolved coordinate units",
+    "unresolved charge or multiplicity",
+    "reference-derived reactant input",
+    "reference-selected solvent or water",
+    "missing atom correspondence",
+    "incoherent optional product geometry evidence",
+    "missing product graph evidence",
+    "missing event or transition geometry evidence",
+    "unresolved license or provenance",
+    "cross-split parent, family, input, or source overlap"
+  ],
+  "record_schema": "xtbflow-track-b-reaction-ts/v1",
+  "required_electronic_state": [
+    "charge",
+    "multiplicity",
+    "charge_spin_evidence"
+  ],
+  "required_identity": [
+    "source_asset_sha256",
+    "source_record_sha256",
+    "parent_reaction_id",
+    "family_id",
+    "split_group",
+    "atomic_numbers",
+    "map_ids",
+    "reactant_graph_sha256",
+    "reactant_coordinates_sha256"
+  ],
+  "required_reactant_generation_protocol": [
+    "geometry_generation_protocol",
+    "geometry_generation_protocol_locator",
+    "geometry_generation_protocol_sha256"
+  ],
+  "required_reference_protocol": [
+    "protocol_id",
+    "protocol_locator",
+    "protocol_sha256",
+    "method",
+    "software",
+    "version",
+    "environment"
+  ],
+  "required_supervision": [
+    "event_label",
+    "product_geometry_or_explicit_unavailable",
+    "product_graph",
+    "ts_geometry",
+    "atom_order_matches_input",
+    "reference_protocol"
+  ],
+  "safe_reactant_input_origins": [
+    "independent_reactant",
+    "declared_reactant_endpoint"
+  ],
+  "safe_solvent_selection_origins": [
+    "none",
+    "independent_reactant",
+    "declared_environment"
+  ],
+  "schema_version": "xtbflow-track-b-admission-policy/v1",
+  "split_roles": [
+    "development_train",
+    "development_validation",
+    "development_test",
+    "confirmatory"
+  ]
+}

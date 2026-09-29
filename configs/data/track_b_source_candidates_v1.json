@@ -1,0 +1,153 @@
+{
+  "schema_version": "xtbflow-track-b-source-candidates/v1",
+  "purpose": "Compare public sources against the reaction-event/TS gate without promoting partial records.",
+  "sources": [
+    {
+      "source_id": "spice2_openff_v1.1",
+      "source_locator": "SPICE2 OpenFF public HDF5",
+      "source_revision": "SPICE2 OpenFF v1.1 / source collection v1.2",
+      "declared_record_count": 256,
+      "available": [
+        "explicit charge and singlet multiplicity for admitted pilot rows",
+        "same-geometry reference energies and forces",
+        "canonical coordinate, energy and force units"
+      ],
+      "missing_for_track_b": [
+        "reaction event labels",
+        "transition-state or transition-region geometry",
+        "parent reaction identity"
+      ],
+      "decision": "track_a_only",
+      "permitted_use": ["energy_force_calibration"]
+    },
+    {
+      "source_id": "uspto_15k_reactant_edits",
+      "source_locator": "https://github.com/wengong-jin/nips17-rexgen",
+      "source_revision": "fb7dea369b0721b88cd0133a7d66348d244f65d3",
+      "declared_record_count": 15000,
+      "available": [
+        "reactant-side net graph edit diagnostic"
+      ],
+      "missing_for_track_b": [
+        "three-dimensional transition geometry",
+        "explicit charge and multiplicity contract",
+        "reference electronic-structure protocol",
+        "independent reactant geometry"
+      ],
+      "decision": "quarantine_diagnostic_only",
+      "permitted_use": ["event_baseline_diagnostic"]
+    },
+    {
+      "source_id": "flower_v2",
+      "source_locator": "https://doi.org/10.6084/m9.figshare.28359407.v3",
+      "source_revision": "release_v2_figshare_v3",
+      "declared_record_count": 3797405,
+      "available": [
+        "graph-step and state records",
+        "input-identity grouping audit"
+      ],
+      "missing_for_track_b": [
+        "explicit multiplicity",
+        "three-dimensional transition geometry",
+        "independent reference-level TS validation",
+        "resolved product-to-evaluation overlap audit"
+      ],
+      "decision": "quarantine_diagnostic_only",
+      "permitted_use": ["event_representation_diagnostic"]
+    },
+    {
+      "source_id": "transition1x_preprocessed",
+      "source_locator": "https://zenodo.org/records/13119868",
+      "source_revision": "train_rpsb_all.pkl_sha256=36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+      "declared_record_count": 10073,
+      "available": [
+        "endpoint-conditioned transition geometry diagnostic"
+      ],
+      "missing_for_track_b": [
+        "pinned local source bytes in the current audit",
+        "reactant-only event-label contract",
+        "explicit formal charge and multiplicity contract",
+        "family-certified holdout"
+      ],
+      "decision": "quarantine_source_asset_unavailable",
+      "permitted_use": ["future_source_audit"]
+    },
+    {
+      "source_id": "units_lib",
+      "source_locator": "https://modelscope.cn/models/XuLiCheng2025/UniTS-Gen-v1",
+      "source_revision": "a7147021becc4e13887be2c756fefc8b5983f390",
+      "local_asset_locator": "mechai:data/raw/units/UniTS_Lib.npy",
+      "expected_asset_sha256": "6a8fff071330603600276e200e65feef3ab5e4d285f81091a3eb0cc13bdb70e2",
+      "declared_record_count": 4391,
+      "structurally_audited_record_count": 64,
+      "available": [
+        "transition geometries",
+        "charge and multiplicity fields",
+        "reactive atom indices",
+        "molecular graph information"
+      ],
+      "missing_for_track_b": [
+        "coordinate units embedded in the inspected raw records",
+        "frozen XTBFlow event-label conversion",
+        "independent three-dimensional reactant inputs",
+        "reviewed dataset redistribution terms",
+        "full compatibility with the current CHNOS scope"
+      ],
+      "decision": "quarantine_pending_provenance",
+      "permitted_use": [
+        "schema_conversion_development",
+        "geometry_generation_diagnostic"
+      ]
+    },
+    {
+      "source_id": "kingfisher_ch2o_events_v2",
+      "source_locator": "https://doi.org/10.5281/zenodo.15297813",
+      "source_revision": "1.1 / local derived events-v2",
+      "local_asset_locator": "mechai:data/processed/kingfisher-ch2o-events-v2/events.jsonl",
+      "expected_asset_sha256": "ee277408552e4b10149b350902796100ee4ade7ba30e8b836dfdc557ee4da5ae",
+      "declared_record_count": 41,
+      "declared_group_count": 19,
+      "available": [
+        "real searched event labels",
+        "archived transition geometries",
+        "source-supplied reaction intent"
+      ],
+      "missing_for_track_b": [
+        "independent reactant coordinates",
+        "environment selection independent of the archived result",
+        "more than one reaction family"
+      ],
+      "decision": "quarantine_diagnostic_only",
+      "permitted_use": [
+        "parser_contract_tests",
+        "event_representation_tests",
+        "nonblind_correspondence_analysis"
+      ]
+    },
+    {
+      "source_id": "rgd1_aggregate_features",
+      "source_locator": "https://doi.org/10.6084/m9.figshare.21066901.v6",
+      "source_revision": "archive_sha256=41285e3a5eda123ea5209d2343c7035fab9a6fad768933d4daab7301a2a50b1c",
+      "declared_record_count": 176992,
+      "available": [
+        "aggregate metadata features"
+      ],
+      "missing_for_track_b": [
+        "README-referenced atom-mapped SMILES asset",
+        "README-referenced HDF5 geometry asset",
+        "reconstructible per-record transition geometry"
+      ],
+      "decision": "quarantine_source_assets_incomplete",
+      "permitted_use": ["metadata_diagnostic"]
+    }
+  ],
+  "admission_decisions": [
+    "admit_development",
+    "admit_confirmatory",
+    "track_a_only",
+    "quarantine_diagnostic_only",
+    "quarantine_pending_provenance",
+    "quarantine_source_asset_unavailable",
+    "quarantine_source_assets_incomplete"
+  ]
+}

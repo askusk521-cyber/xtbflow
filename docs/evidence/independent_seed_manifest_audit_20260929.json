@@ -1,0 +1,27 @@
+{
+  "audit_script_sha256": "81198a65a682682f1dd005e395af76675662f0e5b0f1bd4a69e4a3934066348d",
+  "leakage_error": null,
+  "leakage_report": {
+    "leakage_dimensions_checked": [
+      "approved_split_group",
+      "family_id",
+      "input_fingerprint",
+      "parent_system_id"
+    ],
+    "record_count": 0,
+    "split_counts": {},
+    "strict_family_holdout": true
+  },
+  "manifest": "data/manifests/independent_seeds.v1.jsonl",
+  "manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "pilot_config": "configs/seeds/pilot.yaml",
+  "pilot_config_sha256": "eb5480920971140698144f5ed62d5505cb46e3a3fc6f8874e8acec49a9a8e5ad",
+  "record_count": 0,
+  "record_schema": "xtbflow-independent-reactant-seed/v1",
+  "repository_base_commit": "abee6248daaf0c81cde2e676b0b139f4b5d26d1e",
+  "schema_version": "xtbflow-independent-seed-audit/v1",
+  "scientific_claim_allowed": false,
+  "search_may_start": false,
+  "seed_contract_sha256": "dde314c39299a83ec95f8d54d7ce806b8ad5a24823fbde009b6b2c6bac4e185e",
+  "strict_family_holdout": true
+}

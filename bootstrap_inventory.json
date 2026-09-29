@@ -309,8 +309,8 @@
     },
     {
       "path": "docs/WORKFLOW_C2_REFERENCE_VALIDATION.md",
-      "sha256": "e48d74a80153d453ad89427221b8575a8b5ae50906693df056bca060aa202c61",
-      "bytes": 14565
+      "sha256": "03ea0d1c2e00b1dcae39fad9413e741a73ec583fd674752770d5480030baaf04",
+      "bytes": 16102
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -328,6 +328,11 @@
       "bytes": 4036
     },
     {
+      "path": "docs/evidence/cp2k_calibration_4311779_replay_20260930.json",
+      "sha256": "6389626511f9337dceb81fe814e49ad4c6af5f39f5ab7cd66d2047ac4de2e019",
+      "bytes": 9146
+    },
+    {
       "path": "docs/evidence/cp2k_calibration_current_f135428.json",
       "sha256": "37d80e7a01127248d5a1a9d91af7d7c894a2dac81686eef626e5daa95b5a507d",
       "bytes": 9583
@@ -336,6 +341,11 @@
       "path": "docs/evidence/cp2k_calibration_smoke.json",
       "sha256": "9b8c43a6f5ca121e01a14d3f42eafd19351c540e2a74af1b9d1518532c39cb76",
       "bytes": 4611
+    },
+    {
+      "path": "docs/evidence/cp2k_convergence_4311779_replay_20260930.json",
+      "sha256": "b4a57af57ae085a4bcafd02c1234b33cd70540fe170ba6f7f70e129e2eb5b254",
+      "bytes": 15989
     },
     {
       "path": "docs/evidence/cp2k_convergence_500_600.json",
@@ -356,6 +366,11 @@
       "path": "docs/evidence/cp2k_convergence_smoke.json",
       "sha256": "2c392bdd78e90302b690857726d55fc29cc3877d63ceae35e67fc52360a81e4e",
       "bytes": 3234
+    },
+    {
+      "path": "docs/evidence/cp2k_force_fd_4311779_replay_20260930.json",
+      "sha256": "b16d40baf35f1616dd4dd51865386d115113cf344dda3ee7f2c26b222530e545",
+      "bytes": 11400
     },
     {
       "path": "docs/evidence/cp2k_runtime_evidence_provenance_20260929.json",

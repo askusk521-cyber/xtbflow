@@ -20,7 +20,7 @@
     "status": {"const": "software_protocol_frozen_scientific_execution_blocked"},
     "first_scientific_matrix": {
       "type": "array",
-      "minItems": 4,
+      "minItems": 5,
       "items": {
         "type": "object",
         "required": ["arm_id", "kind", "implementation", "learned_control_mode"]

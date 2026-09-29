@@ -24,6 +24,7 @@ def good(path=True):
         "converged": True,
         "gradient_norm": 1e-6,
         "hessian_eigenvalues": (-0.5, 0.2, 0.3),
+        "mode_unit": "hartree_per_angstrom2",
         "connectivity": connectivity(path),
         "path_connected": path,
     }
@@ -51,7 +52,7 @@ def test_missing_connectivity_and_mode_threshold_are_explicit():
     record = validate_ts_evidence("missing", "fixture", missing, TSValidationConfig())
     assert record.status == "failure"
     with pytest.raises(ValueError):
-        validate_mode(ModeEvidence((-0.1, 0.1)), negative_threshold=0.0)
+        validate_mode(ModeEvidence((-0.1, 0.1), "hartree_per_angstrom2"), negative_threshold=0.0)
 
 
 def test_ts_validation_rejects_string_booleans():
@@ -61,6 +62,60 @@ def test_ts_validation_rejects_string_booleans():
     evidence = good()
     evidence["path_connected"] = "false"
     assert validate_ts_evidence("string-path", "fixture", evidence, TSValidationConfig()).status == "failure"
+
+
+def test_nonfinite_gradient_is_a_recorded_candidate_failure(tmp_path):
+    ledger = RunLedger(StageBudget("P1", max_calculator_calls=4))
+    ledger_path = tmp_path / "ledger.json"
+
+    def factory(token_id, item, calls, metadata):
+        return ledger.issue_calculator_token(token_id, calls, metadata=metadata, persist_path=ledger_path)
+
+    def search(candidate_id, item, token):
+        token.consume()
+        evidence = good()
+        evidence["gradient_norm"] = float("nan") if candidate_id == "bad" else 1e-6
+        evidence.update(source="fixture", calculator_calls=token.consumed_calls)
+        return evidence
+
+    records = run_resumable_validation(
+        {"bad": {"x": 0}, "good": {"x": 1}},
+        search,
+        TSValidationConfig(max_calls=2),
+        tmp_path / "ts.json",
+        budget_token_factory=factory,
+        require_budget_token=True,
+    )
+    assert [record.status for record in records] == ["failure", "success"]
+    assert records[0].gradient_norm is None
+    assert records[0].mode_status == "gradient_non_finite"
+    assert "nan" in (records[0].error or "")
+    assert ledger.summary()["totals"]["calculator_calls"] == 2
+
+
+@pytest.mark.parametrize("bohr_value, expected", [(-1e-5, False), (-5e-5, True), (-1e-3, True)])
+def test_mode_validation_converts_bohr_squared_to_canonical_angstrom_units(bohr_value, expected):
+    # Independent physical conversion: d²E/dx_A² = d²E/dx_bohr² / a0².
+    angstrom_value = bohr_value / 0.529177210903**2
+    bohr = ModeEvidence((bohr_value, 0.1), "Hartree/Bohr²")
+    angstrom = ModeEvidence((angstrom_value, 0.1 / 0.529177210903**2), "Hartree/Å²")
+    assert bohr.canonical_eigenvalues == pytest.approx(angstrom.eigenvalues)
+    assert validate_mode(bohr) == validate_mode(angstrom)
+    assert validate_mode(bohr)[0] is expected
+
+
+def test_modes_reject_ambiguous_units_and_incompatible_conventions():
+    with pytest.raises(ValueError, match="unsupported mode unit"):
+        ModeEvidence((-0.1,), "hessian_eigenvalue")
+    with pytest.raises(ValueError, match="unweighted Cartesian"):
+        ModeEvidence((-0.1,), "hartree_per_angstrom2", mass_weighted=True)
+    with pytest.raises(ValueError, match="unweighted Cartesian"):
+        ModeEvidence((-0.1,), "hartree_per_angstrom2", coordinate_system="internal")
+    evidence = good()
+    del evidence["mode_unit"]
+    assert validate_ts_evidence("c", "fixture", evidence, TSValidationConfig()).status == "failure"
+    with pytest.raises(ValueError, match="mode_evidence_contract"):
+        TSValidationConfig(mode_evidence_contract="ts-validation-v1")
 
 
 def test_strict_validation_requires_token_factory_and_binds_calls(tmp_path):

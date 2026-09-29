@@ -139,13 +139,13 @@
     },
     {
       "path": "configs/models/joint_flow_runtime_v0.1.json",
-      "sha256": "58c52fdba6a8a803a11983e54dc1de87e7dcfacb45f23cb8c43842f2bb674c00",
-      "bytes": 906
+      "sha256": "506b2ad7f1c5f1803a0bd550d413d76a91aae644fd8ebd9da5f0a9acf0ed7d57",
+      "bytes": 934
     },
     {
       "path": "configs/models/joint_flow_v0.1.yaml",
-      "sha256": "ffa643897d591946bd12c286212cd1c261424a4f7c729d901dd69c97a3a05213",
-      "bytes": 1331
+      "sha256": "e79f436f0627092371c9872d8e6e9fc4ee4a5100bffd77aef90a27b102ca521f",
+      "bytes": 1508
     },
     {
       "path": "configs/models/physical_guidance_v0.1.yaml",
@@ -199,8 +199,8 @@
     },
     {
       "path": "configs/runs/workflow_b_baseline_ladder_v0.1.json",
-      "sha256": "30361f3f5ca3b6e7c43d32c7a6590596c007270090a3f0a603d316d24b1cd93d",
-      "bytes": 3943
+      "sha256": "63170f46b8ab8df5a92992fc51ccc6fcc7fa6a014b4fef3fb06452f3c82cdba8",
+      "bytes": 4609
     },
     {
       "path": "configs/task.yaml",
@@ -549,7 +549,7 @@
     },
     {
       "path": "schemas/workflow_b_baseline.schema.json",
-      "sha256": "daa64eda196d0252561135355a66562b4f32d59234d12119e1a178bffaae11e6",
+      "sha256": "62ee18401ae849604b79291bc612d10fd8bd0c90a99fe5e176d9cd3e1dc89496",
       "bytes": 1169
     },
     {
@@ -594,8 +594,8 @@
     },
     {
       "path": "scripts/run_energy_learning_curve.py",
-      "sha256": "6f0843d3d61b056de69e06c08a8b1baf73c438eef7a013341fb3ff54dcbd2d2a",
-      "bytes": 15114
+      "sha256": "6739a9bede2439ff82401a5086a96c5c18f082030c0aa6e2a260e3c3b6b07815",
+      "bytes": 20103
     },
     {
       "path": "scripts/run_gfn2_diagnostic.py",
@@ -624,8 +624,8 @@
     },
     {
       "path": "scripts/validate_workflow_b.py",
-      "sha256": "68b0b5bc11bc453e0c1212c1b1fb5d2382bef91e410457ed38f7b39e1decc0a0",
-      "bytes": 11137
+      "sha256": "b648033b262e2b5349790ef6deab5e882d72f128a1e24ebadd13c4d3e16ab33c",
+      "bytes": 11459
     },
     {
       "path": "src/xtbflow/__init__.py",
@@ -709,8 +709,8 @@
     },
     {
       "path": "src/xtbflow/models/__init__.py",
-      "sha256": "bf6fb7c8d6ff3abe27ccd5240df05e3467064d24b2fc5217b3240faa9e80de6f",
-      "bytes": 1476
+      "sha256": "4512e26c68119d14907c41d24cad9aec7aa794c9d0720e3939019335080d2d97",
+      "bytes": 1532
     },
     {
       "path": "src/xtbflow/models/conserved_be.py",
@@ -749,8 +749,8 @@
     },
     {
       "path": "src/xtbflow/models/joint_flow.py",
-      "sha256": "7e8a871bcf1042dff5b557dcff77005a1ebe5bd6cebbc2c011784a70a1a453a5",
-      "bytes": 20166
+      "sha256": "e30c955f23714baecf92161307cb52941e276c7f048dacf40f1da0713f3cd040",
+      "bytes": 21762
     },
     {
       "path": "src/xtbflow/models/reaction_direction.py",
@@ -859,8 +859,8 @@
     },
     {
       "path": "src/xtbflow/validation/__init__.py",
-      "sha256": "9f26a682c6b073b5558141ba61b4eb18003e82e5d965701289c3d068f1689b8c",
-      "bytes": 573
+      "sha256": "28bde676c7adc27be4ecab057c647000e060a97fc6e7503672fcfaa0fc92959c",
+      "bytes": 711
     },
     {
       "path": "src/xtbflow/validation/connectivity.py",
@@ -869,13 +869,13 @@
     },
     {
       "path": "src/xtbflow/validation/modes.py",
-      "sha256": "590d3542632befb16007fbe6c417c7db9afccb305f3ddc59a086c0d0666ef835",
-      "bytes": 1673
+      "sha256": "b518b9517311fca403eb9a3a2e2d86625a71388a86c99a6aedbc1287ef2f3426",
+      "bytes": 4017
     },
     {
       "path": "src/xtbflow/validation/ts_search.py",
-      "sha256": "f161bddb807d39930bbaa52f180de61289962c7a5125462424ecffb0f0740abe",
-      "bytes": 19268
+      "sha256": "85ad17e0533a64e7c003c382f3b08d27e1b8f87c2f1db47ca8bf9996a797a8d6",
+      "bytes": 21635
     },
     {
       "path": "tests/reusable/test_event_geometry.py",
@@ -954,8 +954,13 @@
     },
     {
       "path": "tests/test_joint_flow.py",
-      "sha256": "d18c71fa4bddb1f3758adf3203a631eeb1f3d1e3969f685ae48979cb20010ba3",
-      "bytes": 14172
+      "sha256": "83a6a544a7662c3d921b092d37769fdc4cb6cd975c5c3b1aba7f6291cca2ff43",
+      "bytes": 15739
+    },
+    {
+      "path": "tests/test_learning_curve_budget.py",
+      "sha256": "443d87bb892a176fe261c36990a38e71cd85fb2ef7903c60c78464b163f4f1c6",
+      "bytes": 1689
     },
     {
       "path": "tests/test_package.py",
@@ -969,8 +974,8 @@
     },
     {
       "path": "tests/test_path_status.py",
-      "sha256": "352d02626c16822ab3aba243c2ba6f7a3f2a78659e19b91c2567cffcf93b1bc3",
-      "bytes": 9407
+      "sha256": "1f7573742661b55c2ced7b493256e6b2af82dc6de0386e13d1522f011a9ed16a",
+      "bytes": 12066
     },
     {
       "path": "tests/test_runtime_budget.py",
@@ -984,8 +989,8 @@
     },
     {
       "path": "tests/test_workflow_b_protocol.py",
-      "sha256": "0491b26813933fd983b822f97ab0ecc3a4af06e441d04347ea035247442bae59",
-      "bytes": 4527
+      "sha256": "2696cc7afc5d8e307bc292ef46d93f90c42a3098d6bae1423d341ef5926a49ff",
+      "bytes": 4673
     },
     {
       "path": "vendor/mechai_reusable/README.md",

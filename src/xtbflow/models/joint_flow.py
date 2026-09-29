@@ -3,7 +3,7 @@
 The canonical event state is the packed upper triangle of a symmetric
 bond/electron matrix.  Pairwise shared networks make event velocities
 permutation equivariant, while coordinate updates remain SE(3)-equivariant.
-The three learned controls use the same parameters:
+The four learned controls use the same parameters:
 
 ``both_off``
     Event and geometry fields see the same reactant-side conditions but do not
@@ -14,6 +14,11 @@ The three learned controls use the same parameters:
 ``joint_bidirectional``
     Current event and geometry states influence one another at every velocity
     evaluation.
+``joint_unidirectional``
+    The same current-state Euler evaluation as the joint control, with only
+    geometry-to-event feedback disabled.  This is the causal ablation for
+    attributing gains to bidirectional coupling; it is not the serial
+    post-update baseline.
 
 The normalized flow coordinate is a generation parameter, not physical time.
 """
@@ -35,7 +40,8 @@ from .event_flow import ConservedEventFlow
 from .geometry_flow import EquivariantGeometryFlow
 
 
-CONTROL_MODES = ("both_off", "serial_independent", "joint_bidirectional")
+JOINT_UNIDIRECTIONAL_MODE = "joint_unidirectional"
+CONTROL_MODES = ("both_off", "serial_independent", JOINT_UNIDIRECTIONAL_MODE, "joint_bidirectional")
 
 
 def _normalize_tau(
@@ -317,10 +323,18 @@ class JointEventGeometryFlow(nn.Module):
         coupling_strength: float = 1.0,
         tau: float | Tensor = 0.0,
         condition_features: Tensor | None = None,
+        geometry_to_event_strength: float | None = None,
+        event_to_geometry_strength: float | None = None,
     ) -> JointFlowOutput:
         """Evaluate the bidirectional control with a shared coupling strength."""
 
         strength = _finite_strength(coupling_strength, "coupling_strength")
+        geometry_strength = strength if geometry_to_event_strength is None else _finite_strength(
+            geometry_to_event_strength, "geometry_to_event_strength"
+        )
+        event_strength = strength if event_to_geometry_strength is None else _finite_strength(
+            event_to_geometry_strength, "event_to_geometry_strength"
+        )
         active_event, conditions = self._validate_inputs(
             event_state, coordinates, node_features, atom_mask, condition_features
         )
@@ -337,14 +351,14 @@ class JointEventGeometryFlow(nn.Module):
             hidden_nodes,
             atom_mask,
             active_event,
-            geometry_to_event_strength=strength,
+            geometry_to_event_strength=geometry_strength,
         )
         geometry_velocity, geometry_message = self._geometry_velocity(
             event_state,
             coordinates,
             conditioned_nodes,
             atom_mask,
-            event_to_geometry_strength=strength,
+            event_to_geometry_strength=event_strength,
         )
         return JointFlowOutput(event_velocity, geometry_velocity, event_message, geometry_message)
 
@@ -374,6 +388,23 @@ class JointEventGeometryFlow(nn.Module):
                 coupling_strength=coupling_strength,
                 tau=tau,
                 condition_features=condition_features,
+            )
+        if mode == JOINT_UNIDIRECTIONAL_MODE:
+            # Keep the same state time point and integrator contract as the
+            # bidirectional field.  Only one message channel is disabled.
+            if dt is None:
+                raise ValueError("joint_unidirectional requires an explicit positive dt")
+            _finite_strength(dt, "dt", allow_zero=False)
+            return self(
+                event_state,
+                coordinates,
+                node_features,
+                atom_mask,
+                coupling_strength=coupling_strength,
+                tau=tau,
+                condition_features=condition_features,
+                geometry_to_event_strength=0.0,
+                event_to_geometry_strength=coupling_strength,
             )
         if mode == "both_off":
             return self(

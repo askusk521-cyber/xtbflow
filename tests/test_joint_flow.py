@@ -5,6 +5,7 @@ import torch
 
 from xtbflow.evaluation import TerminalCandidate, deduplicate_terminal_candidates
 from xtbflow.models import (
+    JOINT_UNIDIRECTIONAL_MODE,
     JointEventGeometryFlow,
     SerialEventGeometryFlow,
     pack_be,
@@ -118,6 +119,41 @@ def test_joint_flow_exchanges_states_and_registered_controls_share_parameters():
             node,
             mask,
             tau=0.25,
+            condition_features=condition,
+        )
+
+
+def test_unidirectional_control_uses_current_state_with_the_same_euler_integrator():
+    torch.manual_seed(24)
+    event, coordinates, node, mask, condition = inputs()
+    flow, _ = model()
+    bidirectional = flow.forward_control(
+        "joint_bidirectional", event, coordinates, node, mask,
+        tau=0.2, dt=0.25, condition_features=condition,
+    )
+    unidirectional = flow.forward_control(
+        JOINT_UNIDIRECTIONAL_MODE, event, coordinates, node, mask,
+        tau=0.2, dt=0.25, condition_features=condition,
+    )
+    # The event-to-geometry channel is unchanged and both controls evaluate
+    # the same current state; only the geometry-to-event message is removed.
+    torch.testing.assert_close(unidirectional.geometry_velocity, bidirectional.geometry_velocity)
+    assert not torch.allclose(unidirectional.event_velocity, bidirectional.event_velocity)
+    _, _, stepped = control_euler_step(
+        flow, event, coordinates, node, mask,
+        mode=JOINT_UNIDIRECTIONAL_MODE, tau=0.2, dt=0.25,
+        condition_features=condition,
+    )
+    torch.testing.assert_close(stepped.event_velocity, unidirectional.event_velocity)
+    torch.testing.assert_close(stepped.geometry_velocity, unidirectional.geometry_velocity)
+    with pytest.raises(ValueError, match="joint_unidirectional requires"):
+        flow.forward_control(
+            JOINT_UNIDIRECTIONAL_MODE,
+            event,
+            coordinates,
+            node,
+            mask,
+            tau=0.2,
             condition_features=condition,
         )
 

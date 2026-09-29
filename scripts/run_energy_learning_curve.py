@@ -32,6 +32,45 @@ PARENT_BOOTSTRAP_KEYS = (
 )
 
 
+def _write_stage_ledger(path: Path, payload: dict) -> None:
+    """Atomically persist the shared execution ledger after every transition."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.tmp")
+    temporary.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    temporary.replace(path)
+
+
+def _text_output(value: object) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, bytes):
+        return value.decode(errors="replace")
+    return str(value)
+
+
+def _run_child_with_remaining_budget(
+    command: list[str],
+    *,
+    cwd: Path,
+    started: float,
+    max_seconds: float,
+) -> subprocess.CompletedProcess[str]:
+    """Run one training child with the exact remaining wall-clock budget."""
+
+    remaining = max_seconds - (time.perf_counter() - started)
+    if remaining <= 0:
+        raise TimeoutError("no execution budget remained before child launch")
+    return subprocess.run(
+        command,
+        cwd=cwd,
+        text=True,
+        capture_output=True,
+        check=False,
+        timeout=remaining,
+    )
+
+
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -173,6 +212,17 @@ def main() -> int:
     args.output_dir.mkdir(parents=True, exist_ok=True)
     started = time.perf_counter()
     max_seconds = float(config["execution"]["max_single_gpu_hours"]) * 3600.0
+    if not np.isfinite(max_seconds) or max_seconds <= 0:
+        parser.error("execution max_single_gpu_hours must be finite and positive")
+    ledger_path = args.output_dir / "stage_ledger.json"
+    stage_ledger = {
+        "schema": "xtbflow-spice2-energy-learning-curve-stage/v1",
+        "status": "running",
+        "source_commit": source_commit,
+        "max_seconds": max_seconds,
+        "runs": [],
+    }
+    _write_stage_ledger(ledger_path, stage_ledger)
     run_records = []
     reports_by_size: dict[int, list[dict]] = {}
 
@@ -181,6 +231,9 @@ def main() -> int:
         for seed in config["training_seeds"]:
             elapsed = time.perf_counter() - started
             if elapsed >= max_seconds:
+                stage_ledger["status"] = "failed"
+                stage_ledger["error"] = f"execution cap reached before size={train_parent_count}, seed={seed}"
+                _write_stage_ledger(ledger_path, stage_ledger)
                 raise SystemExit(f"execution cap reached before size={train_parent_count}, seed={seed}")
             report_path = args.output_dir / f"size{train_parent_count}_seed{seed}.json"
             log_path = args.output_dir / f"size{train_parent_count}_seed{seed}.log"
@@ -194,13 +247,60 @@ def main() -> int:
                 "--seed", str(seed),
                 "--train-parent-count", str(train_parent_count),
             ]
-            completed = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, check=False)
+            run_entry = {
+                "train_parent_count": train_parent_count,
+                "seed": seed,
+                "report_path": str(report_path),
+                "log_path": str(log_path),
+                "status": "running",
+                "started_elapsed_seconds": elapsed,
+            }
+            stage_ledger["runs"].append(run_entry)
+            _write_stage_ledger(ledger_path, stage_ledger)
+            remaining = max_seconds - (time.perf_counter() - started)
+            if remaining <= 0:
+                run_entry["status"] = "timeout"
+                run_entry["error"] = "no execution budget remained before child launch"
+                stage_ledger["status"] = "failed"
+                _write_stage_ledger(ledger_path, stage_ledger)
+                raise SystemExit(run_entry["error"])
+            run_entry["timeout_seconds"] = remaining
+            try:
+                # The child receives the exact remaining stage budget.  This
+                # makes the declared cap a hard upper bound rather than a
+                # post-hoc observation after an unbounded subprocess.run.
+                completed = _run_child_with_remaining_budget(
+                    command, cwd=ROOT, started=started, max_seconds=max_seconds
+                )
+            except (subprocess.TimeoutExpired, TimeoutError) as exc:
+                stdout = _text_output(getattr(exc, "stdout", None))
+                stderr = _text_output(getattr(exc, "stderr", None))
+                log_path.write_text(
+                    "COMMAND: " + " ".join(command) + "\n\nTIMEOUT: " + str(exc)
+                    + "\n\nSTDOUT:\n" + stdout + "\nSTDERR:\n" + stderr,
+                    encoding="utf-8",
+                )
+                run_entry["status"] = "timeout"
+                run_entry["error"] = f"child exceeded remaining stage budget ({remaining:.6f}s)"
+                run_entry["wall_seconds"] = time.perf_counter() - started
+                stage_ledger["status"] = "failed"
+                stage_ledger["error"] = run_entry["error"]
+                _write_stage_ledger(ledger_path, stage_ledger)
+                raise SystemExit(
+                    f"learning-curve run timed out: size={train_parent_count}, seed={seed}; see {log_path}"
+                ) from exc
             log_path.write_text(
-                "COMMAND: " + " ".join(command) + "\n\nSTDOUT:\n" + completed.stdout
-                + "\nSTDERR:\n" + completed.stderr,
+                "COMMAND: " + " ".join(command) + "\n\nSTDOUT:\n" + _text_output(completed.stdout)
+                + "\nSTDERR:\n" + _text_output(completed.stderr),
                 encoding="utf-8",
             )
             if completed.returncode != 0:
+                run_entry["status"] = "failed"
+                run_entry["returncode"] = completed.returncode
+                run_entry["wall_seconds"] = time.perf_counter() - started
+                stage_ledger["status"] = "failed"
+                stage_ledger["error"] = f"child returned {completed.returncode}"
+                _write_stage_ledger(ledger_path, stage_ledger)
                 raise SystemExit(f"learning-curve run failed: size={train_parent_count}, seed={seed}; see {log_path}")
             report = json.loads(report_path.read_text(encoding="utf-8"))
             if report["protocol"]["seed"] != seed or report["protocol"]["train_parent_count"] != train_parent_count:
@@ -224,7 +324,14 @@ def main() -> int:
                     raise RuntimeError("distance_scale drifted from frozen config")
             reports_by_size[train_parent_count].append(report)
             run_records.append(_compact_run(report, report_path))
-            if time.perf_counter() - started > max_seconds:
+            run_entry["status"] = "success"
+            run_entry["returncode"] = completed.returncode
+            run_entry["wall_seconds"] = time.perf_counter() - started
+            _write_stage_ledger(ledger_path, stage_ledger)
+            if time.perf_counter() > started + max_seconds:
+                stage_ledger["status"] = "failed"
+                stage_ledger["error"] = "execution cap exceeded after completed bounded run"
+                _write_stage_ledger(ledger_path, stage_ledger)
                 raise SystemExit("execution cap exceeded; stopping after completed bounded run")
 
     nested_parent_sets = {}
@@ -312,6 +419,9 @@ def main() -> int:
     }
     args.summary.parent.mkdir(parents=True, exist_ok=True)
     args.summary.write_text(json.dumps(summary, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
+    stage_ledger["status"] = "complete"
+    stage_ledger["wall_seconds_total"] = elapsed
+    _write_stage_ledger(ledger_path, stage_ledger)
     print(json.dumps({
         "summary": str(args.summary),
         "runs": len(run_records),

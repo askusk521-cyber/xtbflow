@@ -31,6 +31,7 @@ EXPECTED_ARMS = (
     "strong_rule",
     "conserved_independent",
     "serial_event_to_geometry",
+    "current_event_to_geometry",
     "joint_event_geometry",
 )
 
@@ -104,6 +105,9 @@ def validate_protocol() -> dict[str, object]:
     )
     if learned_modes != CONTROL_MODES:
         raise ValueError("learned baseline arms must map exactly to the registered control modes")
+    gate = protocol.get("decision_gate", {})
+    if gate.get("title_claim_requires_joint_over_current_one_way") is not True or gate.get("comparison") != "joint_event_geometry versus current_event_to_geometry":
+        raise ValueError("coupling attribution requires the current-state one-way control")
 
     fairness = protocol.get("fairness")
     if not isinstance(fairness, Mapping):
@@ -217,8 +221,8 @@ def validate_protocol() -> dict[str, object]:
         },
         "measured_control_manifest": measured_manifest,
         "checks": [
-            "four-arm first scientific matrix is frozen",
-            "learned arms map exactly to both_off, serial_independent, and joint_bidirectional",
+            "five-arm first scientific matrix is frozen",
+            "learned arms include the current-state joint_unidirectional ablation",
             "learned software controls share one measured parameter state",
             "software acceptance assigns zero calculator calls to every learned control",
             "issue 58 remains the explicit paired event/TS supervision blocker",

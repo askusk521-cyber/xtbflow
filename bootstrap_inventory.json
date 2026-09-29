@@ -729,8 +729,8 @@
     },
     {
       "path": "scripts/run_transition1x_joint_development.py",
-      "sha256": "5f5f400b9723d50c736a96562148e72f39467a09b1bc86b868ad7c08e492b2fd",
-      "bytes": 14388
+      "sha256": "b2ddd1bc47aee8b722e681b8d471bdb8c28b6341f6d0bf89ded35becb7f4b6ac",
+      "bytes": 15006
     },
     {
       "path": "scripts/validate_bootstrap.py",

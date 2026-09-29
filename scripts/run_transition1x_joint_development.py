@@ -185,8 +185,8 @@ def main() -> int:
     parser.add_argument("--steps", type=int, default=8)
     parser.add_argument("--seed", type=int, default=20260930)
     args = parser.parse_args()
-    if args.max_records < 4 or args.steps < 1:
-        raise SystemExit("max-records must be at least 4 and steps must be positive")
+    if args.max_records < 8 or args.steps < 1:
+        raise SystemExit("max-records must be at least 8 and steps must be positive")
     started = time.monotonic()
     random.seed(args.seed)
     np.random.seed(args.seed)
@@ -217,8 +217,23 @@ def main() -> int:
         except (KeyError, TypeError, ValueError):
             continue
         candidates.append(sample)
-    candidates.sort(key=lambda row: (row["split"], row["formula"], row["reaction_id"]))
-    selected = candidates[: args.max_records]
+    by_split = {
+        split: sorted(
+            (row for row in candidates if row["split"] == split),
+            key=lambda row: (row["formula"], row["reaction_id"]),
+        )
+        for split in ("train", "validation", "test")
+    }
+    if any(not by_split[split] for split in by_split):
+        raise RuntimeError("deterministic development split did not populate all roles")
+    train_target = max(1, int(round(args.max_records * 0.75)))
+    validation_target = max(1, int(round(args.max_records * 0.125)))
+    test_target = max(1, args.max_records - train_target - validation_target)
+    selected = (
+        by_split["train"][:train_target]
+        + by_split["validation"][:validation_target]
+        + by_split["test"][:test_target]
+    )
     if len(selected) < 4:
         raise RuntimeError("fewer than four valid development samples were found")
     max_atoms = max(len(row["atomic_numbers"]) for row in selected)
@@ -313,4 +328,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

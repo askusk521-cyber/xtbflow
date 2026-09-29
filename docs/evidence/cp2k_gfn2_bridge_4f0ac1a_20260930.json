@@ -1,0 +1,1080 @@
+{
+  "artifact_index": [
+    {
+      "relative_path": "hydrogen-sulfide-perturbed-neutral-singlet/xtbflow-cp2k-86htesfq/input.inp",
+      "sha256": "540648ccaaa4c12aad02f8c2ca01a9675aca6341287a7a033df8b3eae00a8a31",
+      "size_bytes": 1282
+    },
+    {
+      "relative_path": "hydrogen-sulfide-perturbed-neutral-singlet/xtbflow-cp2k-86htesfq/output.out",
+      "sha256": "98493b24bb58d2dd7bd8daac9de54bd2049c998bbacfc6014d87815ccbb3d55d",
+      "size_bytes": 61139
+    },
+    {
+      "relative_path": "hydrogen-sulfide-perturbed-neutral-singlet/xtbflow-cp2k-86htesfq/stderr.txt",
+      "sha256": "6ae611942e9c64c71a0fd38145f6d889f001c1d12ef90d9bcaf159b7acc2214a",
+      "size_bytes": 167
+    },
+    {
+      "relative_path": "hydrogen-sulfide-perturbed-neutral-singlet/xtbflow-cp2k-86htesfq/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "relative_path": "hydrogen-sulfide-perturbed-neutral-singlet/xtbflow-cp2k-86htesfq/xtbflow-RESTART.wfn",
+      "sha256": "9c968204288aa445754d37f45a319c26c36ee84820a258ad42dc756b763c5b41",
+      "size_bytes": 1000
+    },
+    {
+      "relative_path": "hydronium-perturbed-cation-singlet/xtbflow-cp2k-__cjggib/input.inp",
+      "sha256": "a8065c40b71d5a8e828c6ac1afb37bdf42b4ebe3f9775c39224ae48c23011080",
+      "size_bytes": 1308
+    },
+    {
+      "relative_path": "hydronium-perturbed-cation-singlet/xtbflow-cp2k-__cjggib/output.out",
+      "sha256": "73100bc021aa43df3b89a903ca5e7c7104e81445007dd6a5fd3d246512db04ce",
+      "size_bytes": 62976
+    },
+    {
+      "relative_path": "hydronium-perturbed-cation-singlet/xtbflow-cp2k-__cjggib/stderr.txt",
+      "sha256": "51d1c0a600d559c9129a1a3da65c77dba0fe1dfeb114746b617ac0569c7d0ec5",
+      "size_bytes": 167
+    },
+    {
+      "relative_path": "hydronium-perturbed-cation-singlet/xtbflow-cp2k-__cjggib/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "relative_path": "hydronium-perturbed-cation-singlet/xtbflow-cp2k-__cjggib/xtbflow-RESTART.wfn",
+      "sha256": "adc203468815879423f45f10927973725035b24d18b43aa52709494921b53a7a",
+      "size_bytes": 1188
+    },
+    {
+      "relative_path": "water-dimer-perturbed-neutral-singlet/xtbflow-cp2k-8bdwcwm2/input.inp",
+      "sha256": "7676d5ae7210cadc45a2bf01325989cf1e24bb1e2109052493f385aa414087c7",
+      "size_bytes": 1375
+    },
+    {
+      "relative_path": "water-dimer-perturbed-neutral-singlet/xtbflow-cp2k-8bdwcwm2/output.out",
+      "sha256": "ee81bfa291e41ac27e1622cf3d39526e61cc8405bec54d4a82a10e01249403e5",
+      "size_bytes": 63529
+    },
+    {
+      "relative_path": "water-dimer-perturbed-neutral-singlet/xtbflow-cp2k-8bdwcwm2/stderr.txt",
+      "sha256": "f67775d28cde681f1a6ab36b1b3ed53c058de763862fb4a3fef308187c8e7d78",
+      "size_bytes": 167
+    },
+    {
+      "relative_path": "water-dimer-perturbed-neutral-singlet/xtbflow-cp2k-8bdwcwm2/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "relative_path": "water-dimer-perturbed-neutral-singlet/xtbflow-cp2k-8bdwcwm2/xtbflow-RESTART.wfn",
+      "sha256": "7ff48f991f31b45bfe7bbac2707c82897e096e3f90120f61f6ba93819b1b6b8a",
+      "size_bytes": 3388
+    },
+    {
+      "relative_path": "water-perturbed-neutral-singlet/xtbflow-cp2k-t8upj2lf/input.inp",
+      "sha256": "48d37513d81a9baf826182e41cef47ed62591b41f9ba68cfc8ef0574780057be",
+      "size_bytes": 1282
+    },
+    {
+      "relative_path": "water-perturbed-neutral-singlet/xtbflow-cp2k-t8upj2lf/output.out",
+      "sha256": "18af2342c2af5ec6320634f63b5f9ca8c7009df3b3d7c626b8083ed28b6f686c",
+      "size_bytes": 62575
+    },
+    {
+      "relative_path": "water-perturbed-neutral-singlet/xtbflow-cp2k-t8upj2lf/stderr.txt",
+      "sha256": "c30df8cccac5ecd700f8018044b1a6ccdee59434003eab72616c3197384d399e",
+      "size_bytes": 167
+    },
+    {
+      "relative_path": "water-perturbed-neutral-singlet/xtbflow-cp2k-t8upj2lf/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "relative_path": "water-perturbed-neutral-singlet/xtbflow-cp2k-t8upj2lf/xtbflow-RESTART.wfn",
+      "sha256": "c7ea732335ca4bcf554eb659dc48b4261cb35c3e3364eeaba08bec774b0b5183",
+      "size_bytes": 1000
+    }
+  ],
+  "artifact_policy": "raw CP2K inputs, outputs, stdout, and stderr persisted outside the public report",
+  "calculator_accounting": {
+    "cp2k": {
+      "committed_calculator_calls": 4,
+      "pending_reservations": 0
+    },
+    "gfn2": {
+      "committed_calculator_calls": 4,
+      "pending_reservations": 0
+    }
+  },
+  "case_count": 4,
+  "claim_limits": [
+    "This bounded bridge characterizes same-geometry E/F differences; it is not a broad accuracy qualification.",
+    "Absolute energies are retained per system and are not pooled across stoichiometries.",
+    "No transition-state, vibrational-mode, IRC, endpoint-connectivity, or mechanism claim follows from this bridge.",
+    "Reference-label admission remains provisional because the 600 Ry energy convergence gate failed its registered threshold."
+  ],
+  "completed_cases": 4,
+  "config_sha256": "a60c49bfb4f4f0dfe194af484aa593df38cb614e52db739d7221dfd43bacb3b9",
+  "evidence_schema": "xtbflow-cp2k-gfn2-reference-bridge-public/v1",
+  "failed_cases": 0,
+  "fatal_error": null,
+  "ledger_sha256": {
+    "cp2k_ledger.json": "f3097088e88a97fb5a559c338a8b55b37eeb0d097f8e57d61ab18796702da577",
+    "gfn2_ledger.json": "e0586bff39048c6f362acfe1fb0b5027a58ede63dadad82d85831a36be77ba00"
+  },
+  "private_report_sha256": "2357a0638ee287ce01b1e3167370927a17115f371fb9692779fd09ce80ff8046",
+  "records": [
+    {
+      "bridge": {
+        "charge": 0,
+        "coordinates_angstrom": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.97,
+            0.03,
+            0.0
+          ],
+          [
+            -0.25,
+            0.91,
+            0.04
+          ]
+        ],
+        "force_delta": {
+          "component_mae_hartree_per_angstrom": 0.011736229970664137,
+          "component_max_abs_hartree_per_angstrom": 0.0346104265309061,
+          "component_rmse_hartree_per_angstrom": 0.01682551774079962
+        },
+        "input_hash": "1818e23ff3c866c2e96e6dd69bf4454d7f70044465388873a1e577eecf326777",
+        "multiplicity": 1,
+        "same_geometry_energy_delta_hartree": 12.150662269519508,
+        "selection_reason": "neutral CHNO calibration geometry with nonzero force components",
+        "symbols": [
+          "O",
+          "H",
+          "H"
+        ],
+        "system_id": "water-perturbed-neutral-singlet"
+      },
+      "comparison": {
+        "cache_hit": false,
+        "calculator": "xtb_oracle",
+        "calculator_build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+        "calculator_calls": 1,
+        "charge": 0,
+        "converged": true,
+        "energy": -5.069953863773185,
+        "error_category": null,
+        "error_message": null,
+        "forces": [
+          [
+            0.03173603291541256,
+            -0.015584138640701175,
+            -0.0007220263072993977
+          ],
+          [
+            -0.01441960315231904,
+            -0.010077462776812226,
+            -0.0004197955874605049
+          ],
+          [
+            -0.017316429763093524,
+            0.025661601417513353,
+            0.001141821894759902
+          ]
+        ],
+        "input_file_hash": null,
+        "input_hash": "1818e23ff3c866c2e96e6dd69bf4454d7f70044465388873a1e577eecf326777",
+        "metadata": {
+          "adapter_code_hash": "dc223169709870f61b657e359419958b26931e9c8d562af8d6093f9c3c512189",
+          "adapter_revision": "xtb-oracle-native-units-v1",
+          "force_conversion": "-gradient_hartree_per_bohr / 0.529177210903 = force_hartree_per_angstrom",
+          "implementation": "tblite",
+          "implementation_build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+          "implementation_identity_paths_recorded_in_private_run": true,
+          "implementation_version": "0.7.0",
+          "native_coordinate_unit": "bohr",
+          "native_energy_unit": "hartree",
+          "native_gradient_unit": "hartree/bohr",
+          "normalized_force_unit": "hartree/angstrom",
+          "public_coordinate_unit": "angstrom"
+        },
+        "multiplicity": 1,
+        "operation": "energy_forces",
+        "path_status": "not_requested",
+        "protocol_id": "tblite-gfn2-reference-bridge-v1",
+        "status": "success"
+      },
+      "comparison_wall_seconds": 0.02999144105706364,
+      "index": 0,
+      "input_hash": "1818e23ff3c866c2e96e6dd69bf4454d7f70044465388873a1e577eecf326777",
+      "reference": {
+        "cache_hit": false,
+        "calculator": "cp2k",
+        "calculator_build_hash": "cp2k-2024.2-8222f9c",
+        "calculator_calls": 1,
+        "charge": 0,
+        "converged": true,
+        "energy": -17.220616133292694,
+        "error_category": null,
+        "error_message": null,
+        "forces": [
+          [
+            0.015320973452664678,
+            -0.050194565171607274,
+            -0.0022113008192533377
+          ],
+          [
+            0.0023350967776775717,
+            -0.002948596364037328,
+            -0.0001316572191026774
+          ],
+          [
+            -0.017771230140376945,
+            0.052957854991863805,
+            0.0023303724623660073
+          ]
+        ],
+        "input_file_hash": "48d37513d81a9baf826182e41cef47ed62591b41f9ba68cfc8ef0574780057be",
+        "input_hash": "1818e23ff3c866c2e96e6dd69bf4454d7f70044465388873a1e577eecf326777",
+        "metadata": {
+          "artifact_directory_recorded_in_private_run": true,
+          "artifact_files": [
+            "input.inp",
+            "output.out",
+            "stderr.txt",
+            "stdout.txt",
+            "xtbflow-RESTART.wfn"
+          ],
+          "artifact_persistence": "persistent",
+          "force_conversion_version": "bohr_to_angstrom_codata2018",
+          "normalized_force_unit": "hartree/angstrom",
+          "raw_force_unit": "hartree/bohr",
+          "raw_forces": [
+            [
+              0.00810751,
+              -0.02656182,
+              -0.00117017
+            ],
+            [
+              0.00123568,
+              -0.00156033,
+              -6.967e-05
+            ],
+            [
+              -0.00940413,
+              0.02802409,
+              0.00123318
+            ]
+          ],
+          "scf_convergence_evidence": "positive_marker"
+        },
+        "multiplicity": 1,
+        "operation": "energy_forces",
+        "path_status": "not_requested",
+        "protocol_id": "cp2k-reference-v0.1-pbe-d3bj-provisional:q0:m1",
+        "status": "success"
+      },
+      "reference_physical_protocol": {
+        "basis_set": "DZVP-MOLOPT-GTH",
+        "boundary": "isolated",
+        "build_hash": "cp2k-2024.2-8222f9c",
+        "charge": 0,
+        "cp2k_version": "2024.2",
+        "cutoff_ry": 600,
+        "dispersion": "DFTD3(BJ)",
+        "functional": "PBE",
+        "max_scf": 80,
+        "multiplicity": 1,
+        "parameters": {
+          "basis_by_element": {
+            "C": "DZVP-MOLOPT-GTH",
+            "H": "DZVP-MOLOPT-GTH",
+            "N": "DZVP-MOLOPT-GTH",
+            "O": "DZVP-MOLOPT-GTH",
+            "S": "DZVP-MOLOPT-GTH"
+          },
+          "basis_set_file": {
+            "name": "BASIS_MOLOPT",
+            "sha256": "686dd72e7601ee41d4a173e4c7c3946f1e750f03095090f44d3821c180a81a61"
+          },
+          "dispersion_parameter_file": {
+            "name": "dftd3.dat",
+            "sha256": "1f5041914fb3a7fa6c97602d82da6cb9129c1c1dba675db23522de9c2837dafd"
+          },
+          "pseudopotential_by_element": {
+            "C": "GTH-PBE",
+            "H": "GTH-PBE",
+            "N": "GTH-PBE",
+            "O": "GTH-PBE",
+            "S": "GTH-PBE"
+          },
+          "pseudopotential_file": {
+            "name": "GTH_POTENTIALS",
+            "sha256": "5a9bfbc3b37a55917ade4fb704b80546d210d843759b94e3915e74acfc3fafb2"
+          },
+          "reference_functional": "PBE"
+        },
+        "path_status": "not_requested",
+        "protocol_id": "cp2k-reference-v0.1-pbe-d3bj-provisional:q0:m1",
+        "pseudopotential": "GTH-PBE",
+        "relative_cutoff_ry": 50,
+        "scf_epsilon": 1e-07,
+        "solvent_model": "none",
+        "source_revision": "8222f9c"
+      },
+      "reference_physical_protocol_identity": "5552bdeb8458a253d214c99c1f69335ab8786295317bbc28ed792d48b40b0a8a",
+      "reference_runtime_bound_protocol_identity": "66690f2e36ab14233916f65cb7ae8c53f6780c1cad660429d013b23eb5b4422d",
+      "reference_wall_seconds": 157.35848562303,
+      "selection_reason": "neutral CHNO calibration geometry with nonzero force components",
+      "status": "success",
+      "system_id": "water-perturbed-neutral-singlet"
+    },
+    {
+      "bridge": {
+        "charge": 0,
+        "coordinates_angstrom": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.33,
+            0.05,
+            0.0
+          ],
+          [
+            -0.04,
+            1.34,
+            0.05
+          ]
+        ],
+        "force_delta": {
+          "component_mae_hartree_per_angstrom": 0.010870376792133745,
+          "component_max_abs_hartree_per_angstrom": 0.024607033558240614,
+          "component_rmse_hartree_per_angstrom": 0.015662530893211277
+        },
+        "input_hash": "413cd1d82767a9554467fc0be2bdd36476523a84889d03b7483c51dca1723d0e",
+        "multiplicity": 1,
+        "same_geometry_energy_delta_hartree": 7.132726297766149,
+        "selection_reason": "sulfur-containing target-domain calibration geometry",
+        "symbols": [
+          "S",
+          "H",
+          "H"
+        ],
+        "system_id": "hydrogen-sulfide-perturbed-neutral-singlet"
+      },
+      "comparison": {
+        "cache_hit": false,
+        "calculator": "xtb_oracle",
+        "calculator_build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+        "calculator_calls": 1,
+        "charge": 0,
+        "converged": true,
+        "energy": -4.256013460735785,
+        "error_category": null,
+        "error_message": null,
+        "forces": [
+          [
+            0.007422261023380032,
+            0.016316113112399812,
+            0.0005977277600135434
+          ],
+          [
+            -0.0021966571307735225,
+            -0.005667725881439031,
+            -0.00020816731772714067
+          ],
+          [
+            -0.005225603892606514,
+            -0.010648387230960779,
+            -0.00038956044228640266
+          ]
+        ],
+        "input_file_hash": null,
+        "input_hash": "413cd1d82767a9554467fc0be2bdd36476523a84889d03b7483c51dca1723d0e",
+        "metadata": {
+          "adapter_code_hash": "dc223169709870f61b657e359419958b26931e9c8d562af8d6093f9c3c512189",
+          "adapter_revision": "xtb-oracle-native-units-v1",
+          "force_conversion": "-gradient_hartree_per_bohr / 0.529177210903 = force_hartree_per_angstrom",
+          "implementation": "tblite",
+          "implementation_build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+          "implementation_identity_paths_recorded_in_private_run": true,
+          "implementation_version": "0.7.0",
+          "native_coordinate_unit": "bohr",
+          "native_energy_unit": "hartree",
+          "native_gradient_unit": "hartree/bohr",
+          "normalized_force_unit": "hartree/angstrom",
+          "public_coordinate_unit": "angstrom"
+        },
+        "multiplicity": 1,
+        "operation": "energy_forces",
+        "path_status": "not_requested",
+        "protocol_id": "tblite-gfn2-reference-bridge-v1",
+        "status": "success"
+      },
+      "comparison_wall_seconds": 0.006138666998594999,
+      "index": 1,
+      "input_hash": "413cd1d82767a9554467fc0be2bdd36476523a84889d03b7483c51dca1723d0e",
+      "reference": {
+        "cache_hit": false,
+        "calculator": "cp2k",
+        "calculator_build_hash": "cp2k-2024.2-8222f9c",
+        "calculator_calls": 1,
+        "charge": 0,
+        "converged": true,
+        "energy": -11.388739758501934,
+        "error_category": null,
+        "error_message": null,
+        "forces": [
+          [
+            -0.01718477253486058,
+            -0.007152254333744861,
+            -0.0002424896563119788
+          ],
+          [
+            0.021982125761141797,
+            -0.003679958168789994,
+            -0.0001679777552179847
+          ],
+          [
+            -0.004796861897488809,
+            0.010833384132732122,
+            0.00041095874032236624
+          ]
+        ],
+        "input_file_hash": "540648ccaaa4c12aad02f8c2ca01a9675aca6341287a7a033df8b3eae00a8a31",
+        "input_hash": "413cd1d82767a9554467fc0be2bdd36476523a84889d03b7483c51dca1723d0e",
+        "metadata": {
+          "artifact_directory_recorded_in_private_run": true,
+          "artifact_files": [
+            "input.inp",
+            "output.out",
+            "stderr.txt",
+            "stdout.txt",
+            "xtbflow-RESTART.wfn"
+          ],
+          "artifact_persistence": "persistent",
+          "force_conversion_version": "bohr_to_angstrom_codata2018",
+          "normalized_force_unit": "hartree/angstrom",
+          "raw_force_unit": "hartree/bohr",
+          "raw_forces": [
+            [
+              -0.00909379,
+              -0.00378481,
+              -0.00012832
+            ],
+            [
+              0.01163244,
+              -0.00194735,
+              -8.889e-05
+            ],
+            [
+              -0.00253839,
+              0.00573278,
+              0.00021747
+            ]
+          ],
+          "scf_convergence_evidence": "positive_marker"
+        },
+        "multiplicity": 1,
+        "operation": "energy_forces",
+        "path_status": "not_requested",
+        "protocol_id": "cp2k-reference-v0.1-pbe-d3bj-provisional:q0:m1",
+        "status": "success"
+      },
+      "reference_physical_protocol": {
+        "basis_set": "DZVP-MOLOPT-GTH",
+        "boundary": "isolated",
+        "build_hash": "cp2k-2024.2-8222f9c",
+        "charge": 0,
+        "cp2k_version": "2024.2",
+        "cutoff_ry": 600,
+        "dispersion": "DFTD3(BJ)",
+        "functional": "PBE",
+        "max_scf": 80,
+        "multiplicity": 1,
+        "parameters": {
+          "basis_by_element": {
+            "C": "DZVP-MOLOPT-GTH",
+            "H": "DZVP-MOLOPT-GTH",
+            "N": "DZVP-MOLOPT-GTH",
+            "O": "DZVP-MOLOPT-GTH",
+            "S": "DZVP-MOLOPT-GTH"
+          },
+          "basis_set_file": {
+            "name": "BASIS_MOLOPT",
+            "sha256": "686dd72e7601ee41d4a173e4c7c3946f1e750f03095090f44d3821c180a81a61"
+          },
+          "dispersion_parameter_file": {
+            "name": "dftd3.dat",
+            "sha256": "1f5041914fb3a7fa6c97602d82da6cb9129c1c1dba675db23522de9c2837dafd"
+          },
+          "pseudopotential_by_element": {
+            "C": "GTH-PBE",
+            "H": "GTH-PBE",
+            "N": "GTH-PBE",
+            "O": "GTH-PBE",
+            "S": "GTH-PBE"
+          },
+          "pseudopotential_file": {
+            "name": "GTH_POTENTIALS",
+            "sha256": "5a9bfbc3b37a55917ade4fb704b80546d210d843759b94e3915e74acfc3fafb2"
+          },
+          "reference_functional": "PBE"
+        },
+        "path_status": "not_requested",
+        "protocol_id": "cp2k-reference-v0.1-pbe-d3bj-provisional:q0:m1",
+        "pseudopotential": "GTH-PBE",
+        "relative_cutoff_ry": 50,
+        "scf_epsilon": 1e-07,
+        "solvent_model": "none",
+        "source_revision": "8222f9c"
+      },
+      "reference_physical_protocol_identity": "5552bdeb8458a253d214c99c1f69335ab8786295317bbc28ed792d48b40b0a8a",
+      "reference_runtime_bound_protocol_identity": "66690f2e36ab14233916f65cb7ae8c53f6780c1cad660429d013b23eb5b4422d",
+      "reference_wall_seconds": 148.794363419991,
+      "selection_reason": "sulfur-containing target-domain calibration geometry",
+      "status": "success",
+      "system_id": "hydrogen-sulfide-perturbed-neutral-singlet"
+    },
+    {
+      "bridge": {
+        "charge": 1,
+        "coordinates_angstrom": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.98,
+            0.0,
+            0.05
+          ],
+          [
+            -0.49,
+            0.85,
+            -0.02
+          ],
+          [
+            -0.46,
+            -0.79,
+            0.12
+          ]
+        ],
+        "force_delta": {
+          "component_mae_hartree_per_angstrom": 0.00962449313433802,
+          "component_max_abs_hartree_per_angstrom": 0.029822989312506737,
+          "component_rmse_hartree_per_angstrom": 0.013181556164019705
+        },
+        "input_hash": "c9ee9ad0b188ceec4f5e72557f15dd37ed05fadae60260a4ad9a7d8741caaad3",
+        "multiplicity": 1,
+        "same_geometry_energy_delta_hartree": 12.402179665270754,
+        "selection_reason": "charged closed-shell target-domain calibration geometry",
+        "symbols": [
+          "O",
+          "H",
+          "H",
+          "H"
+        ],
+        "system_id": "hydronium-perturbed-cation-singlet"
+      },
+      "comparison": {
+        "cache_hit": false,
+        "calculator": "xtb_oracle",
+        "calculator_build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+        "calculator_calls": 1,
+        "charge": 1,
+        "converged": true,
+        "energy": -5.081995893698306,
+        "error_category": null,
+        "error_message": null,
+        "forces": [
+          [
+            0.0496933489414642,
+            0.08385622207692993,
+            -0.02233751107900274
+          ],
+          [
+            -0.00605219641053769,
+            0.0022973614621787757,
+            0.002914713267579657
+          ],
+          [
+            0.004593902655259978,
+            -0.0042815890499898175,
+            0.00348772070224025
+          ],
+          [
+            -0.048235055186186516,
+            -0.08187199448911887,
+            0.01593507710918281
+          ]
+        ],
+        "input_file_hash": null,
+        "input_hash": "c9ee9ad0b188ceec4f5e72557f15dd37ed05fadae60260a4ad9a7d8741caaad3",
+        "metadata": {
+          "adapter_code_hash": "dc223169709870f61b657e359419958b26931e9c8d562af8d6093f9c3c512189",
+          "adapter_revision": "xtb-oracle-native-units-v1",
+          "force_conversion": "-gradient_hartree_per_bohr / 0.529177210903 = force_hartree_per_angstrom",
+          "implementation": "tblite",
+          "implementation_build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+          "implementation_identity_paths_recorded_in_private_run": true,
+          "implementation_version": "0.7.0",
+          "native_coordinate_unit": "bohr",
+          "native_energy_unit": "hartree",
+          "native_gradient_unit": "hartree/bohr",
+          "normalized_force_unit": "hartree/angstrom",
+          "public_coordinate_unit": "angstrom"
+        },
+        "multiplicity": 1,
+        "operation": "energy_forces",
+        "path_status": "not_requested",
+        "protocol_id": "tblite-gfn2-reference-bridge-v1",
+        "status": "success"
+      },
+      "comparison_wall_seconds": 0.00551565398927778,
+      "index": 2,
+      "input_hash": "c9ee9ad0b188ceec4f5e72557f15dd37ed05fadae60260a4ad9a7d8741caaad3",
+      "reference": {
+        "cache_hit": false,
+        "calculator": "cp2k",
+        "calculator_build_hash": "cp2k-2024.2-8222f9c",
+        "calculator_calls": 1,
+        "charge": 1,
+        "converged": true,
+        "energy": -17.48417555896906,
+        "error_category": null,
+        "error_message": null,
+        "forces": [
+          [
+            0.0626349535034599,
+            0.10563544470218435,
+            -0.024566874257143677
+          ],
+          [
+            0.004579127653409428,
+            0.0015880691433517585,
+            0.002589642886664663
+          ],
+          [
+            -0.0014411051426396124,
+            0.004499305621905235,
+            0.0024013505756069514
+          ],
+          [
+            -0.06576777926738701,
+            -0.11169498380162561,
+            0.019555131602023674
+          ]
+        ],
+        "input_file_hash": "a8065c40b71d5a8e828c6ac1afb37bdf42b4ebe3f9775c39224ae48c23011080",
+        "input_hash": "c9ee9ad0b188ceec4f5e72557f15dd37ed05fadae60260a4ad9a7d8741caaad3",
+        "metadata": {
+          "artifact_directory_recorded_in_private_run": true,
+          "artifact_files": [
+            "input.inp",
+            "output.out",
+            "stderr.txt",
+            "stdout.txt",
+            "xtbflow-RESTART.wfn"
+          ],
+          "artifact_persistence": "persistent",
+          "force_conversion_version": "bohr_to_angstrom_codata2018",
+          "normalized_force_unit": "hartree/angstrom",
+          "raw_force_unit": "hartree/bohr",
+          "raw_forces": [
+            [
+              0.03314499,
+              0.05589987,
+              -0.01300023
+            ],
+            [
+              0.00242317,
+              0.00084037,
+              0.00137038
+            ],
+            [
+              -0.0007626,
+              0.00238093,
+              0.00127074
+            ],
+            [
+              -0.03480281,
+              -0.05910644,
+              0.01034813
+            ]
+          ],
+          "scf_convergence_evidence": "positive_marker"
+        },
+        "multiplicity": 1,
+        "operation": "energy_forces",
+        "path_status": "not_requested",
+        "protocol_id": "cp2k-reference-v0.1-pbe-d3bj-provisional:q1:m1",
+        "status": "success"
+      },
+      "reference_physical_protocol": {
+        "basis_set": "DZVP-MOLOPT-GTH",
+        "boundary": "isolated",
+        "build_hash": "cp2k-2024.2-8222f9c",
+        "charge": 1,
+        "cp2k_version": "2024.2",
+        "cutoff_ry": 600,
+        "dispersion": "DFTD3(BJ)",
+        "functional": "PBE",
+        "max_scf": 80,
+        "multiplicity": 1,
+        "parameters": {
+          "basis_by_element": {
+            "C": "DZVP-MOLOPT-GTH",
+            "H": "DZVP-MOLOPT-GTH",
+            "N": "DZVP-MOLOPT-GTH",
+            "O": "DZVP-MOLOPT-GTH",
+            "S": "DZVP-MOLOPT-GTH"
+          },
+          "basis_set_file": {
+            "name": "BASIS_MOLOPT",
+            "sha256": "686dd72e7601ee41d4a173e4c7c3946f1e750f03095090f44d3821c180a81a61"
+          },
+          "dispersion_parameter_file": {
+            "name": "dftd3.dat",
+            "sha256": "1f5041914fb3a7fa6c97602d82da6cb9129c1c1dba675db23522de9c2837dafd"
+          },
+          "pseudopotential_by_element": {
+            "C": "GTH-PBE",
+            "H": "GTH-PBE",
+            "N": "GTH-PBE",
+            "O": "GTH-PBE",
+            "S": "GTH-PBE"
+          },
+          "pseudopotential_file": {
+            "name": "GTH_POTENTIALS",
+            "sha256": "5a9bfbc3b37a55917ade4fb704b80546d210d843759b94e3915e74acfc3fafb2"
+          },
+          "reference_functional": "PBE"
+        },
+        "path_status": "not_requested",
+        "protocol_id": "cp2k-reference-v0.1-pbe-d3bj-provisional:q1:m1",
+        "pseudopotential": "GTH-PBE",
+        "relative_cutoff_ry": 50,
+        "scf_epsilon": 1e-07,
+        "solvent_model": "none",
+        "source_revision": "8222f9c"
+      },
+      "reference_physical_protocol_identity": "b9ab0a92cf639aaf5190b877c40f524a4389d257648b3f50eaedc350520e6b96",
+      "reference_runtime_bound_protocol_identity": "3316dfcdffb5f551137480c3e7e46db8874374af5075c2ac41a355c68487b86a",
+      "reference_wall_seconds": 164.56905503803864,
+      "selection_reason": "charged closed-shell target-domain calibration geometry",
+      "status": "success",
+      "system_id": "hydronium-perturbed-cation-singlet"
+    },
+    {
+      "bridge": {
+        "charge": 0,
+        "coordinates_angstrom": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.9572,
+            0.0,
+            0.0
+          ],
+          [
+            -0.239987,
+            0.927297,
+            0.0
+          ],
+          [
+            2.85,
+            0.1,
+            0.05
+          ],
+          [
+            3.8072,
+            0.1,
+            0.05
+          ],
+          [
+            2.610013,
+            1.027297,
+            0.05
+          ]
+        ],
+        "force_delta": {
+          "component_mae_hartree_per_angstrom": 0.011207368798978847,
+          "component_max_abs_hartree_per_angstrom": 0.027021018310760536,
+          "component_rmse_hartree_per_angstrom": 0.015387810446638464
+        },
+        "input_hash": "94344d0bc5a507af727f02016c41c6355454d44287539eedf436f450c84a9b96",
+        "multiplicity": 1,
+        "same_geometry_energy_delta_hartree": 24.300653961949056,
+        "selection_reason": "finite explicit-water environment calibration geometry",
+        "symbols": [
+          "O",
+          "H",
+          "H",
+          "O",
+          "H",
+          "H"
+        ],
+        "system_id": "water-dimer-perturbed-neutral-singlet"
+      },
+      "comparison": {
+        "cache_hit": false,
+        "calculator": "xtb_oracle",
+        "calculator_build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+        "calculator_calls": 1,
+        "charge": 0,
+        "converged": true,
+        "energy": -10.143232245176382,
+        "error_category": null,
+        "error_message": null,
+        "forces": [
+          [
+            -0.007276582752761885,
+            0.008023774369295175,
+            -0.00034925830122624644
+          ],
+          [
+            0.008459964779200843,
+            -0.017392418457043292,
+            0.0002660872503562674
+          ],
+          [
+            -0.008024221882439024,
+            0.0021818836512977257,
+            2.403019175979981e-05
+          ],
+          [
+            0.0027271510060514178,
+            0.008671928818734277,
+            -0.00030868100233193125
+          ],
+          [
+            0.005596716241197461,
+            -0.009855497384102591,
+            1.0722751664458254e-05
+          ],
+          [
+            -0.0014830273912488554,
+            0.008370329001818584,
+            0.00035709910977765235
+          ]
+        ],
+        "input_file_hash": null,
+        "input_hash": "94344d0bc5a507af727f02016c41c6355454d44287539eedf436f450c84a9b96",
+        "metadata": {
+          "adapter_code_hash": "dc223169709870f61b657e359419958b26931e9c8d562af8d6093f9c3c512189",
+          "adapter_revision": "xtb-oracle-native-units-v1",
+          "force_conversion": "-gradient_hartree_per_bohr / 0.529177210903 = force_hartree_per_angstrom",
+          "implementation": "tblite",
+          "implementation_build_hash": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+          "implementation_identity_paths_recorded_in_private_run": true,
+          "implementation_version": "0.7.0",
+          "native_coordinate_unit": "bohr",
+          "native_energy_unit": "hartree",
+          "native_gradient_unit": "hartree/bohr",
+          "normalized_force_unit": "hartree/angstrom",
+          "public_coordinate_unit": "angstrom"
+        },
+        "multiplicity": 1,
+        "operation": "energy_forces",
+        "path_status": "not_requested",
+        "protocol_id": "tblite-gfn2-reference-bridge-v1",
+        "status": "success"
+      },
+      "comparison_wall_seconds": 0.029722157050855458,
+      "index": 3,
+      "input_hash": "94344d0bc5a507af727f02016c41c6355454d44287539eedf436f450c84a9b96",
+      "reference": {
+        "cache_hit": false,
+        "calculator": "cp2k",
+        "calculator_build_hash": "cp2k-2024.2-8222f9c",
+        "calculator_calls": 1,
+        "charge": 0,
+        "converged": true,
+        "energy": -34.44388620712544,
+        "error_category": null,
+        "error_message": null,
+        "forces": [
+          [
+            -0.02975358665414278,
+            -0.017234793585379427,
+            -0.00014690730892840737
+          ],
+          [
+            0.03102883053482399,
+            -0.013984691418158057,
+            -7.660949709232872e-05
+          ],
+          [
+            -0.01066782522695366,
+            0.02321284769432682,
+            -8.273220973611622e-05
+          ],
+          [
+            -0.017198813199966554,
+            -0.01834908949202626,
+            0.004054010557898418
+          ],
+          [
+            0.027296356877030647,
+            -0.004296367933381674,
+            -0.0002531477116548682
+          ],
+          [
+            0.0010316959777394393,
+            0.030598445409940476,
+            0.00047604090805447775
+          ]
+        ],
+        "input_file_hash": "7676d5ae7210cadc45a2bf01325989cf1e24bb1e2109052493f385aa414087c7",
+        "input_hash": "94344d0bc5a507af727f02016c41c6355454d44287539eedf436f450c84a9b96",
+        "metadata": {
+          "artifact_directory_recorded_in_private_run": true,
+          "artifact_files": [
+            "input.inp",
+            "output.out",
+            "stderr.txt",
+            "stdout.txt",
+            "xtbflow-RESTART.wfn"
+          ],
+          "artifact_persistence": "persistent",
+          "force_conversion_version": "bohr_to_angstrom_codata2018",
+          "normalized_force_unit": "hartree/angstrom",
+          "raw_force_unit": "hartree/bohr",
+          "raw_forces": [
+            [
+              -0.01574492,
+              -0.00912026,
+              -7.774e-05
+            ],
+            [
+              0.01641975,
+              -0.00740038,
+              -4.054e-05
+            ],
+            [
+              -0.00564517,
+              0.01228371,
+              -4.378e-05
+            ],
+            [
+              -0.00910122,
+              -0.00970992,
+              0.00214529
+            ],
+            [
+              0.01444461,
+              -0.00227354,
+              -0.00013396
+            ],
+            [
+              0.00054595,
+              0.016192,
+              0.00025191
+            ]
+          ],
+          "scf_convergence_evidence": "positive_marker"
+        },
+        "multiplicity": 1,
+        "operation": "energy_forces",
+        "path_status": "not_requested",
+        "protocol_id": "cp2k-reference-v0.1-pbe-d3bj-provisional:q0:m1",
+        "status": "success"
+      },
+      "reference_physical_protocol": {
+        "basis_set": "DZVP-MOLOPT-GTH",
+        "boundary": "isolated",
+        "build_hash": "cp2k-2024.2-8222f9c",
+        "charge": 0,
+        "cp2k_version": "2024.2",
+        "cutoff_ry": 600,
+        "dispersion": "DFTD3(BJ)",
+        "functional": "PBE",
+        "max_scf": 80,
+        "multiplicity": 1,
+        "parameters": {
+          "basis_by_element": {
+            "C": "DZVP-MOLOPT-GTH",
+            "H": "DZVP-MOLOPT-GTH",
+            "N": "DZVP-MOLOPT-GTH",
+            "O": "DZVP-MOLOPT-GTH",
+            "S": "DZVP-MOLOPT-GTH"
+          },
+          "basis_set_file": {
+            "name": "BASIS_MOLOPT",
+            "sha256": "686dd72e7601ee41d4a173e4c7c3946f1e750f03095090f44d3821c180a81a61"
+          },
+          "dispersion_parameter_file": {
+            "name": "dftd3.dat",
+            "sha256": "1f5041914fb3a7fa6c97602d82da6cb9129c1c1dba675db23522de9c2837dafd"
+          },
+          "pseudopotential_by_element": {
+            "C": "GTH-PBE",
+            "H": "GTH-PBE",
+            "N": "GTH-PBE",
+            "O": "GTH-PBE",
+            "S": "GTH-PBE"
+          },
+          "pseudopotential_file": {
+            "name": "GTH_POTENTIALS",
+            "sha256": "5a9bfbc3b37a55917ade4fb704b80546d210d843759b94e3915e74acfc3fafb2"
+          },
+          "reference_functional": "PBE"
+        },
+        "path_status": "not_requested",
+        "protocol_id": "cp2k-reference-v0.1-pbe-d3bj-provisional:q0:m1",
+        "pseudopotential": "GTH-PBE",
+        "relative_cutoff_ry": 50,
+        "scf_epsilon": 1e-07,
+        "solvent_model": "none",
+        "source_revision": "8222f9c"
+      },
+      "reference_physical_protocol_identity": "5552bdeb8458a253d214c99c1f69335ab8786295317bbc28ed792d48b40b0a8a",
+      "reference_runtime_bound_protocol_identity": "66690f2e36ab14233916f65cb7ae8c53f6780c1cad660429d013b23eb5b4422d",
+      "reference_wall_seconds": 158.32285838003736,
+      "selection_reason": "finite explicit-water environment calibration geometry",
+      "status": "success",
+      "system_id": "water-dimer-perturbed-neutral-singlet"
+    }
+  ],
+  "reference_protocol_document_sha256": "ff227533858bd273e21a045ab3724093561f94d4c28c4860eeab3611c60c1580",
+  "reference_runtime": {
+    "build_hash": "cp2k-2024.2-8222f9c",
+    "cp2k_version": "2024.2",
+    "executable_name": "cp2k.psmp",
+    "executable_sha256": "5ddf02a4a70a06267c927a09cfadaf40813c9c7813d9b2f22b0ac920085811ad",
+    "source_revision": "8222f9c"
+  },
+  "schema": "xtbflow-reference-bridge/v1",
+  "scientific_qualification": false,
+  "script_sha256": "7e473e89383d6a192a51b940e4f7fc756c122c5adcf6b84fc5d9e2a032e4f903",
+  "semiempirical_protocol_id": "tblite-gfn2-reference-bridge-v1",
+  "semiempirical_protocol_identity": "5e9c1c6632f853c49ba8456bcf6a641d08c6ab34abfc742040c38459d0f0d9c5",
+  "source_commit": "4f0ac1a4e2ba2850992ce1caf3c7813f05c23088",
+  "status": "completed",
+  "successful_cases": 4,
+  "summary": {
+    "energy_aggregation": "not_reported_across_stoichiometries",
+    "force_component_mae_mean_hartree_per_angstrom": 0.010859617174028686,
+    "force_component_max_abs_hartree_per_angstrom": 0.0346104265309061,
+    "successful_cases": 4
+  }
+}

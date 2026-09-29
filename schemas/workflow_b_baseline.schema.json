@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/xtbflow/workflow_b_baseline.schema.json",
+  "type": "object",
+  "required": [
+    "schema",
+    "protocol_id",
+    "status",
+    "blocking_dependency",
+    "first_scientific_matrix",
+    "fairness",
+    "required_run_identity",
+    "metrics",
+    "decision_gate",
+    "evidence_boundary"
+  ],
+  "properties": {
+    "schema": {"const": "xtbflow-workflow-b-baseline/v1"},
+    "protocol_id": {"type": "string", "minLength": 1},
+    "status": {"const": "software_protocol_frozen_scientific_execution_blocked"},
+    "first_scientific_matrix": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["arm_id", "kind", "implementation", "learned_control_mode"]
+      }
+    },
+    "fairness": {
+      "type": "object",
+      "required": [
+        "same_admitted_record_ids",
+        "same_parent_group_split_fingerprint",
+        "same_reactant_input_view_fingerprint",
+        "learned_arms_share_trainable_parameter_count",
+        "training_seeds",
+        "generator_selection_calculator_calls_per_parent"
+      ]
+    }
+  }
+}

@@ -86,6 +86,36 @@ class ConservationProjector:
         correction = residual @ gram_pinv @ matrix
         return (flat - correction).reshape_as(vector)
 
+    def project_masked(self, vector: torch.Tensor, feature_mask: torch.Tensor) -> torch.Tensor:
+        """Project active features while keeping padded features exactly zero.
+
+        Each batch item may expose a different active feature subset.  The
+        orthogonal projection is therefore computed against the corresponding
+        active columns of ``A`` rather than projecting first and masking later,
+        which could reintroduce non-zero padded entries.
+        """
+
+        if vector.shape[-1] != self.n_features:
+            raise ValueError("vector feature dimension does not match constraints")
+        if feature_mask.shape != vector.shape or feature_mask.dtype is not torch.bool or feature_mask.device != vector.device:
+            raise ValueError("feature_mask must be boolean and match vector")
+        if not vector.is_floating_point() or not bool(torch.isfinite(vector).all()):
+            raise ValueError("vector must be finite floating point")
+        matrix = self.constraint_matrix.to(device=vector.device, dtype=vector.dtype)
+        flat_vector = vector.reshape(-1, self.n_features)
+        flat_mask = feature_mask.reshape(-1, self.n_features)
+        projected_rows: list[torch.Tensor] = []
+        for row, active in zip(flat_vector, flat_mask):
+            result = torch.zeros_like(row)
+            if bool(active.any()):
+                active_matrix = matrix[:, active]
+                active_values = row[active]
+                gram_pinv = torch.linalg.pinv(active_matrix @ active_matrix.transpose(0, 1))
+                residual = active_values @ active_matrix.transpose(0, 1)
+                result[active] = active_values - residual @ gram_pinv @ active_matrix
+            projected_rows.append(result)
+        return torch.stack(projected_rows, dim=0).reshape_as(vector)
+
     def residual(self, vector: torch.Tensor) -> torch.Tensor:
         if vector.shape[-1] != self.n_features:
             raise ValueError("vector feature dimension does not match constraints")

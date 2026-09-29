@@ -118,6 +118,11 @@
       "bytes": 2649
     },
     {
+      "path": "configs/experiments/spice2_energy_learning_curve_v1.json",
+      "sha256": "bb2f6bcd8033f3202c950adbb64019806cb08d04b21e5d8035f9dc63aa267360",
+      "bytes": 1328
+    },
+    {
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
@@ -259,8 +264,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "f7432f17b15990b2db98811ecf60473fe06831dd240839044382ba30f5beb43f",
-      "bytes": 13595
+      "sha256": "0d6fe3ad31c78f73aec971220b0b106b4f5f267e23944d968832ac67d40edb01",
+      "bytes": 15390
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -333,6 +338,51 @@
       "bytes": 1212
     },
     {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size12_seed20260929.json",
+      "sha256": "f3f9de42e5533cf8955e65a2ac900013d8b887d38ec37a7edbebe631fa63dd91",
+      "bytes": 151412
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size12_seed20260930.json",
+      "sha256": "d0b6c21966ebb22f86ad050ce028e230baba3d2b4b99199fd674cba67d7376f9",
+      "bytes": 151352
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size12_seed20261001.json",
+      "sha256": "e21d4d6ee4ed369d529befb09076e6cb9905c730c6bae4d56969cd88539425b0",
+      "bytes": 151383
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size24_seed20260929.json",
+      "sha256": "9da107fe73918c22d397ad8376c6bb6f20fc2dc5fd053033f6f9aaace06ceaef",
+      "bytes": 167867
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size24_seed20260930.json",
+      "sha256": "8e27e40bb5048ef322b8b42a91f795fec1e87810d25d9e07e65d7a4c1593a1bb",
+      "bytes": 167895
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size24_seed20261001.json",
+      "sha256": "e8581418f3c964a23c94aad123f0370368ebabe6f638b4a76c96864ea6172ffc",
+      "bytes": 167896
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size48_seed20260929.json",
+      "sha256": "16779d260536bd8922417048322c80a79dc6dd210bc0459360a339bbeb4cbb9a",
+      "bytes": 200934
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size48_seed20260930.json",
+      "sha256": "066e15bced76b4742ac8e82b8cf7d2fcc0d70a054d8d276c7fa6bbf606278749",
+      "bytes": 201002
+    },
+    {
+      "path": "docs/evidence/spice2_learning_curve_runs_20260929/size48_seed20261001.json",
+      "sha256": "fdeca1896f482b198d190a359bc6f2ff8a43737eedecf61333f11fec693a6f2f",
+      "bytes": 200975
+    },
+    {
       "path": "docs/evidence/spice2_openff_256_summary_20260929.json",
       "sha256": "0675b4c91a93a8408cad0079d3c32cf9bf509e5e93e9bc3728ff666fc0c3ac70",
       "bytes": 5940
@@ -376,6 +426,16 @@
       "path": "docs/evidence/spice2_openff_gfn2_run_256_20260929.json",
       "sha256": "a251567a4dc00428d75abde04b26e8de03191a5d5f77357240c45a031d637fc3",
       "bytes": 1295
+    },
+    {
+      "path": "docs/evidence/spice2_openff_learning_curve_20260929.json",
+      "sha256": "dde6a389072d7b47d4d947b01a2376baf319d0283d6327aedf8b3cc305bea9b7",
+      "bytes": 225390
+    },
+    {
+      "path": "docs/evidence/spice2_openff_learning_curve_interpretation_20260929.json",
+      "sha256": "8a02012847c60859ffdf41d4070ad933252b52002c4863d3c614881872a81292",
+      "bytes": 4791
     },
     {
       "path": "docs/evidence/spice2_openff_pilot_summary_20260929.json",
@@ -499,8 +559,13 @@
     },
     {
       "path": "scripts/run_energy_baselines.py",
-      "sha256": "148e93eec85543128104f265ed36c6db58b619d84888acc9c5a0d045f8fe9181",
-      "bytes": 17898
+      "sha256": "b8386b137eb59e4afa0d6c066b076658590f0c3326e4169bed045fb415773def",
+      "bytes": 26062
+    },
+    {
+      "path": "scripts/run_energy_learning_curve.py",
+      "sha256": "6f0843d3d61b056de69e06c08a8b1baf73c438eef7a013341fb3ff54dcbd2d2a",
+      "bytes": 15114
     },
     {
       "path": "scripts/run_gfn2_diagnostic.py",
@@ -834,8 +899,8 @@
     },
     {
       "path": "tests/test_energy_forces.py",
-      "sha256": "f645d165480a8f134e824bd5714e8dcab0a29c4df650baf611369df1d376dbd5",
-      "bytes": 6525
+      "sha256": "79b971518e6e2c05ecf19af765e1c7ef663db34e3761e3582ea8d67d37ac5a0f",
+      "bytes": 9907
     },
     {
       "path": "tests/test_geometry_flow.py",

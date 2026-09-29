@@ -1,0 +1,124 @@
+{
+  "decision": {
+    "absolute_energy": "do not claim a robust Delta advantage; mean gains at 24/48 parents have parent-bootstrap intervals crossing zero and meaningful training-seed variance",
+    "delta": "retain for force/local-surface correction development; force and direction gains are consistent under the frozen matrix",
+    "direct": "do not expand tuning under the current P1 protocol; force, direction, and relative-energy metrics are consistently worse than bare GFN2",
+    "next": "use the established Delta module in downstream physics/flow development while increasing independent-parent coverage in future E/F validation rather than adding more conformers to the same eight test parents",
+    "relative_energy": "do not claim a robust advantage; average improvements at larger sizes have parent-bootstrap intervals crossing zero"
+  },
+  "delta_energy_evidence": {
+    "12": {
+      "bare_minus_delta_parent_equal_weight_difference_kcal_per_mol": -9.929651280597712,
+      "bootstrap_95pct_ci": [
+        -39.668299021969545,
+        18.472449604617534
+      ],
+      "mean_energy_mae_kcal_per_mol": 62.42563560239622,
+      "relative_energy_bootstrap_95pct_ci_bare_minus_delta": [
+        -1.4122469151699126,
+        1.5642826050193186
+      ],
+      "seed_std_energy_mae_kcal_per_mol": 5.172456792605354
+    },
+    "24": {
+      "bare_minus_delta_parent_equal_weight_difference_kcal_per_mol": 17.689675600913798,
+      "bootstrap_95pct_ci": [
+        -0.009774127788855225,
+        30.166838090469525
+      ],
+      "mean_energy_mae_kcal_per_mol": 30.20364903985408,
+      "relative_energy_bootstrap_95pct_ci_bare_minus_delta": [
+        -0.5948124131112223,
+        2.4195454417192215
+      ],
+      "seed_std_energy_mae_kcal_per_mol": 8.337688288936997
+    },
+    "48": {
+      "bare_minus_delta_parent_equal_weight_difference_kcal_per_mol": 16.907002922796046,
+      "bootstrap_95pct_ci": [
+        -14.755893441048276,
+        36.54708134075573
+      ],
+      "mean_energy_mae_kcal_per_mol": 35.6458593871535,
+      "relative_energy_bootstrap_95pct_ci_bare_minus_delta": [
+        -1.0957175153103162,
+        2.176857594745171
+      ],
+      "seed_std_energy_mae_kcal_per_mol": 14.555993720387521
+    }
+  },
+  "delta_force_evidence": {
+    "12": {
+      "bare_minus_delta_parent_equal_weight_difference": 0.0038578317755533767,
+      "bootstrap_95pct_ci": [
+        0.002924838247159654,
+        0.004615180431285363
+      ],
+      "force_direction_bootstrap_95pct_ci_bare_minus_delta": [
+        4.374553451203995,
+        10.275978834769957
+      ],
+      "mean_force_mae": 0.005003160280280714,
+      "parents_improved_fraction": 1.0,
+      "seed_std_force_mae": 6.99468595432359e-05
+    },
+    "24": {
+      "bare_minus_delta_parent_equal_weight_difference": 0.004064147444592698,
+      "bootstrap_95pct_ci": [
+        0.0032159360158595654,
+        0.0047752194171294575
+      ],
+      "force_direction_bootstrap_95pct_ci_bare_minus_delta": [
+        4.687010600705596,
+        10.660107771327137
+      ],
+      "mean_force_mae": 0.004753609235322757,
+      "parents_improved_fraction": 1.0,
+      "seed_std_force_mae": 4.6859366173529086e-05
+    },
+    "48": {
+      "bare_minus_delta_parent_equal_weight_difference": 0.004167302643803342,
+      "bootstrap_95pct_ci": [
+        0.003298246018586514,
+        0.0048875258529560645
+      ],
+      "force_direction_bootstrap_95pct_ci_bare_minus_delta": [
+        4.7448534127211435,
+        10.855724059770752
+      ],
+      "mean_force_mae": 0.004659979029751602,
+      "parents_improved_fraction": 1.0,
+      "seed_std_force_mae": 0.0001121916739229871
+    }
+  },
+  "execution": {
+    "cap_single_gpu_hours": 0.5,
+    "device": "cuda",
+    "new_dft_calls": 0,
+    "new_semiempirical_calls": 0,
+    "single_gpu_hours_if_one_gpu_used": 0.11208598241834099,
+    "wall_seconds_total": 403.5095367060276
+  },
+  "limits": [
+    "All conclusions are restricted to the admitted SPICE2 OpenFF development domain and the frozen 8-parent test split.",
+    "The parent bootstrap has only eight independent test parents; its intervals are reported rather than converted into a publication-level generalization claim.",
+    "No reaction discovery, transition-state, mechanism, CP2K, wet-lab, or final sealed-test result is implied."
+  ],
+  "matrix": {
+    "independent_test_parents": 8,
+    "train_parent_counts": [
+      12,
+      24,
+      48
+    ],
+    "training_seeds": [
+      20260929,
+      20260930,
+      20261001
+    ]
+  },
+  "schema": "xtbflow-spice2-energy-learning-curve-interpretation/v1",
+  "source_summary": "docs/evidence/spice2_openff_learning_curve_20260929.json",
+  "source_summary_sha256": "dde6a389072d7b47d4d947b01a2376baf319d0283d6327aedf8b3cc305bea9b7",
+  "status": "development_evidence_complete"
+}

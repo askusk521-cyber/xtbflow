@@ -11,9 +11,11 @@
       "energy_unit": "hartree",
       "force_unit": "hartree/angstrom",
       "parameters": {
-        "scc_tolerance": "required_explicit_value",
-        "electronic_temperature": "required_explicit_value",
-        "initialization": "required_explicit_value",
+        "max_scc_iterations": 250,
+        "charge_tolerance": 1e-6,
+        "energy_tolerance": 1e-8,
+        "electronic_temperature": 300.0,
+        "initialization": "fresh",
         "environment": "explicit_nonperiodic_molecular_system"
       }
     },

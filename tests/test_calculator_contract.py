@@ -175,6 +175,71 @@ def test_production_adapter_blocks_the_fourth_call_before_evaluator():
     assert token.consumed_calls == 3
 
 
+def test_xtbloom_direct_adapter_converts_public_units_and_explicit_settings(monkeypatch):
+    captured = {}
+
+    class FakeResult:
+        def get(self, name):
+            if name == "energy":
+                return -2.5
+            if name == "forces":
+                return np.asarray([[0.25, -0.5, 0.0]], dtype=np.float64)
+            raise AssertionError(name)
+
+    class FakeCalculator:
+        def __init__(self, method, numbers, positions, **kwargs):
+            captured.update(method=method, numbers=numbers, positions=positions, kwargs=kwargs)
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc, traceback):
+            return False
+
+        def singlepoint(self):
+            return FakeResult()
+
+    xtbloom = types.ModuleType("xtbloom")
+    xtbloom.Calculator = FakeCalculator
+    monkeypatch.setitem(sys.modules, "xtbloom", xtbloom)
+
+    native_protocol = CalculatorProtocol(
+        protocol_id="xtbloom-gfn2-native-bohr-v1",
+        calculator="xtbloom",
+        method="GFN2-xTB",
+        parameters={
+            "max_scc_iterations": 250,
+            "charge_tolerance": 1e-6,
+            "energy_tolerance": 1e-8,
+            "electronic_temperature": 300.0,
+            "initialization": "fresh",
+        },
+    )
+    item = MolecularSystem(("H",), ((1.0, 0.0, 0.0),), 0, 3)
+    adapter = XTBloomAdapter(protocol=native_protocol)
+    result = adapter.evaluate(item)
+
+    assert captured["method"] == "GFN2-xTB"
+    assert captured["numbers"].tolist() == [1]
+    assert captured["positions"][0, 0] == pytest.approx(1.0 / 0.529177210903)
+    assert captured["kwargs"] == {
+        "charge": 0,
+        "multiplicity": 3,
+        "backend": "cpu",
+        "max_scc_iterations": 250,
+        "charge_tolerance": 1e-6,
+        "energy_tolerance": 1e-8,
+        "electronic_temperature": 300.0,
+        "warm_start": False,
+    }
+    assert result.forces[0][0] == pytest.approx(0.25 / 0.529177210903)
+    assert result.metadata["native_coordinate_unit"] == "bohr"
+    assert result.metadata["native_force_unit"] == "hartree/bohr"
+    assert result.metadata["normalized_force_unit"] == "hartree/angstrom"
+    assert adapter.capabilities.qualification == "installed"
+    assert adapter.capabilities.status == "unknown"
+
+
 def test_missing_or_nonfinite_contract_fields_are_rejected():
     with pytest.raises(ValueError, match="coordinate"):
         MolecularSystem(("H",), ((math.nan, 0.0, 0.0),), 0, 1)

@@ -199,8 +199,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "2f0040cd56d9c09dcbbe0a0c1f854afa41fb7c1976d3cf1b6a7893659e219164",
-      "bytes": 3491
+      "sha256": "ec8cd746d0278210b2a9d8178296be2843b9a1a56477ce5c6d564ac6ef2dbb72",
+      "bytes": 3251
     },
     {
       "path": "docs/HANDOFF_STATUS.md",
@@ -329,8 +329,8 @@
     },
     {
       "path": "scripts/joint_flow_smoke.py",
-      "sha256": "391943e07bb23f76915c52b696f5a2ed76f99fe67fdaf51caef26cebb6d6cc94",
-      "bytes": 7273
+      "sha256": "29f20fa8549a6d18781a6a5a4ecdda0103e8f4b8d7cf640e2fb656de877e34e2",
+      "bytes": 8665
     },
     {
       "path": "scripts/run_gfn2_diagnostic.py",
@@ -524,8 +524,8 @@
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
-      "sha256": "776805edde8ed0365ca095f3cd206ff4c91b415c2e6343089287f0166fa87bc7",
-      "bytes": 186
+      "sha256": "f2e79ce584ecb2cc4e85a85f27e404a340ace19b80c5a0d9410427b8feeaecda",
+      "bytes": 226
     },
     {
       "path": "src/xtbflow/sampling/guidance.py",
@@ -534,8 +534,8 @@
     },
     {
       "path": "src/xtbflow/sampling/integrator.py",
-      "sha256": "8e23eba2c291031479f45aba4ee9018a05fbb09be50b6da67c05946835c39ea0",
-      "bytes": 1652
+      "sha256": "135ce5aac7372c23d6c6b0ce5881c78a105b87f18b9e2bc2572cf972cc8a9b05",
+      "bytes": 3168
     },
     {
       "path": "src/xtbflow/training/__init__.py",
@@ -544,8 +544,8 @@
     },
     {
       "path": "src/xtbflow/training/checkpoint.py",
-      "sha256": "13bf0c21bb46224f0567fc2ffad62aaa9c18d723ca4d2909c21172286169f77c",
-      "bytes": 3370
+      "sha256": "d6f6cc4ab52d7ac25de12648a42f1d53696cee632fbad7595564e941832fcc00",
+      "bytes": 5346
     },
     {
       "path": "src/xtbflow/training/energy.py",
@@ -623,6 +623,11 @@
       "bytes": 7285
     },
     {
+      "path": "tests/test_checkpoint.py",
+      "sha256": "912520a99d672a5059bb6c1d196ea9a77381f978218b4249f30dacc251205c9a",
+      "bytes": 3994
+    },
+    {
       "path": "tests/test_conserved_flow.py",
       "sha256": "729a164c1de8079775d3a82a7c354c36c820b6d10468c3344486ffa2ef5e3e2e",
       "bytes": 3069
@@ -654,8 +659,8 @@
     },
     {
       "path": "tests/test_joint_flow.py",
-      "sha256": "5b6e6b82db6204f00a187134fe618392255f767b90c54e2bdb83b05674dbb293",
-      "bytes": 4678
+      "sha256": "5b58160a370c3ebf56f2c6f2b4bb38afc571b2b0e9ab4caf17f4de2cf81a4ef3",
+      "bytes": 6544
     },
     {
       "path": "tests/test_package.py",

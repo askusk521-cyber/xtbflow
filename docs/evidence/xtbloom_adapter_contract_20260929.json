@@ -46,7 +46,7 @@
   "environment": {
     "xtbloom_python_package": "unavailable in the execution environments checked",
     "xtbloom_source_checkout": "observed at the local sibling checkout; no installed native package was observed",
-    "direct_energy_force_run": "diagnostic_run_recorded_in_xtbloom_cpu_smoke_20260929"
+    "direct_energy_force_run": "diagnostic_runs_recorded_in_xtbloom_cpu_smoke_20260929_and_xtbloom_cpu_provider_20260929"
   },
   "limits": [
     "The fake direct Calculator only verifies the adapter boundary and does not produce a chemical result.",

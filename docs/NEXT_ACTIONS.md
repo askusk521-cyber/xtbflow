@@ -63,8 +63,12 @@
   been accepted as a production dependency.
 - Full details and native/provider hashes are in
   [`docs/evidence/xtbloom_cpu_smoke_20260929.json`](evidence/xtbloom_cpu_smoke_20260929.json).
-  CUDA parity, multi-system failure isolation, independent reference matching,
-  and a release-grade LP64 provider remain open.
+- A SciPy bundled LP64 provider was then found and passed xTBloom's complete
+  CMake probe without a shim. The same H2O smoke and finite-difference check,
+  plus warm-vs-fresh context reuse, are recorded in
+  [`docs/evidence/xtbloom_cpu_provider_20260929.json`](evidence/xtbloom_cpu_provider_20260929.json).
+- CUDA parity, multi-system failure isolation, independent reference matching,
+  broader finite-difference coverage, and release-grade qualification remain open.
 
 ## 2026-09-27 provenance 与联合流增量
 

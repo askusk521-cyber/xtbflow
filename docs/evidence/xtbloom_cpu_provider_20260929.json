@@ -1,0 +1,55 @@
+{
+  "schema": "xtbflow-xtbloom-cpu-provider/v1",
+  "status": "diagnostic_quarantine",
+  "source_commit": "ead23a47d625356e74cc7bc10f60311b36e92e90",
+  "cp2k_dependency": false,
+  "scientific_qualification": false,
+  "xtbloom_source": {
+    "commit": "2cbdf1db8661ccbd5cb7d3d4bfc868a848cbbff3",
+    "version": "0.2.3",
+    "native_library_sha256": "d5622c7e1cd886ad4547f8edf81d80c49726c0148afa02b506401af0165ae569",
+    "build": "CPU-only CMake/Ninja build; XTBLOOM_BUILD_TESTS=OFF; XTBLOOM_ENABLE_CUDA=OFF",
+    "cuda": "not built or tested"
+  },
+  "runtime_provider": {
+    "provider": "SciPy bundled LP64 OpenBLAS",
+    "provider_sha256": "3e739a2435af49d2d938749f316aa338c65f41c9ae6615406e7cf83feb662f46",
+    "cmake_detection": "complete LP64 LAPACKE+CBLAS runtime with openblas_set_num_threads_local",
+    "shim": false
+  },
+  "protocol": {
+    "warm_protocol_id": "xtbloom-gfn2-warm-v1",
+    "fresh_protocol_id": "xtbloom-gfn2-fresh-v1",
+    "calculator": "xtbloom",
+    "method": "GFN2-xTB",
+    "backend": "cpu",
+    "max_scc_iterations": 250,
+    "charge_tolerance": 1e-6,
+    "energy_tolerance": 1e-8,
+    "electronic_temperature_kelvin": 300.0,
+    "charge": 0,
+    "multiplicity": 1
+  },
+  "case": {
+    "system": "H2O",
+    "atom_count": 3,
+    "energy_hartree": -5.068467435320865,
+    "finite_difference_step_angstrom": 0.0001,
+    "finite_difference_max_abs_force_error_hartree_per_angstrom": 6.039612204800093e-08,
+    "finite_difference_rms_force_error_hartree_per_angstrom": 2.823613820187799e-08,
+    "warm_vs_fresh_energy_abs_difference_hartree": 8.881784197001252e-16,
+    "force_sign": "adapter force matched negative energy derivative"
+  },
+  "adapter_identity": {
+    "capability_status": "unknown",
+    "capability_qualification": "installed",
+    "wrapper_interface_native_hash": "4695f382a970bb9b48eb918a95040fd97c517e0a9ab3f0dedc28d07ba4f93765",
+    "adapter_code_hash": "84bf68777bc729e035db36a4c80db90783f9d7fcb577995ce550292560e36ce5"
+  },
+  "limits": [
+    "This is one neutral singlet H2O CPU smoke through a source-built xTBloom library and a SciPy bundled LP64 provider.",
+    "The result does not qualify a released xTBloom build or establish broad chemical accuracy.",
+    "No CUDA parity, multi-system failure isolation, independent reference matching, or broader finite-difference set is claimed.",
+    "No CP2K, DFT, transition-state search, or training result is claimed."
+  ]
+}

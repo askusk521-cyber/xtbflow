@@ -142,6 +142,12 @@ def _loss_for_mode(model, mode: str, sample: dict[str, torch.Tensor], tau: float
 
 
 def _evaluate(model, samples: list[dict[str, torch.Tensor]]) -> dict[str, dict[str, float]]:
+    """Evaluate label-assisted midpoint diagnostics.
+
+    The state passed to this function contains the target event and target
+    geometry at ``tau=0.5``. These metrics diagnose the learned vector field
+    under teacher forcing; they are not endpoint generation from reactants.
+    """
     result: dict[str, dict[str, float]] = {}
     model.eval()
     with torch.no_grad():
@@ -169,9 +175,30 @@ def _evaluate(model, samples: list[dict[str, torch.Tensor]]) -> dict[str, dict[s
             result[mode] = {
                 "event_velocity_mse": float(np.mean(event_losses)),
                 "geometry_velocity_mse": float(np.mean(geometry_losses)),
-                "one_step_geometry_endpoint_mse": float(np.mean(endpoint_losses)),
+                "label_assisted_geometry_endpoint_mse": float(np.mean(endpoint_losses)),
             }
     return result
+
+
+def collect_development_samples(
+    payload: dict[str, Any], source_count: int
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Convert all source rows while retaining every rejected row."""
+
+    candidates: list[dict[str, Any]] = []
+    filter_failures: list[dict[str, Any]] = []
+    for index in range(source_count):
+        try:
+            candidates.append(development_sample(payload, index))
+        except (KeyError, TypeError, ValueError) as exc:
+            filter_failures.append(
+                {
+                    "index": index,
+                    "error_type": type(exc).__name__,
+                    "reason": str(exc),
+                }
+            )
+    return candidates, filter_failures
 
 
 def main() -> int:
@@ -182,11 +209,14 @@ def main() -> int:
     parser.add_argument("--source-id", default="transition1x_preprocessed")
     parser.add_argument("--runtime-config", type=Path, default=Path("configs/models/joint_flow_runtime_v0.1.json"))
     parser.add_argument("--max-records", type=int, default=32)
-    parser.add_argument("--steps", type=int, default=8)
+    parser.add_argument(
+        "--epochs", "--steps", dest="epochs", type=int, default=8,
+        help="training epochs; --steps is retained as a compatibility alias",
+    )
     parser.add_argument("--seed", type=int, default=20260930)
     args = parser.parse_args()
-    if args.max_records < 8 or args.steps < 1:
-        raise SystemExit("max-records must be at least 8 and steps must be positive")
+    if args.max_records < 8 or args.epochs < 1:
+        raise SystemExit("max-records must be at least 8 and epochs must be positive")
     started = time.monotonic()
     random.seed(args.seed)
     np.random.seed(args.seed)
@@ -210,13 +240,7 @@ def main() -> int:
         expected_size_bytes=source.get("expected_asset_size_bytes"),
     )
     source_count = int(audit["structure"]["record_count"])
-    candidates: list[dict[str, Any]] = []
-    for index in range(source_count):
-        try:
-            sample = development_sample(payload, index)
-        except (KeyError, TypeError, ValueError):
-            continue
-        candidates.append(sample)
+    candidates, filter_failures = collect_development_samples(payload, source_count)
     by_split = {
         split: sorted(
             (row for row in candidates if row["split"] == split),
@@ -245,13 +269,20 @@ def main() -> int:
         raise RuntimeError("deterministic development split did not contain train and held-out rows")
     projector = total_electron_projector(["H"] * max_atoms, dtype=torch.float64)
     train_samples = [_tensor_sample(row, max_atoms, projector) for row in train_rows]
-    heldout_samples = [_tensor_sample(row, max_atoms, projector) for row in heldout_rows]
+    heldout_samples_by_split = {
+        split: [
+            _tensor_sample(row, max_atoms, projector)
+            for row in selected
+            if row["split"] == split
+        ]
+        for split in ("validation", "test")
+    }
     runtime = JointFlowRuntimeConfig.load(args.runtime_config)
     model = runtime.build(projector).to(dtype=torch.float64)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     losses: list[float] = []
     model.train()
-    for step in range(args.steps):
+    for step in range(args.epochs):
         order = list(range(len(train_samples)))
         random.Random(args.seed + step).shuffle(order)
         for offset in order:
@@ -262,7 +293,10 @@ def main() -> int:
             loss["total"].backward()
             optimizer.step()
             losses.append(float(loss["total"].detach()))
-    metrics = _evaluate(model, heldout_samples)
+    metrics = {
+        split: _evaluate(model, samples)
+        for split, samples in heldout_samples_by_split.items()
+    }
     control_manifest = coupled_control_manifest(
         modes=CONTROLS,
         models={mode: model for mode in CONTROLS},
@@ -276,7 +310,7 @@ def main() -> int:
         input_view_fingerprint="transition1x-reactant-ts-development-v1",
     )
     report = {
-        "schema": "xtbflow-transition1x-joint-development/v1",
+        "schema": "xtbflow-transition1x-joint-development/v2",
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "execution_host": __import__("platform").node(),
         "git": _git_identity(),
@@ -293,11 +327,14 @@ def main() -> int:
         "selection": {
             "source_record_count": source_count,
             "candidate_count": len(candidates),
+            "filter_failure_count": len(filter_failures),
+            "filter_failures": filter_failures,
             "selected_count": len(selected),
             "max_atoms": max_atoms,
             "split_counts": dict(sorted(split_counts.items())),
             "train_count": len(train_samples),
-            "heldout_count": len(heldout_samples),
+            "validation_count": len(heldout_samples_by_split["validation"]),
+            "test_count": len(heldout_samples_by_split["test"]),
             "element_scope": "H/C/N/O",
             "event_label": "covalent-radius-binary-endpoint-edit-v1",
             "electronic_state": "unresolved; condition features are zero-filled and excluded from claims",
@@ -305,17 +342,27 @@ def main() -> int:
         "runtime_config": runtime.constructor_record(),
         "runtime_config_sha256": hash_file(args.runtime_config),
         "seed": args.seed,
-        "steps": args.steps,
+        "epochs": args.epochs,
+        "optimizer_updates": len(losses),
         "initial_loss": losses[0],
         "final_loss": losses[-1],
         "model_identity": model_state_identity(model),
         "controls": metrics,
+        "evaluation_protocol": {
+            "kind": "label_assisted_teacher_forced_midpoint",
+            "uses_target_event": True,
+            "uses_target_geometry": True,
+            "supports_reactant_only_generation_claim": False,
+        },
         "control_manifest": control_manifest,
         "conservation_residual_max_abs": max(float(abs(row["event"]["conservation_residual"])) for row in selected),
         "elapsed_seconds": time.monotonic() - started,
         "limits": [
             "The source remains outside the repository and is hash-gated before deserialization.",
             "The product endpoint is used to derive the diagnostic event label.",
+            "Geometry endpoint metrics are label-assisted teacher-forced diagnostics, not reactant-only generation.",
+            "The reported optimizer update count is epochs multiplied by the selected training rows.",
+            "Every rejected source row is retained in selection.filter_failures.",
             "No calculator calls or independent reactant seed searches were made.",
             "Results are software/data-pipeline development evidence only.",
         ],

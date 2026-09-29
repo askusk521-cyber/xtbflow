@@ -16,12 +16,20 @@ license in the pinned record. The runner therefore writes
 features, and does not create Track-B records or independent-seed records.
 
 The controlled comparison uses one trained parameter state and evaluates the
-registered `both_off`, `serial_independent`, and `joint_bidirectional` paths on
-the same held-out rows. It reports software/development diagnostics only. The
-event label is explicitly product-derived and the result cannot support a
-product-free discovery, chemical accuracy, or architecture-leading claim.
+registered `both_off`, `serial_independent`, and `joint_bidirectional` paths
+separately on validation and test rows. The event label is explicitly
+product-derived. The model state and geometry input are also interpolated with
+the target event and target TS displacement before evaluation, so the endpoint
+values are label-assisted teacher-forced diagnostics; they are not reactant-only
+generation errors. The result cannot support a product-free discovery, chemical
+accuracy, or architecture-leading claim.
 
-On n2, the bounded 32-record/2-step run completed on commit
+Every source row that fails the development conversion is retained in
+`selection.filter_failures` with its source index, exception type, and reason.
+The report records `epochs` and the actual `optimizer_updates` separately; with
+one update per selected training row, the latter is `epochs × train_count`.
+
+The existing n2 bounded 32-record/2-step run completed on commit
 `190118dc25fa334e82cf75d1dd6a4f653a3a2835`; the complete machine-readable
 report is
 [`transition1x_joint_development_20260930.json`](evidence/transition1x_joint_development_20260930.json).
@@ -35,7 +43,7 @@ Run the same bounded experiment on n2 with:
 PYTHONPATH=src:vendor/mechai_reusable \
 python scripts/run_transition1x_joint_development.py \
   --asset /home/lhshen/.cache/xtbflow/transition1x-rpsb-13119869/train_rpsb_all.pkl \
-  --max-records 32 --steps 2 \
+  --max-records 32 --epochs 2 \
   --output docs/evidence/transition1x_joint_development_20260930.json
 ```
 
@@ -43,4 +51,3 @@ The next scientific gate is still a separately sourced, state-resolved,
 independently mapped reaction/TS corpus. This development path is useful for
 testing the real-data adapter and control wiring while that gate remains
 closed.
-

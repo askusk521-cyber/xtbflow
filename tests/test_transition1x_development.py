@@ -10,6 +10,7 @@ from xtbflow.data.transition1x_development import (
     development_split,
     infer_binary_bonds,
 )
+from scripts.run_transition1x_joint_development import collect_development_samples
 
 
 def _payload():
@@ -64,3 +65,21 @@ def test_development_rejects_unsupported_element():
     with pytest.raises(Transition1xDevelopmentError, match="H/C/N/O"):
         development_sample(payload, 0)
 
+
+def test_development_runner_retains_filter_failures():
+    payload = _payload()
+    payload["reactant"]["charges"].append(np.asarray([9, 1, 1, 1, 1]))
+    payload["reactant"]["positions"].append(payload["reactant"]["positions"][0])
+    payload["reactant"]["formula"].append("XeH4")
+    payload["reactant"]["rxn"].append("rxn-1")
+    payload["product"]["positions"].append(payload["product"]["positions"][0])
+    payload["transition_state"]["positions"].append(payload["transition_state"]["positions"][0])
+
+    candidates, failures = collect_development_samples(payload, 2)
+
+    assert len(candidates) == 1
+    assert failures == [{
+        "index": 1,
+        "error_type": "Transition1xDevelopmentError",
+        "reason": "development conversion supports only H/C/N/O atoms",
+    }]

@@ -32,7 +32,6 @@ def protocol(**changes):
             "pseudopotential_file": "/tmp/GTH_POTENTIALS",
             "dispersion_parameter_file": "/tmp/dftd3.dat",
             "reference_functional": "PBE",
-            "threads": 2,
         },
     )
     values.update(changes)

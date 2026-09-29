@@ -66,20 +66,26 @@ def audit_source(
         return result, None
     if not supplied_asset.is_file():
         return result, f"asset does not exist: {source['source_id']}"
+    observed_size = supplied_asset.stat().st_size
     observed_sha256 = hash_file(supplied_asset)
+    expected_size = source.get("expected_asset_size_bytes")
     expected_sha256 = source.get("expected_asset_sha256")
-    matches = expected_sha256 is None or observed_sha256 == expected_sha256
+    matches_size = expected_size is None or observed_size == expected_size
+    matches_sha256 = expected_sha256 is None or observed_sha256 == expected_sha256
     observed: dict[str, Any] = {
         "asset_name": supplied_asset.name,
-        "size_bytes": supplied_asset.stat().st_size,
+        "size_bytes": observed_size,
         "sha256": observed_sha256,
-        "matches_expected_sha256": matches,
+        "matches_expected_size": matches_size,
+        "matches_expected_sha256": matches_sha256,
     }
     if supplied_asset.suffix == ".jsonl":
         observed["nonempty_jsonl_rows"] = count_jsonl(supplied_asset)
     result["local_asset_observed"] = True
     result["observed_asset"] = observed
-    if not matches:
+    if not matches_size:
+        return result, f"asset size mismatch: {source['source_id']}"
+    if not matches_sha256:
         return result, f"asset hash mismatch: {source['source_id']}"
     return result, None
 

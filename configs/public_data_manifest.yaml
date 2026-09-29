@@ -1,20 +1,41 @@
 schema: xtbflow-public-data-manifest/v1
-status: source_audit_quarantine_manifest
+status: mixed_source_audit_with_admitted_ef_pilot
 purpose: >-
-  Small provenance manifest for public-data module work. It records real source
-  identities and the strongest task claim currently supported by the inherited
-  audits. It is not a training split and contains no synthetic seed records.
-generated_on: '2026-09-26'
+  Provenance manifest for public-data module work. Historical sources remain
+  explicitly quarantined where their record-level contracts are unresolved;
+  one bounded SPICE2 OpenFF E/F pilot is admitted with exact source hashes,
+  charge/spin evidence, canonical units, and parent-record group splits.
+generated_on: '2026-09-29'
 source_project: mechai
 records_manifest: data/manifests/public_records.v1.jsonl
-admitted_record_count: 0
-accessible_record_bytes_verified: false
+admitted_record_count: 64
+quarantined_source_audit_count: 6
+accessible_record_bytes_verified: true
 quarantine_reason: >-
-  Source identities and inherited audit claims are present, but this checkout
-  does not contain verified per-record geometry bytes, charge/spin evidence or
-  reference E/F labels. No record is admitted or used as a synthetic placeholder.
+  The six inherited source-audit rows remain quarantined. The SPICE2 OpenFF
+  pilot is the only currently admitted public E/F source and is limited to 64
+  independent parent records selected without using model results.
 source_project_materials_are_imported: false
 datasets:
+  - id: spice2_openff_v1.1_pilot
+    source: https://doi.org/10.5281/zenodo.15477012
+    source_revision: hdf5_sha256=711a88d2bbc6fe3d39478ddf28cca186a65d882975edb07cb42798cf445c6213
+    source_manifest: data/manifests/spice2_openff_pilot_20260929.jsonl
+    public_records: data/manifests/public_records.v1.jsonl
+    selected_parent_records: 64
+    source_parent_records: 100
+    eligible_parent_records: 81
+    selected_configurations: 64
+    reference_method: B3LYP-D3BJ/DZVP
+    role: reference_energy_force_training_pilot
+    license_status: cc0-1.0_source_dataset_hash_pinned
+    task_status: pilot_admitted
+    split_policy: sha256_group_bucket_seed_spice2-openff-pilot-v1-7_ratios_0.75_0.125_0.125_yields_48_8_8
+    claim_limit: >-
+      Development E/F pilot only. One configuration per parent record is used;
+      it is not an independent reaction-discovery benchmark, TS dataset, or
+      final paper test set. Expansion keeps parent groups fixed.
+
   - id: units_lib_formula_oos
     source: https://modelscope.cn/models/XuLiCheng2025/UniTS-Gen-v1
     source_revision: a7147021becc4e13887be2c756fefc8b5983f390

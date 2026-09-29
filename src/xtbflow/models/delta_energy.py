@@ -60,9 +60,18 @@ class _InvariantEnergyNetwork(nn.Module):
         self.global_features = nn.Sequential(nn.Linear(2, hidden_dim), nn.SiLU(), nn.Linear(hidden_dim, hidden_dim))
         self.atom_readout = nn.Sequential(nn.Linear(hidden_dim, hidden_dim), nn.SiLU(), nn.Linear(hidden_dim, 1))
         self.pair_readout = nn.Sequential(nn.Linear(2 * hidden_dim + radial_features, hidden_dim), nn.SiLU(), nn.Linear(hidden_dim, 1))
+        # A correction potential should start from the explicit baseline rather
+        # than a random extensive energy.  Zero final readouts make the initial
+        # Delta correction (and its force) exactly zero while still allowing
+        # gradients to train the readouts immediately.
+        nn.init.zeros_(self.atom_readout[-1].weight)
+        nn.init.zeros_(self.atom_readout[-1].bias)
+        nn.init.zeros_(self.pair_readout[-1].weight)
+        nn.init.zeros_(self.pair_readout[-1].bias)
         self.register_buffer("radial_centers", torch.linspace(0.0, float(distance_scale), radial_features))
         spacing = float(distance_scale) / max(radial_features - 1, 1)
         self.register_buffer("radial_width", torch.tensor(max(spacing, 1e-6)))
+        self.register_buffer("cutoff_radius", torch.tensor(float(distance_scale)))
 
     def forward(self, coordinates: Tensor, species: Tensor, atom_mask: Tensor, charge: Tensor, multiplicity: Tensor) -> Tensor:
         _, atoms = _check_inputs(coordinates, species, atom_mask, charge, multiplicity)
@@ -85,7 +94,12 @@ class _InvariantEnergyNetwork(nn.Module):
         pair_energy = self.pair_readout(pair_input).squeeze(-1)
         pair_mask = atom_mask[:, :, None] & atom_mask[:, None, :]
         pair_mask = pair_mask & ~torch.eye(atoms, dtype=torch.bool, device=coordinates.device)[None]
-        pair_energy = torch.where(pair_mask, pair_energy, torch.zeros_like(pair_energy))
+        cutoff_radius = self.cutoff_radius.to(device=coordinates.device, dtype=coordinates.dtype)
+        scaled_distance = torch.clamp(distance / cutoff_radius, min=0.0, max=1.0)
+        cutoff_weight = 0.5 * (torch.cos(math.pi * scaled_distance) + 1.0)
+        within_cutoff = distance < cutoff_radius
+        pair_energy = pair_energy * cutoff_weight
+        pair_energy = torch.where(pair_mask & within_cutoff, pair_energy, torch.zeros_like(pair_energy))
         return atom_energy.sum(dim=1) + 0.5 * pair_energy.sum(dim=(1, 2))
 
 

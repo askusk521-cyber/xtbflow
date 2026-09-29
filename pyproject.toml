@@ -19,6 +19,13 @@ dependencies = [
 test = [
   "pytest>=8,<10",
 ]
+data = [
+  "h5py>=3.11,<4",
+  "rdkit>=2024.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [tool.setuptools]
 include-package-data = true

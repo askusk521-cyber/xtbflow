@@ -269,18 +269,22 @@ class CP2KAdapter(CalculatorBackend):
     ):
         self.cp2k_protocol = protocol
         self.protocol = protocol.calculator_protocol()
-        self.executable = executable or shutil.which("cp2k.psmp") or shutil.which("cp2k.popt") or shutil.which("cp2k")
+        observed_executable = executable or shutil.which("cp2k.psmp") or shutil.which("cp2k.popt") or shutil.which("cp2k")
+        if observed_executable is not None and Path(observed_executable).expanduser().is_file():
+            observed_executable = str(Path(observed_executable).expanduser().resolve())
+        self.executable = observed_executable
         self.runner = runner
         if timeout_seconds <= 0 or not math.isfinite(timeout_seconds):
             raise ValueError("timeout_seconds must be finite and positive")
         self.timeout_seconds = float(timeout_seconds)
         self.require_budget_token = bool(require_budget_token)
-        self.artifact_dir = Path(artifact_dir) if artifact_dir is not None else None
+        self.artifact_dir = Path(artifact_dir).expanduser() if artifact_dir is not None else None
         self.require_artifacts = bool(require_artifacts)
         if self.require_artifacts and self.artifact_dir is None:
             raise ValueError("require_artifacts requires artifact_dir")
         if self.artifact_dir is not None:
             self.artifact_dir.mkdir(parents=True, exist_ok=True)
+            self.artifact_dir = self.artifact_dir.resolve()
 
     @property
     def capabilities(self) -> CalculatorCapabilities:
@@ -323,10 +327,17 @@ class CP2KAdapter(CalculatorBackend):
             output_path = root / "output.out"
             input_path.write_text(rendered, encoding="utf-8")
             try:
-                completed = subprocess.run([self.executable, "-i", str(input_path), "-o", str(output_path)], check=False, capture_output=True, text=True, timeout=self.timeout_seconds, cwd=root)
+                completed = subprocess.run(
+                    [self.executable, "-i", input_path.name, "-o", output_path.name],
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                    timeout=self.timeout_seconds,
+                    cwd=root,
+                )
             except subprocess.TimeoutExpired as exc:
-                (root / "stdout.txt").write_text(exc.stdout or "", encoding="utf-8")
-                (root / "stderr.txt").write_text(exc.stderr or "", encoding="utf-8")
+                self._write_subprocess_stream(root / "stdout.txt", exc.stdout)
+                self._write_subprocess_stream(root / "stderr.txt", exc.stderr)
                 raise CalculatorError("CP2K execution timed out") from exc
             except OSError as exc:
                 raise CalculatorUnavailable(f"CP2K executable could not be started: {exc}") from exc
@@ -340,6 +351,12 @@ class CP2KAdapter(CalculatorBackend):
             parsed = parse_cp2k_output(output_path.read_text(encoding="utf-8", errors="replace"), system, self.cp2k_protocol, input_file_hash=input_hash, metadata_extra=metadata)
             return self._select_operation(parsed, operation)
 
+    @staticmethod
+    def _write_subprocess_stream(path: Path, value: str | bytes | None) -> None:
+        if isinstance(value, bytes):
+            value = value.decode("utf-8", errors="replace")
+        path.write_text(value or "", encoding="utf-8")
+
     def _artifact_metadata(self, root: Path, *, persisted: bool) -> dict[str, Any]:
         return {
             "artifact_persistence": "persistent" if persisted else "temporary",
@@ -350,7 +367,7 @@ class CP2KAdapter(CalculatorBackend):
     @contextmanager
     def _artifact_workspace(self) -> Iterator[Path]:
         if self.artifact_dir is not None:
-            yield Path(tempfile.mkdtemp(prefix="xtbflow-cp2k-", dir=self.artifact_dir))
+            yield Path(tempfile.mkdtemp(prefix="xtbflow-cp2k-", dir=self.artifact_dir)).resolve()
             return
         with tempfile.TemporaryDirectory(prefix="xtbflow-cp2k-") as directory:
             yield Path(directory)

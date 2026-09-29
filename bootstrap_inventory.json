@@ -379,8 +379,8 @@
     },
     {
       "path": "src/xtbflow/calculators/cp2k.py",
-      "sha256": "6699bf7e32ac32a49c49d25d284ff89839d83efab439445f1290c2862e604d0e",
-      "bytes": 21424
+      "sha256": "2a2ac377544047b07c05251c7f5e769b9a542e1b66e4c17adf3673cca192d854",
+      "bytes": 22121
     },
     {
       "path": "src/xtbflow/calculators/xtb_oracle.py",
@@ -659,8 +659,8 @@
     },
     {
       "path": "tests/test_cp2k_parser.py",
-      "sha256": "ed3780af8e0a85b2f0b5fd18c494e13a5bd779879cb05698fa1390ad53ae1a84",
-      "bytes": 7404
+      "sha256": "a38adda8b4ed1f2b0281f755cf27d21d638e7d8e65d65580530d7e81b4e6d09d",
+      "bytes": 10228
     },
     {
       "path": "tests/test_energy_forces.py",

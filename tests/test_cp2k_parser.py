@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from xtbflow.calculators import BOHR_IN_ANGSTROM, CP2KAdapter, CP2KProtocol, CP2KRunnerResult, CalculatorError, CalculatorProtocolError, MolecularSystem, finite_difference_forces, render_cp2k_input
 
@@ -132,7 +133,76 @@ def test_energy_and_force_operations_share_an_angstrom_finite_difference_contrac
     assert energy.operation == "energy" and energy.forces is None
     assert forces.operation == "forces" and forces.energy is None
     estimated = finite_difference_forces(adapter, system(), step=1e-5)
-    assert estimated[0][0] == pytest.approx(forces.forces[0][0], rel=1e-5, abs=1e-5)
+    assert any(abs(value) > 1e-8 for row in forces.forces for value in row)
+    for estimated_row, force_row in zip(estimated, forces.forces):
+        assert estimated_row == pytest.approx(force_row, rel=1e-5, abs=1e-5)
+
+
+@pytest.mark.parametrize("relative_artifact_dir", [True, False])
+def test_real_subprocess_resolves_artifact_workspace_and_relative_executable(tmp_path, monkeypatch, relative_artifact_dir):
+    executable = tmp_path / "fake-cp2k"
+    executable.write_text(
+        "#!/usr/bin/env python3\n"
+        "import argparse, pathlib\n"
+        "parser = argparse.ArgumentParser()\n"
+        "parser.add_argument('-i')\n"
+        "parser.add_argument('-o')\n"
+        "args = parser.parse_args()\n"
+        "input_path = pathlib.Path(args.i)\n"
+        "assert input_path.is_file(), input_path\n"
+        f"pathlib.Path(args.o).write_text({output()!r})\n"
+        "print('fake stdout')\n",
+        encoding="utf-8",
+    )
+    executable.chmod(executable.stat().st_mode | 0o111)
+    monkeypatch.chdir(tmp_path)
+    artifact_dir = Path("runs/cp2k") if relative_artifact_dir else tmp_path / "runs-absolute" / "cp2k"
+    adapter = CP2KAdapter(protocol(), executable="fake-cp2k", artifact_dir=artifact_dir, require_artifacts=True)
+    result = adapter.evaluate(system())
+    root = Path(result.metadata["artifact_directory"])
+    assert root.is_absolute()
+    assert (root / "input.inp").is_file()
+    assert (root / "output.out").read_text(encoding="utf-8") == output()
+    assert (root / "stdout.txt").read_text(encoding="utf-8") == "fake stdout\n"
+
+
+@pytest.mark.parametrize("emit_output", [True, False])
+def test_real_subprocess_timeout_preserves_logs_and_timeout_classification(tmp_path, emit_output):
+    executable = tmp_path / "fake-cp2k-timeout"
+    output_lines = (
+        "print('before-timeout-stdout', flush=True)\n"
+        "print('before-timeout-stderr', file=sys.stderr, flush=True)\n"
+        if emit_output
+        else ""
+    )
+    executable.write_text(
+        "#!/usr/bin/env python3\n"
+        "import sys, time\n"
+        + output_lines
+        + "time.sleep(10)\n",
+        encoding="utf-8",
+    )
+    executable.chmod(executable.stat().st_mode | 0o111)
+    artifacts = tmp_path / "timeout-artifacts"
+    adapter = CP2KAdapter(
+        protocol(),
+        executable=str(executable),
+        timeout_seconds=0.1,
+        artifact_dir=artifacts,
+        require_artifacts=True,
+    )
+    with pytest.raises(CalculatorError, match="timed out"):
+        adapter.evaluate(system())
+    roots = list(artifacts.glob("xtbflow-cp2k-*"))
+    assert len(roots) == 1
+    stdout = (roots[0] / "stdout.txt").read_text(encoding="utf-8")
+    stderr = (roots[0] / "stderr.txt").read_text(encoding="utf-8")
+    if emit_output:
+        assert "before-timeout-stdout" in stdout
+        assert "before-timeout-stderr" in stderr
+    else:
+        assert stdout == ""
+        assert stderr == ""
 
 
 def test_scf_failure_and_truncated_output_fail_closed():

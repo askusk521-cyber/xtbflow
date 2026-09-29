@@ -443,6 +443,11 @@
       "bytes": 4826
     },
     {
+      "path": "docs/evidence/kingfisher_gfn2_preflight_20260930.json",
+      "sha256": "bbe4c2ba49afd004ecb61be81ccb51f2f0b8a514d9cce7bb89921c7c85761405",
+      "bytes": 46194
+    },
+    {
       "path": "docs/evidence/spice2_learning_curve_runs_20260929/size12_seed20260929.json",
       "sha256": "f3f9de42e5533cf8955e65a2ac900013d8b887d38ec37a7edbebe631fa63dd91",
       "bytes": 151412

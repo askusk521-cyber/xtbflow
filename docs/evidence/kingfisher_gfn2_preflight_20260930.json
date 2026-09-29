@@ -1712,6 +1712,7 @@
     "record_count": 41,
     "sha256": "ee277408552e4b10149b350902796100ee4ade7ba30e8b836dfdc557ee4da5ae"
   },
+  "source_commit": "5fd3da1c5e23d44a29d0456198924f57cf064cf9",
   "source_rows_considered": 8,
   "status": "completed",
   "summary": {

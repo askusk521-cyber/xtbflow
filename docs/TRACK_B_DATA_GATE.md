@@ -68,6 +68,40 @@ Calculator protocols carry method, software, version, units and a protocol
 hash; any executed calls require a hashed raw log. This prevents an
 unsuccessful intended channel from being rewritten as a negative example when a different channel or a numerical failure occurred.
 
+### Literature candidate to independent-seed readiness
+
+Issue #27's six-row literature registry is audited without copying it into this
+branch. The exact source is commit `2baa5ce9dad0b8271abec7321e8a256acebe5d5e` with registry SHA-256
+`e990807c009dc53137551a66e878cdbddbd61d2e82479ae6e62c97a7bb0cb30e`; the report is
+`docs/evidence/origin_seed_readiness_audit_20260929.json`.
+
+All six rows satisfy the literature-anchor fields, but none satisfies the
+identity/state freeze or the `IndependentReactantSeed` contract. The audit
+therefore reports 6 literature anchors, 0 identity/state-ready candidates, 0
+independent-seed-ready candidates and 0 validated seed records. Manifest
+population remains disabled and search is not authorized. The provisional
+neutral-singlet values on the two aminooxazole anchors are explicitly ignored
+because their status is not `confirmed`.
+
+Every row is still blocked by quarantine admission, an unfrozen structure,
+unconfirmed charge/spin, declared missing requirements, no license record and
+no explicit independent-seed payload. Rebuild the bridge audit with the exact
+source-registry bytes:
+
+```bash
+PYTHONPATH=src python scripts/audit_origin_seed_readiness.py \
+  --registry "$ORIGIN_CANDIDATE_REGISTRY" \
+  --registry-locator \
+    "github:askusk521-cyber/xtbflow@2baa5ce9dad0b8271abec7321e8a256acebe5d5e:configs/science/origin_candidates_v0.1.yaml" \
+  --registry-source-commit 2baa5ce9dad0b8271abec7321e8a256acebe5d5e \
+  --repository-base-commit d2379270bf5b59a1523a55db63ab56d3418a382a \
+  --output docs/evidence/origin_seed_readiness_audit_20260929.json
+```
+
+This audit is a one-way governance bridge only. It does not create geometries,
+atom mappings, microstates, solvent snapshots or search attempts, and it cannot
+promote provisional values into the independent seed manifest.
+
 ## Source audit on 2026-09-29
 
 The source comparison registry is

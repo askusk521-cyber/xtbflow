@@ -149,6 +149,25 @@
   validated event/TS pairs under #18/#19. Missing electronic or event metadata
   must not be inferred from coordinates.
 
+## 2026-09-29 origin-candidate to independent-seed readiness bridge
+
+- The six literature anchors from workflow-D source commit `2baa5ce9dad0b8271abec7321e8a256acebe5d5e`
+  were consumed read-only through a registry hash; candidate rows were not
+  copied into this branch and no seed manifest entry was generated.
+- All six pass the L0 literature-anchor contract. Zero pass the L1
+  identity/state freeze, and zero provide a valid `IndependentReactantSeed`.
+  The two aminooxazole rows contain provisional charge/multiplicity values;
+  those values are explicitly ignored rather than promoted as neutral-singlet
+  defaults.
+- `data/manifests/independent_seeds.v1.jsonl` remains empty, manifest population
+  is disabled and search remains unauthorized. The machine-readable audit is
+  `docs/evidence/origin_seed_readiness_audit_20260929.json`.
+- The next admissible #18 action is source/SI extraction plus independently
+  generated, hashed reactant-side structures and environment pools. Each
+  candidate must separately provide confirmed electronic state, atom mapping,
+  generation protocol, license/provenance, pre-search split assignment and
+  exact geometry bytes before any search attempt can be appended.
+
 ## 2026-09-29 Workflow B shared controls and baseline freeze
 
 - The bounded joint-flow prototype now represents the electronic event state as

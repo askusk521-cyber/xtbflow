@@ -1,0 +1,24 @@
+{
+  "schema": "xtbflow-joint-runtime/v1",
+  "model_id": "xtbflow-packed-pair-prototype-v0.1",
+  "status": "software_prototype_not_scientifically_trained",
+  "architecture_contract": "docs/architecture/architecture_v0.1.md",
+  "event_state": "packed_symmetric_bond_electron_matrix",
+  "representation": {
+    "node_feature_dim": 8,
+    "condition_feature_dim": 4,
+    "hidden_dim": 64,
+    "radial_features": 16
+  },
+  "control_modes": [
+    "both_off",
+    "serial_independent",
+    "joint_bidirectional"
+  ],
+  "shared_parameter_policy": "one parameter set evaluated through registered control paths",
+  "canonical_gap": [
+    "This bounded prototype does not yet implement the canonical six message-passing blocks.",
+    "Node and condition features must be constructed by an admitted reactant-side featurizer.",
+    "No real event/TS training is claimed until issue 58 admits paired supervision."
+  ]
+}

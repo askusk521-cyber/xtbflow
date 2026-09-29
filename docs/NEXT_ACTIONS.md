@@ -127,3 +127,27 @@
 - Direct is not supported under the frozen P1 protocol: force, direction, and relative-energy metrics remain worse than bare GFN2. Do not spend the next iteration enlarging Direct hyperparameter searches.
 - Keep Delta as the force/local-surface correction module for downstream physics/flow work, but do not claim a stable absolute-energy advantage. Future E/F validation should add independent parent coverage rather than only more conformers of the same test parents.
 - Full aggregate evidence is docs/evidence/spice2_openff_learning_curve_20260929.json; interpretation is docs/evidence/spice2_openff_learning_curve_interpretation_20260929.json; the nine raw run reports and logs are archived under docs/evidence/spice2_learning_curve_runs_20260929/.
+
+## 2026-09-29 Workflow B shared controls and baseline freeze
+
+- The bounded joint-flow prototype now represents the electronic event state as
+  a packed symmetric bond/electron matrix. Shared atom-pair networks make the
+  event branch permutation equivariant, while the coordinate branch retains
+  translation, proper-rotation, and atom-permutation equivariance.
+- `both_off`, `serial_independent`, and `joint_bidirectional` are real execution
+  paths through one measured parameter state. The serial path uses an explicit
+  integration step and adds no serial-only trainable adapter. Equality of
+  weights and physical budgets is now derived from hashes/counts and ledger
+  values; an unmeasured declaration remains `null` rather than `true`.
+- Padding is excluded inside the conservation projection, unobserved labels are
+  masked before arithmetic, and tests cover local bidirectional dependence,
+  atom permutations, collisions, missing labels, checkpoint continuation, and
+  finite multi-step rollouts.
+- The first #56 matrix is frozen as strong rules, conserved independent geometry,
+  serial event-to-geometry, and joint bidirectional generation. Physics guidance
+  remains deferred to #59. The software acceptance executes all four routes on
+  a tiny reactant-side fixture with zero calculator calls.
+- This is software evidence only. The canonical six-block capacity and reaction
+  direction coupling are not claimed complete, and scientific comparison is
+  blocked until #58 admits sample-level paired event/TS supervision. SPICE E/F
+  records remain unsuitable for that supervision.

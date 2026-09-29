@@ -55,4 +55,6 @@ Zero guidance and zero coupling are mandatory exact baselines. Causal gains must
 
 The JSON schema in [`schemas/model_contract.schema.json`](../../schemas/model_contract.schema.json) and `tests/test_architecture_contract.py` cover the interface-level invariants. #12 owns event flow and decoder implementation; #13 owns equivariant geometry and direction; #9/#14 own the correction potential and guidance interface; #20 owns serial/joint wiring. This document prevents incompatible contracts; it does not duplicate those implementations.
 
+The bounded runnable profile and the first matched-control protocol are documented in [`workflow_b_baseline_protocol.md`](workflow_b_baseline_protocol.md). That profile implements packed pair-event messages, explicit time/condition inputs, and shared-weight `both_off`/serial/joint routes, but remains a software prototype rather than evidence that the full six-block capacity is implemented, optimal, or scientifically trained.
+
 Open implementation choices are listed explicitly in the config. They must be selected from development evidence and recorded in a run manifest. No MoE, reinforcement learning, learned full Hessian or unbounded planning is part of v0.1.

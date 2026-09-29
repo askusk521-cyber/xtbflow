@@ -633,6 +633,11 @@
       "bytes": 3107
     },
     {
+      "path": "scripts/audit_origin_seed_readiness.py",
+      "sha256": "1a978fb9b33fe6fca4e8069ef81547dd9e3a69158092c03a76f8b5a4de15e5c1",
+      "bytes": 2056
+    },
+    {
       "path": "scripts/audit_search_attempts.py",
       "sha256": "b8d6b95f08e9364ee98e3cb28a2b89aed3092a3755d1572fdb67e01baa97d9f7",
       "bytes": 2529
@@ -759,8 +764,8 @@
     },
     {
       "path": "src/xtbflow/data/__init__.py",
-      "sha256": "a24c05570c1b5d1753a914b0dfddd51ce3978c521ced107e70a280a59add571f",
-      "bytes": 2891
+      "sha256": "ed8cbba969680ed641423efa8d02ca4f2e280b1c8f25bb88c6057ce2836df667",
+      "bytes": 3177
     },
     {
       "path": "src/xtbflow/data/attempts.py",
@@ -776,6 +781,11 @@
       "path": "src/xtbflow/data/independent_seeds.py",
       "sha256": "dde314c39299a83ec95f8d54d7ce806b8ad5a24823fbde009b6b2c6bac4e185e",
       "bytes": 12023
+    },
+    {
+      "path": "src/xtbflow/data/origin_readiness.py",
+      "sha256": "d71d73a88c9b0144059bd110ba4d0bea1f730223c77c2070e55422552f6a0f45",
+      "bytes": 13634
     },
     {
       "path": "src/xtbflow/data/pairing.py",
@@ -1076,6 +1086,11 @@
       "path": "tests/test_joint_flow.py",
       "sha256": "d18c71fa4bddb1f3758adf3203a631eeb1f3d1e3969f685ae48979cb20010ba3",
       "bytes": 14172
+    },
+    {
+      "path": "tests/test_origin_seed_readiness.py",
+      "sha256": "a792fa6a2823cb6c87e4c9382d2b8511f3d7671733fe09f08a5fdd29824ea2f5",
+      "bytes": 6331
     },
     {
       "path": "tests/test_package.py",

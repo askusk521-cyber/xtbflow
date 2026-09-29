@@ -50,6 +50,12 @@ from .attempts import (
     append_attempt_jsonl,
     load_attempt_jsonl,
 )
+from .origin_readiness import (
+    ORIGIN_CANDIDATE_SCHEMA,
+    ORIGIN_SEED_READINESS_SCHEMA,
+    OriginReadinessError,
+    audit_origin_candidate_registry,
+)
 
 _TASK_VIEW_EXPORTS = (
     "EndpointGeometryInput",
@@ -80,5 +86,7 @@ __all__ = [
     "INDEPENDENT_SEED_SCHEMA", "SEED_SPLIT_ROLES", "IndependentReactantSeed",
     "SeedLeakageError", "audit_seed_leakage", "load_seed_jsonl", "write_seed_jsonl",
     "SEARCH_ATTEMPT_SCHEMA", "EVIDENCE_STATES", "SearchAttempt", "append_attempt_jsonl", "load_attempt_jsonl",
+    "ORIGIN_CANDIDATE_SCHEMA", "ORIGIN_SEED_READINESS_SCHEMA",
+    "OriginReadinessError", "audit_origin_candidate_registry",
     *_TASK_VIEW_EXPORTS,
 ]

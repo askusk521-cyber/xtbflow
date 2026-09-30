@@ -12,8 +12,8 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
-import copy
 from dataclasses import dataclass
+from datetime import datetime, timezone
 import hashlib
 import json
 import os
@@ -25,6 +25,7 @@ import subprocess
 import sys
 import time
 from typing import Any, Iterable
+from uuid import uuid4
 
 import numpy as np
 import torch
@@ -32,6 +33,7 @@ import torch
 from xtbflow.data.dft_da import DftDaSample, load_dft_da_samples, with_splits, write_manifest
 from xtbflow.data.records import canonical_hash
 from xtbflow.data.track_b import audit_track_b_leakage, write_track_b_jsonl
+from xtbflow.evaluation.grouped import paired_group_comparison, summarize_by_group
 from xtbflow.models import JointFlowRuntimeConfig, pack_be, total_electron_projector, upper_triangle_indices
 from xtbflow.proposals import enumerate_core_events
 from xtbflow.proposals.roles import infer_roles
@@ -74,6 +76,106 @@ def _sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def _atomic_write_text(path: Path, text: str) -> None:
+    """Write a complete file in the run directory before replacing its name."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
+    try:
+        with temporary.open("w", encoding="utf-8") as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+
+def _atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
+    _atomic_write_text(path, json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
+
+
+def _new_run_id() -> str:
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    return f"{timestamp}-{uuid4().hex[:12]}"
+
+
+def _start_run(output_root: Path, requested_run_id: str | None = None) -> tuple[str, Path, dict[str, Any]]:
+    """Create a fresh output directory and durable stage state.
+
+    A training output is an evidence artifact.  Reusing a directory would
+    silently mix checkpoints and reports from different source/configuration
+    identities, so an existing path is rejected even when it is non-empty.
+    """
+
+    run_id = requested_run_id.strip() if isinstance(requested_run_id, str) and requested_run_id.strip() else _new_run_id()
+    if any(character in run_id for character in "/\\"):
+        raise ValueError("run-id must not contain a path separator")
+    output_root = output_root.expanduser()
+    if output_root.exists():
+        raise FileExistsError(f"refusing to reuse training output directory: {output_root}")
+    output_root.mkdir(parents=True, exist_ok=False)
+    state = {
+        "schema": "xtbflow-real-joint-training-run/v1",
+        "run_id": run_id,
+        "status": "prepared",
+        "created_at": _utc_now(),
+        "updated_at": _utc_now(),
+        "stages": {
+            "input_audit": {"status": "not_started"},
+            "training": {"status": "not_started"},
+            "report": {"status": "not_started"},
+        },
+    }
+    state_path = output_root / "run_state.json"
+    _atomic_write_json(state_path, state)
+    return run_id, state_path, state
+
+
+def _update_stage(state_path: Path, state: dict[str, Any], stage: str, status: str, **details: Any) -> None:
+    if stage not in state["stages"]:
+        raise ValueError(f"unknown run stage: {stage}")
+    state["stages"][stage] = {"status": status, **details}
+    if status == "running":
+        state["status"] = "running"
+    state["updated_at"] = _utc_now()
+    _atomic_write_json(state_path, state)
+
+
+def _fail_run(state_path: Path, state: dict[str, Any], stage: str, exc: BaseException) -> None:
+    message = str(exc)
+    lower = message.lower()
+    if stage == "training" and ("budget" in lower or "resource limit" in lower):
+        stage_status = "budget_exhausted"
+    elif stage == "report":
+        stage_status = "report_write_failed"
+    else:
+        stage_status = f"{stage}_failed"
+    _update_stage(
+        state_path,
+        state,
+        stage,
+        stage_status,
+        failed_at=_utc_now(),
+        error_type=type(exc).__name__,
+        error=message,
+    )
+    state["status"] = "failed"
+    state["failure"] = {
+        "stage": stage,
+        "status": stage_status,
+        "error_type": type(exc).__name__,
+        "error": message,
+    }
+    state["updated_at"] = _utc_now()
+    _atomic_write_json(state_path, state)
 
 
 def _git_identity() -> dict[str, Any]:
@@ -332,10 +434,19 @@ def _strong_rule_baseline(samples: list[DftDaSample]) -> dict[str, Any]:
                 "parent_reaction_id": sample.record.parent_reaction_id,
                 "split_group": sample.record.split_group,
                 "candidate_count": len(proposals.candidates),
-                "target_event_in_candidates": hit,
+                "target_event_in_candidates": int(hit),
                 "candidate_event_signature_count": len(predicted),
             }
         )
+    by_parent = (
+        summarize_by_group(
+            per_parent,
+            group_key="parent_reaction_id",
+            metric_keys=("candidate_count", "target_event_in_candidates", "candidate_event_signature_count"),
+        )
+        if per_parent
+        else {"group_key": "parent_reaction_id", "record_count": 0, "group_count": 0, "groups": []}
+    )
     return {
         "arm_id": "strong_rule",
         "status": "completed",
@@ -348,7 +459,8 @@ def _strong_rule_baseline(samples: list[DftDaSample]) -> dict[str, Any]:
         "target_event_coverage_diagnostic": (covered / applicable) if applicable else None,
         "mean_candidate_count": float(np.mean(candidate_counts)) if candidate_counts else None,
         "failure_counts": dict(failures),
-        "per_parent": per_parent,
+        "per_record": per_parent,
+        "by_parent": by_parent,
         "claim_limit": "reactant-only rule diagnostic; label-assisted coverage is not a discovery claim",
     }
 
@@ -430,6 +542,17 @@ def _train_arm(
     )
     validation_metrics, validation_rows = _evaluate(model, mode, validation_samples, device=device, conservation_projection=conservation_projection, projector=projector)
     test_metrics, test_rows = _evaluate(model, mode, test_samples, device=device, conservation_projection=conservation_projection, projector=projector)
+    metric_keys = tuple(validation_metrics)
+    validation_by_parent = summarize_by_group(
+        validation_rows,
+        group_key="parent_reaction_id",
+        metric_keys=metric_keys,
+    )
+    test_by_parent = summarize_by_group(
+        test_rows,
+        group_key="parent_reaction_id",
+        metric_keys=metric_keys,
+    )
     return {
         **metadata,
         "status": stop_reason,
@@ -441,8 +564,12 @@ def _train_arm(
         "model_identity": model_state_identity(model),
         "validation_metrics": validation_metrics,
         "test_metrics": test_metrics,
-        "validation_per_parent": validation_rows,
-        "test_per_parent": test_rows,
+        # Keep record rows for audit, but label them honestly.  Parent-level
+        # rows below are means over repeated records from that parent.
+        "validation_per_record": validation_rows,
+        "test_per_record": test_rows,
+        "validation_by_parent": validation_by_parent,
+        "test_by_parent": test_by_parent,
     }
 
 
@@ -450,6 +577,7 @@ def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--cache-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--run-id", type=str, default=None, help="optional stable label; output paths are always single-use")
     parser.add_argument("--runtime-config", type=Path, default=Path("configs/models/joint_flow_runtime_v0.1.json"))
     parser.add_argument("--epochs", type=int, default=12)
     parser.add_argument("--batch-size", type=int, default=8)
@@ -460,19 +588,58 @@ def _parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main() -> int:
-    args = _parser().parse_args()
-    if args.epochs < 1 or args.batch_size < 1 or args.learning_rate <= 0 or args.max_wall_minutes <= 0:
-        raise SystemExit("epochs, batch-size, learning-rate and max-wall-minutes must be positive")
-    output_root = args.output.expanduser()
-    output_root.mkdir(parents=True, exist_ok=True)
+def _paired_test_comparisons(results: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Compare every learned arm with the serial arm within each seed."""
+
+    serial_by_seed = {
+        int(result["seed"]): result
+        for result in results
+        if result.get("arm_id") == "serial_event_to_geometry"
+    }
+    metric_keys = (
+        "event_velocity_mse",
+        "geometry_velocity_mse",
+        "geometry_endpoint_mse",
+        "event_conservation_residual_abs",
+    )
+    comparisons: list[dict[str, Any]] = []
+    for result in results:
+        arm_id = result.get("arm_id")
+        if arm_id in {"strong_rule", "serial_event_to_geometry"}:
+            continue
+        reference = serial_by_seed.get(int(result["seed"]))
+        if reference is None:
+            continue
+        comparison = paired_group_comparison(
+            result["test_per_record"],
+            reference["test_per_record"],
+            metric_keys=metric_keys,
+            left_label=f"{arm_id}/seed_{result['seed']}",
+            right_label=f"serial_event_to_geometry/seed_{result['seed']}",
+            group_key="parent_reaction_id",
+            bootstrap_samples=2000,
+            seed=1000 + int(result["seed"]),
+        )
+        comparisons.append(comparison)
+    return comparisons
+
+
+def _run(args: argparse.Namespace, *, run_id: str, output_root: Path, state_path: Path, state: dict[str, Any]) -> int:
+    stage = "input_audit"
+    _update_stage(state_path, state, stage, "running", started_at=_utc_now())
+    git_identity = _git_identity()
+    state["git"] = git_identity
+    state["updated_at"] = _utc_now()
+    _atomic_write_json(state_path, state)
     config = JointFlowRuntimeConfig.load(args.runtime_config)
     samples, source_audit = load_dft_da_samples(args.cache_root)
     samples = with_splits(samples)
     records = [sample.record for sample in samples]
     leakage = audit_track_b_leakage(records, strict_family_holdout=True)
     manifest_path = output_root / "track_b_manifest.jsonl"
-    write_manifest(manifest_path, samples)
+    manifest_temporary = output_root / ".track_b_manifest.jsonl.tmp"
+    write_manifest(manifest_temporary, samples)
+    os.replace(manifest_temporary, manifest_path)
     # The input firewall is checked before tensor construction and is reported
     # in evidence so a later consumer can distinguish labels from model inputs.
     for record in records:
@@ -493,14 +660,56 @@ def main() -> int:
         device = torch.device("cpu")
     torch.set_float32_matmul_precision("high")
     projector = total_electron_projector(["C"] * max_atoms, dtype=dtype, device=device)
-    base_state_by_seed: dict[int, dict[str, torch.Tensor]] = {}
+    split_fingerprint = canonical_hash({row.record.record_id: row.record.admission for row in samples})
+    input_fingerprint = canonical_hash({row.record.record_id: row.record.input_fingerprint() for row in samples})
+    run_config = {
+        "schema": "xtbflow-real-joint-training/v2",
+        "run_id": run_id,
+        "git": git_identity,
+        "issue": 58,
+        "runtime_config": config.constructor_record(),
+        "arms": [{"arm_id": "strong_rule", "kind": "reactant_only_rule"}] + [
+            {"arm_id": arm, "control_mode": mode, "conservation_projection": projection}
+            for arm, mode, projection in ARM_SPECS
+        ],
+        "epochs": args.epochs,
+        "batch_size": args.batch_size,
+        "learning_rate": args.learning_rate,
+        "seeds": list(args.seeds),
+        "candidate_cap": 64,
+        "max_wall_minutes": args.max_wall_minutes,
+        "device": str(device),
+        "max_atoms": max_atoms,
+        "input_firewall": sorted(FORBIDDEN_INPUT_KEYS),
+        "source_archive_sha256": source_audit.get("source_archive_sha256"),
+        "split_fingerprint": split_fingerprint,
+        "reactant_input_view_fingerprint": input_fingerprint,
+    }
+    config_path = output_root / "run_config.json"
+    _atomic_write_json(config_path, run_config)
+    _update_stage(
+        state_path,
+        state,
+        stage,
+        "completed",
+        completed_at=_utc_now(),
+        record_count=len(samples),
+        parent_count=len({sample.record.parent_reaction_id for sample in samples}),
+        config_sha256=_sha256(config_path),
+        manifest_sha256=_sha256(manifest_path),
+    )
+
+    stage = "training"
+    _update_stage(state_path, state, stage, "running", started_at=_utc_now())
+    state["training_progress"] = {"completed_arms": [], "updates_observed": 0}
+    state["updated_at"] = _utc_now()
+    _atomic_write_json(state_path, state)
     results: list[dict[str, Any]] = [_strong_rule_baseline([sample.sample for sample in tensor_samples])]
     run_start = time.monotonic()
     for seed in args.seeds:
         _seed_everything(seed)
         base_model = config.build(projector).to(device=device, dtype=dtype)
         base_state = {name: value.detach().cpu().clone() for name, value in base_model.state_dict().items()}
-        base_state_by_seed[seed] = base_state
         for arm_id, mode, conservation_projection in ARM_SPECS:
             remaining = args.max_wall_minutes * 60.0 - (time.monotonic() - run_start)
             if remaining <= 0:
@@ -524,36 +733,35 @@ def main() -> int:
                 max_wall_seconds=remaining,
             )
             results.append(result)
+            state["training_progress"]["completed_arms"].append(
+                {"arm_id": result["arm_id"], "seed": seed, "status": result["status"]}
+            )
+            state["training_progress"]["updates_observed"] += int(result.get("global_step", 0))
+            state["updated_at"] = _utc_now()
+            _atomic_write_json(state_path, state)
             if result["status"] != "completed":
                 raise RuntimeError(f"arm stopped at resource limit: {result['arm_id']} seed={seed}")
-    split_fingerprint = canonical_hash({row.record.record_id: row.record.admission for row in samples})
-    input_fingerprint = canonical_hash({row.record.record_id: row.record.input_fingerprint() for row in samples})
-    run_config = {
-        "schema": "xtbflow-real-joint-training/v1",
-        "issue": 58,
-        "runtime_config": config.constructor_record(),
-        "arms": [{"arm_id": "strong_rule", "kind": "reactant_only_rule"}] + [
-            {"arm_id": arm, "control_mode": mode, "conservation_projection": projection}
-            for arm, mode, projection in ARM_SPECS
-        ],
-        "epochs": args.epochs,
-        "batch_size": args.batch_size,
-        "learning_rate": args.learning_rate,
-        "seeds": list(args.seeds),
-        "candidate_cap": 64,
-        "max_wall_minutes": args.max_wall_minutes,
-        "device": str(device),
-        "max_atoms": max_atoms,
-        "input_firewall": sorted(FORBIDDEN_INPUT_KEYS),
-    }
-    config_path = output_root / "run_config.json"
-    config_path.write_text(json.dumps(run_config, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    _update_stage(
+        state_path,
+        state,
+        stage,
+        "completed",
+        completed_at=_utc_now(),
+        arm_count=len(results),
+        training_updates=sum(int(result.get("global_step", 0)) for result in results if result.get("arm_id") != "strong_rule"),
+    )
+
+    stage = "report"
+    _update_stage(state_path, state, stage, "running", started_at=_utc_now())
+    paired_comparisons = _paired_test_comparisons(results)
     evidence = {
-        "schema": "xtbflow-real-joint-training-evidence/v1",
+        "schema": "xtbflow-real-joint-training-evidence/v2",
         "status": "completed",
+        "run_id": run_id,
+        "run_state": "run_state.json",
         "issue": 58,
         "claim_limit": "development evidence only; no physical refinement or confirmatory claim",
-        "git": _git_identity(),
+        "git": git_identity,
         "runtime": _runtime_identity(),
         "source_audit": source_audit,
         "manifest_sha256": _sha256(manifest_path),
@@ -561,6 +769,10 @@ def main() -> int:
         "split_fingerprint": split_fingerprint,
         "reactant_input_view_fingerprint": input_fingerprint,
         "split_counts": dict(sorted(split_counts.items())),
+        "parent_counts_by_split": {
+            split: len({sample.sample.record.parent_reaction_id for sample in tensor_samples if sample.split == split})
+            for split in ("train", "validation", "test")
+        },
         "leakage_audit": leakage,
         "record_count": len(samples),
         "parent_count": len({sample.record.parent_reaction_id for sample in samples}),
@@ -570,14 +782,41 @@ def main() -> int:
             "max_wall_minutes": args.max_wall_minutes,
             "max_retries": 0,
             "training_calls": len(args.seeds) * len(ARM_SPECS) * args.epochs * ((len(train_samples) + args.batch_size - 1) // args.batch_size),
+            "training_updates_observed": sum(int(result.get("global_step", 0)) for result in results if result.get("arm_id") != "strong_rule"),
         },
         "elapsed_seconds": time.monotonic() - run_start,
+        "evaluation": {
+            "group_key": "parent_reaction_id",
+            "weighting": "record_weighted_and_parent_equal",
+            "paired_test_comparisons": paired_comparisons,
+        },
         "arms": results,
     }
     evidence_path = output_root / "evidence.json"
-    evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    _atomic_write_json(evidence_path, evidence)
+    _update_stage(state_path, state, stage, "completed", completed_at=_utc_now(), evidence_sha256=_sha256(evidence_path))
+    state["status"] = "completed"
+    state["evidence"] = "evidence.json"
+    state["updated_at"] = _utc_now()
+    _atomic_write_json(state_path, state)
     print(json.dumps({"status": evidence["status"], "records": len(samples), "parents": evidence["parent_count"], "split_counts": evidence["split_counts"], "evidence": str(evidence_path)}, sort_keys=True))
     return 0
+
+
+def main() -> int:
+    args = _parser().parse_args()
+    if args.epochs < 1 or args.batch_size < 1 or args.learning_rate <= 0 or args.max_wall_minutes <= 0:
+        raise SystemExit("epochs, batch-size, learning-rate and max-wall-minutes must be positive")
+    output_root = args.output.expanduser()
+    run_id, state_path, state = _start_run(output_root, args.run_id)
+    stage = "input_audit"
+    try:
+        return _run(args, run_id=run_id, output_root=output_root, state_path=state_path, state=state)
+    except BaseException as exc:
+        # Preserve the consumed-cost boundary and the exact stage where work
+        # stopped.  The original exception is re-raised for scheduler logs.
+        _fail_run(state_path, state, stage if state["stages"]["training"]["status"] == "not_started" else ("training" if state["stages"]["report"]["status"] == "not_started" else "report"), exc)
+        raise
 
 
 if __name__ == "__main__":

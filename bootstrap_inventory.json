@@ -724,8 +724,8 @@
     },
     {
       "path": "scripts/run_dft_da_joint_training.py",
-      "sha256": "921dc0af607d21cda8d2868255f378a32867591263be66e204b21b07456de2f0",
-      "bytes": 26000
+      "sha256": "777a997d9a0b7a38eb3652790d3cf8814616741f69b03c8c0ce927ee71c7c461",
+      "bytes": 35472
     },
     {
       "path": "scripts/run_energy_baselines.py",
@@ -866,6 +866,11 @@
       "path": "src/xtbflow/evaluation/__init__.py",
       "sha256": "3ce11bcb9a4e818840099636abb2dbdf3253b377d759cee931642f9c45c63960",
       "bytes": 199
+    },
+    {
+      "path": "src/xtbflow/evaluation/grouped.py",
+      "sha256": "cbe8035cb8f720f252c408909c0a97518a147e4a7b20bdad456e7fae9ea49764",
+      "bytes": 7493
     },
     {
       "path": "src/xtbflow/evaluation/terminal.py",
@@ -1118,6 +1123,11 @@
       "bytes": 4675
     },
     {
+      "path": "tests/test_grouped_metrics.py",
+      "sha256": "348b0137da8239a36418c3fba6995a635577172379fdbcdd4e6fe10fe6bb3fc7",
+      "bytes": 1899
+    },
+    {
       "path": "tests/test_input_firewall.py",
       "sha256": "cafa13707746c3e9f1a7d8d35cc7ac6b34792a18e714f729cdb6cdf8694c4460",
       "bytes": 6076
@@ -1146,6 +1156,11 @@
       "path": "tests/test_path_status.py",
       "sha256": "352d02626c16822ab3aba243c2ba6f7a3f2a78659e19b91c2567cffcf93b1bc3",
       "bytes": 9407
+    },
+    {
+      "path": "tests/test_real_training_runner.py",
+      "sha256": "66671c76a20a4fbaee787f26ad4cac746ba4468b7a11601d692fcf95ddd71af6",
+      "bytes": 1930
     },
     {
       "path": "tests/test_runtime_budget.py",

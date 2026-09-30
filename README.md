@@ -48,7 +48,10 @@ python scripts/validate_bootstrap.py
 
 该命令只检查初始化文件完整性，不运行量化计算或训练。后续修改清单覆盖的文件时，应在同一提交更新 `bootstrap_inventory.json`。
 
-本次连接状态见 `docs/HANDOFF_STATUS.md`。GitHub 仓库授权不会自动提供 SSH、Slurm、GPU 或软件安装。
+当前项目状态见 [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md)，n2 观察记录见
+[`docs/ENVIRONMENT_N2.md`](docs/ENVIRONMENT_N2.md)。初始化交接、旧资产索引和已结束
+行动清单保留在 [`archive/handoffs/`](archive/handoffs/)；GitHub 仓库授权不会自动
+提供 SSH、Slurm、GPU 或软件安装。
 
 ## Current software status
 

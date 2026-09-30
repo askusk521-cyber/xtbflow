@@ -1,26 +1,43 @@
 # n2 运行环境
 
-这份记录描述 `xtbflow` 在 n2 上的实际接管环境。它记录已观察到的软件和硬件身份，不代表 CP2K、xTBloom 或训练流程已经安装，也不构成科学结果。
+核查日期：2026-09-30。以下内容来自 `ssh n2` 的只读观察，记录环境身份和边界，
+不等同于训练或量化计算结果。
 
-## 代码与主机
+## 主机、仓库与调度
 
-- 远程仓库：`git@github.com:askusk521-cyber/xtbflow.git`
-- 分支：`main`
-- 执行工作目录：`/home/lhshen/xtbflow/xtbflow-exec-107d0de`（独立于用户项目根目录）
-- SSH 别名：`n2`；主机名：`node2`
-- 操作系统内核：Ubuntu 22.04.1，Linux 6.8.0-138-generic
-- 计算调度：Slurm 21.08.5，分区 `main`
-- 节点资源：192 个逻辑 CPU，约 500000 MiB 内存；磁盘使用量和配额尚未完成独立配额核验
+- 主机：`node2`；SSH 别名：`n2`。
+- Git checkout：`~/xtbflow/xtbflow`。
+- 观测分支：`codex/track-b-real-development`，checkout `fb6b234`，工作树干净。
+- 远端主线：`origin/main@ec803556`；该 checkout 落后主线 3 个提交。
+- 不直接重置已有工作树。真实作业从目标 commit 创建独立执行目录。
+- Slurm：21.08.5；分区：`main`；GRES：`gpu:pro6000:4`；节点观测为 192 CPU、约
+  500000 MiB 内存；本轮核查时没有排队作业。
 
-## GPU
+## `xtbflow` Conda 环境
 
-Slurm 的实际 GRES 名称是 `gpu:pro6000:4`。节点上观察到 4 张：
+运行入口：
 
-- NVIDIA RTX PRO 6000 Blackwell Workstation Edition
-- 驱动：595.91.07
-- 显存：97887 MiB/卡（约 96 GiB）
+```bash
+source ~/miniconda3/etc/profile.d/conda.sh
+conda activate xtbflow
+```
 
-申请一张卡的示例：
+本轮观测版本：
+
+| 软件 | 版本 |
+| --- | --- |
+| Python | 3.10.19 |
+| PyTorch | 2.10.0+cu128 |
+| NumPy | 1.26.4 |
+| SciPy | 1.15.3 |
+| RDKit | 2024.3.3 |
+| ASE | 3.29.0 |
+| tblite | 0.7.0 |
+| pytest | 9.1.1 |
+| PyYAML | 6.0.3 |
+
+未通过 Slurm GPU 分配时，`torch.cuda.is_available()` 为 `False`，不能据此宣称 GPU
+不可用或已完成 GPU 基准。正确的有限探针应申请明确 GPU 和时限，例如：
 
 ```bash
 srun --partition=main --gres=gpu:pro6000:1 --nodes=1 --ntasks=1 \
@@ -29,37 +46,27 @@ srun --partition=main --gres=gpu:pro6000:1 --nodes=1 --ntasks=1 \
   print(torch.cuda.get_device_name(0))"'
 ```
 
-## Python 环境
+## 计算器边界
 
-专用 Conda 环境名称是 `xtbflow`，环境快照见 [`configs/environment-n2.yml`](../configs/environment-n2.yml)。关键版本如下：
+本轮 shell 的 PATH 中没有 `xtb`、`cp2k.psmp` 或 `cp2k.popt`。tblite 和 xTB Python
+分发包的存在不等于独立 xTB 可执行文件、CP2K 环境或科学资格已验证。CP2K 任务必须
+显式激活 `xtbflow-cp2k`，记录可执行文件、版本、协议哈希和持久化 artifact。
 
-- Python 3.10.19
-- PyTorch 2.10.0+cu128，CUDA runtime 12.8
-- NumPy 1.26.4，SciPy 1.15.3
-- RDKit 2024.03.3
-- ASE 3.29.0
-- PyYAML 6.0.3，pytest 9.1.1，pydantic 2.13.5
-- CMake 4.3.0，Ninja 1.13.2
+## 缓存与数据
 
-当前节点没有系统 `nvcc`、CP2K 或已验证的 xTBloom 安装；PyTorch CUDA runtime 已在 Slurm 分配的 GPU 上完成运行时冒烟测试。
+`~/.cache/xtbflow` 约 3.6G，包含 Reaction-QM v2、RGD1 v6 和 Transition1x 缓存。
+原始数据仅留在 n2 缓存；仓库只保存来源 URL、版本、文件大小、MD5/SHA-256、字段审计
+和摘要。缓存中的记录没有自动获得 Track-B 准入，缺失 charge、multiplicity、坐标映射、
+反应族或 overlap 证据的记录继续保持 `quarantine`。
 
-`xtbflow` 环境还安装了 `tblite 0.7.0` 和 `xtb 22.1` 分发包（导入的 `xtb` 模块报告版本 `20.2`）。直接 oracle 适配器已对非周期、显式电荷与多重度的 GFN2 单点完成 tblite 资格测试：水分子的有限差分力最大绝对差为 `2.18e-7 Hartree/Å`。原始 xTB 绑定保留作独立比较，但其力—能量梯度差异仍需解决后才可资格化。32 条真实 UniTS 几何的小批诊断见 [`docs/evidence/gfn2_units_diagnostic_20260927.json`](evidence/gfn2_units_diagnostic_20260927.json)；64 条来源结构审计见 [`docs/evidence/units_provenance_audit_20260927.json`](evidence/units_provenance_audit_20260927.json)。因来源方法和单位尚未核准，原始标签仍保持隔离。
-
-## 已完成验证
-
-在仓库根目录执行：
+## 可复现核查命令
 
 ```bash
-source ~/miniconda3/etc/profile.d/conda.sh
-conda activate xtbflow
-PYTHONPATH=vendor/mechai_reusable pytest -q tests/reusable
-python scripts/validate_bootstrap.py
+ssh n2 'hostname; cd ~/xtbflow/xtbflow; git rev-parse HEAD; git rev-parse origin/main; \
+  source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow; \
+  python --version; python -c "import torch; print(torch.__version__)"; \
+  command -v sbatch; command -v srun; squeue -u "$USER"'
 ```
 
-结果：`56 passed, 68 subtests passed`；完整性检查通过。GPU 冒烟测试使用 `srun` 分配一张 `pro6000`，`torch.cuda.is_available()` 为真，设备名为 RTX PRO 6000，1024×1024 CUDA 矩阵乘法成功。
-
-## 后续使用约定
-
-- 普通 CPU/Python 检查使用 `xtbflow` 环境。
-- 真实 GPU 测试、基准和分析通过 Slurm `main` 分区申请 `gpu:pro6000:1`，设置有限的 `--time`，保留 Slurm 设置的 `CUDA_VISIBLE_DEVICES`。
-- 主机私有路径写在被忽略的 `configs/host.local.yaml`；凭据、私钥、原始数据和模型权重不上传到 Git。
+每个真实阶段仍需另建带日期或运行 ID 的证据文件，写明执行主机、源码 SHA、配置／
+协议哈希、来源资产哈希、环境版本、资源消耗、状态和 claim limits。

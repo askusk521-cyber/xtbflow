@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import replace
 import json
+import math
 
 import pytest
 
@@ -514,6 +515,52 @@ def test_attempt_append_rejects_rewritten_proposal(tmp_path):
     )
     with pytest.raises(ValueError, match="rewrites immutable fields"):
         append_attempt_jsonl(path, rewritten)
+
+
+@pytest.mark.parametrize(
+    ("field", "value", "message"),
+    [
+        ("calculator_calls", {"gfn2-v1": 2}, "calculator calls decrease"),
+        ("wall_seconds", 2.0, "wall_seconds decrease"),
+        ("retry_count", 1, "retry_count decrease"),
+    ],
+)
+def test_attempt_append_rejects_decreasing_cumulative_cost_before_write(
+    tmp_path, field, value, message
+):
+    path = tmp_path / f"decreasing-{field}.jsonl"
+    first = attempt_record(
+        evidence_status="attempted_unresolved",
+        calculator_protocols=(calculator_protocol(),),
+        calculator_calls={"gfn2-v1": 3},
+        raw_log_locator="logs/attempt-1-v1.json",
+        raw_log_sha256="7" * 64,
+        wall_seconds=3.0,
+        retry_count=2,
+    )
+    append_attempt_jsonl(path, first)
+    original = path.read_text(encoding="utf-8")
+    update = attempt_record(
+        attempt_version=2,
+        evidence_status="attempted_unresolved",
+        calculator_protocols=(calculator_protocol(),),
+        calculator_calls={"gfn2-v1": 3},
+        raw_log_locator="logs/attempt-1-v2.json",
+        raw_log_sha256="8" * 64,
+        wall_seconds=3.0,
+        retry_count=2,
+    )
+    update = replace(update, **{field: value})
+
+    with pytest.raises(ValueError, match=message):
+        append_attempt_jsonl(path, update)
+    assert path.read_text(encoding="utf-8") == original
+
+
+@pytest.mark.parametrize("wall_seconds", [math.nan, math.inf, -math.inf])
+def test_attempt_rejects_nonfinite_wall_seconds(wall_seconds):
+    with pytest.raises(ValueError, match="wall_seconds must be finite"):
+        attempt_record(wall_seconds=wall_seconds)
 
 
 def test_attempt_load_rejects_version_gaps(tmp_path):

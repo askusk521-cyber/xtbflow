@@ -37,7 +37,7 @@ SOURCE_PROTOCOL = {
     "protocol_locator": SOURCE_URL,
     "method": "M06-2X/def2-TZVP",
     "software": "Gaussian16 with TS-tools; GFN2-xTB external state audit",
-    "version": "Figshare article 29118509 version 5",
+    "version": "Figshare article 29118509 version 5; TS-tools commit c1ba9cdd124f1fc4bbef4fee8cdd410e5703cfdc",
     "environment": "published Diels-Alder reaction-space archive",
 }
 SOURCE_PROTOCOL_SHA256 = canonical_hash(SOURCE_PROTOCOL)
@@ -313,7 +313,7 @@ def _row_sample(cache_root: Path, row: Mapping[str, str], source_asset_sha256: s
             "locator": f"{locator_base}/{rid}_ts.xyz",
             "sha256": hashlib.sha256(ts_bytes).hexdigest(),
             "coordinate_unit": "angstrom",
-            "evidence": "observed",
+            "evidence": "derived_under_contract",
             "atom_order_matches_input": True,
         },
         reference_protocol={**SOURCE_PROTOCOL, "protocol_sha256": SOURCE_PROTOCOL_SHA256},

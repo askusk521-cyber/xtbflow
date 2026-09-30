@@ -113,6 +113,11 @@
       "bytes": 1896
     },
     {
+      "path": "configs/data/dft_da_track_b_v1.json",
+      "sha256": "c025b2a35b7bd3f25cd96e0033f8e6af3c433bac6ac6694dabb15b68f31b6402",
+      "bytes": 1528
+    },
+    {
       "path": "configs/data/track_b_admission_v1.json",
       "sha256": "bd22080f4d259a7fe53d4f6cafed0ccf71f14db1dbd1e14f1a5d29533b04c864",
       "bytes": 2558
@@ -276,6 +281,11 @@
       "path": "docs/CP2K_SETUP.md",
       "sha256": "7354ea1558d747026577ab97af8ec0bc1a92fbaaba36f1c8075551be04f9552e",
       "bytes": 3580
+    },
+    {
+      "path": "docs/DFT_DA_TRACK_B.md",
+      "sha256": "93cbfc46da7dd954d7b6fba7ccc82cc3f6f3faf103b568142f52bf45c45ccc60",
+      "bytes": 3074
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
@@ -698,6 +708,11 @@
       "bytes": 16740
     },
     {
+      "path": "scripts/run_dft_da_joint_training.py",
+      "sha256": "5ec2db085d5bbc40b73b4d9c3cbb5010192b8bf3d5168abb75fc92c6455d86aa",
+      "bytes": 22151
+    },
+    {
       "path": "scripts/run_energy_baselines.py",
       "sha256": "b8386b137eb59e4afa0d6c066b076658590f0c3326e4169bed045fb415773def",
       "bytes": 26062
@@ -781,6 +796,11 @@
       "path": "src/xtbflow/data/cache.py",
       "sha256": "1f805c1b6498e0d4451fe340285106f2ea5d78499037548d44adf13b2084819f",
       "bytes": 2167
+    },
+    {
+      "path": "src/xtbflow/data/dft_da.py",
+      "sha256": "7abbc5b30864177cc61f81a540cfbda4fd86ba44d82a1f65c80d91ef0c614138",
+      "bytes": 19658
     },
     {
       "path": "src/xtbflow/data/independent_seeds.py",

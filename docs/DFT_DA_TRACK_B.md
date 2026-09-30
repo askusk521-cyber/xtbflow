@@ -19,11 +19,15 @@ marked `declared_reactant_endpoint`, so these records are development-only.
 The product, event, and TS fields are never present in the model-visible
 reactant view.
 
-The first audit yielded 68 rows across 62 parent groups.  Family IDs are
-derived from canonical mapped-reactant components and family groups are kept
-whole across deterministic 70/15/15 train/validation/test splits.  The adapter
-will quarantine any row that fails a later check rather than guessing missing
-state or correspondence.
+The first audit yielded 201 rows across 41 parent groups.  State evidence comes
+from both same-directory monomer Gaussian logs; transition-state atom order is
+derived under the published TS-tools ordering contract (commit
+`c1ba9cdd124f1fc4bbef4fee8cdd410e5703cfdc`) and is labelled
+`derived_under_contract`.  Family IDs are derived from canonical
+mapped-reactant components and family groups are kept whole across
+deterministic 70/15/15 train/validation/test splits.  The adapter will
+quarantine any row that fails a later check rather than guessing missing state
+or correspondence.
 
 ## Replaying the bounded training
 

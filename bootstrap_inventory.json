@@ -324,8 +324,8 @@
     },
     {
       "path": "docs/TRANSITION1X_JOINT_DEVELOPMENT.md",
-      "sha256": "bb0b3162e0f74e203c9311aadff64779f5f2d1d5f9a84d8168cd1ba81c022371",
-      "bytes": 2328
+      "sha256": "8901a7bfbd97884a0ea87af5d6499a903051eb8a68aeefb90ee586cf358acda3",
+      "bytes": 3048
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -754,8 +754,8 @@
     },
     {
       "path": "scripts/run_transition1x_joint_development.py",
-      "sha256": "b2ddd1bc47aee8b722e681b8d471bdb8c28b6341f6d0bf89ded35becb7f4b6ac",
-      "bytes": 15006
+      "sha256": "31f817942298e92afb69ca90c32f4a70e9638a97bbe5cb9073ce1aacd1313726",
+      "bytes": 18146
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -1174,8 +1174,8 @@
     },
     {
       "path": "tests/test_transition1x_development.py",
-      "sha256": "cc51d41cab61ef2cbf7ccfef583e819656b1738af68234c97dc05454eb5067a4",
-      "bytes": 2134
+      "sha256": "28850295ae16064324ab848f6b75633b44131ee9a7bc02488eb775d6fba3d481",
+      "bytes": 3003
     },
     {
       "path": "tests/test_transition1x_geometry.py",

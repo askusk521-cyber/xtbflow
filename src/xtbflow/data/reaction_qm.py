@@ -529,10 +529,27 @@ class ReactionQMLoader:
     def audit_files(self) -> list[dict[str, Any]]:
         return audit_source_files(self.config, self.cache_dir)
 
-    def reaction_info(self) -> Iterator[dict[str, str]]:
-        path = self.cache_dir / "B3LYPD3_TZVP_reaction_info.csv"
+    def _verified_asset(self, name: str) -> Path:
+        """Return a cache path only after its declared SHA-256 is verified."""
+
+        specs = {spec.name: spec for spec in self.config.files}
+        spec = specs.get(name)
+        if spec is None:
+            raise ValueError(f"asset is not declared by source config: {name}")
+        path = self.cache_dir / name
         if not path.is_file():
             raise FileNotFoundError(path)
+        if spec.expected_sha256 is None:
+            raise ValueError(f"asset is not hash-verified: {name} (expected_sha256 is missing)")
+        sha256 = _digest(path)
+        if sha256 != spec.expected_sha256:
+            raise ValueError(f"asset is not hash-verified: {name} (sha256 mismatch)")
+        if spec.official_md5 is not None and _digest(path, "md5") != spec.official_md5:
+            raise ValueError(f"asset is not hash-verified: {name} (official md5 mismatch)")
+        return path
+
+    def reaction_info(self) -> Iterator[dict[str, str]]:
+        path = self._verified_asset("B3LYPD3_TZVP_reaction_info.csv")
         with path.open(newline="", encoding="utf-8-sig") as handle:
             reader = csv.DictReader(handle)
             expected = {"reaction_id", "reaction_smiles"}
@@ -542,9 +559,7 @@ class ReactionQMLoader:
                 yield dict(row)
 
     def hdf5_reaction_count(self) -> int:
-        path = self.cache_dir / "B3LYPD3_TZVP.h5"
-        if not path.is_file():
-            raise FileNotFoundError(path)
+        path = self._verified_asset("B3LYPD3_TZVP.h5")
         try:
             import h5py  # type: ignore
         except ImportError as exc:
@@ -567,9 +582,7 @@ class ReactionQMLoader:
 
         if limit is not None and (type(limit) is not int or limit < 1):
             raise ValueError("limit must be a positive integer when supplied")
-        path = self.cache_dir / "B3LYPD3_TZVP.h5"
-        if not path.is_file():
-            raise FileNotFoundError(path)
+        path = self._verified_asset("B3LYPD3_TZVP.h5")
         try:
             import h5py  # type: ignore
         except ImportError as exc:

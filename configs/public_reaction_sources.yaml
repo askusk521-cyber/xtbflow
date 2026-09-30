@@ -36,6 +36,20 @@ sources:
         official_md5: 782a4e5e8099de8f2b8e0e90128028cb
         sha256: null
         status: intentionally_deferred
+      - name: common_reaction_info.csv
+        url: https://zenodo.org/records/18551029/files/common_reaction_info.csv?download=1
+        role: cross_level_metadata
+        size_bytes: 43446786
+        official_md5: bd117eccd9d98786d4ca60ba6c383cff
+        sha256: 63db6e7c1fbacdbc0391221bff204aec7ed060b90289862dbcaa49e004d21ebf
+        status: verified_n2_cache
+      - name: reactant_combinations.txt
+        url: https://zenodo.org/records/18551029/files/reactant_combinations.txt?download=1
+        role: reactant_enumeration
+        size_bytes: 7904879
+        official_md5: e95224e6cc175fd8abd15f900dbaa954
+        sha256: b7de6edac6aa0986c37f3db2da80f67384c35ab7e42e70e0cb522115fc45bbf0
+        status: verified_n2_cache
     field_mapping:
       reaction_info:
         reaction_id: reaction_id
@@ -47,6 +61,12 @@ sources:
         energies: hartree
       hdf5_irc:
         fields: [atomic_numbers, coordinates, energies, forces]
+      cross_level_metadata:
+        fields: [GFN_ID, B3LYP_ID, RXN_SMILES]
+        purpose: cross_level_identity_only
+      reactant_enumeration:
+        fields: [reactant_combination_smiles]
+        purpose: enumeration_input_without_record_ids
   rgd1:
     dataset: RGD1
     revision: figshare:21066901@v6

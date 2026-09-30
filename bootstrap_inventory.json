@@ -1169,8 +1169,8 @@
     },
     {
       "path": "tests/test_workflow_b_protocol.py",
-      "sha256": "0491b26813933fd983b822f97ab0ecc3a4af06e441d04347ea035247442bae59",
-      "bytes": 4527
+      "sha256": "a5a99d00e0d35b59f56e5570ea6d6aec361e045db78dbffcade201a0d74f6c05",
+      "bytes": 4675
     },
     {
       "path": "vendor/mechai_reusable/README.md",

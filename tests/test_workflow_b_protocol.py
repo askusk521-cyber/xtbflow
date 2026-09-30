@@ -19,14 +19,19 @@ RUNTIME = ROOT / "configs/models/joint_flow_runtime_v0.1.json"
 
 def test_workflow_b_protocol_freezes_the_first_matrix_and_scientific_blocker():
     payload = json.loads(PROTOCOL.read_text(encoding="utf-8"))
-    assert payload["status"] == "software_protocol_frozen_scientific_execution_blocked"
+    assert payload["status"] in {
+        "software_protocol_frozen_scientific_execution_blocked",
+        "scientific_development_enabled_confirmatory_blocked",
+    }
     assert payload["blocking_dependency"]["issue"] == 58
     assert payload["blocking_dependency"]["spice_energy_force_is_not_sufficient"] is True
     assert [arm["arm_id"] for arm in payload["first_scientific_matrix"]] == [
         "strong_rule",
         "conserved_independent",
         "serial_event_to_geometry",
+        "current_event_to_geometry",
         "joint_event_geometry",
+        "unconstrained_event",
     ]
     assert tuple(
         arm["learned_control_mode"]

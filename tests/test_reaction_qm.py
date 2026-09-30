@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+from dataclasses import replace
 
 import pytest
 
@@ -13,6 +14,7 @@ from xtbflow.data.reaction_qm import (
     ReactionQMRecord,
     SourceFile,
     derive_event_label,
+    reaction_qm_record_hash,
 )
 from xtbflow.data.records import PublicRecord
 from xtbflow.data.splits import SplitError, audit_no_group_leakage, audit_no_input_fingerprint_leakage
@@ -36,20 +38,35 @@ def record(**overrides):
         product_graph=product,
         reactant_coordinates=((0.0, 0.0, 0.0), (1.2, 0.0, 0.0), (1.8, 0.0, 0.0)),
         ts_coordinates=((0.0, 0.0, 0.0), (1.1, 0.1, 0.0), (1.9, 0.0, 0.0)),
-        charge=0,
+        charge=-1,
         multiplicity=1,
         reference_protocol={"method": "B3LYP-D3", "basis": "TZVP", "coordinates": "angstrom", "energy": "hartree"},
-        source_record_hash="a" * 64,
         event_label=derive_event_label(reactant, product, source_record_id="RXN_1"),
         admission="development_train",
+        coordinate_map_evidence="explicit_source_map",
     )
     values.update(overrides)
+    values["source_record_hash"] = reaction_qm_record_hash(
+        record_id=values["record_id"],
+        parent_reaction_id=values["parent_reaction_id"],
+        reaction_family_id=values["reaction_family_id"],
+        independent_reactant_system_id=values["independent_reactant_system_id"],
+        repeated_ts_group=values["repeated_ts_group"],
+        reactant_graph=values["reactant_graph"],
+        product_graph=values["product_graph"],
+        reactant_coordinates=values["reactant_coordinates"],
+        ts_coordinates=values["ts_coordinates"],
+        charge=values["charge"],
+        multiplicity=values["multiplicity"],
+        reference_protocol=values["reference_protocol"],
+        coordinate_map_evidence=values["coordinate_map_evidence"],
+    )
     return ReactionQMRecord(**values)
 
 
 def test_valid_chnos_neutral_closed_shell_record_is_explicit():
     row = record()
-    assert row.charge == 0
+    assert row.charge == -1
     assert row.multiplicity == 1
     assert row.event_label["evidence"] == "derived_under_contract"
     assert row.event_label["source_record_id"] == row.record_id
@@ -60,6 +77,19 @@ def test_missing_charge_and_multiplicity_are_rejected():
         record(charge="unknown")
     with pytest.raises(ValueError, match="strict integers"):
         record(multiplicity="unknown")
+
+
+def test_electronic_state_and_grouping_are_required_for_admission():
+    with pytest.raises(ValueError, match="inconsistent with the electron count"):
+        record(charge=0)
+    with pytest.raises(ValueError, match="unresolved grouping"):
+        record(parent_reaction_id="unknown")
+
+
+def test_source_hash_binds_coordinates_and_electronic_state():
+    row = record()
+    with pytest.raises(ValueError, match="does not bind"):
+        replace(row, reactant_coordinates=((0.1, 0.0, 0.0), *row.reactant_coordinates[1:]))
 
 
 def test_duplicate_mapping_and_atom_count_mismatch_are_rejected():

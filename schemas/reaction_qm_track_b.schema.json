@@ -8,7 +8,7 @@
     "independent_reactant_system_id", "repeated_ts_group", "reactant_graph",
     "product_graph", "reactant_coordinates", "ts_coordinates", "charge",
     "multiplicity", "reference_protocol", "source_record_hash", "event_label",
-    "admission"
+    "admission", "coordinate_map_evidence"
   ],
   "properties": {
     "record_id": {"type": "string", "minLength": 1},
@@ -36,6 +36,7 @@
         "output_event_label_hash": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"}
       }
     },
+    "coordinate_map_evidence": {"type": "string", "minLength": 1},
     "admission": {"enum": ["quarantine", "development_train", "development_validation", "development_test", "confirmatory"]},
     "quarantine_reasons": {"type": "array", "items": {"type": "string"}}
   },

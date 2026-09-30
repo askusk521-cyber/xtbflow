@@ -1,0 +1,810 @@
+{
+  "arm_summary": {
+    "conserved_independent": {
+      "accepted_total": 135,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_total": 135,
+      "mean_event_bond_mse_parent_equal": 0.010316046304970027,
+      "mean_event_bond_mse_record_weighted": 0.012042256950143009,
+      "mean_event_exact_match_record_weighted": 0.0,
+      "mean_geometry_endpoint_mse_parent_equal": 0.25308383261235434,
+      "mean_geometry_endpoint_mse_record_weighted": 0.2985488626467142,
+      "parent_count_per_seed": [
+        11
+      ],
+      "record_count_per_seed": [
+        45
+      ],
+      "rejected_total": 0,
+      "seed_count": 3
+    },
+    "current_event_to_geometry": {
+      "accepted_total": 135,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_total": 135,
+      "mean_event_bond_mse_parent_equal": 0.010316046304970027,
+      "mean_event_bond_mse_record_weighted": 0.012042256950143009,
+      "mean_event_exact_match_record_weighted": 0.0,
+      "mean_geometry_endpoint_mse_parent_equal": 0.2622131198217507,
+      "mean_geometry_endpoint_mse_record_weighted": 0.31360008487689356,
+      "parent_count_per_seed": [
+        11
+      ],
+      "record_count_per_seed": [
+        45
+      ],
+      "rejected_total": 0,
+      "seed_count": 3
+    },
+    "joint_event_geometry": {
+      "accepted_total": 135,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_total": 135,
+      "mean_event_bond_mse_parent_equal": 0.010316046304970027,
+      "mean_event_bond_mse_record_weighted": 0.012042256950143009,
+      "mean_event_exact_match_record_weighted": 0.0,
+      "mean_geometry_endpoint_mse_parent_equal": 0.26076534281342495,
+      "mean_geometry_endpoint_mse_record_weighted": 0.31813529278515223,
+      "parent_count_per_seed": [
+        11
+      ],
+      "record_count_per_seed": [
+        45
+      ],
+      "rejected_total": 0,
+      "seed_count": 3
+    },
+    "serial_event_to_geometry": {
+      "accepted_total": 135,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_total": 135,
+      "mean_event_bond_mse_parent_equal": 0.010316046304970027,
+      "mean_event_bond_mse_record_weighted": 0.012042256950143009,
+      "mean_event_exact_match_record_weighted": 0.0,
+      "mean_geometry_endpoint_mse_parent_equal": 0.2558095861797536,
+      "mean_geometry_endpoint_mse_record_weighted": 0.30354286663514096,
+      "parent_count_per_seed": [
+        11
+      ],
+      "record_count_per_seed": [
+        45
+      ],
+      "rejected_total": 0,
+      "seed_count": 3
+    },
+    "unconstrained_event": {
+      "accepted_total": 135,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_total": 135,
+      "mean_event_bond_mse_parent_equal": 0.010316046304970027,
+      "mean_event_bond_mse_record_weighted": 0.012042256950143009,
+      "mean_event_exact_match_record_weighted": 0.0,
+      "mean_geometry_endpoint_mse_parent_equal": 0.27472079100008157,
+      "mean_geometry_endpoint_mse_record_weighted": 0.3314526315318598,
+      "parent_count_per_seed": [
+        11
+      ],
+      "record_count_per_seed": [
+        45
+      ],
+      "rejected_total": 0,
+      "seed_count": 3
+    }
+  },
+  "baselines_from_first_scoring_report": {
+    "reactant_rule": {
+      "group_count": 11,
+      "group_key": "parent_reaction_id",
+      "groups": [
+        {
+          "group_id": "ID20747",
+          "metric_means": {
+            "event_bond_mse": 0.00816326530612245,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.20944273435472452
+          },
+          "record_count": 2
+        },
+        {
+          "group_id": "ID29179",
+          "metric_means": {
+            "event_bond_mse": 0.006574621959237344,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.0454177866736593
+          },
+          "record_count": 2
+        },
+        {
+          "group_id": "ID30469",
+          "metric_means": {
+            "event_bond_mse": 0.009182736455463728,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.30936873589488234
+          },
+          "record_count": 4
+        },
+        {
+          "group_id": "ID32109",
+          "metric_means": {
+            "event_bond_mse": 0.00816326530612245,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.20928556098855255
+          },
+          "record_count": 4
+        },
+        {
+          "group_id": "ID4339",
+          "metric_means": {
+            "event_bond_mse": 0.007716049382716049,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.2758610539417164
+          },
+          "record_count": 4
+        },
+        {
+          "group_id": "ID45033",
+          "metric_means": {
+            "event_bond_mse": 0.004725897920604915,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.37085967175648155
+          },
+          "record_count": 2
+        },
+        {
+          "group_id": "ID49144",
+          "metric_means": {
+            "event_bond_mse": 0.011890606420927468,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.1634531673530697
+          },
+          "record_count": 1
+        },
+        {
+          "group_id": "ID54142",
+          "metric_means": {
+            "event_bond_mse": 0.01479289940828402,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.5709087897839769
+          },
+          "record_count": 14
+        },
+        {
+          "group_id": "ID63835",
+          "metric_means": {
+            "event_bond_mse": 0.0049382716049382715,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.30154218505704405
+          },
+          "record_count": 4
+        },
+        {
+          "group_id": "ID67399",
+          "metric_means": {
+            "event_bond_mse": 0.00865051903114187,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.15228062297663814
+          },
+          "record_count": 4
+        },
+        {
+          "group_id": "ID91104",
+          "metric_means": {
+            "event_bond_mse": 0.009765625,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.15868544730233103
+          },
+          "record_count": 4
+        }
+      ],
+      "parent_equal": {
+        "event_bond_mse": 0.008596705254141688,
+        "event_exact_match": 0.0,
+        "geometry_endpoint_mse": 0.2515550687348251
+      },
+      "record_count": 45,
+      "record_weighted": {
+        "event_bond_mse": 0.01003521412511917,
+        "event_exact_match": 0.0,
+        "geometry_endpoint_mse": 0.33412691187873633
+      }
+    },
+    "zero_change": {
+      "group_count": 11,
+      "group_key": "parent_reaction_id",
+      "groups": [
+        {
+          "group_id": "ID20747",
+          "metric_means": {
+            "event_bond_mse": 0.009795918367346938,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.20944273435472452
+          },
+          "record_count": 2
+        },
+        {
+          "group_id": "ID29179",
+          "metric_means": {
+            "event_bond_mse": 0.007889546351084813,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.0454177866736593
+          },
+          "record_count": 2
+        },
+        {
+          "group_id": "ID30469",
+          "metric_means": {
+            "event_bond_mse": 0.011019283746556474,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.30936873589488234
+          },
+          "record_count": 4
+        },
+        {
+          "group_id": "ID32109",
+          "metric_means": {
+            "event_bond_mse": 0.009795918367346938,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.20928556098855255
+          },
+          "record_count": 4
+        },
+        {
+          "group_id": "ID4339",
+          "metric_means": {
+            "event_bond_mse": 0.009259259259259259,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.2758610539417164
+          },
+          "record_count": 4
+        },
+        {
+          "group_id": "ID45033",
+          "metric_means": {
+            "event_bond_mse": 0.005671077504725898,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.37085967175648155
+          },
+          "record_count": 2
+        },
+        {
+          "group_id": "ID49144",
+          "metric_means": {
+            "event_bond_mse": 0.014268727705112961,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.1634531673530697
+          },
+          "record_count": 1
+        },
+        {
+          "group_id": "ID54142",
+          "metric_means": {
+            "event_bond_mse": 0.017751479289940832,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.5709087897839769
+          },
+          "record_count": 14
+        },
+        {
+          "group_id": "ID63835",
+          "metric_means": {
+            "event_bond_mse": 0.005925925925925926,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.30154218505704405
+          },
+          "record_count": 4
+        },
+        {
+          "group_id": "ID67399",
+          "metric_means": {
+            "event_bond_mse": 0.010380622837370242,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.15228062297663814
+          },
+          "record_count": 4
+        },
+        {
+          "group_id": "ID91104",
+          "metric_means": {
+            "event_bond_mse": 0.01171875,
+            "event_exact_match": 0.0,
+            "geometry_endpoint_mse": 0.15868544730233103
+          },
+          "record_count": 4
+        }
+      ],
+      "parent_equal": {
+        "event_bond_mse": 0.010316046304970027,
+        "event_exact_match": 0.0,
+        "geometry_endpoint_mse": 0.2515550687348251
+      },
+      "record_count": 45,
+      "record_weighted": {
+        "event_bond_mse": 0.012042256950143009,
+        "event_exact_match": 0.0,
+        "geometry_endpoint_mse": 0.33412691187873633
+      }
+    }
+  },
+  "claim_limit": "target-free generation software evidence with label-assisted post-hoc development scores; no DFT geometry certification, TS atom-map certification, xTB/CP2K refinement, or reaction-discovery claim",
+  "execution_host": "node2",
+  "failure_accounting": [
+    {
+      "candidates_produced": 0,
+      "follow_up_commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "reason": "initial archive-directory trial lacked Git metadata; runner now writes prepared state before preflight",
+      "stage": "generation_preflight",
+      "status": "execution_failed"
+    }
+  ],
+  "observed": {
+    "candidate_cap_semantics": "learned trajectories used candidate_cap=1 and produced one candidate per record; the 64 cap was applied only to the post-hoc reactant rule baseline",
+    "decoded_event_equals_reactant": "all 675/675 accepted candidates across 15 checkpoints had the same decoded packed event as their reactant input",
+    "event_exact_match_record_weighted_all_arms": 0.0
+  },
+  "protocol": {
+    "arms": [
+      "conserved_independent",
+      "serial_event_to_geometry",
+      "current_event_to_geometry",
+      "joint_event_geometry",
+      "unconstrained_event"
+    ],
+    "candidate_cap": 1,
+    "checkpoints": 15,
+    "deterministic_trajectories": true,
+    "labels_read_during_generation": false,
+    "provenance_audit_evidence": "docs/evidence/dft_da_provenance_audit_20260930.json",
+    "quantum_calls": 0,
+    "runtime_config_sha256": "04e9a1925550c58291a16ad2abe08f139006ed44a12cbeb358a6dd6b68ba3b59",
+    "seeds": [
+      11,
+      17,
+      23
+    ],
+    "source_geometry_protocol_sha256": "aa4b5055212c023c55a2bb4e580b5e3fa1290216616a9d18eb5f221bbca9197f",
+    "steps": 16
+  },
+  "resource_budget": {
+    "gpu": "gpu:pro6000:1",
+    "max_concurrent_jobs": 1,
+    "max_euler_steps": 10800,
+    "max_model_trajectories": 675,
+    "slurm_partition": "main",
+    "wall_time": "00:10:00"
+  },
+  "rows": [
+    {
+      "accepted": 45,
+      "arm": "conserved_independent",
+      "attempted": 45,
+      "checkpoint_sha256": "15c3e6e258d729221072ceb805069cfb660068ef85a1475234376dc18ce84f8e",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": true,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 3.037217359058559,
+      "geometry_endpoint_mse_parent_equal": 0.2517903263221675,
+      "geometry_endpoint_mse_record_weighted": 0.3106677065452894,
+      "mode": "both_off",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed11_conserved_independent",
+      "scoring_elapsed_seconds": 4.800157132092863,
+      "seed": 11,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "current_event_to_geometry",
+      "attempted": 45,
+      "checkpoint_sha256": "dedc1ceb3e38cddf82318f92a42519db3746aa905b808d54b6369be01ac07488",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": true,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 3.0226527079939842,
+      "geometry_endpoint_mse_parent_equal": 0.2768139426182714,
+      "geometry_endpoint_mse_record_weighted": 0.36256631686118707,
+      "mode": "joint_unidirectional",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed11_current_event_to_geometry",
+      "scoring_elapsed_seconds": 4.81863663403783,
+      "seed": 11,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "joint_event_geometry",
+      "attempted": 45,
+      "checkpoint_sha256": "04ff9109b29bab519c0b245dc343cc8d6fb542bb040c94855af2dabb9728952a",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": true,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 3.0530362139688805,
+      "geometry_endpoint_mse_parent_equal": 0.25689365683774484,
+      "geometry_endpoint_mse_record_weighted": 0.339562392382521,
+      "mode": "joint_bidirectional",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed11_joint_event_geometry",
+      "scoring_elapsed_seconds": 4.816850629984401,
+      "seed": 11,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "serial_event_to_geometry",
+      "attempted": 45,
+      "checkpoint_sha256": "6548bf90991b40b820b1d2106867849b59f1fea9a5f692980ee6bfcbfad5c175",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": true,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 3.0613306909799576,
+      "geometry_endpoint_mse_parent_equal": 0.24929266592238958,
+      "geometry_endpoint_mse_record_weighted": 0.313990613417685,
+      "mode": "serial_independent",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed11_serial_event_to_geometry",
+      "scoring_elapsed_seconds": 4.915338139049709,
+      "seed": 11,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "unconstrained_event",
+      "attempted": 45,
+      "checkpoint_sha256": "feab53ef8b8ed59a02f5afed62ac0714744b28fa7180703d606b136b5e1b9644",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": false,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 2.495768792927265,
+      "geometry_endpoint_mse_parent_equal": 0.2546538641853522,
+      "geometry_endpoint_mse_record_weighted": 0.32620369332422955,
+      "mode": "joint_bidirectional",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed11_unconstrained_event",
+      "scoring_elapsed_seconds": 4.809793106047437,
+      "seed": 11,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "conserved_independent",
+      "attempted": 45,
+      "checkpoint_sha256": "5e744d9efd5c328000e6cbb7712ca8df6b05aa7b9523f4e3560ddec876a9b7e0",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": true,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 3.0626619659597054,
+      "geometry_endpoint_mse_parent_equal": 0.25745852085990195,
+      "geometry_endpoint_mse_record_weighted": 0.2990227570430751,
+      "mode": "both_off",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed17_conserved_independent",
+      "scoring_elapsed_seconds": 4.825587869039737,
+      "seed": 17,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "current_event_to_geometry",
+      "attempted": 45,
+      "checkpoint_sha256": "853112a848a8e3b0f087a02a4f49b86b3c60cb9073c91f5a24db665a4651e325",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": true,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 3.0555049600079656,
+      "geometry_endpoint_mse_parent_equal": 0.25757629681461247,
+      "geometry_endpoint_mse_record_weighted": 0.2957502228112232,
+      "mode": "joint_unidirectional",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed17_current_event_to_geometry",
+      "scoring_elapsed_seconds": 4.817522631958127,
+      "seed": 17,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "joint_event_geometry",
+      "attempted": 45,
+      "checkpoint_sha256": "88fe3c127b918593725b396d4625967fd2c5d131cc1774ce141885ab4bcfd332",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": true,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 3.0372450680006295,
+      "geometry_endpoint_mse_parent_equal": 0.25683983901923135,
+      "geometry_endpoint_mse_record_weighted": 0.29880289777787056,
+      "mode": "joint_bidirectional",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed17_joint_event_geometry",
+      "scoring_elapsed_seconds": 4.825585982995108,
+      "seed": 17,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "serial_event_to_geometry",
+      "attempted": 45,
+      "checkpoint_sha256": "14ac9c3145b32ac7415ef1e77bc65d95c1c77d460070db71964acf592b71e608",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": true,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 3.0488204810535535,
+      "geometry_endpoint_mse_parent_equal": 0.25926418617922486,
+      "geometry_endpoint_mse_record_weighted": 0.3116979959440462,
+      "mode": "serial_independent",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed17_serial_event_to_geometry",
+      "scoring_elapsed_seconds": 4.827321178978309,
+      "seed": 17,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "unconstrained_event",
+      "attempted": 45,
+      "checkpoint_sha256": "b62ed8a79aee2ab8d97938603e80428572b6a66f667bdf1a2d9ec13d68623d98",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": false,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 2.511747924028896,
+      "geometry_endpoint_mse_parent_equal": 0.3151610033891815,
+      "geometry_endpoint_mse_record_weighted": 0.37939783644595754,
+      "mode": "joint_bidirectional",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed17_unconstrained_event",
+      "scoring_elapsed_seconds": 5.027053626952693,
+      "seed": 17,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "conserved_independent",
+      "attempted": 45,
+      "checkpoint_sha256": "d0b3837b5eec9e5502ebd5b18472083d46993da59059bd991a5c6ea64fc8d58e",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": true,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 3.022391138947569,
+      "geometry_endpoint_mse_parent_equal": 0.2500026506549936,
+      "geometry_endpoint_mse_record_weighted": 0.2859561243517781,
+      "mode": "both_off",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed23_conserved_independent",
+      "scoring_elapsed_seconds": 4.830360590014607,
+      "seed": 23,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "current_event_to_geometry",
+      "attempted": 45,
+      "checkpoint_sha256": "12edeefa9edd9284ad416837a062307ad67d5a54e61f0bbb7a1960e11c22bccb",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": true,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 3.0716541790170595,
+      "geometry_endpoint_mse_parent_equal": 0.2522491200323683,
+      "geometry_endpoint_mse_record_weighted": 0.28248371495827046,
+      "mode": "joint_unidirectional",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed23_current_event_to_geometry",
+      "scoring_elapsed_seconds": 4.813513229019009,
+      "seed": 23,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "joint_event_geometry",
+      "attempted": 45,
+      "checkpoint_sha256": "6d9309e3e11d2ecf1d9b164c238159b1a6913d947e9a436c087588320c571491",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": true,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 3.066458469023928,
+      "geometry_endpoint_mse_parent_equal": 0.2685625325832987,
+      "geometry_endpoint_mse_record_weighted": 0.3160405881950652,
+      "mode": "joint_bidirectional",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed23_joint_event_geometry",
+      "scoring_elapsed_seconds": 4.811535838991404,
+      "seed": 23,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "serial_event_to_geometry",
+      "attempted": 45,
+      "checkpoint_sha256": "a9f32d750bc926f149be7813f9e3fbdfe62990e0b1d3e739bbbfe8f15fb8bc1f",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": true,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 3.098910229979083,
+      "geometry_endpoint_mse_parent_equal": 0.25887190643764624,
+      "geometry_endpoint_mse_record_weighted": 0.2849399905436916,
+      "mode": "serial_independent",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed23_serial_event_to_geometry",
+      "scoring_elapsed_seconds": 4.861730356933549,
+      "seed": 23,
+      "status": "completed",
+      "target_fields_read": false
+    },
+    {
+      "accepted": 45,
+      "arm": "unconstrained_event",
+      "attempted": 45,
+      "checkpoint_sha256": "1c85986c299ad7d0ed4d6d2e0663968674903b5224d5db934ef4f4d09be15a26",
+      "commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+      "conservation_projection": false,
+      "coverage_complete": true,
+      "decoded_event_equals_reactant_all": true,
+      "decoded_event_equals_reactant_count": 45,
+      "event_bond_mse_parent_equal": 0.010316046304970027,
+      "event_bond_mse_record_weighted": 0.012042256950143009,
+      "event_exact_match_record_weighted": 0.0,
+      "generation_elapsed_seconds": 2.5009243990061805,
+      "geometry_endpoint_mse_parent_equal": 0.25434750542571094,
+      "geometry_endpoint_mse_record_weighted": 0.2887563648253922,
+      "mode": "joint_bidirectional",
+      "parent_count": 11,
+      "record_count": 45,
+      "rejected": 0,
+      "run": "seed23_unconstrained_event",
+      "scoring_elapsed_seconds": 4.863844775012694,
+      "seed": 23,
+      "status": "completed",
+      "target_fields_read": false
+    }
+  ],
+  "run_label": "reactant-generation-a47930c-all15",
+  "runtime": {
+    "cuda_available": true,
+    "cuda_device": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128"
+  },
+  "schema": "xtbflow-dft-da-reactant-generation-evidence/v1",
+  "source": {
+    "archive_sha256": "4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed",
+    "coverage_complete": true,
+    "csv_sha256": "28aab43ed85fda091a8261c229f90b9bd421be4f49075d42982d753a0806dbed",
+    "parent_count": 11,
+    "reactant_input_sha256": "746f8e0b67a4100c18db02054a0f8135b04aefbf0f2068db0e8c7a362814c5cd",
+    "record_count": 45,
+    "source_revision": "figshare:29118509:v5",
+    "source_url": "https://figshare.com/articles/dataset/Diels-Alder_reaction_space_for_self-healing_polymer/29118509",
+    "split": "test"
+  },
+  "source_commit": "a47930cc33b61ab60aff8081080e87f7f3b2222a",
+  "stages": {
+    "generation": {
+      "accepted_candidates": 675,
+      "checkpoint_runs": 15,
+      "rejected_candidates": 0,
+      "status": "completed",
+      "sum_elapsed_seconds": 44.146324579953216
+    },
+    "posthoc_scoring": {
+      "checkpoint_reports": 15,
+      "status": "completed",
+      "sum_elapsed_seconds": 72.66483172110748
+    },
+    "reactant_input_export": {
+      "elapsed_seconds": 1.987731565022841,
+      "output_sha256": "746f8e0b67a4100c18db02054a0f8135b04aefbf0f2068db0e8c7a362814c5cd",
+      "parents": 11,
+      "records": 45,
+      "status": "completed",
+      "target_fields_written": false
+    }
+  },
+  "status": "completed"
+}

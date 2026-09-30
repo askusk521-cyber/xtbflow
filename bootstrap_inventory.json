@@ -398,6 +398,11 @@
       "bytes": 4668
     },
     {
+      "path": "docs/evidence/dft_da_reactant_generation_20260930_a47930c.json",
+      "sha256": "60408d8cbb1847854fb3beff26ca9c3393725f9307d70815a4653a3af1ac1a96",
+      "bytes": 29670
+    },
+    {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
       "sha256": "a8f35cecb50117422a0dd28953d079634aa780dd5336baf6ee23cfd817952d57",
       "bytes": 6712

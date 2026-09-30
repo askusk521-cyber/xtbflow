@@ -197,3 +197,29 @@
   direction coupling are not claimed complete, and scientific comparison is
   blocked until #58 admits sample-level paired event/TS supervision. SPICE E/F
   records remain unsuitable for that supervision.
+
+## 2026-09-30 Transition1x quarantine-bound real-data development
+
+- A bounded runner now loads the hash-pinned `train_rpsb_all.pkl` through the
+  restricted NumPy deserializer, derives a declared endpoint-distance event
+  diagnostic, and trains the current joint-flow prototype on real
+  reactant-to-TS displacements.
+- The n2 run selected 32 rows from the 10,073-record audited asset with a
+  deterministic 24/4/4 train/validation/test split and completed the three
+  registered control evaluations. Evidence is in
+  `docs/evidence/transition1x_joint_development_20260930.json`.
+- The result remains `quarantine_development_only`: the source audit still
+  reports unresolved charge/multiplicity, event-label, atom-mapping, family
+  holdout and redistribution-license requirements. It does not open the
+  Track-B gate or support a product-free scientific comparison.
+
+## 2026-09-30 Transition1x endpoint geometry baseline
+
+- The published `ts_guess`, `ts_guess_sbv1` and `ts_guess_NEBCI-xtb` fields now
+  have a reproducible Kabsch/RMSD and pair-distance evaluator. On the 1,073-row
+  published complement, mean RMSDs are 0.4746, 0.2485 and 0.3526 Å
+  respectively; the exact report is
+  `docs/evidence/transition1x_geometry_baseline_20260930.json`.
+- `ts_guess_true` remains isolated as oracle-like leakage evidence. This is an
+  endpoint-conditioned geometry baseline only; the complement is not a family
+  holdout and the result does not open product-free event training.

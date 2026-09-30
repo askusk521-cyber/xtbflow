@@ -304,8 +304,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "66835fffcbf04c020f1b26a012c2710e28055f5d55ba30cad7d37fa61b876a11",
-      "bytes": 19894
+      "sha256": "b69467d68879380aded2a04ba2981ca209ae40eeb53d02102a94038879f5584e",
+      "bytes": 21372
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -316,6 +316,16 @@
       "path": "docs/TRACK_B_DATA_GATE.md",
       "sha256": "de1919311eafeaa81a9c8823dca19b074821c7732ac2f6b48c828e6da0370a10",
       "bytes": 11012
+    },
+    {
+      "path": "docs/TRANSITION1X_GEOMETRY_BASELINE.md",
+      "sha256": "7049f388cbb1d48f986fee73481f592a38cb7b23dae4d4a52e6f58c6836350ae",
+      "bytes": 1710
+    },
+    {
+      "path": "docs/TRANSITION1X_JOINT_DEVELOPMENT.md",
+      "sha256": "8901a7bfbd97884a0ea87af5d6499a903051eb8a68aeefb90ee586cf358acda3",
+      "bytes": 3048
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -523,6 +533,16 @@
       "bytes": 8575
     },
     {
+      "path": "docs/evidence/transition1x_geometry_baseline_20260930.json",
+      "sha256": "e85a3c6f50bac7a4986dfaa92c0c4e34ca04681c052b0f83baae9e382d423862",
+      "bytes": 11853
+    },
+    {
+      "path": "docs/evidence/transition1x_joint_development_20260930.json",
+      "sha256": "4cc396d47cc2245de881285004c942b9be14048391337e80f06e39ff38377d11",
+      "bytes": 9412
+    },
+    {
       "path": "docs/evidence/transition1x_track_b_audit_20260929.json",
       "sha256": "0e1e9cde9173f9f88e15c6f4e8f787edf8d19930f9d604fa84b31487c556eb59",
       "bytes": 4364
@@ -728,6 +748,16 @@
       "bytes": 6840
     },
     {
+      "path": "scripts/run_transition1x_geometry_baseline.py",
+      "sha256": "48fdfef3fccdc35ef955f19636fa0be9540c4b1d347d36459d9aaed076941f02",
+      "bytes": 3805
+    },
+    {
+      "path": "scripts/run_transition1x_joint_development.py",
+      "sha256": "31f817942298e92afb69ca90c32f4a70e9638a97bbe5cb9073ce1aacd1313726",
+      "bytes": 18146
+    },
+    {
       "path": "scripts/validate_bootstrap.py",
       "sha256": "47dd56659b5663d44691397ac0d15ab053b7bbc0d0398cf79ebc7781a4dbb318",
       "bytes": 3503
@@ -769,8 +799,8 @@
     },
     {
       "path": "src/xtbflow/data/__init__.py",
-      "sha256": "ed8cbba969680ed641423efa8d02ca4f2e280b1c8f25bb88c6057ce2836df667",
-      "bytes": 3177
+      "sha256": "fcb82d5b815d75f418ae27a6c707467d51f61b093111ef41276143513978b375",
+      "bytes": 3693
     },
     {
       "path": "src/xtbflow/data/attempts.py",
@@ -824,18 +854,28 @@
     },
     {
       "path": "src/xtbflow/data/transition1x_audit.py",
-      "sha256": "ae42a064ac447086899eff6208e88fd666c6aa03f93c9dee3e697afd6a9fdd6f",
-      "bytes": 16721
+      "sha256": "4130a06fb812bc7f370773a9299b81175fb2104dd27a6438c045db1ba69a3218",
+      "bytes": 18224
+    },
+    {
+      "path": "src/xtbflow/data/transition1x_development.py",
+      "sha256": "aab1356ddbe4973ed8cc6fa93bdb7f305c39a58189646ce03aa3d7d239da1a69",
+      "bytes": 7451
     },
     {
       "path": "src/xtbflow/evaluation/__init__.py",
-      "sha256": "3ce11bcb9a4e818840099636abb2dbdf3253b377d759cee931642f9c45c63960",
-      "bytes": 199
+      "sha256": "dbdbe8d46cc50ea1b632e25476259d724f1dfd063c67e78a0a95fff796706970",
+      "bytes": 468
     },
     {
       "path": "src/xtbflow/evaluation/terminal.py",
       "sha256": "a2ee8b3947aa9d55b04aabe52193cfaab0f91f443dde9b68b98a07bf1d91ff3a",
       "bytes": 1744
+    },
+    {
+      "path": "src/xtbflow/evaluation/transition1x_geometry.py",
+      "sha256": "949066cd7d4690f556cf7f1327ed1f86fd70663c4a8f86d0aa2c3d19c1c8be2c",
+      "bytes": 7488
     },
     {
       "path": "src/xtbflow/legacy.py",
@@ -1133,9 +1173,19 @@
       "bytes": 24786
     },
     {
+      "path": "tests/test_transition1x_development.py",
+      "sha256": "28850295ae16064324ab848f6b75633b44131ee9a7bc02488eb775d6fba3d481",
+      "bytes": 3003
+    },
+    {
+      "path": "tests/test_transition1x_geometry.py",
+      "sha256": "42783c4d94f34205425fd68c88ff3833c94b86cf6795292705f1f1d0dba6d7b5",
+      "bytes": 2091
+    },
+    {
       "path": "tests/test_transition1x_track_b_audit.py",
-      "sha256": "48cd4fda1c9dfe68269c157fedcc020bbe9c0dd20cde6eecf5d8b2d3e5c7d104",
-      "bytes": 4964
+      "sha256": "a42924f16cd74732aa6a1cbf69f407f8d265c6d22fa658864991ac5aa368775e",
+      "bytes": 5420
     },
     {
       "path": "tests/test_workflow_b_protocol.py",

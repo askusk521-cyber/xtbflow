@@ -10,6 +10,7 @@ import pytest
 from xtbflow.data.transition1x_audit import (
     Transition1xAuditError,
     audit_transition1x_pickle,
+    load_transition1x_pickle,
 )
 
 
@@ -93,6 +94,17 @@ def test_transition1x_audit_hash_gates_endpoint_structure(tmp_path):
     assert report["track_b_gate"]["event_geometry_training_ready"] is False
     assert report["track_b_gate"]["admission"] == "quarantine_diagnostic_only"
     assert report["scientific_claim_allowed"] is False
+
+
+def test_transition1x_development_loader_reuses_hash_gate(tmp_path):
+    asset = tmp_path / "train_rpsb_all.pkl"
+    expected_sha256 = _write_pickle(asset, _dataset())
+    payload = load_transition1x_pickle(
+        asset,
+        expected_sha256=expected_sha256,
+        expected_size_bytes=asset.stat().st_size,
+    )
+    assert sorted(payload) == ["product", "reactant", "single_fragment", "transition_state", "use_ind"]
 
 
 def test_transition1x_audit_refuses_hash_mismatch_before_unpickling(tmp_path):

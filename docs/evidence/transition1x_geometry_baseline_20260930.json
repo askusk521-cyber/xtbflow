@@ -1,0 +1,342 @@
+{
+  "dataset": "Transition1x preprocessed Reaction Dataset",
+  "n_records": 10073,
+  "split": {
+    "published_use_ind": {
+      "n": 9000,
+      "indices_sha256": "40f314ad1d43ea98bbe28a13dee1642f06e756dc556938539c5cdaca0d70abc5"
+    },
+    "complement_diagnostic": {
+      "n": 1073,
+      "indices_sha256": "da426d0c5f55b6ded56693f91c257e0d6e019831824e63935feda4dd124d2bed"
+    }
+  },
+  "alignment_contract": {
+    "atom_row_order": "published row order",
+    "atomic_numbers": "charges field, as audited; not formal charges",
+    "rotation": "proper Kabsch alignment",
+    "atom_permutations": false,
+    "event_or_mechanism_inference": false
+  },
+  "metrics": {
+    "ts_guess": {
+      "split": {
+        "published_use_ind": {
+          "atom_mapped_rmsd_angstrom": {
+            "n": 9000,
+            "mean": 0.4586808484696507,
+            "median": 0.3982445044275645,
+            "p90": 0.7689910384822559,
+            "max": 2.4399759988596745
+          },
+          "pair_distance_mae_angstrom": {
+            "n": 9000,
+            "mean": 0.21466648418728837,
+            "median": 0.17784699845155588,
+            "p90": 0.36297694805226755,
+            "max": 2.079821811572214
+          }
+        },
+        "complement_diagnostic": {
+          "atom_mapped_rmsd_angstrom": {
+            "n": 1073,
+            "mean": 0.47464270391407887,
+            "median": 0.4109338564961704,
+            "p90": 0.8091755339425974,
+            "max": 2.7644951609253163
+          },
+          "pair_distance_mae_angstrom": {
+            "n": 1073,
+            "mean": 0.22442007081167506,
+            "median": 0.1819759591034394,
+            "p90": 0.3713847256541506,
+            "max": 2.203399791910843
+          }
+        }
+      },
+      "field_scope": "published TS-initial-guess field"
+    },
+    "ts_guess_true": {
+      "split": {
+        "published_use_ind": {
+          "atom_mapped_rmsd_angstrom": {
+            "n": 9000,
+            "mean": 7.406352631233633e-08,
+            "median": 7.297495129966165e-08,
+            "p90": 9.510196841958819e-08,
+            "max": 1.5989941594739935e-07
+          },
+          "pair_distance_mae_angstrom": {
+            "n": 9000,
+            "mean": 6.255234853316778e-08,
+            "median": 6.117652009682944e-08,
+            "p90": 8.287475821692333e-08,
+            "max": 1.440512078954015e-07
+          }
+        },
+        "complement_diagnostic": {
+          "atom_mapped_rmsd_angstrom": {
+            "n": 1073,
+            "mean": 7.354799521436575e-08,
+            "median": 7.335208644234517e-08,
+            "p90": 9.377089547707479e-08,
+            "max": 1.4203071153496917e-07
+          },
+          "pair_distance_mae_angstrom": {
+            "n": 1073,
+            "mean": 6.202726004232857e-08,
+            "median": 6.0929357808188e-08,
+            "p90": 8.147853733522401e-08,
+            "max": 1.2504036069808186e-07
+          }
+        }
+      },
+      "field_scope": "near-reference diagnostic; do not use as independent input"
+    },
+    "ts_guess_sbv1": {
+      "split": {
+        "published_use_ind": {
+          "atom_mapped_rmsd_angstrom": {
+            "n": 9000,
+            "mean": 0.21455170815581434,
+            "median": 0.13556584083328516,
+            "p90": 0.5125871630147445,
+            "max": 2.1419241597600602
+          },
+          "pair_distance_mae_angstrom": {
+            "n": 9000,
+            "mean": 0.08202505581529194,
+            "median": 0.05635038306651578,
+            "p90": 0.17715325730567152,
+            "max": 1.112341947642341
+          }
+        },
+        "complement_diagnostic": {
+          "atom_mapped_rmsd_angstrom": {
+            "n": 1073,
+            "mean": 0.2484587164738895,
+            "median": 0.17919983727652705,
+            "p90": 0.5616969492110913,
+            "max": 1.545708561019639
+          },
+          "pair_distance_mae_angstrom": {
+            "n": 1073,
+            "mean": 0.09568184682074456,
+            "median": 0.06868816698926264,
+            "p90": 0.21920468480759148,
+            "max": 0.6473210573697291
+          }
+        }
+      },
+      "field_scope": "published TS-initial-guess field"
+    },
+    "ts_guess_NEBCI-xtb": {
+      "split": {
+        "published_use_ind": {
+          "atom_mapped_rmsd_angstrom": {
+            "n": 9000,
+            "mean": 0.3484205940098069,
+            "median": 0.2969345962578498,
+            "p90": 0.6533855059882128,
+            "max": 2.280854891524055
+          },
+          "pair_distance_mae_angstrom": {
+            "n": 9000,
+            "mean": 0.14724303898755964,
+            "median": 0.12124323165989119,
+            "p90": 0.2784696310375435,
+            "max": 1.6169260097304243
+          }
+        },
+        "complement_diagnostic": {
+          "atom_mapped_rmsd_angstrom": {
+            "n": 1073,
+            "mean": 0.3525713865581578,
+            "median": 0.2970783805093403,
+            "p90": 0.657657805458161,
+            "max": 1.3860735225239158
+          },
+          "pair_distance_mae_angstrom": {
+            "n": 1073,
+            "mean": 0.1483145502726012,
+            "median": 0.12015606742868218,
+            "p90": 0.28521841427526406,
+            "max": 0.6697409299207551
+          }
+        }
+      },
+      "field_scope": "published TS-initial-guess field"
+    }
+  },
+  "reference_energy_diagnostics": {
+    "reactant_to_transition_state": {
+      "published_use_ind": {
+        "n": 9000,
+        "mean": 3.959178943875418,
+        "median": 3.895980729850635,
+        "p90": 5.339459383201029,
+        "max": 22.21389351758262
+      },
+      "complement_diagnostic": {
+        "n": 1073,
+        "mean": 3.9346609299499042,
+        "median": 3.9093960233394682,
+        "p90": 5.253742290078663,
+        "max": 8.967890185827855
+      },
+      "unit": "published energy unit"
+    }
+  },
+  "claim_limits": [
+    "The complement is a diagnostic split from the published index list, not an independently audited reaction-family split.",
+    "ts_guess_true is near the reference TS and is retained only as an oracle-like diagnostic, not an independent model input.",
+    "The data contain no explicit bond graph, formal charge, multiplicity, or product-free event label.",
+    "Geometry error and endpoint energy gaps are not DFT/IRC success, reaction rates, or chemical flux."
+  ],
+  "new_quantum_calculations": false,
+  "schema": "xtbflow-transition1x-geometry-baseline/v1",
+  "created_utc": "2026-09-29T21:26:25.567666+00:00",
+  "execution_host": "node2",
+  "git": {
+    "commit": "8815c7f15be955ed1074306efdf3a44072a5cba9",
+    "dirty": false,
+    "dirty_entries": []
+  },
+  "data_status": "quarantine_endpoint_geometry_diagnostic",
+  "claim_limit": "Endpoint-conditioned geometry evidence only; no product-free event, chemical accuracy, or reaction-mechanism claim.",
+  "source": {
+    "source_id": "transition1x_preprocessed",
+    "source_revision": "train_rpsb_all.pkl_sha256=36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+    "asset_path": "/home/lhshen/.cache/xtbflow/transition1x-rpsb-13119869/train_rpsb_all.pkl",
+    "asset_sha256": "36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+    "asset_size_bytes": 55458032,
+    "audit": {
+      "schema_version": "xtbflow-transition1x-source-audit/v1",
+      "source": {
+        "source_id": "transition1x_preprocessed",
+        "source_locator": "https://doi.org/10.5281/zenodo.13119869",
+        "source_revision": "train_rpsb_all.pkl_sha256=36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+        "license_record": "unspecified on Zenodo record 13119869; redistribution not admitted",
+        "license_status": "unspecified",
+        "upstream_code_commit": "08f728925d76e22ce04ec1ab3b75770d32e617ca",
+        "asset_name": "train_rpsb_all.pkl",
+        "size_bytes": 55458032,
+        "sha256": "36078a96aaf476f762dd4f1cf63a3f598e59b9191e7c1b819c5b007793078f65",
+        "md5": "701a457634cce7a6cae5318e8cd18082",
+        "identity_verified_before_deserialization": true,
+        "deserializer": "restricted_numpy_pickle",
+        "archive_code_executed": false
+      },
+      "structure": {
+        "record_count": 10073,
+        "top_level_fields": [
+          "product",
+          "reactant",
+          "single_fragment",
+          "transition_state",
+          "ts_guess",
+          "ts_guess_NEBCI-xtb",
+          "ts_guess_sbv1",
+          "ts_guess_true",
+          "use_ind"
+        ],
+        "branch_fields": {
+          "reactant": [
+            "charges",
+            "formula",
+            "fragments",
+            "num_atoms",
+            "positions",
+            "rxn",
+            "wB97x_6-31G(d).atomization_energy",
+            "wB97x_6-31G(d).energy",
+            "wB97x_6-31G(d).forces",
+            "xtb_positions"
+          ],
+          "product": [
+            "charges",
+            "formula",
+            "fragments",
+            "num_atoms",
+            "positions",
+            "rxn",
+            "wB97x_6-31G(d).atomization_energy",
+            "wB97x_6-31G(d).energy",
+            "wB97x_6-31G(d).forces",
+            "xtb_positions"
+          ],
+          "transition_state": [
+            "charges",
+            "formula",
+            "fragments",
+            "num_atoms",
+            "positions",
+            "rxn",
+            "wB97x_6-31G(d).atomization_energy",
+            "wB97x_6-31G(d).energy",
+            "wB97x_6-31G(d).forces"
+          ]
+        },
+        "shared_alignment": {
+          "rxn": {
+            "present": true,
+            "aligned": true
+          },
+          "formula": {
+            "present": true,
+            "aligned": true
+          },
+          "num_atoms": {
+            "present": true,
+            "aligned": true
+          }
+        },
+        "split": {
+          "representation": "index_list",
+          "selected_count": 9000,
+          "complement_count": 1073,
+          "selected_indices_sha256": "40f314ad1d43ea98bbe28a13dee1642f06e756dc556938539c5cdaca0d70abc5"
+        },
+        "records_checked": 10073,
+        "atom_count_min": 4,
+        "atom_count_max": 23,
+        "atomic_number_counts": {
+          "1": 72326,
+          "6": 45051,
+          "7": 8216,
+          "8": 10963
+        },
+        "endpoint_atom_rows_match": true,
+        "endpoint_coordinate_shapes_match": true,
+        "all_coordinates_finite": true
+      },
+      "field_evidence": {
+        "positions_unit": "angstrom",
+        "positions_unit_source": "pinned upstream code at upstream_code_commit; not embedded as a per-record unit field",
+        "charges_field_interpretation": "atomic_numbers",
+        "formal_charge_field_present": false,
+        "multiplicity_field_present": false,
+        "event_label_fields": [],
+        "family_fields": [],
+        "explicit_license_present": false,
+        "atom_correspondence": "same row order and atomic numbers across R/P/TS; not an independently certified chemical atom mapping"
+      },
+      "track_b_gate": {
+        "source_identity_verified": true,
+        "endpoint_geometry_diagnostic_ready": true,
+        "event_geometry_training_ready": false,
+        "admission": "quarantine_diagnostic_only",
+        "blocking_reasons": [
+          "explicit formal charge is absent",
+          "explicit multiplicity is absent",
+          "trusted Track-B event labels are absent",
+          "family-certified holdout metadata is absent",
+          "same-row endpoint correspondence is not a certified atom mapping",
+          "the pinned source record has no explicit redistribution license"
+        ]
+      },
+      "scientific_claim_allowed": false,
+      "claim_boundary": "Source-identity and endpoint-structure evidence only. This report does not admit Track-B records, validate transition states, or support a joint-versus-serial model claim."
+    }
+  }
+}

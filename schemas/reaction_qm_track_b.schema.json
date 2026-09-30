@@ -4,7 +4,7 @@
   "title": "xtbflow Reaction-QM Track-B record",
   "type": "object",
   "required": [
-    "record_id", "source_revision", "parent_reaction_id", "reaction_family_id",
+    "record_id", "source_revision", "source_asset_sha256", "parent_reaction_id", "reaction_family_id",
     "independent_reactant_system_id", "repeated_ts_group", "reactant_graph",
     "product_graph", "reactant_coordinates", "ts_coordinates", "charge",
     "multiplicity", "reference_protocol", "source_record_hash", "event_label",
@@ -13,6 +13,7 @@
   "properties": {
     "record_id": {"type": "string", "minLength": 1},
     "source_revision": {"type": "string", "minLength": 1},
+    "source_asset_sha256": {"oneOf": [{"type": "string", "pattern": "^[0-9a-fA-F]{64}$"}, {"type": "null"}]},
     "parent_reaction_id": {"type": "string", "minLength": 1},
     "reaction_family_id": {"type": "string", "minLength": 1},
     "independent_reactant_system_id": {"type": "string", "minLength": 1},

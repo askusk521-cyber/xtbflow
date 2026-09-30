@@ -65,3 +65,47 @@ def test_invalid_child_report_is_settled_as_failed(tmp_path):
     assert run["error"] == "missing report"
     assert ledger["status"] == "failed"
     assert "missing report" in ledger_path.read_text(encoding="utf-8")
+
+
+def test_stage_failure_is_persisted(tmp_path):
+    ledger_path = tmp_path / "stage-ledger.json"
+    ledger = {"status": "running", "runs": [], "started_monotonic": 0.0}
+
+    _RUNNER._mark_stage_failure(ledger_path, ledger, "final summary failed")
+
+    persisted = ledger_path.read_text(encoding="utf-8")
+    assert ledger["status"] == "failed"
+    assert ledger["error"] == "final summary failed"
+    assert '"status": "failed"' in persisted
+    assert "final summary failed" in persisted
+
+
+def test_output_directory_rejects_prior_evidence_without_modifying_it(tmp_path):
+    output_dir = tmp_path / "old-run"
+    output_dir.mkdir()
+    report = output_dir / "size12_seed1.json"
+    report.write_text("historical report\n", encoding="utf-8")
+
+    with pytest.raises(RuntimeError, match="refusing to reuse"):
+        _RUNNER._prepare_output_dir(output_dir)
+
+    assert report.read_text(encoding="utf-8") == "historical report\n"
+
+
+def test_output_directory_is_created_only_when_empty(tmp_path):
+    output_dir = tmp_path / "new-run" / "nested"
+
+    _RUNNER._prepare_output_dir(output_dir)
+
+    assert output_dir.is_dir()
+    assert list(output_dir.iterdir()) == []
+
+
+def test_existing_artifact_path_is_rejected(tmp_path):
+    summary = tmp_path / "summary.json"
+    summary.write_text("historical summary\n", encoding="utf-8")
+
+    with pytest.raises(RuntimeError, match="already exists"):
+        _RUNNER._require_new_artifact(summary, "summary path")
+
+    assert summary.read_text(encoding="utf-8") == "historical summary\n"

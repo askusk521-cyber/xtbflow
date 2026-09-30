@@ -199,8 +199,8 @@
     },
     {
       "path": "configs/runs/workflow_b_baseline_ladder_v0.1.json",
-      "sha256": "63170f46b8ab8df5a92992fc51ccc6fcc7fa6a014b4fef3fb06452f3c82cdba8",
-      "bytes": 4609
+      "sha256": "0335f093b48d2a4984e85d95b5afd8bedf17a14ee0b2e872b21ea56ec6ccdd9a",
+      "bytes": 5564
     },
     {
       "path": "configs/task.yaml",
@@ -549,8 +549,8 @@
     },
     {
       "path": "schemas/workflow_b_baseline.schema.json",
-      "sha256": "62ee18401ae849604b79291bc612d10fd8bd0c90a99fe5e176d9cd3e1dc89496",
-      "bytes": 1169
+      "sha256": "a6d670ff6315032a029fec704ca5e4d359c350891d4f60acf69ec11deddd4244",
+      "bytes": 2079
     },
     {
       "path": "scripts/audit_units_provenance.py",
@@ -594,8 +594,8 @@
     },
     {
       "path": "scripts/run_energy_learning_curve.py",
-      "sha256": "6739a9bede2439ff82401a5086a96c5c18f082030c0aa6e2a260e3c3b6b07815",
-      "bytes": 20103
+      "sha256": "7f3dbd33277d4a990db33fb8224b797917e547c7510f5165d9255b9cc16023a7",
+      "bytes": 26082
     },
     {
       "path": "scripts/run_gfn2_diagnostic.py",
@@ -624,8 +624,8 @@
     },
     {
       "path": "scripts/validate_workflow_b.py",
-      "sha256": "b648033b262e2b5349790ef6deab5e882d72f128a1e24ebadd13c4d3e16ab33c",
-      "bytes": 11459
+      "sha256": "6163d0d2fcb13bcc6b4383c20cd177f462d1b67e6f2a6495cda4a7491f4bc9e0",
+      "bytes": 13653
     },
     {
       "path": "src/xtbflow/__init__.py",
@@ -749,8 +749,8 @@
     },
     {
       "path": "src/xtbflow/models/joint_flow.py",
-      "sha256": "e30c955f23714baecf92161307cb52941e276c7f048dacf40f1da0713f3cd040",
-      "bytes": 21762
+      "sha256": "4788edd09d253237708d17d13291c8bc57dc59b675fa81b66f5ebea977c05d9d",
+      "bytes": 22441
     },
     {
       "path": "src/xtbflow/models/reaction_direction.py",
@@ -954,13 +954,13 @@
     },
     {
       "path": "tests/test_joint_flow.py",
-      "sha256": "83a6a544a7662c3d921b092d37769fdc4cb6cd975c5c3b1aba7f6291cca2ff43",
-      "bytes": 15739
+      "sha256": "63d0ddd953f41f232a4ad97f3bad7162619a4b745db1061460dd4f21ca962d08",
+      "bytes": 16742
     },
     {
       "path": "tests/test_learning_curve_budget.py",
-      "sha256": "443d87bb892a176fe261c36990a38e71cd85fb2ef7903c60c78464b163f4f1c6",
-      "bytes": 1689
+      "sha256": "158dde2de0beb627dd41102f181b2f60d9c33a4f12014b596f70df698842f9a7",
+      "bytes": 3703
     },
     {
       "path": "tests/test_package.py",
@@ -989,8 +989,8 @@
     },
     {
       "path": "tests/test_workflow_b_protocol.py",
-      "sha256": "2696cc7afc5d8e307bc292ef46d93f90c42a3098d6bae1423d341ef5926a49ff",
-      "bytes": 4673
+      "sha256": "094787d08feb450dc1eea8387154e81ba70a9f3eecaa0bbfd4db192fdf87d697",
+      "bytes": 5152
     },
     {
       "path": "vendor/mechai_reusable/README.md",

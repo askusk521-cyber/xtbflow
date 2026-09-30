@@ -1,0 +1,81 @@
+{
+  "schema": "xtbflow-reaction-qm-grouping-audit/v1",
+  "generated_on": "2026-09-30",
+  "source_revision": "zenodo:18551029@v2",
+  "source_url": "https://doi.org/10.5281/zenodo.18551029",
+  "assets": [
+    {
+      "name": "common_reaction_info.csv",
+      "url": "https://zenodo.org/records/18551029/files/common_reaction_info.csv?download=1",
+      "role": "cross_level_metadata",
+      "size_bytes": 43446786,
+      "sha256": "63db6e7c1fbacdbc0391221bff204aec7ed060b90289862dbcaa49e004d21ebf",
+      "md5": "bd117eccd9d98786d4ca60ba6c383cff",
+      "status": "verified"
+    },
+    {
+      "name": "reactant_combinations.txt",
+      "url": "https://zenodo.org/records/18551029/files/reactant_combinations.txt?download=1",
+      "role": "reactant_enumeration",
+      "size_bytes": 7904879,
+      "sha256": "b7de6edac6aa0986c37f3db2da80f67384c35ab7e42e70e0cb522115fc45bbf0",
+      "md5": "e95224e6cc175fd8abd15f900dbaa954",
+      "status": "verified"
+    }
+  ],
+  "common_reaction_info": {
+    "fields": [
+      "GFN_ID",
+      "B3LYP_ID",
+      "RXN_SMILES",
+      "dE_dagger(GFN)",
+      "dE(GFN)",
+      "dH_dagger(GFN)",
+      "dH(GFN)",
+      "dG_dagger(GFN)",
+      "dG(GFN)",
+      "dE_dagger(B3LYP-D3)",
+      "dE(B3LYP-D3)",
+      "dH_dagger(B3LYP-D3)",
+      "dH(B3LYP-D3)",
+      "dG_dagger(B3LYP-D3)",
+      "dG(B3LYP-D3)"
+    ],
+    "counts": {
+      "rows": 89636,
+      "mapping_complete": 89636,
+      "chnos": 16612,
+      "endpoint_event_change": 89636,
+      "unique_b3lyp_ids": 89636,
+      "duplicate_b3lyp_ids": 0,
+      "unique_gfn_ids": 89636,
+      "duplicate_gfn_ids": 0,
+      "unique_rxn_smiles": 89604,
+      "duplicate_rxn_smiles": 32,
+      "b3lyp_ids_missing_from_reaction_info": 0
+    },
+    "missing_field_counts": {},
+    "grouping_fields_present": [],
+    "coordinate_map_fields_present": []
+  },
+  "reactant_combinations": {
+    "fields": [
+      "reactant_combination_smiles"
+    ],
+    "counts": {
+      "lines": 500001,
+      "nonempty_lines": 500001,
+      "unique_nonempty_lines": 500001,
+      "blank_lines": 0,
+      "lines_with_reaction_ids": 0
+    },
+    "grouping_fields_present": [],
+    "coordinate_map_fields_present": []
+  },
+  "admission_summary": {
+    "status": "identity_metadata_only",
+    "parent_family_independent_system_and_repeated_ts": "unavailable",
+    "coordinate_map": "unavailable",
+    "claim_limit": "Cross-level IDs are source identities, not grouping or coordinate-map evidence."
+  }
+}

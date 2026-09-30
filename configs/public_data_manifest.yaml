@@ -5,7 +5,7 @@ purpose: >-
   explicitly quarantined where their record-level contracts are unresolved;
   one bounded SPICE2 OpenFF E/F pilot is admitted with exact source hashes,
   charge/spin evidence, canonical units, and parent-record group splits.
-generated_on: '2026-09-29'
+generated_on: '2026-09-30'
 source_project: mechai
 records_manifest: data/manifests/public_records.v1.jsonl
 admitted_record_count: 256
@@ -18,6 +18,66 @@ quarantine_reason: >-
   four frozen configurations per parent (256 admitted configurations total).
 source_project_materials_are_imported: false
 datasets:
+  - id: reaction_qm_b3lyp_rxn_v2
+    source: https://doi.org/10.5281/zenodo.18551029
+    source_revision: zenodo:18551029@v2
+    source_manifest: configs/public_reaction_sources.yaml
+    reaction_info_sha256: 2facf37090a4cba872394ec6ab0c360b011d41acff9658268ff2eb61e6fd5ae1
+    geometry_sha256: 3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a
+    common_reaction_info_sha256: 63db6e7c1fbacdbc0391221bff204aec7ed060b90289862dbcaa49e004d21ebf
+    reactant_combinations_sha256: b7de6edac6aa0986c37f3db2da80f67384c35ab7e42e70e0cb522115fc45bbf0
+    official_split_train_sha256: c768b07f6b9789daeae7fbb22720b3d5134abae01f6a8c1cce8a9c054ca90a04
+    official_split_validation_sha256: 1c1a1fd74675d6509057a89ab091cc8e2c9a7f4108196e70bc8ede0413569e0d
+    official_split_test_sha256: caac8dfebc830d2e394fee6da9dba5687fdb07720926158f8c2edf4880866f88
+    reaction_info_records: 199890
+    geometry_records: 199890
+    common_reaction_info_records: 89636
+    reactant_combination_lines: 500001
+    official_split_counts: {train: 159913, validation: 19990, test: 19987}
+    official_split_audit: docs/evidence/reaction_qm_official_split_audit_20260930.json
+    role: development_reaction_endpoint_ts_source
+    reference_method: B3LYP-D3/TZVP
+    license_status: verify_record_license_before_redistribution
+    task_status: source_audited_development_only
+    filter_summary: >-
+      199890 mapped neutral-singlet source records; 38458 CHNOS records before
+      aromaticity and other contract quarantine. 161432 records contain elements
+      outside CHNOS. 5947 records contain aromatic bonds requiring explicit
+      representation review. IRC HDF5 remains intentionally deferred.
+    claim_limit: >-
+      Endpoint graph differences are derived labels under a frozen rule. They do
+      not represent electron-density motion, complete mechanisms or confirmatory
+      training readiness. Parent/family and independent-reactant grouping must be
+      audited before any split admission. The official cross-level metadata only
+      cross-links GFN and B3LYP record IDs; it does not provide parent, family,
+      independent-system, repeated-TS, or coordinate-map identities. The official
+      train/validation/test CSVs freeze reaction-ID partitions only and do not
+      certify those grouping or coordinate-map identities.
+
+  - id: rgd1_v6_cross_source_assets
+    source: https://doi.org/10.6084/m9.figshare.21066901.v6
+    source_revision: figshare:21066901@v6
+    source_manifest: configs/public_reaction_sources.yaml
+    mapped_index_sha256: 7b0ecae0a7f7b2439a03bed4bfbf80fbc9b647b0823e5a8e7b1e3be96d0ad05e
+    dft_info_sha256: afb3bfb9ca5e44fb1a6ea44664da56e0ef2a2ee95c82b22d651a778fad5e0b00
+    mapping_file_sha256: 6ca74bafe9286ac1c6cba48e700e5f5100e0bb3d6a8f05592efd214ffdc624ff
+    geometry_sha256: ed125b4cb1eac9af670a7cae8b9d29c88a9f8be24d0206a027f0f2c035f8f268
+    mapped_index_records: 176898
+    geometry_records: 176992
+    role: cross_source_validation_only
+    license_status: repository_gpl3_data_terms_require_record_check
+    task_status: source_audited_not_training_ready
+    filter_summary: >-
+      176898 atom-mapped CSV rows parse with explicit mapped H preservation; all
+      are CHNO and graph-neutral by formal-charge proxy, while charge and
+      multiplicity fields are absent. 2913 aromatic records and 258 no-bond-change
+      rows remain quarantined. Geometry HDF5 has 176992 TS records, 94 beyond the
+      current CSV/index release and therefore cannot be silently joined.
+    claim_limit: >-
+      RGD1 is not Reaction-QM training data. Use only after an independent
+      cross-source validation contract, with explicit handling of the 94-record
+      HDF5/CSV version mismatch and absent charge/multiplicity.
+
   - id: spice2_openff_v1.1_pilot
     source: https://doi.org/10.5281/zenodo.15477012
     source_revision: hdf5_sha256=711a88d2bbc6fe3d39478ddf28cca186a65d882975edb07cb42798cf445c6213

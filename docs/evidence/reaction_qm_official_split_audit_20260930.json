@@ -1,0 +1,126 @@
+{
+  "admission_summary": {
+    "claim_limit": "The official CSVs freeze a disjoint reaction-ID partition only; they do not prove parent/family independence or coordinate-to-map correspondence.",
+    "coordinate_map_evidence": "unavailable",
+    "official_id_partition": "verified",
+    "parent_family_independent_system_grouping": "unavailable",
+    "repeated_ts_grouping": "unavailable"
+  },
+  "assets": {
+    "test": {
+      "expected_sha256": "caac8dfebc830d2e394fee6da9dba5687fdb07720926158f8c2edf4880866f88",
+      "header": [
+        "reaction_id",
+        "reaction_smiles",
+        "dE_dagger",
+        "dE",
+        "dH_dagger",
+        "dH",
+        "dG_dagger",
+        "dG"
+      ],
+      "md5": "359332ff1ccb289751ef43bb544f2373",
+      "name": "B3LYP-RXN_test.csv",
+      "official_md5": "359332ff1ccb289751ef43bb544f2373",
+      "record_count": 19987,
+      "role": "official_split_test",
+      "sha256": "caac8dfebc830d2e394fee6da9dba5687fdb07720926158f8c2edf4880866f88",
+      "size_bytes": 7156620,
+      "status": "verified",
+      "url": "https://zenodo.org/records/18551029/files/B3LYP-RXN_test.csv?download=1"
+    },
+    "train": {
+      "expected_sha256": "c768b07f6b9789daeae7fbb22720b3d5134abae01f6a8c1cce8a9c054ca90a04",
+      "header": [
+        "reaction_id",
+        "reaction_smiles",
+        "dE_dagger",
+        "dE",
+        "dH_dagger",
+        "dH",
+        "dG_dagger",
+        "dG"
+      ],
+      "md5": "222059ce2ec2585a385518af393ecaae",
+      "name": "B3LYP-RXN_train.csv",
+      "official_md5": "222059ce2ec2585a385518af393ecaae",
+      "record_count": 159913,
+      "role": "official_split_train",
+      "sha256": "c768b07f6b9789daeae7fbb22720b3d5134abae01f6a8c1cce8a9c054ca90a04",
+      "size_bytes": 57152608,
+      "status": "verified",
+      "url": "https://zenodo.org/records/18551029/files/B3LYP-RXN_train.csv?download=1"
+    },
+    "validation": {
+      "expected_sha256": "1c1a1fd74675d6509057a89ab091cc8e2c9a7f4108196e70bc8ede0413569e0d",
+      "header": [
+        "reaction_id",
+        "reaction_smiles",
+        "dE_dagger",
+        "dE",
+        "dH_dagger",
+        "dH",
+        "dG_dagger",
+        "dG"
+      ],
+      "md5": "0174d304143089c26a93dc89632f5317",
+      "name": "B3LYP-RXN_valid.csv",
+      "official_md5": "0174d304143089c26a93dc89632f5317",
+      "record_count": 19990,
+      "role": "official_split_validation",
+      "sha256": "1c1a1fd74675d6509057a89ab091cc8e2c9a7f4108196e70bc8ede0413569e0d",
+      "size_bytes": 7158908,
+      "status": "verified",
+      "url": "https://zenodo.org/records/18551029/files/B3LYP-RXN_valid.csv?download=1"
+    }
+  },
+  "cross_split_reaction_smiles_overlap": {
+    "train/test": 0,
+    "train/validation": 0,
+    "validation/test": 0
+  },
+  "duplicate_split_id_rows": 0,
+  "generated_on": "2026-09-30",
+  "official_split_ids_missing_from_primary": [],
+  "partition_overlap_by_id": {
+    "train/test": 0,
+    "train/validation": 0,
+    "validation/test": 0
+  },
+  "primary_ids_missing_from_official_split": [],
+  "primary_reaction_info": {
+    "header": [
+      "reaction_id",
+      "reaction_smiles",
+      "dE_dagger",
+      "dE",
+      "dH_dagger",
+      "dH",
+      "dG_dagger",
+      "dG"
+    ],
+    "name": "B3LYPD3_TZVP_reaction_info.csv",
+    "record_count": 199890,
+    "sha256": "2facf37090a4cba872394ec6ab0c360b011d41acff9658268ff2eb61e6fd5ae1"
+  },
+  "reaction_smiles_mismatch_count": 0,
+  "required_field_failures": {
+    "test": [],
+    "train": [],
+    "validation": []
+  },
+  "schema": "xtbflow-reaction-qm-official-split-audit/v1",
+  "source_revision": "zenodo:18551029@v2",
+  "split_counts": {
+    "test": 19987,
+    "train": 159913,
+    "validation": 19990
+  },
+  "split_total": 199890,
+  "unique_split_ids": 199890,
+  "within_split_duplicate_reaction_smiles": {
+    "test": 35,
+    "train": 315,
+    "validation": 44
+  }
+}

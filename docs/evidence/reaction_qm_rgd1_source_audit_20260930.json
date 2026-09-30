@@ -1,0 +1,402 @@
+{
+  "schema": "xtbflow-public-reaction-source-audit/v1",
+  "generated_on": "2026-09-30",
+  "execution": {
+    "host": "node2",
+    "python": "3.11.16",
+    "pid": 1366106
+  },
+  "sources": {
+    "reaction_qm": {
+      "revision": "zenodo:18551029@v2",
+      "url": "https://doi.org/10.5281/zenodo.18551029",
+      "license_status": "verify_record_license_before_redistribution"
+    },
+    "rgd1": {
+      "revision": "figshare:21066901@v6",
+      "url": "https://doi.org/10.6084/m9.figshare.21066901.v6",
+      "license_status": "repository_gpl3_data_terms_require_check"
+    }
+  },
+  "assets": {
+    "reaction_qm": [
+      {
+        "relative_path": "B3LYPD3_TZVP_reaction_info.csv",
+        "name": "B3LYPD3_TZVP_reaction_info.csv",
+        "url": "https://zenodo.org/records/18551029/files/B3LYPD3_TZVP_reaction_info.csv?download=1",
+        "role": "reaction_info",
+        "size_bytes": 71468002,
+        "sha256": "2facf37090a4cba872394ec6ab0c360b011d41acff9658268ff2eb61e6fd5ae1",
+        "md5": "6bbf509808a5193770a2093874fb7ad8",
+        "status": "verified"
+      },
+      {
+        "relative_path": "B3LYPD3_TZVP.h5",
+        "name": "B3LYPD3_TZVP.h5",
+        "url": "https://zenodo.org/records/18551029/files/B3LYPD3_TZVP.h5?download=1",
+        "role": "geometry_and_ts",
+        "size_bytes": 2054981016,
+        "sha256": "3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a",
+        "md5": "2c572a68849e805bc0dbb257a53a1fd2",
+        "status": "verified"
+      },
+      {
+        "relative_path": "B3LYPD3_TZVP_IRC.h5",
+        "name": "B3LYPD3_TZVP_IRC.h5",
+        "url": "https://zenodo.org/records/18551029/files/B3LYPD3_TZVP_IRC.h5?download=1",
+        "role": "irc_path",
+        "status": "unavailable",
+        "size_bytes": null,
+        "sha256": null,
+        "md5": null
+      }
+    ],
+    "rgd1": [
+      {
+        "relative_path": "RGD1CHNO_AMsmiles.csv",
+        "name": "RGD1CHNO_AMsmiles.csv",
+        "url": "https://ndownloader.figshare.com/files/40272727",
+        "role": "mapped_index",
+        "size_bytes": 60724906,
+        "sha256": "7b0ecae0a7f7b2439a03bed4bfbf80fbc9b647b0823e5a8e7b1e3be96d0ad05e",
+        "md5": "66aa145ff7f2419b2d2f51ee27ae159d",
+        "status": "verified"
+      },
+      {
+        "relative_path": "DFT_reaction_info.csv",
+        "name": "DFT_reaction_info.csv",
+        "url": "https://ndownloader.figshare.com/files/40273231",
+        "role": "dft_reaction_info",
+        "size_bytes": 33353396,
+        "sha256": "afb3bfb9ca5e44fb1a6ea44664da56e0ef2a2ee95c82b22d651a778fad5e0b00",
+        "md5": "28e10dbc4ed12f497e4d46e12abcb983",
+        "status": "verified"
+      },
+      {
+        "relative_path": "RandP_smiles.txt",
+        "name": "RandP_smiles.txt",
+        "url": "https://ndownloader.figshare.com/files/43291989",
+        "role": "endpoint_mapping",
+        "size_bytes": 4174042,
+        "sha256": "6ca74bafe9286ac1c6cba48e700e5f5100e0bb3d6a8f05592efd214ffdc624ff",
+        "md5": "68f81e1588376aa554ebe4e852877ad5",
+        "status": "verified"
+      },
+      {
+        "relative_path": "RGD1_CHNO.h5",
+        "name": "RGD1_CHNO.h5",
+        "url": "https://ndownloader.figshare.com/files/38170323",
+        "role": "geometry_and_ts",
+        "size_bytes": 1340003744,
+        "sha256": "ed125b4cb1eac9af670a7cae8b9d29c88a9f8be24d0206a027f0f2c035f8f268",
+        "md5": "d31869ebccf4313c429f82694b7bb3a0",
+        "status": "verified"
+      },
+      {
+        "relative_path": "RGD1_RPs.h5",
+        "name": "RGD1_RPs.h5",
+        "url": "https://ndownloader.figshare.com/files/43293162",
+        "role": "endpoint_geometry",
+        "status": "unavailable",
+        "size_bytes": null,
+        "sha256": null,
+        "md5": null
+      }
+    ]
+  },
+  "reaction_qm": {
+    "reaction_info": {
+      "fields": [
+        "reaction_id",
+        "reaction_smiles",
+        "dE_dagger",
+        "dE",
+        "dH_dagger",
+        "dH",
+        "dG_dagger",
+        "dG"
+      ],
+      "counts": {
+        "rows": 199890,
+        "unique_reaction_ids": 199890,
+        "duplicate_reaction_ids": 0
+      },
+      "missing_field_counts": {}
+    },
+    "hdf5": {
+      "status": "observed",
+      "reaction_group_count": 199890,
+      "root_keys": {
+        "count": 20,
+        "first": [
+          "B3LYPD3_TZVP_100001_110000",
+          "B3LYPD3_TZVP_10001_20000",
+          "B3LYPD3_TZVP_110001_120000",
+          "B3LYPD3_TZVP_120001_130000",
+          "B3LYPD3_TZVP_130001_140000"
+        ],
+        "last": [
+          "B3LYPD3_TZVP_50001_60000",
+          "B3LYPD3_TZVP_60001_70000",
+          "B3LYPD3_TZVP_70001_80000",
+          "B3LYPD3_TZVP_80001_90000",
+          "B3LYPD3_TZVP_90001_100000"
+        ]
+      },
+      "species_field_counts": {
+        "smiles": 847481,
+        "EHG": 847481,
+        "charge": 847481,
+        "multiplicity": 847481,
+        "atomic_numbers": 847481,
+        "coordinates": 847481
+      }
+    },
+    "record_contract_audit": {
+      "status": "observed",
+      "counts": {
+        "records": 199890,
+        "mapping_complete": 199890,
+        "neutral_closed_shell": 199890,
+        "endpoint_event_change": 199890,
+        "chnos": 38458,
+        "reaction_info_rows": 199890
+      },
+      "reason_counts": {
+        "out_of_chnos": 161432,
+        "coordinate_atom_order_unverified": 195720,
+        "aromatic_bond_ambiguity": 5947
+      },
+      "reason_examples": {
+        "out_of_chnos": "RXN_0000100001",
+        "coordinate_atom_order_unverified": "RXN_0000100001",
+        "aromatic_bond_ambiguity": "RXN_0000100011"
+      },
+      "coordinate_order_audit": {
+        "R0_records": 199890,
+        "R0_order_match": 53161,
+        "R1_records": 113370,
+        "R1_same_inventory_unverified": 46595,
+        "TS_records": 199890,
+        "TS_same_inventory_unverified": 195720,
+        "R0_same_inventory_unverified": 146729,
+        "R1_order_match": 66775,
+        "R2_records": 10419,
+        "R2_same_inventory_unverified": 2563,
+        "R2_order_match": 7856,
+        "TS_order_match": 4170,
+        "R3_records": 202,
+        "R3_order_match": 155,
+        "R3_same_inventory_unverified": 47
+      }
+    }
+  },
+  "rgd1": {
+    "mapped_smiles": {
+      "fields": [
+        "reaction",
+        "reactant",
+        "product",
+        "DE_F",
+        "DE_B",
+        "DG_F",
+        "DG_B",
+        "DH"
+      ],
+      "counts": {
+        "rows": 176898,
+        "mapping_complete": 176898,
+        "chnos": 176898,
+        "neutral_formal_charge_proxy": 176898,
+        "aromatic_bond_record": 2913,
+        "event_change": 176640,
+        "no_bond_change": 258,
+        "unique_ids": 176898,
+        "duplicate_ids": 0,
+        "charge_field_missing": 176898,
+        "multiplicity_field_missing": 176898
+      },
+      "missing_field_counts": {},
+      "extra_value_counts": {}
+    },
+    "dft_reaction_info": {
+      "fields": [
+        "channel",
+        "reactant",
+        "product",
+        "type",
+        "R_ind",
+        "DE_F",
+        "DE_B",
+        "DG_F",
+        "DG_B",
+        "DH"
+      ],
+      "counts": {
+        "rows": 176898,
+        "unique_ids": 176898,
+        "duplicate_ids": 0,
+        "charge_field_missing": 176898,
+        "multiplicity_field_missing": 176898
+      },
+      "missing_field_counts": {},
+      "extra_value_counts": {
+        "type": {
+          "unique": 2,
+          "top": [
+            [
+              "Intended",
+              98673
+            ],
+            [
+              "xTB-IRC",
+              78225
+            ]
+          ]
+        },
+        "R_ind": {
+          "unique": 126808,
+          "top": [
+            [
+              "FAKVQKOINPDRTH==LGNSOKKCXYBTOL",
+              14
+            ],
+            [
+              "HPKZTFVWCYQSQY==URKUBFXKHWJYLA",
+              14
+            ],
+            [
+              "HQMLIDZJXVVKCW==WXIQGSSNEBUROB",
+              13
+            ],
+            [
+              "DJBMLXQWMLQPKL==SXQFCVDSOLSHOQ",
+              13
+            ],
+            [
+              "KSFZEKXRIULZFG-OKKJLVBELUTLKV==MPAYEWNVIPXRDP-YOWQWFMSQCOSBA",
+              12
+            ],
+            [
+              "CJCNBMGHFXAJHF==VEHYTUAHHHWSSD",
+              12
+            ],
+            [
+              "BFOHYFWMZBHYAE==FLQKYRNERKFCAP",
+              12
+            ],
+            [
+              "AWIPHEXRDLLIEE-BAVYZALUXZFZLV==HDZGCSFEDULWCS-NKQBQVNKUQULLD",
+              11
+            ],
+            [
+              "HDZGCSFEDULWCS-NDJAEUWFPHVXLQ==MPAYEWNVIPXRDP-RSFOTOSOKJMMCB",
+              11
+            ],
+            [
+              "LSXWZHLPSOOSNL==WFRAIPPGELOTTA",
+              11
+            ],
+            [
+              "BAVYZALUXZFZLV-PAXRVGDTBDATMF==NKQBQVNKUQULLD-ROSDSFDQCJNGOL",
+              11
+            ],
+            [
+              "VPSSPAXIFBTOHY==ZAQOIAYHBXCGIO",
+              11
+            ],
+            [
+              "RBQLGIKHSXQZTB==RNKURRDNOYXATR",
+              11
+            ],
+            [
+              "PVBVVELBGISLBX==UAIRMCYTQWYTMW",
+              11
+            ],
+            [
+              "HIYKOZFIVZIBFO==XERGTCWVYOKNAV",
+              11
+            ],
+            [
+              "WVYWICLMDOOCFB==ZXNBBWHRUSXUFZ",
+              11
+            ],
+            [
+              "GQHWESFTVGVFIA==IDAHIBMEKOEBRG",
+              11
+            ],
+            [
+              "RFVPGTYXBGNADP==WACNHZXMCTWHQJ",
+              11
+            ],
+            [
+              "FIRTUOPMCHUEIX==QEZOEPOESWIINB",
+              10
+            ],
+            [
+              "SODKTKJZYBOMMT==SODKTKJZYBOMMT",
+              10
+            ]
+          ]
+        }
+      }
+    },
+    "hdf5": {
+      "status": "observed",
+      "reaction_group_count": 176992,
+      "root_keys": {
+        "count": 176992,
+        "first": [
+          "MR_100001_2",
+          "MR_100005_2",
+          "MR_100011_1",
+          "MR_100015_0",
+          "MR_100019_1"
+        ],
+        "last": [
+          "MR_99984_1",
+          "MR_9998_1",
+          "MR_9998_2",
+          "MR_99995_0",
+          "MR_999_1"
+        ]
+      },
+      "species_field_counts": {
+        "PG": 176992,
+        "P_E": 176992,
+        "P_F": 176992,
+        "P_H": 176992,
+        "Psmiles": 176992,
+        "RG": 176992,
+        "R_E": 176992,
+        "R_F": 176992,
+        "R_H": 176992,
+        "Rsmiles": 176992,
+        "TSG": 176992,
+        "TS_E": 176992,
+        "TS_F": 176992,
+        "TS_H": 176992,
+        "_id": 176992,
+        "elements": 176992
+      }
+    },
+    "endpoint_hdf5": {
+      "status": "unavailable",
+      "reaction_group_count": null,
+      "root_keys": null
+    }
+  },
+  "admission_summary": {
+    "reaction_qm": {
+      "status": "quarantine_coordinate_mapping_unverified",
+      "confirmatory": false,
+      "reason": "HDF5 coordinate rows do not expose an explicit atom-map-to-coordinate relation.",
+      "claim_limit": "Do not call endpoint-derived labels electron-density paths."
+    },
+    "rgd1": {
+      "status": "cross_source_validation_only",
+      "confirmatory": false,
+      "reason": "RGD1 remains separate from Reaction-QM training and lacks source-wide explicit charge/multiplicity in the CSV index."
+    }
+  }
+}

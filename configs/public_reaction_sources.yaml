@@ -1,0 +1,146 @@
+schema: xtbflow-public-reaction-sources/v1
+generated_on: '2026-09-30'
+cache_policy: >-
+  Raw public bytes stay outside git in a caller-supplied n2 cache directory.
+  A null expected_sha256 means the asset was not yet downloaded and verified;
+  it is never treated as an available source.
+sources:
+  reaction_qm:
+    dataset: Reaction-QM
+    revision: zenodo:18551029@v2
+    landing_url: https://doi.org/10.5281/zenodo.18551029
+    license_status: record_license_field_not_exposed_in_landing_page_verify_before_redistribution
+    claim_limit: >-
+      B3LYP-D3/TZVP endpoint and TS records can support development labels after
+      audit. Endpoint graph differences are not electron-density paths or full
+      mechanisms.
+    files:
+      - name: B3LYPD3_TZVP_reaction_info.csv
+        url: https://zenodo.org/records/18551029/files/B3LYPD3_TZVP_reaction_info.csv?download=1
+        role: reaction_info
+        size_bytes: 71468002
+        official_md5: 6bbf509808a5193770a2093874fb7ad8
+        sha256: 2facf37090a4cba872394ec6ab0c360b011d41acff9658268ff2eb61e6fd5ae1
+        status: verified_n2_cache
+      - name: B3LYPD3_TZVP.h5
+        url: https://zenodo.org/records/18551029/files/B3LYPD3_TZVP.h5?download=1
+        role: geometry_and_ts
+        size_bytes: 2054981016
+        official_md5: 2c572a68849e805bc0dbb257a53a1fd2
+        sha256: 3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a
+        status: verified_n2_cache
+      - name: B3LYP-RXN_train.csv
+        url: https://zenodo.org/records/18551029/files/B3LYP-RXN_train.csv?download=1
+        role: official_split_train
+        size_bytes: 57152608
+        official_md5: 222059ce2ec2585a385518af393ecaae
+        sha256: c768b07f6b9789daeae7fbb22720b3d5134abae01f6a8c1cce8a9c054ca90a04
+        status: verified_n2_cache
+      - name: B3LYP-RXN_valid.csv
+        url: https://zenodo.org/records/18551029/files/B3LYP-RXN_valid.csv?download=1
+        role: official_split_validation
+        size_bytes: 7158908
+        official_md5: 0174d304143089c26a93dc89632f5317
+        sha256: 1c1a1fd74675d6509057a89ab091cc8e2c9a7f4108196e70bc8ede0413569e0d
+        status: verified_n2_cache
+      - name: B3LYP-RXN_test.csv
+        url: https://zenodo.org/records/18551029/files/B3LYP-RXN_test.csv?download=1
+        role: official_split_test
+        size_bytes: 7156620
+        official_md5: 359332ff1ccb289751ef43bb544f2373
+        sha256: caac8dfebc830d2e394fee6da9dba5687fdb07720926158f8c2edf4880866f88
+        status: verified_n2_cache
+      - name: B3LYPD3_TZVP_IRC.h5
+        url: https://zenodo.org/records/18551029/files/B3LYPD3_TZVP_IRC.h5?download=1
+        role: irc_path
+        size_bytes: null
+        official_md5: 782a4e5e8099de8f2b8e0e90128028cb
+        sha256: null
+        status: intentionally_deferred
+      - name: common_reaction_info.csv
+        url: https://zenodo.org/records/18551029/files/common_reaction_info.csv?download=1
+        role: cross_level_metadata
+        size_bytes: 43446786
+        official_md5: bd117eccd9d98786d4ca60ba6c383cff
+        sha256: 63db6e7c1fbacdbc0391221bff204aec7ed060b90289862dbcaa49e004d21ebf
+        status: verified_n2_cache
+      - name: reactant_combinations.txt
+        url: https://zenodo.org/records/18551029/files/reactant_combinations.txt?download=1
+        role: reactant_enumeration
+        size_bytes: 7904879
+        official_md5: e95224e6cc175fd8abd15f900dbaa954
+        sha256: b7de6edac6aa0986c37f3db2da80f67384c35ab7e42e70e0cb522115fc45bbf0
+        status: verified_n2_cache
+    field_mapping:
+      reaction_info:
+        reaction_id: reaction_id
+        reaction_smiles: reaction_smiles
+        observables: [dE_dagger, dE, dH_dagger, dH, dG_dagger, dG]
+      hdf5_species:
+        fields: [smiles, EHG, charge, multiplicity, atomic_numbers, coordinates]
+        coordinates: angstrom
+        energies: hartree
+      hdf5_irc:
+        fields: [atomic_numbers, coordinates, energies, forces]
+      cross_level_metadata:
+        fields: [GFN_ID, B3LYP_ID, RXN_SMILES]
+        purpose: cross_level_identity_only
+      reactant_enumeration:
+        fields: [reactant_combination_smiles]
+        purpose: enumeration_input_without_record_ids
+      official_splits:
+        fields: [reaction_id, reaction_smiles, dE_dagger, dE, dH_dagger, dH, dG_dagger, dG]
+        purpose: official_reaction_id_partition_only_no_parent_group_evidence
+  rgd1:
+    dataset: RGD1
+    revision: figshare:21066901@v6
+    landing_url: https://doi.org/10.6084/m9.figshare.21066901.v6
+    license_status: repository_gpl3_data_redistribution_terms_require_record_check
+    claim_limit: >-
+      RGD1 is a cross-source validation source only. Aggregate reaction counts
+      do not replace mapped graphs, explicit charge/multiplicity or a validated TS.
+    files:
+      - name: RGD1CHNO_AMsmiles.csv
+        url: https://ndownloader.figshare.com/files/40272727
+        role: mapped_index
+        size_bytes: 60724906
+        sha256: 7b0ecae0a7f7b2439a03bed4bfbf80fbc9b647b0823e5a8e7b1e3be96d0ad05e
+        status: verified_n2_cache
+      - name: DFT_reaction_info.csv
+        url: https://ndownloader.figshare.com/files/40273231
+        role: dft_reaction_info
+        size_bytes: 33353396
+        sha256: afb3bfb9ca5e44fb1a6ea44664da56e0ef2a2ee95c82b22d651a778fad5e0b00
+        status: verified_n2_cache
+      - name: RandP_smiles.txt
+        url: https://ndownloader.figshare.com/files/43291989
+        role: endpoint_mapping
+        size_bytes: 4174042
+        sha256: 6ca74bafe9286ac1c6cba48e700e5f5100e0bb3d6a8f05592efd214ffdc624ff
+        status: verified_n2_cache
+      - name: RGD1_CHNO.h5
+        url: https://ndownloader.figshare.com/files/38170323
+        role: geometry_and_ts
+        size_bytes: 1340003744
+        sha256: ed125b4cb1eac9af670a7cae8b9d29c88a9f8be24d0206a027f0f2c035f8f268
+        status: verified_n2_cache
+      - name: RGD1_RPs.h5
+        url: https://ndownloader.figshare.com/files/43293162
+        role: endpoint_geometry
+        size_bytes: 467575944
+        sha256: null
+        status: intentionally_deferred
+    field_mapping:
+      mapped_smiles:
+        reaction_id: reaction
+        reactant_smiles: reactant
+        product_smiles: product
+        energy_fields: [DE_F, DE_B, DG_F, DG_B, DH]
+      dft_info:
+        reaction_id: channel
+        reaction_family: type
+        independent_reactant_system: R_ind
+      geometry:
+        reaction_file: RGD1_CHNO.h5
+        endpoint_file: RGD1_RPs.h5
+        mapping_file: RandP_smiles.txt

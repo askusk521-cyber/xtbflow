@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xtbflow.dev/schemas/reaction_qm_track_b.v1.json",
+  "title": "xtbflow Reaction-QM Track-B record",
+  "type": "object",
+  "required": [
+    "record_id", "source_revision", "source_asset_sha256", "parent_reaction_id", "reaction_family_id",
+    "independent_reactant_system_id", "repeated_ts_group", "reactant_graph",
+    "product_graph", "reactant_coordinates", "ts_coordinates", "charge",
+    "multiplicity", "reference_protocol", "source_record_hash", "event_label",
+    "admission", "coordinate_map_evidence"
+  ],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "source_revision": {"type": "string", "minLength": 1},
+    "source_asset_sha256": {"oneOf": [{"type": "string", "pattern": "^[0-9a-fA-F]{64}$"}, {"type": "null"}]},
+    "parent_reaction_id": {"type": "string", "minLength": 1},
+    "reaction_family_id": {"type": "string", "minLength": 1},
+    "independent_reactant_system_id": {"type": "string", "minLength": 1},
+    "repeated_ts_group": {"type": "string", "minLength": 1},
+    "reactant_graph": {"$ref": "#/$defs/graph"},
+    "product_graph": {"$ref": "#/$defs/graph"},
+    "reactant_coordinates": {"$ref": "#/$defs/coordinates"},
+    "ts_coordinates": {"$ref": "#/$defs/coordinates"},
+    "charge": {"type": "integer"},
+    "multiplicity": {"type": "integer", "minimum": 1},
+    "reference_protocol": {"type": "object", "minProperties": 1},
+    "source_record_hash": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"},
+    "event_label": {
+      "type": "object",
+      "required": ["bond_edits", "evidence", "source_record_id", "generation_rule_version", "input_graph_hash", "output_event_label_hash"],
+      "properties": {
+        "bond_edits": {"type": "array"},
+        "evidence": {"const": "derived_under_contract"},
+        "source_record_id": {"type": "string"},
+        "generation_rule_version": {"type": "string"},
+        "input_graph_hash": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"},
+        "output_event_label_hash": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"}
+      }
+    },
+    "coordinate_map_evidence": {
+      "oneOf": [
+        {"type": "string", "minLength": 1},
+        {
+          "type": "object",
+          "required": ["source", "map_ids"],
+          "properties": {
+            "source": {"type": "string", "minLength": 1},
+            "map_ids": {"type": "array", "items": {"type": "integer", "minimum": 1}, "minItems": 1}
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "admission": {"enum": ["quarantine", "development_train", "development_validation", "development_test", "confirmatory"]},
+    "quarantine_reasons": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "graph": {
+      "type": "object",
+      "required": ["atoms", "bonds"],
+      "properties": {
+        "atoms": {"type": "object", "minProperties": 1},
+        "bonds": {"type": "array"}
+      }
+    },
+    "coordinates": {
+      "type": "array",
+      "items": {"type": "array", "prefixItems": [{"type": "number"}, {"type": "number"}, {"type": "number"}], "minItems": 3, "maxItems": 3}
+    }
+  }
+}

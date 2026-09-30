@@ -108,13 +108,13 @@ def main() -> int:
         "status": "prepared",
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "execution_host": platform.node(),
-        "git": _git_identity(),
+        "git": None,
         "input_locator": _safe_locator(args.inputs, root),
-        "input_sha256": _sha256(args.inputs),
+        "input_sha256": None,
         "checkpoint_locator": _safe_locator(args.checkpoint, root),
-        "checkpoint_sha256": _sha256(args.checkpoint),
+        "checkpoint_sha256": None,
         "runtime_config_locator": _safe_locator(args.runtime_config, root),
-        "runtime_config_sha256": _sha256(args.runtime_config),
+        "runtime_config_sha256": None,
         "mode": args.mode,
         "steps": args.steps,
         "candidate_cap": args.candidate_cap,
@@ -125,6 +125,15 @@ def main() -> int:
     _write_atomic(manifest, prepared)
     stage_start = time.monotonic()
     try:
+        prepared.update(
+            {
+                "git": _git_identity(),
+                "input_sha256": _sha256(args.inputs),
+                "checkpoint_sha256": _sha256(args.checkpoint),
+                "runtime_config_sha256": _sha256(args.runtime_config),
+            }
+        )
+        _write_atomic(manifest, prepared)
         reactants = load_reactant_inputs(args.inputs)
         model, max_atoms, restore = load_generation_model(
             args.checkpoint, args.runtime_config, device=device, dtype=torch.float32

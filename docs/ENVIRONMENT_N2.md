@@ -6,7 +6,7 @@
 ## 主机、仓库与调度
 
 - 主机：`node2`；SSH 别名：`n2`。
-- Git checkout：`/home/lhshen/xtbflow/xtbflow`。
+- Git checkout：`~/xtbflow/xtbflow`。
 - 观测分支：`codex/track-b-real-development`，checkout `fb6b234`，工作树干净。
 - 远端主线：`origin/main@ec803556`；该 checkout 落后主线 3 个提交。
 - 不直接重置已有工作树。真实作业从目标 commit 创建独立执行目录。

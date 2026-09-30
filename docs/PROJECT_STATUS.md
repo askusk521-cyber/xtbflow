@@ -17,7 +17,7 @@
 ## n2 观察结果
 
 本轮通过 `ssh n2` 只读核查，真实 Git checkout 是
-`/home/lhshen/xtbflow/xtbflow`，不是 `~/xtbflow`。该 checkout 当前为
+`~/xtbflow/xtbflow`，不是 `~/xtbflow` 顶层目录。该 checkout 当前为
 `codex/track-b-real-development@fb6b234`，工作树干净，已 fetch 到
 `origin/main@ec803556`，因此本地 checkout 落后主线 3 个提交。现有历史分支和执行
 worktree 不应直接 reset 或覆盖；新的真实作业应从目标提交创建独立执行目录。

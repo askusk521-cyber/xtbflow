@@ -274,8 +274,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "ba43b9a374909648bd4092fc10c8ecb9b53decc8c55c9b7825b07072f812f07a",
-      "bytes": 2778
+      "sha256": "3c0a29e003afb47f820f6d39b92c7499d1d095b4f6b3ff84beb8bf1cd67ee774",
+      "bytes": 2767
     },
     {
       "path": "docs/MECHAI_REUSE_MANIFEST.json",
@@ -284,8 +284,8 @@
     },
     {
       "path": "docs/PROJECT_STATUS.md",
-      "sha256": "ed22ba0235ba1ced91168798828a945f0f185c7c5d24d24bd9c50c2e884e04f3",
-      "bytes": 3416
+      "sha256": "d787ca98b6f7ce97489a77dacfd467f7f5b864e1952162fc0a4b4a2f79769f66",
+      "bytes": 3418
     },
     {
       "path": "docs/PROVENANCE.md",

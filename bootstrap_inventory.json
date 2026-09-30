@@ -799,8 +799,8 @@
     },
     {
       "path": "src/xtbflow/data/dft_da.py",
-      "sha256": "7abbc5b30864177cc61f81a540cfbda4fd86ba44d82a1f65c80d91ef0c614138",
-      "bytes": 19658
+      "sha256": "3bc4b2a97af4c986a4f0a96c412700d02e4eede5eedc8c2562fe649d477253f7",
+      "bytes": 20156
     },
     {
       "path": "src/xtbflow/data/independent_seeds.py",

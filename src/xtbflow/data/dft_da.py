@@ -352,7 +352,17 @@ def load_dft_da_samples(cache_root: str | Path) -> tuple[list[DftDaSample], dict
         try:
             samples.append(_row_sample(root / "extracted" / "DATASET_DA_F", row, source_asset_sha256))
         except (OSError, ValueError, KeyError, TypeError) as exc:
-            key = str(exc)
+            # Keep evidence portable: error strings can contain the private
+            # cache root.  The row ID and a stable class are sufficient for
+            # the public audit; raw paths never enter the manifest.
+            if isinstance(exc, OSError):
+                key = "source_file_io_error"
+            elif isinstance(exc, ValueError):
+                key = str(exc)
+            else:
+                key = type(exc).__name__
+            if "/" in key or "\\" in key:
+                key = type(exc).__name__
             rejection_counts[key] = rejection_counts.get(key, 0) + 1
             rejection_examples.setdefault(key, row.get("R", "unknown"))
     samples.sort(key=lambda sample: sample.record.record_id)

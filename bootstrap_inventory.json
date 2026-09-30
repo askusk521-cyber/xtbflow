@@ -159,13 +159,18 @@
     },
     {
       "path": "configs/public_data_manifest.yaml",
-      "sha256": "74e7ebd3ee6f0c8f4def549959e7330c399a421ed7f7380edd3d3be988c2b756",
-      "bytes": 5722
+      "sha256": "05feddff12fe9f634b905e9f22dcf4b67691eeb88387ba13889dca2da6711b72",
+      "bytes": 8868
     },
     {
       "path": "configs/public_first_plan.yaml",
       "sha256": "2ea96b7e01f90cf766afa9de181f56666e405e74f9b442b74ce2a874107fafc3",
       "bytes": 4396
+    },
+    {
+      "path": "configs/public_reaction_sources.yaml",
+      "sha256": "e883f8cd049b1ea1bf22d10ca70cb13e0bf67238f744eefb90c6473aeaaf1eda",
+      "bytes": 5237
     },
     {
       "path": "configs/resources.yaml",
@@ -214,8 +219,8 @@
     },
     {
       "path": "data/manifests/README.md",
-      "sha256": "f5b53024d99c7382234cdd63e9a92cccf4ef1d7161d00b5e351579a5ed8cbb01",
-      "bytes": 706
+      "sha256": "e6d5944134b40c49c20f6f92ef875cb1c32244cdbdcae2a796f371b55541af40",
+      "bytes": 1116
     },
     {
       "path": "data/manifests/public_records.v1.jsonl",
@@ -278,9 +283,19 @@
       "bytes": 17397
     },
     {
+      "path": "docs/PARALLEL_REACTION_DATA_WORKFLOW_PROMPT.md",
+      "sha256": "1793789ab542646efd511784a8fd2c7ef9fae6bec99a281abec5585ad7baa600",
+      "bytes": 14150
+    },
+    {
       "path": "docs/PROVENANCE.md",
       "sha256": "07b8e206c34433ec1ff0c22ee34d259e0a37e2784db996d38fddf304f96e8390",
       "bytes": 1983
+    },
+    {
+      "path": "docs/REACTION_QM_DATA_GATE.md",
+      "sha256": "85785d079f75ee7dbdb2c835e0b26a0939da6ae629053335cdc4149cc08d0b8a",
+      "bytes": 4253
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -356,6 +371,16 @@
       "path": "docs/evidence/joint_flow_smoke_20260929_v3.json",
       "sha256": "41555c2528ef65c71a18e4ff7908ae3f86affa75dad52fef7ed078eacbd6d0cd",
       "bytes": 4826
+    },
+    {
+      "path": "docs/evidence/reaction_qm_grouping_audit_20260930.json",
+      "sha256": "1bacebf34411eb6d930a72561bd091a7d0e110bacfde1830a372eb6ead3b5806",
+      "bytes": 2457
+    },
+    {
+      "path": "docs/evidence/reaction_qm_rgd1_source_audit_20260930.json",
+      "sha256": "5a55a85cd35fbb6d686e171eff2aad0f6906d18c9abe846c001eb18aa46df2d4",
+      "bytes": 11199
     },
     {
       "path": "docs/evidence/spice2_learning_curve_runs_20260929/size12_seed20260929.json",
@@ -538,6 +563,11 @@
       "bytes": 1873
     },
     {
+      "path": "schemas/reaction_qm_track_b.schema.json",
+      "sha256": "254b1e3e4448eb5f7812dd3dacd88e485414d5798c984f595442e61b9cf6bd15",
+      "bytes": 3189
+    },
+    {
       "path": "schemas/reference_protocol.schema.json",
       "sha256": "9f1c86700a0a65fac16a7354d025bd26b1137008695210be30e053d5d33ee8c9",
       "bytes": 1520
@@ -551,6 +581,16 @@
       "path": "schemas/workflow_b_baseline.schema.json",
       "sha256": "daa64eda196d0252561135355a66562b4f32d59234d12119e1a178bffaae11e6",
       "bytes": 1169
+    },
+    {
+      "path": "scripts/audit_reaction_qm_grouping.py",
+      "sha256": "7a6823b450852ffeb423cc18a768508610f0749a298051a68d208fd85f6a68b3",
+      "bytes": 7702
+    },
+    {
+      "path": "scripts/audit_reaction_qm_sources.py",
+      "sha256": "a1d7d79a1a50e59cd1f4e5599ae8198f92c1b259a476419c47c6641f1dff0310",
+      "bytes": 21634
     },
     {
       "path": "scripts/audit_units_provenance.py",
@@ -659,8 +699,8 @@
     },
     {
       "path": "src/xtbflow/data/__init__.py",
-      "sha256": "903270d283cf9226b0e810ea0711da34d74217a1dfc5454c54619702975ea958",
-      "bytes": 1873
+      "sha256": "02779274917d41ea827b6a4a21d43624295ab04831c29e2379845d02914f8a0e",
+      "bytes": 2504
     },
     {
       "path": "src/xtbflow/data/cache.py",
@@ -678,14 +718,19 @@
       "bytes": 1679
     },
     {
+      "path": "src/xtbflow/data/reaction_qm.py",
+      "sha256": "a981498f6ee10662f1ac279910cefe88a6bf91829031d08d96cf94b5b49fe494",
+      "bytes": 43080
+    },
+    {
       "path": "src/xtbflow/data/records.py",
       "sha256": "c732356802fb8bd381acfc8d77e0f749d6dd9d342fc35427e38f8a0b96744a9f",
       "bytes": 25978
     },
     {
       "path": "src/xtbflow/data/splits.py",
-      "sha256": "db70f17a4691a7b4fe861b89a5e06e4ef5da290a0048051b98afb5b9625f57a2",
-      "bytes": 2573
+      "sha256": "f35c7ca01974641df0db8b7d9ee71cb1dd62ab53f2d82e840dc71a0f1e3e02db",
+      "bytes": 3234
     },
     {
       "path": "src/xtbflow/data/task_views.py",
@@ -971,6 +1016,11 @@
       "path": "tests/test_path_status.py",
       "sha256": "352d02626c16822ab3aba243c2ba6f7a3f2a78659e19b91c2567cffcf93b1bc3",
       "bytes": 9407
+    },
+    {
+      "path": "tests/test_reaction_qm.py",
+      "sha256": "d95d6267f0ba675103c54d2a09f149d694dd7edd1c01e36239c45aea344e5e22",
+      "bytes": 8686
     },
     {
       "path": "tests/test_runtime_budget.py",

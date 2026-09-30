@@ -24,8 +24,12 @@ datasets:
     source_manifest: configs/public_reaction_sources.yaml
     reaction_info_sha256: 2facf37090a4cba872394ec6ab0c360b011d41acff9658268ff2eb61e6fd5ae1
     geometry_sha256: 3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a
+    common_reaction_info_sha256: 63db6e7c1fbacdbc0391221bff204aec7ed060b90289862dbcaa49e004d21ebf
+    reactant_combinations_sha256: b7de6edac6aa0986c37f3db2da80f67384c35ab7e42e70e0cb522115fc45bbf0
     reaction_info_records: 199890
     geometry_records: 199890
+    common_reaction_info_records: 89636
+    reactant_combination_lines: 500001
     role: development_reaction_endpoint_ts_source
     reference_method: B3LYP-D3/TZVP
     license_status: verify_record_license_before_redistribution
@@ -39,7 +43,9 @@ datasets:
       Endpoint graph differences are derived labels under a frozen rule. They do
       not represent electron-density motion, complete mechanisms or confirmatory
       training readiness. Parent/family and independent-reactant grouping must be
-      audited before any split admission.
+      audited before any split admission. The official cross-level metadata only
+      cross-links GFN and B3LYP record IDs; it does not provide parent, family,
+      independent-system, repeated-TS, or coordinate-map identities.
 
   - id: rgd1_v6_cross_source_assets
     source: https://doi.org/10.6084/m9.figshare.21066901.v6

@@ -432,7 +432,7 @@ def reaction_qm_record_hash(
     charge: int,
     multiplicity: int,
     reference_protocol: Mapping[str, str],
-    coordinate_map_evidence: str,
+    coordinate_map_evidence: Any,
 ) -> str:
     """Hash the complete source payload, including coordinates and state.
 
@@ -492,7 +492,7 @@ class ReactionQMRecord:
     event_label: Mapping[str, Any]
     admission: str = "quarantine"
     quarantine_reasons: tuple[str, ...] = field(default_factory=tuple)
-    coordinate_map_evidence: str = "unverified"
+    coordinate_map_evidence: Any = "unverified"
 
     def __post_init__(self) -> None:
         for name in ("record_id", "parent_reaction_id", "reaction_family_id", "independent_reactant_system_id", "repeated_ts_group", "source_record_hash"):
@@ -508,7 +508,19 @@ class ReactionQMRecord:
             raise ValueError("source_record_hash must be a SHA-256 digest")
         if not isinstance(self.reference_protocol, Mapping) or not self.reference_protocol:
             raise ValueError("reference_protocol must be explicit")
-        if not isinstance(self.coordinate_map_evidence, str) or not self.coordinate_map_evidence.strip():
+        map_evidence = self.coordinate_map_evidence
+        if isinstance(map_evidence, Mapping):
+            map_source = map_evidence.get("source")
+            map_ids = map_evidence.get("map_ids")
+            if not isinstance(map_source, str) or not map_source.strip():
+                raise ValueError("coordinate_map_evidence source must be explicit")
+            if isinstance(map_ids, (str, bytes)) or not isinstance(map_ids, Sequence):
+                raise ValueError("coordinate_map_evidence map_ids must be a sequence")
+            if tuple(map_ids) != tuple(self.reactant_graph.atoms):
+                raise ValueError("coordinate_map_evidence map_ids must match coordinate row order")
+            map_evidence = {"source": map_source, "map_ids": list(map_ids)}
+            object.__setattr__(self, "coordinate_map_evidence", map_evidence)
+        elif not isinstance(map_evidence, str) or not map_evidence.strip():
             raise ValueError("coordinate_map_evidence must be explicit")
         electronic_state_reason: str | None = None
         try:
@@ -554,7 +566,7 @@ class ReactionQMRecord:
             ]
             if unresolved:
                 raise ValueError(f"admitted records cannot have unresolved grouping fields: {unresolved}")
-            if self.coordinate_map_evidence not in _EXPLICIT_COORDINATE_MAP_EVIDENCE:
+            if not isinstance(self.coordinate_map_evidence, Mapping) or self.coordinate_map_evidence.get("source") not in _EXPLICIT_COORDINATE_MAP_EVIDENCE:
                 raise ValueError("admitted records require explicit coordinate-to-map evidence")
         expected_hash = reaction_qm_record_hash(
             record_id=self.record_id,

@@ -46,3 +46,20 @@ def test_manifest_rejects_duplicate_candidate_ids(tmp_path):
     with pytest.raises(ValueError, match="duplicate candidate_id"):
         _MODULE.load_candidate_manifest(path)
 
+
+def test_candidate_file_stem_keeps_sanitized_ids_distinct():
+    first = _MODULE._candidate_file_stem("source/a")
+    second = _MODULE._candidate_file_stem("source a")
+
+    assert first != second
+    assert "/" not in first and " " not in second
+    assert first.startswith("source_a--")
+    assert second.startswith("source_a--")
+
+
+def test_public_sanitizer_is_available_for_batch_entrypoint():
+    from xtbflow.validation.evidence import sanitize_public_value
+
+    assert sanitize_public_value({"error": "/private/run/output.out"}) == {
+        "error": "[private-path]"
+    }

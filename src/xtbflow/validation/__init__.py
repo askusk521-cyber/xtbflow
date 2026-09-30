@@ -5,6 +5,8 @@ from .evidence import (
     index_artifacts,
     sanitize_cp2k_calibration_report,
     sanitize_cp2k_convergence_report,
+    sanitize_error_message,
+    sanitize_public_value,
     sha256_file,
 )
 from .modes import ModeEvidence, validate_mode
@@ -23,6 +25,8 @@ __all__ = [
     "index_artifacts",
     "sanitize_cp2k_calibration_report",
     "sanitize_cp2k_convergence_report",
+    "sanitize_error_message",
+    "sanitize_public_value",
     "sha256_file",
     "observed_event",
     "ModeEvidence",

@@ -20,6 +20,7 @@ from typing import Any, Mapping
 
 
 _SAFE_ID = re.compile(r"[^A-Za-z0-9_.-]+")
+_SHA256 = re.compile(r"[0-9a-fA-F]{64}")
 
 
 def _sha256(path: Path) -> str:
@@ -33,6 +34,20 @@ def _sha256(path: Path) -> str:
 def _record_sha256(record: Mapping[str, Any]) -> str:
     encoded = json.dumps(record, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
     return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
+
+
+def _candidate_file_stem(candidate_id: str) -> str:
+    """Return a readable, collision-resistant basename for one candidate.
+
+    Sanitizing an ID alone is lossy (for example, ``a/b`` and ``a b`` both
+    become ``a_b``).  The digest binds every ledger and artifact basename to
+    the original ID while retaining a short human-readable prefix.
+    """
+
+    readable = _SAFE_ID.sub("_", candidate_id).strip("._") or "candidate"
+    readable = readable[:80]
+    identity = hashlib.sha256(candidate_id.encode("utf-8")).hexdigest()[:16]
+    return f"{readable}--{identity}"
 
 
 def load_candidate_manifest(path: Path) -> list[dict[str, Any]]:
@@ -121,7 +136,19 @@ def main() -> int:
     parser.add_argument("--ledger-dir", type=Path, required=True)
     parser.add_argument("--artifact-dir", type=Path, required=True)
     parser.add_argument("--source-locator", required=True)
+    parser.add_argument(
+        "--source-sha256",
+        "--source-asset-sha256",
+        dest="source_sha256",
+        help="optional SHA-256 of the raw source asset identified by --source-locator",
+    )
     args = parser.parse_args()
+    if not args.source_locator.strip():
+        parser.error("--source-locator must be nonempty")
+    if args.source_sha256 is not None and not _SHA256.fullmatch(args.source_sha256):
+        parser.error("--source-sha256 must be a 64-character hexadecimal SHA-256")
+    if args.source_sha256 is not None:
+        args.source_sha256 = args.source_sha256.lower()
     if args.output.exists():
         parser.error("refusing to overwrite an existing output")
     if args.ledger_dir.exists() and any(args.ledger_dir.iterdir()):
@@ -171,9 +198,9 @@ def main() -> int:
         try:
             system = _system(row)
             base["input"].update({"input_hash": system.input_hash, "system_id": system.system_id})
-            safe_system_id = _SAFE_ID.sub("_", system.system_id)
-            ledger_path = args.ledger_dir / f"{safe_system_id}.json"
-            artifact_path = args.artifact_dir / f"{safe_system_id}.json"
+            file_stem = _candidate_file_stem(system.system_id)
+            ledger_path = args.ledger_dir / f"{file_stem}.json"
+            artifact_path = args.artifact_dir / f"{file_stem}.json"
             ledger = RunLedger(
                 StageBudget(
                     str(budget["phase"]),
@@ -260,13 +287,20 @@ def main() -> int:
         "input_rejected": sum(row.get("status") == "input_rejected" for row in records),
         "search_executed": 0,
     }
+    source_asset = {"locator": args.source_locator}
+    if args.source_sha256 is not None:
+        source_asset["sha256"] = args.source_sha256
     report = sanitize_public_value({
         "schema": "xtbflow-kingfisher-gfn2-preflight/v2",
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "status": "completed",
         "scientific_qualification": False,
         "source_commit": _source_commit(root),
-        "source_asset": {"locator": args.source_locator, "sha256": _sha256(args.manifest), "record_count": len(rows)},
+        "source_asset": source_asset,
+        "normalized_manifest": {
+            "sha256": _sha256(args.manifest),
+            "record_count": len(rows),
+        },
         "protocol": {"protocol_id": protocol.protocol_id, "identity": protocol.identity, "method": protocol.method, "backend": protocol.backend, "parameters": dict(protocol.parameters)},
         "runtime": {"version": adapter.version, "build_hash": adapter.build_hash},
         "search_config": asdict(search_config),

@@ -24,7 +24,7 @@ R0 只有 53,161/199,890 条、R1 只有 66,775/113,370 条与各自 SMILES 顺�
 分组均已解析，并要求 `coordinate_map_evidence` 明确指向来源 map 或独立映射表。
 准入记录必须同时列出按坐标行排列的 `map_ids`；元素序列相同不再被当作坐标映射证据。
 `source_record_hash` 覆盖图、实际坐标、
-电荷和多重度；电子数与自旋多重度奇偶不一致的记录不能准入，来源审计行会保留
+来源 revision、电荷和多重度；电子数与自旋多重度奇偶不一致的记录不能准入，来源审计行会保留
 `electronic_state_inconsistent` quarantine 原因。当前 HDF5 loader 因此仍只生成带
 `coordinate_map_unverified` 和未解析分组原因的 quarantine 记录。
 

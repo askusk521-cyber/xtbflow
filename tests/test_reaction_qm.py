@@ -44,6 +44,7 @@ def record(**overrides):
         event_label=derive_event_label(reactant, product, source_record_id="RXN_1"),
         admission="development_train",
         coordinate_map_evidence={"source": "explicit_source_map", "map_ids": [1, 2, 3]},
+        source_asset_sha256="b" * 64,
     )
     values.update(overrides)
     values["source_record_hash"] = reaction_qm_record_hash(
@@ -60,6 +61,7 @@ def record(**overrides):
         multiplicity=values["multiplicity"],
         reference_protocol=values["reference_protocol"],
         coordinate_map_evidence=values["coordinate_map_evidence"],
+        source_asset_sha256=values["source_asset_sha256"],
     )
     return ReactionQMRecord(**values)
 

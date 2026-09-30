@@ -137,6 +137,14 @@ REACTION_QM_SOURCE = PublicSourceConfig(
             "energy_units": "hartree",
         },
         "irc": {"fields": ["atomic_numbers", "coordinates", "energies", "forces"]},
+        "cross_level_metadata": {
+            "fields": ["GFN_ID", "B3LYP_ID", "RXN_SMILES"],
+            "purpose": "cross_level_identity_only",
+        },
+        "reactant_enumeration": {
+            "fields": ["reactant_combination_smiles"],
+            "purpose": "enumeration_input_without_record_ids",
+        },
     },
     files=(
         SourceFile(
@@ -162,6 +170,24 @@ REACTION_QM_SOURCE = PublicSourceConfig(
             "https://zenodo.org/records/18551029/files/B3LYPD3_TZVP_IRC.h5?download=1",
             "irc_path",
             official_md5="782a4e5e8099de8f2b8e0e90128028cb",
+        ),
+        SourceFile(
+            "common_reaction_info.csv",
+            "https://zenodo.org/records/18551029/files/common_reaction_info.csv?download=1",
+            "cross_level_metadata",
+            declared_size_bytes=43446786,
+            official_md5="bd117eccd9d98786d4ca60ba6c383cff",
+            expected_sha256="63db6e7c1fbacdbc0391221bff204aec7ed060b90289862dbcaa49e004d21ebf",
+            download_status="verified_n2_cache",
+        ),
+        SourceFile(
+            "reactant_combinations.txt",
+            "https://zenodo.org/records/18551029/files/reactant_combinations.txt?download=1",
+            "reactant_enumeration",
+            declared_size_bytes=7904879,
+            official_md5="e95224e6cc175fd8abd15f900dbaa954",
+            expected_sha256="b7de6edac6aa0986c37f3db2da80f67384c35ab7e42e70e0cb522115fc45bbf0",
+            download_status="verified_n2_cache",
         ),
     ),
     claim_limit=(
@@ -434,6 +460,7 @@ def reaction_qm_record_hash(
     reference_protocol: Mapping[str, str],
     coordinate_map_evidence: Any,
     source_revision: str = REACTION_QM_REVISION,
+    source_asset_sha256: str | None = None,
 ) -> str:
     """Hash the complete source payload, including coordinates and state.
 
@@ -457,6 +484,7 @@ def reaction_qm_record_hash(
         "reference_protocol": dict(reference_protocol),
         "coordinate_map_evidence": coordinate_map_evidence,
         "source_revision": source_revision,
+        "source_asset_sha256": source_asset_sha256,
     })
 
 
@@ -496,6 +524,7 @@ class ReactionQMRecord:
     quarantine_reasons: tuple[str, ...] = field(default_factory=tuple)
     coordinate_map_evidence: Any = "unverified"
     source_revision: str = REACTION_QM_REVISION
+    source_asset_sha256: str | None = None
 
     def __post_init__(self) -> None:
         for name in ("record_id", "parent_reaction_id", "reaction_family_id", "independent_reactant_system_id", "repeated_ts_group", "source_record_hash"):
@@ -503,6 +532,8 @@ class ReactionQMRecord:
                 raise ValueError(f"{name} must be a nonempty string")
         if not isinstance(self.source_revision, str) or not self.source_revision.strip():
             raise ValueError("source_revision must be explicit")
+        if self.source_asset_sha256 is not None and not _SHA256.fullmatch(self.source_asset_sha256):
+            raise ValueError("source_asset_sha256 must be a SHA-256 digest when supplied")
         if type(self.charge) is not int or type(self.multiplicity) is not int or self.multiplicity < 1:
             raise ValueError("charge and multiplicity must be explicit strict integers")
         if self.reactant_graph.atom_maps != self.product_graph.atom_maps:
@@ -574,6 +605,8 @@ class ReactionQMRecord:
                 raise ValueError(f"admitted records cannot have unresolved grouping fields: {unresolved}")
             if not isinstance(self.coordinate_map_evidence, Mapping) or self.coordinate_map_evidence.get("source") not in _EXPLICIT_COORDINATE_MAP_EVIDENCE:
                 raise ValueError("admitted records require explicit coordinate-to-map evidence")
+            if self.source_asset_sha256 is None:
+                raise ValueError("admitted records require a verified source asset SHA-256")
         expected_hash = reaction_qm_record_hash(
             record_id=self.record_id,
             parent_reaction_id=self.parent_reaction_id,
@@ -589,6 +622,7 @@ class ReactionQMRecord:
             reference_protocol=self.reference_protocol,
             coordinate_map_evidence=self.coordinate_map_evidence,
             source_revision=self.source_revision,
+            source_asset_sha256=self.source_asset_sha256,
         )
         if self.source_record_hash.lower() != expected_hash:
             raise ValueError("source_record_hash does not bind the complete record payload")
@@ -623,6 +657,7 @@ class ReactionQMRecord:
             "quarantine_reasons": list(self.quarantine_reasons),
             "coordinate_map_evidence": self.coordinate_map_evidence,
             "source_revision": self.source_revision,
+            "source_asset_sha256": self.source_asset_sha256,
         }
 
 
@@ -756,6 +791,9 @@ class ReactionQMLoader:
             reference_protocol=protocol,
             coordinate_map_evidence=coordinate_map_evidence,
             source_revision=self.config.revision,
+            source_asset_sha256=next(
+                spec.expected_sha256 for spec in self.config.files if spec.name == "B3LYPD3_TZVP.h5"
+            ),
         )
         return ReactionQMRecord(
             record_id=record_id,
@@ -782,6 +820,9 @@ class ReactionQMLoader:
             ),
             coordinate_map_evidence=coordinate_map_evidence,
             source_revision=self.config.revision,
+            source_asset_sha256=next(
+                spec.expected_sha256 for spec in self.config.files if spec.name == "B3LYPD3_TZVP.h5"
+            ),
         )
 
 

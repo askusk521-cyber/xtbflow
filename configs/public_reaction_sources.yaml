@@ -29,6 +29,27 @@ sources:
         official_md5: 2c572a68849e805bc0dbb257a53a1fd2
         sha256: 3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a
         status: verified_n2_cache
+      - name: B3LYP-RXN_train.csv
+        url: https://zenodo.org/records/18551029/files/B3LYP-RXN_train.csv?download=1
+        role: official_split_train
+        size_bytes: 57152608
+        official_md5: 222059ce2ec2585a385518af393ecaae
+        sha256: c768b07f6b9789daeae7fbb22720b3d5134abae01f6a8c1cce8a9c054ca90a04
+        status: verified_n2_cache
+      - name: B3LYP-RXN_valid.csv
+        url: https://zenodo.org/records/18551029/files/B3LYP-RXN_valid.csv?download=1
+        role: official_split_validation
+        size_bytes: 7158908
+        official_md5: 0174d304143089c26a93dc89632f5317
+        sha256: 1c1a1fd74675d6509057a89ab091cc8e2c9a7f4108196e70bc8ede0413569e0d
+        status: verified_n2_cache
+      - name: B3LYP-RXN_test.csv
+        url: https://zenodo.org/records/18551029/files/B3LYP-RXN_test.csv?download=1
+        role: official_split_test
+        size_bytes: 7156620
+        official_md5: 359332ff1ccb289751ef43bb544f2373
+        sha256: caac8dfebc830d2e394fee6da9dba5687fdb07720926158f8c2edf4880866f88
+        status: verified_n2_cache
       - name: B3LYPD3_TZVP_IRC.h5
         url: https://zenodo.org/records/18551029/files/B3LYPD3_TZVP_IRC.h5?download=1
         role: irc_path
@@ -67,6 +88,9 @@ sources:
       reactant_enumeration:
         fields: [reactant_combination_smiles]
         purpose: enumeration_input_without_record_ids
+      official_splits:
+        fields: [reaction_id, reaction_smiles, dE_dagger, dE, dH_dagger, dH, dG_dagger, dG]
+        purpose: official_reaction_id_partition_only_no_parent_group_evidence
   rgd1:
     dataset: RGD1
     revision: figshare:21066901@v6

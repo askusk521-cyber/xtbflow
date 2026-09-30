@@ -4,7 +4,7 @@
   "execution": {
     "host": "node2",
     "python": "3.11.16",
-    "pid": 1350748
+    "pid": 1366106
   },
   "sources": {
     "reaction_qm": {
@@ -171,6 +171,23 @@
         "out_of_chnos": "RXN_0000100001",
         "coordinate_atom_order_unverified": "RXN_0000100001",
         "aromatic_bond_ambiguity": "RXN_0000100011"
+      },
+      "coordinate_order_audit": {
+        "R0_records": 199890,
+        "R0_order_match": 53161,
+        "R1_records": 113370,
+        "R1_same_inventory_unverified": 46595,
+        "TS_records": 199890,
+        "TS_same_inventory_unverified": 195720,
+        "R0_same_inventory_unverified": 146729,
+        "R1_order_match": 66775,
+        "R2_records": 10419,
+        "R2_same_inventory_unverified": 2563,
+        "R2_order_match": 7856,
+        "TS_order_match": 4170,
+        "R3_records": 202,
+        "R3_order_match": 155,
+        "R3_same_inventory_unverified": 47
       }
     }
   },

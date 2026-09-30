@@ -29,10 +29,14 @@ Every source row that fails the development conversion is retained in
 The report records `epochs` and the actual `optimizer_updates` separately; with
 one update per selected training row, the latter is `epochs × train_count`.
 
-The existing n2 bounded 32-record/2-step run completed on commit
+The existing n2 bounded 32-record/2-step v1 run completed on commit
 `190118dc25fa334e82cf75d1dd6a4f653a3a2835`; the complete machine-readable
 report is
 [`transition1x_joint_development_20260930.json`](evidence/transition1x_joint_development_20260930.json).
+The v2 runner refuses to overwrite that historical path. Its `initial_loss` and
+`final_loss` use the same fixed training row, mode, and `tau=0.5` probe; the
+per-update losses are recorded separately.
+
 The deterministic selection was 24 train, 4 validation and 4 test records,
 with a maximum of 9 atoms. All 10,073 source records passed the structural
 source audit before selection.
@@ -44,7 +48,7 @@ PYTHONPATH=src:vendor/mechai_reusable \
 python scripts/run_transition1x_joint_development.py \
   --asset /home/lhshen/.cache/xtbflow/transition1x-rpsb-13119869/train_rpsb_all.pkl \
   --max-records 32 --epochs 2 \
-  --output docs/evidence/transition1x_joint_development_20260930.json
+  --output docs/evidence/transition1x_joint_development_20260930_v2.json
 ```
 
 The next scientific gate is still a separately sourced, state-resolved,

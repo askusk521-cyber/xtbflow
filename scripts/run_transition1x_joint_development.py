@@ -132,6 +132,18 @@ def _loss_for_mode(model, mode: str, sample: dict[str, torch.Tensor], tau: float
         dt=1.0,
         condition_features=sample["condition_features"],
     )
+
+
+def _fixed_probe_loss(model, sample: dict[str, torch.Tensor], *, tau: float = 0.5) -> float:
+    """Measure one fixed teacher-forced sample at a fixed interpolation time."""
+
+    was_training = model.training
+    model.eval()
+    with torch.no_grad():
+        value = float(_loss_for_mode(model, "joint_bidirectional", sample, tau)["total"])
+    if was_training:
+        model.train()
+    return value
     return joint_flow_loss(
         output,
         sample["target_event"],
@@ -217,6 +229,10 @@ def main() -> int:
     args = parser.parse_args()
     if args.max_records < 8 or args.epochs < 1:
         raise SystemExit("max-records must be at least 8 and epochs must be positive")
+    if args.output.exists():
+        raise SystemExit(
+            f"refusing to overwrite existing evidence: {args.output}; choose a new run-specific output path"
+        )
     started = time.monotonic()
     random.seed(args.seed)
     np.random.seed(args.seed)
@@ -280,6 +296,15 @@ def main() -> int:
     runtime = JointFlowRuntimeConfig.load(args.runtime_config)
     model = runtime.build(projector).to(dtype=torch.float64)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+    probe_sample = train_samples[0]
+    probe_identity = {
+        "split": train_rows[0]["split"],
+        "reaction_id": train_rows[0]["reaction_id"],
+        "formula": train_rows[0]["formula"],
+        "tau": 0.5,
+        "mode": "joint_bidirectional",
+    }
+    initial_loss = _fixed_probe_loss(model, probe_sample, tau=probe_identity["tau"])
     losses: list[float] = []
     model.train()
     for step in range(args.epochs):
@@ -293,6 +318,7 @@ def main() -> int:
             loss["total"].backward()
             optimizer.step()
             losses.append(float(loss["total"].detach()))
+    final_loss = _fixed_probe_loss(model, probe_sample, tau=probe_identity["tau"])
     metrics = {
         split: _evaluate(model, samples)
         for split, samples in heldout_samples_by_split.items()
@@ -344,8 +370,11 @@ def main() -> int:
         "seed": args.seed,
         "epochs": args.epochs,
         "optimizer_updates": len(losses),
-        "initial_loss": losses[0],
-        "final_loss": losses[-1],
+        "initial_loss": initial_loss,
+        "final_loss": final_loss,
+        "loss_probe": probe_identity,
+        "training_update_loss_first": losses[0],
+        "training_update_loss_last": losses[-1],
         "model_identity": model_state_identity(model),
         "controls": metrics,
         "evaluation_protocol": {

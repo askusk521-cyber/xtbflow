@@ -48,3 +48,23 @@ Use concise imperative subjects with the repository’s prefixes: `feat:`,
 behavioral change, link the relevant issue, list validation commands, and call
 out evidence limits. Never commit credentials, private data, model weights, or
 unbounded job configurations; record public provenance and bounded resources.
+
+## Repository Management: Human Merge Approval
+
+All PR and branch merges require explicit approval from the repository owner
+or a human reviewer explicitly delegated by the owner, unless that human
+clearly states that approval is not required for the specified scope. This
+applies to every target branch and merge method, including merge commits,
+squash merges, rebase merges, and fast-forward integration.
+
+Routine permission to develop, commit, push to working branches, test, or
+manage PRs is not permission to merge. Passing CI, an AI review, silence, and
+general instructions such as "continue" or "handle everything" do not count
+as human approval or an explicit waiver. Do not enable auto-merge, invoke a
+merge API/command, or use direct pushes/cherry-picks to bypass this gate.
+
+Before merging, record the human approval or explicit waiver and its scope
+in the PR, together with the current head SHA. New commits require renewed
+approval unless an explicit human waiver covers the changed scope. Without
+clear authorization, leave the PR open and report that approval is pending.
+See [repository management](docs/REPOSITORY_MANAGEMENT.md) for the full policy.

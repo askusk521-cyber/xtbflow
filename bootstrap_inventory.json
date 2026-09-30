@@ -14,13 +14,13 @@
     },
     {
       "path": "AGENTS.md",
-      "sha256": "3accd61b06871cca1ad383913d24e25c221132280da57e05feb1af530c0c9e83",
-      "bytes": 2420
+      "sha256": "823270ff236f53de6556c4dea7638a8d51741ae38567f01c668b64063203afaa",
+      "bytes": 3589
     },
     {
       "path": "README.md",
-      "sha256": "8b978d691f3ab255ed6041e3408b3a2f2b22a47d150fc5edecc1f5aab2d99e64",
-      "bytes": 4489
+      "sha256": "e56cea82854548e16db69917e6895203fe1a775ac88f8cc115d363167f3adb86",
+      "bytes": 5328
     },
     {
       "path": "archive/README.md",
@@ -169,8 +169,8 @@
     },
     {
       "path": "configs/resources.yaml",
-      "sha256": "1a81aeece792ef6d44dd71019cbb2ce86f7910ffd29b193f82bb8c1bfbc13c6a",
-      "bytes": 5989
+      "sha256": "c2213875ddbe39017669a235b036019525c52e02378687c529075f784a63e5fd",
+      "bytes": 6301
     },
     {
       "path": "configs/reusable/event_geometry_manifest_v1/endpoint_geometry.json",
@@ -281,6 +281,11 @@
       "path": "docs/PROVENANCE.md",
       "sha256": "07b8e206c34433ec1ff0c22ee34d259e0a37e2784db996d38fddf304f96e8390",
       "bytes": 1983
+    },
+    {
+      "path": "docs/REPOSITORY_MANAGEMENT.md",
+      "sha256": "1bf9ce543a431c92e2a0285ad74595d44854fbfa0228e82483bcaac76e220ea5",
+      "bytes": 3180
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",

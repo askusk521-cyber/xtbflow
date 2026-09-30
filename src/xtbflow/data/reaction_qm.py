@@ -433,6 +433,7 @@ def reaction_qm_record_hash(
     multiplicity: int,
     reference_protocol: Mapping[str, str],
     coordinate_map_evidence: Any,
+    source_revision: str = REACTION_QM_REVISION,
 ) -> str:
     """Hash the complete source payload, including coordinates and state.
 
@@ -455,6 +456,7 @@ def reaction_qm_record_hash(
         "multiplicity": multiplicity,
         "reference_protocol": dict(reference_protocol),
         "coordinate_map_evidence": coordinate_map_evidence,
+        "source_revision": source_revision,
     })
 
 
@@ -493,11 +495,14 @@ class ReactionQMRecord:
     admission: str = "quarantine"
     quarantine_reasons: tuple[str, ...] = field(default_factory=tuple)
     coordinate_map_evidence: Any = "unverified"
+    source_revision: str = REACTION_QM_REVISION
 
     def __post_init__(self) -> None:
         for name in ("record_id", "parent_reaction_id", "reaction_family_id", "independent_reactant_system_id", "repeated_ts_group", "source_record_hash"):
             if not isinstance(getattr(self, name), str) or not getattr(self, name).strip():
                 raise ValueError(f"{name} must be a nonempty string")
+        if not isinstance(self.source_revision, str) or not self.source_revision.strip():
+            raise ValueError("source_revision must be explicit")
         if type(self.charge) is not int or type(self.multiplicity) is not int or self.multiplicity < 1:
             raise ValueError("charge and multiplicity must be explicit strict integers")
         if self.reactant_graph.atom_maps != self.product_graph.atom_maps:
@@ -561,6 +566,7 @@ class ReactionQMRecord:
                     ("reaction_family_id", self.reaction_family_id),
                     ("independent_reactant_system_id", self.independent_reactant_system_id),
                     ("repeated_ts_group", self.repeated_ts_group),
+                    ("source_revision", self.source_revision),
                 )
                 if value.strip().lower() in _UNRESOLVED
             ]
@@ -582,6 +588,7 @@ class ReactionQMRecord:
             multiplicity=self.multiplicity,
             reference_protocol=self.reference_protocol,
             coordinate_map_evidence=self.coordinate_map_evidence,
+            source_revision=self.source_revision,
         )
         if self.source_record_hash.lower() != expected_hash:
             raise ValueError("source_record_hash does not bind the complete record payload")
@@ -615,6 +622,7 @@ class ReactionQMRecord:
             "admission": self.admission,
             "quarantine_reasons": list(self.quarantine_reasons),
             "coordinate_map_evidence": self.coordinate_map_evidence,
+            "source_revision": self.source_revision,
         }
 
 
@@ -747,6 +755,7 @@ class ReactionQMLoader:
             multiplicity=int(ts["multiplicity"][()]),
             reference_protocol=protocol,
             coordinate_map_evidence=coordinate_map_evidence,
+            source_revision=self.config.revision,
         )
         return ReactionQMRecord(
             record_id=record_id,
@@ -772,6 +781,7 @@ class ReactionQMLoader:
                 "repeated_ts_group_unresolved",
             ),
             coordinate_map_evidence=coordinate_map_evidence,
+            source_revision=self.config.revision,
         )
 
 

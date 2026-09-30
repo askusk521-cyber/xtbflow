@@ -125,6 +125,9 @@ def test_source_config_pins_observed_small_asset_hashes():
     files = {item.name: item for item in REACTION_QM_SOURCE.files}
     assert files["B3LYPD3_TZVP_reaction_info.csv"].expected_sha256 == "2facf37090a4cba872394ec6ab0c360b011d41acff9658268ff2eb61e6fd5ae1"
     assert files["B3LYPD3_TZVP.h5"].expected_sha256 == "3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a"
+    assert files["B3LYP-RXN_train.csv"].expected_sha256 == "c768b07f6b9789daeae7fbb22720b3d5134abae01f6a8c1cce8a9c054ca90a04"
+    assert files["B3LYP-RXN_valid.csv"].expected_sha256 == "1c1a1fd74675d6509057a89ab091cc8e2c9a7f4108196e70bc8ede0413569e0d"
+    assert files["B3LYP-RXN_test.csv"].expected_sha256 == "caac8dfebc830d2e394fee6da9dba5687fdb07720926158f8c2edf4880866f88"
 
 
 def test_event_label_must_match_endpoint_graphs():

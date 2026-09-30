@@ -26,10 +26,15 @@ datasets:
     geometry_sha256: 3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a
     common_reaction_info_sha256: 63db6e7c1fbacdbc0391221bff204aec7ed060b90289862dbcaa49e004d21ebf
     reactant_combinations_sha256: b7de6edac6aa0986c37f3db2da80f67384c35ab7e42e70e0cb522115fc45bbf0
+    official_split_train_sha256: c768b07f6b9789daeae7fbb22720b3d5134abae01f6a8c1cce8a9c054ca90a04
+    official_split_validation_sha256: 1c1a1fd74675d6509057a89ab091cc8e2c9a7f4108196e70bc8ede0413569e0d
+    official_split_test_sha256: caac8dfebc830d2e394fee6da9dba5687fdb07720926158f8c2edf4880866f88
     reaction_info_records: 199890
     geometry_records: 199890
     common_reaction_info_records: 89636
     reactant_combination_lines: 500001
+    official_split_counts: {train: 159913, validation: 19990, test: 19987}
+    official_split_audit: docs/evidence/reaction_qm_official_split_audit_20260930.json
     role: development_reaction_endpoint_ts_source
     reference_method: B3LYP-D3/TZVP
     license_status: verify_record_license_before_redistribution
@@ -45,7 +50,9 @@ datasets:
       training readiness. Parent/family and independent-reactant grouping must be
       audited before any split admission. The official cross-level metadata only
       cross-links GFN and B3LYP record IDs; it does not provide parent, family,
-      independent-system, repeated-TS, or coordinate-map identities.
+      independent-system, repeated-TS, or coordinate-map identities. The official
+      train/validation/test CSVs freeze reaction-ID partitions only and do not
+      certify those grouping or coordinate-map identities.
 
   - id: rgd1_v6_cross_source_assets
     source: https://doi.org/10.6084/m9.figshare.21066901.v6

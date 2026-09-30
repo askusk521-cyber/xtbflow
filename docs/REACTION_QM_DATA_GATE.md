@@ -42,6 +42,13 @@ record-ID 对，全部能回连当前 B3LYP reaction-info；但它没有母反�
 无 record ID 的枚举输入，不能作为 split 分组证据。详情见
 [`reaction_qm_grouping_audit_20260930.json`](evidence/reaction_qm_grouping_audit_20260930.json)。
 
+Zenodo v2 同时提供官方 `B3LYP-RXN_train.csv`、`B3LYP-RXN_valid.csv` 和
+`B3LYP-RXN_test.csv`。三者合计覆盖 199,890 个唯一 reaction ID，分区为
+159,913/19,990/19,987，ID 之间没有交叉，跨分区也没有完整 reaction-SMILES 重复。
+这只是官方 reaction-ID 分区；它没有补充母反应、反应族、独立反应物体系、重复 TS
+或坐标 map 证据。详情见
+[`reaction_qm_official_split_audit_20260930.json`](evidence/reaction_qm_official_split_audit_20260930.json)。
+
 来源固定版本、URL、文件大小、SHA-256 和字段映射见
 [`configs/public_reaction_sources.yaml`](../configs/public_reaction_sources.yaml)。
 审计入口是 [`scripts/audit_reaction_qm_sources.py`](../scripts/audit_reaction_qm_sources.py)，

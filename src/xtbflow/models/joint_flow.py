@@ -507,6 +507,7 @@ class SerialEventGeometryFlow(nn.Module):
         dt: float,
         coupling_strength: float = 1.0,
         condition_features: Tensor | None = None,
+        conservation_projection: bool = True,
     ) -> JointFlowOutput:
         return self.joint.forward_control(
             "serial_independent",
@@ -518,4 +519,5 @@ class SerialEventGeometryFlow(nn.Module):
             dt=dt,
             coupling_strength=coupling_strength,
             condition_features=condition_features,
+            conservation_projection=conservation_projection,
         )

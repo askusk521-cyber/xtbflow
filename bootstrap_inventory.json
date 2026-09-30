@@ -288,6 +288,11 @@
       "bytes": 3580
     },
     {
+      "path": "docs/DFT_DA_GENERATION_EVALUATION.md",
+      "sha256": "e119165412c4878b41e871754f1bd2c13aa2118d243c1c0bcedfdb293f953428",
+      "bytes": 4188
+    },
+    {
       "path": "docs/DFT_DA_PROVENANCE_AUDIT.md",
       "sha256": "0295bb9cb40cda3483fa1686c4129126eee1cf93fa90c1b8a08599d74d7ccf7c",
       "bytes": 3984
@@ -728,6 +733,11 @@
       "bytes": 4125
     },
     {
+      "path": "scripts/export_dft_da_reactants.py",
+      "sha256": "a5a89b45f42f5248c1e961d259111f70bcf03d5bdaf5090a6ef03bfe9b2a7652",
+      "bytes": 4504
+    },
+    {
       "path": "scripts/joint_flow_smoke.py",
       "sha256": "be9cab15cb5032dd57fa8e9be21c2d815bd0966c1675a4fe48c25314dd081207",
       "bytes": 11435
@@ -768,9 +778,19 @@
       "bytes": 15646
     },
     {
+      "path": "scripts/run_reactant_generation.py",
+      "sha256": "49b60d6d6f49ee524f1c0cf29da4b737526a028c2fa83bd57b854ec7e203ea36",
+      "bytes": 8734
+    },
+    {
       "path": "scripts/run_spice_openff_pilot.py",
       "sha256": "8e2e3f10f7a103a6dcc06ca23a3fbdb8b840208fb7bc98f233da344dd013c864",
       "bytes": 6840
+    },
+    {
+      "path": "scripts/score_reactant_generation.py",
+      "sha256": "397e408ae0afeb1336cc26f631a2c702e4741aa7ee0993c3c0fdaa7a8a38531b",
+      "bytes": 14086
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -879,8 +899,13 @@
     },
     {
       "path": "src/xtbflow/evaluation/__init__.py",
-      "sha256": "3ce11bcb9a4e818840099636abb2dbdf3253b377d759cee931642f9c45c63960",
-      "bytes": 199
+      "sha256": "537b3a47c1206585902a13d424dee1f3f99c1ca8b6933d75c850adff7e9d14e4",
+      "bytes": 1267
+    },
+    {
+      "path": "src/xtbflow/evaluation/generation.py",
+      "sha256": "a16a6cbeadda9cffd0200dbd20223607d3f8d599830c0488f2bc6ff68bb1f804",
+      "bytes": 28281
     },
     {
       "path": "src/xtbflow/evaluation/grouped.py",
@@ -939,8 +964,8 @@
     },
     {
       "path": "src/xtbflow/models/joint_flow.py",
-      "sha256": "4788edd09d253237708d17d13291c8bc57dc59b675fa81b66f5ebea977c05d9d",
-      "bytes": 22441
+      "sha256": "cb3749728bd13ea05d5c7cdf11e26bd4a015793afe7dec4de419871d25c756d6",
+      "bytes": 22548
     },
     {
       "path": "src/xtbflow/models/reaction_direction.py",
@@ -1014,8 +1039,8 @@
     },
     {
       "path": "src/xtbflow/sampling/integrator.py",
-      "sha256": "1566d0c21728f3e7bbc9d99eecf57a1a9988d79e0d18b6f5700730886591247a",
-      "bytes": 3165
+      "sha256": "2bb873501ef7bf2d0dcfb6a41aaa0c1ad444c78ac11b1d6054dd781fb977e605",
+      "bytes": 3462
     },
     {
       "path": "src/xtbflow/training/__init__.py",
@@ -1176,6 +1201,11 @@
       "path": "tests/test_path_status.py",
       "sha256": "352d02626c16822ab3aba243c2ba6f7a3f2a78659e19b91c2567cffcf93b1bc3",
       "bytes": 9407
+    },
+    {
+      "path": "tests/test_reactant_generation.py",
+      "sha256": "891e3c5961e0da94ed11ae607949615cba0812c20b1b69f6d553bbe8ddf96418",
+      "bytes": 4847
     },
     {
       "path": "tests/test_real_training_runner.py",

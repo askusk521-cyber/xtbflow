@@ -108,6 +108,17 @@ def _graph_stats(reactant: str, product: str, chem: Any) -> dict[str, Any]:
     return dict(result)
 
 
+def _coordinate_order_class(symbols: list[str], atomic_numbers: list[int]) -> str:
+    """Classify source atom-number order without inferring a map assignment."""
+
+    source_symbols = [next((symbol for symbol, number in ATOMIC_NUMBERS.items() if number == value), f"#{value}") for value in atomic_numbers]
+    if symbols == source_symbols:
+        return "order_match"
+    if Counter(symbols) == Counter(source_symbols):
+        return "same_inventory_unverified"
+    return "inventory_mismatch"
+
+
 def audit_mapped_csv(
     path: Path,
     *,
@@ -230,6 +241,7 @@ def audit_reaction_hdf5_records(path: Path, reaction_info_ids: set[str]) -> dict
         return {"status": "dependency_missing", "error": str(exc)}
     counts = Counter()
     reasons = Counter()
+    coordinate_order_audit = Counter()
     examples: dict[str, str] = {}
     chem = _rdkit()
 
@@ -288,14 +300,33 @@ def audit_reaction_hdf5_records(path: Path, reaction_info_ids: set[str]) -> dict
                 if len(ts["atomic_numbers"]) != expected_atoms or tuple(ts["coordinates"].shape) != (expected_atoms, 3):
                     reason("ts_coordinate_shape_mismatch", record_id)
                 expected_numbers = [ATOMIC_NUMBERS.get(atom.GetSymbol(), -1) for atom in r_atoms]
-                source_numbers = [int(value) for value in ts["atomic_numbers"][()].tolist()]
-                if source_numbers != expected_numbers:
-                    if sorted(source_numbers) == sorted(expected_numbers):
+                ts_source_numbers = [int(value) for value in ts["atomic_numbers"][()].tolist()]
+                if ts_source_numbers != expected_numbers:
+                    if sorted(ts_source_numbers) == sorted(expected_numbers):
                         reason("coordinate_atom_order_unverified", record_id)
                     else:
                         reason("coordinate_atom_inventory_mismatch", record_id)
                 if any(bond.GetIsAromatic() for molecule in (*reactants, *products) for bond in molecule.GetBonds()):
                     reason("aromatic_bond_ambiguity", record_id)
+                for species_name in sorted(
+                    (str(key) for key in group.keys() if str(key).startswith("R") and str(key)[1:].isdigit()),
+                    key=lambda key: (int(key[1:]), key),
+                ):
+                    species = group[species_name]
+                    if not {"smiles", "atomic_numbers"}.issubset(species.keys()):
+                        continue
+                    raw_species_smiles = species["smiles"][()]
+                    species_smiles = raw_species_smiles.decode() if isinstance(raw_species_smiles, bytes) else str(raw_species_smiles)
+                    species_sides = _parse_side(species_smiles, chem)
+                    if species_sides is None:
+                        coordinate_order_audit[f"{species_name}_parse_fail"] += 1
+                        continue
+                    species_atoms = [atom for molecule in species_sides for atom in molecule.GetAtoms()]
+                    source_numbers = [int(value) for value in species["atomic_numbers"][()].tolist()]
+                    coordinate_order_audit[f"{species_name}_records"] += 1
+                    coordinate_order_audit[f"{species_name}_{_coordinate_order_class([atom.GetSymbol() for atom in species_atoms], source_numbers)}"] += 1
+                coordinate_order_audit["TS_records"] += 1
+                coordinate_order_audit[f"TS_{_coordinate_order_class([atom.GetSymbol() for atom in r_atoms], ts_source_numbers)}"] += 1
                 # The endpoint event is computed only as a count here; the
                 # adapter performs the full provenance-bearing label.
                 def bond_map(molecules: Iterable[Any]) -> dict[tuple[int, int], float]:
@@ -311,7 +342,13 @@ def audit_reaction_hdf5_records(path: Path, reaction_info_ids: set[str]) -> dict
                 else:
                     reason("no_bond_change", record_id)
     counts["reaction_info_rows"] = len(reaction_info_ids)
-    return {"status": "observed", "counts": dict(counts), "reason_counts": dict(reasons), "reason_examples": examples}
+    return {
+        "status": "observed",
+        "counts": dict(counts),
+        "reason_counts": dict(reasons),
+        "reason_examples": examples,
+        "coordinate_order_audit": dict(coordinate_order_audit),
+    }
 
 
 def build_report(args: argparse.Namespace) -> dict[str, Any]:

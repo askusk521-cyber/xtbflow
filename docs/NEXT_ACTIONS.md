@@ -197,3 +197,31 @@
   direction coupling are not claimed complete, and scientific comparison is
   blocked until #58 admits sample-level paired event/TS supervision. SPICE E/F
   records remain unsuitable for that supervision.
+
+## 2026-09-30 first bounded real event--TS training
+
+- The Diels--Alder Figshare v5 archive is now audited through the Track-B
+  adapter.  From 1,580 source rows, 201 development records across 41 complete
+  parent groups were admitted after same-directory neutral-singlet state logs,
+  mapped graph/connectivity checks, explicit provenance, and the reactant-only
+  input firewall.  The archive SHA-256 is
+  `4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed`; raw
+  bytes remain in the n2 cache.
+- A clean n2 run from commit `d9cbe56fff3ab080905197afe6bdeb2474ad3f60`
+  completed 3 seeds (11, 17, 23), 12 epochs, 3,420 optimizer steps, and all
+  six frozen arms: strong rule, conserved independent, serial, current-state
+  one-way, bidirectional joint, and unconstrained projection ablation.  The
+  run used one RTX PRO 6000 GPU, one job, and a 30-minute wall budget; actual
+  wall time was 59.27 seconds.  Full per-parent results and checkpoint hashes
+  are in [`docs/evidence/dft_da_joint_training_20260930_d9cbe56.json`](evidence/dft_da_joint_training_20260930_d9cbe56.json), with the public
+  Track-B manifest in [`data/manifests/track_b_reaction_ts.v1.jsonl`](../data/manifests/track_b_reaction_ts.v1.jsonl).
+- The held-out geometry endpoint MSE means were 0.32133 (serial), 0.33107
+  (joint), 0.33842 (current one-way), and 0.33888 (unconstrained); joint did
+  not beat serial in this bounded development run.  The strong-rule diagnostic
+  produced 33.69 candidates per record and covered 0/201 observed event labels.
+  Treat this as a negative development result, not a coupling-gain claim.
+- Confirmatory work remains blocked: the reactant endpoint is declared rather
+  than independently generated, no xTB/CP2K refinement was run, and the run
+  does not establish chemistry or family-out-of-domain generalization.  Next
+  actions are the independent reactant-seed and matched refinement gates in
+  issues 18, 45, 56, 57, and 58.

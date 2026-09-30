@@ -82,8 +82,11 @@ def validate_protocol() -> dict[str, object]:
     protocol = _read_object(PROTOCOL)
     schema = _read_object(PROTOCOL_SCHEMA)
     _validate_required_fields(protocol, schema)
-    if protocol.get("status") != "software_protocol_frozen_scientific_execution_blocked":
-        raise ValueError("workflow B must remain scientifically blocked until paired supervision is admitted")
+    if protocol.get("status") not in {
+        "software_protocol_frozen_scientific_execution_blocked",
+        "scientific_development_enabled_confirmatory_blocked",
+    }:
+        raise ValueError("workflow B status must identify either the pre-admission block or the development-only gate")
 
     blocker = protocol.get("blocking_dependency")
     if not isinstance(blocker, Mapping) or blocker.get("issue") != 58:

@@ -154,8 +154,8 @@
     },
     {
       "path": "configs/models/joint_flow_runtime_v0.1.json",
-      "sha256": "59e15a8b2e76cce61c9c4ca060084a3d9f8a4e4238f922e312374ab8fb3f50a1",
-      "bytes": 936
+      "sha256": "04e9a1925550c58291a16ad2abe08f139006ed44a12cbeb358a6dd6b68ba3b59",
+      "bytes": 960
     },
     {
       "path": "configs/models/joint_flow_v0.1.yaml",
@@ -214,8 +214,8 @@
     },
     {
       "path": "configs/runs/workflow_b_baseline_ladder_v0.1.json",
-      "sha256": "0335f093b48d2a4984e85d95b5afd8bedf17a14ee0b2e872b21ea56ec6ccdd9a",
-      "bytes": 5564
+      "sha256": "c70140573de093ddb4bb315c42dd24a14e1967552175e6ef32a3ce893d561e50",
+      "bytes": 6214
     },
     {
       "path": "configs/seeds/pilot.yaml",
@@ -268,6 +268,11 @@
       "bytes": 0
     },
     {
+      "path": "data/manifests/track_b_reaction_ts.v1.jsonl",
+      "sha256": "e92fb7b8b6135902ecaeabe81c176b334499f4cd3b09df718a019703c8de4bcd",
+      "bytes": 789187
+    },
+    {
       "path": "data/pairs/spice2_openff_256_20260929.jsonl",
       "sha256": "f7c462b58d45ee4ced7ddc9eee2eadc5df72b8b526e8df2feef1d341be9a1fc2",
       "bytes": 3890116
@@ -314,8 +319,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "66835fffcbf04c020f1b26a012c2710e28055f5d55ba30cad7d37fa61b876a11",
-      "bytes": 19894
+      "sha256": "a71fd8800a852cc88e7a46540a948e09e7d4c774e4dd734293d76011b0047454",
+      "bytes": 21849
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -366,6 +371,11 @@
       "path": "docs/evidence/cp2k_runtime_evidence_provenance_20260929.json",
       "sha256": "3e1e18ee42d00732bacbefa2db56f7caf9a698765b164b82cf19579838184abf",
       "bytes": 2049
+    },
+    {
+      "path": "docs/evidence/dft_da_joint_training_20260930_d9cbe56.json",
+      "sha256": "0b9dfe0002cc8716784acb16c4be378be9ab7c90f13eea6513e8b3c3b088fcba",
+      "bytes": 443741
     },
     {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
@@ -639,8 +649,8 @@
     },
     {
       "path": "schemas/workflow_b_baseline.schema.json",
-      "sha256": "a6d670ff6315032a029fec704ca5e4d359c350891d4f60acf69ec11deddd4244",
-      "bytes": 2079
+      "sha256": "d86714d0b6dd2e4465eff57393e957e182c19dd1949e7cb5ca1f8453fa144cd6",
+      "bytes": 2135
     },
     {
       "path": "scripts/audit_independent_seeds.py",
@@ -749,8 +759,8 @@
     },
     {
       "path": "scripts/validate_workflow_b.py",
-      "sha256": "6163d0d2fcb13bcc6b4383c20cd177f462d1b67e6f2a6495cda4a7491f4bc9e0",
-      "bytes": 13653
+      "sha256": "1afbe90e6a1ca9cdfb0be6e816a6cda21ab711bb729ecbc7ebd62f468ec1f2c6",
+      "bytes": 13746
     },
     {
       "path": "src/xtbflow/__init__.py",

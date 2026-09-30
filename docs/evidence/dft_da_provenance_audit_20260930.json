@@ -1,0 +1,103 @@
+{
+  "audit_date": "2026-09-30",
+  "claim_limits": [
+    "DFT energy columns do not prove that the main archive XYZ geometries are DFT geometries.",
+    "Main archive XYZ comments do not contain a method tag; aggregate reactant/product/TS file-level method evidence is unresolved without the source workflow declaration.",
+    "TS element-order agreement is not explicit atom-map evidence; no TS map sidecar is present in the archive.",
+    "The reactant endpoint is source-declared and xTB-workflow-derived; independent reactant preparation is not demonstrated.",
+    "This audit does not verify TS stationary-point frequencies, IRC connectivity, or DFT optimization convergence."
+  ],
+  "dft_reference_source": {
+    "archive": {
+      "expected_md5": "244bb9316918110afd18178e7d12e5e8",
+      "expected_sha256": "8644db068a769f2b9e9054594b6299f57eaa154172f40853b93177d4d418cedd",
+      "expected_size_bytes": 3357107,
+      "matches_expected": true,
+      "md5": "244bb9316918110afd18178e7d12e5e8",
+      "name": "DFT_DA_DATASET.tar.gz",
+      "sha256": "8644db068a769f2b9e9054594b6299f57eaa154172f40853b93177d4d418cedd",
+      "size_bytes": 3357107
+    },
+    "doi": "10.6084/m9.figshare.28768301.v1",
+    "reference_geometry_rows": 1580,
+    "url": "https://figshare.com/articles/dataset/DFT_dataset_M06-2X_def2-TZVP_/28768301"
+  },
+  "execution": {
+    "audit_script_sha256": "882e61a457d45ed21a4abb579a123828280ccb43e0848f46b6f96425ece9d1d4",
+    "calculator_calls": 0,
+    "environment": "xtbflow",
+    "host": "node2",
+    "network_access": "none during audit",
+    "python": "3.10.19",
+    "repository_base_commit": "d9cbe56fff3ab080905197afe6bdeb2474ad3f60",
+    "source_config_sha256": "c025b2a35b7bd3f25cd96e0033f8e6af3c433bac6ac6694dabb15b68f31b6402",
+    "sys_seconds": 0.28,
+    "user_seconds": 6.51,
+    "wall_seconds": 6.8
+  },
+  "findings": {
+    "all_xyz_rows": 1580,
+    "complete_gfn2_log_rows": 338,
+    "dft_energy_claim_status": "cross_archive_values_match",
+    "dft_reference_geometry_distinct_rows": {
+      "monomer_1": 1580,
+      "monomer_2": 1557,
+      "product": 1580,
+      "ts": 1580
+    },
+    "dft_reference_rows_matching": 1580,
+    "dft_reference_rows_mismatching": [],
+    "geometry_method_status_counts": {
+      "source_declared_xTB_file_level_method_unresolved": 1242,
+      "source_declared_xTB_log_supported_for_monomers": 338
+    },
+    "monomer_log_rows": 340,
+    "neutral_singlet_state_rows": 338,
+    "reactant_origin_status_counts": {
+      "declared_reactant_endpoint_independent_origin_unproven": 1580
+    },
+    "ts_element_order_match_rows": 1580,
+    "ts_explicit_map_rows": 0,
+    "ts_mapping_status_counts": {
+      "order_consistent_but_unmapped": 1580
+    }
+  },
+  "provenance_gate": {
+    "development_xTB_geometry_use": "allowed_only_with_source_declared_xTB_claim_limit",
+    "dft_geometry_claim": "quarantine",
+    "independent_reactant_claim": "unknown",
+    "ts_mapping_claim": "quarantine"
+  },
+  "schema": "xtbflow-dft-da-provenance-evidence/v1",
+  "scientific_claim_allowed": false,
+  "source": {
+    "archive": {
+      "expected_md5": "d37dbd26be16b63038537f8f04868fad",
+      "expected_sha256": "4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed",
+      "expected_size_bytes": 358677850,
+      "matches_expected": true,
+      "md5": "d37dbd26be16b63038537f8f04868fad",
+      "name": "DATASET_DA_F.tar.gz",
+      "sha256": "4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed",
+      "size_bytes": 358677850
+    },
+    "doi": "10.6084/m9.figshare.29118509.v5",
+    "geometry_protocol": {
+      "file_level_method_metadata": "absent_in_main_archive",
+      "geometry_level": "GFN2-xTB (source workflow declaration)",
+      "source_paper_doi": "10.1039/d5dd00340g",
+      "workflow": "TS-tools reaction-profile archive"
+    },
+    "geometry_protocol_sha256": "aa4b5055212c023c55a2bb4e580b5e3fa1290216616a9d18eb5f221bbca9197f",
+    "source_row_count": 1580,
+    "source_table_relative_path": "extracted/DATASET_DA_F/dataset_xtb_final.csv",
+    "url": "https://figshare.com/articles/dataset/Diels-Alder_reaction_space_for_self-healing_polymer/29118509"
+  },
+  "status": "completed_with_claim_limits",
+  "unverified_items": [
+    "Per-XYZ method metadata is absent in the main archive; source-level xTB declaration is retained with an unknown file-level method gate.",
+    "No explicit TS atom-map sidecar or map IDs occur in the main archive XYZ comments.",
+    "Reactant endpoint independence and microstate preparation are not documented by the source archive.",
+    "No TS frequency, IRC connectivity, optimization-convergence, or physical validation was checked."
+  ]
+}

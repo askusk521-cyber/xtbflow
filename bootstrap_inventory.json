@@ -288,6 +288,11 @@
       "bytes": 3580
     },
     {
+      "path": "docs/DFT_DA_PROVENANCE_AUDIT.md",
+      "sha256": "0295bb9cb40cda3483fa1686c4129126eee1cf93fa90c1b8a08599d74d7ccf7c",
+      "bytes": 3984
+    },
+    {
       "path": "docs/DFT_DA_TRACK_B.md",
       "sha256": "fefd711c72092640f4db3fb949a4c1368f76390ac9bbbf5253874b2111f3f4d3",
       "bytes": 3189
@@ -381,6 +386,11 @@
       "path": "docs/evidence/dft_da_joint_training_20260930_d9cbe56_config.json",
       "sha256": "da1efd5d4bf95933183759d417285d9055e62f20574f22037fdc25cd82dac271",
       "bytes": 1704
+    },
+    {
+      "path": "docs/evidence/dft_da_provenance_audit_20260930.json",
+      "sha256": "dd51b90838c6a9ae00429bb2b32f9412b781b65a6c8f4a6e7f9a6e2756050d7d",
+      "bytes": 4668
     },
     {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
@@ -656,6 +666,11 @@
       "path": "schemas/workflow_b_baseline.schema.json",
       "sha256": "d86714d0b6dd2e4465eff57393e957e182c19dd1949e7cb5ca1f8453fa144cd6",
       "bytes": 2135
+    },
+    {
+      "path": "scripts/audit_dft_da_provenance.py",
+      "sha256": "882e61a457d45ed21a4abb579a123828280ccb43e0848f46b6f96425ece9d1d4",
+      "bytes": 33662
     },
     {
       "path": "scripts/audit_independent_seeds.py",
@@ -1111,6 +1126,11 @@
       "path": "tests/test_cp2k_parser.py",
       "sha256": "23fd9b167e70f15705575f762a93ae3120ebdd01e49d3e2818f3de3603157b52",
       "bytes": 10362
+    },
+    {
+      "path": "tests/test_dft_da_provenance_audit.py",
+      "sha256": "45e4fa2d8c9695b4d4bd8b02dc668c9945dfe35aa06ddc6196b241932f52a827",
+      "bytes": 7744
     },
     {
       "path": "tests/test_energy_forces.py",

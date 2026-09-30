@@ -39,7 +39,7 @@ cd /home/lhshen/xtbflow/xtbflow
 git rev-parse HEAD
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate xtbflow
-PYTHONPATH=src python scripts/run_dft_da_joint_training.py \
+PYTHONPATH=src:vendor/mechai_reusable python scripts/run_dft_da_joint_training.py \
   --cache-root ~/.cache/xtbflow/dft-da-full-29118509-v1 \
   --output ~/xtbflow-runs/dft-da-joint-20260930 \
   --runtime-config configs/models/joint_flow_runtime_v0.1.json \
@@ -47,11 +47,12 @@ PYTHONPATH=src python scripts/run_dft_da_joint_training.py \
   --seeds 11 17 23 --device cuda
 ```
 
-The entry point trains conserved-independent, serial event-to-geometry, and
-bidirectional joint controls from the same initial state for each seed.  It
-writes the manifest, optimizer checkpoints, per-parent held-out diagnostics,
-configuration hash, checkpoint hashes, environment, split/leakage audit, and
-resource ledger under the output directory.  The run is bounded to one job and
-110 wall minutes; no xTB/CP2K refinement is part of this stage.  Results must
+The entry point records the reactant-only strong-rule diagnostic and trains
+conserved-independent, serial, same-integrator one-way, bidirectional joint,
+and unconstrained projection-toggle controls from the same initial state for
+each seed.  It writes the manifest, optimizer checkpoints, per-parent held-out
+diagnostics, configuration hash, checkpoint hashes, environment, split/leakage
+audit, and resource ledger under the output directory.  The run is bounded to
+one job and 30 wall minutes; no xTB/CP2K refinement is part of this stage.  Results must
 remain labelled development evidence until the independent input and physical
 refinement stages in issues 45, 56, 57, and 58 are complete.

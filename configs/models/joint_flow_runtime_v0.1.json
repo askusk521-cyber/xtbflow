@@ -10,9 +10,10 @@
     "hidden_dim": 64,
     "radial_features": 16
   },
-  "control_modes": [
+    "control_modes": [
     "both_off",
     "serial_independent",
+    "joint_unidirectional",
     "joint_bidirectional"
   ],
   "shared_parameter_policy": "one parameter set evaluated through registered control paths",

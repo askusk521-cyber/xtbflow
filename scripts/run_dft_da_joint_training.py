@@ -33,13 +33,18 @@ from xtbflow.data.dft_da import DftDaSample, load_dft_da_samples, with_splits, w
 from xtbflow.data.records import canonical_hash
 from xtbflow.data.track_b import audit_track_b_leakage, write_track_b_jsonl
 from xtbflow.models import JointFlowRuntimeConfig, pack_be, total_electron_projector, upper_triangle_indices
+from xtbflow.proposals import enumerate_core_events
+from xtbflow.proposals.roles import infer_roles
 from xtbflow.training import joint_flow_loss, model_state_identity, save_joint_checkpoint
+from mechai.data.events import LewisState
 
 
 ARM_SPECS = (
     ("conserved_independent", "both_off", True),
     ("serial_event_to_geometry", "serial_independent", True),
+    ("current_event_to_geometry", "joint_unidirectional", True),
     ("joint_event_geometry", "joint_bidirectional", True),
+    ("unconstrained_event", "joint_bidirectional", False),
 )
 ELEMENT_INDEX = {1: 0, 6: 1, 7: 2, 8: 3}
 VALENCE = {1: 1.0, 6: 4.0, 7: 5.0, 8: 6.0}
@@ -282,6 +287,82 @@ def _evaluate(model: torch.nn.Module, mode: str, samples: list[TensorSample], *,
     )
 
 
+def _strong_rule_baseline(samples: list[DftDaSample]) -> dict[str, Any]:
+    """Evaluate the registered reactant-only rule against labels as diagnostics."""
+
+    attempted = 0
+    applicable = 0
+    covered = 0
+    candidate_counts: list[int] = []
+    failures: Counter[str] = Counter()
+    per_parent: list[dict[str, Any]] = []
+    for sample in samples:
+        attempted += 1
+        symbols = tuple({1: "H", 6: "C", 7: "N", 8: "O"}[number] for number in sample.atomic_numbers)
+        be = np.rint(sample.reactant_bonds).astype(np.int64)
+        degree = be.sum(axis=1).astype(np.int64)
+        matrix = be.copy()
+        for index, number in enumerate(sample.atomic_numbers):
+            matrix[index, index] = int(VALENCE[number] - degree[index])
+        try:
+            state = LewisState(symbols=symbols, be=tuple(tuple(int(value) for value in row) for row in matrix), charge=0, multiplicity=1)
+            proposals = enumerate_core_events(state, infer_roles(state))
+        except (ValueError, KeyError) as exc:
+            failures[type(exc).__name__ + ":" + str(exc)] += 1
+            continue
+        applicable += 1
+        target_edits = {
+            (min(left, right), max(left, right), int(round(delta)))
+            for left, right, delta in _event_edit_indices(sample)
+        }
+        predicted = {
+            (min(edit.i, edit.j), max(edit.i, edit.j), int(edit.delta))
+            for proposal in proposals.candidates
+            for edit in proposal.event.bond_edits
+        }
+        candidate_counts.append(len(proposals.candidates))
+        hit = bool(target_edits) and any(
+            {(min(edit.i, edit.j), max(edit.i, edit.j), int(edit.delta)) for edit in proposal.event.bond_edits} == target_edits
+            for proposal in proposals.candidates
+        )
+        covered += int(hit)
+        per_parent.append(
+            {
+                "record_id": sample.record.record_id,
+                "parent_reaction_id": sample.record.parent_reaction_id,
+                "split_group": sample.record.split_group,
+                "candidate_count": len(proposals.candidates),
+                "target_event_in_candidates": hit,
+                "candidate_event_signature_count": len(predicted),
+            }
+        )
+    return {
+        "arm_id": "strong_rule",
+        "status": "completed",
+        "implementation": "xtbflow.proposals.enumerate_core_events",
+        "input_origin": "reactant_only",
+        "calculator_calls": 0,
+        "records_attempted": attempted,
+        "records_applicable": applicable,
+        "records_with_target_event_in_candidates": covered,
+        "target_event_coverage_diagnostic": (covered / applicable) if applicable else None,
+        "mean_candidate_count": float(np.mean(candidate_counts)) if candidate_counts else None,
+        "failure_counts": dict(failures),
+        "per_parent": per_parent,
+        "claim_limit": "reactant-only rule diagnostic; label-assisted coverage is not a discovery claim",
+    }
+
+
+def _event_edit_indices(sample: DftDaSample) -> list[tuple[int, int, int]]:
+    indices: list[tuple[int, int, int]] = []
+    for left in range(len(sample.atomic_numbers)):
+        for right in range(left + 1, len(sample.atomic_numbers)):
+            delta = int(round(sample.product_bonds[left, right] - sample.reactant_bonds[left, right]))
+            if delta:
+                indices.append((left, right, delta))
+    return indices
+
+
 def _train_arm(
     *,
     seed: int,
@@ -413,7 +494,7 @@ def main() -> int:
     torch.set_float32_matmul_precision("high")
     projector = total_electron_projector(["C"] * max_atoms, dtype=dtype, device=device)
     base_state_by_seed: dict[int, dict[str, torch.Tensor]] = {}
-    results: list[dict[str, Any]] = []
+    results: list[dict[str, Any]] = [_strong_rule_baseline([sample.sample for sample in tensor_samples])]
     run_start = time.monotonic()
     for seed in args.seeds:
         _seed_everything(seed)
@@ -451,7 +532,10 @@ def main() -> int:
         "schema": "xtbflow-real-joint-training/v1",
         "issue": 58,
         "runtime_config": config.constructor_record(),
-        "arms": [{"arm_id": arm, "control_mode": mode, "conservation_projection": projection} for arm, mode, projection in ARM_SPECS],
+        "arms": [{"arm_id": "strong_rule", "kind": "reactant_only_rule"}] + [
+            {"arm_id": arm, "control_mode": mode, "conservation_projection": projection}
+            for arm, mode, projection in ARM_SPECS
+        ],
         "epochs": args.epochs,
         "batch_size": args.batch_size,
         "learning_rate": args.learning_rate,
@@ -498,4 +582,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

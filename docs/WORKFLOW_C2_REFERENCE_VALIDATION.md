@@ -283,3 +283,27 @@ dimer 曲率为 `-11.560159007366892 eV/Å²`。但完整梯度范数为
 四个体系均完成：非平衡水、H₂S、H₃O⁺和有限水二聚体。按体系报告 CP2K–GFN2 力分量差，MAE 分别为 `0.011736229970664137`、`0.010870376792133745`、`0.00962449313433802` 和 `0.011207368798978847 Ha/Å`；四体系简单平均为 `0.010859617174028686 Ha/Å`，最大单分量差为 `0.0346104265309061 Ha/Å`。绝对能量差仅保留在体系记录中，不跨化学计量汇总。
 
 这组结果是同构型 E/F 表征 pilot，不是广泛精度 benchmark，也不能改变当前 CP2K 参考标签仍为 provisional 的状态。公共证据见 `docs/evidence/cp2k_gfn2_bridge_4f0ac1a_20260930.json`，其中保留了私有报告／账本哈希和 artifact 相对路径索引。
+
+## 2026-09-30 Kingfisher CH2O 事件候选预检
+
+此前在 n2 上对本地 Kingfisher `kingfisher-ch2o-events-v2` 的前 8 个源事件运行过相同的 GFN2 dimer 预检。每个候选使用源声明的反应物坐标、核心意图中第一个新增键作为初始内部模态，并消耗独立的 3-call 持久化账本。8/8 候选均因正曲率而拒绝：曲率范围为 `9.866446495683652` 到 `16.00861150530248 eV/Å²`；投影力范数范围为 `0.00881623956577774` 到 `0.11863148206445423 Ha/Å`。因此没有一个候选创建正式 dimer 预算。该历史负结果保留在
+`docs/evidence/kingfisher_gfn2_preflight_20260930.json`，但其字段不足以作为后续批量执行的完整审计记录。
+
+新的批量入口 `scripts/run_kingfisher_gfn2_preflight.py` 要求先生成冻结的规范化 JSONL；每行必须显式提供 `candidate_id`、反应物坐标、元素、charge、multiplicity 和初始模态，不从事件标签或结果临时推断缺失字段。每个候选报告自己的输入哈希、电子态、xTBloom/tblite 运行版本、3-call 账本结算状态和 preflight 决策。n2 批量命令为：
+
+```bash
+PYTHONPATH=src:vendor/mechai_reusable \
+python scripts/run_kingfisher_gfn2_preflight.py \
+  --manifest "$KINGFISHER_PREFLIGHT_MANIFEST" \
+  --source-locator "external-cache:mechai/data/processed/kingfisher-ch2o-events-v2/events.jsonl" \
+  --config configs/validation/kingfisher_gfn2_preflight_v0.1.json \
+  --output "$RUN_ROOT/kingfisher-preflight/report.json" \
+  --ledger-dir "$RUN_ROOT/kingfisher-preflight/ledgers" \
+  --artifact-dir "$RUN_ROOT/kingfisher-preflight/artifacts"
+```
+
+预检拒绝只表示该候选未获准创建 dimer 预算，报告的 `search_status` 为
+`not_executed`，不能解释为完整 TS 搜索失败，也不能作为搜索初猜。预检通过只表示
+`search_initial_guess_eligible=true`；上述批量入口本身仍不执行 dimer 搜索。由于这些
+坐标来自 Kingfisher 的源搜索输入，且环境选择并非独立于原始搜索，资产仍保持
+Track-B quarantine，不产生 TS、IRC、端点连通、机制或联合训练结论。

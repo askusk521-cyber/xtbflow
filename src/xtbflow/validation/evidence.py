@@ -3,7 +3,13 @@ from __future__ import annotations
 
 import hashlib
 from pathlib import Path
+import re
 from typing import Any, Mapping
+
+
+_PRIVATE_PATH = re.compile(
+    r"(?<![:A-Za-z0-9_])(?:/(?:[^\s\"'`,;)}\]]+/)+[^\s\"'`,;)}\]]+|[A-Za-z]:[\\/])[^\s\"'`,;)}\]]*"
+)
 
 
 def sha256_file(path: str | Path) -> str:
@@ -13,6 +19,28 @@ def sha256_file(path: str | Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def sanitize_error_message(value: Any) -> str | None:
+    """Remove host-local absolute paths from a public error string."""
+
+    if value is None:
+        return None
+    return _PRIVATE_PATH.sub("[private-path]", str(value))
+
+
+def sanitize_public_value(value: Any) -> Any:
+    """Recursively redact private paths before writing public evidence."""
+
+    if isinstance(value, Mapping):
+        return {str(key): sanitize_public_value(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [sanitize_public_value(item) for item in value]
+    if isinstance(value, tuple):
+        return [sanitize_public_value(item) for item in value]
+    if isinstance(value, str):
+        return sanitize_error_message(value)
+    return value
 
 
 def index_artifacts(root: str | Path) -> list[dict[str, Any]]:

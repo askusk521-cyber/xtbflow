@@ -1,0 +1,40 @@
+{
+  "schema": "xtbflow-kingfisher-gfn2-preflight/v1",
+  "protocol": {
+    "protocol_id": "tblite-gfn2-kingfisher-preflight-v1",
+    "calculator": "xtb_oracle",
+    "method": "GFN2-xTB",
+    "backend": "cpu",
+    "parameters": {
+      "accuracy": 1.0,
+      "max_iterations": 250,
+      "electronic_temperature": 300.0,
+      "implementation": "tblite",
+      "solvent": null
+    }
+  },
+  "search": {
+    "fmax_eV_per_angstrom": 0.05,
+    "max_steps": 10,
+    "dimer_separation_angstrom": 0.001,
+    "max_num_rot": 1,
+    "maximum_translation_angstrom": 0.05,
+    "trial_translation_step_angstrom": 0.001,
+    "random_seed": 20260930,
+    "remove_rigid_body_modes": true,
+    "rigid_body_tolerance": 1e-10
+  },
+  "preflight": {
+    "hvp_step_angstrom": 0.001,
+    "budget": {
+      "phase": "P1-gfn2-kingfisher-preflight",
+      "max_calculator_calls": 3,
+      "max_concurrent_jobs": 1,
+      "max_retries_per_job": 0
+    },
+    "gate": {
+      "require_negative_curvature": true,
+      "max_projected_force_norm_hartree_per_angstrom": 0.001
+    }
+  }
+}

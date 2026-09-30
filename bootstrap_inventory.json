@@ -233,6 +233,11 @@
       "bytes": 4110
     },
     {
+      "path": "configs/validation/kingfisher_gfn2_preflight_v0.1.json",
+      "sha256": "337e9af14c7c95de049ccaf664226788b205f5fecbdc584d43b35c7709739f93",
+      "bytes": 1054
+    },
+    {
       "path": "configs/validation/ts_v0.1.yaml",
       "sha256": "8599350fceb794e375719a918731d85f76d22e01c5e64446bd071cbf7ef5086b",
       "bytes": 434
@@ -309,8 +314,8 @@
     },
     {
       "path": "docs/WORKFLOW_C2_REFERENCE_VALIDATION.md",
-      "sha256": "0078a4b4b5b303d2089fbdb007f9e39d42b526bd974390c3680f8b67f6d4aecc",
-      "bytes": 18206
+      "sha256": "3cffbe6774c8c9fee4a9d0ada3d03fbabf5a52847bc75346c88dbd60f535f35b",
+      "bytes": 19314
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -709,8 +714,8 @@
     },
     {
       "path": "scripts/run_gfn2_dimer_pilot.py",
-      "sha256": "bab48a6f11f275279b1c2f35eff0fdecd221a59a92e76067d95d67272d7ef44c",
-      "bytes": 17113
+      "sha256": "d2ebbc6ece3fa9183b67ae3d378ed67d7a0532f75394bc82cefc4c31a44401da",
+      "bytes": 18655
     },
     {
       "path": "scripts/run_gfn2_independent_fd.py",
@@ -726,6 +731,11 @@
       "path": "scripts/run_gfn2_qualification.py",
       "sha256": "84706cb111d799fa2ef9761fa59539ac5d8269566a398c0c0bd46a9d38e6db7a",
       "bytes": 15646
+    },
+    {
+      "path": "scripts/run_kingfisher_gfn2_preflight.py",
+      "sha256": "831d15d5ef1ed7119d62451ab9514e01b388b1cc260b00099c4ae2d497476ab6",
+      "bytes": 14441
     },
     {
       "path": "scripts/run_reference_bridge.py",
@@ -984,8 +994,8 @@
     },
     {
       "path": "src/xtbflow/validation/__init__.py",
-      "sha256": "2a75d8e14fa676d3f759b5b239c0a6e91079f8f5e22c5eed2d83ab212ce82221",
-      "bytes": 1072
+      "sha256": "a11fab13d8e65079cff0ec5de064d2a4973e7d36cb9ddf38c75329a30ae8e6ed",
+      "bytes": 1186
     },
     {
       "path": "src/xtbflow/validation/ase_calculator.py",
@@ -1009,8 +1019,8 @@
     },
     {
       "path": "src/xtbflow/validation/evidence.py",
-      "sha256": "c8d5d5d6554c01b04ae308e2b5ebb7ac32cd2460548b3c044817ef7a332de00b",
-      "bytes": 5764
+      "sha256": "7582444a05930507edddeac8c4730165889581c252424f47a9058cf36edde1ea",
+      "bytes": 6664
     },
     {
       "path": "src/xtbflow/validation/modes.py",
@@ -1131,6 +1141,11 @@
       "path": "tests/test_joint_flow.py",
       "sha256": "d18c71fa4bddb1f3758adf3203a631eeb1f3d1e3969f685ae48979cb20010ba3",
       "bytes": 14172
+    },
+    {
+      "path": "tests/test_kingfisher_preflight.py",
+      "sha256": "48b4979097fd8e7e4dbbab3d941f922068c7e303a0ddeb5efce56c306fcf2270",
+      "bytes": 2055
     },
     {
       "path": "tests/test_package.py",

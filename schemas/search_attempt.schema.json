@@ -1,0 +1,182 @@
+{
+  "$id": "https://xtbflow.local/schemas/search_attempt.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attempt_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "attempt_version": {
+      "description": "Append-only cumulative snapshot version. Cost and status fields are totals through this version; final audits use the latest version per attempt.",
+      "minimum": 1,
+      "type": "integer"
+    },
+    "calculator_calls": {
+      "description": "Cumulative calculator-call totals through this attempt version, keyed by protocol ID.",
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "calculator_protocols": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "method": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "protocol_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "protocol_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "software": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "units": {
+            "additionalProperties": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "minProperties": 1,
+            "type": "object"
+          },
+          "version": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "protocol_id",
+          "protocol_sha256",
+          "method",
+          "software",
+          "version",
+          "units"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "created_at": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "evidence_status": {
+      "enum": [
+        "unattempted",
+        "attempted_unresolved",
+        "valid_alternative",
+        "se_validated",
+        "reference_single_point_labeled",
+        "reference_ts_connected",
+        "solution_prediction_validated"
+      ]
+    },
+    "failure_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "family_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "initial_geometry_locator": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "initial_geometry_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "observed_event": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "parent_system_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "proposal_method": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "proposal_revision": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "proposed_event": {
+      "type": "object"
+    },
+    "random_seed": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "raw_log_locator": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "raw_log_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "retry_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "xtbflow-search-attempt/v1"
+    },
+    "seed_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "wall_seconds": {
+      "description": "Cumulative wall-clock seconds through this attempt version.",
+      "minimum": 0,
+      "type": "number"
+    }
+  },
+  "required": [
+    "schema_version",
+    "attempt_id",
+    "attempt_version",
+    "seed_id",
+    "parent_system_id",
+    "family_id",
+    "proposal_method",
+    "proposal_revision",
+    "random_seed",
+    "proposed_event",
+    "observed_event",
+    "initial_geometry_locator",
+    "initial_geometry_sha256",
+    "evidence_status",
+    "calculator_protocols",
+    "calculator_calls",
+    "wall_seconds",
+    "retry_count",
+    "failure_reason",
+    "raw_log_locator",
+    "raw_log_sha256",
+    "created_at"
+  ],
+  "title": "XTBFlow append-only search attempt",
+  "type": "object"
+}

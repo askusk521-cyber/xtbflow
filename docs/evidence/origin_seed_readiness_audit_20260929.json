@@ -1,0 +1,201 @@
+{
+  "audit_script_sha256": "1a978fb9b33fe6fca4e8069ef81547dd9e3a69158092c03a76f8b5a4de15e5c1",
+  "candidate_reports": [
+    {
+      "blocking_codes": [
+        "candidate_not_admitted",
+        "charge_spin_not_confirmed",
+        "declared_requirements_missing",
+        "independent_seed_records_absent",
+        "license_record_absent",
+        "structure_not_frozen_hashed"
+      ],
+      "candidate_id": "origins_acyl_001",
+      "declared_missing": [
+        "exact source structures",
+        "microstate ensemble",
+        "atom mapping",
+        "reactant conformers and environment pool",
+        "input hashes"
+      ],
+      "identity_state_ready": false,
+      "independent_seed_ready": false,
+      "literature_anchor_ready": true,
+      "mechanism_family_id": "aqueous_thioester_rna_aminoacylation",
+      "parent_reaction_id": "adenosine_arg_ethanethioester_v0",
+      "provisional_charge_spin_values_ignored": false,
+      "seed_validation_errors": [
+        "independent_seed_records_absent"
+      ],
+      "source_doi": "10.1038/s41586-025-09388-y",
+      "validated_seed_record_count": 0
+    },
+    {
+      "blocking_codes": [
+        "candidate_not_admitted",
+        "charge_spin_not_confirmed",
+        "declared_requirements_missing",
+        "independent_seed_records_absent",
+        "license_record_absent",
+        "structure_not_frozen_hashed"
+      ],
+      "candidate_id": "origins_acyl_002",
+      "declared_missing": [
+        "exact source structures",
+        "microstate ensemble",
+        "atom mapping",
+        "reactant conformers and environment pool",
+        "input hashes"
+      ],
+      "identity_state_ready": false,
+      "independent_seed_ready": false,
+      "literature_anchor_ready": true,
+      "mechanism_family_id": "aqueous_thioester_rna_aminoacylation",
+      "parent_reaction_id": "adenosine_ala_ethanethioester_v0",
+      "provisional_charge_spin_values_ignored": false,
+      "seed_validation_errors": [
+        "independent_seed_records_absent"
+      ],
+      "source_doi": "10.1038/s41586-025-09388-y",
+      "validated_seed_record_count": 0
+    },
+    {
+      "blocking_codes": [
+        "candidate_not_admitted",
+        "charge_spin_not_confirmed",
+        "declared_requirements_missing",
+        "independent_seed_records_absent",
+        "license_record_absent",
+        "structure_not_frozen_hashed"
+      ],
+      "candidate_id": "origins_aminonitrile_001",
+      "declared_missing": [
+        "exact source reaction instance",
+        "all reagent structures and stoichiometry",
+        "microstate ensemble",
+        "atom mapping",
+        "input hashes"
+      ],
+      "identity_state_ready": false,
+      "independent_seed_ready": false,
+      "literature_anchor_ready": true,
+      "mechanism_family_id": "sulfide_mediated_aminonitrile_ligation",
+      "parent_reaction_id": "glycine_nitrile_ligation_v0",
+      "provisional_charge_spin_values_ignored": false,
+      "seed_validation_errors": [
+        "independent_seed_records_absent"
+      ],
+      "source_doi": "10.1038/s41586-019-1371-4",
+      "validated_seed_record_count": 0
+    },
+    {
+      "blocking_codes": [
+        "candidate_not_admitted",
+        "charge_spin_not_confirmed",
+        "declared_requirements_missing",
+        "independent_seed_records_absent",
+        "license_record_absent",
+        "structure_not_frozen_hashed"
+      ],
+      "candidate_id": "origins_aminonitrile_002",
+      "declared_missing": [
+        "exact source reaction instance",
+        "all reagent structures and stoichiometry",
+        "microstate and stereochemical state",
+        "atom mapping",
+        "input hashes"
+      ],
+      "identity_state_ready": false,
+      "independent_seed_ready": false,
+      "literature_anchor_ready": true,
+      "mechanism_family_id": "sulfide_mediated_aminonitrile_ligation",
+      "parent_reaction_id": "alanine_nitrile_ligation_v0",
+      "provisional_charge_spin_values_ignored": false,
+      "seed_validation_errors": [
+        "independent_seed_records_absent"
+      ],
+      "source_doi": "10.1038/s41586-019-1371-4",
+      "validated_seed_record_count": 0
+    },
+    {
+      "blocking_codes": [
+        "candidate_not_admitted",
+        "charge_spin_not_confirmed",
+        "declared_requirements_missing",
+        "independent_seed_records_absent",
+        "license_record_absent",
+        "structure_not_frozen_hashed"
+      ],
+      "candidate_id": "origins_aminooxazole_001",
+      "declared_missing": [
+        "source-exact structures and tautomers",
+        "phosphate/environment atom pool",
+        "atom mapping",
+        "independent conformers and approaches",
+        "input hashes"
+      ],
+      "identity_state_ready": false,
+      "independent_seed_ready": false,
+      "literature_anchor_ready": true,
+      "mechanism_family_id": "aminooxazole_ribonucleotide_precursor",
+      "parent_reaction_id": "glycolaldehyde_cyanamide_aminooxazole_v0",
+      "provisional_charge_spin_values_ignored": true,
+      "seed_validation_errors": [
+        "independent_seed_records_absent"
+      ],
+      "source_doi": "10.1038/nature08013",
+      "validated_seed_record_count": 0
+    },
+    {
+      "blocking_codes": [
+        "candidate_not_admitted",
+        "charge_spin_not_confirmed",
+        "declared_requirements_missing",
+        "independent_seed_records_absent",
+        "license_record_absent",
+        "structure_not_frozen_hashed"
+      ],
+      "candidate_id": "origins_aminooxazole_002",
+      "declared_missing": [
+        "source-exact stereochemical structures",
+        "phosphate/environment atom pool",
+        "atom mapping",
+        "independent conformers and approaches",
+        "input hashes"
+      ],
+      "identity_state_ready": false,
+      "independent_seed_ready": false,
+      "literature_anchor_ready": true,
+      "mechanism_family_id": "aminooxazole_ribonucleotide_precursor",
+      "parent_reaction_id": "aminooxazole_glyceraldehyde_aminooxazoline_v0",
+      "provisional_charge_spin_values_ignored": true,
+      "seed_validation_errors": [
+        "independent_seed_records_absent"
+      ],
+      "source_doi": "10.1038/nature08013",
+      "validated_seed_record_count": 0
+    }
+  ],
+  "claim_boundary": "Candidate-to-seed governance evidence only. This audit never creates reactant geometries, fills missing electronic states, authorizes search, or provides event/TS supervision.",
+  "identity_state_ready_count": 0,
+  "independent_seed_contract_sha256": "dde314c39299a83ec95f8d54d7ce806b8ad5a24823fbde009b6b2c6bac4e185e",
+  "independent_seed_ready_count": 0,
+  "leakage_error": null,
+  "leakage_report": null,
+  "literature_anchor_ready_count": 6,
+  "readiness_contract_sha256": "d71d73a88c9b0144059bd110ba4d0bea1f730223c77c2070e55422552f6a0f45",
+  "registry": {
+    "candidate_count": 6,
+    "locator": "github:askusk521-cyber/xtbflow@2baa5ce9dad0b8271abec7321e8a256acebe5d5e:configs/science/origin_candidates_v0.1.yaml",
+    "schema": "xtbflow-origin-candidates/v0.1",
+    "sha256": "e990807c009dc53137551a66e878cdbddbd61d2e82479ae6e62c97a7bb0cb30e",
+    "source_commit": "2baa5ce9dad0b8271abec7321e8a256acebe5d5e"
+  },
+  "repository_base_commit": "d2379270bf5b59a1523a55db63ab56d3418a382a",
+  "schema_version": "xtbflow-origin-seed-readiness-audit/v1",
+  "scientific_claim_allowed": false,
+  "search_authorized": false,
+  "seed_manifest_population_allowed": false,
+  "strict_family_holdout": true,
+  "validated_seed_record_count": 0
+}

@@ -1,0 +1,32 @@
+{
+  "admitted_record_count": 0,
+  "audit_script_sha256": "72a679bb61e5a6823c63a14755686195209376d9e1d457fade97566317ef9f77",
+  "input_admission_counts": {},
+  "input_record_count": 0,
+  "leakage_error": null,
+  "leakage_report": {
+    "leakage_dimensions_checked": [
+      "family_id",
+      "input_fingerprint",
+      "parent_reaction_id",
+      "source_record",
+      "source_record_bytes",
+      "split_group"
+    ],
+    "record_count": 0,
+    "split_counts": {},
+    "strict_family_holdout": true
+  },
+  "manifest": "data/manifests/track_b_reaction_ts.v0.1.jsonl",
+  "manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "policy_config": "configs/data/track_b_admission_v1.json",
+  "policy_config_sha256": "bd22080f4d259a7fe53d4f6cafed0ccf71f14db1dbd1e14f1a5d29533b04c864",
+  "quarantine_reason_counts": {},
+  "quarantined_record_count": 0,
+  "record_schema": "xtbflow-track-b-reaction-ts/v1",
+  "repository_base_commit": "abee6248daaf0c81cde2e676b0b139f4b5d26d1e",
+  "schema_version": "xtbflow-track-b-audit/v1",
+  "scientific_claim_allowed": false,
+  "strict_family_holdout": true,
+  "track_b_contract_sha256": "c122146d93386d04f6f82d6e70cdef0b3aaa60405b8875c2b556118a2b312f46"
+}

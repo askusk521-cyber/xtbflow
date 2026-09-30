@@ -1,0 +1,34 @@
+schema_version: xtbflow-independent-seed-pilot/v1
+purpose: bounded independent reactant inputs for Track-B development
+execution:
+  enabled: false
+  max_parent_systems: 20
+  max_microstates_per_parent: 4
+  max_conformers_per_microstate: 8
+  max_environment_snapshots_per_conformer: 3
+  require_presearch_freeze: true
+  require_explicit_hydrogens: true
+  require_atom_mapping: true
+  require_explicit_charge_multiplicity: true
+  require_geometry_sha256: true
+  require_append_only_attempt_records: true
+  accept_reference_geometry_as_input: false
+  accept_reference_selected_environment: false
+  accept_missing_units: false
+scope:
+  allowed_elements: [H, C, N, O, S]
+  periodic: false
+  charge_min: -3
+  charge_max: 3
+  multiplicity_min: 1
+  multiplicity_max: 5
+split_policy:
+  roles:
+    - development_train
+    - development_validation
+    - development_test
+    - confirmatory
+  strict_parent_holdout: true
+  strict_family_holdout: true
+  exact_input_fingerprint_holdout: true
+  assign_before_search: true

@@ -20,7 +20,7 @@ from pathlib import Path
 import re
 from typing import Any, Iterable, Iterator, Mapping, Sequence
 
-from .records import canonical_hash
+from .records import _ELEMENT_ATOMIC_NUMBERS, canonical_hash
 
 
 REACTION_QM_RECORD = "Reaction-QM"
@@ -31,6 +31,8 @@ RGD1_REVISION = "figshare:21066901@v6"
 RGD1_URL = "https://doi.org/10.6084/m9.figshare.21066901.v6"
 EVENT_RULE_VERSION = "mapped-endpoint-difference-v1"
 _SHA256 = re.compile(r"^[0-9a-fA-F]{64}$")
+_UNRESOLVED = frozenset({"", "unknown", "unavailable", "ambiguous", "missing", "not_provided", "unverified"})
+_EXPLICIT_COORDINATE_MAP_EVIDENCE = frozenset({"explicit_source_map", "independent_mapping_table"})
 
 
 @dataclass(frozen=True)
@@ -416,6 +418,46 @@ def derive_event_label(
     }
 
 
+def reaction_qm_record_hash(
+    *,
+    record_id: str,
+    parent_reaction_id: str,
+    reaction_family_id: str,
+    independent_reactant_system_id: str,
+    repeated_ts_group: str,
+    reactant_graph: MappedGraph,
+    product_graph: MappedGraph,
+    reactant_coordinates: Sequence[Sequence[float]],
+    ts_coordinates: Sequence[Sequence[float]],
+    charge: int,
+    multiplicity: int,
+    reference_protocol: Mapping[str, str],
+    coordinate_map_evidence: str,
+) -> str:
+    """Hash the complete source payload, including coordinates and state.
+
+    The hash is deliberately computed from the values that enter the training
+    contract.  A source identity hash over only an ID or SMILES is insufficient
+    because it would remain unchanged if geometry or electronic state changed.
+    """
+
+    return canonical_hash({
+        "record_id": record_id,
+        "parent_reaction_id": parent_reaction_id,
+        "reaction_family_id": reaction_family_id,
+        "independent_reactant_system_id": independent_reactant_system_id,
+        "repeated_ts_group": repeated_ts_group,
+        "reactant_graph": reactant_graph.to_dict(),
+        "product_graph": product_graph.to_dict(),
+        "reactant_coordinates": [[float(value) for value in row] for row in reactant_coordinates],
+        "ts_coordinates": [[float(value) for value in row] for row in ts_coordinates],
+        "charge": charge,
+        "multiplicity": multiplicity,
+        "reference_protocol": dict(reference_protocol),
+        "coordinate_map_evidence": coordinate_map_evidence,
+    })
+
+
 def _coordinates(value: Sequence[Sequence[Any]], *, atoms: int, name: str) -> tuple[tuple[float, float, float], ...]:
     if isinstance(value, (str, bytes)) or not isinstance(value, Sequence) or len(value) != atoms:
         raise ValueError(f"{name} must contain one xyz row per atom")
@@ -450,6 +492,7 @@ class ReactionQMRecord:
     event_label: Mapping[str, Any]
     admission: str = "quarantine"
     quarantine_reasons: tuple[str, ...] = field(default_factory=tuple)
+    coordinate_map_evidence: str = "unverified"
 
     def __post_init__(self) -> None:
         for name in ("record_id", "parent_reaction_id", "reaction_family_id", "independent_reactant_system_id", "repeated_ts_group", "source_record_hash"):
@@ -465,6 +508,21 @@ class ReactionQMRecord:
             raise ValueError("source_record_hash must be a SHA-256 digest")
         if not isinstance(self.reference_protocol, Mapping) or not self.reference_protocol:
             raise ValueError("reference_protocol must be explicit")
+        if not isinstance(self.coordinate_map_evidence, str) or not self.coordinate_map_evidence.strip():
+            raise ValueError("coordinate_map_evidence must be explicit")
+        electronic_state_reason: str | None = None
+        try:
+            electron_count = sum(_ELEMENT_ATOMIC_NUMBERS[symbol] for symbol in self.reactant_graph.atoms.values()) - self.charge
+        except KeyError as exc:
+            if self.admission != "quarantine":
+                raise ValueError(f"unsupported element for electronic-state validation: {exc.args[0]}") from exc
+            electronic_state_reason = "electronic_state_unverifiable"
+        else:
+            unpaired = self.multiplicity - 1
+            if electron_count < 0 or unpaired > electron_count or (electron_count - unpaired) % 2:
+                if self.admission != "quarantine":
+                    raise ValueError("charge and multiplicity are inconsistent with the electron count")
+                electronic_state_reason = "electronic_state_inconsistent"
         if not isinstance(self.event_label, Mapping) or self.event_label.get("evidence") != "derived_under_contract":
             raise ValueError("event_label must carry derived_under_contract evidence")
         expected_event_label = derive_event_label(
@@ -475,6 +533,8 @@ class ReactionQMRecord:
         if dict(self.event_label) != expected_event_label:
             raise ValueError("event_label does not match the mapped endpoint graphs")
         reasons = tuple(sorted(set(self.quarantine_reasons)))
+        if electronic_state_reason is not None and self.admission == "quarantine":
+            reasons = tuple(sorted(set((*reasons, electronic_state_reason))))
         if any(not isinstance(reason, str) or not reason.strip() for reason in reasons):
             raise ValueError("quarantine reasons must be nonempty strings")
         object.__setattr__(self, "quarantine_reasons", reasons)
@@ -482,6 +542,37 @@ class ReactionQMRecord:
             raise ValueError("unsupported admission state")
         if self.admission != "quarantine" and reasons:
             raise ValueError("admitted rows cannot carry quarantine reasons")
+        if self.admission != "quarantine":
+            unresolved = [
+                name for name, value in (
+                    ("parent_reaction_id", self.parent_reaction_id),
+                    ("reaction_family_id", self.reaction_family_id),
+                    ("independent_reactant_system_id", self.independent_reactant_system_id),
+                    ("repeated_ts_group", self.repeated_ts_group),
+                )
+                if value.strip().lower() in _UNRESOLVED
+            ]
+            if unresolved:
+                raise ValueError(f"admitted records cannot have unresolved grouping fields: {unresolved}")
+            if self.coordinate_map_evidence not in _EXPLICIT_COORDINATE_MAP_EVIDENCE:
+                raise ValueError("admitted records require explicit coordinate-to-map evidence")
+        expected_hash = reaction_qm_record_hash(
+            record_id=self.record_id,
+            parent_reaction_id=self.parent_reaction_id,
+            reaction_family_id=self.reaction_family_id,
+            independent_reactant_system_id=self.independent_reactant_system_id,
+            repeated_ts_group=self.repeated_ts_group,
+            reactant_graph=self.reactant_graph,
+            product_graph=self.product_graph,
+            reactant_coordinates=self.reactant_coordinates,
+            ts_coordinates=self.ts_coordinates,
+            charge=self.charge,
+            multiplicity=self.multiplicity,
+            reference_protocol=self.reference_protocol,
+            coordinate_map_evidence=self.coordinate_map_evidence,
+        )
+        if self.source_record_hash.lower() != expected_hash:
+            raise ValueError("source_record_hash does not bind the complete record payload")
 
     def reactant_input(self) -> dict[str, Any]:
         """Deployment-visible input view; product, TS and event labels stay out."""
@@ -511,6 +602,7 @@ class ReactionQMRecord:
             "event_label": dict(self.event_label),
             "admission": self.admission,
             "quarantine_reasons": list(self.quarantine_reasons),
+            "coordinate_map_evidence": self.coordinate_map_evidence,
         }
 
 
@@ -624,13 +716,32 @@ class ReactionQMLoader:
         if tuple(int(value) for value in ts["atomic_numbers"][()].tolist()) != expected_numbers:
             raise ValueError(f"{record_id}: coordinate_atom_order_unverified: TS coordinates lack certified map order")
         protocol = {"method": "B3LYP-D3", "basis": "TZVP", "coordinates": "angstrom", "energy": "hartree"}
-        source_record_hash = canonical_hash({"source_revision": self.config.revision, "record_id": record_id, "reaction_smiles": smiles})
+        coordinate_map_evidence = "source_hdf5_has_no_atom_map_ids"
+        parent_reaction_id = "unknown"
+        reaction_family_id = "unknown"
+        independent_reactant_system_id = "unknown"
+        repeated_ts_group = "unknown"
+        source_record_hash = reaction_qm_record_hash(
+            record_id=record_id,
+            parent_reaction_id=parent_reaction_id,
+            reaction_family_id=reaction_family_id,
+            independent_reactant_system_id=independent_reactant_system_id,
+            repeated_ts_group=repeated_ts_group,
+            reactant_graph=reactant_graph,
+            product_graph=product_graph,
+            reactant_coordinates=reactant_coordinates,
+            ts_coordinates=ts_coordinates,
+            charge=int(ts["charge"][()]),
+            multiplicity=int(ts["multiplicity"][()]),
+            reference_protocol=protocol,
+            coordinate_map_evidence=coordinate_map_evidence,
+        )
         return ReactionQMRecord(
             record_id=record_id,
-            parent_reaction_id="unknown",
-            reaction_family_id="unknown",
-            independent_reactant_system_id="unknown",
-            repeated_ts_group="unknown",
+            parent_reaction_id=parent_reaction_id,
+            reaction_family_id=reaction_family_id,
+            independent_reactant_system_id=independent_reactant_system_id,
+            repeated_ts_group=repeated_ts_group,
             reactant_graph=reactant_graph,
             product_graph=product_graph,
             reactant_coordinates=reactant_coordinates,
@@ -641,7 +752,14 @@ class ReactionQMLoader:
             source_record_hash=source_record_hash,
             event_label=event_label,
             admission="quarantine",
-            quarantine_reasons=("reaction_family_unresolved", "parent_reaction_unresolved", "independent_reactant_system_unresolved", "repeated_ts_group_unresolved"),
+            quarantine_reasons=(
+                "coordinate_map_unverified",
+                "reaction_family_unresolved",
+                "parent_reaction_unresolved",
+                "independent_reactant_system_unresolved",
+                "repeated_ts_group_unresolved",
+            ),
+            coordinate_map_evidence=coordinate_map_evidence,
         )
 
 
@@ -715,5 +833,5 @@ def _concatenate_species_coordinates(group: Any, *, prefix: str) -> tuple[tuple[
 
 __all__ = [
     "Bond", "EVENT_RULE_VERSION", "MappedGraph", "PublicSourceConfig", "REACTION_QM_SOURCE", "RGD1_SOURCE",
-    "ReactionQMLoader", "ReactionQMRecord", "SourceFile", "audit_source_files", "derive_event_label", "source_configs",
+    "ReactionQMLoader", "ReactionQMRecord", "SourceFile", "audit_source_files", "derive_event_label", "reaction_qm_record_hash", "source_configs",
 ]

@@ -18,6 +18,13 @@ HDF5 坐标只保存原子序数和坐标，没有每个坐标行对应的 atom-
 几何训练，直到独立坐标-to-map 关系被核实。`ReactionQMLoader` 因此会对未核实
 坐标映射保留明确失败原因，不自动重排。
 
+`ReactionQMRecord` 的准入合同还要求母反应、反应族、独立反应物体系和重复 TS
+分组均已解析，并要求 `coordinate_map_evidence` 明确指向来源 map 或独立映射表。
+元素序列相同不再被当作坐标映射证据。`source_record_hash` 覆盖图、实际坐标、
+电荷和多重度；电子数与自旋多重度奇偶不一致的记录不能准入，来源审计行会保留
+`electronic_state_inconsistent` quarantine 原因。当前 HDF5 loader 因此仍只生成带
+`coordinate_map_unverified` 和未解析分组原因的 quarantine 记录。
+
 RGD1 v6 的 atom-mapped index、DFT reaction info、`RandP_smiles.txt` 和
 `RGD1_CHNO.h5` 已缓存并哈希固定。CSV/index 有 176,898 条唯一 channel，全部
 为 CHNO，图形式电荷 proxy 为中性；缺少显式 charge 和 multiplicity。映射 CSV

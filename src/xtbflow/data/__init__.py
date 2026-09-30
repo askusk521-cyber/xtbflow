@@ -36,6 +36,7 @@ from .reaction_qm import (
     SourceFile,
     audit_source_files,
     derive_event_label,
+    reaction_qm_record_hash,
     source_configs,
 )
 
@@ -64,6 +65,6 @@ __all__ = [
     "assign_group_splits", "audit_no_group_leakage", "audit_no_input_fingerprint_leakage",
     "EFPair", "PAIR_CANONICAL_UNITS", "build_ef_pair", "failure_pair", "geometry_hash", "append_pair_cache", "load_pair_cache",
     "Bond", "EVENT_RULE_VERSION", "MappedGraph", "PublicSourceConfig", "REACTION_QM_SOURCE", "RGD1_SOURCE",
-    "ReactionQMLoader", "ReactionQMRecord", "SourceFile", "audit_source_files", "derive_event_label", "source_configs",
+    "ReactionQMLoader", "ReactionQMRecord", "SourceFile", "audit_source_files", "derive_event_label", "reaction_qm_record_hash", "source_configs",
     *_TASK_VIEW_EXPORTS,
 ]

@@ -1,0 +1,73 @@
+{
+  "arms": [
+    {
+      "arm_id": "strong_rule",
+      "kind": "reactant_only_rule"
+    },
+    {
+      "arm_id": "conserved_independent",
+      "conservation_projection": true,
+      "control_mode": "both_off"
+    },
+    {
+      "arm_id": "serial_event_to_geometry",
+      "conservation_projection": true,
+      "control_mode": "serial_independent"
+    },
+    {
+      "arm_id": "current_event_to_geometry",
+      "conservation_projection": true,
+      "control_mode": "joint_unidirectional"
+    },
+    {
+      "arm_id": "joint_event_geometry",
+      "conservation_projection": true,
+      "control_mode": "joint_bidirectional"
+    },
+    {
+      "arm_id": "unconstrained_event",
+      "conservation_projection": false,
+      "control_mode": "joint_bidirectional"
+    }
+  ],
+  "batch_size": 8,
+  "candidate_cap": 64,
+  "device": "cuda",
+  "epochs": 12,
+  "input_firewall": [
+    "active_water_from_ts",
+    "mapped_product",
+    "product",
+    "product_coordinates",
+    "reference_mode",
+    "reference_ts",
+    "sealed_test_label",
+    "target_derived_solvent",
+    "ts_geometry"
+  ],
+  "issue": 58,
+  "learning_rate": 0.0002,
+  "max_atoms": 46,
+  "max_wall_minutes": 30.0,
+  "runtime_config": {
+    "class": "xtbflow.models.JointEventGeometryFlow",
+    "condition_feature_dim": 4,
+    "control_modes": [
+      "both_off",
+      "serial_independent",
+      "joint_unidirectional",
+      "joint_bidirectional"
+    ],
+    "hidden_dim": 64,
+    "model_id": "xtbflow-packed-pair-prototype-v0.1",
+    "node_feature_dim": 8,
+    "radial_features": 16,
+    "status": "software_prototype_not_scientifically_trained"
+  },
+  "schema": "xtbflow-real-joint-training/v1",
+  "seeds": [
+    11,
+    17,
+    23
+  ]
+}

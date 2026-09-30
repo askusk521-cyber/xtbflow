@@ -319,8 +319,8 @@
     },
     {
       "path": "docs/NEXT_ACTIONS.md",
-      "sha256": "a71fd8800a852cc88e7a46540a948e09e7d4c774e4dd734293d76011b0047454",
-      "bytes": 21849
+      "sha256": "9927dcbd136a3fd53f294758939b8df42ef2c2e09662d7fb209907e701ecef48",
+      "bytes": 22013
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -376,6 +376,11 @@
       "path": "docs/evidence/dft_da_joint_training_20260930_d9cbe56.json",
       "sha256": "0b9dfe0002cc8716784acb16c4be378be9ab7c90f13eea6513e8b3c3b088fcba",
       "bytes": 443741
+    },
+    {
+      "path": "docs/evidence/dft_da_joint_training_20260930_d9cbe56_config.json",
+      "sha256": "da1efd5d4bf95933183759d417285d9055e62f20574f22037fdc25cd82dac271",
+      "bytes": 1704
     },
     {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",

@@ -213,7 +213,8 @@
   one-way, bidirectional joint, and unconstrained projection ablation.  The
   run used one RTX PRO 6000 GPU, one job, and a 30-minute wall budget; actual
   wall time was 59.27 seconds.  Full per-parent results and checkpoint hashes
-  are in [`docs/evidence/dft_da_joint_training_20260930_d9cbe56.json`](evidence/dft_da_joint_training_20260930_d9cbe56.json), with the public
+  are in [`docs/evidence/dft_da_joint_training_20260930_d9cbe56.json`](evidence/dft_da_joint_training_20260930_d9cbe56.json); the exact run
+  configuration is [`docs/evidence/dft_da_joint_training_20260930_d9cbe56_config.json`](evidence/dft_da_joint_training_20260930_d9cbe56_config.json), with the public
   Track-B manifest in [`data/manifests/track_b_reaction_ts.v1.jsonl`](../data/manifests/track_b_reaction_ts.v1.jsonl).
 - The held-out geometry endpoint MSE means were 0.32133 (serial), 0.33107
   (joint), 0.33842 (current one-way), and 0.33888 (unconstrained); joint did

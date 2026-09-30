@@ -184,15 +184,21 @@ def _event_edits(reactant: np.ndarray, product: np.ndarray, map_ids: tuple[int, 
     return tuple(edits)
 
 
-def _state_evidence(log_path: Path) -> str:
-    text = log_path.read_text(encoding="utf-8", errors="replace")
-    states = set(STATE_RE.findall(text))
-    xtb_states = set(XTB_STATE_RE.findall(text))
-    if states != {("0", "1")} or xtb_states != {("0", "0")}:
-        raise ValueError("TS log does not provide a unique neutral-singlet state")
-    if "Normal termination of Gaussian" not in text or "Error termination" in text:
-        raise ValueError("TS log did not terminate normally")
-    return f"{log_path.name}: Charge=0 Multiplicity=1; xTB --chrg 0 --uhf 0"
+def _state_evidence(log_paths: Iterable[Path]) -> str:
+    paths = tuple(log_paths)
+    if len(paths) != 2:
+        raise ValueError("both monomer state logs are required")
+    for log_path in paths:
+        text = log_path.read_text(encoding="utf-8", errors="replace")
+        states = set(STATE_RE.findall(text))
+        xtb_states = set(XTB_STATE_RE.findall(text))
+        if states != {("0", "1")} or xtb_states != {("0", "0")}:
+            raise ValueError("monomer log does not provide a unique neutral-singlet state")
+        if "Normal termination of Gaussian" not in text or "Error termination" in text:
+            raise ValueError("monomer log did not terminate normally")
+    return "; ".join(
+        f"{path.name}: Charge=0 Multiplicity=1; xTB --chrg 0 --uhf 0" for path in paths
+    )
 
 
 def _row_sample(cache_root: Path, row: Mapping[str, str], source_asset_sha256: str) -> DftDaSample:
@@ -228,7 +234,7 @@ def _row_sample(cache_root: Path, row: Mapping[str, str], source_asset_sha256: s
     if not _graph_matches(product, product_order, product_symbols, product_coordinates):
         raise ValueError("product coordinate graph does not match mapped graph")
 
-    state_evidence = _state_evidence(reaction_dir / f"{rid}_ts_xtb.log")
+    state_evidence = _state_evidence((reaction_dir / "monomer_1.log", reaction_dir / "monomer_2.log"))
     reactant_bonds = _bond_matrix(reactant, map_ids)
     product_bonds = _bond_matrix(product, map_ids)
     edits = _event_edits(reactant_bonds, product_bonds, map_ids)
@@ -359,7 +365,14 @@ def load_dft_da_samples(cache_root: str | Path) -> tuple[list[DftDaSample], dict
         "source_archive_sha256": source_asset_sha256,
         "source_csv_sha256": hash_file(csv_path),
         "source_row_count": len(rows),
-        "state_log_candidates": sum(1 for row in rows if (root / "extracted" / "DATASET_DA_F" / (row.get("R_dir") or f"reaction_{row['R']}") / f"{row['R']}_ts_xtb.log").is_file()),
+        "state_log_candidates": sum(
+            1
+            for row in rows
+            if all(
+                (root / "extracted" / "DATASET_DA_F" / (row.get("R_dir") or f"reaction_{row['R']}") / name).is_file()
+                for name in ("monomer_1.log", "monomer_2.log")
+            )
+        ),
         "graph_and_state_admitted_count": len(samples),
         "admitted_parent_count": len({sample.record.parent_reaction_id for sample in samples}),
         "rejection_counts": dict(sorted(rejection_counts.items(), key=lambda item: (-item[1], item[0]))),

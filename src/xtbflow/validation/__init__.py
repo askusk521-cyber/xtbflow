@@ -1,6 +1,11 @@
 """Fail-closed transition-state and endpoint connectivity validation."""
 
-from .connectivity import ConnectivityEvidence, infer_binary_connectivity, observed_event
+from .connectivity import (
+    ConnectivityEvidence,
+    endpoint_connectivity_gate_pass,
+    infer_binary_connectivity,
+    observed_event,
+)
 from .evidence import (
     index_artifacts,
     sanitize_cp2k_calibration_report,
@@ -22,6 +27,7 @@ from .ts_search import (
 
 __all__ = [
     "ConnectivityEvidence",
+    "endpoint_connectivity_gate_pass",
     "infer_binary_connectivity",
     "index_artifacts",
     "sanitize_cp2k_calibration_report",

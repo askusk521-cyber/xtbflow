@@ -61,6 +61,24 @@ def observed_event(evidence: ConnectivityEvidence) -> tuple[tuple[int, int, int]
     return tuple(edits)
 
 
+def endpoint_connectivity_gate_pass(
+    evidence: ConnectivityEvidence,
+    *,
+    require_same_bonds: bool,
+) -> bool:
+    """Evaluate the endpoint connectivity gate from the calculated graphs.
+
+    The observed endpoint event is derived from the two supplied endpoint
+    structures.  A caller requiring a conformational path therefore fails
+    when any bond edit is observed; it cannot mark the path as validated by
+    supplying an independent expected-event flag.
+    """
+
+    if type(require_same_bonds) is not bool:
+        raise ValueError("require_same_bonds must be boolean")
+    return not require_same_bonds or not observed_event(evidence)
+
+
 def infer_binary_connectivity(
     symbols: Sequence[str],
     coordinates_angstrom: Sequence[Sequence[float]],

@@ -229,8 +229,8 @@
     },
     {
       "path": "configs/validation/gfn2_nh3_path_v0.1.json",
-      "sha256": "03e04a1fc52c2cff578fc10d3a99f9f3f17b1a03e8534352724db9f7fce3887d",
-      "bytes": 4110
+      "sha256": "cf131f8067cae898975daaa06c06edc171240e2b05ae248d44c6392b6de43168",
+      "bytes": 4156
     },
     {
       "path": "configs/validation/ts_v0.1.yaml",
@@ -309,8 +309,8 @@
     },
     {
       "path": "docs/WORKFLOW_C2_REFERENCE_VALIDATION.md",
-      "sha256": "e48d74a80153d453ad89427221b8575a8b5ae50906693df056bca060aa202c61",
-      "bytes": 14565
+      "sha256": "772903c087e1a27ab0c965eaf22b9b12e5fb44c250116b30009f2dd13dfa9eff",
+      "bytes": 15629
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -629,13 +629,13 @@
     },
     {
       "path": "scripts/cp2k_calibration_smoke.py",
-      "sha256": "0e13ebd3d8f571a23c496531ba5d0c8068119b0f5cbd54e2cb7d8e7585557289",
-      "bytes": 7339
+      "sha256": "972e94c30cd6c8970a0180e9e04c9db97aabeee89b313aa4847d525a33733e8e",
+      "bytes": 8373
     },
     {
       "path": "scripts/cp2k_convergence_smoke.py",
-      "sha256": "6824097f14943713ec8014b10f4c8b16c124ee66097bb1d198e480652dbae3db",
-      "bytes": 11487
+      "sha256": "5467f425616a3a8e286fe2045e9a29998adc9f24f9f1612481b9568fe8d16f10",
+      "bytes": 12227
     },
     {
       "path": "scripts/cp2k_force_fd_smoke.py",
@@ -659,13 +659,13 @@
     },
     {
       "path": "scripts/publish_cp2k_calibration_evidence.py",
-      "sha256": "1761db39cff23603d72d41fb6452e98aea7451432973118a68cd7c4a16bb6a65",
-      "bytes": 2284
+      "sha256": "cb18d6581fc184bb90fa4588e0fce5a9c4f3207e5b83ad5533dbacbe373a4621",
+      "bytes": 3289
     },
     {
       "path": "scripts/publish_cp2k_convergence_evidence.py",
-      "sha256": "b1cad4b48bcee2b9eb23b9159b58cdd8571d35322af8e68c92c72080eec934cc",
-      "bytes": 2537
+      "sha256": "3dfa71b482b820033a687e03b954b189f4daedac7b644c6285f567c6f3de54af",
+      "bytes": 3542
     },
     {
       "path": "scripts/run_energy_baselines.py",
@@ -694,8 +694,8 @@
     },
     {
       "path": "scripts/run_gfn2_path_pilot.py",
-      "sha256": "d620e1ca58bf605e1c005334d4dcccc9dba9c77f8e64c41fe26a1abae0a87297",
-      "bytes": 25771
+      "sha256": "b719458568a49539ac22f3263192c204ceea07c6d4b0c9159fc89c8bbda8b753",
+      "bytes": 28357
     },
     {
       "path": "scripts/run_gfn2_qualification.py",
@@ -959,8 +959,8 @@
     },
     {
       "path": "src/xtbflow/validation/__init__.py",
-      "sha256": "2a75d8e14fa676d3f759b5b239c0a6e91079f8f5e22c5eed2d83ab212ce82221",
-      "bytes": 1072
+      "sha256": "64e975f586016bb2580a2897bb53a23a7482ed541b4ab6a3fb8fc2d9a16b8d8b",
+      "bytes": 1339
     },
     {
       "path": "src/xtbflow/validation/ase_calculator.py",
@@ -979,13 +979,13 @@
     },
     {
       "path": "src/xtbflow/validation/connectivity.py",
-      "sha256": "5413f4dc2fd2166e91cbbf8d25072a45b643760ee5bb04d5b7641cdced5d9ee6",
-      "bytes": 2201
+      "sha256": "7445c809f4d124d7da8f13a7f5e6453affb10cf898c696ee6bd2b462f00a3074",
+      "bytes": 4588
     },
     {
       "path": "src/xtbflow/validation/evidence.py",
-      "sha256": "c8d5d5d6554c01b04ae308e2b5ebb7ac32cd2460548b3c044817ef7a332de00b",
-      "bytes": 5764
+      "sha256": "35735ea4a274fa387e67271984303a6676e63c9d63ca2f47f560b1b164cd2a4b",
+      "bytes": 8012
     },
     {
       "path": "src/xtbflow/validation/modes.py",
@@ -1049,8 +1049,8 @@
     },
     {
       "path": "tests/test_c2_evidence.py",
-      "sha256": "7f57ca7be02b8641afc4fadab950aead15b2c3755ea5fa4abbabd7f683a35a97",
-      "bytes": 4424
+      "sha256": "73ce1a1345de612339e785048368a753fc474e8f843c9a26590de1077e9c07a5",
+      "bytes": 7299
     },
     {
       "path": "tests/test_calculator_contract.py",

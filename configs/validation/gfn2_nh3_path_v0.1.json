@@ -124,7 +124,8 @@
     },
     "gate": {
       "max_gradient_norm_hartree_per_angstrom": 0.0005,
-      "require_energy_below_transition_state": true
+      "require_energy_below_transition_state": true,
+      "require_same_bond_connectivity": true
     }
   },
   "claim_limits": [

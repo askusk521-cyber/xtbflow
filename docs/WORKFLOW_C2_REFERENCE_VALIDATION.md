@@ -176,14 +176,13 @@ dimer 模态的绝对重叠为 `1.0`。Hessian 阶段使用 13 次调用，其�
 `1.17e-6 Ha/Å`，能量均比平面驻点低约 `0.0097372 Ha`。全部 ledger 均已结算，
 无 pending reservation，总调用数为 27。
 
-因此本轮的 `development_path_status` 为 `validated`，但
-`reference_path_status` 被明确保留为 `not_validated`。原因是全部证据仍来自
-有限气相 GFN2 模型，内部 Hessian 只报告能量/长度平方特征值而非谐振频率。运行器
-从两端实际松弛后的坐标分别推断二值连接关系，再计算
-`observed_event_from_minus_to_plus`；NH₃ 反转的空事件来自这次端点比较，而不是
-写死的结果。机器可读证据见
-`docs/evidence/gfn2_nh3_path_409e906.json`。此前 H₃ 正曲率候选继续作为有效失败
-控制，不得删除或重标记。
+因此这次 **409e906** 运行的 `development_path_status` 为 `validated`，但
+`reference_path_status` 被明确保留为 `not_validated`。该运行的全部证据仍来自
+有限气相 GFN2 模型，内部 Hessian 只报告能量/长度平方特征值而非谐振频率；它
+只记录了端点距离 gate，并没有执行后来加入的端点连接分析。机器可读证据
+`docs/evidence/gfn2_nh3_path_409e906.json` 是这个旧运行的不可变记录，不能把新
+分析步骤回填到其中，也不能据此声称 409e906 已通过连接 gate。此前 H₃ 正曲率
+候选继续作为有效失败控制，不得删除或重标记。
 
 ### NH₃ 独立内部 Hessian 与双向端点开发门槛
 
@@ -198,8 +197,12 @@ SHA-256，并把后续证据拆成三个独立阶段：
 
 对 NH₃，双向端点使用 N 原子到有序 H₃ 平面的带符号距离区分两个金字塔极小值；
 两侧必须符号相反、绝对距离不低于 0.1 Å、能量低于平面驻点且梯度通过门槛。
-对于 NH₃ 反转，当前物理预期是两端连接相同，但 `endpoint_connectivity` 会同时
-保留两端的矩阵、推断规则和实际事件列表。不能将这个构象路径包装成键变化反应。
+对于 NH₃ 反转，当前物理预期是两端连接相同。当前 runner 会从**本次运行**两端
+松弛坐标推断二值连接矩阵，计算 `observed_event_from_minus_to_plus`，并把
+`same_bond_connectivity` 纳入 `endpoint_pair_gate_pass`；只要要求保持连接而观测到
+任何键编辑，最终状态就会是 `fail`。这些字段只能出现在新运行自己的报告和
+artifact 中，不能用来升级 409e906 的旧报告；也不能将这个构象路径包装成键变化
+反应。
 即使全部开发 gate 通过，`reference_path_status` 仍保持
 `not_validated`，直到独立 CP2K 或批准的参考协议完成对应证据。
 
@@ -260,13 +263,15 @@ dimer 曲率为 `-11.560159007366892 eV/Å²`。但完整梯度范数为
 
 ## 证据发布规则
 
-私有运行报告中的 `source_commit` 是计算发生时的代码版本。发布器另行记录
-`publication_source_commit`，不会用发布工作树的版本覆盖计算版本；两者都会写入
-公共证据。失败消息和嵌套 metadata 中的主机绝对路径在发布时统一清理。
+私有运行报告中的 `source_commit`、`script_sha256` 和
+`cp2k_adapter_sha256` 都是计算发生时的执行身份。发布器另行记录
+`publication_source_commit`，并原样转发执行脚本／adapter 哈希；不会用发布工作树
+当前文件的哈希覆盖计算身份。两组 commit/哈希都写入公共证据，失败消息和嵌套
+metadata 中的主机绝对路径在发布时统一清理。
 
 公共证据可以包含：
 
-- 物理协议和运行脚本的 SHA-256；
+- 执行时物理协议和运行脚本／adapter 的 SHA-256（不是发布工作树的当前哈希）；
 - CP2K 版本、revision、可执行文件 SHA-256；
 - 体系输入、input hash、数值结果和预算计数；
 - 原始 artifact 的文件名和内容哈希。

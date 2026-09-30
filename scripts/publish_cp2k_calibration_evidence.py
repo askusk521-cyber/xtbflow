@@ -38,6 +38,14 @@ def main() -> int:
     execution_source_commit = payload.get("source_commit")
     if not isinstance(execution_source_commit, str) or not execution_source_commit.strip():
         parser.error("private calibration report must contain the computation source_commit")
+    execution_script_sha256 = payload.get("script_sha256")
+    if not isinstance(execution_script_sha256, str) or not execution_script_sha256.strip():
+        parser.error("private calibration report must contain the execution script_sha256")
+    execution_adapter_sha256 = payload.get("cp2k_adapter_sha256") or payload.get(
+        "adapter_sha256"
+    )
+    if not isinstance(execution_adapter_sha256, str) or not execution_adapter_sha256.strip():
+        parser.error("private calibration report must contain the execution cp2k_adapter_sha256")
     publication_source_commit = args.publication_source_commit or subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
     ).strip()
@@ -46,10 +54,8 @@ def main() -> int:
         execution_source_commit=execution_source_commit,
         publication_source_commit=publication_source_commit,
         private_report_sha256=sha256_file(report_path),
-        calibration_script_sha256=sha256_file(
-            ROOT / "scripts/cp2k_calibration_smoke.py"
-        ),
-        adapter_sha256=sha256_file(ROOT / "src/xtbflow/calculators/cp2k.py"),
+        calibration_script_sha256=execution_script_sha256,
+        adapter_sha256=execution_adapter_sha256,
         artifacts=index_artifacts(artifact_root),
     )
     encoded = json.dumps(

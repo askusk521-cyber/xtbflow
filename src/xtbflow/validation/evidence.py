@@ -29,6 +29,12 @@ def sanitize_error_message(value: Any) -> str | None:
     return _PRIVATE_PATH.sub("[private-path]", str(value))
 
 
+def _required_identity(value: Any, name: str) -> str:
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{name} is required")
+    return value.strip()
+
+
 def sanitize_public_value(value: Any) -> Any:
     if isinstance(value, Mapping):
         return {str(key): sanitize_public_value(item) for key, item in value.items()}
@@ -89,10 +95,16 @@ def sanitize_cp2k_calibration_report(
     cases = payload.get("cases")
     if not isinstance(cases, list) or not cases:
         raise ValueError("calibration report must contain nonempty cases")
-    if not execution_source_commit.strip():
-        raise ValueError("execution_source_commit is required")
-    if not publication_source_commit.strip():
-        raise ValueError("publication_source_commit is required")
+    execution_source_commit = _required_identity(
+        execution_source_commit, "execution_source_commit"
+    )
+    publication_source_commit = _required_identity(
+        publication_source_commit, "publication_source_commit"
+    )
+    calibration_script_sha256 = _required_identity(
+        calibration_script_sha256, "calibration_script_sha256"
+    )
+    adapter_sha256 = _required_identity(adapter_sha256, "cp2k_adapter_sha256")
     public = {
         key: payload[key]
         for key in (
@@ -115,6 +127,8 @@ def sanitize_cp2k_calibration_report(
             "execution_source_commit": execution_source_commit,
             "publication_source_commit": publication_source_commit,
             "private_report_sha256": private_report_sha256,
+            "execution_script_sha256": calibration_script_sha256,
+            "execution_adapter_sha256": adapter_sha256,
             "calibration_script_sha256": calibration_script_sha256,
             "cp2k_adapter_sha256": adapter_sha256,
             "cases": [_sanitized_case(case) for case in cases],
@@ -149,10 +163,16 @@ def sanitize_cp2k_convergence_report(
         raise ValueError("convergence report must contain at least two runs")
     if not isinstance(comparisons, list):
         raise ValueError("convergence comparisons must be a list")
-    if not isinstance(execution_source_commit, str) or not execution_source_commit.strip():
-        raise ValueError("execution_source_commit is required")
-    if not isinstance(publication_source_commit, str) or not publication_source_commit.strip():
-        raise ValueError("publication_source_commit is required")
+    execution_source_commit = _required_identity(
+        execution_source_commit, "execution_source_commit"
+    )
+    publication_source_commit = _required_identity(
+        publication_source_commit, "publication_source_commit"
+    )
+    convergence_script_sha256 = _required_identity(
+        convergence_script_sha256, "convergence_script_sha256"
+    )
+    adapter_sha256 = _required_identity(adapter_sha256, "cp2k_adapter_sha256")
     public = {
         key: payload[key]
         for key in (
@@ -178,6 +198,8 @@ def sanitize_cp2k_convergence_report(
             "publication_source_commit": publication_source_commit,
             "private_report_sha256": private_report_sha256,
             "ledger_sha256": ledger_sha256,
+            "execution_script_sha256": convergence_script_sha256,
+            "execution_adapter_sha256": adapter_sha256,
             "convergence_script_sha256": convergence_script_sha256,
             "cp2k_adapter_sha256": adapter_sha256,
             "runs": [_sanitized_case(run) for run in runs],

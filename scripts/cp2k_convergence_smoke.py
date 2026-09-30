@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import asdict
+import hashlib
 import json
 import math
 import os
@@ -36,6 +37,14 @@ FIXTURE = {
     "charge": 0,
     "multiplicity": 1,
 }
+
+
+def _sha256_file(path: str | Path) -> str:
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def _atomic_json(path: Path, payload: Mapping[str, Any]) -> None:
@@ -255,12 +264,20 @@ def main() -> int:
         for item in comparisons
     )
     passed = len(successful) == len(runs) and thresholds_pass
+    execution_source_commit = _source_commit()
+    execution_script_sha256 = _sha256_file(Path(__file__))
+    execution_adapter_sha256 = _sha256_file(ROOT / "src/xtbflow/calculators/cp2k.py")
     report = {
         "schema": "xtbflow-cp2k-convergence-smoke/v2",
         "status": "pass" if passed else "fail",
         "scientific_qualification": False,
-        "source_commit": _source_commit(),
-        "script_sha256": protocol_document_sha256(Path(__file__)),
+        # These identities describe the code that produced the private run.
+        # The publisher must carry them forward instead of hashing its own
+        # (possibly newer) checkout.
+        "source_commit": execution_source_commit,
+        "script_sha256": execution_script_sha256,
+        "cp2k_adapter_sha256": execution_adapter_sha256,
+        "adapter_sha256": execution_adapter_sha256,
         "protocol_document_sha256": protocol_document_sha256(protocol_path),
         "runtime": runtime.public_record(),
         "system": {

@@ -39,6 +39,7 @@ from xtbflow.validation.ase_path import (  # noqa: E402
 )
 from xtbflow.validation.connectivity import (  # noqa: E402
     ConnectivityEvidence,
+    endpoint_connectivity_gate_pass,
     infer_binary_connectivity,
     observed_event,
 )
@@ -251,6 +252,19 @@ def main() -> int:
         "calculator_accounting": None,
         "claim_limits": list(document["claim_limits"]),
     }
+    # Keep execution identities explicit.  A later evidence publication step
+    # must not replace these with hashes from its own checkout.
+    report["execution_source_commit"] = source_commit
+    report["execution_script_sha256"] = report["script_sha256"]
+    report["execution_ase_path_driver_sha256"] = report[
+        "ase_path_driver_sha256"
+    ]
+    report["execution_curvature_driver_sha256"] = report[
+        "curvature_driver_sha256"
+    ]
+    report["execution_xtb_oracle_adapter_sha256"] = report[
+        "xtb_oracle_adapter_sha256"
+    ]
 
     hessian_config = document["hessian"]
     internal_basis, rigid_rank = internal_cartesian_basis(
@@ -617,11 +631,6 @@ def main() -> int:
         and minus_distance is not None
         and float(plus_distance) * float(minus_distance) < 0.0
     )
-    endpoint_pair_pass = (
-        endpoint_records["plus"]["gate_evaluation"]["endpoint_gate_pass"]
-        and endpoint_records["minus"]["gate_evaluation"]["endpoint_gate_pass"]
-        and (opposite_signs or not require_opposite)
-    )
     endpoint_bonds = {
         label: infer_binary_connectivity(
             system.symbols,
@@ -634,6 +643,20 @@ def main() -> int:
         product_bonds=endpoint_bonds["plus"],
     )
     observed_bond_event = [list(edit) for edit in observed_event(connectivity)]
+    same_bond_connectivity = not observed_bond_event
+    endpoint_gate = endpoint_config["gate"]
+    require_same_bond = bool(
+        endpoint_gate.get("require_same_bond_connectivity", True)
+    )
+    connectivity_gate_pass = endpoint_connectivity_gate_pass(
+        connectivity, require_same_bonds=require_same_bond
+    )
+    endpoint_pair_pass = (
+        endpoint_records["plus"]["gate_evaluation"]["endpoint_gate_pass"]
+        and endpoint_records["minus"]["gate_evaluation"]["endpoint_gate_pass"]
+        and (opposite_signs or not require_opposite)
+        and connectivity_gate_pass
+    )
     report["endpoints"] = endpoint_records
     report["endpoint_connectivity"] = {
         "representation": "covalent-radius-binary-endpoint-comparison-v1",
@@ -641,7 +664,9 @@ def main() -> int:
         "minus_bond_matrix": [list(row) for row in endpoint_bonds["minus"]],
         "plus_bond_matrix": [list(row) for row in endpoint_bonds["plus"]],
         "observed_event_from_minus_to_plus": observed_bond_event,
-        "same_bond_connectivity": not observed_bond_event,
+        "same_bond_connectivity": same_bond_connectivity,
+        "require_same_bond_connectivity": require_same_bond,
+        "connectivity_gate_pass": connectivity_gate_pass,
         "source": "calculated_relaxed_endpoint_coordinates",
     }
     report["endpoint_pair_gate"] = {
@@ -649,7 +674,9 @@ def main() -> int:
         "opposite_signs": opposite_signs,
         "plus_signed_distance_angstrom": plus_distance,
         "minus_signed_distance_angstrom": minus_distance,
-        "same_bond_connectivity": not observed_bond_event,
+        "same_bond_connectivity": same_bond_connectivity,
+        "require_same_bond_connectivity": require_same_bond,
+        "connectivity_gate_pass": connectivity_gate_pass,
         "observed_bond_event": observed_bond_event,
         "endpoint_pair_gate_pass": endpoint_pair_pass,
     }

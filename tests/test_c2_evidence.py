@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from xtbflow.validation import (
     ConnectivityEvidence,
+    endpoint_connectivity_gate_pass,
     infer_binary_connectivity,
     observed_event,
     index_artifacts,
@@ -21,6 +22,24 @@ def test_endpoint_event_is_derived_from_calculated_connectivity():
     assert observed_event(
         ConnectivityEvidence(reactant_bonds=minus, product_bonds=plus)
     ) == ((0, 1, -1),)
+
+
+def test_endpoint_connectivity_gate_uses_observed_event():
+    unchanged = infer_binary_connectivity(
+        ("H", "H"), ((0.0, 0.0, 0.0), (0.7, 0.0, 0.0))
+    )
+    disconnected = infer_binary_connectivity(
+        ("H", "H"), ((0.0, 0.0, 0.0), (2.0, 0.0, 0.0))
+    )
+    assert endpoint_connectivity_gate_pass(
+        ConnectivityEvidence(unchanged, unchanged), require_same_bonds=True
+    )
+    assert not endpoint_connectivity_gate_pass(
+        ConnectivityEvidence(unchanged, disconnected), require_same_bonds=True
+    )
+    assert endpoint_connectivity_gate_pass(
+        ConnectivityEvidence(unchanged, disconnected), require_same_bonds=False
+    )
 
 
 def test_artifact_index_is_relative_and_hashed(tmp_path):
@@ -76,6 +95,8 @@ def test_calibration_report_removes_artifact_root_and_case_paths():
     assert public["scientific_qualification"] is False
     assert public["execution_source_commit"] == "execution123"
     assert public["publication_source_commit"] == "publication123"
+    assert public["execution_script_sha256"] == "script-hash"
+    assert public["execution_adapter_sha256"] == "adapter-hash"
     assert public["cases"][0]["metadata"] == {
         "artifact_persistence": "persistent",
         "artifact_directory_recorded_in_private_run": True,
@@ -159,6 +180,8 @@ def test_convergence_report_removes_private_paths_and_retains_ledger_hash():
     assert public["status"] == "fail"
     assert public["execution_source_commit"] == "execution123"
     assert public["publication_source_commit"] == "publication123"
+    assert public["execution_script_sha256"] == "script-hash"
+    assert public["execution_adapter_sha256"] == "adapter-hash"
     assert public["ledger_sha256"] == "ledger-hash"
     assert public["scientific_qualification"] is False
     assert "artifact_root" not in public

@@ -80,3 +80,12 @@ python scripts/cp2k_convergence_smoke.py \
 [`cp2k_runtime_evidence_provenance_20260929.json`](evidence/cp2k_runtime_evidence_provenance_20260929.json)。
 新的 #17 准入运行必须使用当前 main 派生代码：正向 SCF/正常结束判定、物理协议字段白名单、
 持久化 artifact，以及显式 executable/runtime 资源与物理 protocol identity 分离。
+
+## C2 参考桥接与 TS 验证
+
+当前代码下的有限差分力 gate、同构型 CP2K↔GFN2 pilot、预算与证据发布规则见
+[`WORKFLOW_C2_REFERENCE_VALIDATION.md`](WORKFLOW_C2_REFERENCE_VALIDATION.md)。
+
+执行顺序保持为：当前代码重放 → 单分量有限差分 → 收敛审阅 → 有界参考桥接 →
+真实 TS/频率/路径验证。前四项均不能替代最后一项，也不能把 `path_status` 自动升级为
+`validated`。

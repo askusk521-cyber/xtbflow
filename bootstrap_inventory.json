@@ -99,8 +99,8 @@
     },
     {
       "path": "configs/calculators/cp2k/protocol_v0.1.yaml",
-      "sha256": "3559c627bc5d3ad64d2a63d3fe4a90e2d5a094b0f29e7d2c25b9680851b804cf",
-      "bytes": 1866
+      "sha256": "ff227533858bd273e21a045ab3724093561f94d4c28c4860eeab3611c60c1580",
+      "bytes": 2098
     },
     {
       "path": "configs/calculators/cp2k/slurm_calibration_smoke.sbatch",
@@ -116,6 +116,11 @@
       "path": "configs/environment-n2.yml",
       "sha256": "c32b79967d84df1a6c7cbd8d6c3afd902303f87a57fe921bf81b0624dd5c426d",
       "bytes": 2649
+    },
+    {
+      "path": "configs/experiments/cp2k_bridge.yaml",
+      "sha256": "a60c49bfb4f4f0dfe194af484aa593df38cb614e52db739d7221dfd43bacb3b9",
+      "bytes": 3164
     },
     {
       "path": "configs/experiments/spice2_energy_learning_curve_v1.json",
@@ -208,6 +213,26 @@
       "bytes": 2838
     },
     {
+      "path": "configs/validation/gfn2_dimer_nh3_pilot_v0.1.json",
+      "sha256": "1d151837a8979ad5865a36d79b4a9f8cde82120871ca020bbd2786abdca713e4",
+      "bytes": 2275
+    },
+    {
+      "path": "configs/validation/gfn2_dimer_nh3_refine_v0.2.json",
+      "sha256": "181ecb3e319ec7b54b35d8c9df32a83690269d29b2f97351f5c6e4e86f3a629e",
+      "bytes": 3085
+    },
+    {
+      "path": "configs/validation/gfn2_dimer_pilot_v0.1.json",
+      "sha256": "c640dbbc1fca011093b9cd1dac8a832e2daffaa17aafe1d086a327e8ee1139b7",
+      "bytes": 1761
+    },
+    {
+      "path": "configs/validation/gfn2_nh3_path_v0.1.json",
+      "sha256": "cf131f8067cae898975daaa06c06edc171240e2b05ae248d44c6392b6de43168",
+      "bytes": 4156
+    },
+    {
       "path": "configs/validation/ts_v0.1.yaml",
       "sha256": "8599350fceb794e375719a918731d85f76d22e01c5e64446bd071cbf7ef5086b",
       "bytes": 434
@@ -244,8 +269,8 @@
     },
     {
       "path": "docs/CP2K_SETUP.md",
-      "sha256": "7354ea1558d747026577ab97af8ec0bc1a92fbaaba36f1c8075551be04f9552e",
-      "bytes": 3580
+      "sha256": "c96b774f87bcc6e341415ee740cf9f1256f3c7154998af55573d0bdbc40a9926",
+      "bytes": 4039
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
@@ -283,6 +308,11 @@
       "bytes": 1983
     },
     {
+      "path": "docs/WORKFLOW_C2_REFERENCE_VALIDATION.md",
+      "sha256": "772903c087e1a27ab0c965eaf22b9b12e5fb44c250116b30009f2dd13dfa9eff",
+      "bytes": 15629
+    },
+    {
       "path": "docs/architecture/architecture_v0.1.md",
       "sha256": "f7e7cdeb8afb97ecbb6aacf132ab217a8f750e68dfbf924daf1e48f298bdd4a1",
       "bytes": 5963
@@ -296,6 +326,11 @@
       "path": "docs/data_contract.md",
       "sha256": "9964999089df7e67b9d5c0af99dcf5bd426974bca5128bee2623c928473d42a9",
       "bytes": 4036
+    },
+    {
+      "path": "docs/evidence/cp2k_calibration_current_f135428.json",
+      "sha256": "37d80e7a01127248d5a1a9d91af7d7c894a2dac81686eef626e5daa95b5a507d",
+      "bytes": 9583
     },
     {
       "path": "docs/evidence/cp2k_calibration_smoke.json",
@@ -313,6 +348,11 @@
       "bytes": 2282
     },
     {
+      "path": "docs/evidence/cp2k_convergence_fcb8049.json",
+      "sha256": "4bc12a1857d7aa5453682e26974e4205b0a7771d5dd0f9bdef141df74f1a29eb",
+      "bytes": 15988
+    },
+    {
       "path": "docs/evidence/cp2k_convergence_smoke.json",
       "sha256": "2c392bdd78e90302b690857726d55fc29cc3877d63ceae35e67fc52360a81e4e",
       "bytes": 3234
@@ -323,9 +363,34 @@
       "bytes": 2049
     },
     {
+      "path": "docs/evidence/gfn2_dimer_nh3_2771281.json",
+      "sha256": "111b6f157f27eeb1429039dbbda3c940c065bad59c58a49c74658a535d46c313",
+      "bytes": 10167
+    },
+    {
+      "path": "docs/evidence/gfn2_dimer_nh3_refine_89cfed9.json",
+      "sha256": "3f21c58be89860c641d0f8e70fbed8135047104020dcb08cb8a54fb6a51c2d2c",
+      "bytes": 10754
+    },
+    {
+      "path": "docs/evidence/gfn2_dimer_pilot_ae3da3c.json",
+      "sha256": "c1c8271c6e7362a423e127b47284a9caec29c5396a159303e372a90a3c09c255",
+      "bytes": 5709
+    },
+    {
+      "path": "docs/evidence/gfn2_dimer_pilot_b755757.json",
+      "sha256": "49196276cdaca99ce55653e34885bdc18f91df63ff0df5e24b7b062266e375f0",
+      "bytes": 5377
+    },
+    {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
       "sha256": "a8f35cecb50117422a0dd28953d079634aa780dd5336baf6ee23cfd817952d57",
       "bytes": 6712
+    },
+    {
+      "path": "docs/evidence/gfn2_nh3_path_409e906.json",
+      "sha256": "83784da69ad637625b05ca532c2f391c5bada90876622d4519bcc980ca1a5896",
+      "bytes": 20922
     },
     {
       "path": "docs/evidence/gfn2_qualification_20260929.json",
@@ -504,8 +569,8 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "848653cea3a7ba86e90a675782096ada6d35e71a14818c8387e6d0d4d6f9303f",
-      "bytes": 1204
+      "sha256": "7ee4bda4cc9a559e041538e32b8e685ccf43ad76d3049e5ec8bde99d762733cd",
+      "bytes": 1258
     },
     {
       "path": "schemas/calculator_protocol.schema.json",
@@ -564,13 +629,18 @@
     },
     {
       "path": "scripts/cp2k_calibration_smoke.py",
-      "sha256": "0e13ebd3d8f571a23c496531ba5d0c8068119b0f5cbd54e2cb7d8e7585557289",
-      "bytes": 7339
+      "sha256": "972e94c30cd6c8970a0180e9e04c9db97aabeee89b313aa4847d525a33733e8e",
+      "bytes": 8373
     },
     {
       "path": "scripts/cp2k_convergence_smoke.py",
-      "sha256": "3eb1237a4fc7274b5ed29b13d6e7ababa7519edf97b190242668c12388f1aa57",
-      "bytes": 7287
+      "sha256": "5467f425616a3a8e286fe2045e9a29998adc9f24f9f1612481b9568fe8d16f10",
+      "bytes": 12227
+    },
+    {
+      "path": "scripts/cp2k_force_fd_smoke.py",
+      "sha256": "8c72ecf4033228501c93b13848188f6bd47917b02672238f24402a9432659b17",
+      "bytes": 10002
     },
     {
       "path": "scripts/cp2k_smoke.py",
@@ -588,6 +658,16 @@
       "bytes": 16740
     },
     {
+      "path": "scripts/publish_cp2k_calibration_evidence.py",
+      "sha256": "cb18d6581fc184bb90fa4588e0fce5a9c4f3207e5b83ad5533dbacbe373a4621",
+      "bytes": 3289
+    },
+    {
+      "path": "scripts/publish_cp2k_convergence_evidence.py",
+      "sha256": "3dfa71b482b820033a687e03b954b189f4daedac7b644c6285f567c6f3de54af",
+      "bytes": 3542
+    },
+    {
       "path": "scripts/run_energy_baselines.py",
       "sha256": "b8386b137eb59e4afa0d6c066b076658590f0c3326e4169bed045fb415773def",
       "bytes": 26062
@@ -603,14 +683,29 @@
       "bytes": 15124
     },
     {
+      "path": "scripts/run_gfn2_dimer_pilot.py",
+      "sha256": "bab48a6f11f275279b1c2f35eff0fdecd221a59a92e76067d95d67272d7ef44c",
+      "bytes": 17113
+    },
+    {
       "path": "scripts/run_gfn2_independent_fd.py",
       "sha256": "71fef4bf7f32839b8578a1281ed7e5f95a3f511fe368586932aacb40dd1f730b",
       "bytes": 6957
     },
     {
+      "path": "scripts/run_gfn2_path_pilot.py",
+      "sha256": "b719458568a49539ac22f3263192c204ceea07c6d4b0c9159fc89c8bbda8b753",
+      "bytes": 28357
+    },
+    {
       "path": "scripts/run_gfn2_qualification.py",
       "sha256": "84706cb111d799fa2ef9761fa59539ac5d8269566a398c0c0bd46a9d38e6db7a",
       "bytes": 15646
+    },
+    {
+      "path": "scripts/run_reference_bridge.py",
+      "sha256": "7e473e89383d6a192a51b940e4f7fc756c122c5adcf6b84fc5d9e2a032e4f903",
+      "bytes": 15158
     },
     {
       "path": "scripts/run_spice_openff_pilot.py",
@@ -634,8 +729,8 @@
     },
     {
       "path": "src/xtbflow/calculators/__init__.py",
-      "sha256": "edc331626e0c59435a39769049d330ff037355a28c341d19dc29cbdc39709590",
-      "bytes": 1054
+      "sha256": "50e4cf50caf5ee6ca2f325b1dfe232b71ccdc5f71076065b8c862574006600d7",
+      "bytes": 1593
     },
     {
       "path": "src/xtbflow/calculators/base.py",
@@ -646,6 +741,11 @@
       "path": "src/xtbflow/calculators/cp2k.py",
       "sha256": "5c96e28d9995f4c1d7a18c6eaa96d305b4cd49c3de419a82558c51e2bacd1b97",
       "bytes": 23793
+    },
+    {
+      "path": "src/xtbflow/calculators/cp2k_runtime.py",
+      "sha256": "4c9d2bbf6726688032372721b2cbd8e8974cb98fa364ceaff3a7148fd657d961",
+      "bytes": 7864
     },
     {
       "path": "src/xtbflow/calculators/xtb_oracle.py",
@@ -759,13 +859,13 @@
     },
     {
       "path": "src/xtbflow/physics/__init__.py",
-      "sha256": "bf39b6d50442d4881cbb399711fc05c98dac2a82158fa0d62443ceef9a27b693",
-      "bytes": 575
+      "sha256": "04eede84f0f3bb717f4d2db29283cce5612d0c6a558c0452bb791c2cb5419a8e",
+      "bytes": 665
     },
     {
       "path": "src/xtbflow/physics/curvature.py",
-      "sha256": "d303f9aed9564ef95318feb52adf47b63961fff9479b47bda447a4018f2ebf52",
-      "bytes": 4022
+      "sha256": "3fbd42b8f13ef9382636a818073fe25b9f2ccbe7e25fe185ccf302615d19d841",
+      "bytes": 7596
     },
     {
       "path": "src/xtbflow/physics/saddle.py",
@@ -859,18 +959,43 @@
     },
     {
       "path": "src/xtbflow/validation/__init__.py",
-      "sha256": "9f26a682c6b073b5558141ba61b4eb18003e82e5d965701289c3d068f1689b8c",
-      "bytes": 573
+      "sha256": "64e975f586016bb2580a2897bb53a23a7482ed541b4ab6a3fb8fc2d9a16b8d8b",
+      "bytes": 1339
+    },
+    {
+      "path": "src/xtbflow/validation/ase_calculator.py",
+      "sha256": "c41ca3460854f5f6ae6cfeec482a04de103e332f87f67612b5c0e910baa15017",
+      "bytes": 3148
+    },
+    {
+      "path": "src/xtbflow/validation/ase_dimer.py",
+      "sha256": "3c17a6ce50a2d2d4d5b63ee9b8b309ae4eb655ac48f06445717b511a50f0dac3",
+      "bytes": 24414
+    },
+    {
+      "path": "src/xtbflow/validation/ase_path.py",
+      "sha256": "9021a0b294aa6bc60b69d2d3454138defdf31a2fa50f1b6394a45117445cb35a",
+      "bytes": 12524
     },
     {
       "path": "src/xtbflow/validation/connectivity.py",
-      "sha256": "5413f4dc2fd2166e91cbbf8d25072a45b643760ee5bb04d5b7641cdced5d9ee6",
-      "bytes": 2201
+      "sha256": "7445c809f4d124d7da8f13a7f5e6453affb10cf898c696ee6bd2b462f00a3074",
+      "bytes": 4588
+    },
+    {
+      "path": "src/xtbflow/validation/evidence.py",
+      "sha256": "35735ea4a274fa387e67271984303a6676e63c9d63ca2f47f560b1b164cd2a4b",
+      "bytes": 8012
     },
     {
       "path": "src/xtbflow/validation/modes.py",
       "sha256": "590d3542632befb16007fbe6c417c7db9afccb305f3ddc59a086c0d0666ef835",
       "bytes": 1673
+    },
+    {
+      "path": "src/xtbflow/validation/reference_bridge.py",
+      "sha256": "ff3eda0b303c33784dedd35d7a77d9ba59857346422dfb3d36c1907d13f0f45c",
+      "bytes": 4405
     },
     {
       "path": "src/xtbflow/validation/ts_search.py",
@@ -908,6 +1033,26 @@
       "bytes": 2402
     },
     {
+      "path": "tests/test_ase_calculator.py",
+      "sha256": "ed634efbc5534812221d3844741fd966ab43aa134dc5997d425198d8cc58de28",
+      "bytes": 2142
+    },
+    {
+      "path": "tests/test_ase_dimer.py",
+      "sha256": "8a4434a57c35e9ecb799b30dd1764f5d7ba3fd72c509fc0333848c3a4cc7036e",
+      "bytes": 12277
+    },
+    {
+      "path": "tests/test_ase_path.py",
+      "sha256": "972bfa3a62cf1b7f693c2453fb5f4f44f9ebf4be0a76c57a301a042659d97f39",
+      "bytes": 6217
+    },
+    {
+      "path": "tests/test_c2_evidence.py",
+      "sha256": "73ce1a1345de612339e785048368a753fc474e8f843c9a26590de1077e9c07a5",
+      "bytes": 7299
+    },
+    {
       "path": "tests/test_calculator_contract.py",
       "sha256": "a8ea52f51e54fdd830800c48f208a2db10888273435a8dec464e4df0f0e563b3",
       "bytes": 13336
@@ -936,6 +1081,11 @@
       "path": "tests/test_cp2k_parser.py",
       "sha256": "23fd9b167e70f15705575f762a93ae3120ebdd01e49d3e2818f3de3603157b52",
       "bytes": 10362
+    },
+    {
+      "path": "tests/test_cp2k_runtime.py",
+      "sha256": "5d6cbfd0bee8117b95e910e081e8f4d91fd952a7ff8f41bb248be7fdcc0297a6",
+      "bytes": 5153
     },
     {
       "path": "tests/test_energy_forces.py",
@@ -973,14 +1123,19 @@
       "bytes": 9407
     },
     {
+      "path": "tests/test_reference_bridge.py",
+      "sha256": "7a95a14afb663b1097b63c9ff7915935d5fe0fd852b5feb8c4cb6e36160c968e",
+      "bytes": 3682
+    },
+    {
       "path": "tests/test_runtime_budget.py",
       "sha256": "1704ff8e53ecfb180acc58e6edaea4f85d49c8f4eb4a2cf58fbc38ceba842193",
       "bytes": 6690
     },
     {
       "path": "tests/test_saddle_guidance.py",
-      "sha256": "80376ebff131aeae4c1c36cdaf0c66c9031863ca3f98895d97dc9f17710e5059",
-      "bytes": 4324
+      "sha256": "60d623477754f0454d79752fcc97d0c9ceb06d9cf704473c762ee182671117a7",
+      "bytes": 5538
     },
     {
       "path": "tests/test_workflow_b_protocol.py",

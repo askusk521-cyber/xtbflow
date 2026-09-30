@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import hashlib
 import os
 from pathlib import Path
 import re
@@ -12,6 +13,23 @@ import subprocess
 from typing import Any
 
 from xtbflow.calculators import CP2KAdapter, CP2KProtocol, MolecularSystem
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def _sha256_file(path: str | Path) -> str:
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def _source_commit() -> str:
+    return subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+    ).strip()
 
 
 def _version(executable: str) -> tuple[str, str]:
@@ -158,9 +176,19 @@ def main() -> int:
             records.append(_failure(system, protocol, error))
         else:
             records.append(_result(system, protocol, result))
+    execution_source_commit = _source_commit()
+    execution_script_sha256 = _sha256_file(Path(__file__))
+    execution_adapter_sha256 = _sha256_file(ROOT / "src/xtbflow/calculators/cp2k.py")
     payload = {
         "schema": "xtbflow-cp2k-calibration-smoke/v1",
         "status": "pass" if all(record["status"] == "success" for record in records) else "fail",
+        # These identities describe the code that produced the private run.
+        # The publisher must carry them forward instead of hashing its own
+        # (possibly newer) checkout.
+        "source_commit": execution_source_commit,
+        "script_sha256": execution_script_sha256,
+        "cp2k_adapter_sha256": execution_adapter_sha256,
+        "adapter_sha256": execution_adapter_sha256,
         "calculator": "cp2k",
         "cp2k_version": version,
         "source_revision": revision,

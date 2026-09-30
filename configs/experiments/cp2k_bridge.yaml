@@ -1,0 +1,96 @@
+{
+  "schema": "xtbflow-reference-bridge/v1",
+  "status": "development_pilot_not_reference_admission",
+  "description": "Same-geometry CP2K versus qualified CPU GFN2 characterization for C2.",
+  "reference": {
+    "protocol_file": "configs/calculators/cp2k/protocol_v0.1.yaml",
+    "executable_env": "XTBFlow_CP2K_EXECUTABLE",
+    "data_dir_env": "XTBFlow_CP2K_DATA_DIR",
+    "threads": 4,
+    "timeout_seconds": 900,
+    "artifact_root": "runs/cp2k-artifacts/reference-bridge"
+  },
+  "semiempirical": {
+    "implementation": "tblite",
+    "protocol_id": "tblite-gfn2-reference-bridge-v1",
+    "method": "GFN2-xTB",
+    "parameters": {
+      "accuracy": 1.0,
+      "max_iterations": 250,
+      "electronic_temperature": 300.0,
+      "solvent": null
+    }
+  },
+  "budget": {
+    "phase": "P2a-reference-bridge-pilot",
+    "max_cp2k_calls": 4,
+    "max_gfn2_calls": 4,
+    "max_concurrent_jobs": 1,
+    "max_retries_per_job": 0
+  },
+  "cases": [
+    {
+      "system_id": "water-perturbed-neutral-singlet",
+      "symbols": ["O", "H", "H"],
+      "coordinates_angstrom": [
+        [0.0, 0.0, 0.0],
+        [0.97, 0.03, 0.0],
+        [-0.25, 0.91, 0.04]
+      ],
+      "charge": 0,
+      "multiplicity": 1,
+      "selection_reason": "neutral CHNO calibration geometry with nonzero force components"
+    },
+    {
+      "system_id": "hydrogen-sulfide-perturbed-neutral-singlet",
+      "symbols": ["S", "H", "H"],
+      "coordinates_angstrom": [
+        [0.0, 0.0, 0.0],
+        [1.33, 0.05, 0.0],
+        [-0.04, 1.34, 0.05]
+      ],
+      "charge": 0,
+      "multiplicity": 1,
+      "selection_reason": "sulfur-containing target-domain calibration geometry"
+    },
+    {
+      "system_id": "hydronium-perturbed-cation-singlet",
+      "symbols": ["O", "H", "H", "H"],
+      "coordinates_angstrom": [
+        [0.0, 0.0, 0.0],
+        [0.98, 0.0, 0.05],
+        [-0.49, 0.85, -0.02],
+        [-0.46, -0.79, 0.12]
+      ],
+      "charge": 1,
+      "multiplicity": 1,
+      "selection_reason": "charged closed-shell target-domain calibration geometry"
+    },
+    {
+      "system_id": "water-dimer-perturbed-neutral-singlet",
+      "symbols": ["O", "H", "H", "O", "H", "H"],
+      "coordinates_angstrom": [
+        [0.0, 0.0, 0.0],
+        [0.9572, 0.0, 0.0],
+        [-0.239987, 0.927297, 0.0],
+        [2.85, 0.10, 0.05],
+        [3.8072, 0.10, 0.05],
+        [2.610013, 1.027297, 0.05]
+      ],
+      "charge": 0,
+      "multiplicity": 1,
+      "selection_reason": "finite explicit-water environment calibration geometry"
+    }
+  ],
+  "analysis": {
+    "aggregate_force_metrics": true,
+    "aggregate_absolute_energies_across_stoichiometries": false,
+    "accuracy_gate": "characterization_only"
+  },
+  "claim_limits": [
+    "This bounded bridge characterizes same-geometry E/F differences; it is not a broad accuracy qualification.",
+    "Absolute energies are retained per system and are not pooled across stoichiometries.",
+    "No transition-state, vibrational-mode, IRC, endpoint-connectivity, or mechanism claim follows from this bridge.",
+    "Reference-label admission remains provisional until the CP2K finite-difference and convergence gates are reviewed."
+  ]
+}

@@ -1,159 +1,324 @@
 #!/usr/bin/env python3
-"""Measure a small CP2K cutoff convergence ladder for the xtbflow protocol."""
+"""Run a metered, persistent CP2K cutoff-convergence ladder."""
 from __future__ import annotations
 
 import argparse
+from dataclasses import asdict
+import hashlib
 import json
+import math
 import os
 from pathlib import Path
-import re
-import shutil
 import subprocess
+import sys
+import tempfile
 import time
-from typing import Any
+from typing import Any, Mapping
 
-from xtbflow.calculators import CP2KAdapter, CP2KProtocol, MolecularSystem
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from xtbflow.calculators import (  # noqa: E402
+    CP2KAdapter,
+    MolecularSystem,
+    build_cp2k_protocol,
+    inspect_cp2k_runtime,
+    load_cp2k_protocol_document,
+    physical_protocol_identity,
+    physical_protocol_record,
+    protocol_document_sha256,
+)
+from xtbflow.runtime import RunLedger, StageBudget  # noqa: E402
+
+FIXTURE = {
+    "system_id": "water-perturbed-cutoff-ladder",
+    "symbols": ("O", "H", "H"),
+    "coordinates": ((0.0, 0.0, 0.0), (0.97, 0.03, 0.0), (-0.25, 0.91, 0.04)),
+    "charge": 0,
+    "multiplicity": 1,
+}
 
 
-def _version(executable: str) -> tuple[str, str]:
-    completed = subprocess.run([executable, "-v"], capture_output=True, text=True, check=False)
-    text = f"{completed.stdout}\n{completed.stderr}"
-    version = re.search(r"CP2K version\s+([0-9][^\s]*)", text)
-    revision = re.search(r"Source code revision\s+([0-9a-f]+)", text, re.IGNORECASE)
-    return (version.group(1) if version else "unknown", revision.group(1) if revision else "unknown")
+def _sha256_file(path: str | Path) -> str:
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
-def _protocol(data_dir: Path, executable: str, version: str, revision: str, cutoff: float, threads: int) -> CP2KProtocol:
-    elements = ("H", "C", "N", "O", "S")
-    return CP2KProtocol(
-        protocol_id=f"cp2k-reference-v0.1-pbe-d3bj-cutoff-{cutoff:g}",
-        functional="PBE",
-        basis_set="DZVP-MOLOPT-GTH",
-        pseudopotential="GTH-PBE",
-        dispersion="DFTD3(BJ)",
-        cutoff_ry=cutoff,
-        relative_cutoff_ry=50.0,
-        scf_epsilon=1e-7,
-        max_scf=80,
-        charge=0,
-        multiplicity=1,
-        build_hash=f"cp2k-{version}-{revision}",
-        cp2k_version=version,
-        parameters={
-            "basis_set_file": str(data_dir / "BASIS_MOLOPT"),
-            "pseudopotential_file": str(data_dir / "GTH_POTENTIALS"),
-            "dispersion_parameter_file": str(data_dir / "dftd3.dat"),
-            "reference_functional": "PBE",
-            "basis_by_element": {element: "DZVP-MOLOPT-GTH" for element in elements},
-            "pseudopotential_by_element": {element: "GTH-PBE" for element in elements},
-        },
+def _atomic_json(path: Path, payload: Mapping[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    text = json.dumps(payload, indent=2, sort_keys=True, allow_nan=False) + "\n"
+    fd, temporary = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+
+
+def _source_commit() -> str:
+    return subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+    ).strip()
+
+
+def _document_for_cutoff(
+    document: Mapping[str, Any], cutoff: float
+) -> dict[str, Any]:
+    payload = json.loads(json.dumps(document, allow_nan=False))
+    protocol = payload["protocol"]
+    protocol["cutoff_ry"] = float(cutoff)
+    protocol["protocol_id"] = (
+        f"cp2k-reference-v0.1-pbe-d3bj-cutoff-{float(cutoff):g}"
+    )
+    return payload
+
+
+def _max_force_delta(left: Any, right: Any) -> float:
+    return max(
+        abs(float(a) - float(b))
+        for row_a, row_b in zip(left, right)
+        for a, b in zip(row_a, row_b)
     )
 
 
-def _max_force_delta(left: Any, right: Any) -> float | None:
-    if left is None or right is None:
-        return None
-    return max(abs(float(a) - float(b)) for row_a, row_b in zip(left, right) for a, b in zip(row_a, row_b))
+def _comparison(run: Mapping[str, Any], reference: Mapping[str, Any]) -> dict[str, Any]:
+    return {
+        "cutoff_ry": run["cutoff_ry"],
+        "reference_cutoff_ry": reference["cutoff_ry"],
+        "abs_energy_delta_hartree": abs(
+            float(run["energy_hartree"]) - float(reference["energy_hartree"])
+        ),
+        "max_force_delta_hartree_per_angstrom": _max_force_delta(
+            run["forces_hartree_per_angstrom"],
+            reference["forces_hartree_per_angstrom"],
+        ),
+    }
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--executable", default=os.environ.get("XTBFlow_CP2K_EXECUTABLE"))
-    parser.add_argument("--data-dir", default=os.environ.get("XTBFlow_CP2K_DATA_DIR"))
-    parser.add_argument("--threads", type=int, default=int(os.environ.get("SLURM_CPUS_PER_TASK", "4")))
-    parser.add_argument("--timeout", type=float, default=600.0)
-    parser.add_argument("--cutoffs", type=float, nargs="+", default=(300.0, 400.0, 500.0))
-    parser.add_argument("--energy-tolerance", type=float, default=1e-5)
-    parser.add_argument("--force-tolerance", type=float, default=1e-4)
-    parser.add_argument("--output", type=Path)
     parser.add_argument(
-        "--artifact-dir",
+        "--protocol",
         type=Path,
-        default=Path(os.environ.get("XTBFlow_CP2K_ARTIFACT_DIR", "runs/cp2k-artifacts/convergence")),
-        help="Persistent root for per-cutoff input/stdout/stderr/output artifacts.",
+        default=ROOT / "configs/calculators/cp2k/protocol_v0.1.yaml",
     )
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--ledger", type=Path, required=True)
+    parser.add_argument("--artifact-dir", type=Path, required=True)
+    parser.add_argument(
+        "--cp2k-executable", default=os.environ.get("XTBFlow_CP2K_EXECUTABLE")
+    )
+    parser.add_argument(
+        "--cp2k-data-dir", default=os.environ.get("XTBFlow_CP2K_DATA_DIR")
+    )
+    parser.add_argument("--threads", type=int, default=4)
+    parser.add_argument("--timeout", type=float, default=900.0)
+    parser.add_argument(
+        "--cutoffs", type=float, nargs="+", default=(500.0, 600.0, 700.0)
+    )
+    parser.add_argument("--energy-tolerance", type=float, default=1.0e-5)
+    parser.add_argument("--force-tolerance", type=float, default=1.0e-4)
     args = parser.parse_args()
-    if len(args.cutoffs) < 2 or any(value <= 0 for value in args.cutoffs):
-        parser.error("at least two positive cutoff values are required")
-    executable = args.executable or shutil.which("cp2k.psmp") or shutil.which("cp2k.popt")
-    if not executable:
-        parser.error("CP2K executable not found; set XTBFlow_CP2K_EXECUTABLE")
-    executable = str(Path(executable).expanduser().resolve())
-    data_dir = Path(args.data_dir).expanduser() if args.data_dir else Path(executable).parent.parent / "share" / "cp2k" / "data"
-    missing = [str(path) for path in (data_dir / "BASIS_MOLOPT", data_dir / "GTH_POTENTIALS", data_dir / "dftd3.dat") if not path.is_file()]
-    if missing:
-        parser.error("missing CP2K data files: " + ", ".join(missing))
-    os.environ["OMP_NUM_THREADS"] = str(args.threads)
-    args.artifact_dir.mkdir(parents=True, exist_ok=True)
-    version, revision = _version(executable)
-    system = MolecularSystem(
-        ("O", "H", "H"),
-        ((0.0, 0.0, 0.0), (0.758602, 0.0, 0.504284), (-0.758602, 0.0, 0.504284)),
-        0,
-        1,
-        system_id="water-neutral-singlet",
+
+    if not args.cp2k_executable:
+        parser.error("set --cp2k-executable or XTBFlow_CP2K_EXECUTABLE")
+    if args.threads < 1 or args.timeout <= 0:
+        parser.error("threads and timeout must be positive")
+    if len(args.cutoffs) < 2 or any(
+        not math.isfinite(value) or value <= 0 for value in args.cutoffs
+    ):
+        parser.error("at least two positive finite cutoffs are required")
+    if list(args.cutoffs) != sorted(set(args.cutoffs)):
+        parser.error("cutoffs must be unique and strictly increasing")
+    if args.energy_tolerance <= 0 or args.force_tolerance <= 0:
+        parser.error("energy and force tolerances must be positive")
+    if args.ledger.exists():
+        parser.error(f"refusing to reuse an existing convergence ledger: {args.ledger}")
+
+    protocol_path = args.protocol.expanduser().resolve()
+    document = load_cp2k_protocol_document(protocol_path)
+    runtime = inspect_cp2k_runtime(
+        args.cp2k_executable, data_dir=args.cp2k_data_dir
     )
+    os.environ["OMP_NUM_THREADS"] = str(args.threads)
+    system = MolecularSystem(
+        tuple(FIXTURE["symbols"]),
+        tuple(FIXTURE["coordinates"]),
+        int(FIXTURE["charge"]),
+        int(FIXTURE["multiplicity"]),
+        {"periodic": False, "qualification_fixture": FIXTURE["system_id"]},
+        str(FIXTURE["system_id"]),
+    )
+
+    ledger = RunLedger(
+        StageBudget(
+            "P2a-cp2k-cutoff-convergence",
+            max_calculator_calls=len(args.cutoffs),
+            max_concurrent_jobs=1,
+            max_retries_per_job=0,
+        )
+    )
+    token = ledger.issue_calculator_token(
+        "c2-cp2k-cutoff-ladder",
+        len(args.cutoffs),
+        metadata={
+            "system_id": system.system_id,
+            "cutoffs_ry": list(args.cutoffs),
+        },
+        persist_path=args.ledger,
+    )
+
     runs: list[dict[str, Any]] = []
+    artifact_root = args.artifact_dir.expanduser().resolve()
+    artifact_root.mkdir(parents=True, exist_ok=True)
     for cutoff in args.cutoffs:
-        protocol = _protocol(data_dir, executable, version, revision, cutoff, args.threads)
+        calls_before = token.consumed_calls
+        cutoff_document = _document_for_cutoff(document, cutoff)
+        protocol_id = cutoff_document["protocol"]["protocol_id"]
+        protocol = build_cp2k_protocol(
+            cutoff_document,
+            runtime,
+            charge=system.charge,
+            multiplicity=system.multiplicity,
+            protocol_id=protocol_id,
+        )
         started = time.monotonic()
         try:
             result = CP2KAdapter(
                 protocol,
-                executable=executable,
+                executable=runtime.executable,
                 timeout_seconds=args.timeout,
-                artifact_dir=args.artifact_dir / f"cutoff-{cutoff:g}",
+                require_budget_token=True,
+                artifact_dir=artifact_root / f"cutoff-{cutoff:g}",
                 require_artifacts=True,
-            ).evaluate(system)
-        except Exception as error:
-            runs.append({"cutoff_ry": cutoff, "status": "failure", "error": f"{type(error).__name__}: {error}"})
-        else:
-            runs.append({
+            ).evaluate(system, operation="energy_forces", budget_token=token)
+        except Exception as exc:
+            runs.append(
+                {
+                    "cutoff_ry": cutoff,
+                    "protocol_id": protocol.protocol_id,
+                    "physical_protocol_identity": physical_protocol_identity(
+                        cutoff_document,
+                        runtime,
+                        charge=system.charge,
+                        multiplicity=system.multiplicity,
+                        protocol_id=protocol.protocol_id,
+                    ),
+                    "status": "failure",
+                    "calculator_calls": token.consumed_calls - calls_before,
+                    "wall_seconds": round(time.monotonic() - started, 3),
+                    "error_type": type(exc).__name__,
+                    "error_message": str(exc),
+                }
+            )
+            continue
+        runs.append(
+            {
                 "cutoff_ry": cutoff,
                 "relative_cutoff_ry": protocol.relative_cutoff_ry,
+                "protocol_id": protocol.protocol_id,
+                "physical_protocol": physical_protocol_record(
+                    cutoff_document,
+                    runtime,
+                    charge=system.charge,
+                    multiplicity=system.multiplicity,
+                    protocol_id=protocol.protocol_id,
+                ),
+                "physical_protocol_identity": physical_protocol_identity(
+                    cutoff_document,
+                    runtime,
+                    charge=system.charge,
+                    multiplicity=system.multiplicity,
+                    protocol_id=protocol.protocol_id,
+                ),
+                "runtime_bound_protocol_identity": protocol.identity,
                 "status": result.status,
                 "energy_hartree": result.energy,
                 "forces_hartree_per_angstrom": result.forces,
-                "protocol_id": protocol.protocol_id,
-                "protocol_identity": protocol.identity,
                 "input_file_hash": result.input_file_hash,
+                "metadata": result.metadata,
+                "calculator_calls": result.calculator_calls,
                 "wall_seconds": round(time.monotonic() - started, 3),
-            })
+            }
+        )
+    token.settle(recorded_calls=token.consumed_calls, persist_path=args.ledger)
+
     successful = [run for run in runs if run["status"] == "success"]
     reference = successful[-1] if successful else None
-    comparisons = []
-    if reference is not None:
-        for run in successful:
-            comparisons.append({
-                "cutoff_ry": run["cutoff_ry"],
-                "reference_cutoff_ry": reference["cutoff_ry"],
-                "abs_energy_delta_hartree": abs(run["energy_hartree"] - reference["energy_hartree"]),
-                "max_force_delta_hartree_per_angstrom": _max_force_delta(run["forces_hartree_per_angstrom"], reference["forces_hartree_per_angstrom"]),
-            })
-    pass_status = bool(successful) and len(successful) == len(runs) and all(
-        item["abs_energy_delta_hartree"] <= args.energy_tolerance and item["max_force_delta_hartree_per_angstrom"] <= args.force_tolerance
+    comparisons = (
+        [_comparison(run, reference) for run in successful]
+        if reference is not None
+        else []
+    )
+    thresholds_pass = bool(comparisons) and all(
+        item["abs_energy_delta_hartree"] <= args.energy_tolerance
+        and item["max_force_delta_hartree_per_angstrom"]
+        <= args.force_tolerance
         for item in comparisons
     )
-    payload = {
-        "schema": "xtbflow-cp2k-convergence-smoke/v1",
-        "status": "pass" if pass_status else "fail",
-        "cp2k_version": version,
-        "source_revision": revision,
-        "system_id": system.system_id,
+    passed = len(successful) == len(runs) and thresholds_pass
+    execution_source_commit = _source_commit()
+    execution_script_sha256 = _sha256_file(Path(__file__))
+    execution_adapter_sha256 = _sha256_file(ROOT / "src/xtbflow/calculators/cp2k.py")
+    report = {
+        "schema": "xtbflow-cp2k-convergence-smoke/v2",
+        "status": "pass" if passed else "fail",
+        "scientific_qualification": False,
+        # These identities describe the code that produced the private run.
+        # The publisher must carry them forward instead of hashing its own
+        # (possibly newer) checkout.
+        "source_commit": execution_source_commit,
+        "script_sha256": execution_script_sha256,
+        "cp2k_adapter_sha256": execution_adapter_sha256,
+        "adapter_sha256": execution_adapter_sha256,
+        "protocol_document_sha256": protocol_document_sha256(protocol_path),
+        "runtime": runtime.public_record(),
+        "system": {
+            "system_id": system.system_id,
+            "symbols": list(system.symbols),
+            "coordinates_angstrom": [list(row) for row in system.coordinates],
+            "charge": system.charge,
+            "multiplicity": system.multiplicity,
+            "input_hash": system.input_hash,
+        },
+        "runtime_threads": args.threads,
         "energy_tolerance_hartree": args.energy_tolerance,
         "force_tolerance_hartree_per_angstrom": args.force_tolerance,
-        "runtime_threads": args.threads,
-        "artifact_root": str(args.artifact_dir),
+        "cutoffs_ry": list(args.cutoffs),
+        "artifact_root": str(artifact_root),
         "runs": runs,
         "comparisons_to_highest_cutoff": comparisons,
-        "scope": "water single-point cutoff smoke; not a full basis, SCF, or path convergence qualification",
+        "calculator_calls": ledger.committed_calculator_calls,
+        "scope": (
+            "one non-equilibrium water geometry; cutoff convergence only, "
+            "not basis, SCF, TS, path, or broad chemical qualification"
+        ),
+        "claim_limits": [
+            "The ladder is one fixed geometry and one CP2K build only.",
+            "Failure is a valid gate result and blocks promotion of the provisional cutoff.",
+            "Passing would not establish basis convergence, broad chemical accuracy, transition-state validity, or endpoint connectivity.",
+        ],
     }
-    encoded = json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
-    if args.output:
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(encoded, encoding="utf-8")
-    print(encoded, end="")
-    return 0 if pass_status else 1
+    _atomic_json(args.output, report)
+    print(
+        json.dumps(
+            {
+                "status": report["status"],
+                "calculator_calls": report["calculator_calls"],
+                "successful_runs": len(successful),
+                "reference_cutoff_ry": reference["cutoff_ry"] if reference else None,
+            },
+            sort_keys=True,
+        )
+    )
+    return 0 if passed else 2
 
 
 if __name__ == "__main__":

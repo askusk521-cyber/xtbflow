@@ -78,3 +78,93 @@ def finite_difference_hvp(
     if not bool(torch.isfinite(hvp).all()):
         return HVPResult(tuple(map(tuple, direction.tolist())), None, calls, "failed", "nonfinite finite-difference curvature")
     return HVPResult(tuple(map(tuple, direction.tolist())), tuple(map(tuple, hvp.tolist())), calls, "success")
+
+
+@dataclass(frozen=True)
+class ProjectedHessianResult:
+    """Finite-difference Hessian represented in a declared orthonormal basis."""
+
+    basis: tuple[tuple[tuple[float, float, float], ...], ...]
+    matrix: tuple[tuple[float, ...], ...] | None
+    eigenvalues: tuple[float, ...] | None
+    eigenvectors: tuple[tuple[float, ...], ...] | None
+    calculator_calls: int
+    status: str
+    error: str | None = None
+
+
+def projected_hessian(
+    backend: CalculatorBackend,
+    system: MolecularSystem,
+    basis: Sequence[Sequence[Sequence[float]]] | torch.Tensor,
+    *,
+    step: float = 1e-3,
+    orthonormal_tolerance: float = 1e-7,
+    budget_token: CalculatorCallToken | None = None,
+) -> ProjectedHessianResult:
+    """Evaluate ``QᵀHQ`` with two force calls per basis direction."""
+
+    directions = basis if isinstance(basis, torch.Tensor) else torch.tensor(
+        basis, dtype=torch.float64
+    )
+    expected_tail = (len(system.symbols), 3)
+    if directions.ndim != 3 or tuple(directions.shape[1:]) != expected_tail:
+        raise ValueError("basis must have shape [K,N,3] matching the system")
+    directions = directions.to(torch.float64)
+    if not bool(torch.isfinite(directions).all()) or directions.shape[0] < 1:
+        raise ValueError("basis must be a nonempty finite tensor")
+    flat = directions.reshape(directions.shape[0], -1)
+    norms = flat.norm(dim=1)
+    if bool((norms <= 0).any()):
+        raise ValueError("basis directions must be nonzero")
+    flat = flat / norms[:, None]
+    gram = flat @ flat.T
+    eye = torch.eye(flat.shape[0], dtype=torch.float64)
+    if not torch.allclose(gram, eye, atol=orthonormal_tolerance, rtol=0.0):
+        raise ValueError("basis directions must be orthonormal")
+    normalized = flat.reshape_as(directions)
+    calls_before = budget_token.consumed_calls if budget_token is not None else 0
+    products: list[torch.Tensor] = []
+    calls_without_token = 0
+    for direction in normalized:
+        result = finite_difference_hvp(
+            backend,
+            system,
+            direction,
+            step=step,
+            budget_token=budget_token,
+        )
+        calls_without_token += result.calculator_calls
+        if result.status != "success" or result.hessian_vector_product is None:
+            calls = (
+                budget_token.consumed_calls - calls_before
+                if budget_token is not None
+                else calls_without_token
+            )
+            return ProjectedHessianResult(
+                tuple(tuple(map(tuple, row.tolist())) for row in normalized),
+                None,
+                None,
+                None,
+                calls,
+                "failed",
+                result.error or "finite-difference HVP failed",
+            )
+        products.append(torch.tensor(result.hessian_vector_product, dtype=torch.float64).reshape(-1))
+    hvp_matrix = torch.stack(products, dim=1)
+    projected = flat @ hvp_matrix
+    projected = 0.5 * (projected + projected.T)
+    eigenvalues, eigenvectors = torch.linalg.eigh(projected)
+    calls = (
+        budget_token.consumed_calls - calls_before
+        if budget_token is not None
+        else calls_without_token
+    )
+    return ProjectedHessianResult(
+        tuple(tuple(map(tuple, row.tolist())) for row in normalized),
+        tuple(tuple(float(value) for value in row) for row in projected.tolist()),
+        tuple(float(value) for value in eigenvalues.tolist()),
+        tuple(tuple(float(value) for value in row) for row in eigenvectors.tolist()),
+        calls,
+        "success",
+    )

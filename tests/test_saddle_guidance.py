@@ -96,3 +96,34 @@ def test_schedule_and_strength_validation():
     assert schedule_strength(schedule, 1.0) == 2.0
     with pytest.raises(ValueError):
         schedule_strength(schedule, 1.1)
+
+
+def test_projected_hessian_counts_calls_and_recovers_saddle_spectrum():
+    def saddle(item, operation):
+        x, y, z = item.coordinates[0]
+        output = {
+            "charge": item.charge,
+            "multiplicity": item.multiplicity,
+            "converged": True,
+            "energy": 0.5 * (-2.0 * x * x + y * y + 3.0 * z * z),
+            "forces": ((2.0 * x, -y, -3.0 * z),),
+        }
+        return output
+
+    from xtbflow.runtime import RunLedger, StageBudget
+    from xtbflow.physics import projected_hessian
+
+    item = MolecularSystem(("H",), ((0.1, 0.2, -0.1),), 0, 1)
+    backend = XTBloomAdapter(protocol=protocol(), evaluator=saddle, require_budget_token=True)
+    ledger = RunLedger(StageBudget("projected-hessian", max_calculator_calls=6))
+    token = ledger.issue_calculator_token("projected-hessian", 6)
+    basis = (
+        ((1.0, 0.0, 0.0),),
+        ((0.0, 1.0, 0.0),),
+        ((0.0, 0.0, 1.0),),
+    )
+    result = projected_hessian(backend, item, basis, step=1e-5, budget_token=token)
+    assert result.status == "success"
+    assert result.calculator_calls == 6
+    assert result.eigenvalues == pytest.approx((-2.0, 1.0, 3.0), abs=1e-8)
+    assert token.consumed_calls == 6

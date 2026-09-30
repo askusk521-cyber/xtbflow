@@ -4,6 +4,7 @@ from __future__ import annotations
 from collections import defaultdict
 from dataclasses import dataclass, field
 import json
+import math
 import re
 from pathlib import Path
 from typing import Any, Iterable, Mapping
@@ -161,9 +162,10 @@ class SearchAttempt:
         if (
             isinstance(self.wall_seconds, bool)
             or not isinstance(self.wall_seconds, (int, float))
+            or not math.isfinite(float(self.wall_seconds))
             or self.wall_seconds < 0
         ):
-            raise ValueError("wall_seconds must be non-negative")
+            raise ValueError("wall_seconds must be finite and non-negative")
         object.__setattr__(self, "wall_seconds", float(self.wall_seconds))
 
         proposed_event = _mapping(self.proposed_event, "proposed_event")
@@ -306,6 +308,39 @@ class SearchAttempt:
         return cls(**dict(payload))
 
 
+def _validate_cumulative_update(
+    previous: SearchAttempt,
+    row: SearchAttempt,
+) -> None:
+    """Reject a snapshot that moves any cumulative cost backwards.
+
+    This check is shared by history audits and the append path.  Keeping it on
+    the write path is necessary because a later read audit cannot undo a row
+    that has already polluted the append-only log.
+    """
+
+    protocol_ids = set(previous.calculator_calls) | set(row.calculator_calls)
+    if any(
+        row.calculator_calls.get(protocol_id, 0)
+        < previous.calculator_calls.get(protocol_id, 0)
+        for protocol_id in protocol_ids
+    ):
+        raise ValueError(
+            f"attempt {row.attempt_id} cumulative calculator calls decrease at "
+            f"version {row.attempt_version}"
+        )
+    if row.wall_seconds < previous.wall_seconds:
+        raise ValueError(
+            f"attempt {row.attempt_id} cumulative wall_seconds decrease at "
+            f"version {row.attempt_version}"
+        )
+    if row.retry_count < previous.retry_count:
+        raise ValueError(
+            f"attempt {row.attempt_id} cumulative retry_count decrease at "
+            f"version {row.attempt_version}"
+        )
+
+
 def _audit_attempt_history(rows: list[SearchAttempt]) -> None:
     grouped: dict[str, list[SearchAttempt]] = defaultdict(list)
     for row in rows:
@@ -332,26 +367,7 @@ def _audit_attempt_history(rows: list[SearchAttempt]) -> None:
                     f"attempt {attempt_id} rewrites immutable fields: "
                     f"{changed}"
                 )
-            protocol_ids = set(previous.calculator_calls) | set(row.calculator_calls)
-            if any(
-                row.calculator_calls.get(protocol_id, 0)
-                < previous.calculator_calls.get(protocol_id, 0)
-                for protocol_id in protocol_ids
-            ):
-                raise ValueError(
-                    f"attempt {attempt_id} cumulative calculator calls decrease at "
-                    f"version {row.attempt_version}"
-                )
-            if row.wall_seconds < previous.wall_seconds:
-                raise ValueError(
-                    f"attempt {attempt_id} cumulative wall_seconds decrease at "
-                    f"version {row.attempt_version}"
-                )
-            if row.retry_count < previous.retry_count:
-                raise ValueError(
-                    f"attempt {attempt_id} cumulative retry_count decrease at "
-                    f"version {row.attempt_version}"
-                )
+            _validate_cumulative_update(previous, row)
             previous = row
 
 
@@ -423,6 +439,7 @@ def append_attempt_jsonl(
                 f"attempt {row.attempt_id} rewrites immutable fields: "
                 f"{changed}"
             )
+        _validate_cumulative_update(same_attempt[-1], row)
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = json.dumps(
         row.to_dict(),

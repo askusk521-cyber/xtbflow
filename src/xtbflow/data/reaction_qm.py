@@ -535,7 +535,14 @@ def _coordinates(value: Sequence[Sequence[Any]], *, atoms: int, name: str) -> tu
 
 @dataclass(frozen=True)
 class ReactionQMRecord:
-    """One Reaction-QM-style record after strict source-level validation."""
+    """One quarantined Reaction-QM source-audit record.
+
+    This object is intentionally read-only and cannot grant Track-B admission.
+    A later adapter must reconstruct the complete ``TrackBRecord`` contract
+    before a row can receive a development or confirmatory status.  Keeping
+    that boundary here prevents source parsing from becoming a second, weaker
+    admission path.
+    """
 
     record_id: str
     parent_reaction_id: str
@@ -617,27 +624,11 @@ class ReactionQMRecord:
         if any(not isinstance(reason, str) or not reason.strip() for reason in reasons):
             raise ValueError("quarantine reasons must be nonempty strings")
         object.__setattr__(self, "quarantine_reasons", reasons)
-        if self.admission not in {"quarantine", "development_train", "development_validation", "development_test", "confirmatory"}:
-            raise ValueError("unsupported admission state")
-        if self.admission != "quarantine" and reasons:
-            raise ValueError("admitted rows cannot carry quarantine reasons")
         if self.admission != "quarantine":
-            unresolved = [
-                name for name, value in (
-                    ("parent_reaction_id", self.parent_reaction_id),
-                    ("reaction_family_id", self.reaction_family_id),
-                    ("independent_reactant_system_id", self.independent_reactant_system_id),
-                    ("repeated_ts_group", self.repeated_ts_group),
-                    ("source_revision", self.source_revision),
-                )
-                if value.strip().lower() in _UNRESOLVED
-            ]
-            if unresolved:
-                raise ValueError(f"admitted records cannot have unresolved grouping fields: {unresolved}")
-            if not isinstance(self.coordinate_map_evidence, Mapping) or self.coordinate_map_evidence.get("source") not in _EXPLICIT_COORDINATE_MAP_EVIDENCE:
-                raise ValueError("admitted records require explicit coordinate-to-map evidence")
-            if self.source_asset_sha256 is None:
-                raise ValueError("admitted records require a verified source asset SHA-256")
+            raise ValueError(
+                "ReactionQMRecord is source-audit only; convert through the "
+                "unified TrackBRecord adapter before requesting admission"
+            )
         expected_hash = reaction_qm_record_hash(
             record_id=self.record_id,
             parent_reaction_id=self.parent_reaction_id,

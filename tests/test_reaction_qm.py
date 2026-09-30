@@ -42,7 +42,7 @@ def record(**overrides):
         multiplicity=1,
         reference_protocol={"method": "B3LYP-D3", "basis": "TZVP", "coordinates": "angstrom", "energy": "hartree"},
         event_label=derive_event_label(reactant, product, source_record_id="RXN_1"),
-        admission="development_train",
+        admission="quarantine",
         coordinate_map_evidence={"source": "explicit_source_map", "map_ids": [1, 2, 3]},
         source_asset_sha256="b" * 64,
     )
@@ -66,10 +66,11 @@ def record(**overrides):
     return ReactionQMRecord(**values)
 
 
-def test_valid_chnos_neutral_closed_shell_record_is_explicit():
+def test_valid_chnos_neutral_closed_shell_record_stays_quarantined():
     row = record()
     assert row.charge == -1
     assert row.multiplicity == 1
+    assert row.admission == "quarantine"
     assert row.event_label["evidence"] == "derived_under_contract"
     assert row.event_label["source_record_id"] == row.record_id
 
@@ -81,11 +82,14 @@ def test_missing_charge_and_multiplicity_are_rejected():
         record(multiplicity="unknown")
 
 
-def test_electronic_state_and_grouping_are_required_for_admission():
-    with pytest.raises(ValueError, match="inconsistent with the electron count"):
-        record(charge=0)
-    with pytest.raises(ValueError, match="unresolved grouping"):
-        record(parent_reaction_id="unknown")
+def test_quarantine_preserves_unresolved_electronic_and_grouping_reasons():
+    row = record(charge=0, parent_reaction_id="unknown")
+    assert "electronic_state_inconsistent" in row.quarantine_reasons
+
+
+def test_source_audit_record_cannot_grant_track_b_admission():
+    with pytest.raises(ValueError, match="source-audit only"):
+        record(admission="development_train")
 
 
 def test_source_hash_binds_coordinates_and_electronic_state():

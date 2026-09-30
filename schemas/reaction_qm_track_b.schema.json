@@ -52,7 +52,7 @@
         }
       ]
     },
-    "admission": {"enum": ["quarantine", "development_train", "development_validation", "development_test", "confirmatory"]},
+    "admission": {"const": "quarantine"},
     "quarantine_reasons": {"type": "array", "items": {"type": "string"}}
   },
   "$defs": {

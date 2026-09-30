@@ -198,16 +198,6 @@
       "bytes": 903
     },
     {
-      "path": "configs/runs/README.md",
-      "sha256": "7831f0d6ddc4e766db79d48eaf5a8d87bf45c68f1bbb0dad04d258e05e4b313b",
-      "bytes": 381
-    },
-    {
-      "path": "configs/runs/workflow_b_baseline_ladder_v0.1.json",
-      "sha256": "30361f3f5ca3b6e7c43d32c7a6590596c007270090a3f0a603d316d24b1cd93d",
-      "bytes": 3943
-    },
-    {
       "path": "configs/task.yaml",
       "sha256": "497be8a98bebc3c52b402877a0039ef0be0caa27c282507cd97ace36e4a92b0a",
       "bytes": 2838
@@ -294,8 +284,8 @@
     },
     {
       "path": "docs/REACTION_QM_DATA_GATE.md",
-      "sha256": "a7b4dd50dfc22f16c4575783fb0f95fbc65a6148784a0b31bab5a753abd39ad4",
-      "bytes": 4770
+      "sha256": "2b98dbd34fda850ad0ba6b5ed56b0ca9229b06499620e19bbdfbb643d9e0ac6d",
+      "bytes": 5066
     },
     {
       "path": "docs/REACTION_QM_WORKFLOW_STATUS_20260930.md",
@@ -574,8 +564,8 @@
     },
     {
       "path": "schemas/reaction_qm_track_b.schema.json",
-      "sha256": "254b1e3e4448eb5f7812dd3dacd88e485414d5798c984f595442e61b9cf6bd15",
-      "bytes": 3189
+      "sha256": "44c30fa2a6bc7395279403c5a999cc31ebb59e3593801cf0f0f5d6f376b5120a",
+      "bytes": 3105
     },
     {
       "path": "schemas/reference_protocol.schema.json",
@@ -734,8 +724,8 @@
     },
     {
       "path": "src/xtbflow/data/reaction_qm.py",
-      "sha256": "18bb9e4bffafe78048ca295ddc2a9291f96c8acfa355bb9fe300d2c273376a6d",
-      "bytes": 44637
+      "sha256": "57a4c4e8728663837e6b4bdff0a34edcac2e3fb8ef899157ddfbd10ab9b53c83",
+      "bytes": 43778
     },
     {
       "path": "src/xtbflow/data/records.py",
@@ -1034,8 +1024,8 @@
     },
     {
       "path": "tests/test_reaction_qm.py",
-      "sha256": "29ef947b5502fde7d7b9df6586655e93312ea19db2ab73167ddba980700adac6",
-      "bytes": 9063
+      "sha256": "9b51bfaac4043ab1d5d1d3367318f4fa7dd387f0c0d6394b485b1236f7a47393",
+      "bytes": 9193
     },
     {
       "path": "tests/test_runtime_budget.py",

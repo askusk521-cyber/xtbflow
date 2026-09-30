@@ -1,12 +1,17 @@
 from __future__ import annotations
 
+import hashlib
+
 import pytest
 
 from xtbflow.data.reaction_qm import (
     Bond,
     MappedGraph,
+    PublicSourceConfig,
     REACTION_QM_SOURCE,
+    ReactionQMLoader,
     ReactionQMRecord,
+    SourceFile,
     derive_event_label,
 )
 from xtbflow.data.records import PublicRecord
@@ -114,6 +119,26 @@ def test_source_audit_omits_cache_absolute_paths(tmp_path):
     report = audit_source_files(config, tmp_path)
     assert report[0]["relative_path"] == "asset.dat"
     assert str(tmp_path) not in str(report)
+
+
+def test_loader_reads_only_hash_verified_reaction_info(tmp_path):
+    name = "B3LYPD3_TZVP_reaction_info.csv"
+    payload = b"reaction_id,reaction_smiles\nRXN_1,[C:1]>>[C:1]\n"
+    (tmp_path / name).write_bytes(payload)
+    config = PublicSourceConfig(
+        dataset="test",
+        revision="v1",
+        landing_url="https://example.invalid/test",
+        license_status="check",
+        field_mapping={"reaction_info": {"reaction_id": "reaction_id"}},
+        files=(SourceFile(name, "https://example.invalid/asset", "reaction_info", expected_sha256=hashlib.sha256(payload).hexdigest()),),
+        claim_limit="test only",
+    )
+    loader = ReactionQMLoader(cache_dir=tmp_path, config=config)
+    assert list(loader.reaction_info())[0]["reaction_id"] == "RXN_1"
+    (tmp_path / name).write_bytes(payload + b"tampered")
+    with pytest.raises(ValueError, match="hash-verified"):
+        next(loader.reaction_info())
 
 
 def public_record(record_id: str, parent: str, group: str, symbols=("C", "O")):

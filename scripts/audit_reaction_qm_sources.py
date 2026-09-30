@@ -108,7 +108,15 @@ def _graph_stats(reactant: str, product: str, chem: Any) -> dict[str, Any]:
     return dict(result)
 
 
-def audit_mapped_csv(path: Path, *, id_field: str, reactant_field: str, product_field: str, extra_fields: tuple[str, ...] = ()) -> dict[str, Any]:
+def audit_mapped_csv(
+    path: Path,
+    *,
+    id_field: str,
+    reactant_field: str,
+    product_field: str,
+    extra_fields: tuple[str, ...] = (),
+    graph_audit: bool = True,
+) -> dict[str, Any]:
     chem = _rdkit()
     counts = Counter()
     ids: list[str] = []
@@ -129,8 +137,9 @@ def audit_mapped_csv(path: Path, *, id_field: str, reactant_field: str, product_
                     missing_fields[field] += 1
             for field in extra_fields:
                 extra_values[field][row[field]] += 1
-            for key, value in _graph_stats(row[reactant_field], row[product_field], chem).items():
-                counts[key] += value
+            if graph_audit:
+                for key, value in _graph_stats(row[reactant_field], row[product_field], chem).items():
+                    counts[key] += value
     counts["unique_ids"] = len(set(ids))
     counts["duplicate_ids"] = len(ids) - counts["unique_ids"]
     counts["charge_field_missing"] = counts["rows"]
@@ -178,6 +187,17 @@ def audit_hdf5(path: Path) -> dict[str, Any]:
     def visit(group: Any) -> None:
         nonlocal groups
         labels = {str(key).upper() for key in group.keys()}
+        # RGD1 stores its endpoint/TS fields directly in each reaction group
+        # (`RG`, `PG`, `TSG`, `R_E`, ...), unlike Reaction-QM's nested species
+        # groups. Count those datasets without pretending they are species
+        # fields in the Reaction-QM schema.
+        if "_ID" in labels and any(label in labels for label in ("RG", "R_E", "R_F")):
+            groups += 1
+            for key in group.keys():
+                child = group[key]
+                if not hasattr(child, "keys"):
+                    species_field_counts[str(key)] += 1
+            return
         if any(label.startswith("R") for label in labels) and any(label.startswith("P") for label in labels) and any(label.startswith("TS") for label in labels):
             groups += 1
             for key in group.keys():
@@ -334,12 +354,17 @@ def build_report(args: argparse.Namespace) -> dict[str, Any]:
     mapped = rgd / "RGD1CHNO_AMsmiles.csv"
     report["rgd1"] = {
         "mapped_smiles": audit_mapped_csv(mapped, id_field="reaction", reactant_field="reactant", product_field="product") if mapped.is_file() else {"status": "unavailable"},
-        "dft_reaction_info": audit_mapped_csv(rgd / "DFT_reaction_info.csv", id_field="channel", reactant_field="reactant", product_field="product", extra_fields=("type", "R_ind")) if (rgd / "DFT_reaction_info.csv").is_file() else {"status": "unavailable"},
+        "dft_reaction_info": audit_mapped_csv(rgd / "DFT_reaction_info.csv", id_field="channel", reactant_field="reactant", product_field="product", extra_fields=("type", "R_ind"), graph_audit=False) if (rgd / "DFT_reaction_info.csv").is_file() else {"status": "unavailable"},
         "hdf5": audit_hdf5(rgd / "RGD1_CHNO.h5"),
         "endpoint_hdf5": audit_hdf5(rgd / "RGD1_RPs.h5"),
     }
     report["admission_summary"] = {
-        "reaction_qm": {"status": "awaiting_hdf5_and_record_contract", "confirmatory": False, "claim_limit": "Do not call endpoint-derived labels electron-density paths."},
+        "reaction_qm": {
+            "status": "quarantine_coordinate_mapping_unverified",
+            "confirmatory": False,
+            "reason": "HDF5 coordinate rows do not expose an explicit atom-map-to-coordinate relation.",
+            "claim_limit": "Do not call endpoint-derived labels electron-density paths.",
+        },
         "rgd1": {"status": "cross_source_validation_only", "confirmatory": False, "reason": "RGD1 remains separate from Reaction-QM training and lacks source-wide explicit charge/multiplicity in the CSV index."},
     }
     return report

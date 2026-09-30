@@ -314,8 +314,8 @@
     },
     {
       "path": "docs/TRACK_B_DATA_GATE.md",
-      "sha256": "7d4237a25238a6a84fd4f87b255a52ae3e8d2dec84ec280a05ff97ba97953a99",
-      "bytes": 10677
+      "sha256": "de1919311eafeaa81a9c8823dca19b074821c7732ac2f6b48c828e6da0370a10",
+      "bytes": 11012
     },
     {
       "path": "docs/architecture/architecture_v0.1.md",
@@ -619,8 +619,8 @@
     },
     {
       "path": "schemas/search_attempt.schema.json",
-      "sha256": "71832eea8e813ea495cb19558b959a758436bb92f625534cb170e27f4c99b972",
-      "bytes": 3753
+      "sha256": "5028a7b884d2b2e4f8b7ff1ec5484c3b0701263a0be28b9efd420740d76d968e",
+      "bytes": 4117
     },
     {
       "path": "schemas/track_b_reaction_ts.schema.json",
@@ -644,8 +644,8 @@
     },
     {
       "path": "scripts/audit_search_attempts.py",
-      "sha256": "b8d6b95f08e9364ee98e3cb28a2b89aed3092a3755d1572fdb67e01baa97d9f7",
-      "bytes": 2529
+      "sha256": "af4442034e0d182e55f48d5cbb798ff90a28dbd616d5f9c754b135bece264f22",
+      "bytes": 2694
     },
     {
       "path": "scripts/audit_track_b_manifest.py",
@@ -774,8 +774,8 @@
     },
     {
       "path": "src/xtbflow/data/attempts.py",
-      "sha256": "c4c7aaf16845b37f38431cc872182d2ebf4298c4a31b449fc1eba3e1bcb0e9b0",
-      "bytes": 14293
+      "sha256": "ab1b106dfd9e8c0584d659415d80cd4037dd4ab64be281485aba94101c977efc",
+      "bytes": 16434
     },
     {
       "path": "src/xtbflow/data/cache.py",
@@ -819,8 +819,8 @@
     },
     {
       "path": "src/xtbflow/data/track_b.py",
-      "sha256": "c122146d93386d04f6f82d6e70cdef0b3aaa60405b8875c2b556118a2b312f46",
-      "bytes": 26156
+      "sha256": "2b931805bbf4f2b147c6bedbab90ddf5ecb441c798bb8e64c2bfc00c083a9eee",
+      "bytes": 26444
     },
     {
       "path": "src/xtbflow/data/transition1x_audit.py",
@@ -1129,8 +1129,8 @@
     },
     {
       "path": "tests/test_track_b_workflow.py",
-      "sha256": "48957bf34d813a746c71eaf72f1ffe456b1b90a364aa085d13da7e7c6845b0e4",
-      "bytes": 19596
+      "sha256": "f47aaa1d0940fbd0d6da7e53c42faf88658183be5772843b6128f61ab163b5ce",
+      "bytes": 24786
     },
     {
       "path": "tests/test_transition1x_track_b_audit.py",

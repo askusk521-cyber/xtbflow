@@ -864,8 +864,8 @@
     },
     {
       "path": "src/xtbflow/models/__init__.py",
-      "sha256": "bf6fb7c8d6ff3abe27ccd5240df05e3467064d24b2fc5217b3240faa9e80de6f",
-      "bytes": 1476
+      "sha256": "4512e26c68119d14907c41d24cad9aec7aa794c9d0720e3939019335080d2d97",
+      "bytes": 1532
     },
     {
       "path": "src/xtbflow/models/conserved_be.py",
@@ -904,8 +904,8 @@
     },
     {
       "path": "src/xtbflow/models/joint_flow.py",
-      "sha256": "7e8a871bcf1042dff5b557dcff77005a1ebe5bd6cebbc2c011784a70a1a453a5",
-      "bytes": 20166
+      "sha256": "4788edd09d253237708d17d13291c8bc57dc59b675fa81b66f5ebea977c05d9d",
+      "bytes": 22441
     },
     {
       "path": "src/xtbflow/models/reaction_direction.py",

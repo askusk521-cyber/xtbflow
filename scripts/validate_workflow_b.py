@@ -31,7 +31,9 @@ EXPECTED_ARMS = (
     "strong_rule",
     "conserved_independent",
     "serial_event_to_geometry",
+    "current_event_to_geometry",
     "joint_event_geometry",
+    "unconstrained_event",
 )
 
 
@@ -104,6 +106,18 @@ def validate_protocol() -> dict[str, object]:
     )
     if learned_modes != CONTROL_MODES:
         raise ValueError("learned baseline arms must map exactly to the registered control modes")
+    gate = protocol.get("decision_gate", {})
+    if gate.get("title_claim_requires_joint_over_serial") is not True or gate.get("method_competitiveness_comparison") != "joint_event_geometry versus serial_event_to_geometry":
+        raise ValueError("the headline architecture claim requires the matched serial comparison")
+    if gate.get("coupling_attribution_requires_joint_over_current_one_way") is not True or gate.get("coupling_attribution_comparison") != "joint_event_geometry versus current_event_to_geometry":
+        raise ValueError("coupling attribution requires the current-state one-way control")
+    if gate.get("conservation_ablation_requires_only_projection_toggle") is not True:
+        raise ValueError("the conservation ablation must change only the projection toggle")
+    ablation = next((arm for arm in matrix if arm.get("arm_id") == "unconstrained_event"), None)
+    if not isinstance(ablation, Mapping) or ablation.get("conservation_projection") is not False:
+        raise ValueError("workflow B requires an unconstrained-event conservation ablation")
+    if any(arm.get("conservation_projection") is not True for arm in matrix if arm is not ablation):
+        raise ValueError("all comparison arms other than the conservation ablation must retain projection")
 
     fairness = protocol.get("fairness")
     if not isinstance(fairness, Mapping):
@@ -181,6 +195,24 @@ def validate_protocol() -> dict[str, object]:
                 "geometry_velocity_finite": finite,
                 "conservation_residual_max_abs": residual,
             }
+        unconstrained = model.forward_control(
+            "joint_bidirectional",
+            event_state,
+            coordinates,
+            node_features,
+            atom_mask,
+            tau=0.5,
+            dt=0.25,
+            condition_features=conditions,
+            conservation_projection=False,
+        )
+        unconstrained_residual = float(projector.residual(unconstrained.event_velocity).abs().max())
+        unconstrained_finite = bool(
+            torch.isfinite(unconstrained.event_velocity).all()
+            and torch.isfinite(unconstrained.geometry_velocity).all()
+        )
+        if not unconstrained_finite or unconstrained_residual <= 1e-8:
+            raise ValueError("unconstrained conservation ablation did not disable the projection")
     measured_manifest = coupled_control_manifest(
         modes=runtime.control_modes,
         models={mode: model for mode in runtime.control_modes},
@@ -214,11 +246,18 @@ def validate_protocol() -> dict[str, object]:
                 "truncated": rules.truncated,
             },
             "learned_controls": learned_execution,
+            "conservation_ablation": {
+                "event_velocity_finite": unconstrained_finite,
+                "geometry_velocity_finite": unconstrained_finite,
+                "conservation_residual_max_abs": unconstrained_residual,
+                "only_changed_factor": "conservation_projection",
+            },
         },
         "measured_control_manifest": measured_manifest,
         "checks": [
-            "four-arm first scientific matrix is frozen",
-            "learned arms map exactly to both_off, serial_independent, and joint_bidirectional",
+            "six-arm first scientific matrix is frozen",
+            "unconstrained-event conservation ablation changes only the projection toggle",
+            "learned arms include the current-state joint_unidirectional ablation",
             "learned software controls share one measured parameter state",
             "software acceptance assigns zero calculator calls to every learned control",
             "issue 58 remains the explicit paired event/TS supervision blocker",

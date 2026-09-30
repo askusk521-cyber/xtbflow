@@ -13,6 +13,7 @@
   "control_modes": [
     "both_off",
     "serial_independent",
+    "joint_unidirectional",
     "joint_bidirectional"
   ],
   "shared_parameter_policy": "one parameter set evaluated through registered control paths",

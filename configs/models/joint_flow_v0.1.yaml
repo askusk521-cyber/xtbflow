@@ -5,10 +5,12 @@ runtime_config: configs/models/joint_flow_runtime_v0.1.json
 modes:
   - both_off
   - serial_independent
+  - joint_unidirectional
   - joint_bidirectional
 control_semantics:
   both_off: independently conditioned event and geometry velocities; no generated-state exchange
   serial_independent: independent event velocity, explicit dt event step, then one-way event-to-geometry conditioning
+  joint_unidirectional: current-state event and geometry evaluation with geometry-to-event feedback disabled
   joint_bidirectional: current event and geometry states exchange local pair/atom messages at every velocity evaluation
 coupling_strength: declared_per_run
 event_geometry_exchange: local_atom_and_atom_pair_messages
@@ -24,6 +26,7 @@ tau:
   per_sample: true
 integrator: explicit_euler_dt
 dt_required_for_serial: true
+dt_required_for_joint_unidirectional: true
 physical_force_is_event_gradient: false
 scientific_status: software_prototype_not_scientifically_trained
 scientific_blocker: issue_58_paired_event_ts_supervision

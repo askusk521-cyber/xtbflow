@@ -3,7 +3,7 @@
   "protocol_id": "workflow-b-baseline-ladder-v0.1",
   "status": "software_protocol_frozen_scientific_execution_blocked",
   "issues": [20, 44, 56, 58],
-  "scientific_question": "Does learned bidirectional event-geometry coupling improve held-out reactant-side TS proposal quality beyond matched independent and serial controls?",
+  "scientific_question": "Does learned bidirectional event-geometry coupling improve held-out reactant-side TS proposal quality beyond the matched serial control, while the same-integrator current-state one-way control separately attributes the coupling gain?",
   "runtime_model_config": "configs/models/joint_flow_runtime_v0.1.json",
   "blocking_dependency": {
     "issue": 58,
@@ -15,25 +15,43 @@
       "arm_id": "strong_rule",
       "kind": "reactant_only_rule",
       "implementation": "xtbflow.proposals.enumerate_core_events",
-      "learned_control_mode": null
+      "learned_control_mode": null,
+      "conservation_projection": true
     },
     {
       "arm_id": "conserved_independent",
       "kind": "learned",
       "implementation": "xtbflow.models.JointEventGeometryFlow.forward_control",
-      "learned_control_mode": "both_off"
+      "learned_control_mode": "both_off",
+      "conservation_projection": true
     },
     {
       "arm_id": "serial_event_to_geometry",
       "kind": "learned",
       "implementation": "xtbflow.models.JointEventGeometryFlow.forward_control",
-      "learned_control_mode": "serial_independent"
+      "learned_control_mode": "serial_independent",
+      "conservation_projection": true
+    },
+    {
+      "arm_id": "current_event_to_geometry",
+      "kind": "learned",
+      "implementation": "xtbflow.models.JointEventGeometryFlow.forward_control",
+      "learned_control_mode": "joint_unidirectional",
+      "conservation_projection": true
     },
     {
       "arm_id": "joint_event_geometry",
       "kind": "learned",
       "implementation": "xtbflow.models.JointEventGeometryFlow.forward_control",
-      "learned_control_mode": "joint_bidirectional"
+      "learned_control_mode": "joint_bidirectional",
+      "conservation_projection": true
+    },
+    {
+      "arm_id": "unconstrained_event",
+      "kind": "conservation_ablation",
+      "implementation": "xtbflow.models.JointEventGeometryFlow.forward_control",
+      "learned_control_mode": "joint_bidirectional",
+      "conservation_projection": false
     }
   ],
   "deferred_arms": [
@@ -52,6 +70,7 @@
     "learned_arms_start_from_same_state_per_seed": true,
     "arm_specific_training_checkpoints_are_recorded": true,
     "same_optimizer_and_batch_exposures": true,
+    "unconstrained_event_keeps_all_other_factors_equal": true,
     "same_candidate_cap": 64,
     "training_seeds": [11, 17, 23],
     "generator_selection_calculator_calls_per_parent": 0,
@@ -88,10 +107,18 @@
   },
   "decision_gate": {
     "title_claim_requires_joint_over_serial": true,
-    "comparison": "joint_event_geometry versus serial_event_to_geometry",
+    "method_competitiveness_comparison": "joint_event_geometry versus serial_event_to_geometry",
+    "coupling_attribution_requires_joint_over_current_one_way": true,
+    "coupling_attribution_comparison": "joint_event_geometry versus current_event_to_geometry",
+    "conservation_ablation_comparison": "joint_event_geometry with conservation projection versus identical joint_event_geometry without conservation projection",
+    "conservation_ablation_requires_only_projection_toggle": true,
+    "integrator": "explicit Euler; both velocities evaluated at current event and geometry states",
+    "only_changed_factor_for_attribution": "geometry-to-event feedback enabled versus disabled",
+    "serial_comparison": "primary matched serial method baseline; its comparison is required for the headline architecture claim",
     "must_hold_on": [
       "frozen parent-group test split",
       "same candidate cap",
+      "same integration steps and initial states",
       "same downstream calculator budget"
     ],
     "failure_action": "do not claim joint coupling as a headline contribution; retain the smallest supported control"

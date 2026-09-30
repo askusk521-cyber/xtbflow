@@ -3,7 +3,7 @@
 The canonical event state is the packed upper triangle of a symmetric
 bond/electron matrix.  Pairwise shared networks make event velocities
 permutation equivariant, while coordinate updates remain SE(3)-equivariant.
-The three learned controls use the same parameters:
+The four learned controls use the same parameters:
 
 ``both_off``
     Event and geometry fields see the same reactant-side conditions but do not
@@ -14,6 +14,11 @@ The three learned controls use the same parameters:
 ``joint_bidirectional``
     Current event and geometry states influence one another at every velocity
     evaluation.
+``joint_unidirectional``
+    The same current-state Euler evaluation as the joint control, with only
+    geometry-to-event feedback disabled.  This is the causal ablation for
+    attributing gains to bidirectional coupling; it is not the serial
+    post-update baseline.
 
 The normalized flow coordinate is a generation parameter, not physical time.
 """
@@ -35,7 +40,8 @@ from .event_flow import ConservedEventFlow
 from .geometry_flow import EquivariantGeometryFlow
 
 
-CONTROL_MODES = ("both_off", "serial_independent", "joint_bidirectional")
+JOINT_UNIDIRECTIONAL_MODE = "joint_unidirectional"
+CONTROL_MODES = ("both_off", "serial_independent", JOINT_UNIDIRECTIONAL_MODE, "joint_bidirectional")
 
 
 def _normalize_tau(
@@ -244,6 +250,7 @@ class JointEventGeometryFlow(nn.Module):
         active_event: Tensor,
         *,
         geometry_to_event_strength: float,
+        conservation_projection: bool,
     ) -> tuple[Tensor, Tensor]:
         event_matrix = unpack_be(event_state, self.n_atoms)
         sender = hidden_nodes[:, :, None, :].expand(-1, -1, self.n_atoms, -1)
@@ -271,9 +278,13 @@ class JointEventGeometryFlow(nn.Module):
 
         base_packed = pack_be(base_pair)
         geometry_packed = pack_be(geometry_pair) * geometry_to_event_strength
-        projector = self.event_projector
-        event_message = projector.project_masked(geometry_packed, active_event)
-        event_velocity = projector.project_masked(base_packed + geometry_packed, active_event)
+        if conservation_projection:
+            projector = self.event_projector
+            event_message = projector.project_masked(geometry_packed, active_event)
+            event_velocity = projector.project_masked(base_packed + geometry_packed, active_event)
+        else:
+            event_message = geometry_packed.masked_fill(~active_event, 0.0)
+            event_velocity = (base_packed + geometry_packed).masked_fill(~active_event, 0.0)
         return event_velocity, event_message
 
     def _geometry_velocity(
@@ -317,10 +328,19 @@ class JointEventGeometryFlow(nn.Module):
         coupling_strength: float = 1.0,
         tau: float | Tensor = 0.0,
         condition_features: Tensor | None = None,
+        geometry_to_event_strength: float | None = None,
+        event_to_geometry_strength: float | None = None,
+        conservation_projection: bool = True,
     ) -> JointFlowOutput:
         """Evaluate the bidirectional control with a shared coupling strength."""
 
         strength = _finite_strength(coupling_strength, "coupling_strength")
+        geometry_strength = strength if geometry_to_event_strength is None else _finite_strength(
+            geometry_to_event_strength, "geometry_to_event_strength"
+        )
+        event_strength = strength if event_to_geometry_strength is None else _finite_strength(
+            event_to_geometry_strength, "event_to_geometry_strength"
+        )
         active_event, conditions = self._validate_inputs(
             event_state, coordinates, node_features, atom_mask, condition_features
         )
@@ -337,14 +357,15 @@ class JointEventGeometryFlow(nn.Module):
             hidden_nodes,
             atom_mask,
             active_event,
-            geometry_to_event_strength=strength,
+            geometry_to_event_strength=geometry_strength,
+            conservation_projection=conservation_projection,
         )
         geometry_velocity, geometry_message = self._geometry_velocity(
             event_state,
             coordinates,
             conditioned_nodes,
             atom_mask,
-            event_to_geometry_strength=strength,
+            event_to_geometry_strength=event_strength,
         )
         return JointFlowOutput(event_velocity, geometry_velocity, event_message, geometry_message)
 
@@ -360,6 +381,7 @@ class JointEventGeometryFlow(nn.Module):
         dt: float | None = None,
         coupling_strength: float = 1.0,
         condition_features: Tensor | None = None,
+        conservation_projection: bool = True,
     ) -> JointFlowOutput:
         """Evaluate one registered learned control using this exact parameter set."""
 
@@ -374,6 +396,25 @@ class JointEventGeometryFlow(nn.Module):
                 coupling_strength=coupling_strength,
                 tau=tau,
                 condition_features=condition_features,
+                conservation_projection=conservation_projection,
+            )
+        if mode == JOINT_UNIDIRECTIONAL_MODE:
+            # Keep the same state time point and integrator contract as the
+            # bidirectional field.  Only one message channel is disabled.
+            if dt is None:
+                raise ValueError("joint_unidirectional requires an explicit positive dt")
+            _finite_strength(dt, "dt", allow_zero=False)
+            return self(
+                event_state,
+                coordinates,
+                node_features,
+                atom_mask,
+                coupling_strength=coupling_strength,
+                tau=tau,
+                condition_features=condition_features,
+                geometry_to_event_strength=0.0,
+                event_to_geometry_strength=coupling_strength,
+                conservation_projection=conservation_projection,
             )
         if mode == "both_off":
             return self(
@@ -384,6 +425,7 @@ class JointEventGeometryFlow(nn.Module):
                 coupling_strength=0.0,
                 tau=tau,
                 condition_features=condition_features,
+                conservation_projection=conservation_projection,
             )
 
         step = _finite_strength(dt, "dt", allow_zero=False) if dt is not None else None
@@ -407,6 +449,7 @@ class JointEventGeometryFlow(nn.Module):
             atom_mask,
             active_event,
             geometry_to_event_strength=0.0,
+            conservation_projection=conservation_projection,
         )
         event_state_next = event_state + step * event_velocity
         geometry_velocity, geometry_message = self._geometry_velocity(

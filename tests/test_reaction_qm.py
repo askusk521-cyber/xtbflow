@@ -43,7 +43,7 @@ def record(**overrides):
         reference_protocol={"method": "B3LYP-D3", "basis": "TZVP", "coordinates": "angstrom", "energy": "hartree"},
         event_label=derive_event_label(reactant, product, source_record_id="RXN_1"),
         admission="development_train",
-        coordinate_map_evidence="explicit_source_map",
+        coordinate_map_evidence={"source": "explicit_source_map", "map_ids": [1, 2, 3]},
     )
     values.update(overrides)
     values["source_record_hash"] = reaction_qm_record_hash(

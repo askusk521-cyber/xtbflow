@@ -36,7 +36,20 @@
         "output_event_label_hash": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"}
       }
     },
-    "coordinate_map_evidence": {"type": "string", "minLength": 1},
+    "coordinate_map_evidence": {
+      "oneOf": [
+        {"type": "string", "minLength": 1},
+        {
+          "type": "object",
+          "required": ["source", "map_ids"],
+          "properties": {
+            "source": {"type": "string", "minLength": 1},
+            "map_ids": {"type": "array", "items": {"type": "integer", "minimum": 1}, "minItems": 1}
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
     "admission": {"enum": ["quarantine", "development_train", "development_validation", "development_test", "confirmatory"]},
     "quarantine_reasons": {"type": "array", "items": {"type": "string"}}
   },

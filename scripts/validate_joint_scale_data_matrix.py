@@ -32,7 +32,9 @@ def _parameter_count(dimensions: Mapping[str, Any], hidden_dim: int) -> int:
     r = int(dimensions["radial_features"])
     count = (n + 1) * h + h * h + 3 * h + (n + 2) * h + n
     if c:
-        count += h * h + (c + 2) * h + (c + n + 1) * h + n
+        # condition_to_node contains c -> h and h -> n linear layers;
+        # include one bias vector for each layer.
+        count += h * h + (c + 2) * h + (c + n + 2) * h + n
     count += 2 * h * h + 4 * h + 1
     count += (r + 2) * h + 1
     count += (n + 3) * h + n

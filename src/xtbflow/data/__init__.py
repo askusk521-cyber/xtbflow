@@ -24,6 +24,15 @@ from .records import (
 from .splits import SplitError, admitted_records, assign_group_splits, audit_no_group_leakage, audit_no_input_fingerprint_leakage
 from .pairing import EFPair, PAIR_CANONICAL_UNITS, build_ef_pair, failure_pair, geometry_hash
 from .cache import append_pair_cache, load_pair_cache
+from .independent_seeds import (
+    IndependentSeed,
+    SeedManifest,
+    build_seed_manifest,
+    load_seed_manifest,
+    write_seed_jsonl,
+    write_seed_manifest,
+)
+from .attempts import AttemptRecord, ProposalRecord, ValidationRecord
 from .reaction_qm import (
     Bond,
     EVENT_RULE_VERSION,
@@ -64,6 +73,8 @@ __all__ = [
     "filter_records", "load_jsonl", "write_jsonl", "SplitError", "admitted_records",
     "assign_group_splits", "audit_no_group_leakage", "audit_no_input_fingerprint_leakage",
     "EFPair", "PAIR_CANONICAL_UNITS", "build_ef_pair", "failure_pair", "geometry_hash", "append_pair_cache", "load_pair_cache",
+    "IndependentSeed", "SeedManifest", "build_seed_manifest", "load_seed_manifest", "write_seed_jsonl", "write_seed_manifest",
+    "AttemptRecord", "ProposalRecord", "ValidationRecord",
     "Bond", "EVENT_RULE_VERSION", "MappedGraph", "PublicSourceConfig", "REACTION_QM_SOURCE", "RGD1_SOURCE",
     "ReactionQMLoader", "ReactionQMRecord", "SourceFile", "audit_source_files", "derive_event_label", "reaction_qm_record_hash", "source_configs",
     *_TASK_VIEW_EXPORTS,

@@ -1,0 +1,51 @@
+{
+  "schema": "xtbflow-baseline-controls/v1",
+  "status": "software_contract_not_scientifically_trained",
+  "factory": "xtbflow.models.baseline_factory.BaselineFactory",
+  "arm_ids": [
+    "strong_rule",
+    "shared_no_exchange",
+    "step_serial",
+    "current_one_way",
+    "current_two_way",
+    "current_two_way_no_projection",
+    "separate_independent",
+    "full_two_stage"
+  ],
+  "experiment_types": {
+    "method_comparison": [
+      "strong_rule",
+      "shared_no_exchange",
+      "step_serial",
+      "current_one_way",
+      "current_two_way",
+      "separate_independent",
+      "full_two_stage"
+    ],
+    "mechanism_intervention": ["current_two_way_no_projection"]
+  },
+  "training": {
+    "each_arm_trained_separately": true,
+    "seeds": [11, 17, 23],
+    "same_initial_weights_only_for_matching_topology": true,
+    "checkpoint_switching_is_not_method_comparison": true
+  },
+  "resource_contract": {
+    "raw_candidate_cap": 64,
+    "candidate_refill": false,
+    "rejected_slots_count_toward_cap": true,
+    "default_solver_steps": 1,
+    "physical_calls": 0
+  },
+  "capacity": {
+    "report_actual_trainable_parameters": true,
+    "report_estimated_field_evaluations": true,
+    "target_ratio_tolerance": 0.1,
+    "unmatched_models_must_be_labeled": true
+  },
+  "input_firewall": {
+    "reactant_only": true,
+    "product_ts_reference_mode_forbidden": true,
+    "blind_label_replacement_invariant": true
+  }
+}

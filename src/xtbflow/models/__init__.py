@@ -25,3 +25,22 @@ __all__ = [
     "EquivariantGeometryFlow", "ReactantEventGeometryFlow", "ReactionDirectionHead",
     "normalize_direction", "sign_invariant_direction_loss", "DeltaEnergyModel", "DirectEnergyModel", "EnergyForcePrediction", "CONTROL_MODES", "JOINT_UNIDIRECTIONAL_MODE", "JointEventGeometryFlow", "JointFlowOutput", "SerialEventGeometryFlow", "JointFlowRuntimeConfig", "RUNTIME_CONFIG_SCHEMA",
 ]
+
+# W02 unified control directory and reactant-only strong-rule geometry contract.
+from .baseline_factory import (
+    BASELINE_ARM_IDS,
+    BaselineControl,
+    BaselineFactory,
+    BaselineSpec,
+    StrongRuleControl,
+    build_baseline,
+    build_control,
+)
+from .initial_geometry import BondEditHint, RuleGeometryInitializer, rule_geometry_initialization
+from .serial_baseline import FullTwoStageFlow, SeparateIndependentFlow
+
+__all__ += [
+    "BASELINE_ARM_IDS", "BaselineControl", "BaselineFactory", "BaselineSpec", "StrongRuleControl",
+    "build_baseline", "build_control", "BondEditHint", "RuleGeometryInitializer",
+    "rule_geometry_initialization", "FullTwoStageFlow", "SeparateIndependentFlow",
+]

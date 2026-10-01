@@ -1,6 +1,6 @@
 # Workflow B model and baseline protocol
 
-Status: software protocol frozen; scientific execution remains blocked by issue #58.
+Status: software protocol frozen; scientific execution remains blocked by issue #58.  The current cross-package status and handoff gates are recorded in [`../PROJECT_STATUS.md`](../PROJECT_STATUS.md) and [`../../configs/runs/research_dispatch_20261001.json`](../../configs/runs/research_dispatch_20261001.json).
 
 ## Scope
 
@@ -83,6 +83,13 @@ and
 Both were produced from clean source commit
 `35192b75fdf302a2cf368430bc3b8138feb0e4c6`; the checkpoint itself remains a
 local smoke artefact and is not published as a scientific model.
+
+The 2026-10 execution matrix keeps the existing controls as software
+contracts while W02 adds separately trainable and complete two-stage controls,
+W04 owns the S1 training comparison, and W03 owns the paired metric protocol.
+No shared checkpoint switch is treated as a separately trained method, and no
+control enters a scientific comparison until the paired manifest and its split
+fingerprint are admitted.
 
 Run the bounded checks with:
 

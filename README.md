@@ -50,24 +50,38 @@ python scripts/validate_bootstrap.py
 
 本次连接状态见 `docs/HANDOFF_STATUS.md`。GitHub 仓库授权不会自动提供 SSH、Slurm、GPU 或软件安装。
 
-## Current software status
+## Current software and research status
 
-The first packaged software slice is now available under `src/xtbflow`. It
-exposes an explicit adapter to the immutable `vendor/mechai_reusable` snapshot;
-new xtbflow algorithms will be added under `src/xtbflow` instead of modifying
-the snapshot in place. Install the package and run the complete current test
-slice with:
+The packaged software slice is available under `src/xtbflow` and exposes an
+explicit adapter to the immutable `vendor/mechai_reusable` snapshot.  New
+algorithms stay under `src/xtbflow`; the vendor snapshot is read-only.  The
+bounded Workflow B controls, runtime ledger, input firewall, calculator
+contracts, and source/grouping audits have software evidence.  The joint-flow
+fixture is still an untrained software prototype, and the paired event–TS
+manifest remains blocked until every record has mapping, electronic-state,
+license, step-pairing and overlap evidence.
+
+The repository also contains a separate SPICE2 E/F development lane with
+reconstructible grouped learning-curve evidence and a limited GFN2/tblite
+qualification scope.  Those E/F labels are not event–TS supervision.  The
+xTBloom and CP2K records document adapter/parser and bounded smoke behavior;
+production qualification and path evidence remain separate gates.  No line
+above is a claim of a trained scientific model, broad chemical accuracy, or a
+confirmed mechanism.  The module-level matrix and evidence links are kept in
+[`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md).
+
+The 2026-10 parallel work packages use one artifact-level dispatch and shared
+ledger.  Read [`docs/research/execution_20261001.md`](docs/research/execution_20261001.md)
+and [`configs/runs/research_dispatch_20261001.json`](configs/runs/research_dispatch_20261001.json)
+for the twelve owners, write scopes, status matrix, handoff fields and
+dependency gates.  A structurally valid offline dispatch deliberately reports
+`science_ready: false`; unknown or blocked artifacts cannot be promoted to a
+passed result.
+
+Install the package and run the available test slices with:
 
 ```bash
 python -m pip install -e ".[test]"
 python -m unittest discover -s tests/reusable -p "test_*.py"
-python -m pytest -q tests/test_package.py
+python -m pytest -q tests/test_package.py tests/test_research_dispatch.py
 ```
-
-The current package contains contracts, untrained compatibility prototypes, and a standard-library runtime ledger for bounded, resumable execution. The ledger records calculator/protocol identities, per-system attempts, retries, cache hits, resource units, and cumulative stage caps before work is allowed to proceed.
-
-The public-data handoff is currently an explicit quarantine manifest: source identities are recorded, but zero scientific records are admitted until per-record geometry bytes, charge/spin evidence, licenses, and reference labels are verified.
-
-It does not yet contain a trained flow model, xTBloom or CP2K calculator
-backend, a reference energy/force dataset, or a chemical validation result.
-Those remain separate issues with their own evidence and budget gates.

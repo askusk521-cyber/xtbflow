@@ -160,6 +160,24 @@ def test_source_audit_omits_cache_absolute_paths(tmp_path):
     assert str(tmp_path) not in str(report)
 
 
+def test_source_audit_flags_declared_size_mismatch(tmp_path):
+    from xtbflow.data.reaction_qm import SourceFile, audit_source_files
+
+    (tmp_path / "asset.dat").write_bytes(b"asset")
+    config = REACTION_QM_SOURCE.__class__(
+        dataset="test",
+        revision="v1",
+        landing_url="https://example.invalid/test",
+        license_status="check",
+        field_mapping={"asset": "asset.dat"},
+        files=(SourceFile("asset.dat", "https://example.invalid/asset", "test", declared_size_bytes=999),),
+        claim_limit="test only",
+    )
+    report = audit_source_files(config, tmp_path)
+    assert report[0]["status"] == "declared_size_mismatch"
+    assert report[0]["size_bytes"] == 5
+
+
 def test_loader_reads_only_hash_verified_reaction_info(tmp_path):
     name = "B3LYPD3_TZVP_reaction_info.csv"
     payload = b"reaction_id,reaction_smiles\nRXN_1,[C:1]>>[C:1]\n"

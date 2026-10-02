@@ -29,3 +29,12 @@ methods received the same deployment-visible input.
 These checks cover routing and information-flow contracts. They do not qualify
 an adapter, a calculator, a TS, a force field, or a chemical mechanism.
 Those claims still require the real data and physics gates in the project plan.
+
+## Task-level availability audit
+
+`xtbflow.data.availability` and `scripts/audit_task_availability.py` produce a
+stable JSON audit from a public-record JSONL manifest. The report separates
+source-declared labels from formally admitted training rows, counts identified
+parent reactions, and records quarantine reasons. It requires explicit
+same-geometry and event/geometry identity bits before counting `energy_force` or
+`paired_joint`; it does not infer either relation from co-occurring fields.

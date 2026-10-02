@@ -279,8 +279,8 @@
     },
     {
       "path": "docs/cloud_progress.md",
-      "sha256": "f73413717a6b5d296a3ebd39c489a0be278bcf2e4dac80c60f124b99f4cdc43a",
-      "bytes": 1363
+      "sha256": "9826691e912ba09f9143303315e692365fc93e51ba9f772919f70ff6a3bf9a14",
+      "bytes": 1860
     },
     {
       "path": "docs/CP2K_SETUP.md",
@@ -588,6 +588,11 @@
       "bytes": 2079
     },
     {
+      "path": "scripts/audit_task_availability.py",
+      "sha256": "4b0ba67829054acc804634e1b086c5415cb289a591cf7e60220df5d89f9a2917",
+      "bytes": 1173
+    },
+    {
       "path": "scripts/audit_units_provenance.py",
       "sha256": "23e817315fc43717fa2ad516bf0b5af5ab3f19ecc08e1067226017d0b077a47e",
       "bytes": 11980
@@ -699,8 +704,13 @@
     },
     {
       "path": "src/xtbflow/data/__init__.py",
-      "sha256": "903270d283cf9226b0e810ea0711da34d74217a1dfc5454c54619702975ea958",
-      "bytes": 1873
+      "sha256": "dd1affca3d3f4791f08f87386ebffd13561a79700c6af35c0cba1c64242f7411",
+      "bytes": 2085
+    },
+    {
+      "path": "src/xtbflow/data/availability.py",
+      "sha256": "349c2471312fcbf085c9d6e10706709de636b1599ed9e41b145a341de8a3ed29",
+      "bytes": 9836
     },
     {
       "path": "src/xtbflow/data/cache.py",
@@ -966,6 +976,11 @@
       "path": "tests/test_architecture_contract.py",
       "sha256": "6167428cf23743895ea2da869fdd07b778409303f9af9d684df2396348ede649",
       "bytes": 2402
+    },
+    {
+      "path": "tests/test_availability_audit.py",
+      "sha256": "826804f94f0a944b57eed9213e69dbfe304c4a1e9c1ead990007c54a08dd2188",
+      "bytes": 3209
     },
     {
       "path": "tests/test_blind_input_firewall.py",

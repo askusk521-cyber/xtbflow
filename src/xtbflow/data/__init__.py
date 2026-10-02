@@ -9,6 +9,12 @@ from __future__ import annotations
 
 from importlib import import_module
 
+from .availability import (
+    TASKS,
+    TaskAvailabilityAudit,
+    TaskAvailabilityStat,
+    audit_task_availability,
+)
 from .public_sources import SourceAudit, hash_file, verify_local_asset
 from .records import (
     CHNOS_ELEMENTS,
@@ -47,7 +53,8 @@ __all__ = [
     "SourceAudit", "hash_file", "verify_local_asset", "PublicRecord", "canonical_hash",
     "PUBLIC_CANONICAL_UNITS", "CHNOS_ELEMENTS", "RecordPolicy", "RecordFilterResult",
     "filter_records", "load_jsonl", "write_jsonl", "SplitError", "admitted_records",
-    "assign_group_splits", "audit_no_group_leakage",
-    "EFPair", "PAIR_CANONICAL_UNITS", "build_ef_pair", "failure_pair", "geometry_hash", "append_pair_cache", "load_pair_cache",
+    "assign_group_splits", "audit_no_group_leakage", "EFPair", "PAIR_CANONICAL_UNITS",
+    "build_ef_pair", "failure_pair", "geometry_hash", "append_pair_cache", "load_pair_cache",
+    "TASKS", "TaskAvailabilityAudit", "TaskAvailabilityStat", "audit_task_availability",
     *_TASK_VIEW_EXPORTS,
 ]

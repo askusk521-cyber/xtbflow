@@ -280,7 +280,7 @@
     {
       "path": "docs/cloud_progress.md",
       "sha256": "f73413717a6b5d296a3ebd39c489a0be278bcf2e4dac80c60f124b99f4cdc43a",
-      "bytes": null
+      "bytes": 1363
     },
     {
       "path": "docs/CP2K_SETUP.md",
@@ -735,12 +735,12 @@
     {
       "path": "src/xtbflow/evaluation/__init__.py",
       "sha256": "58374c748dce39e7ec998ca81c426e25d03839afedce32857fc2907dae8f611f",
-      "bytes": null
+      "bytes": 421
     },
     {
       "path": "src/xtbflow/evaluation/blind.py",
       "sha256": "b9722ab01aebb316886e5f221df1ab2a09951125e204c7b4b960639c054839a4",
-      "bytes": null
+      "bytes": 2966
     },
     {
       "path": "src/xtbflow/evaluation/terminal.py",
@@ -885,7 +885,7 @@
     {
       "path": "src/xtbflow/training/__init__.py",
       "sha256": "c8dd38f3a9458d40f3f8890e21450f8c57b8fd616ceac784b05d02a841cb6432",
-      "bytes": null
+      "bytes": 1209
     },
     {
       "path": "src/xtbflow/training/checkpoint.py",
@@ -915,7 +915,7 @@
     {
       "path": "src/xtbflow/training/task_routing.py",
       "sha256": "dfe167ac7fbd5fcdd342d4650d68d9394da7d341a938d861298a58c2b278aab0",
-      "bytes": null
+      "bytes": 9980
     },
     {
       "path": "src/xtbflow/validation/__init__.py",
@@ -970,7 +970,7 @@
     {
       "path": "tests/test_blind_input_firewall.py",
       "sha256": "12ba042b17b0d4d0fa86a065273bb243fed62b5413696ab1130dce87fc7769fa",
-      "bytes": null
+      "bytes": 991
     },
     {
       "path": "tests/test_calculator_contract.py",
@@ -1060,7 +1060,7 @@
     {
       "path": "tests/test_task_routing.py",
       "sha256": "dd14ad300f9fa856c87490f09a9b1963aaa6cb80acf673f0b18e911813a25144",
-      "bytes": null
+      "bytes": 2854
     },
     {
       "path": "tests/test_workflow_b_protocol.py",

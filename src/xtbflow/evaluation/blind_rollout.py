@@ -130,9 +130,9 @@ class BlindRolloutResult:
     candidate_cap: int
     actual_candidate_attempts: int
     actual_flow_evaluations: int
-    physical_validation_calls: int
     attempts: tuple[CandidateAttempt, ...]
     accepted: tuple[CandidateAttempt, ...]
+    physical_validation_calls: int = 0
 
     @property
     def failure_counts(self) -> dict[str, int]:

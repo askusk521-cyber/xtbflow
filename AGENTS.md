@@ -49,6 +49,12 @@ behavioral change, link the relevant issue, list validation commands, and call
 out evidence limits. Never commit credentials, private data, model weights, or
 unbounded job configurations; record public provenance and bounded resources.
 
+## GitHub Communication Language Requirement
+
+For every issue, pull request, review comment, discussion, release note, or other project update posted on GitHub, keep the existing English explanation for AI and tooling, and add a clearly labeled `中文说明` section with at least three complete Chinese sentences for human readers. The Chinese explanation must state what changed or what is wrong, why it matters, and what action or expected result is needed. Use everyday Chinese that an undergraduate student can understand; explain unavoidable technical terms briefly and keep the English and Chinese sections factually consistent. Update both sections whenever the scope, status, or expected result changes.
+
+中文说明必须让本科生也能直接看懂。请用至少三句完整的中文，说明改了什么或哪里有问题、为什么重要、接下来需要做什么或应该看到什么结果。遇到必须保留的技术名词，要顺手解释它的意思；英文和中文内容必须表达同样的事实。
+
 ## Repository Management: Human Merge Approval
 
 All PR and branch merges require explicit approval from the repository owner

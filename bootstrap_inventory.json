@@ -709,8 +709,8 @@
     },
     {
       "path": "src/xtbflow/data/availability.py",
-      "sha256": "349c2471312fcbf085c9d6e10706709de636b1599ed9e41b145a341de8a3ed29",
-      "bytes": 9836
+      "sha256": "08ef5504e306385b004be031ebff397b4d9025523d13a22e1d9c894717a8c8a1",
+      "bytes": 9837
     },
     {
       "path": "src/xtbflow/data/cache.py",

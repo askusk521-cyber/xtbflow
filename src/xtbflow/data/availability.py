@@ -132,7 +132,7 @@ class TaskAvailabilityAudit:
 
     @property
     def fingerprint(self) -> str:
-        return canonical_hash(self.to_dict())
+        return self.fingerprint_without_self()
 
     def to_dict(self) -> dict[str, object]:
         return {

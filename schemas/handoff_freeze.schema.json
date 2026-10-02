@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xtbflow.org/schemas/handoff_freeze.schema.json",
+  "title": "xtbflow reproducible handoff and freeze manifest",
+  "description": "Identity and evidence contract for a reviewable run or work-package handoff.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "manifest_id", "status", "work_package", "github", "artifacts", "evidence", "execution"],
+  "properties": {
+    "schema": {"const": "xtbflow-handoff-freeze/v1"},
+    "manifest_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "ready", "blocked", "failed", "completed"]},
+    "work_package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "owner", "write_scope"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^W[0-9]{2}$"},
+        "title": {"type": "string", "minLength": 1},
+        "owner": {"type": "string", "minLength": 1},
+        "write_scope": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "github": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "base_sha", "head_sha", "base_ref", "head_ref", "remote_verification"],
+      "properties": {
+        "repository": {"type": "string", "pattern": "^[^/\\s]+/[^/\\s]+$"},
+        "base_sha": {"$ref": "#/$defs/sha1"},
+        "head_sha": {"$ref": "#/$defs/sha1"},
+        "base_ref": {"type": "string", "minLength": 1},
+        "head_ref": {"type": "string", "minLength": 1},
+        "remote_verification": {"enum": ["verified", "offline", "unknown"]}
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "config", "data", "split", "input_view", "protocol", "checkpoint", "ledger"],
+      "properties": {
+        "code": {"$ref": "#/$defs/artifact"},
+        "config": {"$ref": "#/$defs/artifact"},
+        "data": {"$ref": "#/$defs/artifact"},
+        "split": {"$ref": "#/$defs/artifact"},
+        "input_view": {"$ref": "#/$defs/artifact"},
+        "protocol": {"$ref": "#/$defs/artifact"},
+        "checkpoint": {"$ref": "#/$defs/artifact"},
+        "ledger": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "status", "failure_reasons"],
+      "properties": {
+        "level": {"enum": ["interface", "software_test", "development", "validation", "confirmation"]},
+        "status": {"enum": ["unknown", "pass", "blocked", "fail"]},
+        "failure_reasons": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "ledger_id", "output_index"],
+      "properties": {
+        "command": {"type": "string", "minLength": 1},
+        "ledger_id": {"type": "string", "minLength": 1},
+        "output_index": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "$defs": {
+    "sha1": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256_or_null": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      ]
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "locator", "sha256", "status", "source_status"],
+      "properties": {
+        "kind": {"enum": ["file", "directory", "external", "none"]},
+        "locator": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256_or_null"},
+        "status": {"enum": ["verified", "declared", "unknown", "missing", "not_applicable"]},
+        "source_status": {"enum": ["registered", "external_only", "quarantine", "unknown", "unavailable"]}
+      }
+    }
+  }
+}

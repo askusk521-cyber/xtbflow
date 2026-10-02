@@ -41,6 +41,7 @@ packages = [
   "xtbflow.sampling",
   "xtbflow.evaluation",
   "xtbflow.validation",
+  "xtbflow.governance",
   "mechai",
   "mechai.data",
   "mechai.evaluation",

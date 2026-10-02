@@ -19,11 +19,13 @@ marked `declared_reactant_endpoint`, so these records are development-only.
 The product, event, and TS fields are never present in the model-visible
 reactant view.
 
-The first audit yielded 68 rows across 62 parent groups.  Family IDs are
-derived from canonical mapped-reactant components and family groups are kept
-whole across deterministic 70/15/15 train/validation/test splits.  The adapter
-will quarantine any row that fails a later check rather than guessing missing
-state or correspondence.
+The current replay yields 201 admitted rows across 41 parent groups. Family IDs
+are derived from canonical mapped-reactant components and family groups are kept
+whole across deterministic 70/15/15 train/validation/test splits. The exact
+counts and blocker funnel are recorded in
+`data/manifests/paired_pilot_v1/admission_report.json`. The adapter quarantines
+any row that fails a later check rather than guessing missing state or
+correspondence.
 
 ## Replaying the bounded training
 

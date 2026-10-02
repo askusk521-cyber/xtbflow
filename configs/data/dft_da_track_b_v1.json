@@ -14,7 +14,7 @@
   },
   "admission": {
     "adapter": "src/xtbflow/data/dft_da.py",
-    "state_log": "reaction_<R>/<R>_ts_xtb.log",
+    "state_log": "reaction_<R>/monomer_1.log + monomer_2.log",
     "state_requirement": "unique Charge=0 Multiplicity=1 and xTB --chrg 0 --uhf 0 with normal termination",
     "element_scope": ["H", "C", "N", "O"],
     "mapping_evidence": "mapped-SMILES atom order plus reactant/product connectivity reconstruction from XYZ; element sequence alone is insufficient",
@@ -23,10 +23,10 @@
     "admission_role": "development_train/development_validation/development_test",
     "confirmatory_allowed": false
   },
-  "expected_audit": {
-    "source_state_log_candidates": 103,
-    "graph_and_state_admitted_rows": 68,
-    "parent_groups": 62,
+    "expected_audit": {
+    "source_state_log_candidates": 340,
+    "graph_and_state_admitted_rows": 201,
+    "parent_groups": 41,
     "claim_limit": "development evidence only; no physical refinement or confirmatory claim"
   }
 }

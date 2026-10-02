@@ -1,0 +1,26 @@
+{
+  "claim_limit": "development evidence only",
+  "electronic_structure_level": "M06-2X/def2-TZVP with published TS-tools archive; GFN2-xTB state audit",
+  "manifest": "data/manifests/paired_pilot_v1/manifest.jsonl",
+  "minimum_real_records": 32,
+  "reactant_input": [
+    "atomic_numbers",
+    "reactant_coordinates",
+    "charge",
+    "multiplicity",
+    "atom_mask"
+  ],
+  "record_count": 201,
+  "reference_validation": "not loaded by paired loader",
+  "schema": "xtbflow-paired-pilot-config/v1",
+  "source_cache": "external-cache:dft-da-full-29118509-v1",
+  "source_dataset": "diels-alder-reaction-space",
+  "source_revision": "figshare:29118509:v5",
+  "split_policy": "deterministic family and parent-group holdout",
+  "training_supervision": [
+    "event_bond_edits",
+    "ts_coordinates",
+    "event_mask",
+    "ts_mask"
+  ]
+}

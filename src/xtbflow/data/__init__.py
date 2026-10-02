@@ -64,12 +64,24 @@ _TASK_VIEW_EXPORTS = (
     "GeometryTaskMode",
     "ReactantEventGeometryInput",
 )
+_PAIRED_EXPORTS = (
+    "PairedBatch",
+    "PairedPilotLoader",
+    "load_paired_pilot",
+    "input_view_fingerprint",
+    "reactant_input_fingerprint",
+)
 
 
 def __getattr__(name: str):
     if name in _TASK_VIEW_EXPORTS:
         module = import_module(".task_views", __name__)
         for export in _TASK_VIEW_EXPORTS:
+            globals()[export] = getattr(module, export)
+        return globals()[name]
+    if name in _PAIRED_EXPORTS:
+        module = import_module(".paired_loader", __name__)
+        for export in _PAIRED_EXPORTS:
             globals()[export] = getattr(module, export)
         return globals()[name]
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
@@ -83,6 +95,7 @@ __all__ = [
     "EFPair", "PAIR_CANONICAL_UNITS", "build_ef_pair", "failure_pair", "geometry_hash", "append_pair_cache", "load_pair_cache",
     "TRACK_B_SCHEMA", "TrackBRecord", "TrackBFilterResult", "TrackBLeakageError",
     "filter_track_b_records", "audit_track_b_leakage", "load_track_b_jsonl", "write_track_b_jsonl",
+    *_PAIRED_EXPORTS,
     "INDEPENDENT_SEED_SCHEMA", "SEED_SPLIT_ROLES", "IndependentReactantSeed",
     "SeedLeakageError", "audit_seed_leakage", "load_seed_jsonl", "write_seed_jsonl",
     "SEARCH_ATTEMPT_SCHEMA", "EVIDENCE_STATES", "SearchAttempt", "append_attempt_jsonl", "load_attempt_jsonl",

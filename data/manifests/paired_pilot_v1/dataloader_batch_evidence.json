@@ -1,0 +1,77 @@
+{
+  "batch_size": 8,
+  "forbidden_fields_absent": [
+    true,
+    true,
+    true
+  ],
+  "reactant_input_shapes": {
+    "atom_mask": [
+      8,
+      46
+    ],
+    "atomic_numbers": [
+      8,
+      46
+    ],
+    "charge": [
+      8
+    ],
+    "multiplicity": [
+      8
+    ],
+    "reactant_coordinates": [
+      8,
+      46,
+      3
+    ]
+  },
+  "reactant_input_tensor_sha256": {
+    "atom_mask": "88747a20f7ab6158d5b0da9c452aac46cd2a2b13e17d2b7a7911c44031fc3939",
+    "atomic_numbers": "eaa3b30e3abb81cc74f48212666d58b47e069526f94e8d0fba815534cda04cb8",
+    "charge": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+    "multiplicity": "4bceb969a21579c6bc5a0fcbb54aa78d88778821db0846e1b49a71df6ed1f0f0",
+    "reactant_coordinates": "b54eb04914e471d7636533c565ed5d18444b72186b7e3191645f1fab3ed8b3e1"
+  },
+  "reference_validation_loaded": false,
+  "sample_ids": [
+    "dft-da:R0",
+    "dft-da:R100",
+    "dft-da:R1026",
+    "dft-da:R1027",
+    "dft-da:R1029",
+    "dft-da:R1031",
+    "dft-da:R1032",
+    "dft-da:R1033"
+  ],
+  "schema": "xtbflow-paired-pilot-dataloader-evidence/v1",
+  "source_of_batch": "data/manifests/paired_pilot_v1/manifest.jsonl + external-cache:dft-da-full-29118509-v1",
+  "status": "real_batch_constructed",
+  "training_supervision_shapes": {
+    "event_bond_edits": [
+      8,
+      46,
+      46
+    ],
+    "event_mask": [
+      8,
+      46,
+      46
+    ],
+    "ts_coordinates": [
+      8,
+      46,
+      3
+    ],
+    "ts_mask": [
+      8,
+      46
+    ]
+  },
+  "training_supervision_tensor_sha256": {
+    "event_bond_edits": "131501a3405fef7a0d090c33059ddec8a8878a67df9004dd5930d2856f84b45f",
+    "event_mask": "ad4f3cf9ad30f97687fd46adaf76691180d3cbb8113ed84c24fcee89e28e7403",
+    "ts_coordinates": "65af747fdc6fbbb076b52a17256cfc4f958957441384f72cc5bc7bcb15ecb16c",
+    "ts_mask": "88747a20f7ab6158d5b0da9c452aac46cd2a2b13e17d2b7a7911c44031fc3939"
+  }
+}

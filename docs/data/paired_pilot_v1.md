@@ -1,0 +1,33 @@
+# paired_pilot_v1
+
+`paired_pilot_v1` is the first real event–TS pilot admitted through the unified
+Track-B contract. It uses the pinned public Diels–Alder reaction-space archive
+(Figshare article 29118509, version 5, archive SHA256
+`4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed`) and the
+audited adapter in `src/xtbflow/data/dft_da.py`.
+
+The source contains 1,580 CSV rows. The adapter admitted 201 rows after checking
+the mapped SMILES, XYZ row order, reconstructed endpoint connectivity, neutral
+singlet state evidence from both monomer logs, CHNO scope, and non-empty mapped
+bond edits. These records cover 41 parent groups and are split by deterministic
+family identity into train, validation and test. The exact funnel and blocker
+counts are in `data/manifests/paired_pilot_v1/admission_report.json`.
+
+Each manifest row is a `TrackBRecord`; no third record type is introduced. The
+manifest stores source locators and hashes. Raw archive bytes remain in the
+external cache and are not committed. `scripts/build_paired_pilot.py` rebuilds
+the manifest and audit artifacts from that cache.
+
+The loader exposes two explicit views. `reactant_input` contains atomic numbers,
+reactant coordinates, charge, multiplicity and masks. `training_supervision`
+contains mapped bond-edit labels and TS coordinates. Product coordinates,
+reference protocol metadata and other validation-oracle fields are excluded
+from every returned batch. `input_view_fingerprint.json` records the per-row
+and aggregate firewall fingerprints.
+
+This pilot is development evidence only. It does not claim confirmatory
+performance, independent-reactant generalization, or equivalence to the
+Reaction-QM electronic-structure level. Reaction-QM remains a separately
+audited source: its coordinate map-order rule is source-code verified, but
+endpoint local-map correspondence, elementary-step pairing and other gates are
+not yet sufficient for admission.

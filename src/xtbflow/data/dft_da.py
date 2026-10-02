@@ -184,15 +184,21 @@ def _event_edits(reactant: np.ndarray, product: np.ndarray, map_ids: tuple[int, 
     return tuple(edits)
 
 
-def _state_evidence(log_path: Path) -> str:
-    text = log_path.read_text(encoding="utf-8", errors="replace")
-    states = set(STATE_RE.findall(text))
-    xtb_states = set(XTB_STATE_RE.findall(text))
-    if states != {("0", "1")} or xtb_states != {("0", "0")}:
-        raise ValueError("TS log does not provide a unique neutral-singlet state")
-    if "Normal termination of Gaussian" not in text or "Error termination" in text:
-        raise ValueError("TS log did not terminate normally")
-    return f"{log_path.name}: Charge=0 Multiplicity=1; xTB --chrg 0 --uhf 0"
+def _state_evidence(log_paths: Iterable[Path]) -> str:
+    paths = tuple(log_paths)
+    if len(paths) != 2:
+        raise ValueError("both monomer state logs are required")
+    evidence = []
+    for log_path in paths:
+        text = log_path.read_text(encoding="utf-8", errors="replace")
+        states = set(STATE_RE.findall(text))
+        xtb_states = set(XTB_STATE_RE.findall(text))
+        if states != {("0", "1")} or xtb_states != {("0", "0")}:
+            raise ValueError("monomer log does not provide a unique neutral-singlet state")
+        if "Normal termination of Gaussian" not in text or "Error termination" in text:
+            raise ValueError("monomer log did not terminate normally")
+        evidence.append(f"{log_path.name}: Charge=0 Multiplicity=1; xTB --chrg 0 --uhf 0")
+    return "; ".join(evidence)
 
 
 def _row_sample(cache_root: Path, row: Mapping[str, str], source_asset_sha256: str) -> DftDaSample:
@@ -228,7 +234,7 @@ def _row_sample(cache_root: Path, row: Mapping[str, str], source_asset_sha256: s
     if not _graph_matches(product, product_order, product_symbols, product_coordinates):
         raise ValueError("product coordinate graph does not match mapped graph")
 
-    state_evidence = _state_evidence(reaction_dir / f"{rid}_ts_xtb.log")
+    state_evidence = _state_evidence((reaction_dir / "monomer_1.log", reaction_dir / "monomer_2.log"))
     reactant_bonds = _bond_matrix(reactant, map_ids)
     product_bonds = _bond_matrix(product, map_ids)
     edits = _event_edits(reactant_bonds, product_bonds, map_ids)
@@ -342,11 +348,32 @@ def load_dft_da_samples(cache_root: str | Path) -> tuple[list[DftDaSample], dict
     samples: list[DftDaSample] = []
     rejection_counts: dict[str, int] = {}
     rejection_examples: dict[str, str] = {}
+
+    def rejection_reason(exc: Exception) -> str:
+        """Reduce source-parser failures to stable, path-free reason codes."""
+
+        if isinstance(exc, FileNotFoundError):
+            return "missing_required_source_file"
+        message = str(exc)
+        if "outside the frozen CHNO scope" in message:
+            return "unsupported_element_scope"
+        if "non-integral bond edit" in message:
+            return "non_integral_bond_edit"
+        if "monomer state logs" in message or "neutral-singlet state" in message:
+            return "electronic_state_unverified"
+        if "XYZ atom order" in message or "coordinate graph" in message:
+            return "coordinate_mapping_or_connectivity_unverified"
+        if "mapped SMILES" in message or "mapped atom" in message:
+            return "mapped_graph_unverified"
+        if "event edits" in message:
+            return "event_label_unverified"
+        return "source_row_audit_failed"
+
     for row in rows:
         try:
             samples.append(_row_sample(root / "extracted" / "DATASET_DA_F", row, source_asset_sha256))
         except (OSError, ValueError, KeyError, TypeError) as exc:
-            key = str(exc)
+            key = rejection_reason(exc)
             rejection_counts[key] = rejection_counts.get(key, 0) + 1
             rejection_examples.setdefault(key, row.get("R", "unknown"))
     samples.sort(key=lambda sample: sample.record.record_id)
@@ -359,7 +386,7 @@ def load_dft_da_samples(cache_root: str | Path) -> tuple[list[DftDaSample], dict
         "source_archive_sha256": source_asset_sha256,
         "source_csv_sha256": hash_file(csv_path),
         "source_row_count": len(rows),
-        "state_log_candidates": sum(1 for row in rows if (root / "extracted" / "DATASET_DA_F" / (row.get("R_dir") or f"reaction_{row['R']}") / f"{row['R']}_ts_xtb.log").is_file()),
+        "state_log_candidates": sum(1 for row in rows if all((root / "extracted" / "DATASET_DA_F" / (row.get("R_dir") or f"reaction_{row['R']}") / name).is_file() for name in ("monomer_1.log", "monomer_2.log"))),
         "graph_and_state_admitted_count": len(samples),
         "admitted_parent_count": len({sample.record.parent_reaction_id for sample in samples}),
         "rejection_counts": dict(sorted(rejection_counts.items(), key=lambda item: (-item[1], item[0]))),

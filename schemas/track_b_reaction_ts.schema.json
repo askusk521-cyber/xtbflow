@@ -1,0 +1,471 @@
+{
+  "$id": "https://xtbflow.local/schemas/track_b_reaction_ts.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "admission": {
+      "enum": [
+        "quarantine",
+        "development_train",
+        "development_validation",
+        "development_test",
+        "confirmatory"
+      ]
+    },
+    "atoms": {
+      "additionalProperties": false,
+      "properties": {
+        "atomic_numbers": {
+          "items": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "map_ids": {
+          "items": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "atomic_numbers",
+        "map_ids"
+      ],
+      "type": "object"
+    },
+    "claim_limit": {
+      "type": "string"
+    },
+    "event_label": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "enum": [
+            "observed",
+            "derived_under_contract",
+            "unknown"
+          ]
+        },
+        "locator": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "representation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "locator",
+        "sha256",
+        "representation",
+        "evidence"
+      ],
+      "type": "object"
+    },
+    "family_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "intended_use": {
+      "const": "event_geometry_supervision"
+    },
+    "license_record": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "parent_reaction_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "pretraining_overlap_audit": {
+      "enum": [
+        "pass",
+        "not_applicable",
+        "unknown",
+        "unverified"
+      ]
+    },
+    "product_label": {
+      "additionalProperties": false,
+      "properties": {
+        "atom_order_matches_input": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "coordinate_evidence": {
+          "enum": [
+            "observed",
+            "derived_under_contract",
+            "unavailable",
+            "unknown"
+          ]
+        },
+        "coordinate_unit": {
+          "enum": [
+            "angstrom",
+            "unknown",
+            null
+          ]
+        },
+        "coordinates_locator": {
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "coordinates_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "graph_evidence": {
+          "enum": [
+            "observed",
+            "derived_under_contract",
+            "unknown"
+          ]
+        },
+        "graph_locator": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "graph_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "graph_locator",
+        "graph_sha256",
+        "graph_evidence",
+        "coordinates_locator",
+        "coordinates_sha256",
+        "coordinate_unit",
+        "coordinate_evidence",
+        "atom_order_matches_input"
+      ],
+      "type": "object"
+    },
+    "quarantine_reasons": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "reactant": {
+      "additionalProperties": false,
+      "properties": {
+        "charge": {
+          "type": "integer"
+        },
+        "charge_spin_evidence": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "coordinate_unit": {
+          "const": "angstrom"
+        },
+        "coordinates_locator": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "coordinates_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "declared_intent": {
+          "additionalProperties": false,
+          "properties": {
+            "net_bond_edits": {
+              "items": {
+                "maxItems": 3,
+                "minItems": 3,
+                "prefixItems": [
+                  {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "type": "array"
+              },
+              "type": "array"
+            },
+            "permission_mode": {
+              "enum": [
+                "none",
+                "declared_center",
+                "declared_net_intent"
+              ]
+            },
+            "provenance": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "reactive_map_ids": {
+              "items": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true
+            },
+            "uses_reference_labels": {
+              "const": false
+            }
+          },
+          "required": [
+            "permission_mode",
+            "reactive_map_ids",
+            "net_bond_edits",
+            "provenance",
+            "uses_reference_labels"
+          ],
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "geometry_generation_protocol": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "geometry_generation_protocol_locator": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "geometry_generation_protocol_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "graph_locator": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "graph_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "input_origin": {
+          "enum": [
+            "independent_reactant",
+            "declared_reactant_endpoint",
+            "reference_derived",
+            "unknown"
+          ]
+        },
+        "microstate_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "multiplicity": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "solvent_selection_origin": {
+          "enum": [
+            "none",
+            "independent_reactant",
+            "declared_environment",
+            "reference_selected",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "graph_locator",
+        "graph_sha256",
+        "coordinates_locator",
+        "coordinates_sha256",
+        "coordinate_unit",
+        "input_origin",
+        "solvent_selection_origin",
+        "charge",
+        "multiplicity",
+        "charge_spin_evidence",
+        "microstate_id",
+        "geometry_generation_protocol",
+        "geometry_generation_protocol_locator",
+        "geometry_generation_protocol_sha256"
+      ],
+      "type": "object"
+    },
+    "record_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "reference_protocol": {
+      "additionalProperties": false,
+      "properties": {
+        "energy_label_level": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "environment": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "method": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "protocol_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "protocol_locator": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "protocol_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "geometry_level": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "software": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "state_source": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "ts_identity_evidence": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "protocol_id",
+        "protocol_sha256",
+        "method",
+        "environment",
+        "protocol_locator",
+        "software",
+        "version"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "xtbflow-track-b-reaction-ts/v1"
+    },
+    "source_asset_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "source_dataset": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source_record_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source_record_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "source_revision": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "split_group": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "ts_geometry": {
+      "additionalProperties": false,
+      "properties": {
+        "atom_order_matches_input": {
+          "type": "boolean"
+        },
+        "coordinate_unit": {
+          "enum": [
+            "angstrom",
+            "unknown"
+          ]
+        },
+        "evidence": {
+          "enum": [
+            "observed",
+            "derived_under_contract",
+            "unknown"
+          ]
+        },
+        "locator": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "locator",
+        "sha256",
+        "coordinate_unit",
+        "evidence",
+        "atom_order_matches_input"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_id",
+    "source_dataset",
+    "source_revision",
+    "source_record_id",
+    "source_asset_sha256",
+    "source_record_sha256",
+    "license_record",
+    "parent_reaction_id",
+    "family_id",
+    "split_group",
+    "atoms",
+    "reactant",
+    "event_label",
+    "product_label",
+    "ts_geometry",
+    "reference_protocol",
+    "pretraining_overlap_audit",
+    "admission",
+    "intended_use",
+    "claim_limit",
+    "quarantine_reasons"
+  ],
+  "title": "XTBFlow Track-B reaction/product/event/TS record",
+  "type": "object"
+}

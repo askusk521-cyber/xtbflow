@@ -1,0 +1,85 @@
+{
+  "admission_boundary": {
+    "claim_limit": "Atomic-number map-order agreement only establishes coordinate-row to map-index order; charge/spin, endpoint local-to-global correspondence, elementary-step pairing, grouping, licence, and leakage gates remain independent.",
+    "coordinate_mapping_evidence": "source_code_verified_plus_asset_map_order_audit"
+  },
+  "audit": {
+    "counts": {
+      "asset_version_mismatch": 0,
+      "atomic_inventory_mismatch": 0,
+      "exact_map_order_match": 100,
+      "failed_reaction_records": 0,
+      "map_id_invalid": 0,
+      "other_failure": 0,
+      "reaction_records_processed": 100
+    },
+    "failure_records": [],
+    "hdf5_chunk_count": 20,
+    "limit": 100,
+    "reaction_ids_first": [
+      "RXN_0000000001",
+      "RXN_0000000002",
+      "RXN_0000000003",
+      "RXN_0000000004",
+      "RXN_0000000005"
+    ],
+    "reaction_ids_last": [
+      "RXN_0000000096",
+      "RXN_0000000097",
+      "RXN_0000000098",
+      "RXN_0000000099",
+      "RXN_0000000100"
+    ],
+    "reaction_records_selected": 100,
+    "reason_counts": {},
+    "species_counts": {
+      "P": {
+        "exact_map_order_match": 158
+      },
+      "R": {
+        "exact_map_order_match": 152
+      },
+      "TS": {
+        "exact_map_order_match": 100
+      }
+    }
+  },
+  "schema": "xtbflow-reaction-qm-coordinate-map-audit/v1",
+  "source_asset": {
+    "relative_path": "B3LYPD3_TZVP.h5",
+    "sha256_computed": "3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a",
+    "sha256_expected": "3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a",
+    "sha256_verified": true,
+    "size_bytes": 2054981016
+  },
+  "source_dataset": "Reaction-QM",
+  "source_revision": "zenodo:18551029@v2",
+  "upstream_provenance": {
+    "commit": "3a553bf1562356a4f978ab5daa39778e434a9310",
+    "coordinate_mapping_convention": "mapped atom map number m is converted to zero-based index m-1; if all map numbers are unique, get_permuted_molecule reorders atom_list and graph arrays to that index",
+    "hdf5_writer_present_in_upstream_commit": false,
+    "repository": "https://github.com/Kangbeomgyu/Reaction-QM",
+    "source_code_evidence": [
+      {
+        "behavior": "GetAtomMapNum()-1 builds atom_mapping; complete unique mapping invokes process.get_permuted_molecule",
+        "file": "chem.py",
+        "lines": "621-632"
+      },
+      {
+        "behavior": "permutation is applied to atom_list, atom features, and graph matrices via new_index[permutation[i]]=old_index[i]",
+        "file": "process.py",
+        "lines": "900-944"
+      },
+      {
+        "behavior": "coordinate row i is assigned to atom_list[i]",
+        "file": "process.py",
+        "lines": "402-413"
+      },
+      {
+        "behavior": "HDF5 examples print atomic_numbers followed by coordinate rows as XYZ-like pairs",
+        "file": "README.md",
+        "lines": "50-59,74-86"
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "attempt_contract_sha256": "c4c7aaf16845b37f38431cc872182d2ebf4298c4a31b449fc1eba3e1bcb0e9b0",
+  "attempt_count": 0,
+  "audit_script_sha256": "b8d6b95f08e9364ee98e3cb28a2b89aed3092a3755d1572fdb67e01baa97d9f7",
+  "calculator_call_counts": {},
+  "manifest": "data/manifests/search_attempts.v1.jsonl",
+  "manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "record_schema": "xtbflow-search-attempt/v1",
+  "repository_base_commit": "abee6248daaf0c81cde2e676b0b139f4b5d26d1e",
+  "schema_version": "xtbflow-search-attempt-audit/v1",
+  "scientific_claim_allowed": false,
+  "status_counts": {},
+  "total_calculator_calls": 0,
+  "total_wall_seconds": 0,
+  "version_record_count": 0
+}

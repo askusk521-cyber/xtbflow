@@ -1,0 +1,101 @@
+{
+  "audit_runs": [
+    {
+      "asset_sha256_verified_external": true,
+      "asset_sha256_verified_in_run": true,
+      "limit": 100,
+      "reaction_records_processed": 100,
+      "report": "reaction_qm_coordinate_mapping_audit_20261002_limit100.json",
+      "ts_exact_map_order_match": 100,
+      "ts_failed": 0
+    },
+    {
+      "asset_sha256_verified_external": true,
+      "asset_sha256_verified_in_run": false,
+      "limit": 1000,
+      "reaction_records_processed": 1000,
+      "report": "reaction_qm_coordinate_mapping_audit_20261002_limit1000.json",
+      "ts_exact_map_order_match": 1000,
+      "ts_failed": 0
+    },
+    {
+      "asset_sha256_verified_external": true,
+      "asset_sha256_verified_in_run": false,
+      "limit": 10000,
+      "reaction_records_processed": 10000,
+      "report": "reaction_qm_coordinate_mapping_audit_20261002_limit10000.json",
+      "ts_exact_map_order_match": 10000,
+      "ts_failed": 0
+    },
+    {
+      "asset_sha256_verified_external": true,
+      "asset_sha256_verified_in_run": false,
+      "limit": 199890,
+      "reaction_records_processed": 199890,
+      "report": "reaction_qm_coordinate_mapping_audit_20261002_full.json",
+      "ts_exact_map_order_match": 199890,
+      "ts_failed": 0
+    }
+  ],
+  "dataset": "Reaction-QM",
+  "failure_reason_counts": {},
+  "full_species_counts": {
+    "P": {
+      "exact_map_order_match": 323710
+    },
+    "R": {
+      "exact_map_order_match": 323881
+    },
+    "TS": {
+      "exact_map_order_match": 199890
+    }
+  },
+  "interpretation": "Full HDF5 TS rows match map-id ascending atomic-number order. This certifies only coordinate-row to global map-index order under the upstream convention; it does not certify endpoint local-to-global mappings, elementary-step pairing, electronic-state metadata, grouping/leakage, license, or other Track-B admission gates.",
+  "raw_asset": {
+    "license": "CC-BY-4.0",
+    "license_evidence": {
+      "metadata_field": "metadata.license.id",
+      "record_id": 18551029,
+      "retrieved_on": "2026-10-02",
+      "source": "https://zenodo.org/api/records/18551029"
+    },
+    "locator": "https://zenodo.org/records/18551029/files/B3LYPD3_TZVP.h5?download=1",
+    "relative_path": "B3LYPD3_TZVP.h5",
+    "sha256": "3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a",
+    "size_bytes": 2054981016
+  },
+  "schema": "xtbflow-reaction-qm-coordinate-mapping-provenance/v1",
+  "source_revision": "zenodo:18551029@v2",
+  "upstream": {
+    "commit": "3a553bf1562356a4f978ab5daa39778e434a9310",
+    "hdf5_writer_in_commit": false,
+    "mapping_convention": "GetAtomMapNum()-1; complete unique map mapping triggers permutation of atom_list/features/graph matrices to map-index order; coordinate row i is assigned to atom_list[i]",
+    "repository": "https://github.com/Kangbeomgyu/Reaction-QM",
+    "repository_license": "BSD-3-Clause",
+    "source_files": [
+      {
+        "behavior": "build atom_mapping from map_num-1 and call get_permuted_molecule when complete unique",
+        "function": "Molecule.__init__",
+        "lines": "621-632",
+        "path": "chem.py"
+      },
+      {
+        "behavior": "write old index i to new index permutation[i]",
+        "function": "get_permuted_molecule/get_permuted_atom_list/get_permuted_matrix",
+        "lines": "900-944",
+        "path": "process.py"
+      },
+      {
+        "behavior": "assign coordinate row i to atom_list[i]",
+        "function": "locate_molecule",
+        "lines": "402-413",
+        "path": "process.py"
+      },
+      {
+        "behavior": "HDF5 examples expose atomic_numbers followed by coordinate rows",
+        "lines": "50-59,74-86",
+        "path": "README.md"
+      }
+    ]
+  }
+}

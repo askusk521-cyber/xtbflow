@@ -1,0 +1,87 @@
+{
+  "admitted_family_count": 41,
+  "admitted_parent_count": 41,
+  "admitted_record_count": 201,
+  "blocker_counts": {
+    "missing_required_source_file": 776,
+    "non_integral_bond_edit": 57,
+    "unsupported_element_scope": 546
+  },
+  "family_identity_rule": "canonical_reactant_components_without_atom_maps_v1",
+  "funnel": [
+    {
+      "count": 1580,
+      "semantics": "CSV rows in pinned archive",
+      "stage": "source_records"
+    },
+    {
+      "count": 1580,
+      "semantics": "archive hash matches recorded asset",
+      "stage": "source_asset_hash_valid"
+    },
+    {
+      "count": 340,
+      "semantics": "both monomer logs exist; state parser is stricter",
+      "stage": "electronic_state_log_candidates"
+    },
+    {
+      "count": 201,
+      "semantics": "mapped graph, XYZ order/connectivity, event edits, state and CHNO gate",
+      "stage": "graph_and_state_admitted"
+    },
+    {
+      "count": 201,
+      "semantics": "non-quarantine TrackBRecord",
+      "stage": "unified_track_b_admitted"
+    }
+  ],
+  "leakage_audit": {
+    "leakage_dimensions_checked": [
+      "family_id",
+      "input_fingerprint",
+      "parent_reaction_id",
+      "source_record",
+      "source_record_bytes",
+      "split_group"
+    ],
+    "record_count": 201,
+    "split_counts": {
+      "test": 45,
+      "train": 147,
+      "validation": 9
+    },
+    "strict_family_holdout": true
+  },
+  "manifest_sha256": "6b84937d3cc75bea44faa7608d690618ce22f7ab75c51b8e25515f05a193cc90",
+  "schema": "xtbflow-paired-pilot-admission/v1",
+  "source_asset_sha256": "4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed",
+  "source_audit": {
+    "admitted_parent_count": 41,
+    "filter_quarantine_count": 0,
+    "graph_and_state_admitted_count": 201,
+    "rejection_counts": {
+      "missing_required_source_file": 776,
+      "non_integral_bond_edit": 57,
+      "unsupported_element_scope": 546
+    },
+    "rejection_examples": {
+      "missing_required_source_file": "R15327",
+      "non_integral_bond_edit": "R1",
+      "unsupported_element_scope": "R10434"
+    },
+    "source_archive_sha256": "4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed",
+    "source_csv_sha256": "28aab43ed85fda091a8261c229f90b9bd421be4f49075d42982d753a0806dbed",
+    "source_revision": "figshare:29118509:v5",
+    "source_row_count": 1580,
+    "source_url": "https://figshare.com/articles/dataset/Diels-Alder_reaction_space_for_self-healing_polymer/29118509",
+    "state_log_candidates": 340
+  },
+  "source_dataset": "diels-alder-reaction-space",
+  "source_revision": "figshare:29118509:v5",
+  "split_counts": {
+    "development_test": 45,
+    "development_train": 147,
+    "development_validation": 9
+  },
+  "split_seed": "dft-da-track-b-v1-family-invariant-1299"
+}

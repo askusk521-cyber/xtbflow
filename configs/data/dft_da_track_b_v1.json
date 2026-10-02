@@ -1,0 +1,34 @@
+{
+  "schema": "xtbflow-dft-da-track-b-source/v1",
+  "source": {
+    "article": "https://figshare.com/articles/dataset/Diels-Alder_reaction_space_for_self-healing_polymer/29118509",
+    "article_version": 5,
+    "archive_name": "DATASET_DA_F.tar.gz",
+    "archive_size_bytes": 358677850,
+    "archive_md5": "d37dbd26be16b63038537f8f04868fad",
+    "archive_sha256": "4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed",
+    "license": "CC-BY-4.0",
+    "declared_dft_rows": 1580,
+    "source_table": "DATASET_DA_F/dataset_xtb_final.csv",
+    "raw_bytes": "n2 cache only; not committed"
+  },
+  "admission": {
+    "adapter": "src/xtbflow/data/dft_da.py",
+    "state_log": "reaction_<R>/monomer_1.log + monomer_2.log",
+    "state_requirement": "unique Charge=0 Multiplicity=1 and xTB --chrg 0 --uhf 0 with normal termination",
+    "element_scope": ["H", "C", "N", "O"],
+    "mapping_evidence": "mapped-SMILES atom order plus reactant/product connectivity reconstruction from XYZ; element sequence alone is insufficient",
+    "family_identity_rule": "canonical_reactant_components_without_atom_maps_v1",
+    "split_seed": "dft-da-track-b-v1-family-invariant-1299",
+    "reactant_input_origin": "declared_reactant_endpoint",
+    "product_and_ts": "labels only; excluded from reactant_view and input fingerprint",
+    "admission_role": "development_train/development_validation/development_test",
+    "confirmatory_allowed": false
+  },
+    "expected_audit": {
+    "source_state_log_candidates": 340,
+    "graph_and_state_admitted_rows": 201,
+    "parent_groups": 41,
+    "claim_limit": "development evidence only; no physical refinement or confirmatory claim"
+  }
+}

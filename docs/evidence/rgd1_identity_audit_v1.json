@@ -1,0 +1,58 @@
+{
+  "admission": {
+    "admitted_count": 0,
+    "blocking_reasons": [
+      "charge_missing",
+      "multiplicity_missing",
+      "license/protocol gate unresolved until source terms are pinned",
+      "same-element atom correspondence requires graph-isomorphism evidence"
+    ],
+    "status": "quarantine"
+  },
+  "assets": {
+    "DFT_reaction_info.csv": {
+      "sha256": "afb3bfb9ca5e44fb1a6ea44664da56e0ef2a2ee95c82b22d651a778fad5e0b00",
+      "size_bytes": 33353396
+    },
+    "RGD1CHNO_AMsmiles.csv": {
+      "sha256": "7b0ecae0a7f7b2439a03bed4bfbf80fbc9b647b0823e5a8e7b1e3be96d0ad05e",
+      "size_bytes": 60724906
+    },
+    "RGD1_CHNO.h5": {
+      "sha256": "ed125b4cb1eac9af670a7cae8b9d29c88a9f8be24d0206a027f0f2c035f8f268",
+      "size_bytes": 1340003744
+    },
+    "RandP_smiles.txt": {
+      "sha256": "6ca74bafe9286ac1c6cba48e700e5f5100e0bb3d6a8f05592efd214ffdc624ff",
+      "size_bytes": 4174042
+    }
+  },
+  "counts": {
+    "bond_change": 176640,
+    "charge_missing": 176898,
+    "csv_duplicate_ids": 0,
+    "csv_ids_missing_from_hdf5": 0,
+    "csv_rows": 176898,
+    "csv_unique_ids": 176898,
+    "hdf5_groups": 176992,
+    "hdf5_only_groups": 94,
+    "identity_joined": 176898,
+    "multiplicity_missing": 176898,
+    "no_bond_change": 258,
+    "product_map_order_exact": 176898,
+    "reactant_map_order_exact": 176898
+  },
+  "hdf5_only_ids_jsonl": "rgd1_hdf5_only_ids_v1.jsonl",
+  "locators": {
+    "endpoint_mapping": "external-cache:rgd1/figshare-21066901-v6/RandP_smiles.txt",
+    "geometry_hdf5": "external-cache:rgd1/figshare-21066901-v6/RGD1_CHNO.h5",
+    "mapped_csv": "external-cache:rgd1/figshare-21066901-v6/RGD1CHNO_AMsmiles.csv",
+    "reaction_info": "external-cache:rgd1/figshare-21066901-v6/DFT_reaction_info.csv"
+  },
+  "mapping_evidence": "map_id-sorted atomic numbers exactly match HDF5 elements for joined rows; HDF5 has no map IDs, so same-element identity remains unresolved without source correspondence/graph-isomorphism evidence.",
+  "reason_counts": {},
+  "reason_examples": {},
+  "schema": "xtbflow-rgd1-identity-audit/v1",
+  "source_dataset": "RGD1",
+  "source_revision": "figshare:21066901@v6"
+}

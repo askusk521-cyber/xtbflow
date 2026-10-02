@@ -98,6 +98,25 @@ def test_declared_hash_mismatch_is_a_blocker(tmp_path: Path):
     assert any("config: declared SHA-256 does not match" in reason for reason in audit["blocking_reasons"])
 
 
+def test_verified_directory_cannot_claim_unchecked_hash(tmp_path: Path):
+    manifest = _manifest(tmp_path, status="blocked", remote="offline")
+    directory = tmp_path / "data-dir"
+    directory.mkdir()
+    manifest["artifacts"]["data"] = {
+        "kind": "directory",
+        "locator": directory.name,
+        "sha256": "0" * 64,
+        "status": "verified",
+        "source_status": "registered",
+    }
+
+    audit = validate_manifest(manifest, root=tmp_path)
+
+    assert audit["contract_valid"] is True
+    assert audit["ready"] is False
+    assert any("data: kind='directory' has no canonical local hash" in reason for reason in audit["blocking_reasons"])
+
+
 def test_failed_evidence_requires_failure_reason(tmp_path: Path):
     manifest = _manifest(tmp_path, status="failed", remote="offline")
     manifest["evidence"]["failure_reasons"] = []

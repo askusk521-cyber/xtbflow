@@ -1,0 +1,25 @@
+{
+  "schema": "xtbflow-paired-pilot-provenance/v1",
+  "base_commit": "a0c959358b988f220f66a3641c53bb9d997069da",
+  "branch": "codex/paired-pilot-real-20261002",
+  "work_package": "#76 real event-TS paired pilot",
+  "contract_version": "xtbflow-track-b-reaction-ts/v1 (PR #63 head be52a93)",
+  "source_dataset_revision": "figshare:29118509:v5",
+  "source_asset_hashes": {
+    "DATASET_DA_F.tar.gz": "4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed",
+    "dataset_xtb_final.csv": "28aab43ed85fda091a8261c229f90b9bd421be4f49075d42982d753a0806dbed"
+  },
+  "new_dft_calls": 0,
+  "new_cp2k_calls": 0,
+  "new_expensive_quantum_chemistry_calls": 0,
+  "source_mapping": {
+    "coordinate_order": "published mapped XYZ row order checked against mapped SMILES atom order and reconstructed endpoint connectivity",
+    "endpoint_local_to_global": "not applicable to this source; one shared map namespace is present in mapped reactant/product SMILES",
+    "elementary_step_pairing": "single published Diels-Alder reactant/product/TS row; no multi-step aggregation admitted"
+  },
+  "fallback_status": {
+    "Reaction-QM": "coordinate map-order solved; remaining endpoint/step/group gates unresolved",
+    "Transition1x": "quarantine_diagnostic_only; current audit in docs/evidence/transition1x_track_b_audit_20261002.json",
+    "RGD1": "quarantine; identity join solved by reaction ID, explicit charge/multiplicity and same-element correspondence unresolved"
+  }
+}

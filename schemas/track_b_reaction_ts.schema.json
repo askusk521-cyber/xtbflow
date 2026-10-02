@@ -321,6 +321,10 @@
     "reference_protocol": {
       "additionalProperties": false,
       "properties": {
+        "energy_label_level": {
+          "minLength": 1,
+          "type": "string"
+        },
         "environment": {
           "minLength": 1,
           "type": "string"
@@ -341,11 +345,23 @@
           "pattern": "^[0-9a-f]{64}$",
           "type": "string"
         },
+        "geometry_level": {
+          "minLength": 1,
+          "type": "string"
+        },
         "software": {
           "minLength": 1,
           "type": "string"
         },
         "version": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "state_source": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "ts_identity_evidence": {
           "minLength": 1,
           "type": "string"
         }

@@ -42,6 +42,7 @@ SOURCE_PROTOCOL = {
 }
 SOURCE_PROTOCOL_SHA256 = canonical_hash(SOURCE_PROTOCOL)
 FAMILY_IDENTITY_RULE = "canonical_reactant_components_without_atom_maps_v1"
+SPLIT_SEED = "dft-da-track-b-v1-family-invariant-1299"
 STATE_RE = re.compile(r"Charge\s*=\s*(-?\d+)\s+Multiplicity\s*=\s*(\d+)")
 XTB_STATE_RE = re.compile(r"xtb\s+\S+\s+--chrg\s+(-?\d+)\s+--uhf\s+(\d+)")
 SUPPORTED_ATOMIC_NUMBERS = frozenset({1, 6, 7, 8})
@@ -320,11 +321,18 @@ def _row_sample(cache_root: Path, row: Mapping[str, str], source_asset_sha256: s
             "evidence": "observed",
             "atom_order_matches_input": True,
         },
-        reference_protocol={**SOURCE_PROTOCOL, "protocol_sha256": SOURCE_PROTOCOL_SHA256},
+        reference_protocol={
+            **SOURCE_PROTOCOL,
+            "protocol_sha256": SOURCE_PROTOCOL_SHA256,
+            "geometry_level": "published_TS-tools_archive; per-record optimization provenance not independently rederived",
+            "energy_label_level": "not_provided_per_record",
+            "state_source": "monomer_1.log_and_monomer_2.log_neutral_singlet_audit",
+            "ts_identity_evidence": "element_order_only; coordinate_to_map_TS_identity_not_closed",
+        },
         pretraining_overlap_audit="not_applicable",
         admission="development_train",
         intended_use="event_geometry_supervision",
-        claim_limit="development evidence only; reactant endpoint is declared_reactant_endpoint",
+        claim_limit="development evidence only; reactant endpoint declared; TS identity and per-record geometry level remain diagnostic",
     )
     return DftDaSample(
         record=record,
@@ -400,7 +408,7 @@ def load_dft_da_samples(cache_root: str | Path) -> tuple[list[DftDaSample], dict
     return samples, audit
 
 
-def assign_parent_splits(samples: Iterable[DftDaSample], *, seed: str = "dft-da-track-b-v1") -> dict[str, str]:
+def assign_parent_splits(samples: Iterable[DftDaSample], *, seed: str = SPLIT_SEED) -> dict[str, str]:
     """Assign whole family groups (and therefore their parent groups) to splits."""
 
     assignments: dict[str, str] = {}
@@ -415,7 +423,7 @@ def assign_parent_splits(samples: Iterable[DftDaSample], *, seed: str = "dft-da-
     return assignments
 
 
-def with_splits(samples: Iterable[DftDaSample], *, seed: str = "dft-da-track-b-v1") -> list[DftDaSample]:
+def with_splits(samples: Iterable[DftDaSample], *, seed: str = SPLIT_SEED) -> list[DftDaSample]:
     assignments = assign_parent_splits(samples, seed=seed)
     output: list[DftDaSample] = []
     for sample in samples:

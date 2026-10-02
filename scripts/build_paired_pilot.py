@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from xtbflow.data.dft_da import FAMILY_IDENTITY_RULE, load_dft_da_samples, with_splits, write_manifest
+from xtbflow.data.dft_da import FAMILY_IDENTITY_RULE, SPLIT_SEED, load_dft_da_samples, with_splits, write_manifest
 from xtbflow.data.paired_loader import input_view_fingerprint
 from xtbflow.data.track_b import audit_track_b_leakage
 
@@ -76,6 +76,7 @@ def main() -> int:
         "source_revision": source_audit["source_revision"],
         "source_asset_sha256": source_audit["source_archive_sha256"],
         "family_identity_rule": FAMILY_IDENTITY_RULE,
+        "split_seed": SPLIT_SEED,
         "funnel": funnel,
         "blocker_counts": blockers,
         "admitted_record_count": len(records),
@@ -87,7 +88,7 @@ def main() -> int:
         "source_audit": source_audit,
     })
     config = json.loads(args.config.read_text(encoding="utf-8")) if args.config.is_file() else {}
-    config.update({"manifest": str(manifest), "source_cache": "external-cache:dft-da-full-29118509-v1", "record_count": len(records), "minimum_real_records": 32})
+    config.update({"manifest": str(manifest), "source_cache": "external-cache:dft-da-full-29118509-v1", "record_count": len(records), "minimum_real_records": 32, "split_seed": SPLIT_SEED})
     _write_json(args.config, config)
     print(json.dumps({"status": "built", "records": len(records), "parents": len({record.parent_reaction_id for record in records}), "manifest": str(manifest)}, sort_keys=True))
     return 0

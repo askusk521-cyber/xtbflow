@@ -6,7 +6,7 @@ are never returned in a model batch.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Sequence
 
@@ -134,9 +134,22 @@ def load_paired_pilot(manifest_path: str | Path, cache_root: str | Path, *, batc
         sample = by_id.get(record.record_id)
         if sample is None:
             raise ValueError(f"manifest record is not present in audited source: {record.record_id}")
-        if sample.record.source_asset_sha256 != record.source_asset_sha256:
+        source_record = sample.record
+        if source_record.source_asset_sha256 != record.source_asset_sha256:
             raise ValueError(f"source asset hash mismatch for {record.record_id}")
-        selected.append(sample)
+        if source_record.source_record_sha256 != record.source_record_sha256:
+            raise ValueError(f"source record hash mismatch for {record.record_id}")
+        for section, key in (("reactant", "coordinates_sha256"), ("product_label", "coordinates_sha256"), ("ts_geometry", "sha256")):
+            expected_section = getattr(record, section) if section != "reactant" else record.reactant
+            observed_section = getattr(source_record, section) if section != "reactant" else source_record.reactant
+            expected = expected_section[key]
+            observed = observed_section[key]
+            if observed != expected:
+                raise ValueError(f"{section} provenance hash mismatch for {record.record_id}")
+        # The manifest is authoritative for admission and group split.  The
+        # source parser reconstructs the same physical arrays, but its
+        # provisional record defaults every row to development_train.
+        selected.append(replace(sample, record=record))
     audit_track_b_leakage(records, strict_family_holdout=True)
     return PairedPilotLoader(selected, batch_size=batch_size, shuffle=shuffle, seed=seed)
 

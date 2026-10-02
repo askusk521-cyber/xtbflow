@@ -19,6 +19,7 @@
     "element_scope": ["H", "C", "N", "O"],
     "mapping_evidence": "mapped-SMILES atom order plus reactant/product connectivity reconstruction from XYZ; element sequence alone is insufficient",
     "family_identity_rule": "canonical_reactant_components_without_atom_maps_v1",
+    "split_seed": "dft-da-track-b-v1-family-invariant-1299",
     "reactant_input_origin": "declared_reactant_endpoint",
     "product_and_ts": "labels only; excluded from reactant_view and input fingerprint",
     "admission_role": "development_train/development_validation/development_test",

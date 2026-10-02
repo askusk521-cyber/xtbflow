@@ -28,6 +28,12 @@ counts and blocker funnel are recorded in
 any row that fails a later check rather than guessing missing state or
 correspondence.
 
+The admitted rows also carry provenance qualifiers: the published archive
+geometry level, no per-record energy-label level, the monomer-log state source,
+and `element_order_only` TS identity evidence. The last qualifier keeps the TS
+coordinate-to-map claim diagnostic until a stronger per-record mapping audit is
+available.
+
 ## Replaying the bounded training
 
 Run from a clean commit on n2, with the public archive already in

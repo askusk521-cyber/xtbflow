@@ -17,6 +17,7 @@
   "source_dataset": "diels-alder-reaction-space",
   "source_revision": "figshare:29118509:v5",
   "split_policy": "deterministic family and parent-group holdout",
+  "split_seed": "dft-da-track-b-v1-family-invariant-1299",
   "training_supervision": [
     "event_bond_edits",
     "ts_coordinates",

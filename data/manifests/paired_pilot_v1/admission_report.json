@@ -47,12 +47,12 @@
     "record_count": 201,
     "split_counts": {
       "test": 45,
-      "train": 139,
-      "validation": 17
+      "train": 147,
+      "validation": 9
     },
     "strict_family_holdout": true
   },
-  "manifest_sha256": "e6218678500d10ec4988b80dd63be3a60cd0a9992c4db7a2173fee1521e83f6f",
+  "manifest_sha256": "6b84937d3cc75bea44faa7608d690618ce22f7ab75c51b8e25515f05a193cc90",
   "schema": "xtbflow-paired-pilot-admission/v1",
   "source_asset_sha256": "4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed",
   "source_audit": {
@@ -80,7 +80,8 @@
   "source_revision": "figshare:29118509:v5",
   "split_counts": {
     "development_test": 45,
-    "development_train": 139,
-    "development_validation": 17
-  }
+    "development_train": 147,
+    "development_validation": 9
+  },
+  "split_seed": "dft-da-track-b-v1-family-invariant-1299"
 }

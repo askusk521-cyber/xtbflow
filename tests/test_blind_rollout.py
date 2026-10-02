@@ -98,3 +98,17 @@ def test_parent_macro_benchmark_resamples_parents() -> None:
     assert report["parent_macro"]["event_hit"] == 1.0
     assert report["parent_bootstrap"]["event_hit"]["parent_count"] == 2
     assert len(report["parent_metrics"]) == 2
+
+
+def test_benchmark_keeps_no_candidate_failures_as_missing_geometry() -> None:
+    sample = _sample()
+    result = blind_rollout(
+        _zero_model(),
+        make_reactant_input(sample, 2),
+        arm_id="both_off",
+        seed=3,
+        config=BlindRolloutConfig(candidate_cap=2, geometry_collision_tolerance=100.0),
+    )
+    report = benchmark_rollouts([result], {sample.record.record_id: sample}, bootstrap_resamples=20, bootstrap_seed=2)
+    assert report["record_weighted"]["geometry_best_rmsd"] is None
+    assert report["parent_bootstrap"]["geometry_best_rmsd"]["ci95"] is None

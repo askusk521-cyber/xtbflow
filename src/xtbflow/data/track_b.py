@@ -75,6 +75,13 @@ _PROTOCOL_KEYS = frozenset(
         "software",
         "version",
         "environment",
+        # Optional evidence-level qualifiers.  They make it explicit when a
+        # published protocol name is only a source declaration and not a
+        # per-record revalidation of geometry or energy labels.
+        "geometry_level",
+        "energy_label_level",
+        "state_source",
+        "ts_identity_evidence",
     }
 )
 _INTENT_KEYS = frozenset(

@@ -25,7 +25,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
       - name: Install package and test dependencies
-        run: python -m pip install --upgrade pip && python -m pip install ".[test]"
+        run: python -m pip install --upgrade pip && python -m pip install ".[test,data]"
       - name: Validate bootstrap inventory
         run: python scripts/validate_bootstrap.py
       - name: Run reusable standard-library and PyTorch tests

@@ -39,6 +39,22 @@ SPLIT_SEED = "spice2-openff-pilot-v1-7"
 SPLIT_RATIOS = {"train": 0.75, "validation": 0.125, "test": 0.125}
 
 
+_SOURCE_COLLECTION_IDS = {
+    "SPICE Dipeptides Single Points Dataset v1.2": "spice2_openff_dipeptides_v1.2",
+    "SPICE Solvated Amino Acids Single Points Dataset v1.1": "spice2_openff_solvated_amino_acids_v1.1",
+}
+
+
+def _source_collection_id(source: str) -> str:
+    """Return a stable collection ID without leaking the producer's host path."""
+
+    collection = source.replace("\\", "/").rsplit("/", 1)[-1]
+    try:
+        return _SOURCE_COLLECTION_IDS[collection]
+    except KeyError as exc:
+        raise ValueError(f"unsupported SPICE source collection: {source!r}") from exc
+
+
 def _split_map(keys: list[str]) -> dict[str, str]:
     """Use the repository's hash-bucket split contract on complete parent groups."""
 
@@ -191,7 +207,7 @@ def main() -> int:
                         "parent_record_id": row["record_id"],
                         "config_index": config_index,
                         "split": splits[row["record_id"]],
-                        "source_collection": row["source"],
+                        "source_collection": _source_collection_id(row["source"]),
                         "source_file_sha256": args.source_sha256.lower(),
                         "smiles": row["smiles"],
                         "closed_shell_evidence": {

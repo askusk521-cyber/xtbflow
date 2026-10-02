@@ -144,7 +144,7 @@
     },
     {
       "path": "configs/experiments/spice2_energy_learning_curve_v1.json",
-      "sha256": "bb2f6bcd8033f3202c950adbb64019806cb08d04b21e5d8035f9dc63aa267360",
+      "sha256": "a1c86eeb6b19aed5c6faf17e4920e6740e542469a056b1b7f54523140d340b4a",
       "bytes": 1328
     },
     {
@@ -184,8 +184,8 @@
     },
     {
       "path": "configs/public_data_manifest.yaml",
-      "sha256": "74e7ebd3ee6f0c8f4def549959e7330c399a421ed7f7380edd3d3be988c2b756",
-      "bytes": 5722
+      "sha256": "68f12db3e728351dfa7f9be7f56f9edc2923fd4a21bce2ee899d54cb6399e771",
+      "bytes": 6774
     },
     {
       "path": "configs/public_first_plan.yaml",
@@ -239,8 +239,8 @@
     },
     {
       "path": "data/manifests/README.md",
-      "sha256": "f5b53024d99c7382234cdd63e9a92cccf4ef1d7161d00b5e351579a5ed8cbb01",
-      "bytes": 706
+      "sha256": "1e4087056c5120109e9662fb3bd3355eeae174f207fdb8e9dd70557588b86bb7",
+      "bytes": 1621
     },
     {
       "path": "data/manifests/public_records.v1.jsonl",
@@ -249,13 +249,13 @@
     },
     {
       "path": "data/manifests/spice2_openff_256_20260929.jsonl",
-      "sha256": "0b185f28650d0f36da0287769fcf1361ada2afc01feed9991979234a313c4444",
-      "bytes": 2241684
+      "sha256": "93377d9ba174b2e2e531d140c0e42ed19895c2ee1a0a16f6845e7c6ee78a3068",
+      "bytes": 2226836
     },
     {
       "path": "data/manifests/spice2_openff_pilot_20260929.jsonl",
-      "sha256": "dd466dc7b77514ef041ab78e5803fcb0f64e4c5bec31d5a68f34554d4558fc8f",
-      "bytes": 560616
+      "sha256": "d422de6a9baed257e14a0e98c45561c24a2ac826373120e0924fbb1052070547",
+      "bytes": 556904
     },
     {
       "path": "data/pairs/spice2_openff_256_20260929.jsonl",
@@ -599,8 +599,8 @@
     },
     {
       "path": "scripts/prepare_spice_openff_pilot.py",
-      "sha256": "4670fce9e9cf91de9bc43036673d6c2bd288af5299c74f602242102a1b6c2a1b",
-      "bytes": 16740
+      "sha256": "9121a7e5cef736d6459b5dc3400465c5924d678ba1bec4963335cb8b197c0010",
+      "bytes": 17349
     },
     {
       "path": "scripts/run_energy_baselines.py",

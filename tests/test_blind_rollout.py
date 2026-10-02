@@ -80,7 +80,7 @@ def test_parent_macro_benchmark_resamples_parents() -> None:
     model = _zero_model()
     results = []
     samples = {}
-    for index, parent in enumerate(("parent-a", "parent-b")):
+    for index, parent in enumerate(("parent-a", "parent-a", "parent-b")):
         sample = _sample(f"row-{index}", parent)
         samples[sample.record.record_id] = sample
         results.append(
@@ -93,7 +93,7 @@ def test_parent_macro_benchmark_resamples_parents() -> None:
             )
         )
     report = benchmark_rollouts(results, samples, bootstrap_resamples=50, bootstrap_seed=5)
-    assert report["record_count"] == 2
+    assert report["record_count"] == 3
     assert report["parent_count"] == 2
     assert report["parent_macro"]["event_hit"] == 1.0
     assert report["parent_bootstrap"]["event_hit"]["parent_count"] == 2

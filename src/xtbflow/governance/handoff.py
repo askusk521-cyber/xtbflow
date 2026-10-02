@@ -97,6 +97,13 @@ def _artifact_blockers(name: str, artifact: Mapping[str, Any], root: Path, block
     if status != "verified" or digest is None:
         blockers.append(f"{name}: complete verified SHA-256 identity is required for a freeze")
 
+    # Only regular files have a defined local hashing algorithm.  The schema
+    # keeps ``directory``/``none`` for declarations and external records, but
+    # accepting either as ``verified`` would let a freeze claim an unchecked
+    # digest.  Require a file manifest (or an explicitly non-verified status)
+    # until a canonical directory digest is defined.
+    if kind in {"directory", "none"} and status == "verified" and source_status == "registered":
+        blockers.append(f"{name}: kind={kind!r} has no canonical local hash; use a verified file manifest")
     if not isinstance(locator, str) or kind != "file":
         return
     relative = _safe_relative_path(locator)

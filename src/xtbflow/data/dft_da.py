@@ -41,6 +41,7 @@ SOURCE_PROTOCOL = {
     "environment": "published Diels-Alder reaction-space archive",
 }
 SOURCE_PROTOCOL_SHA256 = canonical_hash(SOURCE_PROTOCOL)
+FAMILY_IDENTITY_RULE = "canonical_reactant_components_without_atom_maps_v1"
 STATE_RE = re.compile(r"Charge\s*=\s*(-?\d+)\s+Multiplicity\s*=\s*(\d+)")
 XTB_STATE_RE = re.compile(r"xtb\s+\S+\s+--chrg\s+(-?\d+)\s+--uhf\s+(\d+)")
 SUPPORTED_ATOMIC_NUMBERS = frozenset({1, 6, 7, 8})
@@ -114,8 +115,11 @@ def _canonical_component_smiles(smiles: str) -> str:
         molecule = Chem.MolFromSmiles(component, params)
         if molecule is None:
             raise ValueError("component SMILES did not parse")
-        # Canonicalization is used only for family grouping.  It is not used to
-        # manufacture atom correspondence or event labels.
+        # Family identity must not depend on arbitrary source atom-map labels.
+        # Keep the original mapped SMILES for calculation identity and event
+        # labels; this normalized key is only for chemical grouping.
+        for atom in molecule.GetAtoms():
+            atom.SetAtomMapNum(0)
         components.append(Chem.MolToSmiles(molecule, canonical=True))
     return ".".join(sorted(components))
 

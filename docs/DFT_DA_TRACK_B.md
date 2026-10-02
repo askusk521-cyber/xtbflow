@@ -20,8 +20,9 @@ The product, event, and TS fields are never present in the model-visible
 reactant view.
 
 The current replay yields 201 admitted rows across 41 parent groups. Family IDs
-are derived from canonical mapped-reactant components and family groups are kept
-whole across deterministic 70/15/15 train/validation/test splits. The exact
+are derived from canonical reactant components after removing arbitrary atom-map
+numbers; the original mapped SMILES remains the calculation identity. Family
+groups are kept whole across deterministic 70/15/15 train/validation/test splits. The exact
 counts and blocker funnel are recorded in
 `data/manifests/paired_pilot_v1/admission_report.json`. The adapter quarantines
 any row that fails a later check rather than guessing missing state or

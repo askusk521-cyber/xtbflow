@@ -10,8 +10,11 @@ The source contains 1,580 CSV rows. The adapter admitted 201 rows after checking
 the mapped SMILES, XYZ row order, reconstructed endpoint connectivity, neutral
 singlet state evidence from both monomer logs, CHNO scope, and non-empty mapped
 bond edits. These records cover 41 parent groups and are split by deterministic
-family identity into train, validation and test. The exact funnel and blocker
-counts are in `data/manifests/paired_pilot_v1/admission_report.json`.
+family identity into train, validation and test. The family identity rule is
+`canonical_reactant_components_without_atom_maps_v1`: canonical reactant
+components are compared after removing arbitrary atom-map numbers, while the
+original mapped SMILES remains the calculation identity. The exact funnel and
+blocker counts are in `data/manifests/paired_pilot_v1/admission_report.json`.
 
 Each manifest row is a `TrackBRecord`; no third record type is introduced. The
 manifest stores source locators and hashes. Raw archive bytes remain in the

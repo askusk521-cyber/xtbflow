@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from xtbflow.data.dft_da import load_dft_da_samples, with_splits, write_manifest
+from xtbflow.data.dft_da import FAMILY_IDENTITY_RULE, load_dft_da_samples, with_splits, write_manifest
 from xtbflow.data.paired_loader import input_view_fingerprint
 from xtbflow.data.track_b import audit_track_b_leakage
 
@@ -75,6 +75,7 @@ def main() -> int:
         "source_dataset": "diels-alder-reaction-space",
         "source_revision": source_audit["source_revision"],
         "source_asset_sha256": source_audit["source_archive_sha256"],
+        "family_identity_rule": FAMILY_IDENTITY_RULE,
         "funnel": funnel,
         "blocker_counts": blockers,
         "admitted_record_count": len(records),

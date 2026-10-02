@@ -12,6 +12,10 @@ class InputFirewallError(ValueError):
     """Raised when a target-derived field enters a blind inference view."""
 
 
+# Backward-friendly semantic alias for callers that name the boundary by its role.
+BlindInputError = InputFirewallError
+
+
 _EXTRA_FORBIDDEN = frozenset({
     "product", "mapped_product", "product_coordinates", "ts_geometry", "reference_ts",
     "reference_mode", "active_water_from_ts", "target_derived_solvent", "sealed_test_label",

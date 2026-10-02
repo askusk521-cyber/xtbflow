@@ -1,0 +1,42 @@
+{
+  "schema": "xtbflow-handoff-freeze/v1",
+  "manifest_id": "handoff-example-blocked-v0.1",
+  "status": "blocked",
+  "work_package": {
+    "id": "W00",
+    "title": "governance handoff example",
+    "owner": "integration-agent",
+    "write_scope": ["schemas/handoff_freeze.schema.json", "scripts/validate_handoff.py"]
+  },
+  "github": {
+    "repository": "askusk521-cyber/xtbflow",
+    "base_sha": "a0c959358b988f220f66a3641c53bb9d997069da",
+    "head_sha": "a0c959358b988f220f66a3641c53bb9d997069da",
+    "base_ref": "origin/main",
+    "head_ref": "codex/handoff-freeze-validator-20261002",
+    "remote_verification": "offline"
+  },
+  "artifacts": {
+    "code": {"kind": "none", "locator": "not-recorded", "sha256": null, "status": "unknown", "source_status": "unknown"},
+    "config": {"kind": "none", "locator": "not-recorded", "sha256": null, "status": "unknown", "source_status": "unknown"},
+    "data": {"kind": "external", "locator": "external-data-not-recorded", "sha256": null, "status": "unknown", "source_status": "external_only"},
+    "split": {"kind": "none", "locator": "not-recorded", "sha256": null, "status": "unknown", "source_status": "unknown"},
+    "input_view": {"kind": "none", "locator": "not-recorded", "sha256": null, "status": "unknown", "source_status": "unknown"},
+    "protocol": {"kind": "none", "locator": "not-recorded", "sha256": null, "status": "unknown", "source_status": "unknown"},
+    "checkpoint": {"kind": "none", "locator": "not-recorded", "sha256": null, "status": "unknown", "source_status": "unknown"},
+    "ledger": {"kind": "none", "locator": "not-recorded", "sha256": null, "status": "unknown", "source_status": "unknown"}
+  },
+  "evidence": {
+    "level": "interface",
+    "status": "blocked",
+    "failure_reasons": [
+      "example is intentionally blocked until all run identities and source records are registered"
+    ],
+    "limitations": ["This example contains no scientific data or checkpoint."]
+  },
+  "execution": {
+    "command": "not-executed",
+    "ledger_id": "not-created",
+    "output_index": "not-created"
+  }
+}

@@ -223,6 +223,11 @@
       "bytes": 381
     },
     {
+      "path": "configs/runs/handoff_freeze_example_v0.1.json",
+      "sha256": "6fe54951bbf58ffa4d5bff646de43c2a678dae57cf96e65da46ac1c64f4194e7",
+      "bytes": 2079
+    },
+    {
       "path": "configs/runs/workflow_b_baseline_ladder_v0.1.json",
       "sha256": "0335f093b48d2a4984e85d95b5afd8bedf17a14ee0b2e872b21ea56ec6ccdd9a",
       "bytes": 5564
@@ -276,6 +281,11 @@
       "path": "docs/ENVIRONMENT_N2.md",
       "sha256": "3c0a29e003afb47f820f6d39b92c7499d1d095b4f6b3ff84beb8bf1cd67ee774",
       "bytes": 2767
+    },
+    {
+      "path": "docs/HANDOFF_FREEZE.md",
+      "sha256": "c0aecb8a7c71854c024d04612b80f8618f225fe844a73b55ac154978cbdd47f7",
+      "bytes": 2014
     },
     {
       "path": "docs/MECHAI_REUSE_MANIFEST.json",
@@ -519,8 +529,8 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "848653cea3a7ba86e90a675782096ada6d35e71a14818c8387e6d0d4d6f9303f",
-      "bytes": 1204
+      "sha256": "bdf4ecad3b0e8179e40238688a100bf5992fb0b30921ebf0ec0552a1735bf698",
+      "bytes": 1228
     },
     {
       "path": "schemas/calculator_protocol.schema.json",
@@ -536,6 +546,11 @@
       "path": "schemas/event_geometry_sample_manifest_v1.schema.json",
       "sha256": "da8b62a2753e46432dcc5be1404934843708c00be30132b7c57478554ea09800",
       "bytes": 9504
+    },
+    {
+      "path": "schemas/handoff_freeze.schema.json",
+      "sha256": "113667ca1ba2e0797dc7e8834b4b5587e5d6aab9455ddeceed43de0e3d2c5ae6",
+      "bytes": 3957
     },
     {
       "path": "schemas/independent_reactant_seed.schema.json",
@@ -638,6 +653,11 @@
       "bytes": 3503
     },
     {
+      "path": "scripts/validate_handoff.py",
+      "sha256": "8e7bd6eebf01423504cb8754554947f1315ede1921cc29d74ebb78c66b4eaba8",
+      "bytes": 1967
+    },
+    {
       "path": "scripts/validate_workflow_b.py",
       "sha256": "6163d0d2fcb13bcc6b4383c20cd177f462d1b67e6f2a6495cda4a7491f4bc9e0",
       "bytes": 13653
@@ -716,6 +736,16 @@
       "path": "src/xtbflow/evaluation/terminal.py",
       "sha256": "a2ee8b3947aa9d55b04aabe52193cfaab0f91f443dde9b68b98a07bf1d91ff3a",
       "bytes": 1744
+    },
+    {
+      "path": "src/xtbflow/governance/__init__.py",
+      "sha256": "2c2f0593fa0e97b4742ea74bab369523280170ce33c10217aa50fefbfcae39de",
+      "bytes": 143
+    },
+    {
+      "path": "src/xtbflow/governance/handoff.py",
+      "sha256": "d158076a5dc5b2a6f8c0ff181881786b05d1670dc777ad15efce59d061429091",
+      "bytes": 11846
     },
     {
       "path": "src/xtbflow/legacy.py",
@@ -961,6 +991,11 @@
       "path": "tests/test_geometry_flow.py",
       "sha256": "3a1f64a2bb77180cd7416b52d120dd14bd899881f5fb7bc812636133edbe506d",
       "bytes": 4675
+    },
+    {
+      "path": "tests/test_handoff_freeze.py",
+      "sha256": "18c29cdbf26d3620f95da7df6e26a84342083f19b88353d435b153172bd1b08f",
+      "bytes": 4511
     },
     {
       "path": "tests/test_input_firewall.py",

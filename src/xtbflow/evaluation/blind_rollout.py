@@ -408,7 +408,7 @@ def _record_benchmark(result: BlindRolloutResult, sample: Any, geometry_threshol
     target_geometry = np.asarray(sample.ts_coordinates, dtype=np.float64)
     event_hits = [row.event_key == target_event_key for row in result.accepted]
     rmsds = [_kabsch_rmsd(np.asarray(row.geometry, dtype=np.float64), target_geometry) for row in result.accepted if row.geometry is not None]
-    best_rmsd = min(rmsds) if rmsds else float("inf")
+    best_rmsd = min(rmsds) if rmsds else None
     paired_hit = any(hit and _kabsch_rmsd(np.asarray(row.geometry, dtype=np.float64), target_geometry) <= geometry_threshold for row, hit in zip(result.accepted, event_hits) if row.geometry is not None)
     return {
         "record_id": result.record_id,
@@ -421,8 +421,8 @@ def _record_benchmark(result: BlindRolloutResult, sample: Any, geometry_threshol
         "failure_count": sum(row.status == "failure" for row in result.attempts),
         "duplicate_count": sum(row.status == "duplicate" for row in result.attempts),
         "event_hit": bool(any(event_hits)),
-        "geometry_best_rmsd": float(best_rmsd),
-        "geometry_hit": bool(best_rmsd <= geometry_threshold),
+        "geometry_best_rmsd": None if best_rmsd is None else float(best_rmsd),
+        "geometry_hit": bool(best_rmsd is not None and best_rmsd <= geometry_threshold),
         "paired_event_geometry_hit": bool(paired_hit),
     }
 
@@ -449,27 +449,42 @@ def benchmark_rollouts(results: Iterable[BlindRolloutResult], samples_by_record:
     metrics = ("event_hit", "geometry_hit", "paired_event_geometry_hit", "geometry_best_rmsd", "accepted_candidates", "failure_count", "duplicate_count", "candidate_attempts", "flow_evaluations")
     record_weighted: dict[str, float] = {}
     for metric in metrics:
-        values = np.asarray([float(row[metric]) for row in rows], dtype=np.float64)
-        record_weighted[metric] = float(np.mean(values))
+        values = np.asarray([float(row[metric]) for row in rows if row[metric] is not None], dtype=np.float64)
+        record_weighted[metric] = float(np.mean(values)) if values.size else None
     grouped: dict[str, list[dict[str, Any]]] = {}
     for row in rows:
         grouped.setdefault(row["parent_reaction_id"], []).append(row)
     parent_rows = []
     for parent_id in sorted(grouped):
         group = grouped[parent_id]
-        parent_rows.append({"parent_reaction_id": parent_id, "record_count": len(group), **{metric: float(np.mean([float(row[metric]) for row in group])) for metric in metrics}})
-    parent_macro = {metric: float(np.mean([row[metric] for row in parent_rows])) for metric in metrics}
+        parent_rows.append({
+            "parent_reaction_id": parent_id,
+            "record_count": len(group),
+            **{
+                metric: (float(np.mean(values)) if values else None)
+                for metric in metrics
+                for values in [[float(row[metric]) for row in group if row[metric] is not None]]
+            },
+        })
+    parent_macro = {
+        metric: (float(np.mean(values)) if values else None)
+        for metric in metrics
+        for values in [[float(row[metric]) for row in parent_rows if row[metric] is not None]]
+    }
     bootstrap: dict[str, Any] = {}
     if type(bootstrap_resamples) is not int or bootstrap_resamples < 0:
         raise ValueError("bootstrap_resamples must be a nonnegative integer")
     if bootstrap_resamples:
         rng = np.random.default_rng(bootstrap_seed)
-        draws = rng.integers(0, len(parent_rows), size=(bootstrap_resamples, len(parent_rows)))
         for metric in metrics:
-            values = np.asarray([row[metric] for row in parent_rows], dtype=np.float64)
+            values = np.asarray([row[metric] for row in parent_rows if row[metric] is not None], dtype=np.float64)
+            if not values.size:
+                bootstrap[metric] = {"parent_count": 0, "resamples": bootstrap_resamples, "seed": bootstrap_seed, "ci95": None}
+                continue
+            draws = rng.integers(0, values.size, size=(bootstrap_resamples, values.size))
             means = values[draws].mean(axis=1)
             bootstrap[metric] = {
-                "parent_count": len(parent_rows),
+                "parent_count": int(values.size),
                 "resamples": bootstrap_resamples,
                 "seed": bootstrap_seed,
                 "ci95": [float(np.quantile(means, 0.025)), float(np.quantile(means, 0.975))],

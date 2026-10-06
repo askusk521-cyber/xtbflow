@@ -1,0 +1,15 @@
+{
+  "status": "owner_authorized_continue_with_disclosure",
+  "owner_instruction": "你真实记录情况后继续推进",
+  "exceptions": {
+    "retention": {"observed_kept": 8520, "observed_seen": 10073, "observed_fraction": 0.8458254740395116, "guide_minimum": 0.85},
+    "test_parent_count": {"observed": 35, "guide_minimum": 40}
+  },
+  "constraints": [
+    "Preserve official splits and existing filtering rules.",
+    "Disclose these exceptions and limited test-parent coverage in final report.",
+    "No authorization to merge PRs or bypass any other stop condition.",
+    "No test results have been used for model or hyperparameter selection."
+  ],
+  "manifest": "docs/evidence/m0/t1x_cache_manifest.json"
+}

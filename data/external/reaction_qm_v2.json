@@ -31,11 +31,11 @@
     {
       "name": "B3LYPD3_TZVP_IRC.h5",
       "role": "IRC paths with coordinates, energies and forces",
-      "size_bytes": 9948000000,
-      "sha256": null,
+      "size_bytes": 9947957486,
+      "sha256": "2a55b17c4ddbc7c394825fd0143d131ad13dc796654ac4c486b2cbee6fd00ef5",
       "zenodo_md5": "782a4e5e8099de8f2b8e0e90128028cb",
-      "status": "download_in_progress_not_yet_verified",
-      "note": "size_bytes is the rounded size reported by the Zenodo API (9.948 GB) until the download is verified"
+      "status": "downloaded_and_hash_verified",
+      "note": "md5 computed on the downloaded file equals the Zenodo-published checksum"
     },
     {
       "name": "GFN2_xTB.h5",

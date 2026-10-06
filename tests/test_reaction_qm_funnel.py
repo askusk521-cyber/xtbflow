@@ -14,7 +14,9 @@ from rdkit import Chem  # noqa: E402
 
 from xtbflow.data.reaction_qm_funnel import (  # noqa: E402
     MAP_AMBIGUOUS_CENTER,
+    MAP_AMBIGUOUS_CENTER_H,
     MAP_NO_MATCH,
+    MAP_REPRESENTATION_MISMATCH,
     MAP_SYMMETRIC_NONCENTER,
     MAP_UNIQUE,
     ReactionInput,
@@ -131,6 +133,7 @@ def test_symmetric_species_with_centre_in_equivalence_class_is_ambiguous():
     out = analyse_reaction(rec)
     assert out.identity_verified
     assert out.mapping["R0"] == MAP_AMBIGUOUS_CENTER
+    assert out.mapping["R1"] == MAP_AMBIGUOUS_CENTER_H  # the transferred NH3 hydrogen
     assert out.tasks["event_only"] is True  # the event label never needs endpoint mapping
     assert out.tasks["paired_joint"] is False
     assert "endpoint_mapping_not_certified" in out.reasons
@@ -143,12 +146,45 @@ def test_species_that_is_not_a_component_has_no_match():
 
 
 def test_extra_bond_in_target_is_not_accepted_as_isomorphism():
-    # Same atoms; the target has one more bond than the species.  A bare
-    # substructure match would succeed, the round-trip check must not.
-    species = parse_mapped("[C:1]([C:2]([H:5])[H:6])([H:3])[H:4]")
-    component = split_side("[C:1](=[C:2]([H:5])[H:6])([H:3])[H:4]")[0]
+    # A path of three atoms embeds in a triangle, so a bare substructure match
+    # succeeds; the target carries one more bond, so the round-trip check must
+    # reject it under both the full-graph and the skeleton test.
+    species = parse_mapped("[C:1]([C:2])[C:3]")
+    component = split_side("[C:1]1[C:2][C:3]1")[0]
     assert map_endpoint(species, component, frozenset()).status == MAP_NO_MATCH
 
+
+def test_bond_order_disagreement_is_a_representation_mismatch_not_a_missing_molecule():
+    species = parse_mapped("[C:1]([C:2]([H:5])[H:6])([H:3])[H:4]")
+    component = split_side("[C:1](=[C:2]([H:5])[H:6])([H:3])[H:4]")[0]
+    assert map_endpoint(species, component, frozenset()).status == MAP_REPRESENTATION_MISMATCH
+
+
+def test_endpoint_that_disagrees_with_the_ts_side_withholds_event_and_pairing():
+    # The TS string writes H-C#N; the endpoint species writes H-C=N.  Same
+    # skeleton, different bond orders: the event label would be representation
+    # dependent, so event_only must be withheld while geometry stays usable.
+    out = analyse_reaction(_record("RXN_repr", HCN_TS, ["[H:1][C:2]=[N:3]"], [HCN_P0]))
+    assert out.identity_verified
+    assert out.mapping["R0"] == MAP_REPRESENTATION_MISMATCH
+    assert "endpoint_representation_mismatch" in out.reasons
+    assert out.tasks["event_only"] is False and out.tasks["paired_joint"] is False
+    assert out.tasks["geometry_only"] is True
+
+
+def test_endpoint_with_different_connectivity_is_flagged():
+    out = analyse_reaction(_record("RXN_conn", HCN_TS, ["[C:1]([H:2])=[N:3]"], [HCN_P0]))
+    # Local numbering differs too, but what matters is that H-C-N is not H-N-C.
+    assert "endpoint_connectivity_mismatch" in out.reasons or "endpoint_representation_mismatch" in out.reasons
+    assert out.tasks["event_only"] is False
+
+
+def test_hydrogen_only_centre_ambiguity_is_reported_separately():
+    # Ammonia hydrogens are equivalent; one of them is in the reaction centre.
+    species = parse_mapped("[N:1]([H:2])([H:3])[H:4]")
+    component = split_side("[N:1]([H:2])([H:3])[H:4]")[0]
+    assert map_endpoint(species, component, frozenset({2, 1})).status == MAP_AMBIGUOUS_CENTER_H
+    assert map_endpoint(species, component, frozenset()).status == MAP_SYMMETRIC_NONCENTER
 
 def test_identical_reactants_use_the_declared_order_rule_and_are_flagged():
     assigned = _assign_components(

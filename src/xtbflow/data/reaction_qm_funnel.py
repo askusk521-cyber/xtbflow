@@ -51,9 +51,20 @@ TASKS = ("event_only", "geometry_only", "energy_only", "energy_force", "paired_j
 # Endpoint-to-global mapping statuses, strongest evidence first.
 MAP_UNIQUE = "unique_graph"
 MAP_SYMMETRIC_NONCENTER = "symmetric_noncenter"
+# Only hydrogens in the reaction centre have symmetry-equivalent partners (for
+# example which methyl H transfers).  Kept apart from heavy-atom ambiguity
+# because a replayable, evidence-based hydrogen assignment rule could recover
+# these later; neither is certified here.
+MAP_AMBIGUOUS_CENTER_H = "ambiguous_center_hydrogen_only"
 MAP_AMBIGUOUS_CENTER = "ambiguous_center"
+# Same elements and connectivity, but bond orders or formal charges differ from
+# the TS-side component: the source's two graph representations disagree.
+MAP_REPRESENTATION_MISMATCH = "representation_mismatch"
 MAP_NO_MATCH = "no_graph_match"
 CERTIFIED_MAPPINGS = frozenset({MAP_UNIQUE, MAP_SYMMETRIC_NONCENTER})
+# A full-graph isomorphism exists (orders and charges agree), whether or not the
+# symmetry question is settled.
+GRAPH_CONSISTENT_MAPPINGS = CERTIFIED_MAPPINGS | {MAP_AMBIGUOUS_CENTER_H, MAP_AMBIGUOUS_CENTER}
 
 # Why each exclusion exists and what would unblock it.  Surfaced verbatim in the
 # report so every dropped record carries a next action, as #94 requires.
@@ -76,6 +87,8 @@ NEXT_ACTIONS: dict[str, str] = {
     "energy_not_finite": "a species energy is missing or non-finite",
     "forces_absent_in_source": "the main HDF5 has no forces; they exist only in the separate IRC asset (not downloaded)",
     "endpoint_mapping_not_certified": "endpoint local->global correspondence is ambiguous or absent; needs an independent mapping table or geometry-independent evidence",
+    "endpoint_representation_mismatch": "an endpoint species and the TS-side component share connectivity but disagree on bond orders/charges; the bond-order event label is representation dependent, so it is withheld until a resonance rule is agreed",
+    "endpoint_connectivity_mismatch": "an endpoint species is not the molecule written on the TS side (different connectivity); the event label cannot be tied to the endpoint geometry",
 }
 
 
@@ -255,8 +268,38 @@ def set_key(mols: Iterable[Chem.Mol]) -> str:
 # --------------------------------------------------------------------------
 
 
-def _verify_mapping(species: Chem.Mol, component: Chem.Mol, mapping: Sequence[int]) -> bool:
-    """Round-trip check: elements, formal charges and the *complete* bond set.
+def _skeleton(mol: Chem.Mol) -> Chem.Mol:
+    """Elements and connectivity only: every bond single, no charges/aromaticity.
+
+    Used to tell a *representation* disagreement (same skeleton, different bond
+    orders or charges) apart from a genuinely different molecule.
+    """
+
+    skeleton = Chem.RWMol(_stripped(mol))
+    for atom in skeleton.GetAtoms():
+        atom.SetFormalCharge(0)
+        atom.SetNumRadicalElectrons(0)
+        atom.SetIsAromatic(False)
+    for bond in skeleton.GetBonds():
+        bond.SetBondType(Chem.BondType.SINGLE)
+        bond.SetIsAromatic(False)
+    out = skeleton.GetMol()
+    out.UpdatePropertyCache(strict=False)
+    Chem.FastFindRings(out)
+    return out
+
+
+def skeleton_key(mol: Chem.Mol) -> str:
+    """Identity of a component by elements and connectivity alone."""
+
+    return Chem.MolToSmiles(_skeleton(mol), isomericSmiles=False, canonical=True)
+
+
+def _verify_mapping(
+    species: Chem.Mol, component: Chem.Mol, mapping: Sequence[int], *, check_orders: bool = True
+) -> bool:
+    """Round-trip check: elements and the *complete* bond set (plus bond orders
+    and formal charges when ``check_orders``).
 
     Substructure matching alone is not an isomorphism test (the target may carry
     extra bonds), so every claim of correspondence is re-verified here.
@@ -268,13 +311,17 @@ def _verify_mapping(species: Chem.Mol, component: Chem.Mol, mapping: Sequence[in
         return False
     for idx, target in enumerate(mapping):
         a, b = species.GetAtomWithIdx(idx), component.GetAtomWithIdx(target)
-        if a.GetAtomicNum() != b.GetAtomicNum() or a.GetFormalCharge() != b.GetFormalCharge():
+        if a.GetAtomicNum() != b.GetAtomicNum():
+            return False
+        if check_orders and a.GetFormalCharge() != b.GetFormalCharge():
             return False
     for bond in species.GetBonds():
         other = component.GetBondBetweenAtoms(
             mapping[bond.GetBeginAtomIdx()], mapping[bond.GetEndAtomIdx()]
         )
-        if other is None or other.GetBondType() != bond.GetBondType():
+        if other is None:
+            return False
+        if check_orders and other.GetBondType() != bond.GetBondType():
             return False
     return True
 
@@ -302,6 +349,12 @@ def map_endpoint(species: Chem.Mol, component: Chem.Mol, centre_ids: frozenset[i
     # ``matches[k][i]`` is the component atom hit by species atom ``i``.
     valid = [m for m in matches if _verify_mapping(s, c, m)]
     if not valid:
+        # Distinguish "different molecule" from "same skeleton, different bond
+        # orders/charges" (the source's two graph representations disagree).
+        sk_s, sk_c = _skeleton(species), _skeleton(component)
+        sk_matches = sk_c.GetSubstructMatches(sk_s, uniquify=False, maxMatches=1, useChirality=False)
+        if any(_verify_mapping(sk_s, sk_c, m, check_orders=False) for m in sk_matches):
+            return EndpointMapping(MAP_REPRESENTATION_MISMATCH)
         return EndpointMapping(MAP_NO_MATCH)
     chosen = valid[0]
     species_local = [int(a.GetAtomMapNum()) for a in species.GetAtoms()]
@@ -325,8 +378,11 @@ def map_endpoint(species: Chem.Mol, component: Chem.Mol, centre_ids: frozenset[i
         return EndpointMapping(MAP_AMBIGUOUS_CENTER, digest, len(valid), monotone)
     class_size = Counter(ranks)
     centre_local = [i for i in range(len(chosen)) if component_global[chosen[i]] in centre_ids]
-    if any(class_size[ranks[i]] > 1 for i in centre_local):
-        return EndpointMapping(MAP_AMBIGUOUS_CENTER, digest, len(valid), monotone)
+    ambiguous = [i for i in centre_local if class_size[ranks[i]] > 1]
+    if ambiguous:
+        only_h = all(s.GetAtomWithIdx(i).GetAtomicNum() == 1 for i in ambiguous)
+        status = MAP_AMBIGUOUS_CENTER_H if only_h else MAP_AMBIGUOUS_CENTER
+        return EndpointMapping(status, digest, len(valid), monotone)
     return EndpointMapping(MAP_SYMMETRIC_NONCENTER, digest, len(valid), monotone)
 
 
@@ -471,7 +527,56 @@ def analyse_reaction(rec: ReactionInput) -> RecordFunnel:
     out.aromatic = any(abs(v - 1.5) < 1e-9 for v in (*r_bonds.values(), *p_bonds.values()))
     out.aromatic_integral_edits = out.aromatic and integral and bool(edits)
 
-    event_ok = True
+    # Endpoint correspondence is computed for every verified record: besides
+    # placing endpoint coordinates in the global order (paired view), it tests
+    # whether the endpoint species really are the molecules written on the TS
+    # side.  Skeleton (element + connectivity) keys are used to *pair up* species
+    # and components so that a bond-order/charge disagreement is reported as such
+    # instead of as a missing component.
+    centre = frozenset(i for edit in edits for i in edit[:2])
+    mapping_certified = True
+    for side_names, side_mols in ((reactant_names, r_mols), (product_names, p_mols)):
+        comp_keys = [skeleton_key(m) for m in side_mols]
+        comp_min = [min(int(a.GetAtomMapNum()) for a in m.GetAtoms()) for m in side_mols]
+        assigned = _assign_components(
+            [
+                (n, skeleton_key(species_mols[n][0])) if len(species_mols[n]) == 1 else (n, "multi")
+                for n in side_names
+            ],
+            comp_keys,
+            comp_min,
+        )
+        if assigned is None:
+            for n in side_names:
+                out.mapping[n] = MAP_NO_MATCH
+            mapping_certified = False
+            continue
+        for n in side_names:
+            comp_idx, how = assigned[n]
+            result = map_endpoint(species_mols[n][0], side_mols[comp_idx], centre)
+            out.mapping[n] = result.status
+            out.assignment[n] = how
+            if result.sha256:
+                out.mapping_sha256[n] = result.sha256
+            if result.status not in CERTIFIED_MAPPINGS:
+                mapping_certified = False
+
+    statuses = set(out.mapping.values())
+    graph_consistent = statuses <= GRAPH_CONSISTENT_MAPPINGS
+    if MAP_REPRESENTATION_MISMATCH in statuses:
+        out.reasons.append("endpoint_representation_mismatch")
+    if MAP_NO_MATCH in statuses:
+        out.reasons.append("endpoint_connectivity_mismatch")
+    if not mapping_certified:
+        out.reasons.append("endpoint_mapping_not_certified")
+
+    # The event label is a bond-order difference read from the TS string.  It is
+    # only trusted when (a) there is something to supervise, (b) no aromatic
+    # representation question is open, and (c) the endpoint species agree with
+    # that string's own graphs, i.e. the source's two representations are
+    # consistent.  Symmetry ambiguity does not matter here: it only affects
+    # where endpoint coordinate rows go, not the event.
+    event_ok = graph_consistent
     if out.aromatic:
         out.reasons.append("aromatic_representation_pending")
         event_ok = False
@@ -493,37 +598,8 @@ def analyse_reaction(rec: ReactionInput) -> RecordFunnel:
     # Structural fact about this asset, not a per-record guess.
     out.reasons.append("forces_absent_in_source")
 
-    # Endpoint correspondence is only needed for placing endpoint coordinates in
-    # the global atom order, i.e. for the paired/joint view.
-    centre = frozenset(i for edit in edits for i in edit[:2])
-    mapping_ok = True
-    for side_names, side_mols, tag in ((reactant_names, r_mols, "R"), (product_names, p_mols, "P")):
-        comp_keys = [component_key(m) for m in side_mols]
-        comp_min = [min(int(a.GetAtomMapNum()) for a in m.GetAtoms()) for m in side_mols]
-        assigned = _assign_components(
-            [(n, component_key(species_mols[n][0])) if len(species_mols[n]) == 1 else (n, "multi") for n in side_names],
-            comp_keys,
-            comp_min,
-        )
-        if assigned is None:
-            for n in side_names:
-                out.mapping[n] = MAP_NO_MATCH
-            mapping_ok = False
-            continue
-        for n in side_names:
-            comp_idx, how = assigned[n]
-            result = map_endpoint(species_mols[n][0], side_mols[comp_idx], centre)
-            out.mapping[n] = result.status
-            out.assignment[n] = how
-            if result.sha256:
-                out.mapping_sha256[n] = result.sha256
-            if result.status not in CERTIFIED_MAPPINGS:
-                mapping_ok = False
-    if not mapping_ok:
-        out.reasons.append("endpoint_mapping_not_certified")
-    out.tasks["paired_joint"] = bool(event_ok and mapping_ok)
+    out.tasks["paired_joint"] = bool(event_ok and mapping_certified)
     return out
-
 
 # --------------------------------------------------------------------------
 # Grouping and aggregation

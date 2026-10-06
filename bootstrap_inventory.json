@@ -493,6 +493,11 @@
       "bytes": 7207
     },
     {
+      "path": "docs/evidence/m0/full_geometry_s1_failure.json",
+      "sha256": "ef4a74876c6da050e68dad46f930995b854f1e19f811ec20e0bf354ce8583c05",
+      "bytes": 403
+    },
+    {
       "path": "docs/evidence/m0/full_joint_s0_failure.json",
       "sha256": "2b676b3e09b9550fa394a42f7ad7fc412161e7e0265d0842d4905bbf861b41b7",
       "bytes": 914

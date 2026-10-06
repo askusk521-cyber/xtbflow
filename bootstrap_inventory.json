@@ -473,6 +473,11 @@
       "bytes": 4826
     },
     {
+      "path": "docs/evidence/m0/data_gate_exception.json",
+      "sha256": "0fed8ffe5c4c9c0973e79a1f219f0d090b1d547501de622aa8c1710112ffca30",
+      "bytes": 715
+    },
+    {
       "path": "docs/evidence/m0/env_n2.json",
       "sha256": "26b139a04cdc8f028d2ebeb081a3820ec3b80e7bef37febd83314e21180eddfb",
       "bytes": 329

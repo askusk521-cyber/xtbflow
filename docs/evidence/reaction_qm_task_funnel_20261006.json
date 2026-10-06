@@ -8,7 +8,7 @@
     "TS identity is source-declared for the reaction ID; the IRC asset that could verify it is not part of this audit.",
     "Parent groups are project-derived, not an official Reaction-QM family annotation.",
     "Energies are species-level EHG triples; no forces exist in the main HDF5.",
-    "Redistribution licence for the Zenodo record is unspecified; this funnel records identities and hashes only."
+    "The Zenodo record metadata declares CC-BY-4.0 (checked via the Zenodo API on 2026-10-06); attribution (DOI 10.5281/zenodo.18551029 and the dataset paper) is required and per-record third-party provenance was not independently verified. This funnel records identities and hashes only; no raw bytes are redistributed."
   ],
   "endpoint_component_assignment_counts": {
     "none": 50,
@@ -112,10 +112,10 @@
   },
   "identities": {
     "code": {
-      "commit": "b5a9a26c05b09a283c1b5fb7c58bf32d43ff34b6",
+      "commit": "20198b0c76225a93bc5c5fa02112df95e539da98",
       "dirty": false
     },
-    "created_utc": "2026-10-06T15:23:46.504543+00:00",
+    "created_utc": "2026-10-06T15:42:31.615564+00:00",
     "grouping_rule": "reaction_qm_reactant_product_set_union_v1",
     "h5_sha256_computed": "3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a",
     "h5_sha256_expected": "3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a",

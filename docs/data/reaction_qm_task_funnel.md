@@ -19,7 +19,7 @@ python scripts/build_reaction_qm_task_funnel.py --h5 <B3LYPD3_TZVP.h5> \
 ```
 
 - 可复现性:用 16 个和 5 个进程各跑一次,`manifest.jsonl` 的 sha256 逐位一致
-  (`5253657375e7fcef00056a3c216120c10a9de84358d9cfe1fc9e141dcaba2aee`),代码 commit `b5a9a26`,RDKit 2024.03.3。
+  (`5253657375e7fcef00056a3c216120c10a9de84358d9cfe1fc9e141dcaba2aee`),代码 commit `20198b0`,RDKit 2024.03.3。
 - 逐记录清单(约 158 MB)和各任务 ID 列表留在运行目录,不进仓库;报告里记录了它们的 sha256。
 
 ## 漏斗结果

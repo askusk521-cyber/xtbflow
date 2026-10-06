@@ -843,6 +843,11 @@
       "bytes": 11435
     },
     {
+      "path": "scripts/m0_evaluate.py",
+      "sha256": "551039d673b7fe68cfb85d0c3d00f640b468797e396e0c19bb45d269d018fb74",
+      "bytes": 2503
+    },
+    {
       "path": "scripts/m0_prepare_t1x.py",
       "sha256": "4336f99a8497d72e3245c4c5af6f1894d915019ed950a28bcbe549fb5e3ba9ef",
       "bytes": 569
@@ -1071,6 +1076,11 @@
       "path": "src/xtbflow/m0/flow.py",
       "sha256": "48b7054b5cb9d4c3b0c2711bc496c0ae005b40a42fccdb183291f541b403ac34",
       "bytes": 3928
+    },
+    {
+      "path": "src/xtbflow/m0/metrics.py",
+      "sha256": "0bc22d2098028bb754c29ad8b72c0fa12522d58ac6ac8197008b25942d9d7745",
+      "bytes": 5586
     },
     {
       "path": "src/xtbflow/m0/model.py",
@@ -1371,6 +1381,11 @@
       "path": "tests/test_m0_data.py",
       "sha256": "2eee7b0681943f39d3c44b343e8639003a61dca2500b0207f38d39b59a6ec89b",
       "bytes": 3185
+    },
+    {
+      "path": "tests/test_m0_metrics.py",
+      "sha256": "f0b10736c9b830ce63f611839d6b9c452e98be9f740560956c90fbd6ae113f30",
+      "bytes": 2099
     },
     {
       "path": "tests/test_m0_model.py",

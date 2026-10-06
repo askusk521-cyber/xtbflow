@@ -1038,9 +1038,24 @@
       "bytes": 0
     },
     {
+      "path": "src/xtbflow/m0/backbone.py",
+      "sha256": "b66793af5e8762f271b08ffef2070699dc20a374b3a5e6bd386f11a417b4338d",
+      "bytes": 5203
+    },
+    {
       "path": "src/xtbflow/m0/batching.py",
       "sha256": "d53b9589d657908b2c4efb54d01dfd4a926968b6d09f47934b6e9b5c08f8f435",
       "bytes": 1647
+    },
+    {
+      "path": "src/xtbflow/m0/flow.py",
+      "sha256": "48b7054b5cb9d4c3b0c2711bc496c0ae005b40a42fccdb183291f541b403ac34",
+      "bytes": 3928
+    },
+    {
+      "path": "src/xtbflow/m0/model.py",
+      "sha256": "67c2a11ed2169af03190f9497b19b01e243372ac3c27983cbfb91a3ad9044117",
+      "bytes": 4014
     },
     {
       "path": "src/xtbflow/m0/numerics.py",
@@ -1331,6 +1346,11 @@
       "path": "tests/test_m0_data.py",
       "sha256": "2eee7b0681943f39d3c44b343e8639003a61dca2500b0207f38d39b59a6ec89b",
       "bytes": 3185
+    },
+    {
+      "path": "tests/test_m0_model.py",
+      "sha256": "d25c639cfda82040ddb4e1a13a307ac3f7e715cc0031faa85adc645bf85b3db9",
+      "bytes": 3727
     },
     {
       "path": "tests/test_m0_numerics.py",

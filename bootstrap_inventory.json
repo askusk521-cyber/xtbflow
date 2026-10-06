@@ -813,6 +813,11 @@
       "bytes": 5243
     },
     {
+      "path": "scripts/build_reaction_qm_task_funnel.py",
+      "sha256": "04079e4999e7a4c5b3fb1e53f24ad5d2477d37deda1684d5362e2a711cecb355",
+      "bytes": 10057
+    },
+    {
       "path": "scripts/cp2k_calibration_smoke.py",
       "sha256": "0e13ebd3d8f571a23c496531ba5d0c8068119b0f5cbd54e2cb7d8e7585557289",
       "bytes": 7339
@@ -966,6 +971,11 @@
       "path": "src/xtbflow/data/public_sources.py",
       "sha256": "d76fc03a1c1338cb4e5ad795b63c8402584dd4c6c081664acbc297e655149a4d",
       "bytes": 1679
+    },
+    {
+      "path": "src/xtbflow/data/reaction_qm_funnel.py",
+      "sha256": "59c02b05d13b755f61c5da17983e805eff87226d3dd7f9adccfb2527ac13dbd6",
+      "bytes": 37847
     },
     {
       "path": "src/xtbflow/data/records.py",
@@ -1326,6 +1336,11 @@
       "path": "tests/test_reaction_qm_coordinate_mapping.py",
       "sha256": "2994a7429aaa7d854d4f527e4dfd1f3e76d2bb17ecfb0934d19b22068feb9bca",
       "bytes": 889
+    },
+    {
+      "path": "tests/test_reaction_qm_funnel.py",
+      "sha256": "cefd287ace13f7feb18a2a0e77b2e54c4e05f8a1ca698036b6955cc367c14737",
+      "bytes": 15970
     },
     {
       "path": "tests/test_runtime_budget.py",

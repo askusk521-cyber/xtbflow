@@ -818,6 +818,6 @@ def build_report(
             "TS identity is source-declared for the reaction ID; the IRC asset that could verify it is not part of this audit.",
             "Parent groups are project-derived, not an official Reaction-QM family annotation.",
             "Energies are species-level EHG triples; no forces exist in the main HDF5.",
-            "Redistribution licence for the Zenodo record is unspecified; this funnel records identities and hashes only.",
+            "The Zenodo record metadata declares CC-BY-4.0 (checked via the Zenodo API on 2026-10-06); attribution (DOI 10.5281/zenodo.18551029 and the dataset paper) is required and per-record third-party provenance was not independently verified. This funnel records identities and hashes only; no raw bytes are redistributed.",
         ],
     }

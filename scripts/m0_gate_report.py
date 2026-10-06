@@ -41,6 +41,19 @@ def main():
     dirty=subprocess.check_output(['git','status','--porcelain','--',str(a.frozen_selection)],text=True).strip()
     if not ts or dirty:raise ValueError('Selection must be committed and unchanged')
     if any(p.stat().st_mtime<=int(ts) for p in a.candidates):raise ValueError('Candidates predate frozen selection commit')
+    def sha256(path):
+        digest=hashlib.sha256()
+        with path.open('rb') as handle:
+            for chunk in iter(lambda:handle.read(1 << 20),b''):
+                digest.update(chunk)
+        return digest.hexdigest()
+    artifact_provenance=dict(
+        report_git_sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+        config_sha256=sha256(a.config),
+        frozen_selection_sha256=sha256(a.frozen_selection),
+        candidate_sha256=[sha256(p) for p in a.candidates],
+        evaluation_sha256=[sha256(p) for p in a.a+a.b],
+    )
     cfg=json.loads(a.config.read_text());ec=cfg['eval'];aa=list(map(load,a.a));bb=list(map(load,a.b))
     if any(set(r)!=set(aa[0]) for r in aa+bb):raise ValueError('Arm query coverage differs')
     boot=lambda f:paired_bootstrap(aggregate(aa,f),aggregate(bb,f),ec['bootstrap'],ec['bootstrap_seed'])
@@ -66,7 +79,7 @@ def main():
     result=dict(decision=decide(primary,sd,valid),primary=primary,seed_deltas=sd,validity=valid,
                 secondary=secondary,delta_curve=curve,sensitivity={str(d):decide(curve[str(d)],deltas_at(d),valid) for d in (.3,1.)},
                 a2x=None,params=frozen['params'],automorphism_cap_hits=sum(any(r[q]['automorphism_cap_hit'] for r in aa+bb) for q in aa[0]),
-                provenance=frozen, data_gate_exceptions={'retention':0.8458254740395116,'test_parents':35})
+                provenance=dict(selection=frozen,**artifact_provenance), data_gate_exceptions={'retention':0.8458254740395116,'test_parents':35})
     a.out.parent.mkdir(parents=True,exist_ok=True);a.out.write_text(json.dumps(result,indent=2,allow_nan=False)+'\n')
     p=primary
     text=f"# M0 gate report\n\n{result['decision']}: M_A={p['M_A']:.6f}, M_B={p['M_B']:.6f}, Δ={p['delta']:.6f}, 95% CI={p['ci95']}.\n\n"

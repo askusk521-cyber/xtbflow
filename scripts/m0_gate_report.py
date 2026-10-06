@@ -74,7 +74,22 @@ def main():
     text+='## Secondary metrics and capacity\n\n```json\n'+json.dumps({'secondary':secondary,'params':result['params'],'sensitivity':result['sensitivity']},indent=2)+'\n```\n'
     text+='## Guide exceptions\n\nOwner authorized continuation with unchanged filtering/splits despite 84.58% retention and 35 test parents. This limits statistical coverage. CPU pytest required repository root on PYTHONPATH. No xTB TS validation is claimed.\n'
     text+='\n## Next\n\n'+{'GO':'Enter M1.','NO-GO':'Retain negative result and move to direction B.','INCONCLUSIVE':'Request the predefined extension; do not tune from test results.'}[result['decision']]+'\n'
-    a.report.parent.mkdir(parents=True,exist_ok=True);a.report.write_text(text)
+    # Dependency-free curve plot: values come exclusively from the computed bootstrap.
+    a.report.parent.mkdir(parents=True,exist_ok=True)
+    plot = a.report.with_suffix('.delta.svg')
+    lines = ['<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" viewBox="0 0 600 340">',
+             '<rect width="600" height="340" fill="white"/>',
+             '<path d="M50 20 V290 H570" stroke="black" fill="none"/>',
+             '<text x="220" y="330">TS RMSD threshold (Å)</text>',
+             '<text x="50" y="15">Parent macro hit rate (0–1)</text>']
+    for arm,color in [('A','#2563eb'),('B','#dc2626')]:
+        points=' '.join(f'{50+(d-.1)/.9*520:.2f},{290-curve[str(d)]["M_"+arm]*260:.2f}' for d in DELTAS)
+        lines.append(f'<polyline points="{points}" fill="none" stroke="{color}" stroke-width="2"/>')
+        lines.append(f'<text x="{430 if arm=="A" else 500}" y="35" fill="{color}">Arm {arm}</text>')
+    lines.append('</svg>')
+    plot.write_text('\n'.join(lines))
+    text += f'\n![δ sensitivity curve]({plot.name})\n'
+    a.report.write_text(text)
     print(json.dumps(result,indent=2))
 
 

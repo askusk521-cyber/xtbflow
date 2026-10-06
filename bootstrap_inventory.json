@@ -849,8 +849,8 @@
     },
     {
       "path": "scripts/m0_gate_report.py",
-      "sha256": "ee2b3cd90416903f713a38273f6dcc21e3b36d02b99910cdba05a85b157e3077",
-      "bytes": 5353
+      "sha256": "9d3341506c20c8a217d9d8e9d05b11c80d5a5d15850040b960c894d176936df7",
+      "bytes": 6353
     },
     {
       "path": "scripts/m0_prepare_t1x.py",
@@ -1401,6 +1401,11 @@
       "path": "tests/test_m0_numerics.py",
       "sha256": "248605e5415d93ef76523498f19c323de4def1921c888ebc8aa0679875bc143c",
       "bytes": 1898
+    },
+    {
+      "path": "tests/test_m0_report.py",
+      "sha256": "133432ba9f67d6850bf8a6425e9c4309daf6536c965d2677efee1c08f6c37cab",
+      "bytes": 2548
     },
     {
       "path": "tests/test_origin_seed_readiness.py",

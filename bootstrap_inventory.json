@@ -478,9 +478,19 @@
       "bytes": 4826
     },
     {
+      "path": "docs/evidence/m0/cpu_smoke.json",
+      "sha256": "d38f75b6915ab0145a4d3f80e0da24945fd1a48415748927a9ad3d72141a7aa4",
+      "bytes": 4700
+    },
+    {
       "path": "docs/evidence/m0/env_n2.json",
       "sha256": "26b139a04cdc8f028d2ebeb081a3820ec3b80e7bef37febd83314e21180eddfb",
       "bytes": 329
+    },
+    {
+      "path": "docs/evidence/m0/gpu_benchmark_500.json",
+      "sha256": "53fde105f75621c3d76a014f6d24eeaa830e48464e10c65a8d55cde2c76a2231",
+      "bytes": 1604
     },
     {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
@@ -1381,6 +1391,11 @@
       "path": "tests/test_m0_numerics.py",
       "sha256": "248605e5415d93ef76523498f19c323de4def1921c888ebc8aa0679875bc143c",
       "bytes": 1898
+    },
+    {
+      "path": "tests/test_m0_sampler.py",
+      "sha256": "c376c98fdb13f6fa42db81b0119ce54a34c19e9a1e7a93457640fa08baec9248",
+      "bytes": 1088
     },
     {
       "path": "tests/test_origin_seed_readiness.py",

@@ -493,6 +493,11 @@
       "bytes": 1604
     },
     {
+      "path": "docs/evidence/m0/noise_selection.json",
+      "sha256": "0f30da35b6307f6a25e9eaa655c33109ea728c7bc5ae3a7aef4fa7084f5b1ee5",
+      "bytes": 2673
+    },
+    {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
       "sha256": "cbdd9b63b5cad70fbadf0ae8060e00a0aff4e439a10864bbbd7aec87ce8b9bbd",
       "bytes": 7458

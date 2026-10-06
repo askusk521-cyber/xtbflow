@@ -838,6 +838,11 @@
       "bytes": 11435
     },
     {
+      "path": "scripts/m0_prepare_t1x.py",
+      "sha256": "4336f99a8497d72e3245c4c5af6f1894d915019ed950a28bcbe549fb5e3ba9ef",
+      "bytes": 569
+    },
+    {
       "path": "scripts/prepare_spice_openff_pilot.py",
       "sha256": "9121a7e5cef736d6459b5dc3400465c5924d678ba1bec4963335cb8b197c0010",
       "bytes": 17349
@@ -1033,9 +1038,19 @@
       "bytes": 0
     },
     {
+      "path": "src/xtbflow/m0/batching.py",
+      "sha256": "d53b9589d657908b2c4efb54d01dfd4a926968b6d09f47934b6e9b5c08f8f435",
+      "bytes": 1647
+    },
+    {
       "path": "src/xtbflow/m0/numerics.py",
       "sha256": "5d68dd3d45ca42a5e09a84e9d64b4c31e109e9640e3089d4434cd3f48bbc2a8b",
       "bytes": 2082
+    },
+    {
+      "path": "src/xtbflow/m0/t1x_data.py",
+      "sha256": "b356c1243e542a001b9033eb14a1d9d8a8e19b8389a066be57d7b87fe812cffd",
+      "bytes": 10587
     },
     {
       "path": "src/xtbflow/models/__init__.py",
@@ -1311,6 +1326,11 @@
       "path": "tests/test_learning_curve_budget.py",
       "sha256": "158dde2de0beb627dd41102f181b2f60d9c33a4f12014b596f70df698842f9a7",
       "bytes": 3703
+    },
+    {
+      "path": "tests/test_m0_data.py",
+      "sha256": "2eee7b0681943f39d3c44b343e8639003a61dca2500b0207f38d39b59a6ec89b",
+      "bytes": 3185
     },
     {
       "path": "tests/test_m0_numerics.py",

@@ -473,6 +473,11 @@
       "bytes": 4826
     },
     {
+      "path": "docs/evidence/m0/env_n2.json",
+      "sha256": "26b139a04cdc8f028d2ebeb081a3820ec3b80e7bef37febd83314e21180eddfb",
+      "bytes": 329
+    },
+    {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
       "sha256": "cbdd9b63b5cad70fbadf0ae8060e00a0aff4e439a10864bbbd7aec87ce8b9bbd",
       "bytes": 7458
@@ -689,8 +694,8 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "bdf4ecad3b0e8179e40238688a100bf5992fb0b30921ebf0ec0552a1735bf698",
-      "bytes": 1228
+      "sha256": "85c9a5dd5a7e732e43bc982ef7f2f3f61a7957f15e067fa63edec91798f1dbf9",
+      "bytes": 1244
     },
     {
       "path": "schemas/calculator_protocol.schema.json",
@@ -1023,6 +1028,16 @@
       "bytes": 3402
     },
     {
+      "path": "src/xtbflow/m0/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "src/xtbflow/m0/numerics.py",
+      "sha256": "5d68dd3d45ca42a5e09a84e9d64b4c31e109e9640e3089d4434cd3f48bbc2a8b",
+      "bytes": 2082
+    },
+    {
       "path": "src/xtbflow/models/__init__.py",
       "sha256": "4512e26c68119d14907c41d24cad9aec7aa794c9d0720e3939019335080d2d97",
       "bytes": 1532
@@ -1296,6 +1311,11 @@
       "path": "tests/test_learning_curve_budget.py",
       "sha256": "158dde2de0beb627dd41102f181b2f60d9c33a4f12014b596f70df698842f9a7",
       "bytes": 3703
+    },
+    {
+      "path": "tests/test_m0_numerics.py",
+      "sha256": "248605e5415d93ef76523498f19c323de4def1921c888ebc8aa0679875bc143c",
+      "bytes": 1898
     },
     {
       "path": "tests/test_origin_seed_readiness.py",

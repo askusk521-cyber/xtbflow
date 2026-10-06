@@ -1,0 +1,53 @@
+{
+  "schema": "xtbflow-external-dataset/v1",
+  "dataset_id": "reaction-qm-v2",
+  "title": "A Comprehensive Dataset of Chemical Reactions Covering Second and Third Row Elements with Million-Scale Quantum Chemical Calculations",
+  "doi": "10.5281/zenodo.18551029",
+  "url": "https://zenodo.org/records/18551029",
+  "revision": "zenodo:18551029@v2",
+  "upstream_code": {
+    "repository": "https://github.com/Kangbeomgyu/Reaction-QM",
+    "commit": "3a553bf1562356a4f978ab5daa39778e434a9310",
+    "code_license": "BSD-3-Clause"
+  },
+  "license": {
+    "id": "CC-BY-4.0",
+    "source": "Zenodo API record metadata (license.id), access_right=open",
+    "checked_on": "2026-10-06",
+    "attribution_required": true,
+    "caveat": "Per-record third-party provenance was not independently verified."
+  },
+  "redistribution": "not_redistributed_in_this_repository",
+  "access_instructions": "Download the listed files from the Zenodo record and verify the hashes below. Raw bytes stay in a private cache outside Git.",
+  "files": [
+    {
+      "name": "B3LYPD3_TZVP.h5",
+      "role": "B3LYP-D3/TZVP endpoint and TS geometries with species-level E/H/G (no forces)",
+      "size_bytes": 2054981016,
+      "sha256": "3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a",
+      "zenodo_md5": "2c572a68849e805bc0dbb257a53a1fd2",
+      "status": "downloaded_and_hash_verified"
+    },
+    {
+      "name": "B3LYPD3_TZVP_IRC.h5",
+      "role": "IRC paths with coordinates, energies and forces",
+      "size_bytes": 9947957486,
+      "sha256": "2a55b17c4ddbc7c394825fd0143d131ad13dc796654ac4c486b2cbee6fd00ef5",
+      "zenodo_md5": "782a4e5e8099de8f2b8e0e90128028cb",
+      "status": "downloaded_and_hash_verified",
+      "note": "md5 computed on the downloaded file equals the Zenodo-published checksum"
+    },
+    {
+      "name": "GFN2_xTB.h5",
+      "role": "GFN2-xTB counterpart of the reaction set (lower fidelity)",
+      "size_bytes": 21110000000,
+      "sha256": null,
+      "zenodo_md5": "8be9279d92d1027a8c3ffd2cc432c4d3",
+      "status": "not_downloaded"
+    }
+  ],
+  "claim_limits": [
+    "Identity and hash manifest only; no scientific record is admitted by this file.",
+    "Admission status is decided per task by docs/data/reaction_qm_task_funnel.md and the Track-B gates."
+  ]
+}

@@ -268,6 +268,11 @@
       "bytes": 434
     },
     {
+      "path": "data/external/reaction_qm_v2.json",
+      "sha256": "1632341556fd601cd29e58aedfce2e8ebb6298006f879a638db82fe8951c41eb",
+      "bytes": 2291
+    },
+    {
       "path": "data/manifests/README.md",
       "sha256": "066dc3972792c541f8df409db44b4b832c0d91700c950f7930a89f72f6eb9bb6",
       "bytes": 2613
@@ -403,6 +408,11 @@
       "bytes": 3140
     },
     {
+      "path": "docs/data/reaction_qm_task_funnel.md",
+      "sha256": "527a5a395709ced985a98f6469efc23c35e8bfa199045271050b23147b144409",
+      "bytes": 9879
+    },
+    {
       "path": "docs/data_contract.md",
       "sha256": "9964999089df7e67b9d5c0af99dcf5bd426974bca5128bee2623c928473d42a9",
       "bytes": 4036
@@ -506,6 +516,11 @@
       "path": "docs/evidence/reaction_qm_coordinate_mapping_provenance_20261002.json",
       "sha256": "094cf902dc6adf7016d994a89b0b12c3e0456c3588b99e08fc92f3826c4880cb",
       "bytes": 3702
+    },
+    {
+      "path": "docs/evidence/reaction_qm_task_funnel_20261006.json",
+      "sha256": "44411604720dfc763f9b21027928d72cd38ddbc6fde1a34f00901207d610d241",
+      "bytes": 7862
     },
     {
       "path": "docs/evidence/rgd1_hdf5_only_ids_v1.jsonl",
@@ -813,6 +828,16 @@
       "bytes": 5243
     },
     {
+      "path": "scripts/build_reaction_qm_irc_evidence.py",
+      "sha256": "6d2cf42a464f5728e82e9a531864f6c7198aedc6d11f967c166dc5a5d6a3ee47",
+      "bytes": 9946
+    },
+    {
+      "path": "scripts/build_reaction_qm_task_funnel.py",
+      "sha256": "04079e4999e7a4c5b3fb1e53f24ad5d2477d37deda1684d5362e2a711cecb355",
+      "bytes": 10057
+    },
+    {
       "path": "scripts/cp2k_calibration_smoke.py",
       "sha256": "0e13ebd3d8f571a23c496531ba5d0c8068119b0f5cbd54e2cb7d8e7585557289",
       "bytes": 7339
@@ -966,6 +991,16 @@
       "path": "src/xtbflow/data/public_sources.py",
       "sha256": "d76fc03a1c1338cb4e5ad795b63c8402584dd4c6c081664acbc297e655149a4d",
       "bytes": 1679
+    },
+    {
+      "path": "src/xtbflow/data/reaction_qm_funnel.py",
+      "sha256": "2eebe789f156b8eb3b12dfde574487cc782ed771a0f7dbfb28c3c206117ecb09",
+      "bytes": 38054
+    },
+    {
+      "path": "src/xtbflow/data/reaction_qm_irc.py",
+      "sha256": "775238c0d32d670853e7f0c9b8160f4db419914d73b2a85bff2d415cb010ea1b",
+      "bytes": 22706
     },
     {
       "path": "src/xtbflow/data/records.py",
@@ -1326,6 +1361,21 @@
       "path": "tests/test_reaction_qm_coordinate_mapping.py",
       "sha256": "2994a7429aaa7d854d4f527e4dfd1f3e76d2bb17ecfb0934d19b22068feb9bca",
       "bytes": 889
+    },
+    {
+      "path": "tests/test_reaction_qm_funnel.py",
+      "sha256": "cefd287ace13f7feb18a2a0e77b2e54c4e05f8a1ca698036b6955cc367c14737",
+      "bytes": 15970
+    },
+    {
+      "path": "tests/test_reaction_qm_irc.py",
+      "sha256": "930f35bc967431f2a4cfa36908c9aa420e68143a4d28b6a0f8fa18d132fc428e",
+      "bytes": 9646
+    },
+    {
+      "path": "tests/test_reaction_qm_scripts_smoke.py",
+      "sha256": "a2947dfe498e64c689a35d2e3dc8ba1580d2d7e15df6cb6a0c3c446ed3d3a62c",
+      "bytes": 5195
     },
     {
       "path": "tests/test_runtime_budget.py",

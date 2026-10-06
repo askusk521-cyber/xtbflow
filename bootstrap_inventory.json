@@ -488,6 +488,11 @@
       "bytes": 329
     },
     {
+      "path": "docs/evidence/m0/full_joint_s0_failure.json",
+      "sha256": "2b676b3e09b9550fa394a42f7ad7fc412161e7e0265d0842d4905bbf861b41b7",
+      "bytes": 914
+    },
+    {
       "path": "docs/evidence/m0/gpu_benchmark_500.json",
       "sha256": "53fde105f75621c3d76a014f6d24eeaa830e48464e10c65a8d55cde2c76a2231",
       "bytes": 1604

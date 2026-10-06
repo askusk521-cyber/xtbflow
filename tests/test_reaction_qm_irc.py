@@ -12,11 +12,12 @@ import pytest
 
 from xtbflow.data.reaction_qm_irc import (
     HARTREE_TO_EV,
-    ORIENT_AMBIGUOUS,
     ORIENT_CONNECTS,
     ORIENT_CONTRADICTS,
+    ORIENT_NO_CHANGE,
     ORIENT_NOT_TESTABLE,
     IrcInput,
+    aligned_max_deviation,
     analyse_irc,
     build_irc_report,
     find_branch_boundary,
@@ -84,12 +85,20 @@ def test_stored_branch_order_does_not_decide_which_end_is_the_reactant():
     assert (res.reactant_end_frame, res.product_end_frame) == (10, 5)
 
 
-def test_an_event_that_does_not_happen_in_the_path_is_contradicted():
+def test_an_event_edge_that_never_changes_is_reported_as_no_change_not_as_pairing():
+    # The event names a C-N bond that stays 2.6 A apart along the whole path.
     res = _run(_path([0.0] + A_SIDE + B_SIDE), formed=[(2, 3)], broken=[])
-    assert res.orientation == ORIENT_CONTRADICTS
+    assert res.orientation == ORIENT_NO_CHANGE
     assert res.energy_force_ok and not res.path_pairing_ok
     assert res.reactant_end_frame is None
 
+
+def test_edges_moving_in_opposite_directions_contradict_the_event():
+    # Formed (1,3) shortens toward branch B while "formed" (1,2) lengthens
+    # toward B: no single orientation satisfies both.
+    res = _run(_path([0.0] + A_SIDE + B_SIDE), formed=[(1, 3), (1, 2)], broken=[])
+    assert res.orientation == ORIENT_CONTRADICTS
+    assert not res.path_pairing_ok
 
 def test_pure_bond_order_change_cannot_be_oriented():
     res = _run(_path([0.0] + A_SIDE + B_SIDE), formed=[], broken=[])
@@ -97,20 +106,20 @@ def test_pure_bond_order_change_cannot_be_oriented():
     assert not res.path_pairing_ok
 
 
-def test_orientation_is_ambiguous_when_both_ends_fit_both_hypotheses():
-    # An edit whose bonded state is identical at both ends and absent for
-    # "formed" fits... only if both hypotheses score fully, which needs ends
-    # that satisfy both; exercise the branch directly via symmetric ends.
-    from xtbflow.data.reaction_qm_irc import orient_branches
-
-    end = _frame(0.0)  # H equidistant: C-H bonded (1.3 < 1.34), N-H not
-    orientation, branch = orient_branches(Z, end, end, FORMED, BROKEN)
-    assert orientation in (ORIENT_CONTRADICTS, ORIENT_AMBIGUOUS)
-    assert branch is None
-
+def test_an_unrelaxed_product_end_still_pairs_directionally_but_not_strictly():
+    # The H stops at +/-0.03 A from the TS: C-H still lengthens by 0.06 A toward
+    # the product end (directional tier) but stays inside the covalent cutoff
+    # there, so the absolute bonded-state test does not hold.
+    res = _run(_path([0.0, -0.01, -0.02, -0.03, 0.01, 0.02, 0.03]))
+    assert res.orientation == ORIENT_CONNECTS and res.path_pairing_ok
+    assert res.strict_bond_state_match is False
+    full = _run(_path([0.0] + A_SIDE + B_SIDE))
+    assert full.strict_bond_state_match is True
+    assert (full.edges_correct, full.edges_wrong) == (2, 0)
 
 def test_ts_frame_that_differs_from_the_main_hdf5_is_not_usable():
-    shifted = TS + 0.01
+    shifted = TS.copy()
+    shifted[0, 1] += 0.05  # one atom displaced: a different structure, not a rigid move
     res = _run(_path([0.0] + A_SIDE + B_SIDE), ts_coordinates=shifted)
     assert res.identity_ok and not res.ts_frame_matches
     assert not res.energy_force_ok
@@ -186,3 +195,30 @@ def test_report_separates_energy_force_from_path_pairing_and_states_the_baseline
     assert report["baseline_main_funnel"]["energy_force"]["records"] == 0
     assert report["irc_reasons"]["irc_record_absent"] == 1
     assert "path-derived endpoints" in report["claim_limits"][0]
+
+
+def _rotated(coords: np.ndarray) -> np.ndarray:
+    theta = 0.7
+    rot = np.array([[np.cos(theta), -np.sin(theta), 0.0], [np.sin(theta), np.cos(theta), 0.0], [0.0, 0.0, 1.0]])
+    return coords @ rot.T + np.array([3.0, -2.0, 5.0])
+
+
+def test_rigidly_moved_ts_frame_is_still_the_same_geometry():
+    moved = _rotated(TS)
+    assert aligned_max_deviation(TS, moved) < 1e-9
+    # The IRC stored in a different frame must still be accepted against the main TS.
+    irc = _path([0.0] + A_SIDE + B_SIDE)
+    irc = IrcInput(irc.atomic_numbers, np.array([_rotated(f) for f in irc.coordinates]), irc.energies,
+                   irc.forces)
+    res = _run(irc)
+    assert res.ts_frame_matches and res.energy_force_ok
+    assert res.ts_coord_max_dev < 1e-9
+
+
+def test_alignment_still_rejects_a_permuted_atom_order_and_a_mirror_image():
+    permuted = TS[[1, 0, 2]]
+    assert aligned_max_deviation(TS, permuted) > 0.5
+    chiral = np.array([[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]])
+    mirror = chiral * np.array([1.0, 1.0, -1.0])
+    assert aligned_max_deviation(chiral, mirror) > 0.1  # reflections are not allowed
+    assert aligned_max_deviation(TS, TS[:2]) == float("inf")

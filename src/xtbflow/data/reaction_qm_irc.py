@@ -18,8 +18,10 @@ Design notes (why this module is shaped the way it is)
 * Units are not assumed.  Energy/force consistency is *measured* from the work
   identity ``E[i+1]-E[i] ~ -0.5 (F[i]+F[i+1]) . (x[i+1]-x[i])`` and the TS frame
   is compared with the main HDF5; both are reported as distributions.
-* Connectivity from distances is a heuristic.  It is used only to check the
-  *formed/broken sigma bonds named by the event*, never to build labels.
+* Edge lengths at the IRC ends are used only to check the *formed/broken sigma
+  bonds named by the event*, never to build labels.  Ends are often not fully
+  relaxed, so the primary test is directional (did each named edge move the way
+  the event says) and the absolute bonded-state test is a stricter tier.
 """
 from __future__ import annotations
 
@@ -36,7 +38,7 @@ COVALENT_RADII = {1: 0.31, 6: 0.76, 7: 0.71, 8: 0.66, 16: 1.05}
 BOND_SCALE = 1.25  # same covalent-radius factor the DA adapter uses for connectivity
 
 # A-priori gates (chosen before looking at real IRC data).
-TS_COORD_TOLERANCE = 1e-3  # angstrom, max abs deviation of IRC frame 0 from the main-HDF5 TS
+TS_COORD_TOLERANCE = 1e-3  # angstrom, max per-atom deviation of IRC frame 0 from the main-HDF5 TS *after rigid alignment*
 TS_ENERGY_TOLERANCE_HARTREE = 1e-3
 MIN_FRAMES = 3
 # The aggregate work-identity slope must lie in this window for energies and
@@ -48,6 +50,14 @@ ORIENT_CONTRADICTS = "contradicts_declared_event"
 ORIENT_NOT_TESTABLE = "not_testable_no_sigma_bond_change"
 ORIENT_AMBIGUOUS = "ambiguous_both_orientations_fit"
 ORIENT_NO_BRANCHES = "no_two_branches"
+ORIENT_NO_CHANGE = "named_edges_do_not_change_along_path"
+
+# Directional test (the primary criterion): an edge counts as moving the way the
+# event says only if its length changes by more than this between the two ends.
+# Chosen a priori; IRC ends are often not fully relaxed, so the absolute
+# bonded/non-bonded state is reported separately as a stricter tier.
+DISTANCE_DEADBAND = 0.05  # angstrom
+MIN_EDGE_FRACTION = 0.5  # share of named edges that must move clearly the right way
 
 
 @dataclass(frozen=True)
@@ -70,6 +80,10 @@ class IrcResult:
     orientation: str = ORIENT_NO_BRANCHES
     reactant_end_frame: int | None = None
     product_end_frame: int | None = None
+    strict_bond_state_match: bool = False
+    edges_correct: int = 0
+    edges_wrong: int = 0
+    edges_flat: int = 0
     ts_coord_max_dev: float | None = None
     ts_energy_dev_hartree: float | None = None
     work_slope: float | None = None
@@ -88,6 +102,30 @@ class IrcResult:
     def path_pairing_ok(self) -> bool:
         return self.energy_force_ok and self.orientation == ORIENT_CONNECTS
 
+
+# --------------------------------------------------------------------------
+# Rigid alignment
+# --------------------------------------------------------------------------
+
+
+def aligned_max_deviation(a: np.ndarray, b: np.ndarray) -> float:
+    """Largest per-atom distance between ``a`` and ``b`` after the optimal proper
+    rotation and translation (Kabsch, reflections excluded).
+
+    IRC runs are stored in their own Cartesian frame, so the same TS can appear
+    rotated/translated relative to the main HDF5.  Comparing raw coordinates would
+    reject those records although they are identical geometries; comparing after
+    alignment still rejects a permuted atom order or a different structure.
+    """
+
+    a, b = np.asarray(a, dtype=float), np.asarray(b, dtype=float)
+    if a.shape != b.shape or a.ndim != 2 or a.shape[1] != 3:
+        return float("inf")
+    a0, b0 = a - a.mean(axis=0), b - b.mean(axis=0)
+    u, _, vt = np.linalg.svd(a0.T @ b0)
+    d = np.sign(np.linalg.det(u @ vt))
+    rot = u @ np.diag([1.0, 1.0, d if d != 0 else 1.0]) @ vt
+    return float(np.max(np.linalg.norm(a0 @ rot - b0, axis=1)))
 
 # --------------------------------------------------------------------------
 # Path structure
@@ -158,32 +196,71 @@ def _score(
     return ok / total
 
 
+def _edge_distance(xyz: np.ndarray, edge: tuple[int, int]) -> float:
+    return float(np.linalg.norm(xyz[edge[0] - 1] - xyz[edge[1] - 1]))
+
+
 def orient_branches(
     z: Sequence[int],
     end_a: np.ndarray,
     end_b: np.ndarray,
     formed: Sequence[tuple[int, int]],
     broken: Sequence[tuple[int, int]],
-) -> tuple[str, str | None]:
-    """Decide which branch end is the reactant.
+) -> dict[str, Any]:
+    """Decide which branch end is the reactant, directionally.
 
-    Returns ``(orientation, reactant_branch)`` with ``reactant_branch`` in
-    ``{"A", "B", None}``.  Only formed/broken sigma bonds can discriminate; a
-    pure bond-order change (e.g. C=C -> C-C) leaves both ends bonded.
+    For every formed edge the distance must be *shorter* at the product end, and
+    for every broken edge *longer*, by more than ``DISTANCE_DEADBAND``.  The
+    orientation is accepted only if no edge moves the wrong way and at least
+    ``MIN_EDGE_FRACTION`` of the named edges move clearly the right way.  This
+    tolerates IRC ends that stop short of a fully relaxed product, which a
+    bonded/non-bonded threshold would call a contradiction.
+
+    ``strict`` additionally reports whether both ends reproduce the absolute
+    bonded/non-bonded state of every named edge (covalent-radius heuristic).
+    Only formed/broken sigma bonds can discriminate; a pure bond-order change
+    leaves both ends bonded.
     """
 
-    if not formed and not broken:
-        return ORIENT_NOT_TESTABLE, None
-    a_is_r = _score(z, end_a, formed, broken, as_reactant=True) + _score(z, end_b, formed, broken, as_reactant=False)
-    b_is_r = _score(z, end_b, formed, broken, as_reactant=True) + _score(z, end_a, formed, broken, as_reactant=False)
-    if a_is_r == 2.0 and b_is_r < 2.0:
-        return ORIENT_CONNECTS, "A"
-    if b_is_r == 2.0 and a_is_r < 2.0:
-        return ORIENT_CONNECTS, "B"
-    if a_is_r == 2.0 and b_is_r == 2.0:
-        return ORIENT_AMBIGUOUS, None
-    return ORIENT_CONTRADICTS, None
-
+    edges = [(e, "formed") for e in formed] + [(e, "broken") for e in broken]
+    result: dict[str, Any] = {
+        "orientation": ORIENT_NOT_TESTABLE, "reactant_branch": None, "strict": False,
+        "correct": 0, "wrong": 0, "flat": 0,
+    }
+    if not edges:
+        return result
+    # Positive "toward_b" means the edge looks like it changes from A to B in the
+    # direction "A is reactant, B is product".
+    correct_ab = wrong_ab = flat = 0
+    for edge, kind in edges:
+        delta = _edge_distance(end_b, edge) - _edge_distance(end_a, edge)  # B minus A
+        if abs(delta) <= DISTANCE_DEADBAND:
+            flat += 1
+        elif (kind == "formed") == (delta < 0):  # formed shortens toward B, broken lengthens toward B
+            correct_ab += 1
+        else:
+            wrong_ab += 1
+    total = len(edges)
+    # Reversing the orientation turns every correct edge into a wrong one.
+    min_edges = max(1, int(np.ceil(MIN_EDGE_FRACTION * total)))
+    if correct_ab + wrong_ab == 0:
+        result.update(orientation=ORIENT_NO_CHANGE, flat=flat)
+        return result
+    if wrong_ab == 0 and correct_ab >= min_edges:
+        branch, correct, wrong = "A", correct_ab, wrong_ab
+    elif correct_ab == 0 and wrong_ab >= min_edges:
+        branch, correct, wrong = "B", wrong_ab, correct_ab
+    else:
+        result.update(orientation=ORIENT_CONTRADICTS, correct=max(correct_ab, wrong_ab), wrong=min(correct_ab, wrong_ab), flat=flat)
+        return result
+    reactant_end, product_end = (end_a, end_b) if branch == "A" else (end_b, end_a)
+    strict = _score(z, reactant_end, formed, broken, as_reactant=True) == 1.0 and _score(
+        z, product_end, formed, broken, as_reactant=False
+    ) == 1.0
+    result.update(
+        orientation=ORIENT_CONNECTS, reactant_branch=branch, strict=bool(strict), correct=correct, wrong=wrong, flat=flat
+    )
+    return result
 
 # --------------------------------------------------------------------------
 # Energy / force consistency
@@ -260,7 +337,7 @@ def analyse_irc(
         return out
     out.identity_ok = True
 
-    dev = float(np.max(np.abs(c[0] - np.asarray(ts_coordinates, dtype=float))))
+    dev = aligned_max_deviation(c[0], ts_coordinates)
     out.ts_coord_max_dev = dev
     # IRC energies are stored in eV (per the upstream example); compare in Hartree.
     out.ts_energy_dev_hartree = abs(float(e[0]) / HARTREE_TO_EV - float(ts_energy_hartree))
@@ -280,7 +357,10 @@ def analyse_irc(
         out.orientation = ORIENT_NO_BRANCHES
         return out
     end_a, end_b = boundary - 1, steps - 1
-    out.orientation, reactant_branch = orient_branches(z, c[end_a], c[end_b], formed, broken)
+    verdict = orient_branches(z, c[end_a], c[end_b], formed, broken)
+    out.orientation, reactant_branch = verdict["orientation"], verdict["reactant_branch"]
+    out.strict_bond_state_match = verdict["strict"]
+    out.edges_correct, out.edges_wrong, out.edges_flat = verdict["correct"], verdict["wrong"], verdict["flat"]
     if reactant_branch == "A":
         out.reactant_end_frame, out.product_end_frame = end_a, end_b
     elif reactant_branch == "B":
@@ -302,6 +382,10 @@ def result_row(result: IrcResult) -> dict[str, Any]:
         "irc_orientation": result.orientation,
         "irc_reactant_end_frame": result.reactant_end_frame,
         "irc_product_end_frame": result.product_end_frame,
+        "irc_strict_bond_state_match": result.strict_bond_state_match,
+        "irc_edges_correct": result.edges_correct,
+        "irc_edges_wrong": result.edges_wrong,
+        "irc_edges_flat": result.edges_flat,
         "irc_ts_coord_max_dev": result.ts_coord_max_dev,
         "irc_ts_energy_dev_hartree": result.ts_energy_dev_hartree,
         "irc_work_slope": result.work_slope,
@@ -390,8 +474,12 @@ def build_irc_report(
         },
         "orientation_among_energy_force_ok": orientation,
         "step_pairing_by_irc": {
-            "definition": "IRC ends reproduce the formed/broken sigma bonds named by the event, with the reactant end unique",
+            "definition": "every formed/broken sigma bond named by the event changes length the stated way between the two IRC ends (none the wrong way, at least half clearly), so exactly one end is the reactant",
             **pairing,
+            "strict_tier": {
+                "definition": "additionally both ends reproduce the absolute bonded/non-bonded state of every named edge",
+                **counts(lambda r: r["irc_path_pairing_ok"] and r["irc_strict_bond_state_match"]),
+            },
         },
         "path_paired_joint": {
             "definition": "event_only (main funnel) AND step pairing by IRC; reactant/product geometry taken from IRC end frames in global atom order",
@@ -402,7 +490,7 @@ def build_irc_report(
         "irc_reasons": dict(sorted(reason_counts.items(), key=lambda kv: -kv[1])),
         "claim_limits": [
             "IRC end frames are path-derived endpoints, not independently optimised minima or independent reactant seeds.",
-            "Connectivity at the ends is a covalent-radius distance heuristic restricted to the sigma bonds named by the event.",
+            "Pairing evidence is geometric and restricted to the sigma bonds named by the event: edge lengths at the two IRC ends (directional tier) and a covalent-radius bonded/non-bonded test (strict tier).",
             "Unit consistency is measured from the work identity; absolute units are taken from the dataset documentation (eV, eV/angstrom) and cross-checked against the main HDF5 TS energy.",
             "This is development-level evidence; no record is promoted to a Track-B split here.",
         ],

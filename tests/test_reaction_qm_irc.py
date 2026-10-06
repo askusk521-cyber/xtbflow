@@ -191,10 +191,12 @@ def test_report_separates_energy_force_from_path_pairing_and_states_the_baseline
     assert report["energy_force"]["unit_consistency"]["mutually_consistent"] is True
     assert report["step_pairing_by_irc"]["records"] == 1
     assert report["path_paired_joint"]["records"] == 1
-    assert report["path_paired_joint"]["reactant_geometry_origin"] == "irc_end_frame"
+    assert report["path_paired_joint"]["reactant_geometry_origin"] == "irc_end_frame_ts_derived"
+    assert report["path_paired_joint"]["reactant_geometry_blind_input_safe"] is False
+    assert good["reactant_geometry_blind_input_safe"] is False
     assert report["baseline_main_funnel"]["energy_force"]["records"] == 0
     assert report["irc_reasons"]["irc_record_absent"] == 1
-    assert "path-derived endpoints" in report["claim_limits"][0]
+    assert "must not be used as blind reactant inputs" in report["claim_limits"][0]
 
 
 def _rotated(coords: np.ndarray) -> np.ndarray:

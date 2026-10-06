@@ -10,11 +10,14 @@ The IRC asset adds two things the main HDF5 lacks:
 Design notes (why this module is shaped the way it is)
 ------------------------------------------------------
 * IRC frames are stored in the TS atom order, so an IRC end frame is already in
-  *global* map order.  Using it as the reactant/product geometry therefore needs
-  no endpoint local->global mapping and sidesteps the symmetry ambiguity that
-  blocks most records in the main funnel.  It is a *path-derived* endpoint
-  (``irc_end_frame``), not an independently optimised minimum; the origin is
-  recorded so downstream code cannot mistake it for an independent seed.
+  *global* map order.  That makes the frames convenient *development-level*
+  supervision, but they are obtained by walking downhill from the TS, i.e. they
+  are reaction-ready, TS-derived complexes.  ``configs/task.yaml`` forbids
+  reaction-ready conformers selected by the target TS as blind inputs, so the
+  origin is recorded as ``irc_end_frame_ts_derived`` with
+  ``reactant_geometry_blind_input_safe = False``.  A blind-safe reactant input
+  still has to come from the independently optimised endpoint species; the IRC
+  can at most serve as *evidence* for the endpoint-to-global correspondence.
 * Units are not assumed.  Energy/force consistency is *measured* from the work
   identity ``E[i+1]-E[i] ~ -0.5 (F[i]+F[i+1]) . (x[i+1]-x[i])`` and the TS frame
   is compared with the main HDF5; both are reported as distributions.
@@ -394,7 +397,8 @@ def result_row(result: IrcResult) -> dict[str, Any]:
         "irc_path_pairing_ok": result.path_pairing_ok,
         "irc_reasons": list(result.reasons),
         # Geometry origin must travel with any label built from these frames.
-        "reactant_geometry_origin": "irc_end_frame" if result.reactant_end_frame is not None else None,
+        "reactant_geometry_origin": "irc_end_frame_ts_derived" if result.reactant_end_frame is not None else None,
+        "reactant_geometry_blind_input_safe": False,
     }
 
 
@@ -482,14 +486,16 @@ def build_irc_report(
             },
         },
         "path_paired_joint": {
-            "definition": "event_only (main funnel) AND step pairing by IRC; reactant/product geometry taken from IRC end frames in global atom order",
-            "reactant_geometry_origin": "irc_end_frame",
+            "definition": "event_only (main funnel) AND step pairing by IRC: the event label, the TS and the path are mutually consistent",
+            "reactant_geometry_origin": "irc_end_frame_ts_derived",
+            "reactant_geometry_blind_input_safe": False,
+            "note": "Verified pairing, NOT a blind-safe training input: the IRC end frames are TS-derived reaction-ready complexes. Use for development-level supervision or as correspondence evidence only.",
             **path_paired_joint,
         },
         "baseline_main_funnel": dict(base_tasks),
         "irc_reasons": dict(sorted(reason_counts.items(), key=lambda kv: -kv[1])),
         "claim_limits": [
-            "IRC end frames are path-derived endpoints, not independently optimised minima or independent reactant seeds.",
+            "IRC end frames are path-derived, reaction-ready complexes (TS-derived) and must not be used as blind reactant inputs (configs/task.yaml); they are not independently optimised minima or independent reactant seeds.",
             "Pairing evidence is geometric and restricted to the sigma bonds named by the event: edge lengths at the two IRC ends (directional tier) and a covalent-radius bonded/non-bonded test (strict tier).",
             "Unit consistency is measured from the work identity; absolute units are taken from the dataset documentation (eV, eV/angstrom) and cross-checked against the main HDF5 TS energy.",
             "This is development-level evidence; no record is promoted to a Track-B split here.",

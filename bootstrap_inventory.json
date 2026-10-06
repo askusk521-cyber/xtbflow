@@ -173,6 +173,11 @@
       "bytes": 542
     },
     {
+      "path": "configs/m0/base.json",
+      "sha256": "47e8056cecac509acbb47d917b28fe9c97e4af08ca15e56c42b89145ff052a25",
+      "bytes": 1034
+    },
+    {
       "path": "configs/models/delta_small.yaml",
       "sha256": "309e26ce346c5243a761ba769370b7da4e89bd231976557fb310ff2b3b3f10df",
       "bytes": 355
@@ -843,6 +848,21 @@
       "bytes": 569
     },
     {
+      "path": "scripts/m0_sample.py",
+      "sha256": "ffc6c24077c2745b2fddce1430d4dbe1326bb35f07a30898331ee6d549ef6f24",
+      "bytes": 5684
+    },
+    {
+      "path": "scripts/m0_toy_multimodal.py",
+      "sha256": "e151b14667671ecc72df9f1dbe8e63c4a6878e78ae31d36e57d2454267b09080",
+      "bytes": 3589
+    },
+    {
+      "path": "scripts/m0_train.py",
+      "sha256": "a6fa8ba7230636536b9421a9e938e0438734d6c6d0c482b93142b1120e73dd4d",
+      "bytes": 5344
+    },
+    {
       "path": "scripts/prepare_spice_openff_pilot.py",
       "sha256": "9121a7e5cef736d6459b5dc3400465c5924d678ba1bec4963335cb8b197c0010",
       "bytes": 17349
@@ -1061,6 +1081,11 @@
       "path": "src/xtbflow/m0/numerics.py",
       "sha256": "5d68dd3d45ca42a5e09a84e9d64b4c31e109e9640e3089d4434cd3f48bbc2a8b",
       "bytes": 2082
+    },
+    {
+      "path": "src/xtbflow/m0/sampler.py",
+      "sha256": "d01f69766f6d4d5930f25e9bf6b7f8949957e0c38eb0150a7614530037af6874",
+      "bytes": 3611
     },
     {
       "path": "src/xtbflow/m0/t1x_data.py",

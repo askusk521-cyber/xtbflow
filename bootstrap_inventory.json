@@ -1388,6 +1388,11 @@
       "bytes": 3185
     },
     {
+      "path": "tests/test_m0_evaluate_cli.py",
+      "sha256": "f9b498599cc4bffff7aa2fdb9d9d7eae17625d38344ee4428174ea1a321f4279",
+      "bytes": 1600
+    },
+    {
       "path": "tests/test_m0_metrics.py",
       "sha256": "f0b10736c9b830ce63f611839d6b9c452e98be9f740560956c90fbd6ae113f30",
       "bytes": 2099

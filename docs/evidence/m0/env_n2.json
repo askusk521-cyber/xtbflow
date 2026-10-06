@@ -1,0 +1,9 @@
+{
+  "hostname": "node2",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+  "torch": "2.10.0+cu128",
+  "cuda_available": true,
+  "git_sha": "d6220b8614de9551d0d053f4220c23fa48a21f21",
+  "date": "2026-10-06T18:04:04.361936+00:00",
+  "git_sha_kind": "baseline; environment probe only, no remote M0 source execution"
+}

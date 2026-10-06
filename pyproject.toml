@@ -31,6 +31,7 @@ testpaths = ["tests"]
 include-package-data = true
 packages = [
   "xtbflow",
+  "xtbflow.m0",
   "xtbflow.runtime",
   "xtbflow.data",
   "xtbflow.proposals",

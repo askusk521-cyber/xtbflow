@@ -488,6 +488,11 @@
       "bytes": 329
     },
     {
+      "path": "docs/evidence/m0/failed_batch_input_check.json",
+      "sha256": "5167f74713fa1ae6636d52e9cd6435d42ecad6379444e5826cbe20f446cab1d8",
+      "bytes": 7207
+    },
+    {
       "path": "docs/evidence/m0/full_joint_s0_failure.json",
       "sha256": "2b676b3e09b9550fa394a42f7ad7fc412161e7e0265d0842d4905bbf861b41b7",
       "bytes": 914

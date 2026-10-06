@@ -1,0 +1,389 @@
+{
+  "claim_limit": "Checks clean cached inputs only; cannot identify the failed forward/backward operation or rule out transient numerical instability.",
+  "reactions": [
+    {
+      "index": 3960,
+      "n_atoms": 14,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 3631,
+      "n_atoms": 14,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 247,
+      "n_atoms": 8,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 2751,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 1698,
+      "n_atoms": 11,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 1453,
+      "n_atoms": 8,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 4900,
+      "n_atoms": 18,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 5918,
+      "n_atoms": 15,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 1879,
+      "n_atoms": 11,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 167,
+      "n_atoms": 10,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 5624,
+      "n_atoms": 14,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 7244,
+      "n_atoms": 18,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 3743,
+      "n_atoms": 15,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 4735,
+      "n_atoms": 17,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 846,
+      "n_atoms": 11,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 7062,
+      "n_atoms": 17,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 5480,
+      "n_atoms": 13,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 1970,
+      "n_atoms": 11,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 1688,
+      "n_atoms": 11,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 1068,
+      "n_atoms": 13,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 2403,
+      "n_atoms": 13,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 6359,
+      "n_atoms": 14,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 5444,
+      "n_atoms": 13,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 3632,
+      "n_atoms": 14,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 2553,
+      "n_atoms": 13,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 5216,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 6867,
+      "n_atoms": 16,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 1673,
+      "n_atoms": 10,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 7484,
+      "n_atoms": 11,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 1623,
+      "n_atoms": 9,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 1775,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 7451,
+      "n_atoms": 21,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 7304,
+      "n_atoms": 19,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 3684,
+      "n_atoms": 15,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 3676,
+      "n_atoms": 15,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 1771,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 3524,
+      "n_atoms": 14,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 8038,
+      "n_atoms": 9,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 930,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 5292,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 3848,
+      "n_atoms": 14,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 5556,
+      "n_atoms": 13,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 4165,
+      "n_atoms": 15,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 5420,
+      "n_atoms": 13,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 2147,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 2622,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 2192,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 5579,
+      "n_atoms": 13,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 2837,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 3704,
+      "n_atoms": 15,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 4479,
+      "n_atoms": 16,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 5332,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 2223,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 6803,
+      "n_atoms": 16,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 5443,
+      "n_atoms": 13,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 1656,
+      "n_atoms": 10,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 3134,
+      "n_atoms": 13,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 2466,
+      "n_atoms": 13,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 7536,
+      "n_atoms": 14,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 3629,
+      "n_atoms": 14,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 5173,
+      "n_atoms": 13,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 1351,
+      "n_atoms": 14,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 4494,
+      "n_atoms": 16,
+      "finite": true,
+      "electron_conserved": true
+    },
+    {
+      "index": 951,
+      "n_atoms": 12,
+      "finite": true,
+      "electron_conserved": true
+    }
+  ]
+}

@@ -80,7 +80,7 @@ NEXT_ACTIONS: dict[str, str] = {
     "ts_coordinate_order_unverified": "TS coordinate rows do not follow global map order",
     "species_coordinate_order_unverified": "an endpoint species' rows do not follow its own map order",
     "side_atom_set_mismatch": "reactant and product sides do not describe the same mapped atoms",
-    "species_inventory_mismatch": "endpoint species do not add up to the TS atom inventory",
+    "species_inventory_mismatch": "endpoint species do not add up to the TS atom inventory; in the examples inspected an identical molecule appears to be listed only once, which would need an explicit, verified duplicate-species rule",
     "aromatic_representation_pending": "aromatic bond orders need an explicit Kekule/representation rule before a bond-electron label is trusted (#71)",
     "non_integral_bond_edit": "a bond order changes by a non-integer amount; no integer event label can be derived",
     "no_bond_change": "reactant and product graphs are identical; there is no event to supervise",
@@ -109,6 +109,9 @@ class SpeciesInput:
     energies: tuple[float, ...]  # source ``EHG`` triple; semantics not asserted here
     coordinate_shape: tuple[int, ...]
     coordinates_finite: bool
+    # Only used for the label-free TS plausibility check; excluded from equality
+    # so fixtures without coordinates compare naturally.
+    coordinates: Any = field(default=None, compare=False, repr=False)
 
 
 @dataclass(frozen=True)
@@ -146,6 +149,7 @@ class RecordFunnel:
     mapping: dict[str, str] = field(default_factory=dict)
     assignment: dict[str, str] = field(default_factory=dict)
     mapping_sha256: dict[str, str] = field(default_factory=dict)
+    ts_max_edit_distance: float | None = None
     ts_identity_evidence: str = "source_declared_ts_for_reaction_id_no_irc_in_this_asset"
 
     def block(self, reason: str) -> None:
@@ -431,6 +435,27 @@ def _local_order_ok(species: SpeciesInput, mols: Sequence[Chem.Mol]) -> bool:
     return tuple(z_by_id[i] for i in range(1, len(ids) + 1)) == tuple(species.atomic_numbers)
 
 
+def _max_edit_distance(coordinates: Any, edits: Sequence[tuple[int, int, int]]) -> float | None:
+    """Largest TS distance (angstrom) between atoms joined by a bond edit.
+
+    A label-free plausibility check on event/TS pairing: atoms whose bond is
+    formed or broken in the event should be reasonably close in the TS geometry.
+    TS rows follow global map order (verified upstream), so id ``k`` is row
+    ``k - 1``.  This is evidence, never a gate.
+    """
+
+    if coordinates is None or not edits:
+        return None
+    try:
+        total = 0.0
+        for left, right, _ in edits:
+            a, b = coordinates[left - 1], coordinates[right - 1]
+            total = max(total, float(sum((float(x) - float(y)) ** 2 for x, y in zip(a, b)) ** 0.5))
+        return round(total, 4)
+    except (IndexError, TypeError, ValueError):
+        return None
+
+
 def analyse_reaction(rec: ReactionInput) -> RecordFunnel:
     out = RecordFunnel(record_id=rec.record_id)
     ts = rec.species.get("TS")
@@ -526,6 +551,7 @@ def analyse_reaction(rec: ReactionInput) -> RecordFunnel:
     out.edits = edits
     out.aromatic = any(abs(v - 1.5) < 1e-9 for v in (*r_bonds.values(), *p_bonds.values()))
     out.aromatic_integral_edits = out.aromatic and integral and bool(edits)
+    out.ts_max_edit_distance = _max_edit_distance(ts.coordinates, edits)
 
     # Endpoint correspondence is computed for every verified record: besides
     # placing endpoint coordinates in the global order (paired view), it tests
@@ -669,6 +695,7 @@ def record_row(result: RecordFunnel) -> dict[str, Any]:
         "endpoint_mapping": dict(result.mapping),
         "endpoint_assignment": dict(result.assignment),
         "endpoint_mapping_sha256": dict(result.mapping_sha256),
+        "ts_max_edit_distance": result.ts_max_edit_distance,
         "ts_identity_evidence": result.ts_identity_evidence,
     }
 
@@ -724,6 +751,19 @@ def build_report(
     paired = [r for r in verified if r["tasks"]["paired_joint"]]
     rule_assisted = sum(1 for r in paired if "rule_min_id_order" in r["endpoint_assignment"].values())
 
+    def _event_ready_with(allowed: frozenset[str]) -> dict[str, int]:
+        return _stage_counts(
+            rows, groups,
+            lambda r: r["identity_verified"] and r["tasks"]["event_only"] and set(r["endpoint_mapping"].values()) <= allowed,
+        )
+
+    h_only = CERTIFIED_MAPPINGS | {MAP_AMBIGUOUS_CENTER_H}
+    everything = h_only | {MAP_AMBIGUOUS_CENTER}
+    distances = sorted(r["ts_max_edit_distance"] for r in verified if r.get("ts_max_edit_distance") is not None)
+
+    def _quantile(q: float) -> float | None:
+        return distances[min(len(distances) - 1, int(q * len(distances)))] if distances else None
+
     sizes = Counter(groups.values())
     size_hist = Counter(min(n, 1000) for n in sizes.values())
     largest = max(sizes.values()) if sizes else 0
@@ -737,6 +777,27 @@ def build_report(
             "records": len(paired),
             "records_relying_on_identical_species_order_rule": rule_assisted,
             "records_fully_certified_without_order_rule": len(paired) - rule_assisted,
+        },
+        # What each open question is worth: records that would become paired_joint
+        # if that ambiguity were resolved by evidence (none of this is admitted).
+        "paired_joint_recoverable": {
+            "currently_certified": _stage_counts(rows, groups, lambda r: r["tasks"]["paired_joint"]),
+            "if_hydrogen_centre_ambiguity_resolved": _event_ready_with(h_only),
+            "if_all_centre_ambiguity_resolved": _event_ready_with(everything),
+            "event_only_withheld_by_endpoint_representation_mismatch": sum(
+                1 for r in verified if "endpoint_representation_mismatch" in r["reasons"]
+            ),
+        },
+        # Label-free plausibility evidence for event/TS pairing (not a gate): how
+        # far apart are atoms joined by a formed/broken bond in the TS geometry?
+        "ts_event_distance_angstrom": {
+            "records_measured": len(distances),
+            "p50": _quantile(0.5),
+            "p90": _quantile(0.9),
+            "p99": _quantile(0.99),
+            "max": distances[-1] if distances else None,
+            "records_over_3A": sum(1 for d in distances if d > 3.0),
+            "records_over_4A": sum(1 for d in distances if d > 4.0),
         },
         "exclusion_reasons": reasons,
         "endpoint_mapping_status_counts": dict(status_counts),

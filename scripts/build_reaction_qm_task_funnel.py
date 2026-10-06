@@ -80,6 +80,8 @@ def species_from_h5(name: str, item: h5py.Group) -> SpeciesInput | None:
         energies=energies,
         coordinate_shape=tuple(int(x) for x in coordinates.shape),
         coordinates_finite=bool(np.isfinite(coordinates).all()),
+        # Coordinates are kept for the TS only (label-free event/TS distance check).
+        coordinates=coordinates if name == "TS" else None,
     )
 
 

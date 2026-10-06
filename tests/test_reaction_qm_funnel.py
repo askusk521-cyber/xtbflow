@@ -331,3 +331,43 @@ def test_report_counts_records_and_parent_groups_per_stage():
     # Every exclusion reason must carry a next action.
     assert all(v["next_action"] != "unclassified; inspect" for v in report["exclusion_reasons"].values())
     assert "no record is promoted" in report["claim_limits"][0]
+
+
+def test_ts_event_distance_is_label_free_evidence_not_a_gate():
+    import numpy as np
+
+    rec = _record("RXN_hcn", HCN_TS, [HCN_R0], [HCN_P0])
+    # H1 moves C2 -> N3: edited pairs are (1,2) and (1,3); ids are 1-based rows.
+    coords = np.array([[0.0, 0.0, 0.0], [1.2, 0.0, 0.0], [2.4, 0.0, 0.0]])
+    ts = SpeciesInput(**{**rec.species["TS"].__dict__, "coordinates": coords})
+    out = analyse_reaction(ReactionInput("RXN_hcn_xyz", {**rec.species, "TS": ts}))
+    assert out.ts_max_edit_distance == pytest.approx(2.4)
+    assert out.tasks["paired_joint"] is True  # distance never changes admission
+    far = np.array([[0.0, 0.0, 0.0], [1.2, 0.0, 0.0], [50.0, 0.0, 0.0]])
+    ts_far = SpeciesInput(**{**rec.species["TS"].__dict__, "coordinates": far})
+    out_far = analyse_reaction(ReactionInput("RXN_hcn_far", {**rec.species, "TS": ts_far}))
+    assert out_far.tasks["paired_joint"] is True
+    assert out_far.ts_max_edit_distance == pytest.approx(50.0)
+
+
+def test_report_quantifies_what_resolving_each_ambiguity_would_recover():
+    ethylene_ts = (
+        "[C:1](=[C:2]([H:5])[H:6])([H:3])[H:4].[N:7]([H:8])([H:9])[H:10]"
+        ">>[C:1]([C:2]([H:5])([H:6])[N:7]([H:9])[H:10])([H:3])([H:4])[H:8]"
+    )
+    amb = analyse_reaction(
+        _record(
+            "RXN_amb",
+            ethylene_ts,
+            ["[C:1](=[C:2]([H:5])[H:6])([H:3])[H:4]", "[N:1]([H:2])([H:3])[H:4]"],
+            ["[C:1]([C:2]([H:5])([H:6])[N:7]([H:9])[H:10])([H:3])([H:4])[H:8]"],
+        )
+    )
+    ok = analyse_reaction(_record("RXN_hcn", HCN_TS, [HCN_R0], [HCN_P0]))
+    rows = [record_row(amb), record_row(ok)]
+    report = build_report(rows, assign_parent_groups(rows), source_records=2)
+    recover = report["paired_joint_recoverable"]
+    assert recover["currently_certified"]["records"] == 1
+    # The ethylene case has a heavy-atom (C1/C2) ambiguity, so only the "all" tier recovers it.
+    assert recover["if_hydrogen_centre_ambiguity_resolved"]["records"] == 1
+    assert recover["if_all_centre_ambiguity_resolved"]["records"] == 2

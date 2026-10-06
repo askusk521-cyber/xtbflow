@@ -1,0 +1,35 @@
+{
+  "cache_sha256": "7eb681a252a93fc5f2627edbb4cd371385b7f5a29b3d71ae3b7fda45a5fdf0f1",
+  "dropped": {
+    "test:determine_bonds_failed": 30,
+    "test:radical": 3,
+    "train:determine_bonds_failed": 678,
+    "train:radical": 837,
+    "val:determine_bonds_failed": 5
+  },
+  "formal_charge_reactions": 3577,
+  "h5_sha256": "6a20f8a3f49c50d462270d10d4c44ca102e788072e2096a91d70b5a0f598b629",
+  "kept": {
+    "test": 254,
+    "train": 8046,
+    "val": 220
+  },
+  "max_atoms": 23,
+  "order_only_reactions": 7197,
+  "parents": {
+    "test": 35,
+    "train": 1042,
+    "val": 33
+  },
+  "reactions_per_parent_max": {
+    "test": 25,
+    "train": 26,
+    "val": 20
+  },
+  "schema": "xtbflow-m0-t1x-cache/v1",
+  "seen": {
+    "test": 287,
+    "train": 9561,
+    "val": 225
+  }
+}

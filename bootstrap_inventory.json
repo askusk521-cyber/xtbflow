@@ -478,6 +478,16 @@
       "bytes": 329
     },
     {
+      "path": "docs/evidence/m0/t1x_cache_manifest.json",
+      "sha256": "d7af45c2dcba523f7f341dbf8dc1ec4f2ad1f69984fa2363a4284fd0db9a7fb5",
+      "bytes": 770
+    },
+    {
+      "path": "docs/evidence/m0/t1x_layout.txt",
+      "sha256": "a6cc5fae308510a7a9b7dda42c539b473457780da22409506e116db384a99b20",
+      "bytes": 689
+    },
+    {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
       "sha256": "cbdd9b63b5cad70fbadf0ae8060e00a0aff4e439a10864bbbd7aec87ce8b9bbd",
       "bytes": 7458

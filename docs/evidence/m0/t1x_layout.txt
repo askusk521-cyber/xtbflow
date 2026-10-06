@@ -1,0 +1,24 @@
+root: ['data', 'test', 'train', 'val']
+C2H2N2O2 rxn3534
+atomic_numbers (8,)
+positions (290, 8, 3)
+product 
+product/atomic_numbers (8,)
+product/hash ()
+product/positions (1, 8, 3)
+product/wB97x_6-31G(d).energy (1,)
+product/wB97x_6-31G(d).forces (1, 8, 3)
+reactant 
+reactant/atomic_numbers (8,)
+reactant/hash ()
+reactant/positions (1, 8, 3)
+reactant/wB97x_6-31G(d).energy (1,)
+reactant/wB97x_6-31G(d).forces (1, 8, 3)
+transition_state 
+transition_state/atomic_numbers (8,)
+transition_state/hash ()
+transition_state/positions (1, 8, 3)
+transition_state/wB97x_6-31G(d).energy (1,)
+transition_state/wB97x_6-31G(d).forces (1, 8, 3)
+wB97x_6-31G(d).energy (290,)
+wB97x_6-31G(d).forces (290, 8, 3)

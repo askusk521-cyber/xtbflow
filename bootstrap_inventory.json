@@ -1108,9 +1108,19 @@
       "bytes": 4623
     },
     {
+      "path": "scripts/v1a_generate.py",
+      "sha256": "cac5d08c6d2596d53b5d2ed058e99faa30946e2701b5a933dcaceb63f5be4980",
+      "bytes": 3709
+    },
+    {
       "path": "scripts/v1a_prepare.py",
-      "sha256": "0314edd82c2542c22c61247be2e6cccd47a6b6109cf3a159d451ea9472c6cc2c",
-      "bytes": 1983
+      "sha256": "a9e0a2e50b9a9c5d618ac291a18c87494bfc381048d47f0929632abc2d0d089c",
+      "bytes": 2625
+    },
+    {
+      "path": "scripts/v1a_probe.py",
+      "sha256": "6ecbb84107b9c05981e7f2d529575f3fac08924341f2071dfd9e2864dd8775cf",
+      "bytes": 4155
     },
     {
       "path": "scripts/v1a_train.py",
@@ -1466,6 +1476,11 @@
       "path": "src/xtbflow/v1/__init__.py",
       "sha256": "c8923ae4676beb7ab8b9803917c813fd3f3e4c9409bb9facff951f36562ffed3",
       "bytes": 69
+    },
+    {
+      "path": "src/xtbflow/v1/assets.py",
+      "sha256": "565c87a7e6179a86bc4a003dd0e8c34dd34223ee9074a02a2aaa29e3f3e46491",
+      "bytes": 2342
     },
     {
       "path": "src/xtbflow/v1/clocks.py",

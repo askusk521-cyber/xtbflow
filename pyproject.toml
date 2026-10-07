@@ -23,6 +23,9 @@ data = [
   "h5py>=3.11,<4",
   "rdkit>=2024.3",
 ]
+analysis = [
+  "scipy>=1.11,<2",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -31,6 +34,8 @@ testpaths = ["tests"]
 include-package-data = true
 packages = [
   "xtbflow",
+  "xtbflow.m0",
+  "xtbflow.v1",
   "xtbflow.runtime",
   "xtbflow.data",
   "xtbflow.proposals",

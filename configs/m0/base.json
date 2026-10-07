@@ -1,0 +1,58 @@
+{
+  "schema": "xtbflow-m0-config/v1",
+  "data": {
+    "cache": "${XTBFLOW_DATA}/t1x/t1x_m0_v1.npz"
+  },
+  "model": {
+    "scalar_dim": 128,
+    "vector_dim": 32,
+    "edge_dim": 64,
+    "n_layers": 6,
+    "n_rbf": 32,
+    "n_rbf_reactant": 16,
+    "r_cut": 10.0
+  },
+  "cascade_model": {
+    "scalar_dim": 92,
+    "vector_dim": 23,
+    "edge_dim": 64,
+    "n_layers": 6,
+    "n_rbf": 32,
+    "n_rbf_reactant": 16,
+    "r_cut": 10.0
+  },
+  "flow": {
+    "sigma_b": 0.5,
+    "sigma_x": 0.5,
+    "geometry_loss_weight": 1.0
+  },
+  "train": {
+    "steps": 60000,
+    "batch_size": 64,
+    "lr": 0.0005,
+    "min_lr": 1e-05,
+    "weight_decay": 0.0,
+    "warmup_steps": 1000,
+    "grad_clip": 1.0,
+    "ema_decay": 0.999,
+    "first_eval": 20000,
+    "eval_every": 10000,
+    "num_workers": 4
+  },
+  "sample": {
+    "nfe": 50,
+    "n_samples_val": 8,
+    "n_samples_test": 32,
+    "queries_per_batch": 16
+  },
+  "eval": {
+    "delta": 0.5,
+    "bootstrap": 10000,
+    "bootstrap_seed": 20261007
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ]
+}

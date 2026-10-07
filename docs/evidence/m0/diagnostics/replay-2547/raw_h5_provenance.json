@@ -1,0 +1,65 @@
+{
+  "sample": 7451,
+  "h5_group": "train/C6H14O/rxn10025",
+  "frames": {
+    "reactant": {
+      "raw_shape": [
+        1,
+        21,
+        3
+      ],
+      "max_cache_difference": 2.016910753965817e-07,
+      "raw_atom7_position": [
+        -4.338046130975732,
+        0.041025648720057865,
+        -0.09763230514178348
+      ],
+      "raw_atom7_nearest_distance": 1.0951901376554496,
+      "raw_atom7_nearest_index": 0,
+      "energy": [
+        -8495.496813092399
+      ],
+      "attributes": {}
+    },
+    "transition_state": {
+      "raw_shape": [
+        1,
+        21,
+        3
+      ],
+      "max_cache_difference": 1.950966490582573e-07,
+      "raw_atom7_position": [
+        -3.457260389972714,
+        -8.361519300048112,
+        2.3142969073401254
+      ],
+      "raw_atom7_nearest_distance": 8.50926101963622,
+      "raw_atom7_nearest_index": 13,
+      "energy": [
+        -8486.325991648939
+      ],
+      "attributes": {}
+    },
+    "product": {
+      "raw_shape": [
+        1,
+        21,
+        3
+      ],
+      "max_cache_difference": 1.1705538449646724e-07,
+      "raw_atom7_position": [
+        -1.7298667772816394,
+        -2.866869495355084,
+        -0.30423954098309125
+      ],
+      "raw_atom7_nearest_distance": 0.74420358196585,
+      "raw_atom7_nearest_index": 10,
+      "energy": [
+        -8493.601745751268
+      ],
+      "attributes": {}
+    }
+  },
+  "group_attributes": {},
+  "atomic_numbers_equal": true
+}

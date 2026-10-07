@@ -1,0 +1,1754 @@
+{
+  "phase": "forward_loss",
+  "step": 10893,
+  "elapsed_s": 414.7332503795624,
+  "indices": [
+    1985,
+    479,
+    4164,
+    307,
+    6847,
+    224,
+    2799,
+    4703,
+    7620,
+    5779,
+    968,
+    4987,
+    689,
+    3199,
+    4206,
+    2238,
+    5261,
+    4372,
+    4834,
+    2792,
+    1509,
+    1461,
+    7226,
+    1105,
+    1453,
+    585,
+    3209,
+    1481,
+    6270,
+    1474,
+    6174,
+    4043,
+    7756,
+    7540,
+    221,
+    5675,
+    5038,
+    3302,
+    144,
+    4005,
+    4395,
+    650,
+    4574,
+    3997,
+    459,
+    7451,
+    660,
+    112,
+    2863,
+    930,
+    2658,
+    5142,
+    174,
+    3145,
+    7572,
+    6667,
+    7856,
+    1141,
+    1646,
+    750,
+    5732,
+    5133,
+    1833,
+    7964
+  ],
+  "bad_rows": [
+    45
+  ],
+  "bad_indices": [
+    7451
+  ],
+  "t_bad": [
+    0.8604839444160461
+  ],
+  "inputs": {
+    "x_r": {
+      "finite": true,
+      "maxabs": 4.8345136642456055
+    },
+    "b_r": {
+      "finite": true,
+      "maxabs": 4.0
+    },
+    "t": {
+      "finite": true,
+      "maxabs": 0.9691457152366638
+    },
+    "b_cur": {
+      "finite": true,
+      "maxabs": 5.718484401702881
+    },
+    "x_cur": {
+      "finite": true,
+      "maxabs": 5.886206150054932
+    }
+  },
+  "losses": {
+    "event": NaN,
+    "geometry": NaN,
+    "total": NaN
+  },
+  "traces": [
+    {
+      "module": "trunk.edge_mlp.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.6814663410186768
+        }
+      ]
+    },
+    {
+      "module": "trunk.edge_mlp.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.4176419973373413
+        }
+      ]
+    },
+    {
+      "module": "trunk.edge_mlp.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.8292666673660278
+        }
+      ]
+    },
+    {
+      "module": "trunk.edge_mlp",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.8292666673660278
+        }
+      ]
+    },
+    {
+      "module": "trunk.time.mlp.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.9781936407089233
+        }
+      ]
+    },
+    {
+      "module": "trunk.time.mlp.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.3435277938842773
+        }
+      ]
+    },
+    {
+      "module": "trunk.time.mlp.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.095018744468689
+        }
+      ]
+    },
+    {
+      "module": "trunk.time.mlp",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.095018744468689
+        }
+      ]
+    },
+    {
+      "module": "trunk.time",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.095018744468689
+        }
+      ]
+    },
+    {
+      "module": "trunk.embed",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 3.30279278755188
+        }
+      ]
+    },
+    {
+      "module": "trunk.node_b",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 2.0471694469451904
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.norm",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 3.3316595554351807
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.time",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.4841134548187256
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.filter",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.86967134475708
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.phi.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 8.249507904052734
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.phi.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 6.118834018707275
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.phi.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 8.328845024108887
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.phi",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 8.328845024108887
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.U",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 3.3673672676086426
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.V",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 5.846711158752441
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.update.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 8.530929565429688
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.update.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 5.030027389526367
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.update.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 2.6630537509918213
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.update",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 2.6630537509918213
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0.inner_to_s",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 5.779196739196777
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 5.873350620269775
+        },
+        {
+          "finite": true,
+          "maxabs": 5.828023433685303
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.norm",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 6.335170745849609
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.time",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.683331847190857
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.filter",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.919387936592102
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.phi.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 10.13539981842041
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.phi.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 7.286019325256348
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.phi.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 9.949030876159668
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.phi",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 9.949030876159668
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.U",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 7.155829429626465
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.V",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 6.33467435836792
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.update.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 9.081846237182617
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.update.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 5.546610355377197
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.update.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 4.285150051116943
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.update",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 4.285150051116943
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1.inner_to_s",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 19.14738655090332
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 42.646968841552734
+        },
+        {
+          "finite": true,
+          "maxabs": 22.503864288330078
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.norm",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 7.1253509521484375
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.time",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.7791037559509277
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.filter",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 3.0141489505767822
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.phi.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 12.707242012023926
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.phi.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 6.127467155456543
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.phi.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 7.358756065368652
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.phi",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 7.358756065368652
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.U",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 7.517855644226074
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.V",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 11.598480224609375
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.update.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 30.74273681640625
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.update.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 30.74273681640625
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.update.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 23.464555740356445
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.update",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 23.464555740356445
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2.inner_to_s",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 44.84495544433594
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 754.9794921875
+        },
+        {
+          "finite": true,
+          "maxabs": 93.49425506591797
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.norm",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 8.031453132629395
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.time",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 2.2701122760772705
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.filter",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 3.9438254833221436
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.phi.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 13.422063827514648
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.phi.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 7.322798252105713
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.phi.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 12.446748733520508
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.phi",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 12.446748733520508
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.U",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 47.603736877441406
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.V",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 40.211273193359375
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.update.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 400.4025573730469
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.update.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 400.4025573730469
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.update.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 308.2273864746094
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.update",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 308.2273864746094
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3.inner_to_s",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1162.8280029296875
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.3",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 258415.96875
+        },
+        {
+          "finite": true,
+          "maxabs": 7136.94287109375
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.norm",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 7.461151123046875
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.time",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.9320480823516846
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.filter",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 2.5126523971557617
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.phi.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 10.25521183013916
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.phi.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 7.755110740661621
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.phi.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 10.441095352172852
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.phi",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 10.441095352172852
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.U",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 3286.825439453125
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.V",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 3675.52001953125
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.update.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 96461.125
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.update.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 82473.421875
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.update.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 49341.828125
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.update",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 49341.828125
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4.inner_to_s",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 7682240.5
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.4",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 288205537280.0
+        },
+        {
+          "finite": true,
+          "maxabs": 61359304.0
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.norm",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 8.525657653808594
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.time",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.6575431823730469
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.filter",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 5.71166467666626
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.phi.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 11.932302474975586
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.phi.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 9.071325302124023
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.phi.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 13.339706420898438
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.phi",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 13.339706420898438
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.U",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 25941794.0
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.V",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 36282740.0
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.update.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 75738669056.0
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.update.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 75738669056.0
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.update.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 44726992896.0
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.update",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 44726992896.0
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5.inner_to_s",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 528974111309824.0
+        }
+      ]
+    },
+    {
+      "module": "trunk.layers.5",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.3426252842335659e+25
+        },
+        {
+          "finite": true,
+          "maxabs": 3.4213135672305254e+17
+        }
+      ]
+    },
+    {
+      "module": "trunk",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.3426252842335659e+25
+        },
+        {
+          "finite": true,
+          "maxabs": 3.4213135672305254e+17
+        },
+        {
+          "finite": true,
+          "maxabs": 1.8292666673660278
+        }
+      ]
+    },
+    {
+      "module": "event_head.pair.0",
+      "outputs": [
+        {
+          "finite": false,
+          "maxabs": NaN
+        }
+      ]
+    },
+    {
+      "module": "event_head.pair.1",
+      "outputs": [
+        {
+          "finite": false,
+          "maxabs": NaN
+        }
+      ]
+    },
+    {
+      "module": "event_head.pair.2",
+      "outputs": [
+        {
+          "finite": false,
+          "maxabs": NaN
+        }
+      ]
+    },
+    {
+      "module": "event_head.pair.3",
+      "outputs": [
+        {
+          "finite": false,
+          "maxabs": NaN
+        }
+      ]
+    },
+    {
+      "module": "event_head.pair.4",
+      "outputs": [
+        {
+          "finite": false,
+          "maxabs": NaN
+        }
+      ]
+    },
+    {
+      "module": "event_head.pair",
+      "outputs": [
+        {
+          "finite": false,
+          "maxabs": NaN
+        }
+      ]
+    },
+    {
+      "module": "event_head.diag.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 7.193687162718055e+24
+        }
+      ]
+    },
+    {
+      "module": "event_head.diag.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 6.669226052576162e+24
+        }
+      ]
+    },
+    {
+      "module": "event_head.diag.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.2026632220591988e+24
+        }
+      ]
+    },
+    {
+      "module": "event_head.diag",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 1.2026632220591988e+24
+        }
+      ]
+    },
+    {
+      "module": "event_head",
+      "outputs": [
+        {
+          "finite": false,
+          "maxabs": NaN
+        }
+      ]
+    },
+    {
+      "module": "geometry_head.gate.0",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 8.547279843348495e+24
+        }
+      ]
+    },
+    {
+      "module": "geometry_head.gate.1",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 4.679693687450008e+24
+        }
+      ]
+    },
+    {
+      "module": "geometry_head.gate.2",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 3.2405009085581526e+24
+        }
+      ]
+    },
+    {
+      "module": "geometry_head.gate",
+      "outputs": [
+        {
+          "finite": true,
+          "maxabs": 3.2405009085581526e+24
+        }
+      ]
+    },
+    {
+      "module": "geometry_head.out",
+      "outputs": [
+        {
+          "finite": false,
+          "maxabs": NaN
+        }
+      ]
+    },
+    {
+      "module": "geometry_head",
+      "outputs": [
+        {
+          "finite": false,
+          "maxabs": NaN
+        }
+      ]
+    }
+  ],
+  "parameter_state": {
+    "trunk.embed.weight": {
+      "finite": true,
+      "maxabs": 3.30279278755188
+    },
+    "trunk.node_b.weight": {
+      "finite": true,
+      "maxabs": 1.213628888130188
+    },
+    "trunk.node_b.bias": {
+      "finite": true,
+      "maxabs": 0.5665459632873535
+    },
+    "trunk.time.mlp.0.weight": {
+      "finite": true,
+      "maxabs": 0.2794610261917114
+    },
+    "trunk.time.mlp.0.bias": {
+      "finite": true,
+      "maxabs": 0.20795226097106934
+    },
+    "trunk.time.mlp.2.weight": {
+      "finite": true,
+      "maxabs": 0.21429724991321564
+    },
+    "trunk.time.mlp.2.bias": {
+      "finite": true,
+      "maxabs": 0.1016431450843811
+    },
+    "trunk.disp.weight": {
+      "finite": true,
+      "maxabs": 0.96178138256073
+    },
+    "trunk.edge_mlp.0.weight": {
+      "finite": true,
+      "maxabs": 0.7585376501083374
+    },
+    "trunk.edge_mlp.0.bias": {
+      "finite": true,
+      "maxabs": 0.15541483461856842
+    },
+    "trunk.edge_mlp.2.weight": {
+      "finite": true,
+      "maxabs": 0.4145604074001312
+    },
+    "trunk.edge_mlp.2.bias": {
+      "finite": true,
+      "maxabs": 0.1322956383228302
+    },
+    "trunk.layers.0.norm.weight": {
+      "finite": true,
+      "maxabs": 1.1006883382797241
+    },
+    "trunk.layers.0.norm.bias": {
+      "finite": true,
+      "maxabs": 0.1033627986907959
+    },
+    "trunk.layers.0.time.weight": {
+      "finite": true,
+      "maxabs": 0.20870453119277954
+    },
+    "trunk.layers.0.time.bias": {
+      "finite": true,
+      "maxabs": 0.13110555708408356
+    },
+    "trunk.layers.0.phi.0.weight": {
+      "finite": true,
+      "maxabs": 0.2509516179561615
+    },
+    "trunk.layers.0.phi.0.bias": {
+      "finite": true,
+      "maxabs": 0.12957316637039185
+    },
+    "trunk.layers.0.phi.2.weight": {
+      "finite": true,
+      "maxabs": 0.35770106315612793
+    },
+    "trunk.layers.0.phi.2.bias": {
+      "finite": true,
+      "maxabs": 0.23272161185741425
+    },
+    "trunk.layers.0.filter.weight": {
+      "finite": true,
+      "maxabs": 0.3989427387714386
+    },
+    "trunk.layers.0.filter.bias": {
+      "finite": true,
+      "maxabs": 0.3729979991912842
+    },
+    "trunk.layers.0.U.weight": {
+      "finite": true,
+      "maxabs": 0.3013664484024048
+    },
+    "trunk.layers.0.V.weight": {
+      "finite": true,
+      "maxabs": 0.3204857110977173
+    },
+    "trunk.layers.0.update.0.weight": {
+      "finite": true,
+      "maxabs": 0.3075106739997864
+    },
+    "trunk.layers.0.update.0.bias": {
+      "finite": true,
+      "maxabs": 0.09666203707456589
+    },
+    "trunk.layers.0.update.2.weight": {
+      "finite": true,
+      "maxabs": 0.29280886054039
+    },
+    "trunk.layers.0.update.2.bias": {
+      "finite": true,
+      "maxabs": 0.15496696531772614
+    },
+    "trunk.layers.0.inner_to_s.weight": {
+      "finite": true,
+      "maxabs": 0.37473252415657043
+    },
+    "trunk.layers.0.inner_to_s.bias": {
+      "finite": true,
+      "maxabs": 0.1915069818496704
+    },
+    "trunk.layers.1.norm.weight": {
+      "finite": true,
+      "maxabs": 1.2799396514892578
+    },
+    "trunk.layers.1.norm.bias": {
+      "finite": true,
+      "maxabs": 0.09663423150777817
+    },
+    "trunk.layers.1.time.weight": {
+      "finite": true,
+      "maxabs": 0.19506406784057617
+    },
+    "trunk.layers.1.time.bias": {
+      "finite": true,
+      "maxabs": 0.14184343814849854
+    },
+    "trunk.layers.1.phi.0.weight": {
+      "finite": true,
+      "maxabs": 0.4052722454071045
+    },
+    "trunk.layers.1.phi.0.bias": {
+      "finite": true,
+      "maxabs": 0.13436059653759003
+    },
+    "trunk.layers.1.phi.2.weight": {
+      "finite": true,
+      "maxabs": 0.34493547677993774
+    },
+    "trunk.layers.1.phi.2.bias": {
+      "finite": true,
+      "maxabs": 0.2616344690322876
+    },
+    "trunk.layers.1.filter.weight": {
+      "finite": true,
+      "maxabs": 0.34498801827430725
+    },
+    "trunk.layers.1.filter.bias": {
+      "finite": true,
+      "maxabs": 0.35225510597229004
+    },
+    "trunk.layers.1.U.weight": {
+      "finite": true,
+      "maxabs": 0.30077308416366577
+    },
+    "trunk.layers.1.V.weight": {
+      "finite": true,
+      "maxabs": 0.44884923100471497
+    },
+    "trunk.layers.1.update.0.weight": {
+      "finite": true,
+      "maxabs": 0.29022327065467834
+    },
+    "trunk.layers.1.update.0.bias": {
+      "finite": true,
+      "maxabs": 0.10699430853128433
+    },
+    "trunk.layers.1.update.2.weight": {
+      "finite": true,
+      "maxabs": 0.32041051983833313
+    },
+    "trunk.layers.1.update.2.bias": {
+      "finite": true,
+      "maxabs": 0.26104146242141724
+    },
+    "trunk.layers.1.inner_to_s.weight": {
+      "finite": true,
+      "maxabs": 0.3897301256656647
+    },
+    "trunk.layers.1.inner_to_s.bias": {
+      "finite": true,
+      "maxabs": 0.1753537803888321
+    },
+    "trunk.layers.2.norm.weight": {
+      "finite": true,
+      "maxabs": 1.1907360553741455
+    },
+    "trunk.layers.2.norm.bias": {
+      "finite": true,
+      "maxabs": 0.07256434112787247
+    },
+    "trunk.layers.2.time.weight": {
+      "finite": true,
+      "maxabs": 0.18451397120952606
+    },
+    "trunk.layers.2.time.bias": {
+      "finite": true,
+      "maxabs": 0.15772856771945953
+    },
+    "trunk.layers.2.phi.0.weight": {
+      "finite": true,
+      "maxabs": 0.4541378617286682
+    },
+    "trunk.layers.2.phi.0.bias": {
+      "finite": true,
+      "maxabs": 0.18800179660320282
+    },
+    "trunk.layers.2.phi.2.weight": {
+      "finite": true,
+      "maxabs": 0.42122504115104675
+    },
+    "trunk.layers.2.phi.2.bias": {
+      "finite": true,
+      "maxabs": 0.16238349676132202
+    },
+    "trunk.layers.2.filter.weight": {
+      "finite": true,
+      "maxabs": 0.38429418206214905
+    },
+    "trunk.layers.2.filter.bias": {
+      "finite": true,
+      "maxabs": 0.24298584461212158
+    },
+    "trunk.layers.2.U.weight": {
+      "finite": true,
+      "maxabs": 0.3574804663658142
+    },
+    "trunk.layers.2.V.weight": {
+      "finite": true,
+      "maxabs": 0.42040303349494934
+    },
+    "trunk.layers.2.update.0.weight": {
+      "finite": true,
+      "maxabs": 0.273639976978302
+    },
+    "trunk.layers.2.update.0.bias": {
+      "finite": true,
+      "maxabs": 0.11893943697214127
+    },
+    "trunk.layers.2.update.2.weight": {
+      "finite": true,
+      "maxabs": 0.32710710167884827
+    },
+    "trunk.layers.2.update.2.bias": {
+      "finite": true,
+      "maxabs": 0.2282884269952774
+    },
+    "trunk.layers.2.inner_to_s.weight": {
+      "finite": true,
+      "maxabs": 0.4095155596733093
+    },
+    "trunk.layers.2.inner_to_s.bias": {
+      "finite": true,
+      "maxabs": 0.20172850787639618
+    },
+    "trunk.layers.3.norm.weight": {
+      "finite": true,
+      "maxabs": 1.340538501739502
+    },
+    "trunk.layers.3.norm.bias": {
+      "finite": true,
+      "maxabs": 0.077565036714077
+    },
+    "trunk.layers.3.time.weight": {
+      "finite": true,
+      "maxabs": 0.19676527380943298
+    },
+    "trunk.layers.3.time.bias": {
+      "finite": true,
+      "maxabs": 0.11262349784374237
+    },
+    "trunk.layers.3.phi.0.weight": {
+      "finite": true,
+      "maxabs": 0.4957601726055145
+    },
+    "trunk.layers.3.phi.0.bias": {
+      "finite": true,
+      "maxabs": 0.20168419182300568
+    },
+    "trunk.layers.3.phi.2.weight": {
+      "finite": true,
+      "maxabs": 0.5589249134063721
+    },
+    "trunk.layers.3.phi.2.bias": {
+      "finite": true,
+      "maxabs": 0.20879772305488586
+    },
+    "trunk.layers.3.filter.weight": {
+      "finite": true,
+      "maxabs": 0.39961761236190796
+    },
+    "trunk.layers.3.filter.bias": {
+      "finite": true,
+      "maxabs": 0.2843170762062073
+    },
+    "trunk.layers.3.U.weight": {
+      "finite": true,
+      "maxabs": 0.34868595004081726
+    },
+    "trunk.layers.3.V.weight": {
+      "finite": true,
+      "maxabs": 0.36118078231811523
+    },
+    "trunk.layers.3.update.0.weight": {
+      "finite": true,
+      "maxabs": 0.26171788573265076
+    },
+    "trunk.layers.3.update.0.bias": {
+      "finite": true,
+      "maxabs": 0.12426929920911789
+    },
+    "trunk.layers.3.update.2.weight": {
+      "finite": true,
+      "maxabs": 0.3003714084625244
+    },
+    "trunk.layers.3.update.2.bias": {
+      "finite": true,
+      "maxabs": 0.17073212563991547
+    },
+    "trunk.layers.3.inner_to_s.weight": {
+      "finite": true,
+      "maxabs": 0.3570170998573303
+    },
+    "trunk.layers.3.inner_to_s.bias": {
+      "finite": true,
+      "maxabs": 0.19363214075565338
+    },
+    "trunk.layers.4.norm.weight": {
+      "finite": true,
+      "maxabs": 1.3016763925552368
+    },
+    "trunk.layers.4.norm.bias": {
+      "finite": true,
+      "maxabs": 0.06064814329147339
+    },
+    "trunk.layers.4.time.weight": {
+      "finite": true,
+      "maxabs": 0.18089532852172852
+    },
+    "trunk.layers.4.time.bias": {
+      "finite": true,
+      "maxabs": 0.10330524295568466
+    },
+    "trunk.layers.4.phi.0.weight": {
+      "finite": true,
+      "maxabs": 0.3863030672073364
+    },
+    "trunk.layers.4.phi.0.bias": {
+      "finite": true,
+      "maxabs": 0.1944459229707718
+    },
+    "trunk.layers.4.phi.2.weight": {
+      "finite": true,
+      "maxabs": 0.42704716324806213
+    },
+    "trunk.layers.4.phi.2.bias": {
+      "finite": true,
+      "maxabs": 0.20399872958660126
+    },
+    "trunk.layers.4.filter.weight": {
+      "finite": true,
+      "maxabs": 0.40197867155075073
+    },
+    "trunk.layers.4.filter.bias": {
+      "finite": true,
+      "maxabs": 0.24105174839496613
+    },
+    "trunk.layers.4.U.weight": {
+      "finite": true,
+      "maxabs": 0.3873557448387146
+    },
+    "trunk.layers.4.V.weight": {
+      "finite": true,
+      "maxabs": 0.359742134809494
+    },
+    "trunk.layers.4.update.0.weight": {
+      "finite": true,
+      "maxabs": 0.3149510324001312
+    },
+    "trunk.layers.4.update.0.bias": {
+      "finite": true,
+      "maxabs": 0.13133549690246582
+    },
+    "trunk.layers.4.update.2.weight": {
+      "finite": true,
+      "maxabs": 0.3424692153930664
+    },
+    "trunk.layers.4.update.2.bias": {
+      "finite": true,
+      "maxabs": 0.19595901668071747
+    },
+    "trunk.layers.4.inner_to_s.weight": {
+      "finite": true,
+      "maxabs": 0.429487019777298
+    },
+    "trunk.layers.4.inner_to_s.bias": {
+      "finite": true,
+      "maxabs": 0.19165363907814026
+    },
+    "trunk.layers.5.norm.weight": {
+      "finite": true,
+      "maxabs": 1.311476469039917
+    },
+    "trunk.layers.5.norm.bias": {
+      "finite": true,
+      "maxabs": 0.0679444745182991
+    },
+    "trunk.layers.5.time.weight": {
+      "finite": true,
+      "maxabs": 0.19097590446472168
+    },
+    "trunk.layers.5.time.bias": {
+      "finite": true,
+      "maxabs": 0.12492795288562775
+    },
+    "trunk.layers.5.phi.0.weight": {
+      "finite": true,
+      "maxabs": 0.42309001088142395
+    },
+    "trunk.layers.5.phi.0.bias": {
+      "finite": true,
+      "maxabs": 0.14720965921878815
+    },
+    "trunk.layers.5.phi.2.weight": {
+      "finite": true,
+      "maxabs": 0.5917509198188782
+    },
+    "trunk.layers.5.phi.2.bias": {
+      "finite": true,
+      "maxabs": 0.17341263592243195
+    },
+    "trunk.layers.5.filter.weight": {
+      "finite": true,
+      "maxabs": 0.39377570152282715
+    },
+    "trunk.layers.5.filter.bias": {
+      "finite": true,
+      "maxabs": 0.3187180459499359
+    },
+    "trunk.layers.5.U.weight": {
+      "finite": true,
+      "maxabs": 0.3879837989807129
+    },
+    "trunk.layers.5.V.weight": {
+      "finite": true,
+      "maxabs": 0.36407020688056946
+    },
+    "trunk.layers.5.update.0.weight": {
+      "finite": true,
+      "maxabs": 0.34530287981033325
+    },
+    "trunk.layers.5.update.0.bias": {
+      "finite": true,
+      "maxabs": 0.1172633171081543
+    },
+    "trunk.layers.5.update.2.weight": {
+      "finite": true,
+      "maxabs": 0.3346099257469177
+    },
+    "trunk.layers.5.update.2.bias": {
+      "finite": true,
+      "maxabs": 0.16332708299160004
+    },
+    "trunk.layers.5.inner_to_s.weight": {
+      "finite": true,
+      "maxabs": 0.37142395973205566
+    },
+    "trunk.layers.5.inner_to_s.bias": {
+      "finite": true,
+      "maxabs": 0.22228260338306427
+    },
+    "event_head.pair.0.weight": {
+      "finite": true,
+      "maxabs": 0.8329653143882751
+    },
+    "event_head.pair.0.bias": {
+      "finite": true,
+      "maxabs": 0.17313937842845917
+    },
+    "event_head.pair.2.weight": {
+      "finite": true,
+      "maxabs": 0.6512755155563354
+    },
+    "event_head.pair.2.bias": {
+      "finite": true,
+      "maxabs": 0.16670511662960052
+    },
+    "event_head.pair.4.weight": {
+      "finite": true,
+      "maxabs": 0.35769450664520264
+    },
+    "event_head.pair.4.bias": {
+      "finite": true,
+      "maxabs": 0.009346398524940014
+    },
+    "event_head.diag.0.weight": {
+      "finite": true,
+      "maxabs": 0.39682331681251526
+    },
+    "event_head.diag.0.bias": {
+      "finite": true,
+      "maxabs": 0.13839632272720337
+    },
+    "event_head.diag.2.weight": {
+      "finite": true,
+      "maxabs": 0.2577509880065918
+    },
+    "event_head.diag.2.bias": {
+      "finite": true,
+      "maxabs": 0.048272620886564255
+    },
+    "geometry_head.gate.0.weight": {
+      "finite": true,
+      "maxabs": 0.28594905138015747
+    },
+    "geometry_head.gate.0.bias": {
+      "finite": true,
+      "maxabs": 0.14619359374046326
+    },
+    "geometry_head.gate.2.weight": {
+      "finite": true,
+      "maxabs": 0.29613709449768066
+    },
+    "geometry_head.gate.2.bias": {
+      "finite": true,
+      "maxabs": 0.19628240168094635
+    },
+    "geometry_head.out.weight": {
+      "finite": true,
+      "maxabs": 0.17763932049274445
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "artifacts": [
+    {
+      "path": "DIAGNOSIS.md",
+      "bytes": 6533,
+      "sha256": "3fa5f5fe7573d1aefe4d4ee3af5949db08e73767434fbe1d0b81524d500b00b0",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "diagnose_7451.py",
+      "bytes": 2666,
+      "sha256": "bcac89a53375c2409e0725994fde7e22ebefee8197f56ed3d36189944eda15b4",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "initial-forward-7451.json",
+      "bytes": 84881,
+      "sha256": "c508aa7d3036484ebb2b6a61444cdd404e4c1c161d15a3be6ca9a4a988a1b2e8",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-2547/atom7_geometry.json",
+      "bytes": 1540,
+      "sha256": "0d6fa050ac31003edfaa7c77aedb0d2a5d9c56faeab95d6ae6c622f1c6dc45d3",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-2547/diagnostic_state.pt",
+      "bytes": 4342920,
+      "sha256": "e885d3874cd10685a4d0a17a4e289c62c3361a90a0b93d5c12ebbf3a69c1d7c6",
+      "included_in_git": false,
+      "reason": "Model weights prohibited by AGENTS.md; retained locally and on n2; not formal checkpoints."
+    },
+    {
+      "path": "replay-2547/loss_operator_check.json",
+      "bytes": 880,
+      "sha256": "682845a24223a3046bcf53c3c57590cbc35eb07fcdf7a2b8c1a99469a38421e0",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-2547/raw_h5_provenance.json",
+      "bytes": 1444,
+      "sha256": "ed8637ef435eed6b3ef2dd92233d8253b6cfdb8a02d65019de26a982429b2b2b",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-2547/raw_trajectory_check.json",
+      "bytes": 545,
+      "sha256": "439f571cd8d4baca95a23707ad9ba2dd80387f7e3265595013ba445814ad5edd",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-2547/result.json",
+      "bytes": 34988,
+      "sha256": "8f378392ceacaaf4056aa396126058dbe04773df81b451651055b90c6175bea3",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-2547/sample_visits.jsonl",
+      "bytes": 709131,
+      "sha256": "d13598cc1dd5f477e23b2f423bd88485be45b9af5c107ee9538cd0c53c1a73a3",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-2547/update_term_localization.json",
+      "bytes": 6573,
+      "sha256": "512b8c4a69462bab620320db0b14dc1c4b8296ca4227d12b63767df145f63a6e",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-geometry_s1/diagnostic_state.pt",
+      "bytes": 2223668,
+      "sha256": "5982339933c96f22c57b10a34812c6b52e750c673bc52c79b656ccb5e9f80574",
+      "included_in_git": false,
+      "reason": "Model weights prohibited by AGENTS.md; retained locally and on n2; not formal checkpoints."
+    },
+    {
+      "path": "replay-geometry_s1/result.json",
+      "bytes": 32157,
+      "sha256": "90929fc1654858a0c8d0329eaaab4bfa95ce58613912c4c1839dcdf93591d7ae",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-geometry_s1/sample_visits.jsonl",
+      "bytes": 993705,
+      "sha256": "95210800e9914968dc0cc10f8303f1f12e4d0864e348793123067c806973a373",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-geometry_s2/diagnostic_state.pt",
+      "bytes": 2223668,
+      "sha256": "aad4607118623a0f29fe76657c69373c0d07ba2389b9de3a7d344d0ec24e9df2",
+      "included_in_git": false,
+      "reason": "Model weights prohibited by AGENTS.md; retained locally and on n2; not formal checkpoints."
+    },
+    {
+      "path": "replay-geometry_s2/result.json",
+      "bytes": 32159,
+      "sha256": "c2e0859ef76d6ade94451236d58d297accfb3d3bef659760f3792534d0cd1fff",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-geometry_s2/sample_visits.jsonl",
+      "bytes": 864121,
+      "sha256": "54cdb423982272ed56bcccdf5a7e1a86f575e60dfb9fe04cb99fe54e2f0c7677",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-joint_s2/diagnostic_state.pt",
+      "bytes": 4342920,
+      "sha256": "f03b9cfa94dfd33bb5f3a03a894186888b68501df66398f29ff2ccefe6f23c27",
+      "included_in_git": false,
+      "reason": "Model weights prohibited by AGENTS.md; retained locally and on n2; not formal checkpoints."
+    },
+    {
+      "path": "replay-joint_s2/head_product_check.json",
+      "bytes": 308,
+      "sha256": "24a05e605ca956a13fa4a41c33f3bd3871a8cdb424a2a809f46c87b1931099b4",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-joint_s2/result.json",
+      "bytes": 34832,
+      "sha256": "3732e541bcadbeb497ca78d51e1d2a27b353b293a2e92eac26a590bda894f5eb",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay-joint_s2/sample_visits.jsonl",
+      "bytes": 1027929,
+      "sha256": "c88df536879266af9b064b9b625032065f4446d4fe3ae365dd52ac6f696e4817",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay_failures.py",
+      "bytes": 4750,
+      "sha256": "8f83ddf333b5f9eaa02a0b71e4ef57304fad654c421750177934114bc4532da8",
+      "included_in_git": true,
+      "reason": null
+    },
+    {
+      "path": "replay_joint0.py",
+      "bytes": 4444,
+      "sha256": "ee836e418790ac50d9d591f46e20f770456496db9fbdab9953edea8ca410cdbe",
+      "included_in_git": true,
+      "reason": null
+    }
+  ],
+  "local_root": "/home/lhshen/xtbflow-diagnostics",
+  "remote_root": "n2:/home/lhshen/xtbflow-runs/m0/diagnostics-owner-approved",
+  "model_weights_uploaded": false
+}

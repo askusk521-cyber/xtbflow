@@ -1,0 +1,3807 @@
+{
+  "sample": 7451,
+  "scope": "initial weights, single training sample, forward only; not exact failed trained state",
+  "rows": [
+    {
+      "role": "joint",
+      "seed": 0,
+      "t": 0.0,
+      "loss": {
+        "event": 1.0995285511016846,
+        "geometry": 1.672788143157959,
+        "total": 2.7723166942596436
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.583469390869141
+            },
+            {
+              "finite": true,
+              "maxabs": 1.0370314121246338
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.548739910125732
+            },
+            {
+              "finite": true,
+              "maxabs": 1.0283912420272827
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.423293590545654
+            },
+            {
+              "finite": true,
+              "maxabs": 1.0574707984924316
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.574760913848877
+            },
+            {
+              "finite": true,
+              "maxabs": 1.2556557655334473
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.523868083953857
+            },
+            {
+              "finite": true,
+              "maxabs": 1.2980989217758179
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.710629940032959
+            },
+            {
+              "finite": true,
+              "maxabs": 1.2978272438049316
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 0,
+      "t": 0.25,
+      "loss": {
+        "event": 1.097778081893921,
+        "geometry": 1.6962769031524658,
+        "total": 2.7940549850463867
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.5719733238220215
+            },
+            {
+              "finite": true,
+              "maxabs": 1.8824334144592285
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.510334491729736
+            },
+            {
+              "finite": true,
+              "maxabs": 1.8816745281219482
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.487955570220947
+            },
+            {
+              "finite": true,
+              "maxabs": 2.050686836242676
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.523341655731201
+            },
+            {
+              "finite": true,
+              "maxabs": 2.0129709243774414
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.4154486656188965
+            },
+            {
+              "finite": true,
+              "maxabs": 2.1923906803131104
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.593466281890869
+            },
+            {
+              "finite": true,
+              "maxabs": 2.3695859909057617
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 0,
+      "t": 0.5,
+      "loss": {
+        "event": 1.096203088760376,
+        "geometry": 1.6272108554840088,
+        "total": 2.7234139442443848
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.29456090927124
+            },
+            {
+              "finite": true,
+              "maxabs": 3.5263211727142334
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.245168685913086
+            },
+            {
+              "finite": true,
+              "maxabs": 3.650826930999756
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.571432590484619
+            },
+            {
+              "finite": true,
+              "maxabs": 4.011134624481201
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.28782844543457
+            },
+            {
+              "finite": true,
+              "maxabs": 3.949575424194336
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.13646125793457
+            },
+            {
+              "finite": true,
+              "maxabs": 4.320547580718994
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.340453624725342
+            },
+            {
+              "finite": true,
+              "maxabs": 4.465084552764893
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 0,
+      "t": 0.75,
+      "loss": {
+        "event": 1.1008505821228027,
+        "geometry": 1.2366448640823364,
+        "total": 2.3374953269958496
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.525895118713379
+            },
+            {
+              "finite": true,
+              "maxabs": 5.25563907623291
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.916743278503418
+            },
+            {
+              "finite": true,
+              "maxabs": 5.5592474937438965
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 5.600375175476074
+            },
+            {
+              "finite": true,
+              "maxabs": 6.506988525390625
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.240663528442383
+            },
+            {
+              "finite": true,
+              "maxabs": 6.326275825500488
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.977532863616943
+            },
+            {
+              "finite": true,
+              "maxabs": 7.047206878662109
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.868574142456055
+            },
+            {
+              "finite": true,
+              "maxabs": 6.663197040557861
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 0,
+      "t": 0.9,
+      "loss": {
+        "event": 1.168847918510437,
+        "geometry": 0.5730040073394775,
+        "total": 1.7418519258499146
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.613295555114746
+            },
+            {
+              "finite": true,
+              "maxabs": 6.206867218017578
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 7.702448844909668
+            },
+            {
+              "finite": true,
+              "maxabs": 7.329124450683594
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 9.645939826965332
+            },
+            {
+              "finite": true,
+              "maxabs": 8.524965286254883
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 16.859142303466797
+            },
+            {
+              "finite": true,
+              "maxabs": 8.138310432434082
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 18.595478057861328
+            },
+            {
+              "finite": true,
+              "maxabs": 10.301589965820312
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 21.92897605895996
+            },
+            {
+              "finite": true,
+              "maxabs": 10.23818302154541
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 0,
+      "t": 0.99,
+      "loss": {
+        "event": 1.5600265264511108,
+        "geometry": 24.70249366760254,
+        "total": 26.26251983642578
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 5.849740505218506
+            },
+            {
+              "finite": true,
+              "maxabs": 6.773667335510254
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 9.49333381652832
+            },
+            {
+              "finite": true,
+              "maxabs": 8.617670059204102
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 13.001273155212402
+            },
+            {
+              "finite": true,
+              "maxabs": 10.923691749572754
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 37.80470657348633
+            },
+            {
+              "finite": true,
+              "maxabs": 10.324552536010742
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 30.668643951416016
+            },
+            {
+              "finite": true,
+              "maxabs": 13.993989944458008
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 72.5811767578125
+            },
+            {
+              "finite": true,
+              "maxabs": 18.283172607421875
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 0,
+      "t": 1.0,
+      "loss": {
+        "event": 1.745617389678955,
+        "geometry": 57.6121711730957,
+        "total": 59.3577880859375
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.08242130279541
+            },
+            {
+              "finite": true,
+              "maxabs": 6.87399959564209
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 9.988327026367188
+            },
+            {
+              "finite": true,
+              "maxabs": 8.761345863342285
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 13.664285659790039
+            },
+            {
+              "finite": true,
+              "maxabs": 11.160445213317871
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 40.68778610229492
+            },
+            {
+              "finite": true,
+              "maxabs": 10.547603607177734
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 33.331092834472656
+            },
+            {
+              "finite": true,
+              "maxabs": 15.362403869628906
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 91.55844116210938
+            },
+            {
+              "finite": true,
+              "maxabs": 21.244401931762695
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 1,
+      "t": 0.0,
+      "loss": {
+        "event": 1.0011389255523682,
+        "geometry": 1.4030883312225342,
+        "total": 2.4042272567749023
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.3247413635253906
+            },
+            {
+              "finite": true,
+              "maxabs": 1.1149779558181763
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.6044328212738037
+            },
+            {
+              "finite": true,
+              "maxabs": 1.1245173215866089
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.7648403644561768
+            },
+            {
+              "finite": true,
+              "maxabs": 1.173122763633728
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.940472364425659
+            },
+            {
+              "finite": true,
+              "maxabs": 1.3659839630126953
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.8838400840759277
+            },
+            {
+              "finite": true,
+              "maxabs": 1.3625590801239014
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.9903602600097656
+            },
+            {
+              "finite": true,
+              "maxabs": 1.3835653066635132
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 1,
+      "t": 0.25,
+      "loss": {
+        "event": 1.0031605958938599,
+        "geometry": 1.4116802215576172,
+        "total": 2.4148406982421875
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.1907105445861816
+            },
+            {
+              "finite": true,
+              "maxabs": 2.0814685821533203
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.4639546871185303
+            },
+            {
+              "finite": true,
+              "maxabs": 2.0578956604003906
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.5613317489624023
+            },
+            {
+              "finite": true,
+              "maxabs": 2.2585620880126953
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.7120628356933594
+            },
+            {
+              "finite": true,
+              "maxabs": 2.961264133453369
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.6126325130462646
+            },
+            {
+              "finite": true,
+              "maxabs": 2.801602840423584
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.737454891204834
+            },
+            {
+              "finite": true,
+              "maxabs": 2.775989055633545
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 1,
+      "t": 0.5,
+      "loss": {
+        "event": 1.0023748874664307,
+        "geometry": 1.3165068626403809,
+        "total": 2.3188817501068115
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.279855728149414
+            },
+            {
+              "finite": true,
+              "maxabs": 3.6193220615386963
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.562321901321411
+            },
+            {
+              "finite": true,
+              "maxabs": 3.61252760887146
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.618067741394043
+            },
+            {
+              "finite": true,
+              "maxabs": 3.9408621788024902
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.21622896194458
+            },
+            {
+              "finite": true,
+              "maxabs": 5.3747076988220215
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.187136650085449
+            },
+            {
+              "finite": true,
+              "maxabs": 5.115271091461182
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.7436349391937256
+            },
+            {
+              "finite": true,
+              "maxabs": 5.0262131690979
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 1,
+      "t": 0.75,
+      "loss": {
+        "event": 1.005635142326355,
+        "geometry": 0.8952892422676086,
+        "total": 1.9009244441986084
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.156721830368042
+            },
+            {
+              "finite": true,
+              "maxabs": 5.227539539337158
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.9685277938842773
+            },
+            {
+              "finite": true,
+              "maxabs": 5.431258678436279
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.709025859832764
+            },
+            {
+              "finite": true,
+              "maxabs": 6.115824222564697
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 18.479740142822266
+            },
+            {
+              "finite": true,
+              "maxabs": 7.871790885925293
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 16.543188095092773
+            },
+            {
+              "finite": true,
+              "maxabs": 8.463540077209473
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 14.535457611083984
+            },
+            {
+              "finite": true,
+              "maxabs": 8.036638259887695
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 1,
+      "t": 0.9,
+      "loss": {
+        "event": 1.0776721239089966,
+        "geometry": 0.4229389727115631,
+        "total": 1.5006110668182373
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.229530334472656
+            },
+            {
+              "finite": true,
+              "maxabs": 6.197334289550781
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.3807268142700195
+            },
+            {
+              "finite": true,
+              "maxabs": 6.715009689331055
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 8.25688362121582
+            },
+            {
+              "finite": true,
+              "maxabs": 7.58679723739624
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 40.0743293762207
+            },
+            {
+              "finite": true,
+              "maxabs": 9.150938987731934
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 33.67073059082031
+            },
+            {
+              "finite": true,
+              "maxabs": 12.740952491760254
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 31.116783142089844
+            },
+            {
+              "finite": true,
+              "maxabs": 16.220104217529297
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 1,
+      "t": 0.99,
+      "loss": {
+        "event": 1.4331854581832886,
+        "geometry": 1.3837641477584839,
+        "total": 2.8169496059417725
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.745258331298828
+            },
+            {
+              "finite": true,
+              "maxabs": 6.800282955169678
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 9.04563045501709
+            },
+            {
+              "finite": true,
+              "maxabs": 7.563364505767822
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 11.58900260925293
+            },
+            {
+              "finite": true,
+              "maxabs": 7.935317516326904
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 59.61279296875
+            },
+            {
+              "finite": true,
+              "maxabs": 8.967031478881836
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 51.862579345703125
+            },
+            {
+              "finite": true,
+              "maxabs": 15.941474914550781
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 56.22370147705078
+            },
+            {
+              "finite": true,
+              "maxabs": 40.254608154296875
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 1,
+      "t": 1.0,
+      "loss": {
+        "event": 1.565879464149475,
+        "geometry": 1.8885353803634644,
+        "total": 3.4544148445129395
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.819452285766602
+            },
+            {
+              "finite": true,
+              "maxabs": 6.865190505981445
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 9.222676277160645
+            },
+            {
+              "finite": true,
+              "maxabs": 7.710337162017822
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 11.929886817932129
+            },
+            {
+              "finite": true,
+              "maxabs": 8.110944747924805
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 63.03326416015625
+            },
+            {
+              "finite": true,
+              "maxabs": 8.907794952392578
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 54.806522369384766
+            },
+            {
+              "finite": true,
+              "maxabs": 16.279932022094727
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 64.74492645263672
+            },
+            {
+              "finite": true,
+              "maxabs": 44.609466552734375
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 2,
+      "t": 0.0,
+      "loss": {
+        "event": 0.962752640247345,
+        "geometry": 1.8574035167694092,
+        "total": 2.8201560974121094
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.8062238693237305
+            },
+            {
+              "finite": true,
+              "maxabs": 0.9597132802009583
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.6461873054504395
+            },
+            {
+              "finite": true,
+              "maxabs": 1.0129187107086182
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.5425262451171875
+            },
+            {
+              "finite": true,
+              "maxabs": 0.9500989317893982
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.7290306091308594
+            },
+            {
+              "finite": true,
+              "maxabs": 0.9458937048912048
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.907405376434326
+            },
+            {
+              "finite": true,
+              "maxabs": 0.9433876872062683
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.1780500411987305
+            },
+            {
+              "finite": true,
+              "maxabs": 1.0247085094451904
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 2,
+      "t": 0.25,
+      "loss": {
+        "event": 0.9630267024040222,
+        "geometry": 1.8437345027923584,
+        "total": 2.8067612648010254
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.7419347763061523
+            },
+            {
+              "finite": true,
+              "maxabs": 1.5781702995300293
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.546391248703003
+            },
+            {
+              "finite": true,
+              "maxabs": 1.6146206855773926
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.574903726577759
+            },
+            {
+              "finite": true,
+              "maxabs": 1.6058385372161865
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.952104091644287
+            },
+            {
+              "finite": true,
+              "maxabs": 1.6004579067230225
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.9563148021698
+            },
+            {
+              "finite": true,
+              "maxabs": 1.603797197341919
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.190826416015625
+            },
+            {
+              "finite": true,
+              "maxabs": 1.7000256776809692
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 2,
+      "t": 0.5,
+      "loss": {
+        "event": 0.9620910882949829,
+        "geometry": 1.8386937379837036,
+        "total": 2.8007848262786865
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.5115342140197754
+            },
+            {
+              "finite": true,
+              "maxabs": 3.6904385089874268
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.430359125137329
+            },
+            {
+              "finite": true,
+              "maxabs": 3.6117682456970215
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.6127195358276367
+            },
+            {
+              "finite": true,
+              "maxabs": 3.577857494354248
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.031381607055664
+            },
+            {
+              "finite": true,
+              "maxabs": 3.553481340408325
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 5.339717388153076
+            },
+            {
+              "finite": true,
+              "maxabs": 3.7876124382019043
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 5.260493278503418
+            },
+            {
+              "finite": true,
+              "maxabs": 4.383552074432373
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 2,
+      "t": 0.75,
+      "loss": {
+        "event": 0.9874229431152344,
+        "geometry": 2.6787428855895996,
+        "total": 3.666165828704834
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.5626637935638428
+            },
+            {
+              "finite": true,
+              "maxabs": 6.099463939666748
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.602968215942383
+            },
+            {
+              "finite": true,
+              "maxabs": 6.093743324279785
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 10.281915664672852
+            },
+            {
+              "finite": true,
+              "maxabs": 5.880588531494141
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 14.69519329071045
+            },
+            {
+              "finite": true,
+              "maxabs": 6.73834753036499
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 16.170852661132812
+            },
+            {
+              "finite": true,
+              "maxabs": 10.156429290771484
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 24.846641540527344
+            },
+            {
+              "finite": true,
+              "maxabs": 12.565443992614746
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 2,
+      "t": 0.9,
+      "loss": {
+        "event": 4.613263130187988,
+        "geometry": 5668.9189453125,
+        "total": 5673.5322265625
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.622897148132324
+            },
+            {
+              "finite": true,
+              "maxabs": 7.711792469024658
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 9.447854995727539
+            },
+            {
+              "finite": true,
+              "maxabs": 7.846899032592773
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 17.90224838256836
+            },
+            {
+              "finite": true,
+              "maxabs": 8.240224838256836
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 45.508060455322266
+            },
+            {
+              "finite": true,
+              "maxabs": 16.325658798217773
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 65.62377166748047
+            },
+            {
+              "finite": true,
+              "maxabs": 29.140016555786133
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 466.8844299316406
+            },
+            {
+              "finite": true,
+              "maxabs": 86.11278533935547
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 2,
+      "t": 0.99,
+      "loss": {
+        "event": 1746.375732421875,
+        "geometry": 119811984.0,
+        "total": 119813728.0
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 5.547242641448975
+            },
+            {
+              "finite": true,
+              "maxabs": 8.659488677978516
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 13.335508346557617
+            },
+            {
+              "finite": true,
+              "maxabs": 8.516993522644043
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 26.764907836914062
+            },
+            {
+              "finite": true,
+              "maxabs": 9.457807540893555
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 90.3176498413086
+            },
+            {
+              "finite": true,
+              "maxabs": 28.386791229248047
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 352.4050598144531
+            },
+            {
+              "finite": true,
+              "maxabs": 44.84552001953125
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 10407.4501953125
+            },
+            {
+              "finite": true,
+              "maxabs": 463.1333312988281
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "joint",
+      "seed": 2,
+      "t": 1.0,
+      "loss": {
+        "event": 3534.082275390625,
+        "geometry": 823104576.0,
+        "total": 823108096.0
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 5.51375675201416
+            },
+            {
+              "finite": true,
+              "maxabs": 8.768060684204102
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 13.582228660583496
+            },
+            {
+              "finite": true,
+              "maxabs": 8.580584526062012
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 28.12947654724121
+            },
+            {
+              "finite": true,
+              "maxabs": 9.701777458190918
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 97.12248229980469
+            },
+            {
+              "finite": true,
+              "maxabs": 29.65393829345703
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 418.8673095703125
+            },
+            {
+              "finite": true,
+              "maxabs": 50.52052307128906
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 18573.728515625
+            },
+            {
+              "finite": true,
+              "maxabs": 635.6995239257812
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 0,
+      "t": 0.0,
+      "loss": {
+        "geometry": 1.6682820320129395,
+        "total": 1.6682820320129395
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.0397138595581055
+            },
+            {
+              "finite": true,
+              "maxabs": 0.9573376774787903
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.9567127227783203
+            },
+            {
+              "finite": true,
+              "maxabs": 0.9559049010276794
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.110071182250977
+            },
+            {
+              "finite": true,
+              "maxabs": 0.9361530542373657
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.270537853240967
+            },
+            {
+              "finite": true,
+              "maxabs": 1.0256483554840088
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.368124008178711
+            },
+            {
+              "finite": true,
+              "maxabs": 1.018500804901123
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.435098171234131
+            },
+            {
+              "finite": true,
+              "maxabs": 1.0976295471191406
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 0,
+      "t": 0.25,
+      "loss": {
+        "geometry": 1.7365626096725464,
+        "total": 1.7365626096725464
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.9492554664611816
+            },
+            {
+              "finite": true,
+              "maxabs": 1.773512601852417
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.09119987487793
+            },
+            {
+              "finite": true,
+              "maxabs": 1.7111692428588867
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.26413631439209
+            },
+            {
+              "finite": true,
+              "maxabs": 1.7505961656570435
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.461077690124512
+            },
+            {
+              "finite": true,
+              "maxabs": 1.7906887531280518
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.525067329406738
+            },
+            {
+              "finite": true,
+              "maxabs": 1.6508268117904663
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.575743675231934
+            },
+            {
+              "finite": true,
+              "maxabs": 1.6733927726745605
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 0,
+      "t": 0.5,
+      "loss": {
+        "geometry": 1.8244264125823975,
+        "total": 1.8244264125823975
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.816012382507324
+            },
+            {
+              "finite": true,
+              "maxabs": 3.410290002822876
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.8843374252319336
+            },
+            {
+              "finite": true,
+              "maxabs": 3.296433925628662
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.003973960876465
+            },
+            {
+              "finite": true,
+              "maxabs": 3.3263702392578125
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.101758003234863
+            },
+            {
+              "finite": true,
+              "maxabs": 3.4010438919067383
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.175075531005859
+            },
+            {
+              "finite": true,
+              "maxabs": 3.119647979736328
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.159400463104248
+            },
+            {
+              "finite": true,
+              "maxabs": 3.1241683959960938
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 0,
+      "t": 0.75,
+      "loss": {
+        "geometry": 1.8462824821472168,
+        "total": 1.8462824821472168
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.8533432483673096
+            },
+            {
+              "finite": true,
+              "maxabs": 5.070508003234863
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.917748212814331
+            },
+            {
+              "finite": true,
+              "maxabs": 4.869624614715576
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.02803897857666
+            },
+            {
+              "finite": true,
+              "maxabs": 4.751237869262695
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.319981098175049
+            },
+            {
+              "finite": true,
+              "maxabs": 5.180055618286133
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.2374982833862305
+            },
+            {
+              "finite": true,
+              "maxabs": 4.653435707092285
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.319260597229004
+            },
+            {
+              "finite": true,
+              "maxabs": 4.926941871643066
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 0,
+      "t": 0.9,
+      "loss": {
+        "geometry": 1.9821805953979492,
+        "total": 1.9821805953979492
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.646866798400879
+            },
+            {
+              "finite": true,
+              "maxabs": 6.1061577796936035
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.6259589195251465
+            },
+            {
+              "finite": true,
+              "maxabs": 5.804872035980225
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.844621181488037
+            },
+            {
+              "finite": true,
+              "maxabs": 5.64379358291626
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 5.701955795288086
+            },
+            {
+              "finite": true,
+              "maxabs": 6.64244270324707
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 5.229808330535889
+            },
+            {
+              "finite": true,
+              "maxabs": 6.7919721603393555
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 7.555331707000732
+            },
+            {
+              "finite": true,
+              "maxabs": 6.773156642913818
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 0,
+      "t": 0.99,
+      "loss": {
+        "geometry": 2.2674434185028076,
+        "total": 2.2674434185028076
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.636545181274414
+            },
+            {
+              "finite": true,
+              "maxabs": 6.7329301834106445
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.377757549285889
+            },
+            {
+              "finite": true,
+              "maxabs": 6.319169998168945
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 7.259859085083008
+            },
+            {
+              "finite": true,
+              "maxabs": 6.081264972686768
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 7.821542739868164
+            },
+            {
+              "finite": true,
+              "maxabs": 8.063705444335938
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 9.913097381591797
+            },
+            {
+              "finite": true,
+              "maxabs": 10.35346508026123
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 11.163259506225586
+            },
+            {
+              "finite": true,
+              "maxabs": 10.0696382522583
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 0,
+      "t": 1.0,
+      "loss": {
+        "geometry": 2.308210611343384,
+        "total": 2.308210611343384
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.761501312255859
+            },
+            {
+              "finite": true,
+              "maxabs": 6.79677152633667
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.397787570953369
+            },
+            {
+              "finite": true,
+              "maxabs": 6.37691593170166
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 7.558980941772461
+            },
+            {
+              "finite": true,
+              "maxabs": 6.1623005867004395
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 8.115178108215332
+            },
+            {
+              "finite": true,
+              "maxabs": 8.287565231323242
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 10.920476913452148
+            },
+            {
+              "finite": true,
+              "maxabs": 10.862924575805664
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 12.179576873779297
+            },
+            {
+              "finite": true,
+              "maxabs": 10.538119316101074
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 1,
+      "t": 0.0,
+      "loss": {
+        "geometry": 1.4191577434539795,
+        "total": 1.4191577434539795
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.0320932865142822
+            },
+            {
+              "finite": true,
+              "maxabs": 1.2244055271148682
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 2.7447097301483154
+            },
+            {
+              "finite": true,
+              "maxabs": 1.1440584659576416
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.140077590942383
+            },
+            {
+              "finite": true,
+              "maxabs": 1.227470874786377
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.306978225708008
+            },
+            {
+              "finite": true,
+              "maxabs": 1.2663177251815796
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.4851272106170654
+            },
+            {
+              "finite": true,
+              "maxabs": 1.2757704257965088
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.3098666667938232
+            },
+            {
+              "finite": true,
+              "maxabs": 1.6212223768234253
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 1,
+      "t": 0.25,
+      "loss": {
+        "geometry": 1.215687870979309,
+        "total": 1.215687870979309
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.0225577354431152
+            },
+            {
+              "finite": true,
+              "maxabs": 2.2061657905578613
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.017883539199829
+            },
+            {
+              "finite": true,
+              "maxabs": 2.218306303024292
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.2001233100891113
+            },
+            {
+              "finite": true,
+              "maxabs": 2.330552101135254
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.4232287406921387
+            },
+            {
+              "finite": true,
+              "maxabs": 2.355529308319092
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.8892977237701416
+            },
+            {
+              "finite": true,
+              "maxabs": 2.3516547679901123
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.8047008514404297
+            },
+            {
+              "finite": true,
+              "maxabs": 3.2337093353271484
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 1,
+      "t": 0.5,
+      "loss": {
+        "geometry": 0.8310218453407288,
+        "total": 0.8310218453407288
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.0206351280212402
+            },
+            {
+              "finite": true,
+              "maxabs": 3.915231466293335
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 5.103998184204102
+            },
+            {
+              "finite": true,
+              "maxabs": 3.763061761856079
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.709237098693848
+            },
+            {
+              "finite": true,
+              "maxabs": 4.449848175048828
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.7342119216918945
+            },
+            {
+              "finite": true,
+              "maxabs": 4.411202907562256
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 6.838245391845703
+            },
+            {
+              "finite": true,
+              "maxabs": 4.403203964233398
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 8.12371826171875
+            },
+            {
+              "finite": true,
+              "maxabs": 6.2891926765441895
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 1,
+      "t": 0.75,
+      "loss": {
+        "geometry": 0.6094644665718079,
+        "total": 0.6094644665718079
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.926982879638672
+            },
+            {
+              "finite": true,
+              "maxabs": 5.8825883865356445
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 10.926833152770996
+            },
+            {
+              "finite": true,
+              "maxabs": 5.665261745452881
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 22.26343536376953
+            },
+            {
+              "finite": true,
+              "maxabs": 7.965124607086182
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 25.707469940185547
+            },
+            {
+              "finite": true,
+              "maxabs": 7.952116012573242
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 27.57685661315918
+            },
+            {
+              "finite": true,
+              "maxabs": 8.641420364379883
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 57.676788330078125
+            },
+            {
+              "finite": true,
+              "maxabs": 20.079553604125977
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 1,
+      "t": 0.9,
+      "loss": {
+        "geometry": 151523.09375,
+        "total": 151523.09375
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 7.850196838378906
+            },
+            {
+              "finite": true,
+              "maxabs": 7.126452922821045
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 17.438735961914062
+            },
+            {
+              "finite": true,
+              "maxabs": 7.042386054992676
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 42.147125244140625
+            },
+            {
+              "finite": true,
+              "maxabs": 11.765061378479004
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 87.03829956054688
+            },
+            {
+              "finite": true,
+              "maxabs": 13.086594581604004
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 114.00788116455078
+            },
+            {
+              "finite": true,
+              "maxabs": 22.271286010742188
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 2184.6220703125
+            },
+            {
+              "finite": true,
+              "maxabs": 66.90026092529297
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 1,
+      "t": 0.99,
+      "loss": {
+        "geometry": 479522.96875,
+        "total": 479522.96875
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 10.527409553527832
+            },
+            {
+              "finite": true,
+              "maxabs": 7.88177490234375
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 22.637435913085938
+            },
+            {
+              "finite": true,
+              "maxabs": 7.968628406524658
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 53.610107421875
+            },
+            {
+              "finite": true,
+              "maxabs": 14.955741882324219
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 176.909912109375
+            },
+            {
+              "finite": true,
+              "maxabs": 18.112340927124023
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 458.2442321777344
+            },
+            {
+              "finite": true,
+              "maxabs": 77.1937484741211
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 23038.0546875
+            },
+            {
+              "finite": true,
+              "maxabs": 629.6471557617188
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 1,
+      "t": 1.0,
+      "loss": {
+        "geometry": 39595844.0,
+        "total": 39595844.0
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 10.750935554504395
+            },
+            {
+              "finite": true,
+              "maxabs": 7.906191825866699
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 23.366941452026367
+            },
+            {
+              "finite": true,
+              "maxabs": 8.05430793762207
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 54.681270599365234
+            },
+            {
+              "finite": true,
+              "maxabs": 15.450390815734863
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 192.7655029296875
+            },
+            {
+              "finite": true,
+              "maxabs": 19.0596923828125
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 535.9598999023438
+            },
+            {
+              "finite": true,
+              "maxabs": 84.04499816894531
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 25420.619140625
+            },
+            {
+              "finite": true,
+              "maxabs": 834.7945556640625
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 2,
+      "t": 0.0,
+      "loss": {
+        "geometry": 1.8905085325241089,
+        "total": 1.8905085325241089
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.142091989517212
+            },
+            {
+              "finite": true,
+              "maxabs": 0.8722251057624817
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.081746816635132
+            },
+            {
+              "finite": true,
+              "maxabs": 0.8541772961616516
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.1196811199188232
+            },
+            {
+              "finite": true,
+              "maxabs": 0.879130482673645
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.0750246047973633
+            },
+            {
+              "finite": true,
+              "maxabs": 0.9900451898574829
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.1376612186431885
+            },
+            {
+              "finite": true,
+              "maxabs": 1.0821516513824463
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.3194005489349365
+            },
+            {
+              "finite": true,
+              "maxabs": 1.1053030490875244
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 2,
+      "t": 0.25,
+      "loss": {
+        "geometry": 1.7937341928482056,
+        "total": 1.7937341928482056
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.015753746032715
+            },
+            {
+              "finite": true,
+              "maxabs": 1.4107770919799805
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 2.9251468181610107
+            },
+            {
+              "finite": true,
+              "maxabs": 1.4822309017181396
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 2.9826173782348633
+            },
+            {
+              "finite": true,
+              "maxabs": 1.4943490028381348
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 2.902918815612793
+            },
+            {
+              "finite": true,
+              "maxabs": 1.5941208600997925
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 2.935703992843628
+            },
+            {
+              "finite": true,
+              "maxabs": 1.6262058019638062
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.0951950550079346
+            },
+            {
+              "finite": true,
+              "maxabs": 1.6281566619873047
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 2,
+      "t": 0.5,
+      "loss": {
+        "geometry": 1.6849873065948486,
+        "total": 1.6849873065948486
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.199120283126831
+            },
+            {
+              "finite": true,
+              "maxabs": 3.094511032104492
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.115912914276123
+            },
+            {
+              "finite": true,
+              "maxabs": 3.502326488494873
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.1640992164611816
+            },
+            {
+              "finite": true,
+              "maxabs": 3.4941537380218506
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.1046042442321777
+            },
+            {
+              "finite": true,
+              "maxabs": 3.5804450511932373
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.017950057983398
+            },
+            {
+              "finite": true,
+              "maxabs": 3.843140125274658
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.730409145355225
+            },
+            {
+              "finite": true,
+              "maxabs": 3.861095666885376
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 2,
+      "t": 0.75,
+      "loss": {
+        "geometry": 1.1636003255844116,
+        "total": 1.1636003255844116
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.1113476753234863
+            },
+            {
+              "finite": true,
+              "maxabs": 4.737329959869385
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.261829376220703
+            },
+            {
+              "finite": true,
+              "maxabs": 5.9248738288879395
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 5.397708892822266
+            },
+            {
+              "finite": true,
+              "maxabs": 5.919715404510498
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 7.517697811126709
+            },
+            {
+              "finite": true,
+              "maxabs": 6.1156182289123535
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 10.073720932006836
+            },
+            {
+              "finite": true,
+              "maxabs": 8.554950714111328
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 14.417064666748047
+            },
+            {
+              "finite": true,
+              "maxabs": 9.372191429138184
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 2,
+      "t": 0.9,
+      "loss": {
+        "geometry": 0.4681655764579773,
+        "total": 0.4681655764579773
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.046522617340088
+            },
+            {
+              "finite": true,
+              "maxabs": 5.723959922790527
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 4.027840614318848
+            },
+            {
+              "finite": true,
+              "maxabs": 7.772038459777832
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 8.040926933288574
+            },
+            {
+              "finite": true,
+              "maxabs": 7.7714080810546875
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 15.088104248046875
+            },
+            {
+              "finite": true,
+              "maxabs": 8.091346740722656
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 29.335590362548828
+            },
+            {
+              "finite": true,
+              "maxabs": 13.030389785766602
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 64.7616958618164
+            },
+            {
+              "finite": true,
+              "maxabs": 19.092029571533203
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 2,
+      "t": 0.99,
+      "loss": {
+        "geometry": 154.0111541748047,
+        "total": 154.0111541748047
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.00614595413208
+            },
+            {
+              "finite": true,
+              "maxabs": 6.35175895690918
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 5.236303329467773
+            },
+            {
+              "finite": true,
+              "maxabs": 9.03261947631836
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 9.582496643066406
+            },
+            {
+              "finite": true,
+              "maxabs": 9.040779113769531
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 25.737524032592773
+            },
+            {
+              "finite": true,
+              "maxabs": 11.227411270141602
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 56.68095779418945
+            },
+            {
+              "finite": true,
+              "maxabs": 22.292570114135742
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 179.8893585205078
+            },
+            {
+              "finite": true,
+              "maxabs": 47.41426467895508
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "geometry",
+      "seed": 2,
+      "t": 1.0,
+      "loss": {
+        "geometry": 462.82769775390625,
+        "total": 462.82769775390625
+      },
+      "first_nonfinite": null,
+      "layers": [
+        {
+          "module": "trunk.layers.0",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 3.028015375137329
+            },
+            {
+              "finite": true,
+              "maxabs": 6.4629693031311035
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.1",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 5.263689994812012
+            },
+            {
+              "finite": true,
+              "maxabs": 9.134405136108398
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.2",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 9.962301254272461
+            },
+            {
+              "finite": true,
+              "maxabs": 9.144346237182617
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.3",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 27.538373947143555
+            },
+            {
+              "finite": true,
+              "maxabs": 11.53415584564209
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.4",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 63.54277420043945
+            },
+            {
+              "finite": true,
+              "maxabs": 24.315723419189453
+            }
+          ]
+        },
+        {
+          "module": "trunk.layers.5",
+          "outputs": [
+            {
+              "finite": true,
+              "maxabs": 215.1539306640625
+            },
+            {
+              "finite": true,
+              "maxabs": 53.20524597167969
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

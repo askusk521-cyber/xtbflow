@@ -1,0 +1,18 @@
+{
+  "s": {
+    "finite": true,
+    "maxabs": 1.3426296653352834e+25
+  },
+  "v": {
+    "finite": true,
+    "maxabs": 3.421320439178199e+17
+  },
+  "scalar_pair_product": {
+    "finite": false,
+    "maxabs": Infinity
+  },
+  "vector_pair_product": {
+    "finite": true,
+    "maxabs": 1.8626857919753603e+35
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "version": "v1a-2.1",
+  "stage": "proxy_screen",
+  "quantum_evaluations_allowed": false,
+  "outer_design": "grouped_holdout",
+  "outer_folds": 1,
+  "training_seeds": [
+    0,
+    1,
+    2
+  ],
+  "sampling_seeds": [
+    0
+  ],
+  "pair_A_and_B_by_training_seed": true,
+  "baseline_check": {
+    "reference_model": "single_time_joint_retrained_on_v1a_split",
+    "reference_training_seed": 0,
+    "max_joint_recall_drop": 0.05,
+    "max_valid_rate_drop": 0.1
+  },
+  "cohort": {
+    "resource_planning_parents": 300,
+    "screen_parents_range": [
+      200,
+      350
+    ],
+    "screen_parents": null,
+    "screen_formula_groups": null,
+    "max_parents_per_formula": 12,
+    "development_parents": 62,
+    "minimum_known_channels": 2,
+    "maximum_known_channels": null,
+    "one_query_per_parent": true,
+    "group_by": "formula",
+    "anchor_rule": "minimum_native_reactant_energy_then_reference_id",
+    "development_max_parents_per_formula": 4,
+    "screen_reserve_parents": 344
+  },
+  "proxy": {
+    "rmsd_atoms": "all",
+    "rmsd_cutoff_angstrom": 0.5,
+    "proper_rotation_only": true,
+    "same_mapping_for_event_and_geometry": true,
+    "energy_source": "actually_matched_reference_records_only",
+    "reference_energy_zero": "native_query_anchor",
+    "best_tie_kcal": 1e-06,
+    "near_best_window_kcal": 2.0
+  },
+  "generator": {
+    "steps": 50,
+    "training_steps_per_role": 60000,
+    "path_candidates": [
+      "sync",
+      "event_lead2"
+    ],
+    "frozen_path": null,
+    "alpha_x_candidates": [
+      0.15,
+      0.3
+    ],
+    "alpha_b_candidates": [
+      0.1,
+      0.25
+    ],
+    "frozen_alpha_x": null,
+    "frozen_alpha_b": null,
+    "guidance_stop_tx_candidates": [
+      0.95,
+      0.85,
+      0.75
+    ],
+    "frozen_guidance_stop_tx": null,
+    "drift_check_max_median_rmsd_increase_angstrom": 0.05,
+    "drift_check_max_joint_match_drop": 0.05,
+    "sync_fraction": 0.0
+  },
+  "score": {
+    "target": "training_fold_catalog_reference_barrier",
+    "members": [
+      101,
+      102,
+      103
+    ],
+    "training_steps_per_member": 20000,
+    "state_mixture": [
+      0.5,
+      0.25,
+      0.25
+    ],
+    "uncertainty_weight": 0.25,
+    "success_probability_head": false,
+    "frozen_support_limits": null
+  },
+  "a2": {
+    "first_round_proposals": 4,
+    "later_round_proposals": 8,
+    "first_round_keep": [
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "later_round_keep": [
+      [
+        4,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "geometry_checkpoints": null
+  },
+  "budgets": {
+    "accounting": "network_call_units_in_logical_order",
+    "unit_definition": "one_forward_of_joint_f_on_same_molecule",
+    "b0_candidate_units": 50,
+    "b0_equivalent_candidates": [
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "network_call_cost_table": null,
+    "cost_table_method": null,
+    "gpu_wall_time_reported_secondary": true,
+    "gpu_hours_cap": null,
+    "cpu_search_cap": null,
+    "same_stream_prefixes": true
+  },
+  "mechanism": {
+    "proposals_per_parent_seed": 8,
+    "amplitudes_rms_angstrom": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "random_directions_per_start": 1,
+    "shared_random_unit_direction_across_amplitudes": true,
+    "development_times_x": [
+      0.2,
+      0.35,
+      0.5,
+      0.65,
+      0.8
+    ],
+    "frozen_t_star": null,
+    "event_utility_scale_kcal": 10.0,
+    "contrasts": [
+      "U_score_minus_U_none",
+      "U_score_minus_U_random"
+    ],
+    "decision": "intersection_union_both_lower_bounds_positive",
+    "futility": "either_upper_bound_below_target",
+    "target_effect_each": 0.02,
+    "event_response_futility": 0.02
+  },
+  "rarity": {
+    "b0_proposals": 128,
+    "independent_rng": true,
+    "stratify_by": "best_known_event_frequency"
+  },
+  "statistics": {
+    "primary": "normalized_log_budget_auc_B1_minus_A2",
+    "key_secondary": "event_level_best_channel_auc_B1_minus_A2",
+    "auc_weights": [
+      0.125,
+      0.25,
+      0.25,
+      0.25,
+      0.125
+    ],
+    "target_auc_effect": 0.05,
+    "alpha_one_sided": 0.05,
+    "primary_interval": "formula_cluster_sandwich_t",
+    "bootstrap_sensitivity_repeats": 10000,
+    "target_joint_power": 0.8,
+    "power_plan_path": null,
+    "single_final_analysis": true
+  },
+  "v1b_export": {
+    "source_budget_equiv": 16,
+    "source_training_seed": 0,
+    "source_sampling_seed": 0,
+    "candidate_audit_arms": [
+      "A0",
+      "A1",
+      "A2",
+      "B0",
+      "B1"
+    ],
+    "parent_audit_arms": [
+      "A2",
+      "B1"
+    ],
+    "export_proxy_parent_labels": true,
+    "export_best_event_candidate_ids": true
+  },
+  "data": {
+    "cache": "/home/lhshen/data/t1x/t1x_m0_v1.npz",
+    "catalogue_dir": "/home/lhshen/xtbflow-runs/v1a-20261007/data",
+    "split_manifest": "/home/lhshen/xtbflow-runs/v1a-20261007/data/split_manifest.json"
+  },
+  "run_root": "/home/lhshen/xtbflow-runs/v1a-20261007",
+  "model": {
+    "scalar_dim": 128,
+    "vector_dim": 32,
+    "edge_dim": 64,
+    "n_layers": 6,
+    "n_rbf": 32,
+    "n_rbf_reactant": 16,
+    "r_cut": 10.0
+  },
+  "cascade_model": {
+    "scalar_dim": 92,
+    "vector_dim": 23,
+    "edge_dim": 64,
+    "n_layers": 6,
+    "n_rbf": 32,
+    "n_rbf_reactant": 16,
+    "r_cut": 10.0
+  },
+  "training": {
+    "steps": 60000,
+    "batch_size": 64,
+    "lr": 0.0005,
+    "min_lr": 1e-05,
+    "weight_decay": 0.0,
+    "warmup_steps": 1000,
+    "grad_clip": 1.0,
+    "ema_decay": 0.999,
+    "first_eval": 20000,
+    "eval_every": 10000,
+    "num_workers": 4,
+    "checkpoint_every": 1000
+  },
+  "flow": {
+    "sigma_b": 1.0,
+    "sigma_x": 0.5,
+    "geometry_loss_weight": 1.0
+  },
+  "checkpoint_policy": "final_60000_for_all_generators",
+  "implementation_source_base": "335dd9b8b95a8680520f9c8afd8fb28c2bae56ed",
+  "resource_preflight": {
+    "max_concurrent_gpus": 4,
+    "generator_job_limit_hours": 2,
+    "development_and_screen_cap_to_freeze_after_benchmark": true
+  }
+}

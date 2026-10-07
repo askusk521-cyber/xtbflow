@@ -1,0 +1,124 @@
+{
+  "schema": "xtbflow-v1a-pre-screen-decision/1",
+  "decision": "HOLD_POWER",
+  "stage": "before_formal_freeze",
+  "formal_screen_started": false,
+  "formal_analysis_complete": false,
+  "v1b_started": false,
+  "quantum_evaluations": 0,
+  "frozen_formal_n": null,
+  "reserved_parents": 344,
+  "reserved_formula_groups": 72,
+  "development_parents": 62,
+  "development_groups": 21,
+  "training_seeds": [
+    0,
+    1,
+    2
+  ],
+  "generator_trainings_completed": 10,
+  "generator_steps": 60000,
+  "score_members_completed": 6,
+  "score_steps": 20000,
+  "development_config": {
+    "path": "sync",
+    "alpha_x": 0.3,
+    "alpha_b": 0.25,
+    "guidance_start": 0.5,
+    "guidance_stop": 0.95,
+    "a2_times": [
+      0.4,
+      0.7
+    ],
+    "mechanism_t_star": 0.5
+  },
+  "reason": "Point-estimated target power exceeds 80%, but does not remain above 80% under the disclosed conservative planning guard.",
+  "planning_guard": {
+    "icc_increment": 0.05,
+    "sd_multiplier": 1.1
+  },
+  "guard_origin": "Analyst planning choice before first power scan; not a literal numeric requirement in the supplied guide.",
+  "target_effects": {
+    "AUC": 0.05,
+    "M0": 0.02,
+    "MR": 0.02
+  },
+  "target_scenarios_at_maximum_reserve": [
+    {
+      "distribution": "normal",
+      "sensitivity": "estimated",
+      "GO": 0.81485,
+      "mcse_GO": 0.0027465385260359997,
+      "NO_GO_RESOURCE": 0.05185,
+      "NO_GO_MECHANISM": 0.0775,
+      "HOLD": 0.0558
+    },
+    {
+      "distribution": "normal",
+      "sensitivity": "planning_guard",
+      "GO": 0.72785,
+      "mcse_GO": 0.003147096896347489,
+      "NO_GO_RESOURCE": 0.0527,
+      "NO_GO_MECHANISM": 0.0759,
+      "HOLD": 0.14355
+    },
+    {
+      "distribution": "empirical_skew",
+      "sensitivity": "estimated",
+      "GO": 0.81925,
+      "mcse_GO": 0.0027210240489565687,
+      "NO_GO_RESOURCE": 0.06625,
+      "NO_GO_MECHANISM": 0.0813,
+      "HOLD": 0.0332
+    },
+    {
+      "distribution": "empirical_skew",
+      "sensitivity": "planning_guard",
+      "GO": 0.73635,
+      "mcse_GO": 0.003115595268163052,
+      "NO_GO_RESOURCE": 0.0684,
+      "NO_GO_MECHANISM": 0.0806,
+      "HOLD": 0.11465
+    }
+  ],
+  "development_sd": [
+    0.21708017599178805,
+    0.02991246077377036,
+    0.028114621287768975
+  ],
+  "development_icc": [
+    0.15948145281354248,
+    0.0,
+    0.0
+  ],
+  "smallest_tested_auc_effect_with_guarded_80pct_power": 0.06,
+  "effects_or_formal_gate_changed": false,
+  "raw_hdf5_revalidated": false,
+  "raw_hdf5_limitation": "Original HDF5 not located; verified cache hash and inherited source/endpoint audits retained.",
+  "tests": {
+    "scientific_commit": "5aa6f96eee00206ed4480844c9b86a5dc5f41a87",
+    "pytest_passed": 341,
+    "subtests_passed": 68,
+    "reusable_unittest_passed": 56,
+    "bootstrap_pass": true
+  },
+  "measured_generator_gpu_hours": 4.148415122837501,
+  "projected_formal_gpu_hours_at_300": 1.3060393115710243,
+  "no_formal_claim": "No independent formal method advantage, H1 rejection or GO_V1b claim.",
+  "not_entered": [
+    "formal_freeze",
+    "formal_efficiency",
+    "formal_rarity",
+    "formal_gate",
+    "V1b_source_export"
+  ],
+  "production_wrapper_status": "Not claimed complete; execution stopped at the supported development power hold.",
+  "evidence_sha256": {
+    "power_plan_final.json": "bad43058afff1b933d92fa46bc3c4ed3a58cb157e0ecd57c4e2f82e6207ccbd4",
+    "power_limits_final.json": "a8773aa5eba9562e43a45b2b103259c801f6deab50c28858202f6fe81fe8af2e",
+    "resource_forecast_N300.json": "2e6eaca2877b8d177fddd3db64471597a06ff674d7c38349a91aa342a897581b",
+    "continuous_controls.json": "ffd10d7d9c21fbb2ab3d96023d1de69f0815961917f25dd1e229f6e8ae2d4b55",
+    "baseline.json": "0e2f0cf953eccba6164d7a7a095999f3fdeb5b0a68c466772c7fad76e9a75c69",
+    "cost_calibration_512.json": "6c142a6b52502aac4ecbe88e6379c734eaaabd1b6674736a716297118e991e20"
+  }
+}

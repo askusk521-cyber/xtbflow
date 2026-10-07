@@ -61,6 +61,7 @@ def rollout(net,query,state,*,role='joint',path='sync',n_steps=50,start=0,end=No
     diag={k:torch.zeros(len(b),device=b.device) for k in [
         'generator_forward','score_member_forward','score_member_backward','eligible_steps',
         'barrier_guidance_steps','skipped_out_of_support_steps','skipped_zero_gradient_steps',
+        'nonfinite_gradient_failures','success_probability_only_steps',
         'guidance_rms_total_angstrom']}
     failed=torch.zeros(len(b),device=b.device,dtype=torch.bool)
     if replay is not None and replay.shape[0]!=n_steps+1:

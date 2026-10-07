@@ -200,20 +200,24 @@ def execute_batch(requests,networks,scores,*,diagnostics=False,drift=False):
     for i,r in enumerate(requests):
         r.proposal.state=slice_state(result.state,i)
         for key,value in result.diagnostics.items():r.proposal.diagnostics[key]+=float(value[i])
-    if diagnostics and request.role!='event':
+    if diagnostics:
         tb,tx=clock_grid(request.path)
+        kind='E' if request.role=='event' else 'X'
+        clock=tb if kind=='E' else tx
         for t in (.2,.35,.5,.65,.8,1.):
-            k=observation_index(tx,t)
+            k=observation_index(clock,t)
             if not request.start<=k<=request.end:continue
             bt=torch.full_like(state.t_b,1. if request.role=='geometry' else float(tb[k]))
-            xt=torch.full_like(bt,float(tx[k]))
+            xt=torch.full_like(bt,0. if kind=='E' else float(tx[k]))
             snap=State(result.b_trace[k-request.start],result.x_trace[k-request.start],bt,xt)
-            _,info=score_direction(scores['X'],q,snap)
-            c=scores['X'].components(q,snap.b,snap.x,bt,xt)
+            _,info=score_direction(scores[kind],q,snap,kind=kind,decompose=True)
+            c=scores[kind].components(q,snap.b,snap.x,bt,xt)
             for i,r in enumerate(requests):
-                r.proposal.snapshots[str(t)]=dict(requested_t=t,actual_t_x=float(tx[k]),actual_t_b=float(bt[i]),
+                r.proposal.snapshots[kind+str(t)]=dict(kind=kind,requested_t=t,actual_t_x=float(xt[i]),actual_t_b=float(bt[i]),
                     **{key:float(info[name][i]) for key,name in [('score','score'),('mean_kcal','mean_kcal'),
-                        ('sd_kcal','sd_kcal'),('gradient_norm','gradient_norm')]},
+                        ('sd_kcal','sd_kcal'),('gradient_norm','gradient_norm'),
+                        ('barrier_gradient_norm','barrier_term_gradient_norm'),
+                        ('uncertainty_gradient_norm','uncertainty_term_gradient_norm')]},
                     supported=bool(info['supported'][i]),applicable=bool(info['applicable'][i]),
                     member_kcal=c['member_kcal'][:,i].cpu().tolist())
     if drift and request.alpha and request.end==50 and request.role in ('geometry','joint'):

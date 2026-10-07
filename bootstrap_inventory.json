@@ -1129,8 +1129,8 @@
     },
     {
       "path": "scripts/v1a_stream_evaluate.py",
-      "sha256": "96d60b9c18f37301e0a535af907bd80a17a0472940a6e78b7edcd6391ad38511",
-      "bytes": 9417
+      "sha256": "ce6b64391426699e88efd0b4c62ffdb7d68c78eea55a5228d1b3dcbb0e80342a",
+      "bytes": 9705
     },
     {
       "path": "scripts/v1a_stream_generate.py",
@@ -1534,8 +1534,8 @@
     },
     {
       "path": "src/xtbflow/v1/guidance.py",
-      "sha256": "135b21b6916736aa63aeda1d4725851d2269ce7d05d2ea7da623daec9d950f8f",
-      "bytes": 2894
+      "sha256": "fd32541a895a75c5fbbc8c224ef365b378a78d65e1aa28b7a049d7c960f0a68c",
+      "bytes": 3256
     },
     {
       "path": "src/xtbflow/v1/interfaces.py",
@@ -1546,6 +1546,11 @@
       "path": "src/xtbflow/v1/metrics.py",
       "sha256": "599dc25e782cfb5a303a974cd6d72cb44b255ad7be8dc59a3b077338f993fca7",
       "bytes": 3767
+    },
+    {
+      "path": "src/xtbflow/v1/power.py",
+      "sha256": "827edb11ca3b82d7c382fa7f8008b5c05943dea70b6b8cac0840522610a97e40",
+      "bytes": 4561
     },
     {
       "path": "src/xtbflow/v1/proxy.py",
@@ -1564,8 +1569,8 @@
     },
     {
       "path": "src/xtbflow/v1/sampler.py",
-      "sha256": "a9bf8d3314aea37cf72f9a3963622f39d5eea78107d6bef89d1d7886dc7cd1c5",
-      "bytes": 5937
+      "sha256": "97c8eb5955b78fbcc4b12c8da152cd4fbac67c57df93f73eee13bf68013f83b5",
+      "bytes": 6009
     },
     {
       "path": "src/xtbflow/v1/score_training.py",
@@ -1584,8 +1589,8 @@
     },
     {
       "path": "src/xtbflow/v1/streams.py",
-      "sha256": "ad515fbeb9e8740bbcc30c660167d1ff7947065b46ac52bdd764c45481c8b351",
-      "bytes": 11687
+      "sha256": "e969a5a4f149ec4b45bef9a26fd70f6270ee599bbd30f39e280101afbd0562f8",
+      "bytes": 11984
     },
     {
       "path": "src/xtbflow/v1/training.py",
@@ -1851,6 +1856,11 @@
       "path": "tests/test_v1_metrics_gate.py",
       "sha256": "cebed2b398f08ea3f754c0b0ab29371b4fab17681c6f430f2228a4c901b6e1fa",
       "bytes": 2155
+    },
+    {
+      "path": "tests/test_v1_power.py",
+      "sha256": "b4c6ad3eb875ea9f1413445c0a746b0f718973005e9a75f880c07ee1746bd753",
+      "bytes": 1354
     },
     {
       "path": "tests/test_v1_proxy.py",

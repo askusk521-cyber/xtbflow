@@ -19,13 +19,19 @@ def unit_geometry_direction(gradient,mask,eps=1e-10):
     return torch.where(valid[:,None,None],unit,torch.zeros_like(unit)),valid
 
 
-def score_direction(score,query,state,kind='X'):
+def score_direction(score,query,state,kind='X',decompose=False):
+    parts={}
     with torch.enable_grad():
         target=(state.x if kind=='X' else state.b).detach().clone().requires_grad_(True)
         b=state.b.detach() if kind=='X' else target
         x=target if kind=='X' else state.x.detach()
         c=score.components(query,b,x,state.t_b,state.t_x)
         if not torch.isfinite(c['phi']).all():raise FloatingPointError('nonfinite score')
+        if decompose:
+            # Extra backwards are diagnostic work, excluded from online calls.
+            for key in ('barrier_term','uncertainty_term'):
+                grad=torch.autograd.grad(c[key].sum(),target,retain_graph=True)[0]
+                parts[key+'_gradient_norm']=grad.detach().flatten(1).norm(dim=1)
         gradient=torch.autograd.grad(c['phi'].sum(),target)[0]
     if not torch.isfinite(gradient).all():raise FloatingPointError('nonfinite input gradient')
     if kind=='X':
@@ -40,7 +46,7 @@ def score_direction(score,query,state,kind='X'):
     return direction,dict(applicable=applicable,nonzero=nonzero,supported=c['supported'].detach(),
                           gradient_norm=gradient.detach().flatten(1).norm(dim=1),
                           score=c['phi'].detach(),mean_kcal=c['mean_kcal'].detach(),
-                          sd_kcal=c['sd_kcal'].detach())
+                          sd_kcal=c['sd_kcal'].detach(),**parts)
 
 
 def geometry_step(unit,mask,amount):

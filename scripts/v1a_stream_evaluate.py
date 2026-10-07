@@ -71,7 +71,7 @@ def main():
             r.update(parent_id=p['parent_id'],split_group=p['split_group'],arm=arm,
                      training_seed=row['training_seed'],sampling_seed=0)
             for snap in r['snapshots']:
-                calibration[arm,snap['requested_t']].append(dict(r,**snap))
+                calibration[arm,snap.get('kind','X'),snap['requested_t']].append(dict(r,**snap))
             shadow=r.pop('shadow',None)
             if shadow is not None:
                 shadow.update(matcher.match(shadow['b_dec'],shadow['x'],shadow['is_fallback'],shadow['decode_status']))
@@ -102,8 +102,8 @@ def main():
     for arm,rr in parent_rows.items():
         summaries[arm]=dict(parent_rows=rr,**{key:np.mean([r[key] for r in rr],axis=0).tolist()
             for key in ('hits','event_hits','any_reference_hits','auc','event_auc','completed_candidates','valid_candidates','unique_events')})
-    cal={}
-    for (arm,t),rr in calibration.items():
+    cal={};event_cal={}
+    for (arm,kind,t),rr in calibration.items():
         item=score_calibration(rr,'score','mean_kcal')
         matched=[r for r in rr if r['proxy_status']=='PROXY_MATCH']
         item.update(support_rate=float(np.mean([r['supported'] for r in rr])),
@@ -111,7 +111,9 @@ def main():
                     score_quantiles=np.quantile([r['score'] for r in rr],[.01,.5,.99]).tolist(),
                     member_mae_kcal=None if not matched else [float(np.mean([
                         abs(r['member_kcal'][i]-r['catalog_barrier_kcal']) for r in matched])) for i in range(3)])
-        cal.setdefault(arm,{})[str(t)]=item
+        for key in ('barrier_gradient_norm','uncertainty_gradient_norm'):
+            if all(key in r for r in rr):item[key+'_median']=float(np.median([r[key] for r in rr]))
+        (cal if kind=='X' else event_cal).setdefault(arm,{})[str(t)]=item
     drift_report={}
     for arm in ('A2','B1'):
         if arm not in manifest['arms']:continue
@@ -125,7 +127,8 @@ def main():
         primary=cluster_summary([b1[p]['auc']-a2[p]['auc'] for p in sorted(a2)],
                                  [a2[p]['split_group'] for p in sorted(a2)])
     report=dict(status='DEVELOPMENT_STREAM_AUDIT_PASS',config=manifest['config'],summaries=summaries,
-                calibration=cal,drift=drift_report,attempt_status_counts={k:dict(v) for k,v in failures.items()},
+                calibration=cal,event_calibration=event_cal,drift=drift_report,
+                attempt_status_counts={k:dict(v) for k,v in failures.items()},
                 development_primary=primary,source_sha256=manifest['streams_sha256'],split_hash=split['split_hash'],
                 matcher_cpu_wall_s=time.monotonic()-started,
                 interpretation='Development calibration and selection only. No formal method comparison or GO decision.')

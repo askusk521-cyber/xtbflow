@@ -828,6 +828,26 @@
       "bytes": 3999
     },
     {
+      "path": "docs/evidence/v1a/formal/RESULT_ZH.md",
+      "sha256": "bae74f311188f81b4675d962652ea75074a1f8cde45d113cdf29e3c79c9df605",
+      "bytes": 5657
+    },
+    {
+      "path": "docs/evidence/v1a/formal/SHA256SUMS",
+      "sha256": "556e34761d725660a4de59d89f64334ea54df9f9e40685482898c564576f59df",
+      "bytes": 1254
+    },
+    {
+      "path": "docs/evidence/v1a/formal/freeze.json",
+      "sha256": "fef5e7dc87951d2af40822f2006c1c6af363c32b3c51588b65b8b7c2c51207dc",
+      "bytes": 29898
+    },
+    {
+      "path": "docs/evidence/v1a/formal/gate.json",
+      "sha256": "467b4f581c3c2c14f0a58977eb8c6989e95ebcb882c1943f366c7120f7090c6a",
+      "bytes": 113612
+    },
+    {
       "path": "docs/evidence/workflow_b_software_acceptance_20260929.json",
       "sha256": "2fe89dcd76c896b6f9949e7aec55781568b37f6bc2c1c89a5fb3bfd210080da9",
       "bytes": 4166

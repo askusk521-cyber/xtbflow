@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import random
 import subprocess
+import sys
 import time
 
 import numpy as np
@@ -28,6 +29,9 @@ def lr_at(step,tc):
 
 
 def main():
+    if len(sys.argv)>1 and sys.argv[1]=='scores':
+        from v1a_train_scores import main as score_main
+        return score_main()
     ap=argparse.ArgumentParser()
     ap.add_argument('command',choices=['generators'])
     ap.add_argument('--config',type=Path,required=True)
@@ -106,7 +110,7 @@ def main():
         step+=1
         if step%100==0 or step==stop:
             row=dict(step=step,elapsed_s=elapsed+time.monotonic()-started,grad_norm=float(gn),
-                     **{k:float(v) for k,v in losses.items()})
+                     **{k:float(v.detach()) for k,v in losses.items()})
             log.write(json.dumps(row,allow_nan=False)+'\n');log.flush()
             print(json.dumps(row),flush=True)
         if step%1000==0 or step==stop:

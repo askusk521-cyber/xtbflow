@@ -1114,8 +1114,13 @@
     },
     {
       "path": "scripts/v1a_train.py",
-      "sha256": "6f3ad6d3741b500e0b391e9173fc02fb3b05405ef8934e0fb9c163a6679b9db0",
-      "bytes": 6774
+      "sha256": "b9005d9c363fc8fdb4ce934d55c60630c05b54b0ce53ee0191cec3621e4c919d",
+      "bytes": 6928
+    },
+    {
+      "path": "scripts/v1a_train_scores.py",
+      "sha256": "65ac6426b254029bcd19cdb8aed63b188c6559f38300582e7c984ed515efc7f5",
+      "bytes": 5663
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -1483,6 +1488,16 @@
       "bytes": 4173
     },
     {
+      "path": "src/xtbflow/v1/score_training.py",
+      "sha256": "cd7ed4c62a4dbd7afceba797558cb35913154d7f4ee963cd9d4ae68fb3c35850",
+      "bytes": 3465
+    },
+    {
+      "path": "src/xtbflow/v1/scores.py",
+      "sha256": "b44c03a3cd7630a632a03a8ca16a51ef977f97248313256ee362a5504c4039bb",
+      "bytes": 2720
+    },
+    {
       "path": "src/xtbflow/v1/training.py",
       "sha256": "402e72573b22c2d1f8ea901deb286da3c7a44450ec5596634b9addde2b1a92b9",
       "bytes": 1942
@@ -1731,6 +1746,11 @@
       "path": "tests/test_v1_proxy.py",
       "sha256": "f360d2ca4236c6206831ff4606fb04956b3321256d23bd861bcecc5a814aab85",
       "bytes": 2205
+    },
+    {
+      "path": "tests/test_v1_scores.py",
+      "sha256": "cf7e4039daa51bb5c69bbc06883955c5def8be2c84c67a7e8429df6d23052618",
+      "bytes": 2651
     },
     {
       "path": "tests/test_workflow_b_protocol.py",

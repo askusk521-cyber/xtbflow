@@ -598,6 +598,11 @@
       "bytes": 7207
     },
     {
+      "path": "docs/evidence/m0/frozen_selection.json",
+      "sha256": "be03b6b9664cf1033dd2938f479c24d2b030b5d689a1d8a4b1185efb43cbec70",
+      "bytes": 11209
+    },
+    {
       "path": "docs/evidence/m0/full_geometry_s1_failure.json",
       "sha256": "ef4a74876c6da050e68dad46f930995b854f1e19f811ec20e0bf354ce8583c05",
       "bytes": 403
@@ -606,6 +611,11 @@
       "path": "docs/evidence/m0/full_joint_s0_failure.json",
       "sha256": "2b676b3e09b9550fa394a42f7ad7fc412161e7e0265d0842d4905bbf861b41b7",
       "bytes": 914
+    },
+    {
+      "path": "docs/evidence/m0/gate_result.json",
+      "sha256": "63320ccb471d9f14a72fa4bd14b05abc7fdcf2799c8c5348698c3515b63670ec",
+      "bytes": 17749
     },
     {
       "path": "docs/evidence/m0/gpu_benchmark_500.json",
@@ -626,6 +636,11 @@
       "path": "docs/evidence/m0/numerical_stop.json",
       "sha256": "64bf0d6162e6040e8ecc10160af2a44eaf7343a4c2b40013353d2b897dc72a4e",
       "bytes": 5351
+    },
+    {
+      "path": "docs/evidence/m0/resource_ledger.json",
+      "sha256": "83f839fda30be45f655154ce3c5460eb84778640c26d4b969cdfdbdbc48f789d",
+      "bytes": 6812
     },
     {
       "path": "docs/evidence/m0/stabilization_decision.json",
@@ -843,6 +858,16 @@
       "bytes": 2857
     },
     {
+      "path": "docs/m0/M0_GATE_REPORT.delta.svg",
+      "sha256": "66dbc4c1f1fbe0ef49c06a03b8ab61fbdb5e3c8fb23be6020b9d4171a2a6f001",
+      "bytes": 815
+    },
+    {
+      "path": "docs/m0/M0_GATE_REPORT.md",
+      "sha256": "622631756b2bd30f902f5e1d0ba05a96b7001bfadaf234b285fd0b8c43333085",
+      "bytes": 1850
+    },
+    {
       "path": "docs/model_design.md",
       "sha256": "bdf387e56ea531479b11068b397e98912004ae24c8e784fb37339106cdcb87ef",
       "bytes": 4233
@@ -998,6 +1023,16 @@
       "bytes": 11435
     },
     {
+      "path": "scripts/m0_evaluate.py",
+      "sha256": "551039d673b7fe68cfb85d0c3d00f640b468797e396e0c19bb45d269d018fb74",
+      "bytes": 2503
+    },
+    {
+      "path": "scripts/m0_gate_report.py",
+      "sha256": "edf9ff99442bcbd008befcdd7f493ae4bd0696bce908054f25f367498d38df0e",
+      "bytes": 9205
+    },
+    {
       "path": "scripts/m0_prepare_t1x.py",
       "sha256": "4336f99a8497d72e3245c4c5af6f1894d915019ed950a28bcbe549fb5e3ba9ef",
       "bytes": 569
@@ -1006,6 +1041,11 @@
       "path": "scripts/m0_sample.py",
       "sha256": "ffc6c24077c2745b2fddce1430d4dbe1326bb35f07a30898331ee6d549ef6f24",
       "bytes": 5684
+    },
+    {
+      "path": "scripts/m0_select.py",
+      "sha256": "dfad24fd14e953f76d55be048be79ce36243ed404763aee495cd2826f60d7c4f",
+      "bytes": 5983
     },
     {
       "path": "scripts/m0_slurm.sh",
@@ -1231,6 +1271,11 @@
       "path": "src/xtbflow/m0/flow.py",
       "sha256": "48b7054b5cb9d4c3b0c2711bc496c0ae005b40a42fccdb183291f541b403ac34",
       "bytes": 3928
+    },
+    {
+      "path": "src/xtbflow/m0/metrics.py",
+      "sha256": "0bc22d2098028bb754c29ad8b72c0fa12522d58ac6ac8197008b25942d9d7745",
+      "bytes": 5586
     },
     {
       "path": "src/xtbflow/m0/model.py",
@@ -1533,6 +1578,16 @@
       "bytes": 3185
     },
     {
+      "path": "tests/test_m0_evaluate_cli.py",
+      "sha256": "f9b498599cc4bffff7aa2fdb9d9d7eae17625d38344ee4428174ea1a321f4279",
+      "bytes": 1600
+    },
+    {
+      "path": "tests/test_m0_metrics.py",
+      "sha256": "f0b10736c9b830ce63f611839d6b9c452e98be9f740560956c90fbd6ae113f30",
+      "bytes": 2099
+    },
+    {
       "path": "tests/test_m0_model.py",
       "sha256": "d25c639cfda82040ddb4e1a13a307ac3f7e715cc0031faa85adc645bf85b3db9",
       "bytes": 3727
@@ -1543,6 +1598,11 @@
       "bytes": 1898
     },
     {
+      "path": "tests/test_m0_report.py",
+      "sha256": "133432ba9f67d6850bf8a6425e9c4309daf6536c965d2677efee1c08f6c37cab",
+      "bytes": 2548
+    },
+    {
       "path": "tests/test_m0_sample_cli.py",
       "sha256": "b1381050945d01d2ba8a3382de687a725d221630af8a03c92cc7a9ad912ced98",
       "bytes": 2398
@@ -1551,6 +1611,11 @@
       "path": "tests/test_m0_sampler.py",
       "sha256": "c376c98fdb13f6fa42db81b0119ce54a34c19e9a1e7a93457640fa08baec9248",
       "bytes": 1088
+    },
+    {
+      "path": "tests/test_m0_select.py",
+      "sha256": "a2ea272942f030a7c04a5433db6296156993b2ecb49c28d4522812f4d2f2d1e8",
+      "bytes": 3078
     },
     {
       "path": "tests/test_m0_stability.py",

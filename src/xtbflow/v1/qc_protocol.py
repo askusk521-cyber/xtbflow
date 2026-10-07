@@ -158,6 +158,8 @@ def make_engine(z,method,meter,stage):
     class GPU4PySCFEngine(Engine):
         def __init__(self,x_ang):
             M=Molecule();M.elem=[SYMBOLS[int(a)] for a in z];M.xyzs=[np.asarray(x_ang,dtype=float)]
+            M.comms=['']
+            M.build_topology()  # IRC in tric coordinates needs fragment topology (M.molecules)
             super().__init__(M);self.dm=None;self.calls=0
 
         def calc_new(self,coords,dirname):
@@ -271,8 +273,14 @@ def endpoint_identity(z,b_r,perms,b_predicted,x_end1,x_end2):
                 product_be=product.tolist())
 
 
-def certification_chain(z,x_raw,b_r,perms,b_predicted,method,workdir,meter=None):
-    """Full strict chain for one start structure. Returns a JSON-serialisable verdict."""
+def certification_chain(z,x_raw,b_r,perms,b_predicted,method,workdir,meter=None,energy_exclusion_hartree=None):
+    """Full strict chain for one start structure. Returns a JSON-serialisable verdict.
+
+    `energy_exclusion_hartree` is the Stage-B pre-registered short circuit: an
+    absolute TS energy above which the candidate cannot be a best_cert_hit. It
+    only ends the chain with ENERGY_EXCLUDED_FOR_BEST; strict_joint_graph stays
+    unknown (None), never 0.
+    """
     meter=meter or Meter();workdir=Path(workdir);workdir.mkdir(parents=True,exist_ok=True)
     t0=time.perf_counter();out=dict(method=method.as_dict(),n_atoms=len(z))
     try:
@@ -284,6 +292,9 @@ def certification_chain(z,x_raw,b_r,perms,b_predicted,method,workdir,meter=None)
         out['ts']=ts;out['ts_optfreq_success']=int(ts['status']=='TS_OPTFREQ_PASS')
         if ts['status']!='TS_OPTFREQ_PASS':
             out['strict_status']='PROTOCOL_FAILURE';out['strict_joint_graph']=0
+            return finish(out,meter,t0,workdir)
+        if energy_exclusion_hartree is not None and ts['energy_hartree']>energy_exclusion_hartree:
+            out['strict_status']='ENERGY_EXCLUDED_FOR_BEST';out['strict_joint_graph']=None
             return finish(out,meter,t0,workdir)
         irc=irc_stage(z,ts,method,meter,workdir/'irc');out['irc']=irc
         if irc['status']!='IRC_COMPLETE':

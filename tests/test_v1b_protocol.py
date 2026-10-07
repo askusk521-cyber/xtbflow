@@ -118,3 +118,28 @@ def test_proxy_classes_are_exclusive():
     assert proxy_class(candidate("c", "A0", "p", "MATCH_UNRESOLVED")) == "PROXY_UNRESOLVED"
     assert parent_stratum(dict(proxy_best_reference_hit=1, best_event_candidate_ids=["x"]),
                           dict(proxy_best_reference_hit=1, best_event_candidate_ids=["y"])) == "both"
+
+
+def test_saddle_and_minimum_classification_thresholds():
+    import numpy as np
+    from xtbflow.v1.qc_protocol import classify_minimum,classify_saddle
+    assert classify_saddle(np.array([-450., 30., 900.])) == "TS_OPTFREQ_PASS"
+    assert classify_saddle(np.array([-450., -40., 900.])) == "MULTIPLE_NEGATIVE_MODES"
+    assert classify_saddle(np.array([-450., -12., 900.])) == "FREQUENCY_GRAY_ZONE"
+    assert classify_saddle(np.array([-12., 30.])) == "FREQUENCY_GRAY_ZONE"
+    assert classify_saddle(np.array([25., 30.])) == "NO_NEGATIVE_MODE"
+    assert classify_minimum(np.array([-35., 30.])) == "MINIMUM_HAS_NEGATIVE_MODE"
+    assert classify_minimum(np.array([-5., 30.])) == "MINIMUM_GRAY_ZONE"
+
+
+def test_best_cert_interval_semantics():
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+    from v1b_run import best_cert
+    assert best_cert(None, 10.) == (0, 1)
+    assert best_cert(dict(strict_status="ENERGY_EXCLUDED_FOR_BEST", strict_joint_graph=None), 10.) == (0, 0)
+    assert best_cert(dict(strict_joint_graph=0), None) == (0, 0)
+    assert best_cert(dict(strict_joint_graph=1, relative_energy_anchor_kcal=10.9), None) == (0, 1)
+    assert best_cert(dict(strict_joint_graph=1, relative_energy_anchor_kcal=10.9), 10.) == (1, 1)
+    assert best_cert(dict(strict_joint_graph=1, relative_energy_anchor_kcal=11.2), 10.) == (0, 0)

@@ -369,8 +369,8 @@
     },
     {
       "path": "docs/M0_DIAGNOSTIC_HANDOFF.md",
-      "sha256": "17754cbf987b3fea8f2f86f333a887c0d966de27f25c966514626f170d5867ab",
-      "bytes": 8279
+      "sha256": "781f6ef16ce0a7e93ec1f69c314cb2f8881a14a981e5b5b875284e95bea12c6b",
+      "bytes": 8759
     },
     {
       "path": "docs/MECHAI_REUSE_MANIFEST.json",

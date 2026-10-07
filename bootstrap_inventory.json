@@ -598,6 +598,11 @@
       "bytes": 7207
     },
     {
+      "path": "docs/evidence/m0/frozen_selection.json",
+      "sha256": "be03b6b9664cf1033dd2938f479c24d2b030b5d689a1d8a4b1185efb43cbec70",
+      "bytes": 11209
+    },
+    {
       "path": "docs/evidence/m0/full_geometry_s1_failure.json",
       "sha256": "ef4a74876c6da050e68dad46f930995b854f1e19f811ec20e0bf354ce8583c05",
       "bytes": 403

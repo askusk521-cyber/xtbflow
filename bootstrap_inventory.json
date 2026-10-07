@@ -823,6 +823,11 @@
       "bytes": 155056
     },
     {
+      "path": "docs/evidence/v1a/development_decision.json",
+      "sha256": "1e3cfc680efe25afaf06a58daa31012ce0e4863e51c96dfbe472400767e626ff",
+      "bytes": 3999
+    },
+    {
       "path": "docs/evidence/workflow_b_software_acceptance_20260929.json",
       "sha256": "2fe89dcd76c896b6f9949e7aec55781568b37f6bc2c1c89a5fb3bfd210080da9",
       "bytes": 4166
@@ -853,9 +858,19 @@
       "bytes": 3700
     },
     {
+      "path": "docs/v1a/DEVELOPMENT_RESULT.md",
+      "sha256": "35a7b4b5efeeb248cddede4991ada332767d3eb99660293f199324b36987f0c3",
+      "bytes": 2612
+    },
+    {
+      "path": "docs/v1a/DEVELOPMENT_RESULT_ZH.md",
+      "sha256": "6706ef98466dc80ac3d4e2e701fb2dd16aa63fba1d1737f265a628e2f179aa5c",
+      "bytes": 8451
+    },
+    {
       "path": "docs/v1a/EXECUTION.md",
-      "sha256": "d6ca6205be32bb262f4a635528c4515b104897accce4136df043f4b36b40499d",
-      "bytes": 5281
+      "sha256": "19e5125b6d88a009ec4d58405138cd98e3597b2742090e7ece558b789455843b",
+      "bytes": 7352
     },
     {
       "path": "docs/v1a/protocol-v2.1.md",

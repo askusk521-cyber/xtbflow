@@ -1118,6 +1118,11 @@
       "bytes": 3709
     },
     {
+      "path": "scripts/v1a_power_plan.py",
+      "sha256": "849b3efa1115e29aa19fb784d287e53129077b4c2e8d96b3786d29fd13122b17",
+      "bytes": 6518
+    },
+    {
       "path": "scripts/v1a_prepare.py",
       "sha256": "a9e0a2e50b9a9c5d618ac291a18c87494bfc381048d47f0929632abc2d0d089c",
       "bytes": 2625

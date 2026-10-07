@@ -1,0 +1,44 @@
+{
+  "torch.float32": {
+    "loss": {
+      "event": Infinity,
+      "geometry": Infinity,
+      "total": Infinity
+    },
+    "outputs": {
+      "b_vel": {
+        "finite": true,
+        "maxabs": 9.922753615175185e+20,
+        "bad_square_indices": [
+          7451
+        ]
+      },
+      "x_vel": {
+        "finite": true,
+        "maxabs": 1.2497915907197801e+23,
+        "bad_square_indices": [
+          7451
+        ]
+      }
+    }
+  },
+  "torch.float64": {
+    "loss": {
+      "event": 3.003610127538137e+38,
+      "geometry": 1.4513275900690496e+43,
+      "total": 1.451357626170325e+43
+    },
+    "outputs": {
+      "b_vel": {
+        "finite": true,
+        "maxabs": 9.922663731760807e+20,
+        "bad_square_indices": []
+      },
+      "x_vel": {
+        "finite": true,
+        "maxabs": 1.2498238488309747e+23,
+        "bad_square_indices": []
+      }
+    }
+  }
+}

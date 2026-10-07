@@ -4,10 +4,13 @@ from __future__ import annotations
 import math
 
 import torch
+import torch.nn.functional as F
 from torch import Tensor, nn
 
 from .batching import N_ELEMENT_TYPES
 from .numerics import pair_geometry
+
+UPDATE_VEC_EPS = 1.0e-6  # 更新块向量归一化的分母下限（特征尺度，无物理单位）
 
 
 def gaussian_rbf(d: Tensor, n: int, r_max: float) -> Tensor:
@@ -57,9 +60,17 @@ class PaiNNLayer(nn.Module):
         dv = (v[:, None, :, :, :] * dvv[:, :, :, None, :]).sum(dim=2) \
             + (unit[..., None] * dvr[:, :, :, None, :]).sum(dim=2)
         v = v + dv * scale[..., None]
-        uv, vv = self.U(v), self.V(v)
+        # 更新块的输入先做无参数归一化（2026-10-07 负责人批准的稳定化修改）。
+        # 原式 a_vv·U(v) 与 a_sv·<Uv,Vv> 对 |v| 是二次的，孤立且位移大的原子
+        # （训练样本 7451 的 H7，位移约 8.8 Å）会逐层双指数放大直至 float32 溢出。
+        # s_hat 用不带仿射参数的 LayerNorm；v_hat 按原子除以各通道向量模平方均值的
+        # 平方根，是旋转不变的标量缩放，故保持等变；被屏蔽原子 v=0 时 v_hat=0。
+        # 残差流 s、v 本身不归一化，位移幅度仍经残差流传给输出头。不新增参数。
+        s_hat = F.layer_norm(s, (fs,))
+        v_hat = v * torch.rsqrt(v.square().sum(dim=2).mean(dim=-1) + UPDATE_VEC_EPS)[..., None, None]
+        uv, vv = self.U(v_hat), self.V(v_hat)
         vv_norm = torch.sqrt(vv.square().sum(dim=2) + 1e-8)  # [B,N,fv]，在 0 处梯度安全
-        a = self.update(torch.cat([s, vv_norm], dim=-1))
+        a = self.update(torch.cat([s_hat, vv_norm], dim=-1))
         a_vv, a_sv, a_ss = torch.split(a, [fv, fs, fs], dim=-1)
         s = s + a_ss + a_sv * self.inner_to_s((uv * vv).sum(dim=2))
         v = v + a_vv[:, :, None, :] * uv

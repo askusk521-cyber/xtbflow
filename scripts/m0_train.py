@@ -33,6 +33,8 @@ def main() -> None:
     ap.add_argument("--sigma-x", type=float, default=None)
     ap.add_argument("--wide-cascade", action="store_true")   # 只用于可选的 A2x 对照
     ap.add_argument("--limit", type=int, default=None)       # 调试用
+    # 有界诊断复现用：在该步后停止，但学习率计划仍按 steps 计算，与正式运行逐步一致。
+    ap.add_argument("--stop-at", type=int, default=None)
     a = ap.parse_args()
 
     cfg = json.loads(a.config.read_text())
@@ -63,14 +65,15 @@ def main() -> None:
     eval_steps = set(range(tc["first_eval"], tc["steps"] + 1, tc["eval_every"])) | {tc["steps"]}
     git_sha = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
     meta = {"role": a.role, "seed": a.seed, "model_cfg": model_cfg, "sigma_b": sigma_b, "sigma_x": sigma_x,
-            "train": tc, "params": count_parameters(model), "git_sha": git_sha,
+            "train": tc, "stop_at": a.stop_at, "params": count_parameters(model), "git_sha": git_sha,
             "config_sha256": hashlib.sha256(a.config.read_bytes()).hexdigest(),
             "device": torch.cuda.get_device_name(0) if device.type == "cuda" else "cpu"}
     (a.out / "run_meta.json").write_text(json.dumps(meta, indent=2))
 
     log = (a.out / "train_log.jsonl").open("w")
     step, t0 = 0, time.time()
-    while step < tc["steps"]:
+    stop = tc["steps"] if a.stop_at is None else min(tc["steps"], a.stop_at)
+    while step < stop:
         for batch in loader:
             batch = {k: v.to(device, non_blocking=True) for k, v in batch.items()}
             for group in opt.param_groups:
@@ -97,7 +100,7 @@ def main() -> None:
             if step in eval_steps:
                 torch.save({"ema": ema.state_dict(), "model": model.state_dict(), "step": step, **meta},
                            a.out / f"ckpt_{step}.pt")
-            if step >= tc["steps"]:
+            if step >= stop:
                 break
     log.close()
 

@@ -1144,8 +1144,8 @@
     },
     {
       "path": "scripts/v1a_formal.sh",
-      "sha256": "0e4db8579cb9d79e10c5dd3eca519305c9cd619b8222081e5dbcf173ee3ff9a7",
-      "bytes": 3735
+      "sha256": "3864a71fa3816ee3b7f41e2877c87e2f082779d673321b1070abf6a0532a01e5",
+      "bytes": 3875
     },
     {
       "path": "scripts/v1a_freeze.py",
@@ -1214,8 +1214,8 @@
     },
     {
       "path": "scripts/v1a_window_generate.py",
-      "sha256": "451af31f65354521945163d0e3784dd43da503b502345f0307352dfbed08cb6b",
-      "bytes": 5973
+      "sha256": "a4d8f1ec04e5136e7d5158919d8bd220fcd8392e5d13cc314928af0c245eebd9",
+      "bytes": 6102
     },
     {
       "path": "scripts/validate_bootstrap.py",

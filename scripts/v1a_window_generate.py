@@ -19,7 +19,7 @@ def main():
     ap.add_argument('--queries',type=Path,required=True)
     ap.add_argument('--run-root',type=Path,required=True)
     ap.add_argument('--out',type=Path,required=True)
-    ap.add_argument('--path',choices=['sync','event_lead2'],required=True)
+    ap.add_argument('--path',choices=['sync','event_lead2'],help='required for development; screen uses the freeze')
     ap.add_argument('--proposals',type=int,default=8)
     ap.add_argument('--batch-size',type=int,default=64)
     ap.add_argument('--seed',type=int,choices=[0,1,2],default=0)
@@ -30,6 +30,7 @@ def main():
     if freeze is not None:
         # Screen mechanism: one frozen t*, frozen path, eight proposals; no window search.
         a.times,a.path,a.proposals=[freeze['config']['t_star']],freeze['config']['path'],8
+    elif a.path is None:raise ValueError('--path is required for development windows')
     if not torch.cuda.is_available():raise RuntimeError('allocated GPU required')
     for q in rows:assert_query_fields(q)
     if any(t not in (.20,.35,.50,.65,.80) for t in a.times) or len(a.times)!=len(set(a.times)):

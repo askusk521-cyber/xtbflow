@@ -1,7 +1,7 @@
 #!/bin/bash
 # V1a formal screen driver. Usage (from a clean checkout at the frozen commit):
 #   sbatch scripts/v1a_formal.sh <stage> [seed]
-# Stages, in order: plan, freeze, seed (0/1/2), controls, rarity, report.
+# Stages, in order: plan, freeze, seed (0/1/2; = efficiency then pulses), controls, rarity, report.
 # Every stage writes into new directories and refuses to overwrite earlier output.
 #SBATCH --partition=main
 #SBATCH --gres=gpu:pro6000:1
@@ -34,15 +34,19 @@ freeze)
     --drift-reports "$ev/streams_sync_a030.json" "$ev/streams_sync_s1.json" "$ev/streams_sync_s2.json" \
     --pulse-reports "$ev/selected_pulse_s0_final.json" "$ev/selected_pulse_s1_final.json" "$ev/selected_pulse_s2_final.json" \
     --decision docs/v1a/FREEZE_DECISION_ZH.md --out "$freeze" ;;
-seed)
+seed|efficiency|pulses)
   q=(--queries "$data/screen_queries.jsonl" --run-root "$root" --frozen "$freeze")
-  "$py" -B scripts/v1a_stream_generate.py "${q[@]}" --costs "$ev/cost_calibration_512.json" --seed "$seed" \
-    --batch-size 512 --out "$screen/efficiency_s$seed"
-  "$py" -B scripts/v1a_stream_evaluate.py --run "$screen/efficiency_s$seed" --catalogue "$data" --frozen "$freeze" \
-    --out "$screen/efficiency_s$seed.json"
-  "$py" -B scripts/v1a_window_generate.py "${q[@]}" --seed "$seed" --out "$screen/pulses_s$seed"
-  "$py" -B scripts/v1a_window_evaluate.py --run "$screen/pulses_s$seed" --catalogue "$data" --frozen "$freeze" \
-    --out "$screen/pulses_s$seed.json" ;;
+  if [ "$stage" != pulses ]; then
+    "$py" -B scripts/v1a_stream_generate.py "${q[@]}" --costs "$ev/cost_calibration_512.json" --seed "$seed" \
+      --batch-size 512 --out "$screen/efficiency_s$seed"
+    "$py" -B scripts/v1a_stream_evaluate.py --run "$screen/efficiency_s$seed" --catalogue "$data" --frozen "$freeze" \
+      --out "$screen/efficiency_s$seed.json"
+  fi
+  if [ "$stage" != efficiency ]; then
+    "$py" -B scripts/v1a_window_generate.py "${q[@]}" --seed "$seed" --out "$screen/pulses_s$seed"
+    "$py" -B scripts/v1a_window_evaluate.py --run "$screen/pulses_s$seed" --catalogue "$data" --frozen "$freeze" \
+      --out "$screen/pulses_s$seed.json"
+  fi ;;
 controls)
   "$py" -B scripts/v1a_control_probe.py --queries "$data/screen_queries.jsonl" --run-root "$root" --frozen "$freeze" \
     --out "$screen/controls"

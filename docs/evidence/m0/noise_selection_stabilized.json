@@ -1,0 +1,101 @@
+{
+  "stage": "validation_noise_selection",
+  "seed": 0,
+  "steps": 20000,
+  "n_candidates": 8,
+  "tie_rule": "lower sigma_b, then lower sigma_x",
+  "selected": {
+    "joint": {
+      "arm": "joint",
+      "sigma_b": 1.0,
+      "sigma_x": 0.5,
+      "M": 0.2313787222878132,
+      "n_queries": 220,
+      "n_parents": 33,
+      "eval_sha256": "7a20bd920a1d57721ff966a0a735bb90c40724e28e00ab8334bfe502d4ec44dc"
+    },
+    "cascade": {
+      "arm": "cascade",
+      "sigma_b": 1.0,
+      "sigma_x": 0.5,
+      "M": 0.2354398968035332,
+      "n_queries": 220,
+      "n_parents": 33,
+      "eval_sha256": "394597f7008216d1477bab01b849882d69cff825d29fde28d44140446e3cc6bd"
+    }
+  },
+  "all_runs": [
+    {
+      "arm": "joint",
+      "sigma_b": 0.5,
+      "sigma_x": 0.5,
+      "M": 0.16685940322303958,
+      "n_queries": 220,
+      "n_parents": 33,
+      "eval_sha256": "71bd0e77411dd6bcf78663d01d8ff856d7777416d64e9e0796dd826ae523f32b"
+    },
+    {
+      "arm": "joint",
+      "sigma_b": 0.5,
+      "sigma_x": 1.0,
+      "M": 0.21185809140354595,
+      "n_queries": 220,
+      "n_parents": 33,
+      "eval_sha256": "f14267b31d2549dff4b9f4edd0ee970721ffa833e986e214221b931ed3ba58a9"
+    },
+    {
+      "arm": "joint",
+      "sigma_b": 1.0,
+      "sigma_x": 0.5,
+      "M": 0.2313787222878132,
+      "n_queries": 220,
+      "n_parents": 33,
+      "eval_sha256": "7a20bd920a1d57721ff966a0a735bb90c40724e28e00ab8334bfe502d4ec44dc"
+    },
+    {
+      "arm": "joint",
+      "sigma_b": 1.0,
+      "sigma_x": 1.0,
+      "M": 0.2062030562030562,
+      "n_queries": 220,
+      "n_parents": 33,
+      "eval_sha256": "1f0c6904f1ffa1658e420c484942bacb185d7376c9130703d2adf597611410e2"
+    },
+    {
+      "arm": "cascade",
+      "sigma_b": 0.5,
+      "sigma_x": 0.5,
+      "M": 0.21587772496863405,
+      "n_queries": 220,
+      "n_parents": 33,
+      "eval_sha256": "e004a3942976a5123f49e20d800b7b108d67e28f7d711d0423875ba867997e88"
+    },
+    {
+      "arm": "cascade",
+      "sigma_b": 0.5,
+      "sigma_x": 1.0,
+      "M": 0.20830196739287649,
+      "n_queries": 220,
+      "n_parents": 33,
+      "eval_sha256": "bed410bd198140445466ee46d51697a02bc2bffae5629aa24aac99ebc0df153b"
+    },
+    {
+      "arm": "cascade",
+      "sigma_b": 1.0,
+      "sigma_x": 0.5,
+      "M": 0.2354398968035332,
+      "n_queries": 220,
+      "n_parents": 33,
+      "eval_sha256": "394597f7008216d1477bab01b849882d69cff825d29fde28d44140446e3cc6bd"
+    },
+    {
+      "arm": "cascade",
+      "sigma_b": 1.0,
+      "sigma_x": 1.0,
+      "M": 0.23291464427828065,
+      "n_queries": 220,
+      "n_parents": 33,
+      "eval_sha256": "9eb01dc7d7b559c7731659ec821bd3ab087c323896ffc713cbc620630e56f9aa"
+    }
+  ]
+}

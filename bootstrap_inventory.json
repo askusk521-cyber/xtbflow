@@ -369,8 +369,8 @@
     },
     {
       "path": "docs/M0_DIAGNOSTIC_HANDOFF.md",
-      "sha256": "17754cbf987b3fea8f2f86f333a887c0d966de27f25c966514626f170d5867ab",
-      "bytes": 8279
+      "sha256": "781f6ef16ce0a7e93ec1f69c314cb2f8881a14a981e5b5b875284e95bea12c6b",
+      "bytes": 8759
     },
     {
       "path": "docs/MECHAI_REUSE_MANIFEST.json",
@@ -628,6 +628,11 @@
       "bytes": 2673
     },
     {
+      "path": "docs/evidence/m0/noise_selection_stabilized.json",
+      "sha256": "d15d7c012703b3644b741aa157794b9194b2997f749acf17ee8d65a7329efe26",
+      "bytes": 2672
+    },
+    {
       "path": "docs/evidence/m0/numerical_stop.json",
       "sha256": "64bf0d6162e6040e8ecc10160af2a44eaf7343a4c2b40013353d2b897dc72a4e",
       "bytes": 5351
@@ -641,6 +646,11 @@
       "path": "docs/evidence/m0/stabilization_decision.json",
       "sha256": "83ef484f4a7ebfbd7b5c296a4905ddb1db9e1109ae61bbcab59ad1d37c2ccfb7",
       "bytes": 1495
+    },
+    {
+      "path": "docs/evidence/m0/stabilization_replay.json",
+      "sha256": "6099ca6a11efe43b07a82b1c6f1423a1dd78e154f4e63e9083138370466c7498",
+      "bytes": 3278
     },
     {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",

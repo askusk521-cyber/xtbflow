@@ -1,5 +1,7 @@
 # M0 diagnostic round handoff — experiments remain stopped
 
+> **Status update 2026-10-07 — superseded.** The owner approved the update-block pre-normalization and a full rerun. Bounded replays, noise selection and all nine formal runs finished without non-finite loss; see `docs/evidence/m0/stabilization_decision.json`, `stabilization_replay.json` and `noise_selection_stabilized.json`. The freeze, one-time test evaluation and gate report are on branch `m0/task4-eval`. The text below describes the stopped state before that approval.
+
 ## English summary
 The owner authorized diagnosis with “诊断”, then requested closing this round and publishing detailed progress for other contributors. Four independent bounded Slurm replays reproduced all original failed steps. All failures involve training cache index 7451, with finite inputs and parameters, but explosive forward activations. Three fail at squared-error overflow; joint seed 2 first overflows the EventHead scalar pair product. No official data/model/hyperparameter/evaluation change was made. Formal training remains stopped; test sampling has not started. This is not a GO/NO-GO decision or a completed M0 result.
 

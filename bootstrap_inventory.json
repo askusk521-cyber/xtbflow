@@ -268,6 +268,11 @@
       "bytes": 2838
     },
     {
+      "path": "configs/v1a/base.json",
+      "sha256": "fd78a9640ff0190181a01df2298f1339c542909ba82c685f2ea18efca9d1deda",
+      "bytes": 6212
+    },
+    {
       "path": "configs/validation/ts_v0.1.yaml",
       "sha256": "8599350fceb794e375719a918731d85f76d22e01c5e64446bd071cbf7ef5086b",
       "bytes": 434
@@ -848,6 +853,11 @@
       "bytes": 3700
     },
     {
+      "path": "docs/v1a/EXECUTION.md",
+      "sha256": "6a667687d9a8b14b1d21d74d51e3e537f44d655fd001a7adac15223d8e803f20",
+      "bytes": 3089
+    },
+    {
       "path": "docs/v1a/protocol-v2.1.md",
       "sha256": "ab1e77323af9c645bab75a631d7a8bf1a0f09dc1c8b2122f33bfb6692ea9a748",
       "bytes": 100354
@@ -1093,9 +1103,19 @@
       "bytes": 6840
     },
     {
+      "path": "scripts/v1a_audit.py",
+      "sha256": "6179c7971a20bee1ad56beabf897362f1ef06a3145f6f45bb3c50cf1b4c1956a",
+      "bytes": 4623
+    },
+    {
       "path": "scripts/v1a_prepare.py",
       "sha256": "0314edd82c2542c22c61247be2e6cccd47a6b6109cf3a159d451ea9472c6cc2c",
       "bytes": 1983
+    },
+    {
+      "path": "scripts/v1a_train.py",
+      "sha256": "6f3ad6d3741b500e0b391e9173fc02fb3b05405ef8934e0fb9c163a6679b9db0",
+      "bytes": 6774
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -1443,6 +1463,11 @@
       "bytes": 69
     },
     {
+      "path": "src/xtbflow/v1/clocks.py",
+      "sha256": "1b2e48df971d68033c671b395fb8bffb64aaf85deb4e904818432a4482e9fea1",
+      "bytes": 579
+    },
+    {
       "path": "src/xtbflow/v1/data.py",
       "sha256": "13688d1357651b61dccdcb0fb3bfa6554bc6f45a7ebb2afdfcb8017a2543390c",
       "bytes": 11024
@@ -1456,6 +1481,11 @@
       "path": "src/xtbflow/v1/proxy.py",
       "sha256": "d63db40519e29df0202f393020a676c6880587c0e0a9f8bfeea0dea9a0fc352b",
       "bytes": 4173
+    },
+    {
+      "path": "src/xtbflow/v1/training.py",
+      "sha256": "402e72573b22c2d1f8ea901deb286da3c7a44450ec5596634b9addde2b1a92b9",
+      "bytes": 1942
     },
     {
       "path": "src/xtbflow/validation/__init__.py",
@@ -1686,6 +1716,11 @@
       "path": "tests/test_transition1x_track_b_audit.py",
       "sha256": "48cd4fda1c9dfe68269c157fedcc020bbe9c0dd20cde6eecf5d8b2d3e5c7d104",
       "bytes": 4964
+    },
+    {
+      "path": "tests/test_v1_clocks.py",
+      "sha256": "216a406fa8d87db6c278baf25edc565ce4583fbbea3f8997dac0d58e5d6233c4",
+      "bytes": 1657
     },
     {
       "path": "tests/test_v1_data.py",

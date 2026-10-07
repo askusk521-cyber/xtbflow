@@ -40,21 +40,25 @@ class GeometryHead(nn.Module):
 
 class ReactionFlowNet(nn.Module):
     def __init__(self, role: str, scalar_dim: int = 128, vector_dim: int = 32, edge_dim: int = 64,
-                 n_layers: int = 6, n_rbf: int = 32, n_rbf_reactant: int = 16, r_cut: float = 10.0):
+                 n_layers: int = 6, n_rbf: int = 32, n_rbf_reactant: int = 16, r_cut: float = 10.0,
+                 dual_time: bool = False):
         super().__init__()
         if role not in ROLES:
             raise ValueError(f"role must be one of {ROLES}")
         self.role = role
-        self.trunk = ReactionTrunk(scalar_dim, vector_dim, edge_dim, n_layers, n_rbf, n_rbf_reactant, r_cut)
+        if dual_time and role != 'joint':
+            raise ValueError('only the joint generator uses two clocks')
+        self.trunk = ReactionTrunk(scalar_dim, vector_dim, edge_dim, n_layers, n_rbf,
+                                   n_rbf_reactant, r_cut, dual_time=dual_time)
         self.event_head = EventHead(scalar_dim, vector_dim, edge_dim) if role in ("joint", "event") else None
         self.geometry_head = GeometryHead(scalar_dim, vector_dim) if role in ("joint", "geometry") else None
 
-    def forward(self, z, atom_mask, x_cur, x_r, b_cur, b_r, t) -> dict[str, Tensor]:
+    def forward(self, z, atom_mask, x_cur, x_r, b_cur, b_r, t, t_x=None) -> dict[str, Tensor]:
         if self.role == "event" and not torch.equal(x_cur, x_r):
             raise ValueError("event role must be called with x_cur = x_r")
         if self.role == "geometry" and not torch.equal(b_cur, torch.round(b_cur)):
             raise ValueError("geometry role needs an integer b_cur (label or decoded event)")
-        h = self.trunk(z, atom_mask, x_cur, x_r, b_cur, b_r, t)
+        h = self.trunk(z, atom_mask, x_cur, x_r, b_cur, b_r, t, t_x=t_x)
         out: dict[str, Tensor] = {}
         if self.event_head is not None:
             raw = self.event_head(h["s"], h["v"], h["edge"], h["pair_mask"], atom_mask)

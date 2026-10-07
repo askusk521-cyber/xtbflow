@@ -80,19 +80,21 @@ class PaiNNLayer(nn.Module):
 
 class ReactionTrunk(nn.Module):
     def __init__(self, scalar_dim: int = 128, vector_dim: int = 32, edge_dim: int = 64,
-                 n_layers: int = 6, n_rbf: int = 32, n_rbf_reactant: int = 16, r_cut: float = 10.0):
+                 n_layers: int = 6, n_rbf: int = 32, n_rbf_reactant: int = 16, r_cut: float = 10.0,
+                 dual_time: bool = False):
         super().__init__()
         self.n_rbf, self.n_rbf_r, self.r_cut = n_rbf, n_rbf_reactant, r_cut
         self.embed = nn.Embedding(N_ELEMENT_TYPES, scalar_dim)
         self.node_b = nn.Linear(3, scalar_dim)
         self.time = TimeEmbedding(scalar_dim)
+        self.time_x = TimeEmbedding(scalar_dim) if dual_time else None
         self.disp = nn.Linear(1, vector_dim, bias=False)
         self.edge_mlp = nn.Sequential(
             nn.Linear(n_rbf + n_rbf_reactant + 4, edge_dim), nn.SiLU(), nn.Linear(edge_dim, edge_dim)
         )
         self.layers = nn.ModuleList(PaiNNLayer(scalar_dim, vector_dim, edge_dim) for _ in range(n_layers))
 
-    def forward(self, z, atom_mask, x_cur, x_r, b_cur, b_r, t) -> dict:
+    def forward(self, z, atom_mask, x_cur, x_r, b_cur, b_r, t, t_x=None) -> dict:
         n = z.shape[1]
         _, d_cur, unit, pair_mask = pair_geometry(x_cur, atom_mask)
         _, d_r, _, _ = pair_geometry(x_r, atom_mask)
@@ -111,6 +113,12 @@ class ReactionTrunk(nn.Module):
         diag = lambda m: torch.diagonal(m, dim1=1, dim2=2)
         node_b = torch.stack([diag(b_cur), diag(b_r), diag(db)], dim=-1) / 4.0
         t_emb = self.time(t)
+        if self.time_x is not None:
+            if t_x is None:
+                raise ValueError('dual-time trunk requires an explicit geometry clock')
+            t_emb = (t_emb + self.time_x(t_x)) / math.sqrt(2.0)
+        elif t_x is not None:
+            raise ValueError('single-time trunk cannot consume a second clock')
         mask = atom_mask.to(x_cur.dtype)
         s = (self.embed(z) + self.node_b(node_b) + t_emb[:, None, :]) * mask[..., None]
         disp = (x_cur - x_r) * mask[..., None]

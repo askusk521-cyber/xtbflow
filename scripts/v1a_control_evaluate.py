@@ -9,6 +9,7 @@ import numpy as np
 from rdkit import RDLogger
 
 from xtbflow.v1.data import file_hash,write_json
+from xtbflow.v1.formal import evaluation_parents
 from xtbflow.v1.metrics import cluster_summary
 from xtbflow.v1.proxy import CatalogueMatcher
 
@@ -16,13 +17,15 @@ from xtbflow.v1.proxy import CatalogueMatcher
 def main():
     ap=argparse.ArgumentParser()
     for key in ('run','catalogue','out'):ap.add_argument('--'+key,type=Path,required=True)
+    ap.add_argument('--frozen',type=Path)
     a=ap.parse_args();started=time.monotonic();RDLogger.DisableLog('rdApp.error')
     m=json.loads((a.run/'manifest.json').read_text())
     if not m['complete'] or file_hash(a.run/'candidates.jsonl')!=m['candidates_sha256']:
         raise ValueError('unsealed control source')
-    split=json.loads((a.catalogue/'split_manifest.json').read_text());dev=set(split['development']['parent_ids'])
+    split=json.loads((a.catalogue/'split_manifest.json').read_text())
+    dev,query_name=evaluation_parents(split,m,a.frozen)
     if not m['alpha_zero_exact'] or not m['all_step_B2_replay_exact']:raise ValueError('failed controls')
-    if m['query_source_sha256']!=file_hash(a.catalogue/'development_queries.jsonl'):
+    if m['query_source_sha256']!=file_hash(a.catalogue/query_name):
         raise ValueError('query source mismatch')
     if any(v['split_hash']!=split['split_hash'] for v in m['models'].values()):raise ValueError('model split mismatch')
     parents={p['query_id']:p for p in json.loads((a.catalogue/'parent_catalog.json').read_text()) if p['parent_id'] in dev}
@@ -55,7 +58,8 @@ def main():
     report=dict(status='CONTINUOUS_CONTROLS_PASS',source_manifest=m,source_sha256=m['candidates_sha256'],
                 parent_rows=output,summary={k:cluster_summary([r[k] for r in output],[r['split_group'] for r in output]) for k in values},
                 split_hash=split['split_hash'],matcher_cpu_wall_s=time.monotonic()-started,
-                interpretation='Three-seed development controls only; no formal gate.')
+                split_name=m.get('split_name','development'),freeze_sha256=m.get('freeze_sha256'),
+                interpretation='Three-seed continuous B1/B2 controls; explanatory, not a separate gate.')
     write_json(a.out,report)
     print(json.dumps({k:v for k,v in report.items() if k not in ('source_manifest','parent_rows')},indent=2))
 

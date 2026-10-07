@@ -113,10 +113,12 @@ def window_summary(rows, manifest, parents):
             amp_parents=[];amp_groups=[]
             for pid in sorted({r['parent_id'] for r in rr}):
                 pp=[r for r in rr if r['parent_id']==pid]
-                amp_parents.append({k:float(np.mean([r[k] for r in pp])) for k in measures})
+                amp_parents.append(dict(parent_id=pid,split_group=pp[0]['split_group'],
+                                        **{k:float(np.mean([r[k] for r in pp])) for k in measures}))
                 amp_groups.append(pp[0]['split_group'])
             amp_summary[str(a)]={k:cluster_summary([r[k] for r in amp_parents],amp_groups)
                                  for k in ('M0','MR','valid_event_change','random_valid_event_change')}
+            amp_summary[str(a)]['parent_rows']=amp_parents
         output.append(dict(requested_t=t,actual_t_x=f0rows[0]['actual_t_x'],
                            actual_t_b=f0rows[0]['actual_t_b'],step_index=f0rows[0]['step_index'],
                            summary={k:(dict(estimate=float(np.mean([r[k] for r in parent_rows])),

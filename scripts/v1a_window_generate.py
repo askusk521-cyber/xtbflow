@@ -1,4 +1,4 @@
-"""Generate all five development windows, then seal outputs for offline audit."""
+"""Generate paired pulse branches (development windows or the frozen screen t*), then seal."""
 import argparse
 import json
 from pathlib import Path
@@ -8,6 +8,7 @@ import torch
 
 from xtbflow.m0.sampler import decode_be
 from xtbflow.v1.assets import load_generator,load_scores,sha256
+from xtbflow.v1.formal import resolve_queries
 from xtbflow.v1.interfaces import assert_query_fields,query_from_parents
 from xtbflow.v1.pulses import pulse_branches
 from xtbflow.v1.sampler import initial_state,rollout
@@ -23,10 +24,13 @@ def main():
     ap.add_argument('--batch-size',type=int,default=64)
     ap.add_argument('--seed',type=int,choices=[0,1,2],default=0)
     ap.add_argument('--times',type=float,nargs='+',default=[.20,.35,.50,.65,.80])
+    ap.add_argument('--frozen',type=Path)
     a=ap.parse_args()
-    if a.queries.name!='development_queries.jsonl':raise ValueError('development input required')
+    rows,split_name,freeze=resolve_queries(a.queries,a.frozen)
+    if freeze is not None:
+        # Screen mechanism: one frozen t*, frozen path, eight proposals; no window search.
+        a.times,a.path,a.proposals=[freeze['config']['t_star']],freeze['config']['path'],8
     if not torch.cuda.is_available():raise RuntimeError('allocated GPU required')
-    rows=[json.loads(line) for line in a.queries.read_text().splitlines()]
     for q in rows:assert_query_fields(q)
     if any(t not in (.20,.35,.50,.65,.80) for t in a.times) or len(a.times)!=len(set(a.times)):
         raise ValueError('times must be distinct prespecified development windows')
@@ -77,7 +81,8 @@ def main():
                         f.write(json.dumps(record,allow_nan=False)+'\n');count+=1
                 f.flush()
             print(json.dumps({'batch_end':lo+len(batch),'records':count,'elapsed_s':time.monotonic()-started}),flush=True)
-    manifest=dict(complete=True,models=model_meta,scores=score_meta,support=score.support,
+    manifest=dict(complete=True,split_name=split_name,
+                  freeze_sha256=None if freeze is None else freeze['freeze_sha256'],models=model_meta,scores=score_meta,support=score.support,
                   query_source_sha256=sha256(a.queries),candidates_sha256=sha256(a.out/'candidates.jsonl'),
                   n_queries=len(rows),proposals=a.proposals,path=a.path,training_seed=a.seed,
                   requested_times=a.times,amplitudes=[.05,.10,.20],

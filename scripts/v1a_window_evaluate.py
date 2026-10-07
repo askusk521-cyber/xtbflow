@@ -1,4 +1,4 @@
-"""Evaluate a sealed development pulse stream; generated input never sees labels."""
+"""Evaluate a sealed pulse stream (development or frozen screen); generation never saw labels."""
 import argparse
 from collections import defaultdict
 import json
@@ -6,6 +6,7 @@ from pathlib import Path
 import time
 
 from xtbflow.v1.data import file_hash,write_json
+from xtbflow.v1.formal import evaluation_parents
 from xtbflow.v1.development import window_summary
 from xtbflow.v1.proxy import CatalogueMatcher
 
@@ -15,6 +16,7 @@ def main():
     ap.add_argument('--run',type=Path,required=True)
     ap.add_argument('--catalogue',type=Path,required=True)
     ap.add_argument('--out',type=Path,required=True)
+    ap.add_argument('--frozen',type=Path)
     a=ap.parse_args();start=time.monotonic()
     manifest=json.loads((a.run/'manifest.json').read_text())
     if not manifest['complete'] or file_hash(a.run/'candidates.jsonl')!=manifest['candidates_sha256']:
@@ -22,9 +24,9 @@ def main():
     split=json.loads((a.catalogue/'split_manifest.json').read_text())
     if manifest['models']['split_hash']!=split['split_hash']:
         raise ValueError('split mismatch')
-    if file_hash(a.catalogue/'development_queries.jsonl')!=manifest['query_source_sha256']:
-        raise ValueError('development queries changed')
-    dev=set(split['development']['parent_ids'])
+    dev,query_name=evaluation_parents(split,manifest,a.frozen)
+    if file_hash(a.catalogue/query_name)!=manifest['query_source_sha256']:
+        raise ValueError('queries changed')
     parents={p['query_id']:p for p in json.loads((a.catalogue/'parent_catalog.json').read_text())
              if p['parent_id'] in dev}
     refs=defaultdict(list)
@@ -36,7 +38,7 @@ def main():
     with (a.run/'candidates.jsonl').open() as f:
         for line in f:
             r=json.loads(line);q=r['query_id']
-            if q not in parents:raise ValueError('non-development input')
+            if q not in parents:raise ValueError('input outside the evaluated split')
             key=(q,json.dumps([r['b_dec'],r['x'],r['decode_status'],r['is_fallback']]))
             if key not in cache:
                 cache[key]=matchers[q].match(r['b_dec'],r['x'],r['is_fallback'],r['decode_status'])
@@ -45,6 +47,7 @@ def main():
     report=window_summary(evaluated,manifest,parents)
     report.update(source_sha256=manifest['candidates_sha256'],split_hash=split['split_hash'],
                   training_seed=manifest['training_seed'],path=manifest['path'],
+                  split_name=manifest.get('split_name','development'),freeze_sha256=manifest.get('freeze_sha256'),
                   matcher_cpu_wall_s=time.monotonic()-start,unique_endpoints_matched=len(cache))
     write_json(a.out,report)
     with a.out.with_suffix('.candidates.jsonl').open('w') as f:

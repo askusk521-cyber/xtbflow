@@ -10,6 +10,7 @@ from rdkit import RDLogger
 
 from xtbflow.v1.costs import BUDGETS,weights_for_atoms
 from xtbflow.v1.data import file_hash,write_json
+from xtbflow.v1.formal import evaluation_parents
 from xtbflow.v1.development import score_calibration
 from xtbflow.v1.metrics import cluster_summary,prefix_auc
 from xtbflow.v1.proxy import CatalogueMatcher
@@ -40,14 +41,16 @@ def audit_ledger(row,weights):
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--run',type=Path,required=True)
     ap.add_argument('--catalogue',type=Path,required=True);ap.add_argument('--out',type=Path,required=True)
+    ap.add_argument('--frozen',type=Path)
     a=ap.parse_args();started=time.monotonic();RDLogger.DisableLog('rdApp.error')
     manifest=json.loads((a.run/'manifest.json').read_text());source=a.run/'streams.jsonl'
     if not manifest['complete'] or file_hash(source)!=manifest['streams_sha256']:
         raise ValueError('unsealed stream')
-    split=json.loads((a.catalogue/'split_manifest.json').read_text());dev=set(split['development']['parent_ids'])
+    split=json.loads((a.catalogue/'split_manifest.json').read_text())
+    dev,query_name=evaluation_parents(split,manifest,a.frozen)
     if any(m['split_hash']!=split['split_hash'] for m in manifest['models'].values()):
         raise ValueError('generator split mismatch')
-    if manifest['query_source_sha256']!=file_hash(a.catalogue/'development_queries.jsonl'):
+    if manifest['query_source_sha256']!=file_hash(a.catalogue/query_name):
         raise ValueError('query source changed')
     parents={p['query_id']:p for p in json.loads((a.catalogue/'parent_catalog.json').read_text()) if p['parent_id'] in dev}
     refs=defaultdict(list)
@@ -93,11 +96,20 @@ def main():
             any_ref.append(int(any(r['proxy_status']=='PROXY_MATCH' for r in rr)))
             counts.append(len(rr));valid.append(sum(r['proxy_status']!='INVALID_OUTPUT' for r in rr))
             unique.append(len({r['predicted_channel_id'] for r in rr if r['predicted_channel_id'] is not None}))
-        parent_rows[arm].append(dict(parent_id=p['parent_id'],split_group=p['split_group'],hits=hits,event_hits=event_hits,
+        budget16=[r for r in row['candidates'] if r['completion_units']<=800+1e-8]
+        parent_rows[arm].append(dict(parent_id=p['parent_id'],split_group=p['split_group'],query_id=qid,
+                                    n_proposals=row['n_proposals'],
+                                    best_event_count=sum(bool(r['hits_best_event']) for r in row['candidates']),
+                                    best_reference_count=sum(bool(r['hits_best_reference']) for r in row['candidates']),
+                                    v1b_budget16=dict(candidate_ids=[r['candidate_id'] for r in budget16],
+                                        attempt_ids=[t['attempt_id'] for t in row['attempts'] if t['completion_units']<=800+1e-8],
+                                        best_event_candidate_ids=[r['candidate_id'] for r in budget16 if r['hits_best_event']],
+                                        proxy_best_reference_hit=bool(hits[2])),
+                                    hits=hits,event_hits=event_hits,
                                     any_reference_hits=any_ref,auc=float(prefix_auc(hits)),event_auc=float(prefix_auc(event_hits)),
                                     completed_candidates=counts,valid_candidates=valid,unique_events=unique,
                                     spent_units=row['spent_units']))
-    if seen!={(q,arm) for q in parents for arm in manifest['arms']}:raise ValueError('incomplete development streams')
+    if seen!={(q,arm) for q in parents for arm in manifest['arms']}:raise ValueError('incomplete streams')
     summaries={}
     for arm,rr in parent_rows.items():
         summaries[arm]=dict(parent_rows=rr,**{key:np.mean([r[key] for r in rr],axis=0).tolist()
@@ -126,13 +138,17 @@ def main():
         a2={r['parent_id']:r for r in parent_rows['A2']};b1={r['parent_id']:r for r in parent_rows['B1']}
         primary=cluster_summary([b1[p]['auc']-a2[p]['auc'] for p in sorted(a2)],
                                  [a2[p]['split_group'] for p in sorted(a2)])
-    report=dict(status='DEVELOPMENT_STREAM_AUDIT_PASS',config=manifest['config'],summaries=summaries,
+    screen=manifest.get('split_name','development')=='screen'
+    report=dict(status='SCREEN_STREAM_AUDIT_PASS' if screen else 'DEVELOPMENT_STREAM_AUDIT_PASS',
+                config=manifest['config'],summaries=summaries,purpose=manifest.get('purpose','development'),
+                split_name=manifest.get('split_name','development'),freeze_sha256=manifest.get('freeze_sha256'),
                 training_seed=manifest['training_seed'],
                 calibration=cal,event_calibration=event_cal,drift=drift_report,
                 attempt_status_counts={k:dict(v) for k,v in failures.items()},
                 development_primary=primary,source_sha256=manifest['streams_sha256'],split_hash=split['split_hash'],
                 matcher_cpu_wall_s=time.monotonic()-started,
-                interpretation='Development calibration and selection only. No formal method comparison or GO decision.')
+                interpretation=('Sealed screen stream; inference only in the single frozen gate analysis.' if screen else
+                                'Development calibration and selection only. No formal method comparison or GO decision.'))
     write_json(a.out,report)
     with a.out.with_suffix('.candidates.jsonl').open('w') as f:
         for r in evaluated:

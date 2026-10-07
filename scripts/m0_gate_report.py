@@ -80,7 +80,7 @@ def main():
                 secondary=secondary,delta_curve=curve,sensitivity={str(d):decide(curve[str(d)],deltas_at(d),valid) for d in (.3,1.)},
                 a2x=None,params=frozen['params'],automorphism_cap_hits=sum(any(r[q]['automorphism_cap_hit'] for r in aa+bb) for q in aa[0]),
                 provenance=dict(selection=frozen,**artifact_provenance), data_gate_exceptions={'retention':0.8458254740395116,'test_parents':35})
-    a.out.parent.mkdir(parents=True,exist_ok=True);a.out.write_text(json.dumps(result,indent=2,allow_nan=False)+'\n')
+    a.out.parent.mkdir(parents=True,exist_ok=True);a.out.write_text(json.dumps(result,indent=2,allow_nan=False)+'\n', encoding='utf-8')
     p=primary
     text=f"# M0 gate report\n\n{result['decision']}: M_A={p['M_A']:.6f}, M_B={p['M_B']:.6f}, Δ={p['delta']:.6f}, 95% CI={p['ci95']}.\n\n"
     text+='## Main and validity\n\n```json\n'+json.dumps({'primary':primary,'validity':valid,'seed_deltas':sd},indent=2)+'\n```\n'
@@ -100,9 +100,9 @@ def main():
         lines.append(f'<polyline points="{points}" fill="none" stroke="{color}" stroke-width="2"/>')
         lines.append(f'<text x="{430 if arm=="A" else 500}" y="35" fill="{color}">Arm {arm}</text>')
     lines.append('</svg>')
-    plot.write_text('\n'.join(lines))
+    plot.write_text('\n'.join(lines), encoding='utf-8')
     text += f'\n![δ sensitivity curve]({plot.name})\n'
-    a.report.write_text(text)
+    a.report.write_text(text, encoding='utf-8')
     print(json.dumps(result,indent=2))
 
 

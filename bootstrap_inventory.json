@@ -1128,6 +1128,11 @@
       "bytes": 4155
     },
     {
+      "path": "scripts/v1a_stream_evaluate.py",
+      "sha256": "96d60b9c18f37301e0a535af907bd80a17a0472940a6e78b7edcd6391ad38511",
+      "bytes": 9417
+    },
+    {
       "path": "scripts/v1a_stream_generate.py",
       "sha256": "50c6d77810056028af53ae872161485126fb89bffcd5c6e1d9ce7b1d8e52e5e9",
       "bytes": 4524
@@ -1856,6 +1861,11 @@
       "path": "tests/test_v1_scores.py",
       "sha256": "cf7e4039daa51bb5c69bbc06883955c5def8be2c84c67a7e8429df6d23052618",
       "bytes": 2651
+    },
+    {
+      "path": "tests/test_v1_stream_audit.py",
+      "sha256": "ee87249fe190c6a9e66d6f62eda3c748262141e40d4ce4b620ff1c41f9c3d14a",
+      "bytes": 1012
     },
     {
       "path": "tests/test_v1_streams.py",

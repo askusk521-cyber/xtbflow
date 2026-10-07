@@ -1128,6 +1128,11 @@
       "bytes": 3709
     },
     {
+      "path": "scripts/v1a_power_limits.py",
+      "sha256": "3d58fa2ea3d1a59eec8ea7c5c46fc891d80f895075f05b2a71e8eabc36a81526",
+      "bytes": 3273
+    },
+    {
       "path": "scripts/v1a_power_plan.py",
       "sha256": "706fec7e872789591bf9055cc1af752717f5bb42363d056eace124bb07771379",
       "bytes": 8928

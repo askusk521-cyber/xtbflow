@@ -1008,6 +1008,11 @@
       "bytes": 5684
     },
     {
+      "path": "scripts/m0_select.py",
+      "sha256": "b3d4109c419049cd7b9224bdca95985a903057f7941cdd03acee019bb66575ec",
+      "bytes": 5283
+    },
+    {
       "path": "scripts/m0_slurm.sh",
       "sha256": "c2c4abbb0dc1c4cf462b8132e4e2049b2d126763d210056b79b40e0e92ba82e5",
       "bytes": 1217
@@ -1571,6 +1576,11 @@
       "path": "tests/test_m0_sampler.py",
       "sha256": "c376c98fdb13f6fa42db81b0119ce54a34c19e9a1e7a93457640fa08baec9248",
       "bytes": 1088
+    },
+    {
+      "path": "tests/test_m0_select.py",
+      "sha256": "ff56855fbbff213fd4db243fc29536e0dd4a13e068f3fb40f1cfcc86d8d4ca6c",
+      "bytes": 2878
     },
     {
       "path": "tests/test_m0_stability.py",

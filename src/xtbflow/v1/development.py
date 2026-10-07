@@ -94,7 +94,10 @@ def window_summary(rows, manifest, parents):
                                   event_class(f0)!='invalid' and fr['predicted_channel_id']!=f0['predicted_channel_id']),
                               valid_to_invalid=float(event_class(f0)!='invalid' and event_class(fs)=='invalid'),
                               beneficial=float(m0>1e-12),harmful=float(m0< -1e-12),
-                              unchanged=float(fs['predicted_channel_id']==f0['predicted_channel_id']))
+                              unchanged=float(event_class(fs)!='invalid' and event_class(f0)!='invalid' and
+                                              fs['predicted_channel_id']==f0['predicted_channel_id']),
+                              neutral_valid_rewrite=float(event_class(fs)!='invalid' and event_class(f0)!='invalid' and
+                                  fs['predicted_channel_id']!=f0['predicted_channel_id'] and abs(m0)<=1e-12))
                     if 'score_after_pulse' in fs and 'score_after_pulse' in fr:
                         pair.update(score_change=fs['score_after_pulse']-fs['score_at_pulse'],
                                     random_score_change=fr['score_after_pulse']-fr['score_at_pulse'],

@@ -1143,6 +1143,11 @@
       "bytes": 4155
     },
     {
+      "path": "scripts/v1a_resource_forecast.py",
+      "sha256": "d401187d1a70e3eaf3a6b882373ee58dcca9d0f3523769621ed4dc1fd815070e",
+      "bytes": 4617
+    },
+    {
       "path": "scripts/v1a_stream_evaluate.py",
       "sha256": "ee441730c74af5f092874987524cba1bd157897a730680406e1f6426254c0f9e",
       "bytes": 9762
@@ -1539,8 +1544,8 @@
     },
     {
       "path": "src/xtbflow/v1/development.py",
-      "sha256": "dd41c873780a78c3d3de6b111b4a353228477a63fbcdba58c8a8d08005cc3568",
-      "bytes": 7858
+      "sha256": "df4bc3fc983c291f5a0a1fe67595e76d568a39fa0e1f96a3f40dd12f4f2b024e",
+      "bytes": 8196
     },
     {
       "path": "src/xtbflow/v1/gate.py",

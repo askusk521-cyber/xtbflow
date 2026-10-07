@@ -1,5 +1,33 @@
 # V1a v2.1 execution ledger
 
+## Formal screen result (2026-10-07) — supersedes the development hold below
+
+Decision **`GO_V1b`** from the single frozen analysis (`docs/evidence/v1a/formal/`).
+Before any screen output, the project lead chose to freeze on the unguarded
+development power estimate (`docs/v1a/FREEZE_DECISION_ZH.md`); the pre-written
+plan rule gave N=342 parents / G=70 formula groups (freeze
+`afc5f55d4592d5da972deca9fa4fe0126b65bbb9b9ef0a62831f120a1fa94ea6`).
+
+| Quantity (3 training seeds, sampling seed 0) | Estimate | One-sided 95% L / U |
+|---|---:|---:|
+| Primary AUC B1−A2 | +0.0931 | +0.0723 / +0.1139 |
+| M0 = U(F_S)−U(F0) | +0.0212 | +0.0178 / +0.0246 |
+| MR = U(F_S)−U(F_R) | +0.0211 | +0.0179 / +0.0243 |
+
+Interpretation limits that must travel with the decision: unguided B0 has the
+highest AUC (0.4945) and AUC B1−B0 is −0.229, because guidance costs leave B1
+far fewer completed candidates; A0 (0.382) also exceeds B1 (0.265). The GO is
+B1 versus the adaptive cascade A2 only, on a finite T1x catalogue proxy
+(`PROXY_MATCH` is not a certified TS); no quantum calculation was run. The
+gain concentrates in common/intermediate best-event strata; rare and
+pilot-unseen strata are small (+0.020 / +0.018).
+
+Jobs 2606 (plan), 2607 (freeze), 2608/2614–2619 (screen, report) ran from
+`xtbflow-dev` at `21ec44e`/`966ee5b`; 2608's pulse step failed on a CLI
+argument before producing output and was rerun as 2614 after the fix. The
+V1b source population (1,710 bundles, budget 16, seed 0) and all raw
+candidates stay in the n2 run root; hashes are in `SHA256SUMS`.
+
 ## Final development-stage disposition (2026-10-07)
 
 `HOLD_POWER` before formal screening. All 10 generator trainings and all six

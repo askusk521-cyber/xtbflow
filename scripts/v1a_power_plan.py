@@ -18,6 +18,8 @@ def main():
     ap.add_argument('--repeats',type=int,default=20000)
     ap.add_argument('--sd-multiplier',type=float,default=1.1)
     ap.add_argument('--icc-increment',type=float,default=.05)
+    for key in ('extra-a2-reports','extra-b1-reports','extra-window-reports'):
+        ap.add_argument('--'+key,type=Path,nargs='*',default=[])
     a=ap.parse_args()
     ar=json.loads(a.a2_report.read_text());br=json.loads(a.b1_report.read_text())
     wr=json.loads(a.window_report.read_text());split=json.loads((a.catalogue/'split_manifest.json').read_text())
@@ -38,7 +40,34 @@ def main():
     if any(set(r)!=dev for r in (a2,b1,mech)):raise ValueError('incomplete development parents')
     order=sorted(dev);groups=[a2[p]['split_group'] for p in order]
     values=np.array([[b1[p]['auc']-a2[p]['auc'],mech[p]['M0'],mech[p]['MR']] for p in order])
+    lengths=[len(a.extra_a2_reports),len(a.extra_b1_reports),len(a.extra_window_reports)]
+    if len(set(lengths))!=1 or lengths[0] not in (0,2):raise ValueError('use one or all three development training seeds')
+    per_seed=[values];seed_ids=[ar.get('training_seed',0)]
+    if br.get('training_seed',0)!=seed_ids[0] or wr.get('training_seed',0)!=seed_ids[0]:
+        raise ValueError('base development seeds differ')
+    for apath,bpath,wpath in zip(a.extra_a2_reports,a.extra_b1_reports,a.extra_window_reports):
+        aa,bb,ww=(json.loads(p.read_text()) for p in (apath,bpath,wpath))
+        if any(r['split_hash']!=split['split_hash'] for r in (aa,bb,ww)):
+            raise ValueError('extra development split mismatch')
+        seed=aa['training_seed']
+        if bb['training_seed']!=seed or ww['training_seed']!=seed:raise ValueError('extra seeds differ')
+        for key in ('alpha_x','guidance_start','guidance_stop','a2_times','cap_units'):
+            if aa['config'][key]!=ar['config'][key]:raise ValueError('extra A2 configuration differs')
+        for key in ('path','alpha_x','guidance_start','guidance_stop','cap_units'):
+            if bb['config'][key]!=br['config'][key]:raise ValueError('extra B1 configuration differs')
+        if ww['path']!=bb['config']['path']:raise ValueError('pulse/efficiency path mismatch')
+        av={r['parent_id']:r for r in aa['summaries']['A2']['parent_rows']}
+        bv={r['parent_id']:r for r in bb['summaries']['B1']['parent_rows']}
+        mv={r['parent_id']:r for w in ww['windows'] if w['requested_t']==a.time for r in w['parent_rows']}
+        if any(set(r)!=dev for r in (av,bv,mv)):raise ValueError('extra seed incomplete')
+        per_seed.append(np.array([[bv[p]['auc']-av[p]['auc'],mv[p]['M0'],mv[p]['MR']] for p in order]));seed_ids.append(seed)
+    if sorted(seed_ids) not in ([0],[0,1,2]):raise ValueError('unexpected seed inventory')
+    values=np.mean(per_seed,axis=0)
     nu=nuisance(values,groups)
+    if len(seed_ids)==3:
+        nu['scope']='Measured average of three development training seeds; no assumed variance-reduction factor.'
+    nu['training_seeds']=seed_ids
+    nu['per_seed_sd']=[v.std(0,ddof=1).tolist() for v in per_seed]
     parents=json.loads((a.catalogue/'parent_catalog.json').read_text())
     selected=set(split['screen_reserve']['parent_ids']);by_group={}
     for group in split['screen_reserve']['formula_groups']:
@@ -86,7 +115,8 @@ def main():
                 candidate_inventory=diagnostic if chosen is None else chosen,
                 planned_n_formula_groups=None if status!='POWER_PLAN_CANDIDATE_PASS' else len(chosen['formula_groups']),
                 max_group_fraction=max(diagnostic['sizes'])/sum(diagnostic['sizes']),
-                source_hashes={str(p):file_hash(p) for p in (a.a2_report,a.b1_report,a.window_report)},
+                source_hashes={str(p):file_hash(p) for p in [a.a2_report,a.b1_report,a.window_report,
+                    *a.extra_a2_reports,*a.extra_b1_reports,*a.extra_window_reports]},
                 split_hash=split['split_hash'],screen_results_used_for_planning=False,power_plan_frozen=False,
                 development_values=[dict(parent_id=p,split_group=g,AUC=float(v[0]),M0=float(v[1]),MR=float(v[2]))
                                     for p,g,v in zip(order,groups,values)],

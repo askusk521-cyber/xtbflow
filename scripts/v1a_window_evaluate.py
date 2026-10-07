@@ -44,6 +44,7 @@ def main():
             r.pop('x');evaluated.append(r)
     report=window_summary(evaluated,manifest,parents)
     report.update(source_sha256=manifest['candidates_sha256'],split_hash=split['split_hash'],
+                  training_seed=manifest['training_seed'],path=manifest['path'],
                   matcher_cpu_wall_s=time.monotonic()-start,unique_endpoints_matched=len(cache))
     write_json(a.out,report)
     with a.out.with_suffix('.candidates.jsonl').open('w') as f:

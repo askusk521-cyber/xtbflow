@@ -127,6 +127,7 @@ def main():
         primary=cluster_summary([b1[p]['auc']-a2[p]['auc'] for p in sorted(a2)],
                                  [a2[p]['split_group'] for p in sorted(a2)])
     report=dict(status='DEVELOPMENT_STREAM_AUDIT_PASS',config=manifest['config'],summaries=summaries,
+                training_seed=manifest['training_seed'],
                 calibration=cal,event_calibration=event_cal,drift=drift_report,
                 attempt_status_counts={k:dict(v) for k,v in failures.items()},
                 development_primary=primary,source_sha256=manifest['streams_sha256'],split_hash=split['split_hash'],

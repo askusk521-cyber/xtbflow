@@ -21,12 +21,16 @@ def main():
     ap.add_argument('--path',choices=['sync','event_lead2'],required=True)
     ap.add_argument('--proposals',type=int,default=8)
     ap.add_argument('--batch-size',type=int,default=64)
+    ap.add_argument('--seed',type=int,choices=[0,1,2],default=0)
+    ap.add_argument('--times',type=float,nargs='+',default=[.20,.35,.50,.65,.80])
     a=ap.parse_args()
     if a.queries.name!='development_queries.jsonl':raise ValueError('development input required')
     if not torch.cuda.is_available():raise RuntimeError('allocated GPU required')
     rows=[json.loads(line) for line in a.queries.read_text().splitlines()]
     for q in rows:assert_query_fields(q)
-    net,model_meta=load_generator(a.run_root,'joint',0)
+    if any(t not in (.20,.35,.50,.65,.80) for t in a.times) or len(a.times)!=len(set(a.times)):
+        raise ValueError('times must be distinct prespecified development windows')
+    net,model_meta=load_generator(a.run_root,'joint',a.seed)
     score,score_meta=load_scores(a.run_root,'X')
     if any(m['split_hash']!=model_meta['split_hash'] for m in score_meta):
         raise ValueError('generator-score split mismatch')
@@ -41,19 +45,19 @@ def main():
         for lo in range(0,len(expanded),a.batch_size):
             batch=expanded[lo:lo+a.batch_size];q=query_from_parents([r for r,j in batch],'cuda')
             proposals=[j for r,j in batch]
-            initial=initial_state(q,proposals,0,namespace='mechanism',
+            initial=initial_state(q,proposals,a.seed,namespace='mechanism',
                                   sigma_b=model_meta['sigma_b'],sigma_x=model_meta['sigma_x'])
             shadow=rollout(net,q,initial,path=a.path)
-            for requested in (.20,.35,.50,.65,.80):
+            for requested in a.times:
                 branches,meta=pulse_branches(net,score,q,initial,proposals,path=a.path,
-                                             requested_t=requested,shadow=shadow)
+                                             requested_t=requested,shadow=shadow,training_seed=a.seed)
                 for name,branch in branches.items():
                     for i,(query,proposal) in enumerate(batch):
                         n=len(query['atomic_numbers'])
                         bp,fb=decode_be(branch.state.b[i],q.element_index[i],n)
                         amp=None if name=='F0' else name.split('_')[-1]
                         pulse=meta['pulses'].get(amp)
-                        record=dict(query_id=query['query_id'],proposal=proposal,training_seed=0,
+                        record=dict(query_id=query['query_id'],proposal=proposal,training_seed=a.seed,
                             sampling_seed=0,path=a.path,branch=name,requested_t=requested,
                             actual_t_b=meta['actual_t_b'],actual_t_x=meta['actual_t_x'],
                             step_index=meta['step_index'],requested_rms=0 if pulse is None else pulse['requested_rms'],
@@ -73,8 +77,8 @@ def main():
             print(json.dumps({'batch_end':lo+len(batch),'records':count,'elapsed_s':time.monotonic()-started}),flush=True)
     manifest=dict(complete=True,models=model_meta,scores=score_meta,support=score.support,
                   query_source_sha256=sha256(a.queries),candidates_sha256=sha256(a.out/'candidates.jsonl'),
-                  n_queries=len(rows),proposals=a.proposals,path=a.path,training_seed=0,
-                  requested_times=[.20,.35,.50,.65,.80],amplitudes=[.05,.10,.20],
+                  n_queries=len(rows),proposals=a.proposals,path=a.path,training_seed=a.seed,
+                  requested_times=a.times,amplitudes=[.05,.10,.20],
                   gpu_wall_s=time.monotonic()-started,records=count,
                   shadow_computed_once_per_start=True,shared_random_direction_across_amplitudes=True)
     (a.out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')

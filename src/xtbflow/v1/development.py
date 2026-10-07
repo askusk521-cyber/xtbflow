@@ -116,4 +116,4 @@ def window_summary(rows, manifest, parents):
                            amplitudes=amp_summary,transitions=dict(transitions),parent_rows=parent_rows,
                            matched_F0_calibration=score_calibration(f0rows)))
     return dict(windows=output,integrity='COMPLETE_PAIRED_WINDOW_PASS',
-                interpretation='Development seed-0 diagnostics only. No formal gate and no score qualification without A0/A2/B0/B1 rollout calibration.')
+                interpretation='Development diagnostics only. No formal gate and no score qualification without A0/A2/B0/B1 rollout calibration.')

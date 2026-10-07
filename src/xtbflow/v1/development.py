@@ -95,6 +95,10 @@ def window_summary(rows, manifest, parents):
                               valid_to_invalid=float(event_class(f0)!='invalid' and event_class(fs)=='invalid'),
                               beneficial=float(m0>1e-12),harmful=float(m0< -1e-12),
                               unchanged=float(fs['predicted_channel_id']==f0['predicted_channel_id']))
+                    if 'score_after_pulse' in fs and 'score_after_pulse' in fr:
+                        pair.update(score_change=fs['score_after_pulse']-fs['score_at_pulse'],
+                                    random_score_change=fr['score_after_pulse']-fr['score_at_pulse'],
+                                    score_decreased=float(fs['score_after_pulse']<fs['score_at_pulse']-1e-8))
                     for key,value in pair.items():measures[key].append(value)
                     by_amp[a].append(dict(parent_id=p['parent_id'],split_group=p['split_group'],**pair))
                     transitions[f"{event_class(f0)}->{event_class(fs)}"]+=1
@@ -112,7 +116,10 @@ def window_summary(rows, manifest, parents):
                                  for k in ('M0','MR','valid_event_change','random_valid_event_change')}
         output.append(dict(requested_t=t,actual_t_x=f0rows[0]['actual_t_x'],
                            actual_t_b=f0rows[0]['actual_t_b'],step_index=f0rows[0]['step_index'],
-                           summary={k:cluster_summary([r[k] for r in parent_rows],groups) for k in measures},
+                           summary={k:(dict(estimate=float(np.mean([r[k] for r in parent_rows])),
+                                            scope='Descriptive score change, not bounded event utility.')
+                                       if k in ('score_change','random_score_change') else
+                                       cluster_summary([r[k] for r in parent_rows],groups)) for k in measures},
                            amplitudes=amp_summary,transitions=dict(transitions),parent_rows=parent_rows,
                            matched_F0_calibration=score_calibration(f0rows)))
     return dict(windows=output,integrity='COMPLETE_PAIRED_WINDOW_PASS',

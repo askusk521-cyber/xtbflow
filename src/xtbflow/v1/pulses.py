@@ -32,8 +32,12 @@ def pulse_branches(net,score,query,initial,proposals,*,training_seed=0,path='syn
     results={'F0':shadow};pulse_meta={}
     for amplitude in (.05,.10,.20):
         ds,dr,actual=paired_pulses(unit,random,query.atom_mask,amplitude,info['applicable'])
+        after={name:score.components(query,state.b,state.x+delta,time_b,time_x)['phi'].detach()
+               for name,delta in [('F_S',ds),('F_R',dr)]}
+        if not all(torch.isfinite(value).all() for value in after.values()):
+            raise FloatingPointError('nonfinite post-pulse diagnostic score')
         pulse_meta[str(amplitude)]=dict(requested_rms=amplitude,actual_rms=actual,
-                                       applicable=info['applicable'])
+                                       applicable=info['applicable'],score_after=after)
         for name,delta,replay in [('F_S',ds,None),('F_R',dr,None),('C_S',ds,shadow.b_trace)]:
             changed=State(state.b.clone(),state.x+delta,time_b,time_x)
             branch=rollout(net,query,changed,path=path,n_steps=n_steps,start=k,replay=replay)

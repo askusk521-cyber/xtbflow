@@ -65,6 +65,8 @@ def main():
                             applicable=bool(meta['score']['applicable'][i]),
                             supported=bool(meta['score']['supported'][i]),
                             score_at_pulse=float(meta['score']['score'][i]),
+                            score_after_pulse=float(meta['score']['score'][i]) if pulse is None else
+                                float(pulse['score_after']['F_R' if name.startswith('F_R') else 'F_S'][i]),
                             mean_kcal_at_pulse=float(meta['score']['mean_kcal'][i]),
                             sd_kcal_at_pulse=float(meta['score']['sd_kcal'][i]),
                             gradient_norm=float(meta['score']['gradient_norm'][i]),

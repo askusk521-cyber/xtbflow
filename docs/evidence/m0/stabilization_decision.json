@@ -1,0 +1,28 @@
+{
+  "schema": "xtbflow-m0-owner-decision/v1",
+  "date": "2026-10-07",
+  "trigger": "numerical_stop.json: two of three seeds in each arm produced non-finite loss",
+  "owner_choice": "批准+完整重跑",
+  "approved_change": {
+    "file": "src/xtbflow/m0/backbone.py",
+    "scope": "PaiNNLayer update block, identical for both arms (shared class)",
+    "definition": "update MLP input uses layer_norm(s) without affine parameters; U/V act on v_hat = v / sqrt(mean_c ||v_c||^2 + 1e-6) per atom; residual streams s, v and the message step are unchanged",
+    "new_parameters": 0,
+    "cascade_width_unchanged": {"scalar_dim": 92, "vector_dim": 23, "cascade_params": 960498, "joint_params": 935970}
+  },
+  "approved_rerun_scope": [
+    "CPU tests: existing M0 model tests plus tests/test_m0_stability.py",
+    "bounded GPU replay of joint_s0, joint_s2, geometry_s1, geometry_s2 past their original failure steps with the original sigma",
+    "redo validation noise selection (8 runs x 20k steps, seed 0) on the new trunk",
+    "redo all 9 formal runs (3 seeds x joint/event/geometry, 60k steps)",
+    "all previous runs and failures retained, never overwritten"
+  ],
+  "not_changed": [
+    "data cache, splits and filtering (sample 7451 retained)",
+    "loss definitions, learning rate, schedule, gradient clip, EMA",
+    "evaluation definitions and test-set discipline"
+  ],
+  "superseded_artifacts": [
+    "noise_selection.json selections were made on the pre-fix trunk and are not reused"
+  ]
+}

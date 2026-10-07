@@ -1,0 +1,28 @@
+{
+  "trajectory_shape": [
+    3914,
+    21,
+    3
+  ],
+  "energy_shape": [
+    3914
+  ],
+  "closest_ts_frame": 3912,
+  "closest_ts_max_difference": 0.0,
+  "max_energy_frame": 7,
+  "ts_frame_energy": -8486.325991648939,
+  "energy_range": [
+    -8495.496813092399,
+    -8483.601968137806
+  ],
+  "ts_atom7_nearest_distance": 8.50926101963622,
+  "all_frame_atom7_nearest_distance_range": [
+    0.74420358196585,
+    8.50926101963622
+  ],
+  "frame_atomic_numbers_equal": {
+    "reactant": true,
+    "transition_state": true,
+    "product": true
+  }
+}

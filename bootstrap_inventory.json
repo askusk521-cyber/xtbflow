@@ -1478,6 +1478,11 @@
       "bytes": 11024
     },
     {
+      "path": "src/xtbflow/v1/guidance.py",
+      "sha256": "135b21b6916736aa63aeda1d4725851d2269ce7d05d2ea7da623daec9d950f8f",
+      "bytes": 2894
+    },
+    {
       "path": "src/xtbflow/v1/interfaces.py",
       "sha256": "eee219bb7e004f68e4052d9ef4fc7f159c147a22069a146eed800f728b39d498",
       "bytes": 1611
@@ -1486,6 +1491,16 @@
       "path": "src/xtbflow/v1/proxy.py",
       "sha256": "d63db40519e29df0202f393020a676c6880587c0e0a9f8bfeea0dea9a0fc352b",
       "bytes": 4173
+    },
+    {
+      "path": "src/xtbflow/v1/rng.py",
+      "sha256": "fd62de3a211a71d9cded4ab31b37069de7a93646811cf77bf0110c9324cf3ccc",
+      "bytes": 375
+    },
+    {
+      "path": "src/xtbflow/v1/sampler.py",
+      "sha256": "a9bf8d3314aea37cf72f9a3963622f39d5eea78107d6bef89d1d7886dc7cd1c5",
+      "bytes": 5937
     },
     {
       "path": "src/xtbflow/v1/score_training.py",
@@ -1741,6 +1756,11 @@
       "path": "tests/test_v1_data.py",
       "sha256": "693dd420336d0cf97f044bb2965a9ed7b91d1de5b7d9cc4700eee8f3aad1419c",
       "bytes": 2495
+    },
+    {
+      "path": "tests/test_v1_guidance_replay_rng.py",
+      "sha256": "4df18255767d7178c6a597272cc0fbba31af0b5eeec64ad7b8839707090ea35b",
+      "bytes": 2936
     },
     {
       "path": "tests/test_v1_proxy.py",

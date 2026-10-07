@@ -628,6 +628,11 @@
       "bytes": 1495
     },
     {
+      "path": "docs/evidence/m0/stabilization_replay.json",
+      "sha256": "6099ca6a11efe43b07a82b1c6f1423a1dd78e154f4e63e9083138370466c7498",
+      "bytes": 3278
+    },
+    {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
       "sha256": "cbdd9b63b5cad70fbadf0ae8060e00a0aff4e439a10864bbbd7aec87ce8b9bbd",
       "bytes": 7458

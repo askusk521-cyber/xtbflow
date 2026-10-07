@@ -1,0 +1,107 @@
+{
+ "stage": "stabilization_bounded_replay",
+ "date": "2026-10-07",
+ "source_git_sha": "cac4cc94a2bdaaecf0011b5bc24455bac47a0c3b",
+ "host": "node2, 1x RTX PRO 6000 Blackwell per job, Slurm jobs 2551-2554 (25 min limit each)",
+ "remote_dir": "/home/lhshen/xtbflow-runs/m0/stabilize-20261007/replay",
+ "method": "same role, seed, sigma and 60k-step LR schedule as the failed formal runs; --stop-at 13000 (past every original failure step); data and noise order are seeded independently of the model, so the same batches containing sample 7451 recur at the same steps",
+ "criterion": "m0_train.py aborts with NONFINITE.json on any non-finite loss; none was written",
+ "runs": {
+  "joint_s0": {
+   "original_failure_step": 7559,
+   "replay_last_logged_step": 13000,
+   "replay_all_logged_finite": true,
+   "replay_max_grad_norm": 2.527254343032837,
+   "replay_elapsed_s": 346.1722228527069,
+   "mean_total_loss_5k_7_5k": {
+    "replay": 0.21947790265083314,
+    "original": 0.22053006410598755
+   },
+   "git_sha": "cac4cc94a2bdaaecf0011b5bc24455bac47a0c3b",
+   "sigma": [
+    1.0,
+    0.5
+   ],
+   "stop_at": 13000,
+   "train_steps_for_schedule": 60000
+  },
+  "joint_s2": {
+   "original_failure_step": 10893,
+   "replay_last_logged_step": 13000,
+   "replay_all_logged_finite": true,
+   "replay_max_grad_norm": 3.225423812866211,
+   "replay_elapsed_s": 354.5883779525757,
+   "mean_total_loss_5k_7_5k": {
+    "replay": 0.21973012745380402,
+    "original": 0.22025999963283538
+   },
+   "git_sha": "cac4cc94a2bdaaecf0011b5bc24455bac47a0c3b",
+   "sigma": [
+    1.0,
+    0.5
+   ],
+   "stop_at": 13000,
+   "train_steps_for_schedule": 60000
+  },
+  "geometry_s1": {
+   "original_failure_step": 11447,
+   "replay_last_logged_step": 13000,
+   "replay_all_logged_finite": true,
+   "replay_max_grad_norm": 1.5129015445709229,
+   "replay_elapsed_s": 325.6089868545532,
+   "mean_total_loss_5k_7_5k": {
+    "replay": 0.10258133590221405,
+    "original": 0.10443750113248824
+   },
+   "git_sha": "cac4cc94a2bdaaecf0011b5bc24455bac47a0c3b",
+   "sigma": [
+    0.5,
+    0.5
+   ],
+   "stop_at": 13000,
+   "train_steps_for_schedule": 60000
+  },
+  "geometry_s2": {
+   "original_failure_step": 10095,
+   "replay_last_logged_step": 13000,
+   "replay_all_logged_finite": true,
+   "replay_max_grad_norm": 0.8776970505714417,
+   "replay_elapsed_s": 328.6515300273895,
+   "mean_total_loss_5k_7_5k": {
+    "replay": 0.10416764706373215,
+    "original": 32027.615029852986
+   },
+   "git_sha": "cac4cc94a2bdaaecf0011b5bc24455bac47a0c3b",
+   "sigma": [
+    0.5,
+    0.5
+   ],
+   "stop_at": 13000,
+   "train_steps_for_schedule": 60000
+  }
+ },
+ "toy_check": {
+  "slurm_job": 2555,
+  "source_git_sha": "cac4cc94a2bdaaecf0011b5bc24455bac47a0c3b",
+  "output": [
+   {
+    "arm": "B_joint",
+    "share_1": 0.515625,
+    "share_2": 0.484375,
+    "valid": 1.0,
+    "median_rmsd_own": 0.008785451462872174,
+    "closer_to_own": 1.0
+   },
+   {
+    "arm": "A_cascade",
+    "share_1": 0.515625,
+    "share_2": 0.484375,
+    "valid": 1.0,
+    "median_rmsd_own": 0.004973532776014106,
+    "closer_to_own": 1.0
+   }
+  ],
+  "verdict": "TOY PASS"
+ },
+ "limits": "Replays are diagnostic only: no checkpoint was saved (stop before 20k) and none is a selection candidate. Loss parity is a training-health check, not an accuracy claim."
+}

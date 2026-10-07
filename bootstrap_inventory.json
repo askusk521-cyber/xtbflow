@@ -1128,6 +1128,11 @@
       "bytes": 4155
     },
     {
+      "path": "scripts/v1a_stream_generate.py",
+      "sha256": "50c6d77810056028af53ae872161485126fb89bffcd5c6e1d9ce7b1d8e52e5e9",
+      "bytes": 4524
+    },
+    {
       "path": "scripts/v1a_train.py",
       "sha256": "b9005d9c363fc8fdb4ce934d55c60630c05b54b0ce53ee0191cec3621e4c919d",
       "bytes": 6928
@@ -1573,6 +1578,11 @@
       "bytes": 1188
     },
     {
+      "path": "src/xtbflow/v1/streams.py",
+      "sha256": "ad515fbeb9e8740bbcc30c660167d1ff7947065b46ac52bdd764c45481c8b351",
+      "bytes": 11687
+    },
+    {
       "path": "src/xtbflow/v1/training.py",
       "sha256": "402e72573b22c2d1f8ea901deb286da3c7a44450ec5596634b9addde2b1a92b9",
       "bytes": 1942
@@ -1846,6 +1856,11 @@
       "path": "tests/test_v1_scores.py",
       "sha256": "cf7e4039daa51bb5c69bbc06883955c5def8be2c84c67a7e8429df6d23052618",
       "bytes": 2651
+    },
+    {
+      "path": "tests/test_v1_streams.py",
+      "sha256": "2d6c4b4b6d5cddc35e8d213062effa54641a37920732cce9f6df198d55236d40",
+      "bytes": 2945
     },
     {
       "path": "tests/test_workflow_b_protocol.py",

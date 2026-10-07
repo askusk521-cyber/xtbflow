@@ -1138,6 +1138,11 @@
       "bytes": 5663
     },
     {
+      "path": "scripts/v1a_window_evaluate.py",
+      "sha256": "0dac0307434728d2e28254336411eedddb04043a62861fb84fa440b5caf660e9",
+      "bytes": 3047
+    },
+    {
       "path": "scripts/v1a_window_generate.py",
       "sha256": "ee74d53f2093e2cb53285b3e6b056a70a9694b1bfb3718fec2fdee2612e3e8ab",
       "bytes": 5117
@@ -1508,6 +1513,11 @@
       "bytes": 11024
     },
     {
+      "path": "src/xtbflow/v1/development.py",
+      "sha256": "7bb2cb2aeac5c532668b83e7d6582a5d2752b12d14a86621a6738f64a8734e92",
+      "bytes": 7181
+    },
+    {
       "path": "src/xtbflow/v1/gate.py",
       "sha256": "bda2c63fdc4290c09757e34fa0e1773894bcaf561f26a54dc0c69373306fb5ae",
       "bytes": 1798
@@ -1811,6 +1821,11 @@
       "path": "tests/test_v1_data.py",
       "sha256": "693dd420336d0cf97f044bb2965a9ed7b91d1de5b7d9cc4700eee8f3aad1419c",
       "bytes": 2495
+    },
+    {
+      "path": "tests/test_v1_development.py",
+      "sha256": "d0b9089cc0269c7b8766d8df4c2f3294abf8e136f5191c2b13f9df75c191a1da",
+      "bytes": 2131
     },
     {
       "path": "tests/test_v1_guidance_replay_rng.py",

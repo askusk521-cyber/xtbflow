@@ -1138,6 +1138,11 @@
       "bytes": 5663
     },
     {
+      "path": "scripts/v1a_window_generate.py",
+      "sha256": "ee74d53f2093e2cb53285b3e6b056a70a9694b1bfb3718fec2fdee2612e3e8ab",
+      "bytes": 5117
+    },
+    {
       "path": "scripts/validate_bootstrap.py",
       "sha256": "47dd56659b5663d44691397ac0d15ab053b7bbc0d0398cf79ebc7781a4dbb318",
       "bytes": 3503
@@ -1528,6 +1533,11 @@
       "bytes": 4173
     },
     {
+      "path": "src/xtbflow/v1/pulses.py",
+      "sha256": "ca91c4a58b6abd6abd24d8649bad329cf941a302cecc3bb806c81b5ee6ce1c81",
+      "bytes": 2485
+    },
+    {
       "path": "src/xtbflow/v1/rng.py",
       "sha256": "fd62de3a211a71d9cded4ab31b37069de7a93646811cf77bf0110c9324cf3ccc",
       "bytes": 375
@@ -1804,8 +1814,8 @@
     },
     {
       "path": "tests/test_v1_guidance_replay_rng.py",
-      "sha256": "4df18255767d7178c6a597272cc0fbba31af0b5eeec64ad7b8839707090ea35b",
-      "bytes": 2936
+      "sha256": "caf81ab0832a0e19705d4a3baea1cd8e4edc5e80298af8443b648390b2ed19fd",
+      "bytes": 3621
     },
     {
       "path": "tests/test_v1_metrics_gate.py",

@@ -3,6 +3,7 @@ import torch
 from xtbflow.v1.guidance import paired_pulses,rms_atom,unit_geometry_direction
 from xtbflow.v1.interfaces import Query,State
 from xtbflow.v1.sampler import initial_state,rollout,subset_query
+from xtbflow.v1.pulses import pulse_branches
 
 
 class Coupled(torch.nn.Module):
@@ -68,3 +69,15 @@ def test_pulse_common_amplitude_and_zero_direction_not_dropped():
     assert actual[0]<.2 and actual[1]==0
     assert ds.norm(dim=-1).max()<=.6+1e-7
     assert dr.norm(dim=-1).max()<=.6+1e-7
+
+
+def test_full_pulse_branches_use_grid_time_and_exact_event_replay():
+    q=query();initial=initial_state(q,[0,1],0,namespace='mechanism')
+    results,meta=pulse_branches(Coupled(),Score(),q,initial,[0,1],n_steps=5,requested_t=.35)
+    assert meta['step_index']==2 and meta['actual_t_x']==.4
+    assert len(results)==10
+    for a in (.05,.10,.20):
+        assert torch.equal(results['C_S_'+str(a)].state.b,results['F0'].state.b)
+        # A pulse itself leaves the event snapshot unchanged.
+        assert torch.equal(results['F_S_'+str(a)].b_trace[0],results['F0'].b_trace[2])
+    assert all(not v.failed.any() for v in results.values())

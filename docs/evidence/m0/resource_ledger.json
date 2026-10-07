@@ -1,0 +1,282 @@
+{
+ "method": "stabilized round: wall time between start/end stamps of each 1-GPU Slurm job; pre-fix round: last logged training elapsed_s per run (lower bound, excludes validation jobs, data loading start-up, the 4 diagnostic replays <= 0.767 GPU-h requested, and steps after the last 100-step log)",
+ "stabilized_gpu_hours": 5.646,
+ "pre_fix_training_gpu_hours_lower_bound": 3.283,
+ "max_single_run_gpu_hours": 0.458,
+ "limits": {
+  "single_run": 12,
+  "total": 150
+ },
+ "rows": [
+  {
+   "round": "stabilized",
+   "job": 2565,
+   "log": "stabilize-20261007/full/slurm-2565-joint_s0.log",
+   "gpu_hours": 0.45305555555555554
+  },
+  {
+   "round": "stabilized",
+   "job": 2566,
+   "log": "stabilize-20261007/full/slurm-2566-event_s0.log",
+   "gpu_hours": 0.44166666666666665
+  },
+  {
+   "round": "stabilized",
+   "job": 2567,
+   "log": "stabilize-20261007/full/slurm-2567-geometry_s0.log",
+   "gpu_hours": 0.4216666666666667
+  },
+  {
+   "round": "stabilized",
+   "job": 2568,
+   "log": "stabilize-20261007/full/slurm-2568-joint_s1.log",
+   "gpu_hours": 0.4577777777777778
+  },
+  {
+   "round": "stabilized",
+   "job": 2569,
+   "log": "stabilize-20261007/full/slurm-2569-event_s1.log",
+   "gpu_hours": 0.4375
+  },
+  {
+   "round": "stabilized",
+   "job": 2570,
+   "log": "stabilize-20261007/full/slurm-2570-geometry_s1.log",
+   "gpu_hours": 0.41805555555555557
+  },
+  {
+   "round": "stabilized",
+   "job": 2571,
+   "log": "stabilize-20261007/full/slurm-2571-joint_s2.log",
+   "gpu_hours": 0.4488888888888889
+  },
+  {
+   "round": "stabilized",
+   "job": 2572,
+   "log": "stabilize-20261007/full/slurm-2572-event_s2.log",
+   "gpu_hours": 0.4413888888888889
+  },
+  {
+   "round": "stabilized",
+   "job": 2573,
+   "log": "stabilize-20261007/full/slurm-2573-geometry_s2.log",
+   "gpu_hours": 0.41583333333333333
+  },
+  {
+   "round": "stabilized",
+   "job": 2575,
+   "log": "stabilize-20261007/full/val-2575.log",
+   "gpu_hours": 0.08444444444444445
+  },
+  {
+   "round": "stabilized",
+   "job": 2551,
+   "log": "stabilize-20261007/replay/slurm-2551-joint_s0.log",
+   "gpu_hours": 0.09722222222222222
+  },
+  {
+   "round": "stabilized",
+   "job": 2552,
+   "log": "stabilize-20261007/replay/slurm-2552-joint_s2.log",
+   "gpu_hours": 0.09944444444444445
+  },
+  {
+   "round": "stabilized",
+   "job": 2553,
+   "log": "stabilize-20261007/replay/slurm-2553-geometry_s1.log",
+   "gpu_hours": 0.0913888888888889
+  },
+  {
+   "round": "stabilized",
+   "job": 2554,
+   "log": "stabilize-20261007/replay/slurm-2554-geometry_s2.log",
+   "gpu_hours": 0.09222222222222222
+  },
+  {
+   "round": "stabilized",
+   "job": 2576,
+   "log": "stabilize-20261007/test/test-2576.log",
+   "gpu_hours": 0.025
+  },
+  {
+   "round": "stabilized",
+   "job": 2555,
+   "log": "stabilize-20261007/toy-2555.log",
+   "gpu_hours": 0.034444444444444444
+  },
+  {
+   "round": "stabilized",
+   "job": 2556,
+   "log": "stabilize-20261007/tune/slurm-2556-joint_b0.5_x0.5_s0.log",
+   "gpu_hours": 0.15138888888888888
+  },
+  {
+   "round": "stabilized",
+   "job": 2557,
+   "log": "stabilize-20261007/tune/slurm-2557-joint_b0.5_x1.0_s0.log",
+   "gpu_hours": 0.14888888888888888
+  },
+  {
+   "round": "stabilized",
+   "job": 2558,
+   "log": "stabilize-20261007/tune/slurm-2558-joint_b1.0_x0.5_s0.log",
+   "gpu_hours": 0.15166666666666667
+  },
+  {
+   "round": "stabilized",
+   "job": 2559,
+   "log": "stabilize-20261007/tune/slurm-2559-joint_b1.0_x1.0_s0.log",
+   "gpu_hours": 0.14694444444444443
+  },
+  {
+   "round": "stabilized",
+   "job": 2560,
+   "log": "stabilize-20261007/tune/slurm-2560-event_0.5_s0.log",
+   "gpu_hours": 0.14
+  },
+  {
+   "round": "stabilized",
+   "job": 2561,
+   "log": "stabilize-20261007/tune/slurm-2561-geometry_0.5_s0.log",
+   "gpu_hours": 0.13805555555555554
+  },
+  {
+   "round": "stabilized",
+   "job": 2562,
+   "log": "stabilize-20261007/tune/slurm-2562-event_1.0_s0.log",
+   "gpu_hours": 0.14527777777777778
+  },
+  {
+   "round": "stabilized",
+   "job": 2563,
+   "log": "stabilize-20261007/tune/slurm-2563-geometry_1.0_s0.log",
+   "gpu_hours": 0.14083333333333334
+  },
+  {
+   "round": "stabilized",
+   "job": 2564,
+   "log": "stabilize-20261007/tune/val-2564.log",
+   "gpu_hours": 0.0225
+  },
+  {
+   "round": "pre-fix",
+   "run": "benchmark-joint-500-20261007",
+   "gpu_hours": 0.0034880261951022676,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "full-20261007/event_s0",
+   "gpu_hours": 0.4060919327206082,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "full-20261007/event_s1",
+   "gpu_hours": 0.4070857654015223,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "full-20261007/event_s2",
+   "gpu_hours": 0.14391037258836958,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "full-20261007/geometry_s0",
+   "gpu_hours": 0.39572528494728937,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "full-20261007/geometry_s1",
+   "gpu_hours": 0.0757653628455268,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "full-20261007/geometry_s1_retry1",
+   "gpu_hours": 0.0772028519709905,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "full-20261007/geometry_s2",
+   "gpu_hours": 0.06658598012394375,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "full-20261007/joint_s0",
+   "gpu_hours": 0.05280924002329508,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "full-20261007/joint_s0_retry1",
+   "gpu_hours": 0.05371352665954166,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "full-20261007/joint_s1",
+   "gpu_hours": 0.42685414890448253,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "full-20261007/joint_s2",
+   "gpu_hours": 0.07546495404508378,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "tune-20261007/event_0.5_s0",
+   "gpu_hours": 0.1339369167221917,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "tune-20261007/event_1.0_s0",
+   "gpu_hours": 0.1354189681344562,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "tune-20261007/geometry_0.5_s0",
+   "gpu_hours": 0.13156691160466935,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "tune-20261007/geometry_1.0_s0",
+   "gpu_hours": 0.13080253806379105,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "tune-20261007/joint_b0.5_x0.5_s0",
+   "gpu_hours": 0.14236898567941453,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "tune-20261007/joint_b0.5_x1.0_s0",
+   "gpu_hours": 0.1419903623395496,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "tune-20261007/joint_b1.0_x0.5_s0",
+   "gpu_hours": 0.1407806161377165,
+   "lower_bound": true
+  },
+  {
+   "round": "pre-fix",
+   "run": "tune-20261007/joint_b1.0_x1.0_s0",
+   "gpu_hours": 0.14143262909518348,
+   "lower_bound": true
+  }
+ ]
+}

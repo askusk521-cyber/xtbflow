@@ -613,6 +613,11 @@
       "bytes": 914
     },
     {
+      "path": "docs/evidence/m0/gate_result.json",
+      "sha256": "63320ccb471d9f14a72fa4bd14b05abc7fdcf2799c8c5348698c3515b63670ec",
+      "bytes": 17749
+    },
+    {
       "path": "docs/evidence/m0/gpu_benchmark_500.json",
       "sha256": "53fde105f75621c3d76a014f6d24eeaa830e48464e10c65a8d55cde2c76a2231",
       "bytes": 1604
@@ -626,6 +631,11 @@
       "path": "docs/evidence/m0/numerical_stop.json",
       "sha256": "64bf0d6162e6040e8ecc10160af2a44eaf7343a4c2b40013353d2b897dc72a4e",
       "bytes": 5351
+    },
+    {
+      "path": "docs/evidence/m0/resource_ledger.json",
+      "sha256": "83f839fda30be45f655154ce3c5460eb84778640c26d4b969cdfdbdbc48f789d",
+      "bytes": 6812
     },
     {
       "path": "docs/evidence/m0/stabilization_decision.json",
@@ -836,6 +846,16 @@
       "path": "docs/evidence/xtbloom_cpu_smoke_20260929.json",
       "sha256": "0a1da44eea592da8a75ee27deb9a7db28e4c12693b84c38550889deb69024883",
       "bytes": 2857
+    },
+    {
+      "path": "docs/m0/M0_GATE_REPORT.delta.svg",
+      "sha256": "66dbc4c1f1fbe0ef49c06a03b8ab61fbdb5e3c8fb23be6020b9d4171a2a6f001",
+      "bytes": 815
+    },
+    {
+      "path": "docs/m0/M0_GATE_REPORT.md",
+      "sha256": "622631756b2bd30f902f5e1d0ba05a96b7001bfadaf234b285fd0b8c43333085",
+      "bytes": 1850
     },
     {
       "path": "docs/model_design.md",

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" viewBox="0 0 600 340">
+<rect width="600" height="340" fill="white"/>
+<path d="M50 20 V290 H570" stroke="black" fill="none"/>
+<text x="220" y="330">TS RMSD threshold (Å)</text>
+<text x="50" y="15">Parent macro hit rate (0–1)</text>
+<polyline points="50.00,263.24 107.78,220.99 165.56,193.86 223.33,172.02 281.11,159.22 338.89,147.79 396.67,142.33 454.44,137.54 512.22,132.84 570.00,131.06" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="430" y="35" fill="#2563eb">Arm A</text>
+<polyline points="50.00,265.20 107.78,232.16 165.56,201.38 223.33,179.94 281.11,163.13 338.89,152.29 396.67,139.79 454.44,133.70 512.22,129.38 570.00,128.14" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="500" y="35" fill="#dc2626">Arm B</text>
+</svg>

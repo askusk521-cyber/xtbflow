@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 from pathlib import Path
 import numpy as np
@@ -21,6 +22,48 @@ def aggregate(runs, field):
     parents={q:runs[0][q]['parent_id'] for q in keys}
     if any(r[q]['parent_id']!=parents[q] for r in runs for q in keys):raise ValueError('Parent identity differs')
     return parent_means({q:float(np.mean([field(r[q]) for r in runs])) for q in keys},parents)
+
+
+NEXT={'GO':'Enter M1.','NO-GO':'Retain negative result and move to direction B.',
+      'INCONCLUSIVE':'Request the predefined extension; do not tune from test results.'}
+DEVIATIONS=[
+    'Data gate: the owner authorized continuing with unchanged filtering and splits despite 84.58% retention '
+    '(required >= 85%) and 35 test parents (required >= 40). This limits statistical coverage.',
+    'Numerical stop: the first formal attempt had non-finite loss in two of three seeds per arm. With owner approval '
+    'the PaiNN update block of both arms was pre-normalized (layer_norm(s) without affine parameters, per-atom '
+    'rescaled vectors, zero new parameters), and noise selection and all nine formal runs were redone. Failed runs '
+    'are retained; see docs/evidence/m0/stabilization_decision.json.',
+    'CPU pytest needs the repository root on PYTHONPATH.',
+    'No xTB or DFT validation of generated transition states is claimed.',
+]
+
+
+def render_report(result, plot_name):
+    """Markdown in the order of guide §8.2: verdict sentence, Table 1, Figure 1, Table 2, deviations, next step."""
+    p,v,sec=result['primary'],result['validity'],result['secondary']
+    ci=lambda d:f"[{d['ci95'][0]:.4f}, {d['ci95'][1]:.4f}]"
+    fmt=lambda x:'n/a' if x is None else f'{x:.4f}'
+    out=[f"# M0 gate report",'',
+         f"**{result['decision']}**: M_A = {p['M_A']:.4f}, M_B = {p['M_B']:.4f}, Δ = {p['delta']:.4f}, "
+         f"95% CI {ci(p)} over {p['n_parents']} test parents.",'',
+         '## Table 1. Primary metric and validity','',
+         '| Quantity | A (cascade) | B (joint) | Δ = B − A | 95% CI |','|---|---:|---:|---:|---|',
+         f"| Primary M (δ = 0.5 Å) | {p['M_A']:.4f} | {p['M_B']:.4f} | {p['delta']:.4f} | {ci(p)} |",
+         f"| Validity | {v['M_A']:.4f} | {v['M_B']:.4f} | {v['delta']:.4f} | {ci(v)} |",'',
+         'Per-seed Δ (no bootstrap): '+', '.join(f'seed {k}: {d:.4f}' for k,d in enumerate(result['seed_deltas']))+'.','',
+         'Sensitivity (reported only; the decision stays at δ = 0.5 Å): '
+         +', '.join(f'δ = {d} Å → {x}' for d,x in result['sensitivity'].items())+'.','',
+         '## Figure 1. Primary metric versus δ','',f'![Primary metric versus δ]({plot_name})','',
+         '## Table 2. Secondary metrics (seed-averaged) and capacity','',
+         '| Metric | A (cascade) | B (joint) |','|---|---:|---:|']
+    for key in ('event_recall','median_rmsd_on_hits','consistency','unique_valid_events'):
+        out.append(f"| {key} | {fmt(sec['A'][key])} | {fmt(sec['B'][key])} |")
+    out+=[f"| parameters | {result['params']['A']} | {result['params']['B']} |",'',
+          f"Automorphism cap reached on {result['automorphism_cap_hits']} test reactions. A2x was not run.",'',
+          '## Deviations from the guide','']
+    out+=[f'{k}. {d}' for k,d in enumerate(DEVIATIONS,1)]
+    out+=['','## Next','',NEXT[result['decision']],'']
+    return '\n'.join(out)
 
 
 def main():
@@ -55,6 +98,8 @@ def main():
         evaluation_sha256=[sha256(p) for p in a.a+a.b],
     )
     cfg=json.loads(a.config.read_text());ec=cfg['eval'];aa=list(map(load,a.a));bb=list(map(load,a.b))
+    if 'data' in cfg:  # guide §7.4 provenance includes the cache hash; synthetic fixtures have no cache
+        artifact_provenance['cache_sha256']=sha256(Path(os.path.expandvars(cfg['data']['cache'])))
     if any(set(r)!=set(aa[0]) for r in aa+bb):raise ValueError('Arm query coverage differs')
     boot=lambda f:paired_bootstrap(aggregate(aa,f),aggregate(bb,f),ec['bootstrap'],ec['bootstrap_seed'])
     primary=boot(lambda r:r['hit']['0.5']);valid=boot(lambda r:r['valid_frac'])
@@ -81,12 +126,6 @@ def main():
                 a2x=None,params=frozen['params'],automorphism_cap_hits=sum(any(r[q]['automorphism_cap_hit'] for r in aa+bb) for q in aa[0]),
                 provenance=dict(selection=frozen,**artifact_provenance), data_gate_exceptions={'retention':0.8458254740395116,'test_parents':35})
     a.out.parent.mkdir(parents=True,exist_ok=True);a.out.write_text(json.dumps(result,indent=2,allow_nan=False)+'\n', encoding='utf-8')
-    p=primary
-    text=f"# M0 gate report\n\n{result['decision']}: M_A={p['M_A']:.6f}, M_B={p['M_B']:.6f}, Δ={p['delta']:.6f}, 95% CI={p['ci95']}.\n\n"
-    text+='## Main and validity\n\n```json\n'+json.dumps({'primary':primary,'validity':valid,'seed_deltas':sd},indent=2)+'\n```\n'
-    text+='## Secondary metrics and capacity\n\n```json\n'+json.dumps({'secondary':secondary,'params':result['params'],'sensitivity':result['sensitivity']},indent=2)+'\n```\n'
-    text+='## Guide exceptions\n\nOwner authorized continuation with unchanged filtering/splits despite 84.58% retention and 35 test parents. This limits statistical coverage. CPU pytest required repository root on PYTHONPATH. No xTB TS validation is claimed.\n'
-    text+='\n## Next\n\n'+{'GO':'Enter M1.','NO-GO':'Retain negative result and move to direction B.','INCONCLUSIVE':'Request the predefined extension; do not tune from test results.'}[result['decision']]+'\n'
     # Dependency-free curve plot: values come exclusively from the computed bootstrap.
     a.report.parent.mkdir(parents=True,exist_ok=True)
     plot = a.report.with_suffix('.delta.svg')
@@ -101,8 +140,7 @@ def main():
         lines.append(f'<text x="{430 if arm=="A" else 500}" y="35" fill="{color}">Arm {arm}</text>')
     lines.append('</svg>')
     plot.write_text('\n'.join(lines), encoding='utf-8')
-    text += f'\n![δ sensitivity curve]({plot.name})\n'
-    a.report.write_text(text, encoding='utf-8')
+    a.report.write_text(render_report(result, plot.name), encoding='utf-8')
     print(json.dumps(result,indent=2))
 
 

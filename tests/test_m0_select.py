@@ -45,7 +45,9 @@ def test_checkpoint_selection_pairs_cascade_roles_at_one_step(tmp_path):
                 p.parent.mkdir(parents=True, exist_ok=True)
                 p.write_bytes(f"{role}{seed}{step}".encode())
     noise = {"selected": {a: {"sigma_b": 0.5, "sigma_x": 1.0} for a in m0_select.ARMS}}
-    result = m0_select.select_checkpoints(val, runs, noise, n_queries=4, n_parents=2)
+    fake_params = lambda p: {"joint": 1000, "event": 450, "geometry": 520}[p.parent.name.split("_")[0]]
+    result = m0_select.select_checkpoints(val, runs, noise, n_queries=4, n_parents=2, read_params=fake_params)
+    assert result["params"] == {"A": 970, "B": 1000, "rel_diff": 0.03}
     assert result["selected"]["joint_s1"]["step"] == 20000  # all tied -> earliest step
     cascade = result["selected"]["cascade_s2"]
     assert cascade["step"] == 40000 and set(cascade["checkpoints"]) == {"event", "geometry"}

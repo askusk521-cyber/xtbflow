@@ -61,7 +61,14 @@ def select_noise(root: Path, n_queries: int, n_parents: int) -> dict:
                 tie_rule="lower sigma_b, then lower sigma_x", selected=selected, all_runs=rows)
 
 
-def select_checkpoints(root: Path, runs: Path, noise: dict, n_queries: int, n_parents: int) -> dict:
+def checkpoint_params(path: Path) -> int:
+    """Parameter count that m0_train.py recorded in the checkpoint metadata."""
+    import torch
+    return int(torch.load(path, map_location="cpu", weights_only=False)["params"])
+
+
+def select_checkpoints(root: Path, runs: Path, noise: dict, n_queries: int, n_parents: int,
+                       read_params=checkpoint_params) -> dict:
     git_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
     chosen, all_rows = {}, []
     for arm in ARMS:
@@ -78,8 +85,13 @@ def select_checkpoints(root: Path, runs: Path, noise: dict, n_queries: int, n_pa
                 arm=arm, seed=seed, step=best["step"], val_M=best["M"],
                 sigma_b=noise["selected"][arm]["sigma_b"], sigma_x=noise["selected"][arm]["sigma_x"],
                 checkpoints={role: {"path": str(p), "sha256": sha256(p)} for role, p in ckpts.items()})
+    # Gate report field `params`: A = event + geometry nets, B = joint net (guide §7.4).
+    ck = lambda key, role: Path(chosen[key]["checkpoints"][role]["path"])
+    a_params = read_params(ck("cascade_s0", "event")) + read_params(ck("cascade_s0", "geometry"))
+    b_params = read_params(ck("joint_s0", "joint"))
+    params = {"A": a_params, "B": b_params, "rel_diff": abs(a_params - b_params) / b_params}
     return dict(stage="frozen_checkpoint_selection", git_sha=git_sha, steps=list(STEPS),
-                tie_rule="earlier step", noise_selection=noise["selected"], selected=chosen,
+                tie_rule="earlier step", noise_selection=noise["selected"], params=params, selected=chosen,
                 all_runs=all_rows)
 
 

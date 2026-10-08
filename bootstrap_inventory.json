@@ -173,6 +173,11 @@
       "bytes": 6508
     },
     {
+      "path": "configs/explore/geometry_lead.json",
+      "sha256": "a0a96057c34f5dc5c711b7dd3d373dfebb32c738af82d5bab35f150aaef58215",
+      "bytes": 2788
+    },
+    {
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
@@ -1094,8 +1099,8 @@
     },
     {
       "path": "scripts/explore_geometry_information.py",
-      "sha256": "0068c889dd2c02c75a2cb38be1632282277bde1633f6fe6d5ae8236c22d93685",
-      "bytes": 24966
+      "sha256": "cdb8cc0604d68069bc40b05141dcd948458b680dcdb0c8fb20800f13f7f23dac",
+      "bytes": 28624
     },
     {
       "path": "scripts/joint_flow_smoke.py",
@@ -1634,8 +1639,8 @@
     },
     {
       "path": "src/xtbflow/v1/clocks.py",
-      "sha256": "1b2e48df971d68033c671b395fb8bffb64aaf85deb4e904818432a4482e9fea1",
-      "bytes": 579
+      "sha256": "5841933debf3af6e81f2883de33e34d5d4fcf38240c47fae8a9641d0bde3b509",
+      "bytes": 923
     },
     {
       "path": "src/xtbflow/v1/costs.py",
@@ -1839,8 +1844,8 @@
     },
     {
       "path": "tests/test_geometry_information.py",
-      "sha256": "3680b04c2daee4a8cea0413acc9b439f3ae66ebfab8e64330446ccf1e65ee995",
-      "bytes": 5708
+      "sha256": "f5bf06db827ba262f7664e84db14cf341c7a6bb339dd0b4afedbc3c895e4267e",
+      "bytes": 7936
     },
     {
       "path": "tests/test_handoff_freeze.py",
@@ -1969,8 +1974,8 @@
     },
     {
       "path": "tests/test_v1_clocks.py",
-      "sha256": "216a406fa8d87db6c278baf25edc565ce4583fbbea3f8997dac0d58e5d6233c4",
-      "bytes": 1657
+      "sha256": "c8af15e363c41dfeff08bd4f5572dea855c5c5b1b7b911271867713bc244ebb1",
+      "bytes": 1862
     },
     {
       "path": "tests/test_v1_costs_serial.py",

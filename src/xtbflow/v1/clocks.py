@@ -9,6 +9,13 @@ def clock_grid(path, n_steps=50):
         return s,s.copy()
     if path=='event_lead2':
         return s,s*s
+    # Exploratory mirrors of event_lead2: geometry matures first. Frozen V1a
+    # programs never request these; the joint generator was trained on
+    # independent (t_b, t_x), so both stay inside its training distribution.
+    if path=='geometry_lead2':
+        return s*s,s.copy()
+    if path=='geometry_lead3':
+        return s**3,s.copy()
     raise ValueError(path)
 
 

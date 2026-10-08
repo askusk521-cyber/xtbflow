@@ -1,0 +1,17 @@
+{
+  "version": "smc-raw-ranking-1",
+  "exploratory": true,
+  "question": "Does replacing only endpoint relaxed ranking by raw ranking change comparisons for the fixed smc-1 generated populations?",
+  "scope": "All original 13 arms, 62 development parents, 3 seeds, 32 proposals. No new generation or selection changes.",
+  "input_root": "/home/lhshen/xtbflow-runs/explore-smc-20261009/smc-2116d43",
+  "input_results": "docs/evidence/explore_smc/results.json",
+  "primary_arm": "relaxed_0.7",
+  "rankers": ["original_relaxed", "raw"],
+  "raw_definition": "Use preserved score.raw_barrier. Finite raw scores succeed even if later relaxation failed. Failure last, then ascending raw barrier; candidate/event tie hashes unchanged.",
+  "metrics": "Existing population_metrics with curvature_layers=false: H, hit@1/2/4, hit_infinity, utility, distinct events, legal rate, best reference rate.",
+  "aggregation": "Per parent/seed then average three seeds; paired parent differences; split_group cluster_summary two-sided95%.",
+  "comparisons": "All original 24 arm pairs under both rankers, plus within-arm raw-minus-original H and difference-in-differences for all 24 comparisons.",
+  "gates": "Input file hashes equal published scientific result hashes; original H reproduces published parent metrics within1e-12; all populations complete; rank-invariant metrics identical.",
+  "interpretation": "Posthoc exploratory diagnostic after seeing smc-1. Not an independent confirmation, not new generation evidence, not replacement of smc-1. Report every comparison, no checkpoint selection.",
+  "resources": "CPU only CUDA hidden, nice10, one worker, no GPU/no new xTB; stop if >1 CPU core-hour; do not modify input files."
+}

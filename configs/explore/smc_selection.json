@@ -1,0 +1,39 @@
+{
+  "version": "smc-1",
+  "exploratory": true,
+  "input_config": "configs/explore/geometry_information.json",
+  "pg1": "/home/lhshen/xtbflow-runs/explore-geoinfo-20261008/pg-1efad90/none-geometry_lead3/check_b_trajectories.jsonl",
+  "pg1_sha256": "b842f4c418f8cbd30f60d8090100a9855334ef7f59b2fc76d0095b3bf3a39b62",
+  "check_a": "docs/evidence/explore_geoinfo/check_a_rows.jsonl",
+  "s0_rho": 0.7491015704725383,
+  "scope": {"parents": 62, "formula_groups": 21, "split": "V1a development", "excluded": ["screen", "V1b", "DFT"]},
+  "population": {"P": 32, "R": 16, "training_seeds": [0, 1, 2], "proposals": "0..31", "batch_size": 256, "layout": "original development query order then proposal, exactly cmd_rollouts layout; populations never cross batches", "namespace": "explore_time_window", "sampling_seed": 0, "sigma_b": 1.0, "sigma_x": 0.5},
+  "clock": {"path": "geometry_lead3", "n_steps": 50, "s_c": [0.6, 0.7, 0.8, 0.9], "k_c": [30, 35, 40, 45], "t_b": [0.216, 0.343, 0.512, 0.729], "lookup": "observation_index(tx,s_c)"},
+  "scores": {
+    "input": "continuous predicted endpoint x_hat,b_hat; no decoded event used for selection",
+    "anchor": "GFN2-xTB parent anchored reactant energy",
+    "xtb": "exact input_config xtb block; reused xtb_energy_kcal and _force_job",
+    "raw": "E_xTB(x)-E_R; success before failure then increasing barrier",
+    "relaxed": {"steps": 20, "force": "negative Hartree/bohr gradient times 627.509474/BOHR_IN_ANGSTROM", "direction": "recompute event_direction(b_hat,b_r,x,mask) each step", "reflection": "saddle_reflect(F,u)=(I-2uu^T)F", "step_A2_per_kcal_mol": 0.001, "max_atom_step_A": 0.05, "clip": "scale entire step if any atom exceeds cap; then centered", "barrier": "E_rel-E_R", "curvature": "-[F(x+h*u)-F(x-h*u)] dot u/(2h)", "h_A": 0.005, "failure": "any distance <0.5A, SCF failure, invalid direction, or nonfinite value", "layers": ["success c_u<0", "success c_u>=0", "failure"], "ranking": "layer then relaxed barrier", "calls": "23 relaxation/final-energy/curvature calls plus one raw-energy diagnostic; count actual calls"},
+    "tie": "sha256(parent_id|seed|proposal)",
+    "s0_branch": "if negative curvature success count divided by all 558 real TS records is <0.5, disable curvature layers for every relaxed selection and endpoint score; failures remain last"
+  },
+  "restart": {
+    "b": "(1-t_b)*(b_r+sigma_b*epsilon_b)+t_b*b_hat_survivor",
+    "x": "centered((1-t_x)*(x_r+sigma_x*epsilon_x)+t_x*x_hat_survivor)",
+    "noise": "symmetric_noise and geometry_noise in first n atoms; addressed_seed('explore_smc_clone', noise_role='joint_b' or 'joint_x', query=qid, training_seed=seed, proposal=ancestor_proposal, checkpoint_step=k_c); no arm name",
+    "layout": "survivors retain original slots; rank-ordered rejected slots paired with rank-ordered survivors",
+    "continuation": "survivors use b_trace[k_c],x_trace[k_c]; clones use restart; sampler.rollout start=k_c, n_steps=50, geometry_lead3",
+    "random": "survivors first 16 by sha256(parent_id|seed|proposal|k_c)"
+  },
+  "arms": ["none", "relaxed_0.6", "relaxed_0.7", "relaxed_0.8", "relaxed_0.9", "raw_0.6", "raw_0.7", "raw_0.8", "raw_0.9", "random_0.6", "random_0.7", "random_0.8", "random_0.9"],
+  "primary_arm": "relaxed_0.7",
+  "endpoint": {"decode": "decode_be -> valid_endpoint -> canonical_event -> CatalogueMatcher.match", "score": "relaxed for all arms on final b,x", "event_score": "minimum candidate (layer,barrier) among legal instances of each distinct event; event ties sha256(channel_id)", "K": [1, 2, 4], "H": "mean(hit@1,hit@2,hit@4)", "secondary": ["hit_infinity", "population mean event_utility", "distinct_legal_events", "legal_rate", "best_reference_rate"]},
+  "aggregation": "compute (parent,training_seed) population metrics then mean over three seeds; paired parent differences; cluster_summary(values, parent split_group), two-sided 95%",
+  "comparisons": "each relaxed_s and raw_s vs none and random_s; each relaxed_s vs raw_s; each random_s vs none",
+  "reading": {"IN_GENERATION_SELECTION_HELPS": "none CI lower>0 and random CI lower>0", "NOT_PHYSICS_SPECIFIC": "none CI lower>0 and random CI contains 0", "NO_GAIN_OVER_POSTHOC": "none CI contains 0", "SELECTION_HURTS": "none CI upper<0", "uncovered_case": "positive none interval and strictly negative random interval is explicitly unclassified; do not reinterpret frozen table"},
+  "diagnostics": ["none checkpoint raw/relaxed energy vs known final catalogue barrier within_parent_rho min_n=4 and >=2 target values, computed per seed then average complete three-seed parents", "false prune conditional on none population best present: no selected survivor has best in none endpoint; average eligible seeds within parent", "clone endpoint event differs from corresponding none ancestor endpoint", "best channel appears only in clones", "score layers, failures, energy drop quantiles, actual calls and elapsed time"],
+  "gates": {"s0": "558 rows, raw absolute difference <=1e-6 each; check-A min-pooled rho difference <1e-9", "c1": "none endpoint event and proxy_status 100% equal pg1; raw score error <=1e-6 at all four checkpoints; paired failures explicitly counted", "c2": "each arm survivor endpoint event agreement >=0.999; report max absolute coordinate difference", "failure": "stop, record options and costs; no scientific redesign to bypass failure"},
+  "resource_limits": {"workers": 48, "nice": 10, "max_load_before_launch": 120, "one_heavy_cpu_task": true, "gpu": "Slurm main gpu:pro6000:1, <=60 min/job, smc- prefix, dependency on every existing user job", "max_total_gpu_hours": 1, "max_total_cpu_core_hours": 40},
+  "limitations": ["All results exploratory; development set repeatedly reused", "checkpoint 0.7 and geometry_lead3 informed by previous development results", "closed-world hit metrics count outside-catalogue channels as misses", "xTB and omegaB97X barrier rankings disagree", "proxy event/reference hits do not certify transition states", "selection of best known channel is not a chemical conclusion"]
+}

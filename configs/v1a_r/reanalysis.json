@@ -1,0 +1,68 @@
+{
+  "version": "v1a-r-1",
+  "exploratory": true,
+  "arms": ["A0", "A1", "A2", "B0", "B1"],
+  "pairs": [["B0","A0"], ["A1","A0"], ["B1","B0"], ["B1","A1"], ["B1","A2"]],
+  "endpoints": ["joint_best_reference", "event_best"],
+  "count_grid": [1, 2, 4, 8, 16],
+  "count_axis_main": "completed_candidates",
+  "count_axis_sensitivity": ["verification_units_D2_0.30"],
+  "verification_units": {
+    "main": {"mode": "D2", "rmsd_cut_angstrom": 0.30},
+    "sensitivity": [
+      {"mode": "D1"},
+      {"mode": "D2", "rmsd_cut_angstrom": 0.10},
+      {"mode": "D2", "rmsd_cut_angstrom": 0.50}
+    ]
+  },
+  "kappa_grid_units": [0, 1, 3, 10, 30, 100, 300, 1000, 3000, 10000, 30000, 100000],
+  "kappa_budget_points_k": [4, 8, 16, 32, 64],
+  "auc_weights": [0.125, 0.25, 0.25, 0.25, 0.125],
+  "censoring_max_fraction": 0.05,
+  "count_coverage_min_parents": 0.80,
+  "interval": "formula_cluster_sandwich_t_two_sided_95",
+  "seed_aggregation": "mean_over_available_seeds_within_parent",
+  "rarity_strata": "frozen_v1a_rarity_labels",
+  "operational": {
+    "note": "Operational readings of the handoff (2026-10-07, task R) fixed before any formal stream is read. They do not change the handoff's definitions, comparisons or decision rules.",
+    "source": {
+      "run_root": "/home/lhshen/xtbflow-runs/v1a-20261007",
+      "sealed_hashes": "docs/evidence/v1a/formal/SHA256SUMS",
+      "freeze": "formal/freeze.json",
+      "gate": "final/gate.json",
+      "efficiency_reports": "screen/efficiency_s{seed}.json",
+      "raw_streams": "screen/efficiency_s{seed}/streams.jsonl; sha256 must equal the report's source_sha256 and the run manifest's streams_sha256",
+      "rarity_report": "screen/rarity.json",
+      "catalogue": "data/{parent_catalog.json,reference_catalog.jsonl,split_manifest.json,screen_queries.jsonl}; sha256 must equal the freeze bindings",
+      "training_seeds": [0, 1, 2]
+    },
+    "proxy_rematch": "Every candidate is re-matched from the raw stream with xtbflow.v1.proxy.CatalogueMatcher (V1a cutoff 0.50 A); the V1a candidates.jsonl side files are not hashed and are used only as a cross-check.",
+    "completed_candidate": "Every entry of a stream's candidates list (status COMPLETE), including decode failures and fallbacks, in logical completion order. This is V1a's completed_candidates count.",
+    "hit_in_prefix": "A prefix hits when any candidate in it has hits_best_reference (joint endpoint) or hits_best_event (event endpoint), as in V1a.",
+    "verification_unit_rmsd": "D2 compares a candidate with the earlier unit openers of the same predicted channel. RMSD follows CatalogueMatcher: reactant automorphisms sigma with b_opener[sigma,sigma] == b_candidate, the same mapping applied to coordinates, proper-rotation Kabsch RMSD, minimum over sigma. A new unit opens when that minimum exceeds the cut.",
+    "count_axis_censoring": "On the completed-candidate axis a (parent, arm, seed) cell is censored at n when its 64-budget stream has fewer than n completed candidates.",
+    "unit_axis_prefix": "On the verification-unit axis the prefix at n ends at, and includes, the candidate that opens the n-th unit (main mode D2 0.30 A); the cell is censored when the stream opens fewer than n units.",
+    "budget_censoring_horizon": "Streams stop at the generation cap (cap_units = 3200); every unobserved continuation candidate completes after the cap, so its total cost exceeds H = cap_units + kappa * V_total, where V_total counts the units opened by all observed candidates. A cell at budget T is censored iff T > H + 1e-8. Prefixes use total_cost <= T + 1e-8, as V1a uses completion_units <= 50k + 1e-8, so kappa = 0 reproduces V1a exactly.",
+    "censoring_denominator": "All (parent, training seed) cells of the arm: 342 x 3.",
+    "comparison_sets": {
+      "arm_table_and_frontier": "all five arms",
+      "pairs": "the two arms of the pair"
+    },
+    "unit_availability": "At a given n (analysis A) or set of included budget points (analysis B), a (parent, seed) cell is used only if it is uncensored for every arm being compared (for the per-arm tables: for that arm). Parent value = mean over its available seeds; parents with no available seed are dropped and counted in the coverage.",
+    "kappa_star": "First kappa in the grid whose point estimate has a different sign from kappa = 0 (reaching exactly zero counts as a change). Kappas with no included budget point are skipped and listed. Intervals are reported at kappa* and at the preceding grid kappa.",
+    "gpu_seconds_per_unit": {
+      "main": "evidence/cost_calibration.json (development cost calibration, batch 64): seconds_per_batch['f'] of the parent's atom bin, i.e. one measured forward call of f. Unit conversion as literally requested by the handoff.",
+      "per_molecule_throughput": [
+        "evidence/cost_calibration.json: seconds_per_batch['f'] / batch_size",
+        "evidence/cost_calibration_512.json (frozen screen table, batch 512): seconds_per_batch['f'] / batch_size"
+      ],
+      "summary_over_parents": "median and range over the 342 formal parents"
+    },
+    "rarity_labels": "xtbflow.v1.formal.rarity_stratum(best_event_count / 128) from the B0 rows of screen/rarity.json; stratum sizes must equal gate.json secondary.rarity_strata.",
+    "strata_pairs": [["B1","B0"], ["A1","A0"]],
+    "strata_n": [4, 8],
+    "outcome_classes": ["OUTSIDE_CATALOGUE_EVENT", "KNOWN_EVENT_GEOMETRY_MISS", "INVALID_OUTPUT", "PROXY_MATCH"],
+    "reproduction_tolerance": 1e-6,
+    "figures": ["hit_rate_vs_completed_candidates.png", "auc_kappa_heatmap.png"]
+  }
+}

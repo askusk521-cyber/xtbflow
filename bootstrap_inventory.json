@@ -193,6 +193,11 @@
       "bytes": 6031
     },
     {
+      "path": "configs/explore/smc_strict_replication.json",
+      "sha256": "d4aceaf3d92c6b91d9f58c202fd07b64d79f11f1c5361d60927f0394dbd58ede",
+      "bytes": 1713
+    },
+    {
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
@@ -1333,6 +1338,11 @@
       "bytes": 23543
     },
     {
+      "path": "scripts/explore_smc_strict.py",
+      "sha256": "e25abb14052ab57180fdb28e97cc557b9e48dbbf50834e2bc2e7a724923cf0ae",
+      "bytes": 5396
+    },
+    {
       "path": "scripts/finalize_smc.py",
       "sha256": "89fb24da88547350b36b8cc13d37b21b9a3826500181a00fb6f111773aa11a10",
       "bytes": 6984
@@ -1431,6 +1441,11 @@
       "path": "scripts/smc_evidence.py",
       "sha256": "01199bf4d9e378a2f4d02590ffbdc84af13d8e290cdec5ef003275c60ac2b603",
       "bytes": 6129
+    },
+    {
+      "path": "scripts/smc_strict_stages.py",
+      "sha256": "4fdcebdb2bf891f7be358ebc66076ebfbc61d630e90d4994bdda4a2592441ff7",
+      "bytes": 4300
     },
     {
       "path": "scripts/v1a_audit.py",

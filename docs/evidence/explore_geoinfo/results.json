@@ -1,0 +1,1390 @@
+{
+  "check_a": {
+    "absolute_error_records": {
+      "E_frozen": {
+        "mae_kcal": 13.72420284432993,
+        "median_signed_kcal": 0.8392222661131257,
+        "n": 558
+      },
+      "G_clean": {
+        "mae_kcal": 10.385937472584674,
+        "median_signed_kcal": -1.0240143404445163,
+        "n": 558
+      },
+      "N_clean": {
+        "mae_kcal": 11.862911987947511,
+        "median_signed_kcal": -0.09326472793997453,
+        "n": 558
+      },
+      "X_frozen": {
+        "mae_kcal": 11.933441447538089,
+        "median_signed_kcal": -0.6097832521872917,
+        "n": 558
+      },
+      "xtb_ts": {
+        "mae_kcal": 10.113761890776242,
+        "median_signed_kcal": -7.373378910367251,
+        "n": 558
+      }
+    },
+    "mean": {
+      "comparisons": {
+        "G_clean-N_clean": {
+          "concordance": {
+            "ci_two95": [
+              -0.04846580050718442,
+              0.0849196099709985
+            ],
+            "estimate": 0.018226904731907037,
+            "lower_one95": -0.03691602001414711,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.031972135142880144,
+            "upper_one95": 0.07336982947796118
+          },
+          "rho": {
+            "ci_two95": [
+              -0.11096316500557121,
+              0.1652490801623542
+            ],
+            "estimate": 0.0271429575783915,
+            "lower_one95": -0.08704607549974146,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.06620735505455978,
+            "upper_one95": 0.14133199065652446
+          },
+          "top1": {
+            "ci_two95": [
+              -0.29282511611627093,
+              0.0025025354711096515
+            ],
+            "estimate": -0.14516129032258066,
+            "lower_one95": -0.26725283248247456,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.07078926813757919,
+            "upper_one95": -0.023069748162686726
+          }
+        },
+        "X_frozen-E_frozen": {
+          "concordance": {
+            "ci_two95": [
+              -0.016987800046055816,
+              0.10359879379311193
+            ],
+            "estimate": 0.04330549687352806,
+            "lower_one95": -0.006546263117448194,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.028904292162268204,
+            "upper_one95": 0.09315725686450432
+          },
+          "rho": {
+            "ci_two95": [
+              -0.026558386840767792,
+              0.21744957395186898
+            ],
+            "estimate": 0.09544559355555059,
+            "lower_one95": -0.005429851301496258,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.05848807204950515,
+            "upper_one95": 0.19632103841259743
+          },
+          "top1": {
+            "ci_two95": [
+              -0.16891649664235847,
+              0.10440036761010041
+            ],
+            "estimate": -0.03225806451612903,
+            "lower_one95": -0.14525011681982528,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.06551333979766215,
+            "upper_one95": 0.08073398778756721
+          }
+        },
+        "xtb_ts-E_frozen": {
+          "concordance": {
+            "ci_two95": [
+              -0.01859828589149999,
+              0.14627792877644424
+            ],
+            "estimate": 0.06383982144247212,
+            "lower_one95": -0.004321731348459257,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.03952039880757611,
+            "upper_one95": 0.1320013742334035
+          },
+          "rho": {
+            "ci_two95": [
+              -0.04455092479489434,
+              0.3270373862012599
+            ],
+            "estimate": 0.1412432307031828,
+            "lower_one95": -0.012375266224753767,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.08906874937890483,
+            "upper_one95": 0.29486172763111934
+          },
+          "top1": {
+            "ci_two95": [
+              -0.1494891818880163,
+              0.3107795044686614
+            ],
+            "estimate": 0.08064516129032258,
+            "lower_one95": -0.10963473096882993,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.11032520415445728,
+            "upper_one95": 0.2709250535494751
+          }
+        },
+        "xtb_ts-X_frozen": {
+          "concordance": {
+            "ci_two95": [
+              -0.0420807794262153,
+              0.08314942856410346
+            ],
+            "estimate": 0.020534324568944076,
+            "lower_one95": -0.0312371541136691,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.030017354367945292,
+            "upper_one95": 0.07230580325155725
+          },
+          "rho": {
+            "ci_two95": [
+              -0.0815332639496183,
+              0.17312853824488267
+            ],
+            "estimate": 0.04579763714763218,
+            "lower_one95": -0.05948221725145738,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.061041770057931106,
+            "upper_one95": 0.15107749154672173
+          },
+          "top1": {
+            "ci_two95": [
+              -0.06483277762951188,
+              0.2906392292424151
+            ],
+            "estimate": 0.11290322580645161,
+            "lower_one95": -0.03405262231813515,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.08520571329710012,
+            "upper_one95": 0.25985907393103835
+          }
+        }
+      },
+      "predictors": {
+        "E_frozen": {
+          "concordance": {
+            "ci_two95": [
+              0.7065404830167635,
+              0.8328701661942476
+            ],
+            "estimate": 0.7697053246055056,
+            "lower_one95": 0.7174793113730592,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.030280895703870048,
+            "upper_one95": 0.8219313378379519
+          },
+          "n_parents": 62,
+          "rho": {
+            "ci_two95": [
+              0.4672708346553456,
+              0.7484458448833653
+            ],
+            "estimate": 0.6078583397693554,
+            "lower_one95": 0.4916176476734929,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.06739691690105312,
+            "upper_one95": 0.724099031865218
+          },
+          "top1": {
+            "ci_two95": [
+              0.4217624762645463,
+              0.7717859108322279
+            ],
+            "estimate": 0.5967741935483871,
+            "lower_one95": 0.452070842240876,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.08389970472073054,
+            "upper_one95": 0.7414775448558982
+          }
+        },
+        "G_clean": {
+          "concordance": {
+            "ci_two95": [
+              0.7793988538513124,
+              0.8711237758029082
+            ],
+            "estimate": 0.8252613148271103,
+            "lower_one95": 0.7873412720699465,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.02198622465600335,
+            "upper_one95": 0.8631813575842741
+          },
+          "n_parents": 62,
+          "rho": {
+            "ci_two95": [
+              0.6257913243802652,
+              0.8147178144385715
+            ],
+            "estimate": 0.7202545694094183,
+            "lower_one95": 0.6421503810542358,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.04528518711723844,
+            "upper_one95": 0.7983587577646009
+          },
+          "top1": {
+            "ci_two95": [
+              0.45805874079456965,
+              0.7354896463022046
+            ],
+            "estimate": 0.5967741935483871,
+            "lower_one95": 0.48208135353092935,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.06649946476082208,
+            "upper_one95": 0.7114670335658448
+          }
+        },
+        "N_clean": {
+          "concordance": {
+            "ci_two95": [
+              0.7537058634428656,
+              0.8603629567475407
+            ],
+            "estimate": 0.8070344100952032,
+            "lower_one95": 0.7629412514157945,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.025565427199713196,
+            "upper_one95": 0.8511275687746118
+          },
+          "n_parents": 62,
+          "rho": {
+            "ci_two95": [
+              0.5825621591985592,
+              0.8036610644634938
+            ],
+            "estimate": 0.6931116118310265,
+            "lower_one95": 0.6017070103026351,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.05299683116565119,
+            "upper_one95": 0.784516213359418
+          },
+          "top1": {
+            "ci_two95": [
+              0.5850214539786454,
+              0.8988495137632901
+            ],
+            "estimate": 0.7419354838709677,
+            "lower_one95": 0.6121956793311347,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.07522376775009962,
+            "upper_one95": 0.8716752884108008
+          }
+        },
+        "X_frozen": {
+          "concordance": {
+            "ci_two95": [
+              0.7685430628295493,
+              0.8574785801285176
+            ],
+            "estimate": 0.8130108214790335,
+            "lower_one95": 0.7762439478000672,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.02131761163301784,
+            "upper_one95": 0.8497776951579997
+          },
+          "n_parents": 62,
+          "rho": {
+            "ci_two95": [
+              0.6147931623048544,
+              0.7918147043449577
+            ],
+            "estimate": 0.703303933324906,
+            "lower_one95": 0.6301213750814427,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.042431602114632753,
+            "upper_one95": 0.7764864915683694
+          },
+          "top1": {
+            "ci_two95": [
+              0.40745635059639485,
+              0.7215759074681214
+            ],
+            "estimate": 0.5645161290322581,
+            "lower_one95": 0.4346558165457237,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.07529363884191181,
+            "upper_one95": 0.6943764415187925
+          }
+        },
+        "oracle": {
+          "concordance": {
+            "ci_two95": [
+              -1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "lower_one95": -1.0,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conservative support bounds; t inference unresolved",
+            "se_cluster": 0.0,
+            "status": "DEGENERATE_VARIANCE",
+            "upper_one95": 1.0
+          },
+          "n_parents": 62,
+          "rho": {
+            "ci_two95": [
+              -1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "lower_one95": -1.0,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conservative support bounds; t inference unresolved",
+            "se_cluster": 8.989153792660888e-18,
+            "status": "DEGENERATE_VARIANCE",
+            "upper_one95": 1.0
+          },
+          "top1": {
+            "ci_two95": [
+              -1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "lower_one95": -1.0,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conservative support bounds; t inference unresolved",
+            "se_cluster": 0.0,
+            "status": "DEGENERATE_VARIANCE",
+            "upper_one95": 1.0
+          }
+        },
+        "xtb_ts": {
+          "concordance": {
+            "ci_two95": [
+              0.787870404401132,
+              0.8792198876948232
+            ],
+            "estimate": 0.8335451460479776,
+            "lower_one95": 0.7957803135614527,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.02189623298850872,
+            "upper_one95": 0.8713099785345024
+          },
+          "n_parents": 62,
+          "rho": {
+            "ci_two95": [
+              0.6524459560799384,
+              0.8457571848651383
+            ],
+            "estimate": 0.7491015704725383,
+            "lower_one95": 0.66918468523558,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.046336197558634454,
+            "upper_one95": 0.8290184557094967
+          },
+          "top1": {
+            "ci_two95": [
+              0.5379037678611098,
+              0.8169349418163094
+            ],
+            "estimate": 0.6774193548387096,
+            "lower_one95": 0.5620649470961071,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.06688304493564787,
+            "upper_one95": 0.7927737625813122
+          }
+        }
+      }
+    },
+    "min": {
+      "comparisons": {
+        "G_clean-N_clean": {
+          "concordance": {
+            "ci_two95": [
+              -0.04846580050718442,
+              0.0849196099709985
+            ],
+            "estimate": 0.018226904731907037,
+            "lower_one95": -0.03691602001414711,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.031972135142880144,
+            "upper_one95": 0.07336982947796118
+          },
+          "rho": {
+            "ci_two95": [
+              -0.11096316500557121,
+              0.1652490801623542
+            ],
+            "estimate": 0.0271429575783915,
+            "lower_one95": -0.08704607549974146,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.06620735505455978,
+            "upper_one95": 0.14133199065652446
+          },
+          "top1": {
+            "ci_two95": [
+              -0.29282511611627093,
+              0.0025025354711096515
+            ],
+            "estimate": -0.14516129032258066,
+            "lower_one95": -0.26725283248247456,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.07078926813757919,
+            "upper_one95": -0.023069748162686726
+          }
+        },
+        "X_frozen-E_frozen": {
+          "concordance": {
+            "ci_two95": [
+              -0.016987800046055816,
+              0.10359879379311193
+            ],
+            "estimate": 0.04330549687352806,
+            "lower_one95": -0.006546263117448194,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.028904292162268204,
+            "upper_one95": 0.09315725686450432
+          },
+          "rho": {
+            "ci_two95": [
+              -0.026558386840767792,
+              0.21744957395186898
+            ],
+            "estimate": 0.09544559355555059,
+            "lower_one95": -0.005429851301496258,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.05848807204950515,
+            "upper_one95": 0.19632103841259743
+          },
+          "top1": {
+            "ci_two95": [
+              -0.16891649664235847,
+              0.10440036761010041
+            ],
+            "estimate": -0.03225806451612903,
+            "lower_one95": -0.14525011681982528,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.06551333979766215,
+            "upper_one95": 0.08073398778756721
+          }
+        },
+        "xtb_ts-E_frozen": {
+          "concordance": {
+            "ci_two95": [
+              -0.01859828589149999,
+              0.14627792877644424
+            ],
+            "estimate": 0.06383982144247212,
+            "lower_one95": -0.004321731348459257,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.03952039880757611,
+            "upper_one95": 0.1320013742334035
+          },
+          "rho": {
+            "ci_two95": [
+              -0.04455092479489434,
+              0.3270373862012599
+            ],
+            "estimate": 0.1412432307031828,
+            "lower_one95": -0.012375266224753767,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.08906874937890483,
+            "upper_one95": 0.29486172763111934
+          },
+          "top1": {
+            "ci_two95": [
+              -0.1494891818880163,
+              0.3107795044686614
+            ],
+            "estimate": 0.08064516129032258,
+            "lower_one95": -0.10963473096882993,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.11032520415445728,
+            "upper_one95": 0.2709250535494751
+          }
+        },
+        "xtb_ts-X_frozen": {
+          "concordance": {
+            "ci_two95": [
+              -0.0420807794262153,
+              0.08314942856410346
+            ],
+            "estimate": 0.020534324568944076,
+            "lower_one95": -0.0312371541136691,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.030017354367945292,
+            "upper_one95": 0.07230580325155725
+          },
+          "rho": {
+            "ci_two95": [
+              -0.0815332639496183,
+              0.17312853824488267
+            ],
+            "estimate": 0.04579763714763218,
+            "lower_one95": -0.05948221725145738,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.061041770057931106,
+            "upper_one95": 0.15107749154672173
+          },
+          "top1": {
+            "ci_two95": [
+              -0.06483277762951188,
+              0.2906392292424151
+            ],
+            "estimate": 0.11290322580645161,
+            "lower_one95": -0.03405262231813515,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.08520571329710012,
+            "upper_one95": 0.25985907393103835
+          }
+        }
+      },
+      "predictors": {
+        "E_frozen": {
+          "concordance": {
+            "ci_two95": [
+              0.7065404830167635,
+              0.8328701661942476
+            ],
+            "estimate": 0.7697053246055056,
+            "lower_one95": 0.7174793113730592,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.030280895703870048,
+            "upper_one95": 0.8219313378379519
+          },
+          "n_parents": 62,
+          "rho": {
+            "ci_two95": [
+              0.4672708346553456,
+              0.7484458448833653
+            ],
+            "estimate": 0.6078583397693554,
+            "lower_one95": 0.4916176476734929,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.06739691690105312,
+            "upper_one95": 0.724099031865218
+          },
+          "top1": {
+            "ci_two95": [
+              0.4217624762645463,
+              0.7717859108322279
+            ],
+            "estimate": 0.5967741935483871,
+            "lower_one95": 0.452070842240876,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.08389970472073054,
+            "upper_one95": 0.7414775448558982
+          }
+        },
+        "G_clean": {
+          "concordance": {
+            "ci_two95": [
+              0.7793988538513124,
+              0.8711237758029082
+            ],
+            "estimate": 0.8252613148271103,
+            "lower_one95": 0.7873412720699465,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.02198622465600335,
+            "upper_one95": 0.8631813575842741
+          },
+          "n_parents": 62,
+          "rho": {
+            "ci_two95": [
+              0.6257913243802652,
+              0.8147178144385715
+            ],
+            "estimate": 0.7202545694094183,
+            "lower_one95": 0.6421503810542358,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.04528518711723844,
+            "upper_one95": 0.7983587577646009
+          },
+          "top1": {
+            "ci_two95": [
+              0.45805874079456965,
+              0.7354896463022046
+            ],
+            "estimate": 0.5967741935483871,
+            "lower_one95": 0.48208135353092935,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.06649946476082208,
+            "upper_one95": 0.7114670335658448
+          }
+        },
+        "N_clean": {
+          "concordance": {
+            "ci_two95": [
+              0.7537058634428656,
+              0.8603629567475407
+            ],
+            "estimate": 0.8070344100952032,
+            "lower_one95": 0.7629412514157945,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.025565427199713196,
+            "upper_one95": 0.8511275687746118
+          },
+          "n_parents": 62,
+          "rho": {
+            "ci_two95": [
+              0.5825621591985592,
+              0.8036610644634938
+            ],
+            "estimate": 0.6931116118310265,
+            "lower_one95": 0.6017070103026351,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.05299683116565119,
+            "upper_one95": 0.784516213359418
+          },
+          "top1": {
+            "ci_two95": [
+              0.5850214539786454,
+              0.8988495137632901
+            ],
+            "estimate": 0.7419354838709677,
+            "lower_one95": 0.6121956793311347,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.07522376775009962,
+            "upper_one95": 0.8716752884108008
+          }
+        },
+        "X_frozen": {
+          "concordance": {
+            "ci_two95": [
+              0.7685430628295493,
+              0.8574785801285176
+            ],
+            "estimate": 0.8130108214790335,
+            "lower_one95": 0.7762439478000672,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.02131761163301784,
+            "upper_one95": 0.8497776951579997
+          },
+          "n_parents": 62,
+          "rho": {
+            "ci_two95": [
+              0.6147931623048544,
+              0.7918147043449577
+            ],
+            "estimate": 0.703303933324906,
+            "lower_one95": 0.6301213750814427,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.042431602114632753,
+            "upper_one95": 0.7764864915683694
+          },
+          "top1": {
+            "ci_two95": [
+              0.40745635059639485,
+              0.7215759074681214
+            ],
+            "estimate": 0.5645161290322581,
+            "lower_one95": 0.4346558165457237,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.07529363884191181,
+            "upper_one95": 0.6943764415187925
+          }
+        },
+        "oracle": {
+          "concordance": {
+            "ci_two95": [
+              -1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "lower_one95": -1.0,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conservative support bounds; t inference unresolved",
+            "se_cluster": 0.0,
+            "status": "DEGENERATE_VARIANCE",
+            "upper_one95": 1.0
+          },
+          "n_parents": 62,
+          "rho": {
+            "ci_two95": [
+              -1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "lower_one95": -1.0,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conservative support bounds; t inference unresolved",
+            "se_cluster": 8.989153792660888e-18,
+            "status": "DEGENERATE_VARIANCE",
+            "upper_one95": 1.0
+          },
+          "top1": {
+            "ci_two95": [
+              -1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "lower_one95": -1.0,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conservative support bounds; t inference unresolved",
+            "se_cluster": 0.0,
+            "status": "DEGENERATE_VARIANCE",
+            "upper_one95": 1.0
+          }
+        },
+        "xtb_ts": {
+          "concordance": {
+            "ci_two95": [
+              0.787870404401132,
+              0.8792198876948232
+            ],
+            "estimate": 0.8335451460479776,
+            "lower_one95": 0.7957803135614527,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.02189623298850872,
+            "upper_one95": 0.8713099785345024
+          },
+          "n_parents": 62,
+          "rho": {
+            "ci_two95": [
+              0.6524459560799384,
+              0.8457571848651383
+            ],
+            "estimate": 0.7491015704725383,
+            "lower_one95": 0.66918468523558,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.046336197558634454,
+            "upper_one95": 0.8290184557094967
+          },
+          "top1": {
+            "ci_two95": [
+              0.5379037678611098,
+              0.8169349418163094
+            ],
+            "estimate": 0.6774193548387096,
+            "lower_one95": 0.5620649470961071,
+            "n_formula_groups": 21,
+            "n_parents": 62,
+            "scope": "conditional on frozen models and specified evaluation design",
+            "se_cluster": 0.06688304493564787,
+            "upper_one95": 0.7927737625813122
+          }
+        }
+      }
+    },
+    "n_parents": 62,
+    "n_records": 558,
+    "reading": {
+      "G_clean-N_clean": "INCONCLUSIVE",
+      "X_frozen-E_frozen": "INCONCLUSIVE",
+      "xtb_ts-E_frozen": "INCONCLUSIVE",
+      "xtb_ts-X_frozen": "INCONCLUSIVE"
+    },
+    "record_level": {
+      "E_frozen": {
+        "ci_two95": [
+          0.4672708346553456,
+          0.7484458448833653
+        ],
+        "estimate": 0.6078583397693554,
+        "lower_one95": 0.4916176476734929,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conditional on frozen models and specified evaluation design",
+        "se_cluster": 0.06739691690105312,
+        "upper_one95": 0.724099031865218
+      },
+      "G_clean": {
+        "ci_two95": [
+          0.6257913243802652,
+          0.8147178144385715
+        ],
+        "estimate": 0.7202545694094183,
+        "lower_one95": 0.6421503810542358,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conditional on frozen models and specified evaluation design",
+        "se_cluster": 0.04528518711723844,
+        "upper_one95": 0.7983587577646009
+      },
+      "N_clean": {
+        "ci_two95": [
+          0.5825621591985592,
+          0.8036610644634938
+        ],
+        "estimate": 0.6931116118310265,
+        "lower_one95": 0.6017070103026351,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conditional on frozen models and specified evaluation design",
+        "se_cluster": 0.05299683116565119,
+        "upper_one95": 0.784516213359418
+      },
+      "X_frozen": {
+        "ci_two95": [
+          0.6147931623048544,
+          0.7918147043449577
+        ],
+        "estimate": 0.703303933324906,
+        "lower_one95": 0.6301213750814427,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conditional on frozen models and specified evaluation design",
+        "se_cluster": 0.042431602114632753,
+        "upper_one95": 0.7764864915683694
+      },
+      "oracle": {
+        "ci_two95": [
+          -1.0,
+          1.0
+        ],
+        "estimate": 1.0,
+        "lower_one95": -1.0,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conservative support bounds; t inference unresolved",
+        "se_cluster": 8.989153792660888e-18,
+        "status": "DEGENERATE_VARIANCE",
+        "upper_one95": 1.0
+      },
+      "xtb_ts": {
+        "ci_two95": [
+          0.6524459560799384,
+          0.8457571848651383
+        ],
+        "estimate": 0.7491015704725383,
+        "lower_one95": 0.66918468523558,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conditional on frozen models and specified evaluation design",
+        "se_cluster": 0.046336197558634454,
+        "upper_one95": 0.8290184557094967
+      }
+    },
+    "record_level_comparisons": {
+      "G_clean-N_clean": {
+        "ci_two95": [
+          -0.11096316500557121,
+          0.1652490801623542
+        ],
+        "estimate": 0.0271429575783915,
+        "lower_one95": -0.08704607549974146,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conditional on frozen models and specified evaluation design",
+        "se_cluster": 0.06620735505455978,
+        "upper_one95": 0.14133199065652446
+      },
+      "X_frozen-E_frozen": {
+        "ci_two95": [
+          -0.026558386840767792,
+          0.21744957395186898
+        ],
+        "estimate": 0.09544559355555059,
+        "lower_one95": -0.005429851301496258,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conditional on frozen models and specified evaluation design",
+        "se_cluster": 0.05848807204950515,
+        "upper_one95": 0.19632103841259743
+      },
+      "xtb_ts-E_frozen": {
+        "ci_two95": [
+          -0.04455092479489434,
+          0.3270373862012599
+        ],
+        "estimate": 0.1412432307031828,
+        "lower_one95": -0.012375266224753767,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conditional on frozen models and specified evaluation design",
+        "se_cluster": 0.08906874937890483,
+        "upper_one95": 0.29486172763111934
+      },
+      "xtb_ts-X_frozen": {
+        "ci_two95": [
+          -0.0815332639496183,
+          0.17312853824488267
+        ],
+        "estimate": 0.04579763714763218,
+        "lower_one95": -0.05948221725145738,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conditional on frozen models and specified evaluation design",
+        "se_cluster": 0.061041770057931106,
+        "upper_one95": 0.15107749154672173
+      }
+    },
+    "xtb_status": {
+      "ok": 558
+    }
+  },
+  "check_a_rows_sha256": "34c49edbaba62458157b7864c6cb89e1f40c6af8f4596a72a518f4da57f85c7d",
+  "check_b": {
+    "commit": {
+      "cdf": {
+        "0.0": 0.0014181523500810373,
+        "0.1": 0.006685575364667747,
+        "0.2": 0.03423824959481361,
+        "0.3": 0.1312803889789303,
+        "0.4": 0.31989465153970825,
+        "0.5": 0.536871961102107,
+        "0.6": 0.7273095623987034,
+        "0.7": 0.8545380875202593,
+        "0.8": 0.9203808752025932,
+        "0.9": 0.9683954619124797,
+        "1.0": 1.0
+      },
+      "committed_by": {
+        "0.4": 0.31989465153970825,
+        "0.5": 0.536871961102107
+      },
+      "median_t": 0.5,
+      "parent_share_by_0.5": {
+        "ci_two95": [
+          0.4877605444304589,
+          0.5668418641116535
+        ],
+        "estimate": 0.5273012042710562,
+        "lower_one95": 0.4946081590244621,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conditional on frozen models and specified evaluation design",
+        "se_cluster": 0.018955586154889223,
+        "upper_one95": 0.5599942495176503
+      },
+      "quartiles_t": [
+        0.38,
+        0.62
+      ]
+    },
+    "commit_bond_change_sensitivity": {
+      "cdf": {
+        "0.0": 0.002025931928687196,
+        "0.1": 0.006888168557536467,
+        "0.2": 0.03747974068071313,
+        "0.3": 0.14120745542949756,
+        "0.4": 0.33610210696920584,
+        "0.5": 0.5561183144246353,
+        "0.6": 0.7414910858995137,
+        "0.7": 0.8614262560777958,
+        "0.8": 0.9264586709886548,
+        "0.9": 0.9708265802269044,
+        "1.0": 1.0
+      },
+      "median_t": 0.48,
+      "window_fraction": {
+        "hX_vs_final_event_barrier": 0.44388168557536467,
+        "xtb_vs_final_event_barrier": 0.1385737439222042,
+        "xtb_vs_final_xtb": null
+      }
+    },
+    "final_status": {
+      "INVALID_OUTPUT": 1016,
+      "KNOWN_EVENT_GEOMETRY_MISS": 876,
+      "OUTSIDE_CATALOGUE_EVENT": 2600,
+      "PROXY_MATCH": 1460
+    },
+    "n_trajectories": 5952,
+    "n_valid_final": 4936,
+    "self_correction": {
+      "best_event_rate_changed": 0.07291666666666667,
+      "best_event_rate_unchanged": 0.1857883049592894,
+      "changed_after_half": 0.09632107023411371,
+      "n_changed": 288,
+      "n_unchanged": 2702,
+      "undecodable_at_half": 0.39424635332252833
+    },
+    "signals": {
+      "hX_vs_final_event_barrier": {
+        "ci_two95": [
+          [
+            0.08116428881142727,
+            0.2100915201655557
+          ],
+          [
+            0.09672684614974515,
+            0.23318773471238013
+          ],
+          [
+            0.12033591353122126,
+            0.25275200742795173
+          ],
+          [
+            0.1772293418142084,
+            0.3041163205075681
+          ],
+          [
+            0.22327789642173212,
+            0.3613590215371709
+          ],
+          [
+            0.2916495595513338,
+            0.441429717314427
+          ],
+          [
+            0.3765432931917493,
+            0.5161833906426314
+          ],
+          [
+            0.4763110874106346,
+            0.6099500174197219
+          ],
+          [
+            0.5309919430210549,
+            0.6789706617021353
+          ],
+          [
+            0.560863955372718,
+            0.7309635197123298
+          ],
+          [
+            0.5609168056238307,
+            0.7452241753362374
+          ]
+        ],
+        "mean": [
+          0.1456279044884915,
+          0.16495729043106264,
+          0.1865439604795865,
+          0.24067283116088825,
+          0.2923184589794515,
+          0.3665396384328804,
+          0.44636334191719035,
+          0.5431305524151783,
+          0.6049813023615951,
+          0.6459137375425239,
+          0.6530704904800341
+        ],
+        "n_parents": [
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62
+        ],
+        "reading": "WINDOW_EXISTS",
+        "t_geo": 0.5,
+        "window_fraction": 0.46312803889789306
+      },
+      "xtb_vs_final_event_barrier": {
+        "ci_two95": [
+          [
+            -0.07230457063380745,
+            0.041390391378277616
+          ],
+          [
+            -0.094319801970876,
+            0.07668425957163988
+          ],
+          [
+            -0.1031267056950639,
+            0.06452381238586387
+          ],
+          [
+            -0.10210958880725071,
+            0.05264589555386171
+          ],
+          [
+            -0.057339882527529015,
+            0.12082268702639733
+          ],
+          [
+            0.014016323143071885,
+            0.2161364652735015
+          ],
+          [
+            0.11010756286041914,
+            0.3315832647813075
+          ],
+          [
+            0.2171935684333274,
+            0.4430340813237932
+          ],
+          [
+            0.3261818798914375,
+            0.5534889150888654
+          ],
+          [
+            0.38152737298773637,
+            0.6141467200534878
+          ],
+          [
+            0.39364903269599527,
+            0.6299907520070923
+          ]
+        ],
+        "mean": [
+          -0.015457089627764913,
+          -0.008817771199618053,
+          -0.01930144665460001,
+          -0.024731846626694497,
+          0.031741402249434156,
+          0.11507639420828669,
+          0.22084541382086334,
+          0.3301138248785603,
+          0.43983539749015144,
+          0.49783704652061206,
+          0.5118198923515438
+        ],
+        "n_parents": [
+          61,
+          61,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62
+        ],
+        "reading": "NO_USABLE_WINDOW",
+        "t_geo": 0.7,
+        "window_fraction": 0.1454619124797407
+      },
+      "xtb_vs_final_xtb": {
+        "ci_two95": [
+          [
+            -0.020026716449851597,
+            0.0685763349619516
+          ],
+          [
+            0.019059532269965568,
+            0.10499398283117065
+          ],
+          [
+            0.05016008098786019,
+            0.1483100934983571
+          ],
+          [
+            0.11176146661746666,
+            0.21891539228805296
+          ],
+          [
+            0.21702337636025096,
+            0.32886834816141497
+          ],
+          [
+            0.3769283744059012,
+            0.48984030235889253
+          ],
+          [
+            0.5345600760745983,
+            0.6381680971141517
+          ],
+          [
+            0.6843504210757667,
+            0.7737938109748177
+          ],
+          [
+            0.8402873387961708,
+            0.8970647615919699
+          ],
+          [
+            0.9707603436954704,
+            0.9829044254452917
+          ],
+          [
+            -1.0,
+            1.0
+          ]
+        ],
+        "mean": [
+          0.024274809256050005,
+          0.06202675755056811,
+          0.09923508724310866,
+          0.1653384294527598,
+          0.27294586226083295,
+          0.43338433838239687,
+          0.586364086594375,
+          0.7290721160252922,
+          0.8686760501940703,
+          0.976832384570381,
+          1.0
+        ],
+        "n_parents": [
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62,
+          62
+        ],
+        "reading": "SIGNAL_NEVER_INFORMATIVE",
+        "t_geo": null,
+        "window_fraction": null
+      }
+    },
+    "xtb_status_by_t": {
+      "0.0": {
+        "collapsed": 354,
+        "ok": 5598
+      },
+      "0.1": {
+        "collapsed": 403,
+        "ok": 5549
+      },
+      "0.2": {
+        "collapsed": 384,
+        "ok": 5568
+      },
+      "0.3": {
+        "collapsed": 289,
+        "ok": 5663
+      },
+      "0.4": {
+        "collapsed": 183,
+        "ok": 5769
+      },
+      "0.5": {
+        "collapsed": 89,
+        "ok": 5862,
+        "scf_failed:TBLiteRuntimeError": 1
+      },
+      "0.6": {
+        "collapsed": 39,
+        "ok": 5913
+      },
+      "0.7": {
+        "collapsed": 15,
+        "ok": 5937
+      },
+      "0.8": {
+        "collapsed": 7,
+        "ok": 5945
+      },
+      "0.9": {
+        "collapsed": 4,
+        "ok": 5948
+      },
+      "1.0": {
+        "collapsed": 5,
+        "ok": 5947
+      }
+    }
+  },
+  "check_b_rows_sha256": "bb104be033abd8627eae1fb2a57338287557ecd3708ccb7b10fd8d48e073fee4",
+  "config_sha256": "af016782705c8325dd36b3433b74f157fbcb9ead080b9926f627a41d4b6c853d",
+  "dirty": false,
+  "exploratory": true,
+  "source_commit": "68f5733d882a77b4295d00328d26fd4b0c8dc35f",
+  "version": "geoinfo-1.1"
+}

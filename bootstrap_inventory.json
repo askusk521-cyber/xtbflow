@@ -853,6 +853,41 @@
       "bytes": 113612
     },
     {
+      "path": "docs/evidence/v1a_r/REPORT_ZH.md",
+      "sha256": "d0166351ce5ce7e0f3d8504431b681dd87d5fa8c57fff49ae095cfc1d308c6d4",
+      "bytes": 7864
+    },
+    {
+      "path": "docs/evidence/v1a_r/SHA256SUMS",
+      "sha256": "cec16294c294c5915d0e86a995741101538ec445590869ce28a0a1e2c4dc90ff",
+      "bytes": 582
+    },
+    {
+      "path": "docs/evidence/v1a_r/auc_kappa_heatmap.png",
+      "sha256": "839a0c977a0d04caa2010a46b0cc284105075a3d3a5719f299cae81630f34c52",
+      "bytes": 83476
+    },
+    {
+      "path": "docs/evidence/v1a_r/extract_manifest.json",
+      "sha256": "4f834b9032653011d1edde1f06e8a6b854c561fae3f3f45d7ff64d0517ff80c8",
+      "bytes": 228197
+    },
+    {
+      "path": "docs/evidence/v1a_r/hit_rate_vs_completed_candidates.png",
+      "sha256": "90dd9d733469a873da5f1597d385fa5976a1864b43d04e652a508fd1719cfad6",
+      "bytes": 120837
+    },
+    {
+      "path": "docs/evidence/v1a_r/reanalysis.json",
+      "sha256": "f237e8a18a8c2060a82bd6c2822683ec5374c0f7ffec82574a92f013bff7090b",
+      "bytes": 705237
+    },
+    {
+      "path": "docs/evidence/v1a_r/report_tables_ZH.md",
+      "sha256": "6f7b29630d2b651c6088a0846f276e1c75f21183e5322d5114c1098c4eaa097f",
+      "bytes": 39466
+    },
+    {
       "path": "docs/evidence/workflow_b_software_acceptance_20260929.json",
       "sha256": "2fe89dcd76c896b6f9949e7aec55781568b37f6bc2c1c89a5fb3bfd210080da9",
       "bytes": 4166

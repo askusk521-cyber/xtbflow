@@ -169,8 +169,8 @@
     },
     {
       "path": "configs/explore/geometry_information.json",
-      "sha256": "1238968d357334109300af905d892273a0c9354075138a0d893eede47db02134",
-      "bytes": 5397
+      "sha256": "af016782705c8325dd36b3433b74f157fbcb9ead080b9926f627a41d4b6c853d",
+      "bytes": 6508
     },
     {
       "path": "configs/host.local.example.yaml",
@@ -1059,8 +1059,8 @@
     },
     {
       "path": "scripts/explore_geometry_information.py",
-      "sha256": "353135f5c6daa1ea8dfb1ef2e8434402e006cd9b2a2d71e4ac8b5f6039e24f16",
-      "bytes": 23880
+      "sha256": "0068c889dd2c02c75a2cb38be1632282277bde1633f6fe6d5ae8236c22d93685",
+      "bytes": 24966
     },
     {
       "path": "scripts/joint_flow_smoke.py",
@@ -1804,8 +1804,8 @@
     },
     {
       "path": "tests/test_geometry_information.py",
-      "sha256": "e8b282ed510183615be97db0f51f65a450b74c104d0666884a10c19a8e5cb3cd",
-      "bytes": 5478
+      "sha256": "3680b04c2daee4a8cea0413acc9b439f3ae66ebfab8e64330446ccf1e65ee995",
+      "bytes": 5708
     },
     {
       "path": "tests/test_handoff_freeze.py",

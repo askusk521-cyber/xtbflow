@@ -101,11 +101,14 @@ def test_analysis_b_on_synthetic_trajectories():
             events=['x']*step+[f'e{j%3}']*(51-step)
             noise=np.linspace(20,1,11)
             rows.append(dict(parent_id=f'p{p}',formula=f'f{p%3}',commit_step=commit_index(events),events=events,
+                             bond_change_commit_step=max(0,commit_index(events)-3),
                              proxy_status='PROXY_MATCH',hits_best_event=j%3==0,event_barrier_kcal=barrier,
                              xtb_delta_kcal=(barrier+rng.normal(0,1,11)*noise).tolist(),xtb_status=['ok']*11,
                              hx_mean_kcal=(barrier+rng.normal(0,3,11)).tolist()))
     out=s.analyze_b(rows,cfg['check_b_time_window'])
     assert out['n_valid_final']==48 and 0<out['commit']['median_t']<1
+    assert out['commit_bond_change_sensitivity']['median_t']<out['commit']['median_t']
+    assert out['self_correction']['changed_after_half']>=0
     assert out['signals']['hX_vs_final_event_barrier']['t_geo']==0.
     assert out['signals']['xtb_vs_final_xtb']['mean'][-1]==pytest.approx(1.)
     assert out['signals']['xtb_vs_final_event_barrier']['reading'] in ('WINDOW_EXISTS','NO_USABLE_WINDOW')

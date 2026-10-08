@@ -1,5 +1,5 @@
 {
-  "version": "geoinfo-1",
+  "version": "geoinfo-1.1",
   "exploratory": true,
   "question": "Does TS geometry carry channel-ranking information that the event does not, and does it arrive while the event can still change?",
   "data_scope": {
@@ -20,21 +20,49 @@
     },
     "matched_training": {
       "architecture": "BarrierHead('X') with the V1a SCORE_CONFIG",
-      "members": [101, 102, 103],
+      "members": [
+        101,
+        102,
+        103
+      ],
       "steps": 20000,
       "labels": "V1a ScoreRows: training-split parents, parent-balanced, catalogue barriers standardized by training median/IQR",
       "optimizer": "same as V1a score heads (AdamW, V1a lr schedule, EMA 0.999, Huber delta 1, grad clip 1)",
       "pairing": "both variants share member seed, initialization and batch order; only the geometry input differs"
     },
-    "event_level": {"target": "min catalogue barrier over the channel's records", "prediction_pool_main": "min", "prediction_pool_sensitivity": "mean"},
+    "event_level": {
+      "target": "min catalogue barrier over the channel's records",
+      "prediction_pool_main": "min",
+      "prediction_pool_sensitivity": "mean"
+    },
     "record_level_sensitivity": true,
     "metrics": {
       "primary": "within-parent Spearman rho between predicted and catalogue channel barriers",
-      "secondary": ["top1: lowest-predicted channel is a best channel (ties shared)", "concordance over channel pairs with |delta catalogue| >= 2 kcal/mol (prediction ties count 0.5)"],
+      "secondary": [
+        "top1: lowest-predicted channel is a best channel (ties shared)",
+        "concordance over channel pairs with |delta catalogue| >= 2 kcal/mol (prediction ties count 0.5)"
+      ],
       "constant_prediction_rho": 0.0,
       "parents_with_constant_target": "excluded"
     },
-    "comparisons": [["X_frozen", "E_frozen"], ["G_clean", "N_clean"], ["xtb_ts", "E_frozen"], ["xtb_ts", "X_frozen"]],
+    "comparisons": [
+      [
+        "X_frozen",
+        "E_frozen"
+      ],
+      [
+        "G_clean",
+        "N_clean"
+      ],
+      [
+        "xtb_ts",
+        "E_frozen"
+      ],
+      [
+        "xtb_ts",
+        "X_frozen"
+      ]
+    ],
     "interval": "formula-cluster sandwich t, two-sided 95% (xtbflow.v1.metrics.cluster_summary)",
     "reading": {
       "GEOMETRY_ADDS_RANKING_INFORMATION": "two-sided lower bound of the primary difference > 0",
@@ -45,11 +73,30 @@
   },
   "check_b_time_window": {
     "generator": "frozen V1a joint generator (role joint, 60k steps), training seeds 0,1,2",
-    "sampling": {"path": "sync", "n_steps": 50, "proposals_per_parent_per_seed": 32, "namespace": "explore_time_window", "sampling_seed": 0, "guidance": "none"},
+    "sampling": {
+      "path": "sync",
+      "n_steps": 50,
+      "proposals_per_parent_per_seed": 32,
+      "namespace": "explore_time_window",
+      "sampling_seed": 0,
+      "guidance": "none"
+    },
     "predicted_endpoint": "x1_hat(k) = x_k + (1 - t_k) * (x_{k+1} - x_k) / (t_{k+1} - t_k); same for b; step 50 is the final state",
     "event_at_step": "decode_be of b1_hat, then canonical_event if valid_endpoint, else invalid",
     "commit_step": "first step after which every decoded event equals the final event; trajectories with an invalid final event are excluded and counted",
-    "grid_t": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+    "grid_t": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
     "signals": {
       "xtb": "GFN2-xTB energy of x1_hat(t) minus anchor reactant energy (kcal/mol); geometries with any interatomic distance < 0.5 A are not evaluated (NaN, counted)",
       "h_X": "frozen V1a h_X ensemble mean on the current state (b_t, x_t, t_b=t, t_x=t), the quantity whose gradient B1 follows"
@@ -66,9 +113,33 @@
       "NO_USABLE_WINDOW": "window_fraction < 0.20",
       "SIGNAL_NEVER_INFORMATIVE": "t_geo undefined"
     },
-    "guidance_reference_times": {"v1a_guidance_start": 0.5, "planning_lambda_open": 0.4},
-    "secondary_self_correction": "share of valid-final trajectories whose decoded event at t=0.5 differs from the final one, and best-event hit rates for changed vs unchanged trajectories"
+    "guidance_reference_times": {
+      "v1a_guidance_start": 0.5,
+      "planning_lambda_open": 0.4
+    },
+    "secondary_self_correction": "among valid-final trajectories whose decoded event at t=0.5 is valid: share whose event at t=0.5 differs from the final one, and best-event hit rates for changed vs unchanged; the share undecodable at t=0.5 is reported separately",
+    "commit_step_sensitivity": "bond-change-set commit: first step after which the set of atom pairs whose rounded b1_hat bond order differs from the reactant equals the final event's set; separates 'not yet decodable' from 'not yet decided'"
   },
-  "xtb": {"method": "GFN2-xTB", "implementation": "tblite.interface", "accuracy": 1.0, "max_iterations": 250, "electronic_temperature_kelvin": 300.0, "charge": 0, "uhf": 0, "min_distance_angstrom": 0.5},
-  "compute": {"slurm_only": true, "max_concurrent_jobs": 1, "max_wall_minutes_per_job": 120}
+  "xtb": {
+    "method": "GFN2-xTB",
+    "implementation": "tblite.interface",
+    "accuracy": 1.0,
+    "max_iterations": 250,
+    "electronic_temperature_kelvin": 300.0,
+    "charge": 0,
+    "uhf": 0,
+    "min_distance_angstrom": 0.5
+  },
+  "compute": {
+    "slurm_only": true,
+    "max_concurrent_jobs": 1,
+    "max_wall_minutes_per_job": 120
+  },
+  "revisions": [
+    {
+      "version": "geoinfo-1.1",
+      "before_full_run": true,
+      "reason": "a 3-parent x 4-proposal CPU plumbing smoke showed decoded events are mostly undecodable until t~0.4-0.5 and then equal the final event; added the bond-change-set commit as a sensitivity and restricted self-correction to trajectories decodable at t=0.5. Primary definitions unchanged."
+    }
+  ]
 }

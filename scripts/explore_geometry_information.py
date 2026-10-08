@@ -172,12 +172,20 @@ MATCHERS={};XCFG={};ANCHOR={}
 def _trajectory_job(item):
     from xtbflow.m0.sampler import decode_be
     from xtbflow.v1.proxy import valid_endpoint
-    m=MATCHERS[item['query_id']];n=len(m.z);events=[]
+    m=MATCHERS[item['query_id']];n=len(m.z);events=[];changes=[]
+    upper=np.triu_indices(n,1)
     for k in range(len(item['b_hat'])):
-        bp,_=decode_be(torch.from_numpy(item['b_hat'][k]),item['element_index'],n)
+        bp,fallback=decode_be(torch.from_numpy(item['b_hat'][k]),item['element_index'],n)
         ok=bp is not None and valid_endpoint(m.z,m.br,bp)
         events.append(canonical_event(m.br,bp,m.perms) if ok else None)
+        # Atom pairs whose rounded bond order differs from the reactant, valid or not.
+        diff=fallback[upper]!=np.asarray(m.br)[upper]
+        changes.append(frozenset(zip(upper[0][diff].tolist(),upper[1][diff].tolist())))
         if k==len(item['b_hat'])-1:final_bp=bp if ok else None
+    if final_bp is not None:
+        final=np.asarray(final_bp)[upper]!=np.asarray(m.br)[upper]
+        changes[-1]=frozenset(zip(upper[0][final].tolist(),upper[1][final].tolist()))
+    else:changes[-1]=None
     match=m.match(final_bp,item['x_final'],is_fallback=final_bp is None,
                   decode_status='VALID' if final_bp is not None else 'DECODE_FAILED')
     if match['predicted_channel_id']!=events[-1]:raise RuntimeError('final event disagrees with matcher')
@@ -188,6 +196,7 @@ def _trajectory_job(item):
         xtb.append(e-ea if s=='ok' and sa=='ok' else float('nan'));status.append(s)
     return dict(parent_id=m.parent['parent_id'],formula=m.parent['split_group'],query_id=item['query_id'],
                 seed=item['seed'],proposal=item['proposal'],events=events,commit_step=commit_index(events),
+                bond_change_commit_step=commit_index(changes),
                 proxy_status=match['proxy_status'],hits_best_event=match['hits_best_event'],
                 hits_best_reference=match['hits_best_reference'],
                 event_barrier_kcal=min(known) if known else None,xtb_delta_kcal=xtb,xtb_status=status,
@@ -363,14 +372,20 @@ def analyze_b(rows,spec):
         else:
             w=float((commit>t_geo+1e-9).mean());curves[name]['window_fraction']=w
             curves[name]['reading']='WINDOW_EXISTS' if w>=.2 else 'NO_USABLE_WINDOW'
+    soft=np.array([r['bond_change_commit_step']/steps for r in valid])
+    out['commit_bond_change_sensitivity']=dict(
+        cdf={f'{t:.1f}':float((soft<=t+1e-9).mean()) for t in grid},median_t=float(np.median(soft)),
+        window_fraction={k:(float((soft>v['t_geo']+1e-9).mean()) if v['t_geo'] is not None else None)
+                         for k,v in curves.items()})
     out['signals']=curves
     out['xtb_status_by_t']={f'{t:.1f}':{s:sum(r['xtb_status'][g]==s for r in rows)
                                          for s in sorted({r['xtb_status'][g] for r in rows})}
                             for g,t in enumerate(grid)}
-    half=steps//2
-    changed=[r for r in valid if r['events'][half]!=r['events'][-1]]
-    kept=[r for r in valid if r['events'][half]==r['events'][-1]]
-    out['self_correction']=dict(changed_after_half=len(changed)/max(len(valid),1),
+    half=steps//2;decodable=[r for r in valid if r['events'][half] is not None]
+    changed=[r for r in decodable if r['events'][half]!=r['events'][-1]]
+    kept=[r for r in decodable if r['events'][half]==r['events'][-1]]
+    out['self_correction']=dict(undecodable_at_half=1-len(decodable)/max(len(valid),1),
+                                changed_after_half=len(changed)/max(len(decodable),1),
                                 best_event_rate_changed=float(np.mean([r['hits_best_event'] for r in changed])) if changed else None,
                                 best_event_rate_unchanged=float(np.mean([r['hits_best_event'] for r in kept])) if kept else None,
                                 n_changed=len(changed),n_unchanged=len(kept))

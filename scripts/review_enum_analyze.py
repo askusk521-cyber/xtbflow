@@ -4,6 +4,7 @@ from collections import defaultdict
 import gzip
 import json
 from pathlib import Path
+import math
 import numpy as np
 from xtbflow.v1.data import write_json
 from xtbflow.v1.review_enum_metrics import GRID,random_recall,generator_curve,ranked_curve,paired_auc
@@ -26,6 +27,10 @@ def analyze(root,enumdir):
         meta=json.loads((enumdir/(pid+'.json')).read_text());data=np.load(enumdir/(pid+'.npz'));scores=np.load(enumdir/(pid+'.scores.npz'))
         channels=data['channels'].tolist();best=parents[pid]['best_channel_ids'];n=len(channels);m=len(set(channels)&set(best))
         curves['S_rand'][pid]={k:random_recall(n,m,k) for k in GRID}
+        for k in GRID:
+            sample=min(k,n)
+            independent=0. if n==0 else 1-(math.comb(n-m,sample) if sample<=n-m else 0)/math.comb(n,sample)
+            assert abs(curves['S_rand'][pid][k]-independent)<1e-12
         for scorer in ('S_E','S_N'):curves[scorer][pid]=ranked_curve(channels,scores[scorer],best)
         metadata.append(meta)
     comparisons={}
@@ -44,7 +49,7 @@ def analyze(root,enumdir):
     outside=[r['parent_id'] for r in metadata if not r['covered_best']]
     outside_hits={arm:sorted(p for p in outside if any(any(r['event']) for r in rawgen[arm][p])) for arm in sorted(rawgen)}
     n=np.array([r['n_enum'] for r in metadata])
-    return dict(exploratory=True,n_parents=len(ids),comparisons=comparisons,rates=rates,
+    return dict(exploratory=True,random_analytic_check_passed=True,n_parents=len(ids),comparisons=comparisons,rates=rates,
         n_enum=dict(median=float(np.median(n)),p95=float(np.quantile(n,.95)),total=int(n.sum())),
         best_coverage=float(np.mean([bool(r['covered_best']) for r in metadata])),
         channel_coverage_parent_mean=float(np.mean([len(r['covered_channels'])/len(r['catalogue_channels']) for r in metadata])),
@@ -52,6 +57,14 @@ def analyze(root,enumdir):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--root',type=Path,default=Path('/home/lhshen/xtbflow-runs/v1a-20261007'))
+    p=argparse.ArgumentParser();p.add_argument('--devdir',type=Path);p.add_argument('--root',type=Path,default=Path('/home/lhshen/xtbflow-runs/v1a-20261007'))
     p.add_argument('--enumdir',type=Path,required=True);p.add_argument('--out',type=Path,required=True);a=p.parse_args()
-    write_json(a.out,analyze(a.root,a.enumdir))
+    result=analyze(a.root,a.enumdir)
+    if a.devdir:
+        ids=sorted(json.loads((a.root/'data/split_manifest.json').read_text())['development']['parent_ids'])
+        rows=[json.loads((a.devdir/(pid+'.json')).read_text()) for pid in ids]
+        counts=np.array([r['n_enum'] for r in rows])
+        result['development']=dict(n_parents=len(rows),best_coverage=float(np.mean([bool(r['covered_best']) for r in rows])),
+            channel_coverage_parent_mean=float(np.mean([len(r['covered_channels'])/len(r['catalogue_channels']) for r in rows])),
+            n_enum=dict(median=float(np.median(counts)),p95=float(np.quantile(counts,.95)),total=int(counts.sum())),parents=rows)
+    write_json(a.out,result)

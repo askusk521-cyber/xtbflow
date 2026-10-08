@@ -4,8 +4,18 @@ from itertools import product
 import numpy as np
 
 from xtbflow.v1.data import canonical_event
-from xtbflow.v1.enumeration import enumerate_events, bounded_formations
+from xtbflow.v1.enumeration import enumerate_events, bounded_formations, minimizing_permutation
 from xtbflow.v1.proxy import valid_endpoint
+
+
+def test_vectorized_lexicographic_minimizer():
+    from itertools import permutations
+    rng = np.random.default_rng(1729)
+    perms = np.array(list(permutations(range(5))))
+    for _ in range(20):
+        br = rng.integers(0, 4, (5, 5))
+        bp = rng.integers(0, 4, (5, 5))
+        assert canonical_event(br, bp, perms) == canonical_event(br, bp, minimizing_permutation(br, bp, perms))
 
 
 def test_break_orbit_pruning_preserves_canonical_products():

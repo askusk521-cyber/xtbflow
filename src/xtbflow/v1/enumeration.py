@@ -30,6 +30,26 @@ def bounded_formations(available, counts, capacity, number, start=0):
             yield ((i, j),) + tail, degrees
 
 
+def minimizing_permutation(br, bp, perms):
+    """Select an exact lexicographic minimizer; canonical_event still makes the ID.
+
+    Filtering tied rows columnwise avoids constructing thousands of Python
+    tuples for high-symmetry reactants. It changes neither quotient nor hash.
+    """
+    if len(perms) < 16:
+        return perms
+    delta = np.asarray(bp, dtype=np.int64) - np.asarray(br, dtype=np.int64)
+    triangle = np.triu_indices(len(delta))
+    values = delta[perms[:, :, None], perms[:, None, :]][:, triangle[0], triangle[1]]
+    active = np.arange(len(perms))
+    for column in range(values.shape[1]):
+        entries = values[active, column]
+        active = active[entries == entries.min()]
+        if len(active) == 1:
+            break
+    return perms[active[:1]]
+
+
 def enumerate_events(z, br, perms, size=2, stop_after=None):
     """Yield unique (channel_id, BE) within the frozen bNfN domain.
 
@@ -102,7 +122,7 @@ def enumerate_events(z, br, perms, size=2, stop_after=None):
                         candidate[np.diag_indices(n)] += changes
                         if not valid_endpoint(z, br, candidate):
                             continue
-                        channel = canonical_event(br, candidate, perms)
+                        channel = canonical_event(br, candidate, minimizing_permutation(br, candidate, perms))
                         if channel in seen:
                             continue
                         seen.add(channel)

@@ -1243,6 +1243,11 @@
       "bytes": 1238
     },
     {
+      "path": "scripts/review_enum_resource_audit.py",
+      "sha256": "c59915ccecc11e362f62246c35dd04f7a8c9169e83c7e9b347327a025b7361e7",
+      "bytes": 2547
+    },
+    {
       "path": "scripts/review_enum_training_check.py",
       "sha256": "b220f6d8a0a0a05885021284084e76ffc2e75a539cdf13fc44501540e82ca8a3",
       "bytes": 2630
@@ -1754,8 +1759,8 @@
     },
     {
       "path": "src/xtbflow/v1/enumeration.py",
-      "sha256": "7be220cac6133a108e4d104c221cb6d4293063e0fafc5af2f248e33604d9a5b2",
-      "bytes": 5211
+      "sha256": "f047fac3d9f719f2f3d782af99ff5f259e18bbda83a318ea785e143a141b15a3",
+      "bytes": 6035
     },
     {
       "path": "src/xtbflow/v1/formal.py",
@@ -2059,8 +2064,8 @@
     },
     {
       "path": "tests/test_review_enumeration.py",
-      "sha256": "1154f3c15476b49e47fd0cf7e103319dfec921b905a0e077c31b7eedb27077e2",
-      "bytes": 2629
+      "sha256": "7afd9ed4eef8fe0af7b6b75b6d875f044ee1e3b891520542fb2b2986215bc7f6",
+      "bytes": 3046
     },
     {
       "path": "tests/test_review_rdkit_valence_bounds.py",

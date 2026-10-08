@@ -13,7 +13,8 @@
 - Central-difference quadratic Hessian test passed.
 - Optimized water check from source-dcb16bb passed: exact Hessian symmetry, six-dimensional translation/rotation span, all three internal modes positive (hessian_check.json).
 - Pure `qc_protocol` harmonic/classification/identity functions are imported unchanged; the DFT engine is never invoked.
-- Source-a2f79c2 bootstrap and both complete test suites exited 0. Final evidence-commit tests and byte-identical analysis comparison are recorded in the final PR update.
+- Source-ca9aace bootstrap passed (427 covered files); reusable unittest 56 OK; pytest 305 passed, one existing warning. Analysis rerun plus cmp was byte-identical; all local evidence and remote raw-verdict SHA256SUMS passed. Full log: `/home/lhshen/xtbflow-runs/review-align-20261009/tests-ca9aace.log`.
+- Diff from 5998dfd contains additions only, except bootstrap_inventory.json.
 
 ## Actual resources
 

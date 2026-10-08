@@ -178,6 +178,16 @@
       "bytes": 2788
     },
     {
+      "path": "configs/explore/geometry_lead_wide.json",
+      "sha256": "004cef159eb1688c1d5b4c9c57cd8dc3d5ae5fbba4fd5076c0b904635b69368c",
+      "bytes": 1927
+    },
+    {
+      "path": "configs/explore/physics_guidance.json",
+      "sha256": "3293e85653999aff276b4553f5d655d12b2466a172ee42a7f9018713973cd6a8",
+      "bytes": 3897
+    },
+    {
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
@@ -521,6 +531,86 @@
       "path": "docs/evidence/explore_geolead/manifest_sync.json",
       "sha256": "ae9c8490de16cd43ee67a8d218f928f131b9bc87d0b129c4147bd6b7ff003ca1",
       "bytes": 1227
+    },
+    {
+      "path": "docs/evidence/explore_geolead_wide/REPORT_ZH.md",
+      "sha256": "c395da2081e3f48ea8b10a661714f5334d84993c8dda6d38986a543876d8b6ee",
+      "bytes": 2996
+    },
+    {
+      "path": "docs/evidence/explore_geolead_wide/SHA256SUMS",
+      "sha256": "be2829642168f04940e92c4bc8ede79c92fdc71bc5bf795db35f8a1882abe42a",
+      "bytes": 1175
+    },
+    {
+      "path": "docs/evidence/explore_geolead_wide/geolead2_results.json",
+      "sha256": "372ea92c09f9b2bd781d4489a2b869a128504956e995f43485a247c6e6741315",
+      "bytes": 58016
+    },
+    {
+      "path": "docs/evidence/explore_geolead_wide/manifest_none-event_delay30.json",
+      "sha256": "dbf7204c9edd4427564ed836380ad51a0e584e6220d20f64e88d038352347c78",
+      "bytes": 1342
+    },
+    {
+      "path": "docs/evidence/explore_geolead_wide/manifest_none-event_delay50.json",
+      "sha256": "6f9d062c0eb0a1e9f52fee26557359730deb4a25edbf9f2c45ef790a8cefa711",
+      "bytes": 1343
+    },
+    {
+      "path": "docs/evidence/explore_geolead_wide/manifest_none-geometry_lead4.json",
+      "sha256": "0092c8eefaa2f0c805f16f952fe97c83377383b500aa0f2ab3388be6ed489f53",
+      "bytes": 1342
+    },
+    {
+      "path": "docs/evidence/explore_physics/REPORT_ZH.md",
+      "sha256": "ec7d2fec110f1b50f19e75a72f6b6f1e7b09c8d335813a0ef5091319c746b3e8",
+      "bytes": 6127
+    },
+    {
+      "path": "docs/evidence/explore_physics/SHA256SUMS",
+      "sha256": "a742c6dd38ae12f536162581a551e6ff61cf5edec549e27f559175395da78091",
+      "bytes": 2004
+    },
+    {
+      "path": "docs/evidence/explore_physics/manifest_descent_0.3.json",
+      "sha256": "19faaec126a90cd2f13f6ba89d162959062acc8251e511639b618f25fb7f3656",
+      "bytes": 1345
+    },
+    {
+      "path": "docs/evidence/explore_physics/manifest_descent_1.0.json",
+      "sha256": "f0f143542f2eedb65a464e1e62c0c08265dda4cadc07aaa56c273009813d7c9e",
+      "bytes": 1345
+    },
+    {
+      "path": "docs/evidence/explore_physics/manifest_none-geometry_lead3.json",
+      "sha256": "a18b0977069c9c54a6271f2575726a18583c7d6d3088b2c89b85c3b6dbce6110",
+      "bytes": 1343
+    },
+    {
+      "path": "docs/evidence/explore_physics/manifest_random_0.3.json",
+      "sha256": "8a203df57dca2a5bc873b5440215b7e1c46c9599b43d5a1b31dc1bdfd50a0bf8",
+      "bytes": 1345
+    },
+    {
+      "path": "docs/evidence/explore_physics/manifest_random_1.0.json",
+      "sha256": "e3aea0edcdaa629f4b311e33a82b9dbc9172adb5c333e41b461b501620279207",
+      "bytes": 1345
+    },
+    {
+      "path": "docs/evidence/explore_physics/manifest_saddle_0.3.json",
+      "sha256": "3596fd541a9a11a8c5ce28218a1fee8be72327113407bdff66e890a2cee3cf14",
+      "bytes": 1344
+    },
+    {
+      "path": "docs/evidence/explore_physics/manifest_saddle_1.0.json",
+      "sha256": "55fb745617c07416bb9519fe564d4c13e9c676b70820417b37aa3a2c092108a1",
+      "bytes": 1344
+    },
+    {
+      "path": "docs/evidence/explore_physics/pg1_results.json",
+      "sha256": "3085e6b1f458f9d994307f8fb61b42e372e1d2c01127a4a96d7d504030bd1fcf",
+      "bytes": 87567
     },
     {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
@@ -943,6 +1033,11 @@
       "bytes": 2857
     },
     {
+      "path": "docs/explore/PHYSICS_GUIDANCE_DESIGN_ZH.md",
+      "sha256": "b58d5cb3bb1318c53257b36e5fb76af063b870d4dce0a5433125d6d8c43a98db",
+      "bytes": 4161
+    },
+    {
       "path": "docs/model_design.md",
       "sha256": "bdf387e56ea531479b11068b397e98912004ae24c8e784fb37339106cdcb87ef",
       "bytes": 4233
@@ -1129,8 +1224,8 @@
     },
     {
       "path": "scripts/explore_geometry_information.py",
-      "sha256": "cdb8cc0604d68069bc40b05141dcd948458b680dcdb0c8fb20800f13f7f23dac",
-      "bytes": 28624
+      "sha256": "ee892e4eaccdf20a94be296dcc446ce3274f7306fe493b8e5c940260df6cc792",
+      "bytes": 43409
     },
     {
       "path": "scripts/joint_flow_smoke.py",
@@ -1669,8 +1764,8 @@
     },
     {
       "path": "src/xtbflow/v1/clocks.py",
-      "sha256": "5841933debf3af6e81f2883de33e34d5d4fcf38240c47fae8a9641d0bde3b509",
-      "bytes": 923
+      "sha256": "b2e5c0b2c5c80631e57015065565249ec42167c813a229136cc9b44aea2f3b44",
+      "bytes": 1286
     },
     {
       "path": "src/xtbflow/v1/costs.py",
@@ -1686,6 +1781,11 @@
       "path": "src/xtbflow/v1/development.py",
       "sha256": "7c3c48604173b0b5eab85a4ed905d333de0ac9faeb02402cb104727eb26436f9",
       "bytes": 8351
+    },
+    {
+      "path": "src/xtbflow/v1/explore_rollout.py",
+      "sha256": "2519d397742c0a5a3ca021e2d4c28bc0e57aae0c369e78d1ed25e0abbe41c42b",
+      "bytes": 3660
     },
     {
       "path": "src/xtbflow/v1/formal.py",
@@ -1868,14 +1968,19 @@
       "bytes": 9907
     },
     {
+      "path": "tests/test_explore_rollout.py",
+      "sha256": "4d10d4153142e9dab197b0801a8290f3009fc60151921b283b91394c221ed87f",
+      "bytes": 3138
+    },
+    {
       "path": "tests/test_geometry_flow.py",
       "sha256": "3a1f64a2bb77180cd7416b52d120dd14bd899881f5fb7bc812636133edbe506d",
       "bytes": 4675
     },
     {
       "path": "tests/test_geometry_information.py",
-      "sha256": "f5bf06db827ba262f7664e84db14cf341c7a6bb339dd0b4afedbc3c895e4267e",
-      "bytes": 7936
+      "sha256": "bd90ded1ea5704d16df995c061aa17d5c3260187d0397c09d576af487f974b63",
+      "bytes": 9790
     },
     {
       "path": "tests/test_handoff_freeze.py",
@@ -2004,8 +2109,8 @@
     },
     {
       "path": "tests/test_v1_clocks.py",
-      "sha256": "c8af15e363c41dfeff08bd4f5572dea855c5c5b1b7b911271867713bc244ebb1",
-      "bytes": 1862
+      "sha256": "30baaff64327bf3f34cb650d64ad2bcc00ed0370856d81083477bcf8d9900c6b",
+      "bytes": 2107
     },
     {
       "path": "tests/test_v1_costs_serial.py",

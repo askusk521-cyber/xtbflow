@@ -200,7 +200,8 @@ def _trajectory_job(item):
                 proxy_status=match['proxy_status'],hits_best_event=match['hits_best_event'],
                 hits_best_reference=match['hits_best_reference'],
                 event_barrier_kcal=min(known) if known else None,xtb_delta_kcal=xtb,xtb_status=status,
-                hx_mean_kcal=item['hx_mean'],hx_sd_kcal=item['hx_sd'])
+                hx_mean_kcal=item['hx_mean'],hx_sd_kcal=item['hx_sd'],event_utility=match['event_utility'],
+                **({'guidance':item['guidance']} if 'guidance' in item else {}))
 
 
 def cmd_trajectories(a):
@@ -458,12 +459,232 @@ def cmd_analyze_clock(a):
     print(json.dumps(result['reproduction_vs_check_b']))
 
 
+# ---------------------------------------------------------------- pg-1 / geolead-2 rollouts
+
+ARMS=('none','saddle','descent','random')
+
+
+def _force_job(args):
+    """GFN2-xTB gradient (Hartree/bohr) on one predicted endpoint, or None with a reason."""
+    z,x,cfg=args
+    from xtbflow.v1.geometry_information import min_distance
+    if not np.isfinite(np.asarray(x,dtype=float)).all():return None,'nonfinite'
+    if min_distance(x)<cfg['min_distance_angstrom']:return None,'collapsed'
+    from tblite.interface import Calculator
+    from xtbflow.calculators.xtb_oracle import BOHR_IN_ANGSTROM,KELVIN_TO_HARTREE
+    try:
+        calc=Calculator('GFN2-xTB',np.asarray(z,dtype=np.int32),np.asarray(x,dtype=float)/BOHR_IN_ANGSTROM,
+                        charge=cfg['charge'],uhf=cfg['uhf'])
+        calc.set('verbosity',0);calc.set('accuracy',float(cfg['accuracy']))
+        calc.set('max-iter',int(cfg['max_iterations']))
+        calc.set('temperature',float(cfg['electronic_temperature_kelvin'])*KELVIN_TO_HARTREE)
+        g=np.asarray(calc.singlepoint().get('gradient'),dtype=float)
+    except (RuntimeError,ValueError) as exc:
+        return None,'scf_failed:'+type(exc).__name__
+    return (g,'ok') if np.isfinite(g).all() else (None,'nonfinite_gradient')
+
+
+def make_push(kind,alpha,pool,q,keys,seed,xcfg,stats):
+    """Unit-RMS geometry step of size alpha*dt along the arm's direction (V1a geometry_step).
+
+    saddle: (I - 2uu^T)F with F the xTB force on the predicted endpoint and u the
+    reaction coordinate of the predicted bond-order change. descent: F (the
+    known-flawed form, kept as a negative control). random: one isotropic
+    direction per trajectory, fixed over the window, so cumulative displacement
+    is comparable with a consistent physical direction.
+    """
+    from xtbflow.v1.explore_rollout import event_direction,saddle_reflect
+    from xtbflow.v1.geometry_information import min_distance
+    from xtbflow.v1.guidance import geometry_step,unit_geometry_direction
+    from xtbflow.v1.rng import addressed_seed
+    mask=q.atom_mask;n=[int(v) for v in mask.sum(1)];z=[q.atomic_numbers[c,:n[c]].cpu().numpy() for c in range(len(n))]
+    fixed=None
+    if kind=='random':
+        fixed=torch.zeros_like(q.x_r)
+        for c,(qid,j) in enumerate(keys):
+            g=torch.Generator().manual_seed(addressed_seed('explore_physics_random',query=qid,training_seed=seed,proposal=int(j)))
+            fixed[c,:n[c]]=torch.randn(n[c],3,generator=g).to(fixed)
+
+    def push(k,bh,xh,x,dt):
+        xs=xh.double().cpu().numpy()
+        ok=torch.tensor([min_distance(xs[c,:n[c]])>=xcfg['min_distance_angstrom'] for c in range(len(n))],device=x.device)
+        if kind=='random':direction=fixed
+        else:
+            force=torch.zeros_like(x)
+            for c,(g,status) in enumerate(pool.map(_force_job,[(z[c],xs[c,:n[c]],xcfg) for c in range(len(n))])):
+                if g is None:
+                    ok[c]=False;stats['force_failures'][c]+=float(status!='collapsed')
+                else:force[c,:n[c]]=-torch.from_numpy(g).to(force)
+            if kind=='saddle':
+                u,valid=event_direction(bh,q.b_r,xh,mask);ok&=valid
+                cos=(u*force).sum((1,2)).abs()/force.flatten(1).norm(dim=1).clamp_min(1e-12)
+                stats['cos_sum']+=torch.where(ok,cos,torch.zeros_like(cos))
+                direction=saddle_reflect(force,u)
+            else:direction=force
+        unit,valid=unit_geometry_direction(-direction,mask);ok&=valid
+        step,actual=geometry_step(unit,mask,alpha*dt)
+        stats['displacement']+=torch.where(ok,actual,torch.zeros_like(actual))
+        return step*ok[:,None,None].to(step.dtype),ok
+    return push
+
+
+def cmd_rollouts(a):
+    from xtbflow.v1.assets import load_generator,load_scores
+    from xtbflow.v1.clocks import observation_index
+    from xtbflow.v1.explore_rollout import recorded_rollout
+    from xtbflow.v1.interfaces import assert_query_fields,query_from_parents
+    from xtbflow.v1.proxy import CatalogueMatcher
+    from xtbflow.v1.sampler import initial_state,subset_query
+    cfg=json.loads(a.config.read_text());spec=cfg['check_b_time_window']
+    if a.arm!='none' and not a.alpha:raise ValueError('a pushed arm needs --alpha')
+    if a.arm=='none' and a.alpha:raise ValueError('the none arm takes no --alpha')
+    root,cat,split,parents,refs=load_inputs(cfg,a.limit_parents)
+    qrows=[json.loads(line) for line in (cat/'development_queries.jsonl').read_text().splitlines()]
+    by_query={p['query_id']:p for p in parents.values()};qrows=[r for r in qrows if r['query_id'] in by_query]
+    if len(qrows)!=len(parents):raise ValueError('one development query per parent required')
+    for r in qrows:assert_query_fields(r)
+    by_parent={}
+    for r in refs:by_parent.setdefault(r['parent_id'],[]).append(r)
+    MATCHERS.update({q:CatalogueMatcher(p,by_parent[p['parent_id']]) for q,p in by_query.items()})
+    XCFG.update(cfg['xtb']);ctx=mp.get_context('fork')
+    with ctx.Pool(a.workers) as pool:
+        energies=pool.map(_xtb_job,[(r['atomic_numbers'],r['x_r'],XCFG) for r in qrows])
+    ANCHOR.update({r['query_id']:e for r,e in zip(qrows,energies)})
+    a.out.mkdir(parents=True,exist_ok=True);path=a.out/'check_b_trajectories.jsonl'
+    if path.exists():raise FileExistsError(path)
+    models={};started=time.monotonic();count=0;window=tuple(a.window)
+    with path.open('w') as f,ctx.Pool(a.workers) as pool:
+        device=torch.device('cpu' if a.smoke else 'cuda')
+        if not a.smoke and not torch.cuda.is_available():raise RuntimeError('allocated GPU required')
+        q_all=query_from_parents(qrows,device);score=load_scores(root,'X',device)[0]
+        samp=spec['sampling'];k_props=a.proposals or samp['proposals_per_parent_per_seed']
+        for seed in a.seeds:
+            net,meta=load_generator(root,'joint',seed,device=device);models[seed]=dict(path=meta['path'],sha256=meta['sha256'])
+            pairs=[(i,j) for i in range(len(qrows)) for j in range(k_props)]
+            for s0 in range(0,len(pairs),a.batch_size):
+                chunk=pairs[s0:s0+a.batch_size];keys=[(qrows[i]['query_id'],j) for i,j in chunk]
+                q=subset_query(q_all,[i for i,_ in chunk])
+                st=initial_state(q,[j for _,j in chunk],seed,sampling_seed=samp['sampling_seed'],
+                                 namespace=samp['namespace'],sigma_b=meta['sigma_b'],sigma_x=meta['sigma_x'],group='joint')
+                stats={k:torch.zeros(len(chunk),device=device) for k in ('force_failures','cos_sum','displacement')}
+                push=None if a.arm=='none' else make_push(a.arm,a.alpha,pool,q,keys,seed,XCFG,stats)
+                out=recorded_rollout(net,q,st,path=a.path,n_steps=samp['n_steps'],dual_time=meta['dual_time'],
+                                     push=push,window=window)
+                tb,tx=out['tb'],out['tx'];grid=[observation_index(tx,t) for t in spec['grid_t']]
+                hx=[];hs=[]
+                with torch.no_grad():
+                    for k in grid:
+                        c=score.components(q,out['b_trace'][k],out['x_trace'][k],torch.full((len(chunk),),float(tb[k]),device=device),
+                                           torch.full((len(chunk),),float(tx[k]),device=device))
+                        hx.append(c['mean_kcal'].cpu().numpy());hs.append(c['sd_kcal'].cpu().numpy())
+                b_hat=out['b_hat'].float().cpu().numpy();x_grid=out['x_hat'][grid].float().cpu().numpy()
+                x_final=out['x_trace'][-1].float().cpu().numpy();applied=out['applied'].cpu().numpy()
+                st_cpu={k:v.cpu().numpy() for k,v in stats.items()}
+                items=[]
+                for c,(i,j) in enumerate(chunk):
+                    n=int(q.atom_mask[c].sum())
+                    guidance=dict(arm=a.arm,alpha=a.alpha,window=list(window),applied_steps=int(applied[c]),
+                                  force_failures=int(st_cpu['force_failures'][c]),
+                                  displacement_rms_sum=float(st_cpu['displacement'][c]),
+                                  mean_abs_cos_u_force=float(st_cpu['cos_sum'][c]/applied[c]) if a.arm=='saddle' and applied[c] else None)
+                    items.append(dict(query_id=qrows[i]['query_id'],seed=seed,proposal=j,
+                                      element_index=q.element_index[c].cpu(),b_hat=b_hat[:,c,:n,:n],
+                                      x_grid=x_grid[:,c,:n],x_final=x_final[c,:n],guidance=guidance,
+                                      hx_mean=[float(v[c]) for v in hx],hx_sd=[float(v[c]) for v in hs]))
+                for row in pool.imap(_trajectory_job,items,chunksize=2):
+                    f.write(json.dumps(row,allow_nan=True)+'\n');count+=1
+                f.flush()
+                print(json.dumps(dict(arm=a.arm,alpha=a.alpha,path=a.path,seed=seed,done=count,
+                                      elapsed_s=round(time.monotonic()-started))),flush=True)
+    write_json(a.out/'check_b_manifest.json',dict(
+        stage='rollouts',clock_path=a.path,arm=a.arm,alpha=a.alpha,window=list(window),n_parents=len(qrows),
+        proposals_per_parent_per_seed=k_props,seeds=list(a.seeds),trajectories=count,generators=models,
+        grid_steps=grid,rows_sha256=file_hash(path),smoke=bool(a.smoke or a.limit_parents or a.proposals),
+        elapsed_s=time.monotonic()-started,split_hash=split['split_hash'],**provenance(a.config)))
+
+
+PHYS_METRICS=dict(utility=lambda r:r['event_utility'],best_event=lambda r:float(bool(r['hits_best_event'])),
+                  best_reference=lambda r:float(bool(r['hits_best_reference'])),
+                  valid=lambda r:float(r['proxy_status']!='INVALID_OUTPUT'),
+                  proxy_match=lambda r:float(r['proxy_status']=='PROXY_MATCH'))
+
+
+def analyze_physics(runs,cfg):
+    key=lambda r:(r['parent_id'],r['seed'],r['proposal'])
+    base={key(r):r for r in runs['none']};formula={r['parent_id']:r['formula'] for r in runs['none']}
+    for name,rows in runs.items():
+        if {key(r) for r in rows}!=set(base):raise ValueError(name+' does not pair with the none arm')
+
+    def per_parent(rows,f):
+        by={}
+        for r in rows:by.setdefault(r['parent_id'],[]).append(f(r))
+        return {p:float(np.mean(v)) for p,v in by.items()}
+    level={name:{m:per_parent(rows,f) for m,f in PHYS_METRICS.items()} for name,rows in runs.items()}
+    out=dict(arms={},comparisons={},readings={})
+    for name,rows in runs.items():
+        g=[r.get('guidance',{}) for r in rows]
+        changed=per_parent(rows,lambda r:float(r['events'][-1]!=base[key(r)]['events'][-1]))
+        both=[r for r in rows if r['event_barrier_kcal'] is not None and base[key(r)]['event_barrier_kcal'] is not None]
+        shift={}
+        for r in both:shift.setdefault(r['parent_id'],[]).append(r['event_barrier_kcal']-base[key(r)]['event_barrier_kcal'])
+        cos=[x['mean_abs_cos_u_force'] for x in g if x.get('mean_abs_cos_u_force') is not None]
+        out['arms'][name]=dict(
+            means={m:float(np.mean(list(v.values()))) for m,v in level[name].items()},
+            changed_vs_none=_summary(changed,formula) if name!='none' else None,
+            barrier_shift_vs_none_kcal=_summary({p:float(np.mean(v)) for p,v in shift.items()},formula) if name!='none' else None,
+            n_both_catalogue=len(both),
+            applied_steps_mean=float(np.mean([x.get('applied_steps',0) for x in g])),
+            displacement_rms_sum_mean=float(np.mean([x.get('displacement_rms_sum',0.) for x in g])),
+            force_failures=int(sum(x.get('force_failures',0) for x in g)),
+            mean_abs_cos_u_force=float(np.mean(cos)) if cos else None)
+    for a_name,b_name in cfg['comparisons']:
+        if a_name in runs and b_name in runs:
+            out['comparisons'][f'{a_name}-{b_name}']={m:_summary({p:level[a_name][m][p]-level[b_name][m][p] for p in level[b_name][m]},formula)
+                                                       for m in PHYS_METRICS}
+    for name in runs:
+        arm,_,alpha=name.partition('_')
+        if arm not in ('saddle','descent'):continue
+        vs_none=out['comparisons'].get(f'{name}-none',{}).get('utility')
+        vs_rand=out['comparisons'].get(f'{name}-random_{alpha}',{}).get('utility')
+        if vs_none is None:continue
+        lo,hi=vs_none['ci_two95']
+        if lo>0:reading='PHYSICS_REWRITES_TOWARD_LOW_BARRIER' if vs_rand and vs_rand['ci_two95'][0]>0 else 'SHIFT_NOT_SPECIFIC'
+        elif hi<0:reading='PHYSICS_HURTS'
+        else:reading='NO_DETECTABLE_SHIFT'
+        out['readings'][name]=reading
+    return out
+
+
+def cmd_analyze_physics(a):
+    cfg=json.loads(a.config.read_text());base=json.loads(Path(cfg['base_config']).read_text())
+    runs={name:_jsonl(f) for name,f in a.run}
+    if 'none' not in runs:raise ValueError('the none arm is required')
+    result=dict(version=cfg['version'],exploratory=True,**provenance(a.config),rows_sha256={n:file_hash(f) for n,f in a.run})
+    result['reproduction_vs_geolead1']=reproduction(runs['none'],_jsonl(a.reference_none))
+    result['physics']=analyze_physics(runs,cfg)
+    result['time_window']={n:{k:v for k,v in analyze_b(rows,base['check_b_time_window']).items()
+                              if k in ('commit','signals','final_status','n_valid_final')} for n,rows in runs.items()}
+    write_json(a.out,result)
+    print(json.dumps(dict(readings=result['physics']['readings'],reproduction=result['reproduction_vs_geolead1'],
+                          means={n:v['means'] for n,v in result['physics']['arms'].items()}),indent=1))
+
+
 def main():
     ap=argparse.ArgumentParser();sub=ap.add_subparsers(dest='cmd',required=True)
     h=sub.add_parser('heads');t=sub.add_parser('trajectories');z=sub.add_parser('analyze')
     c=sub.add_parser('analyze-clock');c.add_argument('--config',type=Path,required=True)
     c.add_argument('--run',nargs=2,action='append',metavar=('PATH','ROWS'),required=True)
     c.add_argument('--reference-sync',type=Path,required=True);c.add_argument('--out',type=Path,required=True)
+    r=sub.add_parser('rollouts');r.add_argument('--config',type=Path,required=True);r.add_argument('--out',type=Path,required=True)
+    r.add_argument('--path',required=True,choices=['sync','geometry_lead2','geometry_lead3','geometry_lead4','event_delay30','event_delay50'])
+    r.add_argument('--arm',choices=ARMS,default='none');r.add_argument('--alpha',type=float)
+    r.add_argument('--window',type=float,nargs=2,default=[.5,.95],metavar=('START','STOP'))
+    r.add_argument('--limit-parents',type=int);r.add_argument('--proposals',type=int)
+    r.add_argument('--seeds',type=int,nargs='+',default=[0,1,2]);r.add_argument('--batch-size',type=int,default=256)
+    r.add_argument('--workers',type=int,default=max(1,(os.cpu_count() or 2)-1));r.add_argument('--smoke',action='store_true')
+    y=sub.add_parser('analyze-physics');y.add_argument('--config',type=Path,required=True)
+    y.add_argument('--run',nargs=2,action='append',metavar=('NAME','ROWS'),required=True)
+    y.add_argument('--reference-none',type=Path,required=True);y.add_argument('--out',type=Path,required=True)
     for p in (h,t,z):p.add_argument('--config',type=Path,required=True)
     for p in (h,t):
         p.add_argument('--out',type=Path,required=True);p.add_argument('--limit-parents',type=int)
@@ -475,7 +696,7 @@ def main():
     z.add_argument('--check-a',type=Path);z.add_argument('--check-b',type=Path);z.add_argument('--out',type=Path,required=True)
     a=ap.parse_args()
     {'heads':cmd_heads,'trajectories':cmd_trajectories,'analyze':cmd_analyze,
-     'analyze-clock':cmd_analyze_clock}[a.cmd](a)
+     'analyze-clock':cmd_analyze_clock,'rollouts':cmd_rollouts,'analyze-physics':cmd_analyze_physics}[a.cmd](a)
 
 
 if __name__=='__main__':main()

@@ -188,6 +188,11 @@
       "bytes": 3897
     },
     {
+      "path": "configs/explore/smc_raw_ranking.json",
+      "sha256": "e60ff9a0a2ab81de16558573eba6be89c14bb38bc53fe46c5ee80d2eb3c47c94",
+      "bytes": 1716
+    },
+    {
       "path": "configs/explore/smc_selection.json",
       "sha256": "0f659f66be7939b5f615e5b6a4d64415c232360a6379db9206df164e7cacf3e3",
       "bytes": 6031
@@ -1331,6 +1336,11 @@
       "path": "scripts/explore_smc.py",
       "sha256": "36b826cc463d33784c38518c79c1eee7c78590dd9e5a7cb5b61fd1d35e8b6a9c",
       "bytes": 23543
+    },
+    {
+      "path": "scripts/explore_smc_raw_ranking.py",
+      "sha256": "e39e05eeaa484896ab6b0059c7eb4683e441b28b1b292bce5792b14677b07c16",
+      "bytes": 4643
     },
     {
       "path": "scripts/finalize_smc.py",

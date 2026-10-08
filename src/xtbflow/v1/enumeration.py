@@ -9,6 +9,22 @@ from xtbflow.v1.proxy import valid_endpoint
 VALENCE = {1: 1, 6: 4, 7: 5, 8: 6}
 
 
+def bounded_formations(available, counts, capacity, number, start=0):
+    """Enumerate sorted bond multisets, pruning saturated atoms before descent."""
+    if number == 0:
+        yield (), counts
+        return
+    for index in range(start, len(available)):
+        i, j = available[index]
+        if counts[i] >= capacity[i] or counts[j] >= capacity[j]:
+            continue
+        updated = counts.copy()
+        updated[i] += 1
+        updated[j] += 1
+        for tail, degrees in bounded_formations(available, updated, capacity, number-1, index):
+            yield ((i, j),) + tail, degrees
+
+
 def enumerate_events(z, br, perms, size=2, stop_after=None):
     """Yield unique (channel_id, BE) within the frozen bNfN domain.
 
@@ -43,14 +59,8 @@ def enumerate_events(z, br, perms, size=2, stop_after=None):
             available = [(i, j) for i, j in pairs if (i, j) not in banned
                          and counts[i] < capacity[i] and counts[j] < capacity[j]]
             for nf in range(size + 1):
-                for formed in combinations_with_replacement(available, nf):
+                for formed, degrees in bounded_formations(available, counts, capacity, nf):
                     if not broken and not formed:
-                        continue
-                    degrees = counts.copy()
-                    for i, j in formed:
-                        degrees[i] += 1
-                        degrees[j] += 1
-                    if np.any(degrees > capacity):
                         continue
                     touched = {v for pair in broken + formed for v in pair}
                     options = []

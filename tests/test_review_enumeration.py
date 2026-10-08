@@ -4,8 +4,26 @@ from itertools import product
 import numpy as np
 
 from xtbflow.v1.data import canonical_event
-from xtbflow.v1.enumeration import enumerate_events
+from xtbflow.v1.enumeration import enumerate_events, bounded_formations
 from xtbflow.v1.proxy import valid_endpoint
+
+
+def test_capacity_pruned_multisets():
+    from itertools import combinations_with_replacement
+    pairs = [(0, 1), (0, 2), (1, 2)]
+    counts = np.array([0, 0, 1])
+    capacity = np.array([2, 2, 2])
+    for number in range(4):
+        expected = set()
+        for edits in combinations_with_replacement(pairs, number):
+            deg = counts.copy()
+            for i, j in edits:
+                deg[i] += 1
+                deg[j] += 1
+            if np.all(deg <= capacity):
+                expected.add(edits)
+        actual = {edits for edits, _ in bounded_formations(pairs, counts, capacity, number)}
+        assert actual == expected
 
 
 def test_exhaustive_water_domain():

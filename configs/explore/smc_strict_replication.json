@@ -1,0 +1,12 @@
+{
+  "version": "smc-strict-replication-1",
+  "scientific_config": "configs/explore/smc_selection.json",
+  "scientific_changes": "none; execution-order replication authorized by user option2",
+  "preservation": "All old outputs and PR116/117 remain unchanged; new branch, source clones and output roots only.",
+  "order": ["push frozen implementation", "same-source CPU smoke", "s0", "g1 Slurm", "c1 and persist initial states", "g2 Slurm consuming saved states", "c2", "analyze twice", "evidence audit"],
+  "smoke": "Two actual development parents,32 proposals,seed0; s0/g1/c1/initial persistence/g2/c2 plus size-independent population aggregation and all24 paired comparisons. Scientific metrics discarded, not printed or saved by analysis. No fabricated parents or seeds. Raw intermediates are plumbing artifacts, not used for tuning.",
+  "analysis": "Size-independent aggregation runs at smoke and formal size. Formal run additionally invokes original full diagnostic analysis, asserts equality of all population metrics and comparisons. Smoke does not qualify full-size diagnostic numerical results; formal gates and independent audits do.",
+  "initial_states": "Persist full survivor/clone states before g2; g2 reads them directly and validates file hashes and plan hash.",
+  "limits": "V1a development only. nice10,workers<=48,one heavy CPU job,load<=120,CUDA hidden for CPU. GPU Slurm main pro6000 single card and dependencies,<=60min per job. Aggregate budget <1 GPU hour and40 CPU core-hours. No package installs/DFT/screen/V1b/merges.",
+  "stop": "Any input or reproduction gate failure stops downstream execution; record cause rather than bypassing. New frozen-source fixes require repeating smoke."
+}

@@ -1,0 +1,7 @@
+{
+  "max_state_difference": 0.0,
+  "n": 64,
+  "passed": true,
+  "reference": "fresh CPU rollout, same device and batch layout; smoke only",
+  "source_commit": "91298b42854bf1b828731057bc486e0ddee1dd24"
+}

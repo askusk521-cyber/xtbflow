@@ -1,0 +1,24 @@
+{
+  "c1_reference": "independent repeated CPU rollout (authorized smoke-only amendment)",
+  "dirty": false,
+  "formal_c1_reference": "original pg1, unchanged 1e-6 kcal/mol tolerance",
+  "parents": 2,
+  "passed": true,
+  "proposals": 32,
+  "scientific_metrics_emitted": false,
+  "seeds": [
+    0
+  ],
+  "slurm_job_id": null,
+  "source_commit": "91298b42854bf1b828731057bc486e0ddee1dd24",
+  "stages": [
+    "s0",
+    "g1",
+    "cpu_same_platform_repeat",
+    "c1_cpu_reference",
+    "initial_states",
+    "g2",
+    "c2",
+    "analysis_aggregation_and_comparisons"
+  ]
+}

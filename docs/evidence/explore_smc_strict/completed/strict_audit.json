@@ -1,0 +1,42 @@
+{
+  "cpu_measured_core_hours": 3.797880555555556,
+  "cpu_process_seconds": {
+    "analyze": 6.6000000000000005,
+    "c1": 3229.0699999999997,
+    "c2": 10027.87,
+    "s0": 169.18,
+    "successful_cpu_smoke": 239.65
+  },
+  "formal_analysis_byte_identical": true,
+  "formal_source_commit": "91298b42854bf1b828731057bc486e0ddee1dd24",
+  "gpu_wall_seconds": {
+    "2716": 12,
+    "2717": 25
+  },
+  "initial_states_before_g2": true,
+  "inputs": {
+    "/home/lhshen/xtbflow-runs/explore-smc-20261009/dev-clone/docs/evidence/explore_smc/SHA256SUMS": "9bb95e1fc6208a672402fefb704402d063a10a2994ce98fa9e8c13a0cb72e463",
+    "/home/lhshen/xtbflow-runs/explore-smc-20261009/smc-2116d43/results.json": "527d0c2195fdd2d6c5aa8bcf7995ba3979b1aee603ba5462266e836b3c7ea6a0",
+    "/home/lhshen/xtbflow-runs/explore-smc-20261009/strict-91298b4/initial_states_manifest.json": "d85426d85c97e961a604286b6eb75aa83940a6560d766f556758c7793d187c90",
+    "/home/lhshen/xtbflow-runs/explore-smc-20261009/strict-91298b4/results.json": "ebe22593fa3cee2627df1b2fcb499869e62d806b030d102e3c5ba0ca5a94ec94",
+    "/home/lhshen/xtbflow-runs/explore-smc-20261009/strict-smoke-91298b4/smoke_complete.json": "1debd5952906821d9f4b18f2e2fd94ffc0c0719f8f7c47ac7ef13d78c5bcefb2"
+  },
+  "n_candidates": 77376,
+  "n_clones": 35712,
+  "n_initial_batches": 288,
+  "n_populations": 2418,
+  "original_files_preserved": 619,
+  "passed": true,
+  "scientific_fields_equal_to_original": {
+    "arms": true,
+    "checkpoint_correlations": true,
+    "comparisons": true,
+    "diagnostics": true,
+    "limitations": true,
+    "parent_metrics": true,
+    "readings": true
+  },
+  "scope": "Chronology checked by original artifact mtimes and consumed manifest hash; mtimes alone are not cryptographic timestamps. CPU sum excludes tests, GPU-host CPU and the second analysis run.",
+  "smoke_before_formal": true,
+  "source_commit": "5ac7749dfb677a78e3e23b005342c7285779d19a"
+}

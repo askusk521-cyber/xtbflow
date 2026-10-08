@@ -1,0 +1,68 @@
+{
+  "config_sha256": "0f659f66be7939b5f615e5b6a4d64415c232360a6379db9206df164e7cacf3e3",
+  "curvature_layers": false,
+  "dirty": false,
+  "elapsed_s": 5.487925447989255,
+  "gate_passed": true,
+  "inputs": {
+    "/home/lhshen/xtbflow-runs/explore-geoinfo-20261008/pg-1efad90/none-geometry_lead3/check_b_trajectories.jsonl": "b842f4c418f8cbd30f60d8090100a9855334ef7f59b2fc76d0095b3bf3a39b62",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/data/development_queries.jsonl": "c7eb48284f87cf09dff7e7fc60555e1f263ad51bbf1944ad633fde1b428c8cdd",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/data/parent_catalog.json": "ebbbee13124444ae3e8ad7b5f9475183fed285894e27b0dcdb46cc13b4ba0ece",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/data/reference_catalog.jsonl": "864b0323430468613a0086159206a8fc34061c7041134309edc89d0f574319d9",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/data/split_manifest.json": "4ec80a3e0246be760d22ef546895df54c05f6612839443f28db330c4ac0d2eea",
+    "configs/explore/geometry_information.json": "af016782705c8325dd36b3433b74f157fbcb9ead080b9926f627a41d4b6c853d",
+    "configs/explore/smc_selection.json": "0f659f66be7939b5f615e5b6a4d64415c232360a6379db9206df164e7cacf3e3",
+    "docs/evidence/explore_geoinfo/check_a_rows.jsonl": "34c49edbaba62458157b7864c6cb89e1f40c6af8f4596a72a518f4da57f85c7d"
+  },
+  "n": 558,
+  "negative_curvature_fraction": 0.17204301075268819,
+  "raw_max_error": 0.0,
+  "raw_rho": {
+    "ci_two95": [
+      0.6524459560799384,
+      0.8457571848651383
+    ],
+    "estimate": 0.7491015704725383,
+    "lower_one95": 0.66918468523558,
+    "n_formula_groups": 21,
+    "n_parents": 62,
+    "scope": "conditional on frozen models and specified evaluation design",
+    "se_cluster": 0.046336197558634454,
+    "upper_one95": 0.8290184557094967
+  },
+  "relaxed_rho": {
+    "ci_two95": [
+      0.22166640357447723,
+      0.6066212027206477
+    ],
+    "estimate": 0.41414380314756244,
+    "lower_one95": 0.25513034777080396,
+    "n_formula_groups": 20,
+    "n_parents": 42,
+    "scope": "conditional on frozen models and specified evaluation design",
+    "se_cluster": 0.0919613891525495,
+    "upper_one95": 0.573157258524321
+  },
+  "slurm_job_id": null,
+  "smoke": false,
+  "source_commit": "91298b42854bf1b828731057bc486e0ddee1dd24",
+  "stage": "s0",
+  "statistics": {
+    "calls": 13141,
+    "elapsed_s": 71.72314336406998,
+    "energy_drop": {
+      "n": 530,
+      "quantiles": [
+        -2161.0051212410326,
+        -70.46094491685244,
+        -1.6724707935982224,
+        0.5776643570106899,
+        36.460138068116066
+      ]
+    },
+    "failures": 28,
+    "n": 558,
+    "negative_curvature": 96
+  },
+  "workers": 48
+}

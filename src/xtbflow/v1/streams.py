@@ -43,9 +43,11 @@ class Request:
     path: str='sync'
     guidance_start: float=.5
     guidance_stop: float=.95
+    n_steps: int=50
 
     def signature(self):
-        return (self.role,self.start,self.end,self.alpha,self.path,self.guidance_start,self.guidance_stop)
+        return (self.role,self.start,self.end,self.alpha,self.path,self.guidance_start,self.guidance_stop,
+                self.n_steps)
 
 
 def decode_event(query,state):
@@ -65,12 +67,31 @@ def endpoint_record(query,p):
                 snapshots=list(p.snapshots.values()),guidance=dict(p.diagnostics),shadow=p.shadow)
 
 
+NFE_DEFAULT=50
+
+
+def nfe_steps(config,arm):
+    """Integration steps per role. The frozen V1a programs use 50 for every role.
+
+    Overrides (config keys nfe_event / nfe_geometry / nfe_joint) exist only for
+    the exploratory step-count control of the unguided arms A0 and B0; guided
+    windows and A2 checkpoints are defined on the 50-step grid and stay there.
+    """
+    steps={role:int(config.get('nfe_'+role,NFE_DEFAULT)) for role in ('event','geometry','joint')}
+    if any(v<1 for v in steps.values()):raise ValueError('positive step counts required')
+    if any(v!=NFE_DEFAULT for v in steps.values()) and arm not in ('A0','B0'):
+        raise ValueError('step-count overrides are only defined for the unguided arms A0 and B0')
+    return steps
+
+
 def logical_stream(query,arm,seed,weights,config,output):
     """Output contains all operations/attempts, including partial/eliminated work."""
     if arm not in ('A0','A1','A2','B0','B1'):raise ValueError(arm)
+    steps=nfe_steps(config,arm)
     ledger=Ledger(weights,cap=config.get('cap_units',3200.))
     output.update(candidates=[],attempts=ledger.attempts,operations=ledger.operations,
                   query_id=query.query_id[0],arm=arm,training_seed=seed,sampling_seed=0)
+    if any(v!=NFE_DEFAULT for v in steps.values()):output['nfe_steps']=steps
     qid=query.query_id[0];number=0
 
     def new_proposal(j):
@@ -83,7 +104,7 @@ def logical_stream(query,arm,seed,weights,config,output):
 
     def segment(p,role,start,end,alpha=0.):
         path=config['path'] if role=='joint' else 'sync'
-        tb,tx=clock_grid(path);clock=tb if role=='event' else tx
+        n=steps[role];tb,tx=clock_grid(path,n);clock=tb if role=='event' else tx
         kind='E' if role=='event' else 'X'
         begin=config.get('event_start',.5) if role=='event' else config['guidance_start']
         stop=config.get('event_stop',.95) if role=='event' else config['guidance_stop']
@@ -93,7 +114,7 @@ def logical_stream(query,arm,seed,weights,config,output):
             if not ledger.step(attempt_id(p),{'joint':'f','event':'g','geometry':'h'}[role],guided,kind):break
             last=k+1
         if last>start:
-            yield Request(query,p,role,start,last,alpha,path,begin,stop)
+            yield Request(query,p,role,start,last,alpha,path,begin,stop,n)
         return last==end
 
     def finish(p,status='COMPLETE'):
@@ -106,7 +127,7 @@ def logical_stream(query,arm,seed,weights,config,output):
         ledger.complete(attempt_id(p),None,status)
 
     def event(p):
-        complete=yield from segment(p,'event',0,50,config['alpha_b'] if arm=='A1' else 0.)
+        complete=yield from segment(p,'event',0,steps['event'],config['alpha_b'] if arm=='A1' else 0.)
         if not complete:return False
         bp=decode_event(query,p.state)
         if bp is None:
@@ -122,9 +143,9 @@ def logical_stream(query,arm,seed,weights,config,output):
                 if not (yield from event(p)):
                     terminate(p,'BUDGET_PARTIAL_EVENT');break
                 if not p.valid:continue
-                complete=yield from segment(p,'geometry',0,50)
+                complete=yield from segment(p,'geometry',0,steps['geometry'])
             else:
-                complete=yield from segment(p,'joint',0,50,config['alpha_x'] if arm=='B1' else 0.)
+                complete=yield from segment(p,'joint',0,steps['joint'],config['alpha_x'] if arm=='B1' else 0.)
             if not complete:
                 terminate(p,'BUDGET_PARTIAL');break
             finish(p)
@@ -193,7 +214,7 @@ def execute_batch(requests,networks,scores,*,diagnostics=False,drift=False):
     if request.role=='rank':
         c=scores['X'].components(q,state.b,state.x,state.t_b,state.t_x)
         return [float(c['phi'][i]) if c['supported'][i] else None for i in range(len(requests))]
-    result=rollout(networks[request.role],q,state,role=request.role,path=request.path,
+    result=rollout(networks[request.role],q,state,role=request.role,path=request.path,n_steps=request.n_steps,
                    start=request.start,end=request.end,score=scores['E' if request.role=='event' else 'X'],
                    alpha=request.alpha,guidance_start=request.guidance_start,guidance_stop=request.guidance_stop)
     if result.failed.any():raise FloatingPointError('numeric rollout failure; preserve job for repair')
@@ -201,7 +222,7 @@ def execute_batch(requests,networks,scores,*,diagnostics=False,drift=False):
         r.proposal.state=slice_state(result.state,i)
         for key,value in result.diagnostics.items():r.proposal.diagnostics[key]+=float(value[i])
     if diagnostics:
-        tb,tx=clock_grid(request.path)
+        tb,tx=clock_grid(request.path,request.n_steps)
         kind='E' if request.role=='event' else 'X'
         clock=tb if kind=='E' else tx
         for t in (.2,.35,.5,.65,.8,1.):

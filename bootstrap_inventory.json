@@ -1218,6 +1218,16 @@
       "bytes": 3709
     },
     {
+      "path": "scripts/v1a_n_run.sh",
+      "sha256": "214d9231d4b94befa3f2e3a835c1c00ea7e730d2069390c3e2eb65fe460f1ea3",
+      "bytes": 2223
+    },
+    {
+      "path": "scripts/v1a_n_smoke.py",
+      "sha256": "41849324c111de54e220bb95561b3605013f1aa2fd4ce6ee2530858e6fa06940",
+      "bytes": 5313
+    },
+    {
       "path": "scripts/v1a_power_limits.py",
       "sha256": "3d58fa2ea3d1a59eec8ea7c5c46fc891d80f895075f05b2a71e8eabc36a81526",
       "bytes": 3273
@@ -1264,8 +1274,8 @@
     },
     {
       "path": "scripts/v1a_stream_generate.py",
-      "sha256": "6f82cc10263c0ff3b5f5407f69abbf0cf4f284a9adb9509ea4e9a6a81c3aae61",
-      "bytes": 5556
+      "sha256": "6c935083844581a4dfca20e5f1ed83af544d94defacfc8241500689459ad96d2",
+      "bytes": 6599
     },
     {
       "path": "scripts/v1a_train.py",
@@ -1729,8 +1739,8 @@
     },
     {
       "path": "src/xtbflow/v1/streams.py",
-      "sha256": "e969a5a4f149ec4b45bef9a26fd70f6270ee599bbd30f39e280101afbd0562f8",
-      "bytes": 11984
+      "sha256": "af57deebbc0b6784bb518222f9be389b38d2cd18b124eaa69b7929c5832dd88d",
+      "bytes": 12997
     },
     {
       "path": "src/xtbflow/v1/training.py",
@@ -2026,6 +2036,11 @@
       "path": "tests/test_v1_streams.py",
       "sha256": "2d6c4b4b6d5cddc35e8d213062effa54641a37920732cce9f6df198d55236d40",
       "bytes": 2945
+    },
+    {
+      "path": "tests/test_v1a_n_nfe.py",
+      "sha256": "6a24a14c2ea6ad7d3d5a1f7ec876cfa6d6beab7c252f9bbec9ba57ed9d4072ec",
+      "bytes": 3507
     },
     {
       "path": "tests/test_v1a_r_reanalysis.py",

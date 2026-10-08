@@ -2,10 +2,17 @@
 
 With --frozen every scheduling/guidance setting comes from the freeze record;
 CLI values are ignored so a screen run cannot be re-tuned.
+
+--nfe-event/--nfe-geometry/--nfe-joint (default 50, the frozen value) override
+integration steps for the exploratory step-count control of the unguided arms
+A0/B0 only. Such a run must name its arms, keeps the formal 'efficiency' noise
+namespace so proposals share starting noise with the sealed A0/B0 streams, and
+records the overrides in its manifest. It never replaces a sealed stream.
 """
 import argparse
 import json
 from pathlib import Path
+import sys
 import time
 
 import torch
@@ -37,13 +44,19 @@ def main():
     ap.add_argument('--arms',nargs='+',choices=['A0','A1','A2','B0','B1'],default=['A0','A1','A2','B0','B1'])
     ap.add_argument('--frozen',type=Path)
     ap.add_argument('--rarity',action='store_true',help='screen B0 pilot: seed 0, 128 unguided proposals')
+    for role in ('event','geometry','joint'):
+        ap.add_argument(f'--nfe-{role}',type=int,help=f'{role} integration steps (default 50; A0/B0 control only)')
     a=ap.parse_args()
+    nfe={f'nfe_{role}':getattr(a,f'nfe_{role}') for role in ('event','geometry','joint')
+         if getattr(a,f'nfe_{role}') is not None}
+    if nfe and (a.rarity or not set(a.arms)<={'A0','B0'} or '--arms' not in sys.argv):
+        raise ValueError('step-count overrides need an explicit --arms subset of A0/B0 and no --rarity')
     rows,split_name,freeze=resolve_queries(a.queries,a.frozen)
     purpose='development' if freeze is None else 'efficiency'
     if freeze is not None:
         c=freeze['config'];a.path,a.alpha_x,a.alpha_b=c['path'],c['alpha_x'],c['alpha_b']
         a.start,a.stop,a.a2_times,a.cap=c['guidance_start'],c['guidance_stop'],list(c['a2_times']),c['cap_units']
-        a.arms=['A0','A1','A2','B0','B1']
+        if not nfe:a.arms=['A0','A1','A2','B0','B1']
         if a.rarity:a.arms,a.seed,a.cap,purpose=['B0'],0,50.*128,'rarity'
         if a.costs.resolve()!=Path(freeze['bindings']['cost_table_path']).resolve():raise ValueError('cost table not frozen')
     elif a.rarity:raise ValueError('rarity pilot is a screen stage')
@@ -66,7 +79,8 @@ def main():
     cfg=dict(path=a.path,alpha_x=a.alpha_x,alpha_b=a.alpha_b,guidance_start=a.start,guidance_stop=a.stop,
              event_start=.5,event_stop=.95,a2_times=a.a2_times,cap_units=a.cap,
              sigma_b=model_meta['joint']['sigma_b'],sigma_x=model_meta['joint']['sigma_x'],
-             namespace={'development':'development_efficiency','efficiency':'efficiency','rarity':'rarity_pilot'}[purpose])
+             namespace={'development':'development_efficiency','efficiency':'efficiency','rarity':'rarity_pilot'}[purpose],
+             **nfe)
     a.out.mkdir(parents=True,exist_ok=False);times={};total=0
     with (a.out/'streams.jsonl').open('w') as f:
         for arm in a.arms:
@@ -84,6 +98,7 @@ def main():
                   streams_sha256=sha256(a.out/'streams.jsonl'),cost_source_sha256=sha256(a.costs),
                   costs=weights,n_queries=len(rows),arms=a.arms,gpu_wall_s=times,records=total,
                   diagnostics_and_drift_shadow_in_gpu_wall_but_not_online_budget=True)
+    if nfe:manifest.update(nfe_overrides=nfe,exploratory_control='v1a-n step-count control; not a sealed V1a stream')
     (a.out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 
 

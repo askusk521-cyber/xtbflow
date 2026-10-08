@@ -279,8 +279,8 @@
     },
     {
       "path": "configs/v1b/audit.json",
-      "sha256": "e28bba71dc72dfe31e0e59c2c07c4c111036dc9168abf19ac56c2092f8bccf29",
-      "bytes": 4997
+      "sha256": "d18e1e7177d5f06e4c02a78557b46d41386f607c70a0369d9adef9f0864e4fc8",
+      "bytes": 7078
     },
     {
       "path": "configs/validation/ts_v0.1.yaml",
@@ -956,6 +956,16 @@
       "path": "docs/v1a/v1a_gate_power_v21.py",
       "sha256": "698a6422c8ce7b6d6323a69d024d2128a598094da9fb9ece131a47b677b72ece",
       "bytes": 5583
+    },
+    {
+      "path": "docs/v1b/AMENDMENT_v2.2_ZH.md",
+      "sha256": "b33768b30c5f91ec9fce0cc91e91e64618dc4aad2c1f6e85a203dad087f81618",
+      "bytes": 11934
+    },
+    {
+      "path": "docs/v1b/amendment_v2.2_plan.json",
+      "sha256": "6863b066ec83cb1bd2c91def91820b7635aefadbbf8c417fd7629228196af3c5",
+      "bytes": 15833
     },
     {
       "path": "pyproject.toml",
@@ -2041,6 +2051,11 @@
       "path": "tests/test_v1a_r_reanalysis.py",
       "sha256": "2c2c02a5e5e2ec50e5af898431e5281fd6c8c16f7f9164b1a4a626b219a70e6e",
       "bytes": 5787
+    },
+    {
+      "path": "tests/test_v1b_audit_config.py",
+      "sha256": "334ae40b74903d28446b968bf083579696d7d39a39c04ca0dccf4c077cbd0c4c",
+      "bytes": 2347
     },
     {
       "path": "tests/test_workflow_b_protocol.py",

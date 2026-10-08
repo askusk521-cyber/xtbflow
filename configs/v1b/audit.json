@@ -1,5 +1,7 @@
 {
-  "schema_version": "xtbflow_v1b_protocol_v2_1",
+  "schema_version": "xtbflow_v1b_protocol_v2_2",
+  "amendment": "docs/v1b/AMENDMENT_v2.2_ZH.md",
+  "frozen": false,
   "run_id": null,
   "required_v1a_decision": "GO_V1b",
   "v1a_go_file": null,
@@ -18,7 +20,18 @@
     "retain_empty_bundles": true,
     "require_proxy_parent_labels": true,
     "require_best_event_candidate_ids": true,
-    "delta_proxy": null
+    "delta_proxy": null,
+    "delta_proxy_secondary": {"S1": null, "S2": null, "S3a": null, "S3b": null},
+    "truncated_sets": {
+      "order": "bundle candidate_ids in logical completion order",
+      "S3a": {"n_p": "len(B1.candidate_ids)", "truncate": ["B0"]},
+      "S3b": {"n_p": "min(len(B1.candidate_ids), len(A1.candidate_ids))", "truncate": ["A1", "B1"]},
+      "best_event_candidates": "truncated candidate_ids intersected with best_event_candidate_ids, order kept",
+      "proxy_label": "any hits_best_reference inside the truncated set",
+      "export_at_D0_with_sha256": true,
+      "file": null,
+      "sha256": null
+    }
   },
   "sampling": {
     "freeze_A_and_B_before_target_H": true,
@@ -40,17 +53,26 @@
     "B": {
       "unit": "parent_id",
       "design": "stratified_SRSWOR",
-      "strata": ["B1_only", "A2_only", "both", "neither_with_best_event", "neither_empty"],
-      "neither_empty_policy": "census_without_qc",
-      "allocation_rule": "census_discordant_first_then_both_and_neither_with_best_event",
-      "seed": "v1b_parent_B_v2_1",
+      "strata": ["B1_only", "A2_only", "both", "neither_with_best_event", "primary_empty_secondary_nonempty", "all_empty"],
+      "all_empty_definition": "C* empty for A1, A2, B0, B1 and every S3 truncated set",
+      "all_empty_policy": "census_without_qc",
+      "primary_empty_secondary_nonempty_definition": "C* empty for B1 and A2, non-empty for B0 or A1",
+      "primary_empty_secondary_nonempty_policy": "stratified_SRSWOR",
+      "allocation_rule": "census_discordant_first_then_both_neither_with_best_event_and_primary_empty_secondary_nonempty",
+      "seed": "v1b_parent_B_v2_2",
       "n_by_stratum": null,
       "min_per_sampled_stratum": 2,
       "require_positive_piB": true,
       "piB_definition": "m_h/M_h",
-      "arms": ["A2", "B1"],
+      "arms": ["A1", "A2", "B0", "B1"],
       "candidate_scope": "predicted_event_in_best_known_event_set",
       "candidate_order": "match_best_then_other_best_event_by_source_completion",
+      "candidate_order_with_truncation": {
+        "B0": "S3a_truncated_subset_first_then_remaining",
+        "A1": "S3b_truncated_subset_first_then_remaining",
+        "B1": "S3b_truncated_subset_first_then_remaining",
+        "A2": "unchanged"
+      },
       "route": "direct_irc",
       "allow_witness_stop": true,
       "allow_converged_energy_exclusion": true
@@ -108,6 +130,9 @@
     "global_total_core_h_cap": null,
     "global_wall_seconds_cap": null,
     "infrastructure_failure_policy": "pause_and_resume_original_samples",
+    "cost_overrun_cut_order": ["S1", "S2"],
+    "never_cut": ["primary", "S3a", "S3b"],
+    "cut_only_before_target_H": true,
     "unit_protocol_failure_value": 0,
     "global_unresolved_interval": [0, 1]
   },
@@ -126,6 +151,16 @@
       "V1A_OVERTURNED": "upper_one95 <= 0",
       "V1B_INCONCLUSIVE": "otherwise",
       "INCOMPLETE_BOUNDS": "unresolved labels affect decision"
+    },
+    "decision_estimand": "delta_cert_B1_minus_A2_budget16_training_seed0",
+    "secondary_estimands": {
+      "S1": {"x": "B1", "y": "B0", "sets": "full_budget16_bundles", "gate": false},
+      "S2": {"x": "B1", "y": "A1", "sets": "full_budget16_bundles", "gate": false},
+      "S3a": {"x": "B1", "y": "B0|S3a", "sets": "B1_full_vs_B0_first_n_p", "gate": false},
+      "S3b": {"x": "B1|S3b", "y": "A1|S3b", "sets": "both_first_min_n_p", "gate": false},
+      "estimator": "paired_HT_same_parent_inclusion_probabilities",
+      "interval": "same_method_as_primary_report_one_sided_95_bounds",
+      "variance_note": "not stratified on B0/A1 proxy pattern; variance may be larger"
     },
     "mix_B_only_IRC_into_A": false,
     "extrapolate_to_full_AUC": false

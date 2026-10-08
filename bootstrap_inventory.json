@@ -1118,6 +1118,11 @@
       "bytes": 17349
     },
     {
+      "path": "scripts/review_open_world_analyze.py",
+      "sha256": "47f56c7b7fe43dec8d83b92210144526750718c4dd742a8b1c9edb520f58d3b6",
+      "bytes": 2964
+    },
+    {
       "path": "scripts/review_open_world_run.py",
       "sha256": "38594360c9f450f67ef327575f14bea1c40e7bae9655e508cd8ef461787d15e9",
       "bytes": 3130
@@ -1956,6 +1961,11 @@
       "path": "tests/test_reaction_qm_coordinate_mapping.py",
       "sha256": "2994a7429aaa7d854d4f527e4dfd1f3e76d2bb17ecfb0934d19b22068feb9bca",
       "bytes": 889
+    },
+    {
+      "path": "tests/test_review_open_world_analysis.py",
+      "sha256": "fd00267d9593db23e2939c580e48417d181bbb7a16c27a2337dae6fb25e1bf41",
+      "bytes": 540
     },
     {
       "path": "tests/test_review_xtb_chain.py",

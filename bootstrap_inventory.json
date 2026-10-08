@@ -728,6 +728,11 @@
       "bytes": 1062
     },
     {
+      "path": "docs/evidence/explore_smc_decomposition/interval_audit.json",
+      "sha256": "08a6c29ae36ae9c360eca9b2b2cbb36a13740960d59d876e95416519cd93b73e",
+      "bytes": 848
+    },
+    {
       "path": "docs/evidence/explore_smc_decomposition/results.json",
       "sha256": "823a1f5b3965d1d3f34db4931cb18d1904c9f1e3a3b2107de22d737a0624ab0a",
       "bytes": 335108
@@ -1321,6 +1326,11 @@
       "path": "scripts/audit_smc.py",
       "sha256": "6cd0fb90e4553d466feb0a1e248b7b933964518e421cdfeaf897b780c3219899",
       "bytes": 4464
+    },
+    {
+      "path": "scripts/audit_smc_intervals.py",
+      "sha256": "fca4bc0a9e801d639def7de7b55ef08cd874ac9f05c8c5f427c08f9b2f42bf69",
+      "bytes": 3658
     },
     {
       "path": "scripts/audit_track_b_manifest.py",

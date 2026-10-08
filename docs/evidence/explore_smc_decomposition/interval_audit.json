@@ -1,0 +1,12 @@
+{
+  "degenerate_intervals": 0,
+  "inputs": {
+    "/home/lhshen/xtbflow-runs/explore-smc-20261009/decomposition-8c98eac/results.json": "823a1f5b3965d1d3f34db4931cb18d1904c9f1e3a3b2107de22d737a0624ab0a",
+    "/home/lhshen/xtbflow-runs/explore-smc-20261009/raw-ranking-726912a/results.json": "34099a894a477dca0099864ebe85909c3d2222a0c71a29204320b242ee007a8d",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/data/parent_catalog.json": "ebbbee13124444ae3e8ad7b5f9475183fed285894e27b0dcdb46cc13b4ba0ece"
+  },
+  "intervals_checked": 925,
+  "max_absolute_error": 3.552713678800501e-15,
+  "method": "Independent Python math.fsum cluster-score sandwich SE and scipy t quantiles, no project metric imports",
+  "scope": "Verifies reported inference against frozen formula, not whether development reuse or exploratory multiplicity permits confirmatory claims."
+}

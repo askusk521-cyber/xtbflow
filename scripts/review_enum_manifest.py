@@ -15,7 +15,7 @@ def main():
     files=[]
     for directory,ids in expected.items():
         for pid in sorted(ids):
-            suffixes=('.json','.npz','.scores.npz') if directory.startswith('enum-screen') else ('.json','.npz')
+            suffixes=('.json','.npz','.scores.npz')
             for suffix in suffixes:
                 path=a.run/directory/(pid+suffix)
                 if not path.exists():raise RuntimeError('missing '+str(path))

@@ -64,7 +64,13 @@ if __name__=='__main__':
         ids=sorted(json.loads((a.root/'data/split_manifest.json').read_text())['development']['parent_ids'])
         rows=[json.loads((a.devdir/(pid+'.json')).read_text()) for pid in ids]
         counts=np.array([r['n_enum'] for r in rows])
-        result['development']=dict(n_parents=len(rows),best_coverage=float(np.mean([bool(r['covered_best']) for r in rows])),
+        dev_curves={s:[] for s in ('S_rand','S_E','S_N')}
+        for pid,meta in zip(ids,rows):
+            data=np.load(a.devdir/(pid+'.npz'));scores=np.load(a.devdir/(pid+'.scores.npz'))
+            channels=data['channels'].tolist();best=meta['best_channels'];n=len(channels);m=len(set(channels)&set(best))
+            dev_curves['S_rand'].append({k:random_recall(n,m,k) for k in GRID})
+            for scorer in ('S_E','S_N'):dev_curves[scorer].append(ranked_curve(channels,scores[scorer],best))
+        result['development']=dict(rates={s:{str(k):float(np.mean([row[k] for row in curves])) for k in GRID} for s,curves in dev_curves.items()},n_parents=len(rows),best_coverage=float(np.mean([bool(r['covered_best']) for r in rows])),
             channel_coverage_parent_mean=float(np.mean([len(r['covered_channels'])/len(r['catalogue_channels']) for r in rows])),
             n_enum=dict(median=float(np.median(counts)),p95=float(np.quantile(counts,.95)),total=int(counts.sum())),parents=rows)
     write_json(a.out,result)

@@ -248,6 +248,21 @@
       "bytes": 4027
     },
     {
+      "path": "configs/review/enum_baseline.json",
+      "sha256": "e7d1d437ffea461a85dcc41e4cd1161c9b3ba19094b3f2a1933dffa63b4e5ce9",
+      "bytes": 2049
+    },
+    {
+      "path": "configs/review/enum_domain_audit.json",
+      "sha256": "af1d120c3eae2623b8deb13ac1389ab4bd0d43f7fefa14430bd73a79b1a1fa68",
+      "bytes": 669
+    },
+    {
+      "path": "configs/review/enum_domain_selected.json",
+      "sha256": "79e803b4ac99d15f1d52065cae7fa2a708b5bc04d213237ce9b3fc7d9755a079",
+      "bytes": 425
+    },
+    {
       "path": "configs/rules/core_v1.yaml",
       "sha256": "a4de309daad0bab9d502028976cef7b57f91691de5895ed6d4dc1d1c764b2941",
       "bytes": 903
@@ -748,6 +763,51 @@
       "bytes": 3702
     },
     {
+      "path": "docs/evidence/review_enum/EXECUTION_NOTES.md",
+      "sha256": "6f74d669ab2b6b73e1e11494c768e71ee5456ea6bb6e7d5b5f5bf5b945017db2",
+      "bytes": 3466
+    },
+    {
+      "path": "docs/evidence/review_enum/REPORT_ZH.md",
+      "sha256": "2bdbcd2aed025fffad15ed98245f5e1b7c6a179c0faf908c8e4591b13a8833ff",
+      "bytes": 4280
+    },
+    {
+      "path": "docs/evidence/review_enum/SHA256SUMS",
+      "sha256": "ceab88eee7b4e630940111372b3b8e67740182f5a08444d30732e38dfa45d488",
+      "bytes": 645
+    },
+    {
+      "path": "docs/evidence/review_enum/SHA256SUMS.remote",
+      "sha256": "ee3ffe496db2af03b998011c206fa72bb294315fc9196cbef60038ebc87926f4",
+      "bytes": 196383
+    },
+    {
+      "path": "docs/evidence/review_enum/VALIDATION.md",
+      "sha256": "bf6df3eff8574880687268826828c124227d93e295eefbd21c743e0ce87837ed",
+      "bytes": 3133
+    },
+    {
+      "path": "docs/evidence/review_enum/manifest.json",
+      "sha256": "88750d8c0ee6ebb7f10deb47c4ee047b423e165a3958016d519b8a216a9a0347",
+      "bytes": 254612
+    },
+    {
+      "path": "docs/evidence/review_enum/recall.png",
+      "sha256": "367157dd907e1376bc853771a6327f50402b24c393b7ffaf52de31ffdddf2793",
+      "bytes": 153957
+    },
+    {
+      "path": "docs/evidence/review_enum/resources.json",
+      "sha256": "ae6be0dadafe3fea93ec0a86983c30dc54229c7a448f611530522b9035305653",
+      "bytes": 4786
+    },
+    {
+      "path": "docs/evidence/review_enum/results.json",
+      "sha256": "ea2237f229c718069abef225cd0c76c068357c653b6829b3275b74603d8be0b4",
+      "bytes": 472527
+    },
+    {
       "path": "docs/evidence/rgd1_hdf5_only_ids_v1.jsonl",
       "sha256": "1e853e181d9fa149a744619d68a43d7e493f9c4364210314ba8811887444ddf0",
       "bytes": 6478
@@ -1181,6 +1241,56 @@
       "path": "scripts/prepare_spice_openff_pilot.py",
       "sha256": "9121a7e5cef736d6459b5dc3400465c5924d678ba1bec4963335cb8b197c0010",
       "bytes": 17349
+    },
+    {
+      "path": "scripts/review_enum_acquire.py",
+      "sha256": "8779591b26c4b6e32b76fd14d1ff96ce7796ff2b135cf884c6d11c80dfabc023",
+      "bytes": 4301
+    },
+    {
+      "path": "scripts/review_enum_analyze.py",
+      "sha256": "a2451ebcd7b74568999dfefbad958d64e0dfabd887a0b3994ac775488c8e142e",
+      "bytes": 5154
+    },
+    {
+      "path": "scripts/review_enum_domain_audit.py",
+      "sha256": "f9cb4011f18a28abb27631979ca9ce443ef17767101a378fdb755964f441ccc6",
+      "bytes": 3484
+    },
+    {
+      "path": "scripts/review_enum_feasibility.py",
+      "sha256": "da020c23ff39b7b0cf7e788ec9eeed32588e9846acf8bbfa88742438adda7d0a",
+      "bytes": 1565
+    },
+    {
+      "path": "scripts/review_enum_manifest.py",
+      "sha256": "6c4bf1b2693964bb322dce729fe291b8cda5493a67608316f59a0ffdf15a7cc1",
+      "bytes": 2664
+    },
+    {
+      "path": "scripts/review_enum_plot.py",
+      "sha256": "886611031b1f84c1e3fea35ba0c95fed431fe75de49c565b682a1b1018198574",
+      "bytes": 1232
+    },
+    {
+      "path": "scripts/review_enum_report.py",
+      "sha256": "74af3108aa8c86c2992c2b9db937b624f40178843b528df5e4d6df8959d1fcd9",
+      "bytes": 4648
+    },
+    {
+      "path": "scripts/review_enum_reproduce.py",
+      "sha256": "631bc5310f605ffe7f708be2590d6b70598dbdb80d2e425f8600d9be1b10954c",
+      "bytes": 1238
+    },
+    {
+      "path": "scripts/review_enum_resource_audit.py",
+      "sha256": "469b4b692ce8522ea1a3e5ee9ef06ca21e1a5128aa2bd186bac6da02370dd622",
+      "bytes": 2838
+    },
+    {
+      "path": "scripts/review_enum_training_check.py",
+      "sha256": "b220f6d8a0a0a05885021284084e76ffc2e75a539cdf13fc44501540e82ca8a3",
+      "bytes": 2630
     },
     {
       "path": "scripts/run_dft_da_blind_rollout.py",
@@ -1688,6 +1798,11 @@
       "bytes": 8351
     },
     {
+      "path": "src/xtbflow/v1/enumeration.py",
+      "sha256": "f047fac3d9f719f2f3d782af99ff5f259e18bbda83a318ea785e143a141b15a3",
+      "bytes": 6035
+    },
+    {
       "path": "src/xtbflow/v1/formal.py",
       "sha256": "5aeafa019f0788ab33e5a629db6ed1ddd0f3e0f4261095756a86832214bbe2b4",
       "bytes": 15019
@@ -1731,6 +1846,11 @@
       "path": "src/xtbflow/v1/pulses.py",
       "sha256": "c8e2eae54818abda4dd3ddfe1499fc59b34468b293d2cef49b7034fd9760bb2b",
       "bytes": 2812
+    },
+    {
+      "path": "src/xtbflow/v1/review_enum_metrics.py",
+      "sha256": "7c9b8b0e79097cbe4b7081320d62fb158bb8fd37f18dd06cf858a8f603498c5c",
+      "bytes": 2030
     },
     {
       "path": "src/xtbflow/v1/rng.py",
@@ -1976,6 +2096,21 @@
       "path": "tests/test_reaction_qm_coordinate_mapping.py",
       "sha256": "2994a7429aaa7d854d4f527e4dfd1f3e76d2bb17ecfb0934d19b22068feb9bca",
       "bytes": 889
+    },
+    {
+      "path": "tests/test_review_enum_metrics.py",
+      "sha256": "5958d3ac75671a6ce460513ea4f652322774e8be498a4d6f7023d0962302f4e8",
+      "bytes": 1059
+    },
+    {
+      "path": "tests/test_review_enumeration.py",
+      "sha256": "7afd9ed4eef8fe0af7b6b75b6d875f044ee1e3b891520542fb2b2986215bc7f6",
+      "bytes": 3046
+    },
+    {
+      "path": "tests/test_review_rdkit_valence_bounds.py",
+      "sha256": "e9d3bbfe3e0ae58a0411f442cbacb772688c74b5c51a7ee8df1d23df3e575cef",
+      "bytes": 1104
     },
     {
       "path": "tests/test_runtime_budget.py",

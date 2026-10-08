@@ -1,0 +1,153 @@
+{
+  "completed": [
+    {
+      "cpu_seconds": 78.4,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/feasibility-shards-7d4bec3/parent-1.log"
+    },
+    {
+      "cpu_seconds": 482.21,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/feasibility-shards-7d4bec3/parent-3.log"
+    },
+    {
+      "cpu_seconds": 75.50999999999999,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/feasibility-shards-7d4bec3/parent-4.log"
+    },
+    {
+      "cpu_seconds": 366.13,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/feasibility-fast-1f02afa/parent-0.log"
+    },
+    {
+      "cpu_seconds": 130.99,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/feasibility-fast-1f02afa/parent-2.log"
+    },
+    {
+      "cpu_seconds": 72.92999999999999,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/feasibility-fast-1f02afa/parent-3.log"
+    },
+    {
+      "cpu_seconds": 942.39,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/resume-d414174-0.log"
+    },
+    {
+      "cpu_seconds": 1034.26,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/resume-d414174-1.log"
+    },
+    {
+      "cpu_seconds": 914.1700000000001,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/resume-d414174-2.log"
+    },
+    {
+      "cpu_seconds": 1316.8300000000002,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/resume-d414174-3.log"
+    },
+    {
+      "cpu_seconds": 548.41,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/resume-d414174-4.log"
+    },
+    {
+      "cpu_seconds": 1221.22,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/resume-d414174-5.log"
+    },
+    {
+      "cpu_seconds": 897.01,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/resume-d414174-6.log"
+    },
+    {
+      "cpu_seconds": 511.14000000000004,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/resume-15a65e8-7.log"
+    },
+    {
+      "cpu_seconds": 765.51,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/resume-d414174-0.log"
+    },
+    {
+      "cpu_seconds": 1154.73,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/resume-d414174-1.log"
+    },
+    {
+      "cpu_seconds": 361.15,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/training-b3-6f8ab54/resume-d414174-1.log"
+    },
+    {
+      "cpu_seconds": 1053.5900000000001,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/training-b3-6f8ab54/resume-d414174-2.log"
+    },
+    {
+      "cpu_seconds": 1167.37,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/training-b3-6f8ab54/resume-d414174-3.log"
+    },
+    {
+      "cpu_seconds": 608.9,
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/training-b3-6f8ab54/resume-15a65e8-0.log"
+    }
+  ],
+  "cpu_budget_core_hours": 50,
+  "cpu_core_hours_conservative_total": 13.156347222222221,
+  "cpu_core_hours_upper_before_preparation": 12.156347222222221,
+  "cpu_seconds_upper_before_preparation": 43762.85,
+  "gpu_budget_hours": 2,
+  "gpu_hours_conservative": 0.8166916666666667,
+  "gpu_jobs": [
+    2700,
+    2707,
+    2708,
+    2710,
+    2714
+  ],
+  "gpu_seconds_conservative": 2940.09,
+  "interrupted_conservative_bounds": [
+    {
+      "processes": 1,
+      "run": "slurm2691",
+      "wall_seconds_upper": 660
+    },
+    {
+      "processes": 1,
+      "run": "feasibility-cpu-1d6e895",
+      "wall_seconds_upper": 1800
+    },
+    {
+      "processes": 1,
+      "run": "feasibility-cpu-4f0102a",
+      "wall_seconds_upper": 1800
+    },
+    {
+      "processes": 1,
+      "run": "feasibility-shards-7d4bec3/index2",
+      "wall_seconds_upper": 900
+    },
+    {
+      "processes": 8,
+      "run": "excluded344-screen-pilot",
+      "wall_seconds_upper": 300
+    },
+    {
+      "processes": 8,
+      "run": "initial-screen-9403d6c",
+      "wall_seconds_upper": 1200
+    },
+    {
+      "processes": 2,
+      "run": "initial-dev-7c28436",
+      "wall_seconds_upper": 1200
+    },
+    {
+      "processes": 4,
+      "run": "initial-training-6f8ab54",
+      "wall_seconds_upper": 1800
+    },
+    {
+      "processes": 1,
+      "run": "training-d414174-shard0",
+      "wall_seconds_upper": 1500
+    },
+    {
+      "processes": 1,
+      "run": "screen-d414174-shard7",
+      "wall_seconds_upper": 1800
+    }
+  ],
+  "note": "Interrupted values are upper bounds, not measured exact CPU use. Preparation allowance covers tests, audits and un-timed short feasibility checks. GPU allocations accounted separately.",
+  "preparation_allowance_core_hours": 1.0,
+  "within_cpu_budget": true
+}

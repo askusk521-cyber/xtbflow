@@ -278,6 +278,11 @@
       "bytes": 5563
     },
     {
+      "path": "configs/v1b/audit.json",
+      "sha256": "e28bba71dc72dfe31e0e59c2c07c4c111036dc9168abf19ac56c2092f8bccf29",
+      "bytes": 4997
+    },
+    {
       "path": "configs/validation/ts_v0.1.yaml",
       "sha256": "8599350fceb794e375719a918731d85f76d22e01c5e64446bd071cbf7ef5086b",
       "bytes": 434

@@ -1338,6 +1338,11 @@
       "bytes": 6840
     },
     {
+      "path": "scripts/smc_evidence.py",
+      "sha256": "01199bf4d9e378a2f4d02590ffbdc84af13d8e290cdec5ef003275c60ac2b603",
+      "bytes": 6129
+    },
+    {
       "path": "scripts/v1a_audit.py",
       "sha256": "6179c7971a20bee1ad56beabf897362f1ef06a3145f6f45bb3c50cf1b4c1956a",
       "bytes": 4623

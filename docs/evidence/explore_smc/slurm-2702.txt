@@ -1,0 +1,28 @@
+JobId=2702 JobName=smc-g2
+   UserId=lhshen(1010) GroupId=group(1001) MCS_label=N/A
+   Priority=4294900966 Nice=0 Account=(null) QOS=(null)
+   JobState=COMPLETED Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:35 TimeLimit=00:40:00 TimeMin=N/A
+   SubmitTime=2026-10-08T23:54:40 EligibleTime=2026-10-09T00:02:23
+   AccrueTime=Unknown
+   StartTime=2026-10-09T00:02:23 EndTime=2026-10-09T00:02:58 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-09T00:02:23 Scheduler=Main
+   Partition=main AllocNode:Sid=node2:848531
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=node2
+   BatchHost=node2
+   NumNodes=1 NumCPUs=48 NumTasks=1 CPUs/Task=48 ReqB:S:C:T=0:0:*:*
+   TRES=cpu=48,mem=64G,node=1,billing=48
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=48 MinMemoryNode=64G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=(null)
+   WorkDir=/home/lhshen
+   StdErr=/home/lhshen/xtbflow-runs/explore-smc-20261009/g2-2702.log
+   StdIn=/dev/null
+   StdOut=/home/lhshen/xtbflow-runs/explore-smc-20261009/g2-2702.log
+   Power=
+   TresPerNode=gres:gpu:pro6000:1
+   MailUser=lhshen MailType=INVALID_DEPEND,BEGIN,END,FAIL,REQUEUE,STAGE_OUT

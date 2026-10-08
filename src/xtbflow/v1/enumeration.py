@@ -47,6 +47,16 @@ def enumerate_events(z, br, perms, size=2, stop_after=None):
     capacity = valence + 1 - np.maximum(0, diag - 2)
     capacity = np.minimum(capacity, np.array([max(MAX_BONDS[int(v)].values()) for v in z]))
     capacity[z == 1] = np.minimum(capacity[z == 1], 1)
+    option_table = {}
+    for i in range(n):
+        for degree in range(int(capacity[i]) + 1):
+            for touched in (False, True):
+                choices = (-2, 0, 2) if touched else (0,)
+                option_table[i, degree, touched] = tuple(d for d in choices
+                    if diag[i] + d >= 0
+                    and abs(valence[i] - degree - diag[i] - d) <= 1
+                    and degree <= MAX_BONDS[int(z[i])][int(valence[i] - degree - diag[i] - d)]
+                    and (z[i] != 1 or diag[i] + d + 2 * degree <= 2))
     pairs = [(i, j) for i in range(n) for j in range(i + 1, n)]
     bonds = [(i, j) for i, j in pairs if br[i, j] > 0]
     seen = set()
@@ -69,13 +79,7 @@ def enumerate_events(z, br, perms, size=2, stop_after=None):
                     if not broken and not formed:
                         continue
                     touched = {v for pair in broken + formed for v in pair}
-                    options = []
-                    for i in range(n):
-                        changes = (-2, 0, 2) if i in touched else (0,)
-                        options.append([d for d in changes if diag[i] + d >= 0
-                                        and abs(valence[i] - degrees[i] - diag[i] - d) <= 1
-                                        and degrees[i] <= MAX_BONDS[int(z[i])][int(valence[i] - degrees[i] - diag[i] - d)]
-                                        and (z[i] != 1 or diag[i] + d + 2 * degrees[i] <= 2)])
+                    options = [option_table[i, int(degrees[i]), i in touched] for i in range(n)]
                     if any(not op for op in options):
                         continue
                     for changes in product(*options):

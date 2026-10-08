@@ -1194,8 +1194,13 @@
     },
     {
       "path": "scripts/review_enum_acquire.py",
-      "sha256": "c1855047b5d699de76a4d2d94d9f9500c107fbc143767894462a4f7f34c0b525",
-      "bytes": 3827
+      "sha256": "4fccfadd4d3115f907bd9e38c4decf3291e3789df96b30d73e13b5d570451ff9",
+      "bytes": 3954
+    },
+    {
+      "path": "scripts/review_enum_analyze.py",
+      "sha256": "804eb8a1ae8af0b8c3e06cafb9b6563704023efcec656c9638af1961bbac4910",
+      "bytes": 3518
     },
     {
       "path": "scripts/review_enum_domain_audit.py",
@@ -1211,6 +1216,11 @@
       "path": "scripts/review_enum_reproduce.py",
       "sha256": "631bc5310f605ffe7f708be2590d6b70598dbdb80d2e425f8600d9be1b10954c",
       "bytes": 1238
+    },
+    {
+      "path": "scripts/review_enum_training_check.py",
+      "sha256": "b220f6d8a0a0a05885021284084e76ffc2e75a539cdf13fc44501540e82ca8a3",
+      "bytes": 2630
     },
     {
       "path": "scripts/run_dft_da_blind_rollout.py",
@@ -1719,8 +1729,8 @@
     },
     {
       "path": "src/xtbflow/v1/enumeration.py",
-      "sha256": "cc8e05b8902b8d8123a81fe9eedf581fe84efb4654b4be537e5b0230abaf9d38",
-      "bytes": 4534
+      "sha256": "44a211e3cfb1692c95d87b7274daa928801f4836a8fdf2c6e310ad34b55b130b",
+      "bytes": 4644
     },
     {
       "path": "src/xtbflow/v1/formal.py",

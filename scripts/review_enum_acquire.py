@@ -14,10 +14,11 @@ def main():
     p.add_argument('--root',type=Path,default=Path('/home/lhshen/xtbflow-runs/v1a-20261007'))
     p.add_argument('--out',type=Path,required=True);p.add_argument('--size',type=int,choices=[2,3],required=True)
     p.add_argument('--split',choices=['train','development','screen_reserve'],required=True)
-    p.add_argument('--index',type=int);a=p.parse_args()
+    p.add_argument('--index',type=int);p.add_argument('--shard',type=int,default=0);p.add_argument('--shards',type=int,default=1);a=p.parse_args()
     manifest=json.loads((a.root/'data/split_manifest.json').read_text())
     ids=sorted(manifest[a.split]['parent_ids'])
     if a.index is not None:ids=ids[a.index:a.index+1]
+    else:ids=ids[a.shard::a.shards]
     parents={r['parent_id']:r for r in json.loads((a.root/'data/parent_catalog.json').read_text()) if r['parent_id'] in ids}
     refs={pid:[] for pid in ids}
     with (a.root/'data/reference_catalog.jsonl').open() as handle:

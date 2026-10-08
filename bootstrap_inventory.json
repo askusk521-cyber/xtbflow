@@ -764,13 +764,18 @@
     },
     {
       "path": "docs/evidence/review_oracle/SHA256SUMS",
-      "sha256": "74925bb9faeb5bad9109c919b7bd6d265ea38adc25c5400f12d3888e80e1a70e",
-      "bytes": 568
+      "sha256": "ada713933327516f6ab2423f2ac8d88fb5b4f1c20b4868c243defd8209062bc7",
+      "bytes": 652
     },
     {
       "path": "docs/evidence/review_oracle/SHA256SUMS.remote",
       "sha256": "1d44d2b611a4f65042b47ca095613cce262361359efdb382e1cc1893c1a7de90",
       "bytes": 1540
+    },
+    {
+      "path": "docs/evidence/review_oracle/VALIDATION.md",
+      "sha256": "6e16866add6d43aaaf9ed06b2a5a465f7a1440637c5079331320714a9a555447",
+      "bytes": 1388
     },
     {
       "path": "docs/evidence/review_oracle/manifest.json",

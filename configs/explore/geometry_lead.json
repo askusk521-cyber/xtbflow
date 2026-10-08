@@ -1,0 +1,31 @@
+{
+  "version": "geolead-1",
+  "exploratory": true,
+  "question": "Does a geometry-leading clock make the predicted endpoint physically informative before the event commits, without degrading unguided joint generation?",
+  "motivation": "geoinfo-1.1 check B (PR #110): under the sync clock xTB on x1_hat becomes informative only at t~0.7, after 85% of events commit (NO_USABLE_WINDOW)",
+  "base_config": "configs/explore/geometry_information.json",
+  "reused_definitions": "check_b_time_window: generator, seeds, 32 proposals per parent per seed, namespace, grid, signals, targets, within-parent Spearman, t_geo, window_fraction and its 0.20 threshold, bond-change-set commit sensitivity",
+  "data_scope": "V1a development parents only (62 parents, 21 formula groups); no screen or M0 val/test parents",
+  "paths": {
+    "sync": "t_b = s, t_x = s (rerun under this code; must reproduce check B)",
+    "geometry_lead2": "t_b = s^2, t_x = s",
+    "geometry_lead3": "t_b = s^3, t_x = s"
+  },
+  "axis": "every time is the integration parameter s, which equals t_x on all three paths; commit times and t_geo use the same s grid",
+  "pairing": "same namespace and semantic noise keys, so each (parent, seed, proposal) starts from the same (b0, x0) on every path",
+  "primary": "window_fraction of the xTB signal (x1_hat energy vs final event catalogue barrier) on each geometry-lead path",
+  "quality": {
+    "per_parent_rates": ["valid final event (proxy_status != INVALID_OUTPUT)", "PROXY_MATCH", "hits_best_event", "hits_best_reference"],
+    "comparison": "path - sync, paired by parent, formula-cluster t two-sided 95% (xtbflow.v1.metrics.cluster_summary)",
+    "tolerance": "V1a baseline_check limits on point estimates: hits_best_reference drop <= 0.05 and valid-rate drop <= 0.10"
+  },
+  "reading": {
+    "GEOMETRY_LEAD_OPENS_WINDOW": "xTB window_fraction >= 0.20 and both quality drops within tolerance",
+    "WINDOW_WITH_QUALITY_LOSS": "xTB window_fraction >= 0.20 but a quality drop exceeds tolerance",
+    "NO_USABLE_WINDOW": "xTB window_fraction < 0.20, or the xTB signal is never informative",
+    "per_path": "each geometry-lead path gets its own reading; no path is chosen by its result here"
+  },
+  "reproduction_check": "sync rerun vs the geoinfo-1.1 check B rows: share of trajectories with identical final event, proxy status and commit step (GPU batch nondeterminism up to ~2e-6 was measured in V1a, so near-1 rather than exact is expected)",
+  "numerics_note": "predicted endpoints are recovered from float32 traces; on geometry_lead3 the first event increment is 8e-6, so b1_hat at the first steps carries ~1% relative error, which only matters before any event is decodable",
+  "compute": {"slurm_only": true, "max_concurrent_jobs": 1, "max_wall_minutes_per_job": 120}
+}

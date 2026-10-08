@@ -112,3 +112,44 @@ def test_analysis_b_on_synthetic_trajectories():
     assert out['signals']['hX_vs_final_event_barrier']['t_geo']==0.
     assert out['signals']['xtb_vs_final_xtb']['mean'][-1]==pytest.approx(1.)
     assert out['signals']['xtb_vs_final_event_barrier']['reading'] in ('WINDOW_EXISTS','NO_USABLE_WINDOW')
+
+
+def synthetic_runs(rng,shift):
+    rows=[]
+    for p in range(6):
+        for seed in range(2):
+            for j in range(8):
+                barrier=float(rng.normal(30,8));step=int(rng.integers(5,40))+shift
+                events=['x']*step+[f'e{j%3}']*(51-step)
+                noise=np.linspace(20,1,11)
+                rows.append(dict(parent_id=f'p{p}',formula=f'f{p%3}',seed=seed,proposal=j,events=events,
+                                 commit_step=commit_index(events),bond_change_commit_step=commit_index(events),
+                                 proxy_status='PROXY_MATCH' if j%2 else 'OUTSIDE_CATALOGUE_EVENT',
+                                 hits_best_event=j%3==0,hits_best_reference=j%4==0,event_barrier_kcal=barrier,
+                                 xtb_delta_kcal=(barrier+rng.normal(0,1,11)*noise).tolist(),xtb_status=['ok']*11,
+                                 hx_mean_kcal=(barrier+rng.normal(0,3,11)).tolist()))
+    return rows
+
+
+def test_analyze_clock_reads_window_quality_and_reproduction(tmp_path):
+    import json
+    s=load_script();rng=np.random.default_rng(2)
+    sync=synthetic_runs(rng,0);lead=synthetic_runs(rng,8)
+    files={}
+    for name,rows in (('sync',sync),('geometry_lead2',lead)):
+        files[name]=tmp_path/f'{name}.jsonl'
+        files[name].write_text(''.join(json.dumps(r)+'\n' for r in rows))
+    out=tmp_path/'clock.json'
+    cfg=SCRIPT.parents[1]/'configs'/'explore'/'geometry_lead.json'
+    import argparse,os
+    cwd=os.getcwd();os.chdir(SCRIPT.parents[1])
+    try:
+        s.cmd_analyze_clock(argparse.Namespace(config=cfg,run=[[k,str(v)] for k,v in files.items()],
+                                               reference_sync=files['sync'],out=out))
+    finally:os.chdir(cwd)
+    res=json.loads(out.read_text())
+    assert res['reproduction_vs_check_b']=={'n':96,'final_event':1.,'proxy_status':1.,'commit_step':1.}
+    lead=res['paths']['geometry_lead2']
+    assert lead['reading'] in ('GEOMETRY_LEAD_OPENS_WINDOW','WINDOW_WITH_QUALITY_LOSS','NO_USABLE_WINDOW')
+    assert set(lead['quality_vs_sync'])=={'valid','proxy_match','best_event','best_reference'}
+    assert res['paths']['sync']['time_window']['commit']['median_t']<lead['time_window']['commit']['median_t']

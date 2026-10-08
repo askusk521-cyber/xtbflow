@@ -233,7 +233,9 @@ def cmd_trajectories(a):
         if not a.smoke and not torch.cuda.is_available():raise RuntimeError('allocated GPU required')
         q_all=query_from_parents(qrows,device);score=load_scores(root,'X',device)[0]
         samp=spec['sampling'];k_props=a.proposals or samp['proposals_per_parent_per_seed']
-        tb,tx=clock_grid(samp['path'],samp['n_steps']);grid=[observation_index(tx,t) for t in spec['grid_t']]
+        # The grid is read on t_x, which equals the integration parameter s on every path.
+        clock_path=a.path or samp['path']
+        tb,tx=clock_grid(clock_path,samp['n_steps']);grid=[observation_index(tx,t) for t in spec['grid_t']]
         for seed in a.seeds:
             net,meta=load_generator(root,'joint',seed,device=device);models[seed]=dict(path=meta['path'],sha256=meta['sha256'])
             pairs=[(i,j) for i in range(len(qrows)) for j in range(k_props)]
@@ -242,7 +244,7 @@ def cmd_trajectories(a):
                 q=subset_query(q_all,[i for i,_ in chunk])
                 st=initial_state(q,[j for _,j in chunk],seed,sampling_seed=samp['sampling_seed'],
                                  namespace=samp['namespace'],sigma_b=meta['sigma_b'],sigma_x=meta['sigma_x'],group='joint')
-                r=rollout(net,q,st,role='joint',path=samp['path'],n_steps=samp['n_steps'],dual_time=meta['dual_time'])
+                r=rollout(net,q,st,role='joint',path=clock_path,n_steps=samp['n_steps'],dual_time=meta['dual_time'])
                 if r.failed.any():raise FloatingPointError('numeric rollout failure')
                 b_hat=predicted_endpoints(r.b_trace,tb);x_hat=predicted_endpoints(r.x_trace,tx)
                 hx=[];hs=[]
@@ -265,7 +267,7 @@ def cmd_trajectories(a):
                 f.flush()
                 print(json.dumps(dict(seed=seed,done=count,elapsed_s=round(time.monotonic()-started))),flush=True)
     write_json(a.out/'check_b_manifest.json',dict(
-        stage='check_b',n_parents=len(qrows),proposals_per_parent_per_seed=k_props,seeds=list(a.seeds),
+        stage='check_b',clock_path=clock_path,n_parents=len(qrows),proposals_per_parent_per_seed=k_props,seeds=list(a.seeds),
         trajectories=count,generators=models,grid_steps=grid,rows_sha256=file_hash(path),
         smoke=bool(a.smoke or a.limit_parents or a.proposals),split_hash=split['split_hash'],**provenance(a.config)))
 
@@ -406,9 +408,62 @@ def cmd_analyze(a):
                       for k in ('check_a',)},indent=1))
 
 
+QUALITY=dict(valid=lambda r:r['proxy_status']!='INVALID_OUTPUT',proxy_match=lambda r:r['proxy_status']=='PROXY_MATCH',
+             best_event=lambda r:bool(r['hits_best_event']),best_reference=lambda r:bool(r['hits_best_reference']))
+
+
+def parent_rates(rows):
+    by={}
+    for r in rows:by.setdefault(r['parent_id'],[]).append(r)
+    return {k:{p:float(np.mean([f(r) for r in v])) for p,v in by.items()} for k,f in QUALITY.items()}
+
+
+def reproduction(rows,reference):
+    key=lambda r:(r['parent_id'],r['seed'],r['proposal'])
+    ref={key(r):r for r in reference}
+    if set(ref)!={key(r) for r in rows}:raise ValueError('sync rerun does not cover the check B trajectories')
+    same=[(r['events'][-1]==ref[key(r)]['events'][-1],r['proxy_status']==ref[key(r)]['proxy_status'],
+           r['commit_step']==ref[key(r)]['commit_step']) for r in rows]
+    return dict(n=len(rows),final_event=float(np.mean([a for a,_,_ in same])),
+                proxy_status=float(np.mean([b for _,b,_ in same])),commit_step=float(np.mean([c for _,_,c in same])))
+
+
+def cmd_analyze_clock(a):
+    cfg=json.loads(a.config.read_text());base=json.loads(Path(cfg['base_config']).read_text())
+    spec=base['check_b_time_window'];runs={p:_jsonl(f) for p,f in a.run}
+    if 'sync' not in runs or set(runs)-set(cfg['paths']):raise ValueError('runs must include sync and only configured paths')
+    formula={r['parent_id']:r['formula'] for r in runs['sync']}
+    result=dict(version=cfg['version'],exploratory=True,**provenance(a.config),
+                base_config_sha256=file_hash(cfg['base_config']),
+                rows_sha256={p:file_hash(f) for p,f in a.run},
+                reproduction_vs_check_b=reproduction(runs['sync'],_jsonl(a.reference_sync)),paths={})
+    rates={p:parent_rates(rows) for p,rows in runs.items()}
+    for p,rows in runs.items():
+        b=analyze_b(rows,spec);x=b['signals']['xtb_vs_final_event_barrier']
+        entry=dict(time_window=b,rates={k:float(np.mean(list(v.values()))) for k,v in rates[p].items()})
+        if p!='sync':
+            diff={k:_summary({q:rates[p][k][q]-rates['sync'][k][q] for q in rates['sync'][k]},formula)
+                  for k in QUALITY}
+            entry['quality_vs_sync']=diff
+            within=(diff['best_reference']['estimate']>=-.05 and diff['valid']['estimate']>=-.10)
+            w=x['window_fraction']
+            entry['reading']=('NO_USABLE_WINDOW' if w is None or w<.2 else
+                              'GEOMETRY_LEAD_OPENS_WINDOW' if within else 'WINDOW_WITH_QUALITY_LOSS')
+        result['paths'][p]=entry
+    write_json(a.out,result)
+    print(json.dumps({p:dict(reading=e.get('reading'),window=e['time_window']['signals']['xtb_vs_final_event_barrier']['window_fraction'],
+                             t_geo=e['time_window']['signals']['xtb_vs_final_event_barrier']['t_geo'],
+                             commit_median=e['time_window']['commit']['median_t'],rates=e['rates'])
+                      for p,e in result['paths'].items()},indent=1))
+    print(json.dumps(result['reproduction_vs_check_b']))
+
+
 def main():
     ap=argparse.ArgumentParser();sub=ap.add_subparsers(dest='cmd',required=True)
     h=sub.add_parser('heads');t=sub.add_parser('trajectories');z=sub.add_parser('analyze')
+    c=sub.add_parser('analyze-clock');c.add_argument('--config',type=Path,required=True)
+    c.add_argument('--run',nargs=2,action='append',metavar=('PATH','ROWS'),required=True)
+    c.add_argument('--reference-sync',type=Path,required=True);c.add_argument('--out',type=Path,required=True)
     for p in (h,t,z):p.add_argument('--config',type=Path,required=True)
     for p in (h,t):
         p.add_argument('--out',type=Path,required=True);p.add_argument('--limit-parents',type=int)
@@ -416,9 +471,11 @@ def main():
     h.add_argument('--train-steps',type=int);h.add_argument('--smoke',action='store_true')
     t.add_argument('--seeds',type=int,nargs='+',default=[0,1,2]);t.add_argument('--proposals',type=int)
     t.add_argument('--batch-size',type=int,default=256);t.add_argument('--smoke',action='store_true')
+    t.add_argument('--path',choices=['sync','geometry_lead2','geometry_lead3'],help='clock override (geolead-1)')
     z.add_argument('--check-a',type=Path);z.add_argument('--check-b',type=Path);z.add_argument('--out',type=Path,required=True)
     a=ap.parse_args()
-    {'heads':cmd_heads,'trajectories':cmd_trajectories,'analyze':cmd_analyze}[a.cmd](a)
+    {'heads':cmd_heads,'trajectories':cmd_trajectories,'analyze':cmd_analyze,
+     'analyze-clock':cmd_analyze_clock}[a.cmd](a)
 
 
 if __name__=='__main__':main()

@@ -1,0 +1,508 @@
+{
+  "baseline_gate": "delta TS energy only if both candidate and same-parent baseline are STRICT_JOINT_GRAPH_VALID",
+  "cpu_core_hours": 50,
+  "engine": "tblite GFN2-xTB; neutral singlet",
+  "exploratory": true,
+  "gpu_hours": 0,
+  "groups": {
+    "BASELINE": [
+      {
+        "parent_id": "059bf679a499aca9a05c",
+        "reference_id": "C4H2O2/rxn3478"
+      },
+      {
+        "parent_id": "13bf28b59fe70fb07791",
+        "reference_id": "C4H10O/rxn9368"
+      },
+      {
+        "parent_id": "1dd6e1f03fb1adc3044f",
+        "reference_id": "C4H6O2/rxn1307"
+      },
+      {
+        "parent_id": "1e19147f0c2d3f0c553e",
+        "reference_id": "C6H8O/rxn7721"
+      },
+      {
+        "parent_id": "1f26b917e1b972ad3fd9",
+        "reference_id": "C4H10O2/rxn3546"
+      },
+      {
+        "parent_id": "281779a5ec203c658539",
+        "reference_id": "C4H3NO2/rxn6520"
+      },
+      {
+        "parent_id": "3e4899195c01fa43baa1",
+        "reference_id": "C5H8O2/rxn8399"
+      },
+      {
+        "parent_id": "490a49d8326b3868df6c",
+        "reference_id": "C5H3NO/rxn7069"
+      },
+      {
+        "parent_id": "4bac09c213063d306b3e",
+        "reference_id": "C5H6O/rxn9332"
+      },
+      {
+        "parent_id": "4c90a5cab2d89d679e6a",
+        "reference_id": "C6H8O/rxn6374"
+      },
+      {
+        "parent_id": "4f5559117464139fee00",
+        "reference_id": "C5H6N2/rxn7776"
+      },
+      {
+        "parent_id": "5b02d759a9ea9d4dd169",
+        "reference_id": "C5H11N/rxn2210"
+      },
+      {
+        "parent_id": "5b2d3d450552ae85d0f4",
+        "reference_id": "C3H3NO/rxn2914"
+      },
+      {
+        "parent_id": "610169b6b7344da8fe44",
+        "reference_id": "C4H5NO/rxn0512"
+      },
+      {
+        "parent_id": "73a8b208b741c5cda518",
+        "reference_id": "C4H5NO/rxn2333"
+      },
+      {
+        "parent_id": "7dc6922783059ead3fb0",
+        "reference_id": "C6H8O/rxn7964"
+      },
+      {
+        "parent_id": "854e36201fd5181b6d38",
+        "reference_id": "C6H10/rxn2905"
+      },
+      {
+        "parent_id": "86e8b6f43f20cf1e79e6",
+        "reference_id": "C2H3N3O/rxn3195"
+      },
+      {
+        "parent_id": "8962b71ed3a7a171af9e",
+        "reference_id": "C5H7NO/rxn6236"
+      },
+      {
+        "parent_id": "8a883642220d4e0500ba",
+        "reference_id": "C6H11N/rxn5004"
+      },
+      {
+        "parent_id": "8fe6d50aaad53c21d3c5",
+        "reference_id": "C4H8O/rxn0255"
+      },
+      {
+        "parent_id": "a6ee19115420a88ad88e",
+        "reference_id": "C4H7NO2/rxn7920"
+      },
+      {
+        "parent_id": "a93f4d7da96617f54016",
+        "reference_id": "C5H8/rxn0763"
+      },
+      {
+        "parent_id": "a9460cfa7d3e4acccdb6",
+        "reference_id": "C6H10O/rxn5917"
+      },
+      {
+        "parent_id": "b3946dd993435c17e643",
+        "reference_id": "C5H6O/rxn1901"
+      },
+      {
+        "parent_id": "b6a6acf47c59295c4fd0",
+        "reference_id": "C4H8O/rxn2388"
+      },
+      {
+        "parent_id": "b7fc38c46e18372646e0",
+        "reference_id": "C5H11N/rxn8968"
+      },
+      {
+        "parent_id": "b9857901a6575f45ade0",
+        "reference_id": "C4H9N/rxn9345"
+      },
+      {
+        "parent_id": "be70179e2d6f299d6b1b",
+        "reference_id": "C4H3NO2/rxn6595"
+      },
+      {
+        "parent_id": "be8172c3f5b8c091330a",
+        "reference_id": "C4H6O2/rxn4464"
+      },
+      {
+        "parent_id": "c01f85b5738c7adf3243",
+        "reference_id": "C2H3N3O/rxn3459"
+      },
+      {
+        "parent_id": "c0f8c54d5d73fed95b92",
+        "reference_id": "C4H6N2O/rxn5102"
+      },
+      {
+        "parent_id": "c3b4e41e7e5bccb5a55b",
+        "reference_id": "C2H4N4/rxn0302"
+      },
+      {
+        "parent_id": "cf39a21f2ef809e09427",
+        "reference_id": "C2H3N3O/rxn4176"
+      },
+      {
+        "parent_id": "d677da7acd18ec98859b",
+        "reference_id": "C2H4N4/rxn0340"
+      },
+      {
+        "parent_id": "dbbf15c07b5a6a19ba49",
+        "reference_id": "C2H4N2O2/rxn1325"
+      },
+      {
+        "parent_id": "e193d2b0c22148150613",
+        "reference_id": "C2H3N3O/rxn0000"
+      },
+      {
+        "parent_id": "f654459482fe40bfdc99",
+        "reference_id": "C5H8O2/rxn5446"
+      },
+      {
+        "parent_id": "f8510fca77167ae2fe1b",
+        "reference_id": "C5H8O2/rxn6529"
+      },
+      {
+        "parent_id": "fcb8f2fa182b960cb7c8",
+        "reference_id": "C4H6N2O/rxn8468"
+      }
+    ],
+    "KNOWN_EVENT_GEOMETRY_MISS": [
+      {
+        "candidate_id": "df87c4af439bf126856b_anchor_e836478f3910/B0/s0/p9/endpoint",
+        "parent_id": "df87c4af439bf126856b"
+      },
+      {
+        "candidate_id": "2bd4d7187c1b806a4321_anchor_78ac41d9222c/B0/s0/p59/endpoint",
+        "parent_id": "2bd4d7187c1b806a4321"
+      },
+      {
+        "candidate_id": "bff0aef391d6eb124693_anchor_045c2a4c3b3e/B0/s0/p33/endpoint",
+        "parent_id": "bff0aef391d6eb124693"
+      },
+      {
+        "candidate_id": "c9f30c051784a84d74e8_anchor_dd1e1d91c53e/B0/s0/p38/endpoint",
+        "parent_id": "c9f30c051784a84d74e8"
+      },
+      {
+        "candidate_id": "6c9e7003ade9f81d3cde_anchor_395419f953cc/B0/s0/p20/endpoint",
+        "parent_id": "6c9e7003ade9f81d3cde"
+      },
+      {
+        "candidate_id": "613b6b9cb8cd989e3930_anchor_fd73058443ab/B0/s0/p58/endpoint",
+        "parent_id": "613b6b9cb8cd989e3930"
+      },
+      {
+        "candidate_id": "06a981a4a18d5123650e_anchor_5a9da176a200/B0/s0/p11/endpoint",
+        "parent_id": "06a981a4a18d5123650e"
+      },
+      {
+        "candidate_id": "3693f2be75f7e78e10df_anchor_dd492780b8dc/B0/s0/p54/endpoint",
+        "parent_id": "3693f2be75f7e78e10df"
+      },
+      {
+        "candidate_id": "164edb135c14df5fc8ef_anchor_118df23ef176/B0/s0/p14/endpoint",
+        "parent_id": "164edb135c14df5fc8ef"
+      },
+      {
+        "candidate_id": "139ebb58421a75a21621_anchor_ebf4e7431271/B0/s0/p22/endpoint",
+        "parent_id": "139ebb58421a75a21621"
+      },
+      {
+        "candidate_id": "18115e1b6d48bae6e848_anchor_2902b49ce199/B0/s0/p56/endpoint",
+        "parent_id": "18115e1b6d48bae6e848"
+      },
+      {
+        "candidate_id": "cf39a21f2ef809e09427_anchor_41e5d4e73c61/B0/s0/p39/endpoint",
+        "parent_id": "cf39a21f2ef809e09427"
+      },
+      {
+        "candidate_id": "d7c2d32be5d3d1a71498_anchor_3723164a90fc/B0/s0/p11/endpoint",
+        "parent_id": "d7c2d32be5d3d1a71498"
+      },
+      {
+        "candidate_id": "36773d8e7aab7224644f_anchor_d50fdc4e7694/B0/s0/p58/endpoint",
+        "parent_id": "36773d8e7aab7224644f"
+      },
+      {
+        "candidate_id": "3795486124b2b70efd27_anchor_2f5091010473/B0/s0/p61/endpoint",
+        "parent_id": "3795486124b2b70efd27"
+      },
+      {
+        "candidate_id": "5a16c51cb5a7e3fb1149_anchor_d5e44190a97c/B0/s0/p28/endpoint",
+        "parent_id": "5a16c51cb5a7e3fb1149"
+      },
+      {
+        "candidate_id": "0109798be640476374f2_anchor_62054c321159/B0/s0/p61/endpoint",
+        "parent_id": "0109798be640476374f2"
+      },
+      {
+        "candidate_id": "37ee97653805530aec63_anchor_7564b1bc3ed2/B0/s0/p55/endpoint",
+        "parent_id": "37ee97653805530aec63"
+      },
+      {
+        "candidate_id": "06f02050ef7bf1169928_anchor_e15736b65b91/B0/s0/p24/endpoint",
+        "parent_id": "06f02050ef7bf1169928"
+      },
+      {
+        "candidate_id": "761ce8db7b595eaf07f6_anchor_48b1f8c9a853/B0/s0/p49/endpoint",
+        "parent_id": "761ce8db7b595eaf07f6"
+      }
+    ],
+    "OUTSIDE_CATALOGUE_EVENT": [
+      {
+        "candidate_id": "dbbf15c07b5a6a19ba49_anchor_31913c8ea3a9/B0/s0/p3/endpoint",
+        "parent_id": "dbbf15c07b5a6a19ba49"
+      },
+      {
+        "candidate_id": "b9857901a6575f45ade0_anchor_a5c99f10cbcc/B0/s0/p50/endpoint",
+        "parent_id": "b9857901a6575f45ade0"
+      },
+      {
+        "candidate_id": "1dd6e1f03fb1adc3044f_anchor_e899bc83f4f1/B0/s0/p61/endpoint",
+        "parent_id": "1dd6e1f03fb1adc3044f"
+      },
+      {
+        "candidate_id": "86e8b6f43f20cf1e79e6_anchor_00c3b8198a8c/B0/s0/p40/endpoint",
+        "parent_id": "86e8b6f43f20cf1e79e6"
+      },
+      {
+        "candidate_id": "1f26b917e1b972ad3fd9_anchor_308e614b9b64/B0/s0/p31/endpoint",
+        "parent_id": "1f26b917e1b972ad3fd9"
+      },
+      {
+        "candidate_id": "b7fc38c46e18372646e0_anchor_14427c2a54a5/B0/s0/p37/endpoint",
+        "parent_id": "b7fc38c46e18372646e0"
+      },
+      {
+        "candidate_id": "8a883642220d4e0500ba_anchor_b20033b146a1/B0/s0/p4/endpoint",
+        "parent_id": "8a883642220d4e0500ba"
+      },
+      {
+        "candidate_id": "059bf679a499aca9a05c_anchor_b21f58fafc9f/B0/s0/p33/endpoint",
+        "parent_id": "059bf679a499aca9a05c"
+      },
+      {
+        "candidate_id": "281779a5ec203c658539_anchor_c7417e14390c/B0/s0/p11/endpoint",
+        "parent_id": "281779a5ec203c658539"
+      },
+      {
+        "candidate_id": "490a49d8326b3868df6c_anchor_a2610c0956a0/B0/s0/p41/endpoint",
+        "parent_id": "490a49d8326b3868df6c"
+      },
+      {
+        "candidate_id": "8962b71ed3a7a171af9e_anchor_f8a25a150927/B0/s0/p19/endpoint",
+        "parent_id": "8962b71ed3a7a171af9e"
+      },
+      {
+        "candidate_id": "a9460cfa7d3e4acccdb6_anchor_3d022ea3117c/B0/s0/p25/endpoint",
+        "parent_id": "a9460cfa7d3e4acccdb6"
+      },
+      {
+        "candidate_id": "fcb8f2fa182b960cb7c8_anchor_6377e3691a5a/B0/s0/p48/endpoint",
+        "parent_id": "fcb8f2fa182b960cb7c8"
+      },
+      {
+        "candidate_id": "cf39a21f2ef809e09427_anchor_41e5d4e73c61/B0/s0/p51/endpoint",
+        "parent_id": "cf39a21f2ef809e09427"
+      },
+      {
+        "candidate_id": "b6a6acf47c59295c4fd0_anchor_e31b0f68d34c/B0/s0/p44/endpoint",
+        "parent_id": "b6a6acf47c59295c4fd0"
+      },
+      {
+        "candidate_id": "be8172c3f5b8c091330a_anchor_fbc06e562b91/B0/s0/p14/endpoint",
+        "parent_id": "be8172c3f5b8c091330a"
+      },
+      {
+        "candidate_id": "f654459482fe40bfdc99_anchor_89d3a728ea37/B0/s0/p58/endpoint",
+        "parent_id": "f654459482fe40bfdc99"
+      },
+      {
+        "candidate_id": "4bac09c213063d306b3e_anchor_a0f098a1d31f/B0/s0/p34/endpoint",
+        "parent_id": "4bac09c213063d306b3e"
+      },
+      {
+        "candidate_id": "b3946dd993435c17e643_anchor_2a4a8e6ae4c3/B0/s0/p7/endpoint",
+        "parent_id": "b3946dd993435c17e643"
+      },
+      {
+        "candidate_id": "854e36201fd5181b6d38_anchor_df9f1c12fa91/B0/s0/p0/endpoint",
+        "parent_id": "854e36201fd5181b6d38"
+      },
+      {
+        "candidate_id": "be70179e2d6f299d6b1b_anchor_403d504038b5/B0/s0/p39/endpoint",
+        "parent_id": "be70179e2d6f299d6b1b"
+      },
+      {
+        "candidate_id": "d677da7acd18ec98859b_anchor_198abcf250e1/B0/s0/p28/endpoint",
+        "parent_id": "d677da7acd18ec98859b"
+      },
+      {
+        "candidate_id": "8fe6d50aaad53c21d3c5_anchor_054767360022/B0/s0/p40/endpoint",
+        "parent_id": "8fe6d50aaad53c21d3c5"
+      },
+      {
+        "candidate_id": "4f5559117464139fee00_anchor_729c6cc585e4/B0/s0/p25/endpoint",
+        "parent_id": "4f5559117464139fee00"
+      },
+      {
+        "candidate_id": "a93f4d7da96617f54016_anchor_3b222f764ec1/B0/s0/p40/endpoint",
+        "parent_id": "a93f4d7da96617f54016"
+      },
+      {
+        "candidate_id": "e193d2b0c22148150613_anchor_0b316c25baaf/B0/s0/p43/endpoint",
+        "parent_id": "e193d2b0c22148150613"
+      },
+      {
+        "candidate_id": "7dc6922783059ead3fb0_anchor_28d2cd4a7ddf/B0/s0/p51/endpoint",
+        "parent_id": "7dc6922783059ead3fb0"
+      },
+      {
+        "candidate_id": "4c90a5cab2d89d679e6a_anchor_d6cc21edf663/B0/s0/p56/endpoint",
+        "parent_id": "4c90a5cab2d89d679e6a"
+      },
+      {
+        "candidate_id": "5b2d3d450552ae85d0f4_anchor_23521829f2ca/B0/s0/p11/endpoint",
+        "parent_id": "5b2d3d450552ae85d0f4"
+      },
+      {
+        "candidate_id": "13bf28b59fe70fb07791_anchor_c06606784cea/B0/s0/p26/endpoint",
+        "parent_id": "13bf28b59fe70fb07791"
+      },
+      {
+        "candidate_id": "f8510fca77167ae2fe1b_anchor_883ec3e2175e/B0/s0/p22/endpoint",
+        "parent_id": "f8510fca77167ae2fe1b"
+      },
+      {
+        "candidate_id": "73a8b208b741c5cda518_anchor_9fd885044327/B0/s0/p9/endpoint",
+        "parent_id": "73a8b208b741c5cda518"
+      },
+      {
+        "candidate_id": "c0f8c54d5d73fed95b92_anchor_b04cb969d0e8/B0/s0/p22/endpoint",
+        "parent_id": "c0f8c54d5d73fed95b92"
+      },
+      {
+        "candidate_id": "a6ee19115420a88ad88e_anchor_db2eb655774c/B0/s0/p52/endpoint",
+        "parent_id": "a6ee19115420a88ad88e"
+      },
+      {
+        "candidate_id": "610169b6b7344da8fe44_anchor_4aaafcc490c9/B0/s0/p23/endpoint",
+        "parent_id": "610169b6b7344da8fe44"
+      },
+      {
+        "candidate_id": "c3b4e41e7e5bccb5a55b_anchor_776e2745449e/B0/s0/p54/endpoint",
+        "parent_id": "c3b4e41e7e5bccb5a55b"
+      },
+      {
+        "candidate_id": "1e19147f0c2d3f0c553e_anchor_ca3aa111c44a/B0/s0/p43/endpoint",
+        "parent_id": "1e19147f0c2d3f0c553e"
+      },
+      {
+        "candidate_id": "3e4899195c01fa43baa1_anchor_535d70a04eef/B0/s0/p18/endpoint",
+        "parent_id": "3e4899195c01fa43baa1"
+      },
+      {
+        "candidate_id": "5b02d759a9ea9d4dd169_anchor_82f81a41654e/B0/s0/p30/endpoint",
+        "parent_id": "5b02d759a9ea9d4dd169"
+      },
+      {
+        "candidate_id": "c01f85b5738c7adf3243_anchor_c39feef758cf/B0/s0/p35/endpoint",
+        "parent_id": "c01f85b5738c7adf3243"
+      }
+    ],
+    "PROXY_MATCH": [
+      {
+        "candidate_id": "6140474f8e0cdc063c5c_anchor_45c31318b588/B0/s0/p22/endpoint",
+        "parent_id": "6140474f8e0cdc063c5c"
+      },
+      {
+        "candidate_id": "1c1a8252964a0c934217_anchor_26e57b36721b/B0/s0/p8/endpoint",
+        "parent_id": "1c1a8252964a0c934217"
+      },
+      {
+        "candidate_id": "b9857901a6575f45ade0_anchor_a5c99f10cbcc/B0/s0/p24/endpoint",
+        "parent_id": "b9857901a6575f45ade0"
+      },
+      {
+        "candidate_id": "73a8b208b741c5cda518_anchor_9fd885044327/B0/s0/p45/endpoint",
+        "parent_id": "73a8b208b741c5cda518"
+      },
+      {
+        "candidate_id": "a1cffecda1a49c4fb953_anchor_00c1796902f9/B0/s0/p61/endpoint",
+        "parent_id": "a1cffecda1a49c4fb953"
+      },
+      {
+        "candidate_id": "303508f21c5696efb5be_anchor_46eeb638f070/B0/s0/p26/endpoint",
+        "parent_id": "303508f21c5696efb5be"
+      },
+      {
+        "candidate_id": "7f95af910c0b3f06823d_anchor_360f34bb7275/B0/s0/p22/endpoint",
+        "parent_id": "7f95af910c0b3f06823d"
+      },
+      {
+        "candidate_id": "af2e99784efbbdda88d0_anchor_b9ef437b8bc2/B0/s0/p59/endpoint",
+        "parent_id": "af2e99784efbbdda88d0"
+      },
+      {
+        "candidate_id": "c0c9054feb57266951ed_anchor_ae3136fba260/B0/s0/p11/endpoint",
+        "parent_id": "c0c9054feb57266951ed"
+      },
+      {
+        "candidate_id": "34848379ebc530f73eaa_anchor_ea47a2dafa68/B0/s0/p47/endpoint",
+        "parent_id": "34848379ebc530f73eaa"
+      },
+      {
+        "candidate_id": "8303021b27a2c6ce2b4c_anchor_2213196d96e4/B0/s0/p37/endpoint",
+        "parent_id": "8303021b27a2c6ce2b4c"
+      },
+      {
+        "candidate_id": "8a883642220d4e0500ba_anchor_b20033b146a1/B0/s0/p23/endpoint",
+        "parent_id": "8a883642220d4e0500ba"
+      },
+      {
+        "candidate_id": "3900e57e1fe4494b8b86_anchor_fe6ec2170187/B0/s0/p47/endpoint",
+        "parent_id": "3900e57e1fe4494b8b86"
+      },
+      {
+        "candidate_id": "2f5b6749fb86e442d36c_anchor_4b441965440a/B0/s0/p18/endpoint",
+        "parent_id": "2f5b6749fb86e442d36c"
+      },
+      {
+        "candidate_id": "f4bf5b727619a15f8f02_anchor_2ea34d79245c/B0/s0/p33/endpoint",
+        "parent_id": "f4bf5b727619a15f8f02"
+      },
+      {
+        "candidate_id": "db33309ba90a9a79b2e1_anchor_637c009344fa/B0/s0/p26/endpoint",
+        "parent_id": "db33309ba90a9a79b2e1"
+      },
+      {
+        "candidate_id": "6bd92a6f8181b1329aca_anchor_2fd9207dd92f/B0/s0/p17/endpoint",
+        "parent_id": "6bd92a6f8181b1329aca"
+      },
+      {
+        "candidate_id": "6da06407e8fc6de0de03_anchor_aed0302151c8/B0/s0/p23/endpoint",
+        "parent_id": "6da06407e8fc6de0de03"
+      },
+      {
+        "candidate_id": "3e5b3283891e0b420878_anchor_54d631a94c01/B0/s0/p58/endpoint",
+        "parent_id": "3e5b3283891e0b420878"
+      },
+      {
+        "candidate_id": "a01f970da298193876d3_anchor_8b687fdaf9eb/B0/s0/p50/endpoint",
+        "parent_id": "a01f970da298193876d3"
+      }
+    ]
+  },
+  "hessian_step_bohr": 0.005,
+  "intervals": "Wilson 95% for certification proportions",
+  "irc_maxiter": 300,
+  "irc_trust": 0.2,
+  "minimum_maxiter": 200,
+  "positive_control_gate": "PROXY_MATCH certification < 0.5: do not interpret OUTSIDE results",
+  "second_stage": "proposal only, at most 10 candidates, no DFT execution",
+  "selection": "sha256 candidate_id ascending; distinct parents within each group",
+  "thresholds": "qc_protocol.TIGHT; harmonic; classify_saddle; classify_minimum; endpoint_identity imported unchanged",
+  "ts_maxiter": 200,
+  "version": 1
+}

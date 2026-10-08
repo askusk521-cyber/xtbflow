@@ -713,6 +713,21 @@
       "bytes": 281
     },
     {
+      "path": "docs/evidence/explore_smc_decomposition/REPORT_ZH.md",
+      "sha256": "ac4ebb2b6780a724dc52b97b7e04372ba6595b83e2567eee0394bf067d787a82",
+      "bytes": 7563
+    },
+    {
+      "path": "docs/evidence/explore_smc_decomposition/SHA256SUMS",
+      "sha256": "51059cc2c4f28803f9b98080bcb3607729c15560bee8bec9f9b70a5990cc5c67",
+      "bytes": 303
+    },
+    {
+      "path": "docs/evidence/explore_smc_decomposition/results.json",
+      "sha256": "823a1f5b3965d1d3f34db4931cb18d1904c9f1e3a3b2107de22d737a0624ab0a",
+      "bytes": 335108
+    },
+    {
       "path": "docs/evidence/explore_smc_raw_ranking/REPORT_ZH.md",
       "sha256": "bfbb9cbc180dfb79d587e1232b5f1a39b7d92ddeacf9d5849345f44458bde2d7",
       "bytes": 5398

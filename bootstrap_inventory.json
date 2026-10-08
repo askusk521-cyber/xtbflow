@@ -168,6 +168,11 @@
       "bytes": 1328
     },
     {
+      "path": "configs/explore/geometry_information.json",
+      "sha256": "af016782705c8325dd36b3433b74f157fbcb9ead080b9926f627a41d4b6c853d",
+      "bytes": 6508
+    },
+    {
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
@@ -446,6 +451,41 @@
       "path": "docs/evidence/cp2k_runtime_evidence_provenance_20260929.json",
       "sha256": "3e1e18ee42d00732bacbefa2db56f7caf9a698765b164b82cf19579838184abf",
       "bytes": 2049
+    },
+    {
+      "path": "docs/evidence/explore_geoinfo/REPORT_ZH.md",
+      "sha256": "263ea01d037cf001c279793b76f9dfd1a7ba24bd2e1bf2cd6f6f364da86f7934",
+      "bytes": 8913
+    },
+    {
+      "path": "docs/evidence/explore_geoinfo/SHA256SUMS",
+      "sha256": "bf42bec1503aff94ac8768f764b866516add2d4575e4fddeefe672dc3c2fa4c8",
+      "bytes": 673
+    },
+    {
+      "path": "docs/evidence/explore_geoinfo/check_a_manifest.json",
+      "sha256": "df33d52d9357e7a72a8750169ca05bc4d8ebb61e5a4e05db5cdf9f9e187a5831",
+      "bytes": 14835
+    },
+    {
+      "path": "docs/evidence/explore_geoinfo/check_a_rows.jsonl",
+      "sha256": "34c49edbaba62458157b7864c6cb89e1f40c6af8f4596a72a518f4da57f85c7d",
+      "bytes": 302048
+    },
+    {
+      "path": "docs/evidence/explore_geoinfo/check_b_manifest.json",
+      "sha256": "a9fe3257b8187df36bffa64a8369d21b15f6e97b85ae91cda88138d62488d952",
+      "bytes": 1203
+    },
+    {
+      "path": "docs/evidence/explore_geoinfo/extra_descriptive.json",
+      "sha256": "6a9301633098177c373a167b2de1269bc9828b9993ae933af84c3f6100189d64",
+      "bytes": 1710
+    },
+    {
+      "path": "docs/evidence/explore_geoinfo/results.json",
+      "sha256": "3194f5dfbd1fbf4a6d8e6f34890983230e8d1daf028ae2578272d565581fed28",
+      "bytes": 43624
     },
     {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
@@ -828,6 +868,26 @@
       "bytes": 3999
     },
     {
+      "path": "docs/evidence/v1a/formal/RESULT_ZH.md",
+      "sha256": "bae74f311188f81b4675d962652ea75074a1f8cde45d113cdf29e3c79c9df605",
+      "bytes": 5657
+    },
+    {
+      "path": "docs/evidence/v1a/formal/SHA256SUMS",
+      "sha256": "556e34761d725660a4de59d89f64334ea54df9f9e40685482898c564576f59df",
+      "bytes": 1254
+    },
+    {
+      "path": "docs/evidence/v1a/formal/freeze.json",
+      "sha256": "fef5e7dc87951d2af40822f2006c1c6af363c32b3c51588b65b8b7c2c51207dc",
+      "bytes": 29898
+    },
+    {
+      "path": "docs/evidence/v1a/formal/gate.json",
+      "sha256": "467b4f581c3c2c14f0a58977eb8c6989e95ebcb882c1943f366c7120f7090c6a",
+      "bytes": 113612
+    },
+    {
       "path": "docs/evidence/workflow_b_software_acceptance_20260929.json",
       "sha256": "2fe89dcd76c896b6f9949e7aec55781568b37f6bc2c1c89a5fb3bfd210080da9",
       "bytes": 4166
@@ -1031,6 +1091,11 @@
       "path": "scripts/cp2k_smoke.py",
       "sha256": "183b80700f75ba2ba53e9608bb9465242532b52d7c25f85a141fc2ef35844c66",
       "bytes": 4125
+    },
+    {
+      "path": "scripts/explore_geometry_information.py",
+      "sha256": "0068c889dd2c02c75a2cb38be1632282277bde1633f6fe6d5ae8236c22d93685",
+      "bytes": 24966
     },
     {
       "path": "scripts/joint_flow_smoke.py",
@@ -1598,6 +1663,11 @@
       "bytes": 1798
     },
     {
+      "path": "src/xtbflow/v1/geometry_information.py",
+      "sha256": "1ec9fe28d7bd1c3c6f3e9d418de5fe81e31eaa210bd1fbe0ac2e3f47d7a61611",
+      "bytes": 5353
+    },
+    {
       "path": "src/xtbflow/v1/guidance.py",
       "sha256": "fd32541a895a75c5fbbc8c224ef365b378a78d65e1aa28b7a049d7c960f0a68c",
       "bytes": 3256
@@ -1766,6 +1836,11 @@
       "path": "tests/test_geometry_flow.py",
       "sha256": "3a1f64a2bb77180cd7416b52d120dd14bd899881f5fb7bc812636133edbe506d",
       "bytes": 4675
+    },
+    {
+      "path": "tests/test_geometry_information.py",
+      "sha256": "3680b04c2daee4a8cea0413acc9b439f3ae66ebfab8e64330446ccf1e65ee995",
+      "bytes": 5708
     },
     {
       "path": "tests/test_handoff_freeze.py",

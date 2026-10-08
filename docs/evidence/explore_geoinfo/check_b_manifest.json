@@ -1,0 +1,44 @@
+{
+  "config_sha256": "af016782705c8325dd36b3433b74f157fbcb9ead080b9926f627a41d4b6c853d",
+  "dirty": false,
+  "generators": {
+    "0": {
+      "path": "/home/lhshen/xtbflow-runs/v1a-20261007/generators/joint_s0/ckpt_60000.pt",
+      "sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda"
+    },
+    "1": {
+      "path": "/home/lhshen/xtbflow-runs/v1a-20261007/generators/joint_s1/ckpt_60000.pt",
+      "sha256": "65f321d775e20007903e16b284ca27c8b215cbc5b3610f349595f95771e9ec72"
+    },
+    "2": {
+      "path": "/home/lhshen/xtbflow-runs/v1a-20261007/generators/joint_s2/ckpt_60000.pt",
+      "sha256": "50bc3796220083f5ca1cf3208f40fee8e58065c23c4ce61d19511a1367b8679e"
+    }
+  },
+  "grid_steps": [
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+  ],
+  "n_parents": 62,
+  "proposals_per_parent_per_seed": 32,
+  "rows_sha256": "bb104be033abd8627eae1fb2a57338287557ecd3708ccb7b10fd8d48e073fee4",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "smoke": false,
+  "source_commit": "68f5733d882a77b4295d00328d26fd4b0c8dc35f",
+  "split_hash": "a0225e6cb773049d94593f0d93bf6c753db125deeda3ade8899da6922835367f",
+  "stage": "check_b",
+  "trajectories": 5952
+}

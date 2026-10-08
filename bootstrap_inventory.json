@@ -1293,6 +1293,11 @@
       "bytes": 6102
     },
     {
+      "path": "scripts/v1b_v22_plan.py",
+      "sha256": "5a97ab3ecc15f5c639bbe09453c9920dcf728ca3e4ec7875d06873534cc050a4",
+      "bytes": 10160
+    },
+    {
       "path": "scripts/validate_bootstrap.py",
       "sha256": "47dd56659b5663d44691397ac0d15ab053b7bbc0d0398cf79ebc7781a4dbb318",
       "bytes": 3503

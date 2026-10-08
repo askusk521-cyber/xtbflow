@@ -1,0 +1,13 @@
+{
+  "arms": 13,
+  "c1_independently_reproduced": true,
+  "c2_passed": true,
+  "checkpoint_candidates": 23808,
+  "complete_populations": 2418,
+  "endpoint_candidates": 77376,
+  "g1_batches": 24,
+  "paired_raw_failures": 60,
+  "plans_verified": 2232,
+  "population_count": 186,
+  "s0_passed": true
+}

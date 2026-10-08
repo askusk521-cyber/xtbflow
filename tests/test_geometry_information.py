@@ -153,3 +153,36 @@ def test_analyze_clock_reads_window_quality_and_reproduction(tmp_path):
     assert lead['reading'] in ('GEOMETRY_LEAD_OPENS_WINDOW','WINDOW_WITH_QUALITY_LOSS','NO_USABLE_WINDOW')
     assert set(lead['quality_vs_sync'])=={'valid','proxy_match','best_event','best_reference'}
     assert res['paths']['sync']['time_window']['commit']['median_t']<lead['time_window']['commit']['median_t']
+
+
+def test_analyze_physics_pairs_arms_and_reads():
+    s=load_script();cfg=s.json.loads((SCRIPT.parents[1]/'configs'/'explore'/'physics_guidance.json').read_text())
+    rng=np.random.default_rng(3)
+
+    def arm(bump,changed):
+        rows=[]
+        for p in range(8):
+            for seed in range(2):
+                for j in range(6):
+                    u=float(np.clip(.3+bump*(j%2)+rng.normal(0,.02),0,1))
+                    ev='e1' if (changed and j%2) else 'e0'
+                    rows.append(dict(parent_id=f'p{p}',formula=f'f{p%4}',seed=seed,proposal=j,events=[None,ev],
+                                     event_utility=u,hits_best_event=u>.5,hits_best_reference=False,
+                                     proxy_status='PROXY_MATCH',event_barrier_kcal=30.-10*u,
+                                     guidance=dict(applied_steps=5,displacement_rms_sum=.1,force_failures=0,
+                                                   mean_abs_cos_u_force=.4)))
+        return rows
+    out=s.analyze_physics({'none':arm(0,False),'saddle_0.3':arm(.3,True),'random_0.3':arm(0,False),
+                           'descent_0.3':arm(-.2,True)},cfg)
+    assert out['readings']['saddle_0.3']=='PHYSICS_REWRITES_TOWARD_LOW_BARRIER'
+    assert out['readings']['descent_0.3']=='PHYSICS_HURTS'
+    assert out['arms']['saddle_0.3']['changed_vs_none']['estimate']==pytest.approx(.5)
+    assert out['arms']['saddle_0.3']['barrier_shift_vs_none_kcal']['estimate']<0
+    with pytest.raises(ValueError):
+        s.analyze_physics({'none':arm(0,False),'saddle_0.3':arm(.3,True)[:-1]},cfg)
+
+
+def test_force_job_rejects_collapsed_geometry_without_tblite():
+    s=load_script()
+    cfg=dict(min_distance_angstrom=.5,charge=0,uhf=0,accuracy=1.,max_iterations=250,electronic_temperature_kelvin=300.)
+    assert s._force_job(([1,1],[[0,0,0],[0,0,.1]],cfg))==(None,'collapsed')

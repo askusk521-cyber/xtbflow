@@ -1,0 +1,46 @@
+{
+  "version": "pg-1",
+  "exploratory": true,
+  "question": "Under a clock that leaves events open, does saddle-aware GFN2-xTB guidance on the geometry shift the final event toward lower-barrier catalogue channels, beyond no push and a matched random push?",
+  "design_doc": "docs/explore/PHYSICS_GUIDANCE_DESIGN_ZH.md",
+  "base_config": "configs/explore/geometry_information.json",
+  "data_scope": "V1a development parents only (62 parents, 21 formula groups)",
+  "generator": "frozen V1a joint generator, training seeds 0,1,2; 32 proposals per parent per seed; same semantic noise keys as geoinfo/geolead, so every arm starts from the same (b0, x0)",
+  "clock": {"path": "geometry_lead3", "why": "widest window at no measurable quality cost in geolead-1 (34.6%); chosen from development results, disclosed"},
+  "window": {"axis": "t_x (= s)", "start": 0.5, "stop": 0.95, "why": "the frozen V1a geometry-guidance interval; not tuned here"},
+  "push": {
+    "evaluated_on": "predicted endpoint x1_hat = x_t + (1 - t_x) v_x, from the OLD state of the step",
+    "physics": "GFN2-xTB (tblite) gradient, settings of configs/explore/geometry_information.json xtb block",
+    "saddle": "G = (I - 2 u u^T) F, F = -gradient, u = unit reaction coordinate of the predicted bond-order change b1_hat - b_r on x1_hat (xtbflow.v1.explore_rollout.event_direction)",
+    "descent": "G = F (the flawed energy-descent form, negative control)",
+    "random": "one isotropic direction per trajectory (addressed seed 'explore_physics_random'), fixed over the window",
+    "step": "unit-RMS direction times alpha * dt_x with the V1a per-atom cap (xtbflow.v1.guidance.geometry_step); only geometry is moved",
+    "applied_when": "x1_hat has no interatomic distance < 0.5 A; physics arms also need a successful xTB gradient; saddle also needs a nonzero u",
+    "alphas": [0.3, 1.0],
+    "alpha_note": "0.3 is the frozen V1a alpha_x; 1.0 is a single stronger level; both reported, none chosen by result"
+  },
+  "arms": ["none", "saddle_0.3", "saddle_1.0", "descent_0.3", "descent_1.0", "random_0.3", "random_1.0"],
+  "outcomes": {
+    "primary": "event_utility of the final candidate (V1a proxy: max(0, 1 - (Ea_event - Ea_best)/10) for catalogue events, else 0), mean over seeds and proposals per parent",
+    "secondary": ["hits_best_event", "hits_best_reference", "valid final event", "PROXY_MATCH", "share of trajectories whose final event differs from the none arm", "catalogue barrier shift among trajectories ending in catalogue events in both arms"]
+  },
+  "comparisons": [
+    ["saddle_0.3", "none"], ["saddle_1.0", "none"],
+    ["saddle_0.3", "random_0.3"], ["saddle_1.0", "random_1.0"],
+    ["descent_0.3", "none"], ["descent_1.0", "none"],
+    ["descent_0.3", "random_0.3"], ["descent_1.0", "random_1.0"],
+    ["saddle_0.3", "descent_0.3"], ["saddle_1.0", "descent_1.0"],
+    ["random_0.3", "none"], ["random_1.0", "none"]
+  ],
+  "interval": "paired by parent, formula-cluster sandwich t, two-sided 95%",
+  "reading": {
+    "per_arm": "for saddle_* and descent_*, from the utility difference with none and with the random arm of the same alpha",
+    "PHYSICS_REWRITES_TOWARD_LOW_BARRIER": "vs none lower bound > 0 and vs random lower bound > 0",
+    "SHIFT_NOT_SPECIFIC": "vs none lower bound > 0 but vs random interval reaches 0",
+    "NO_DETECTABLE_SHIFT": "vs none interval contains 0",
+    "PHYSICS_HURTS": "vs none upper bound < 0"
+  },
+  "reproduction_check": "the none arm under the recorded rollout must reproduce the geolead-1 geometry_lead3 rows: identical final events and proxy statuses; commit-step agreement reported (endpoint predictions now come from direct velocities)",
+  "not_in_scope": ["resampling / SMC", "MLIP oracles", "budgeted cost-recall curves", "any formal or screen-set data", "DFT"],
+  "compute": {"slurm_only": true, "max_concurrent_jobs": 1, "max_wall_minutes_per_job": 120}
+}

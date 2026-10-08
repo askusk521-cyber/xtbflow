@@ -16,6 +16,13 @@ def clock_grid(path, n_steps=50):
         return s*s,s.copy()
     if path=='geometry_lead3':
         return s**3,s.copy()
+    if path=='geometry_lead4':
+        return s**4,s.copy()
+    # Events stay at their initial noise until s=d, then advance linearly; the
+    # zero event increments need endpoint predictions read from the network.
+    if path in ('event_delay30','event_delay50'):
+        d=.3 if path=='event_delay30' else .5
+        return np.clip((s-d)/(1-d),0.,1.),s.copy()
     raise ValueError(path)
 
 

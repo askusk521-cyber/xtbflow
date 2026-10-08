@@ -6,14 +6,17 @@ from xtbflow.v1.training import generator_inputs
 
 
 def test_clock_integrals_and_grid_alignment():
-    for path in ['sync','event_lead2','geometry_lead2','geometry_lead3']:
+    for path in ['sync','event_lead2','geometry_lead2','geometry_lead3','geometry_lead4','event_delay30','event_delay50']:
         b,x=clock_grid(path)
         db,dx=increments(path)
         assert np.isclose(sum(db),1) and np.isclose(sum(dx),1)
         k=observation_index(x,.35)
         assert x[k]>=.35 and x[k-1]<.35
         assert observation_index(x,1)==50
-        assert b[0]==x[0]==0 and b[-1]==x[-1]==1 and np.all(np.diff(b)>0) and np.all(np.diff(x)>0)
+        assert b[0]==x[0]==0 and b[-1]==x[-1]==1 and np.all(np.diff(b)>=0) and np.all(np.diff(x)>0)
+        if not path.startswith('event_delay'):assert np.all(np.diff(b)>0)
+    b,x=clock_grid('event_delay50')
+    assert np.all(b[x<=.5]==0) and b[-1]==1 and np.allclose(b[x>.5],(x[x>.5]-.5)/.5)
     b,x=clock_grid('geometry_lead2')
     assert np.all(x[1:-1]>b[1:-1])
 

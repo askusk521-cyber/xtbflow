@@ -1,0 +1,26 @@
+{
+  "version": "geolead-2",
+  "exploratory": true,
+  "question": "How far can event commitment be delayed before unguided joint generation degrades?",
+  "motivation": "geolead-1: t_b = s^2 and s^3 opened the xTB window to 27.9% and 34.6% at small quality cost; this extends the dose-response",
+  "base_config": "configs/explore/geometry_information.json",
+  "reused_definitions": "everything in geolead-1 (configs/explore/geometry_lead.json): rows, signals, t_geo, window_fraction and the 0.20 threshold, quality metrics and V1a tolerances, readings",
+  "data_scope": "V1a development parents only (62 parents, 21 formula groups)",
+  "paths": {
+    "sync": "t_b = s, t_x = s (geolead-1 rows, identical to check B)",
+    "geometry_lead3": "t_b = s^3, t_x = s (rerun under the recorded rollout)",
+    "geometry_lead4": "t_b = s^4, t_x = s",
+    "event_delay30": "t_b = 0 until s = 0.3, then linear to 1; t_x = s",
+    "event_delay50": "t_b = 0 until s = 0.5, then linear to 1; t_x = s"
+  },
+  "rollout": "xtbflow.v1.explore_rollout.recorded_rollout without push; endpoint predictions from the network's velocity, so b1_hat is defined while t_b is held at 0 (it then conditions on the evolving geometry)",
+  "axis": "every time is s = t_x",
+  "reading": {
+    "GEOMETRY_LEAD_OPENS_WINDOW": "xTB window_fraction >= 0.20 and both quality drops within tolerance",
+    "WINDOW_WITH_QUALITY_LOSS": "xTB window_fraction >= 0.20 but a quality drop exceeds tolerance",
+    "NO_USABLE_WINDOW": "xTB window_fraction < 0.20, or the xTB signal is never informative",
+    "per_path": "every path gets its own reading; none is chosen by its result here"
+  },
+  "quality": {"comparison": "path - sync, paired by parent, formula-cluster t two-sided 95%", "tolerance": "hits_best_reference drop <= 0.05 and valid-rate drop <= 0.10 (point estimates)"},
+  "compute": {"slurm_only": true, "max_concurrent_jobs": 1, "max_wall_minutes_per_job": 120}
+}

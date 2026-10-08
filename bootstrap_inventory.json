@@ -178,6 +178,16 @@
       "bytes": 2788
     },
     {
+      "path": "configs/explore/geometry_lead_wide.json",
+      "sha256": "004cef159eb1688c1d5b4c9c57cd8dc3d5ae5fbba4fd5076c0b904635b69368c",
+      "bytes": 1927
+    },
+    {
+      "path": "configs/explore/physics_guidance.json",
+      "sha256": "3293e85653999aff276b4553f5d655d12b2466a172ee42a7f9018713973cd6a8",
+      "bytes": 3897
+    },
+    {
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
@@ -943,6 +953,11 @@
       "bytes": 2857
     },
     {
+      "path": "docs/explore/PHYSICS_GUIDANCE_DESIGN_ZH.md",
+      "sha256": "b58d5cb3bb1318c53257b36e5fb76af063b870d4dce0a5433125d6d8c43a98db",
+      "bytes": 4161
+    },
+    {
       "path": "docs/model_design.md",
       "sha256": "bdf387e56ea531479b11068b397e98912004ae24c8e784fb37339106cdcb87ef",
       "bytes": 4233
@@ -1129,8 +1144,8 @@
     },
     {
       "path": "scripts/explore_geometry_information.py",
-      "sha256": "cdb8cc0604d68069bc40b05141dcd948458b680dcdb0c8fb20800f13f7f23dac",
-      "bytes": 28624
+      "sha256": "ee892e4eaccdf20a94be296dcc446ce3274f7306fe493b8e5c940260df6cc792",
+      "bytes": 43409
     },
     {
       "path": "scripts/joint_flow_smoke.py",
@@ -1669,8 +1684,8 @@
     },
     {
       "path": "src/xtbflow/v1/clocks.py",
-      "sha256": "5841933debf3af6e81f2883de33e34d5d4fcf38240c47fae8a9641d0bde3b509",
-      "bytes": 923
+      "sha256": "b2e5c0b2c5c80631e57015065565249ec42167c813a229136cc9b44aea2f3b44",
+      "bytes": 1286
     },
     {
       "path": "src/xtbflow/v1/costs.py",
@@ -1686,6 +1701,11 @@
       "path": "src/xtbflow/v1/development.py",
       "sha256": "7c3c48604173b0b5eab85a4ed905d333de0ac9faeb02402cb104727eb26436f9",
       "bytes": 8351
+    },
+    {
+      "path": "src/xtbflow/v1/explore_rollout.py",
+      "sha256": "2519d397742c0a5a3ca021e2d4c28bc0e57aae0c369e78d1ed25e0abbe41c42b",
+      "bytes": 3660
     },
     {
       "path": "src/xtbflow/v1/formal.py",
@@ -1868,14 +1888,19 @@
       "bytes": 9907
     },
     {
+      "path": "tests/test_explore_rollout.py",
+      "sha256": "4d10d4153142e9dab197b0801a8290f3009fc60151921b283b91394c221ed87f",
+      "bytes": 3138
+    },
+    {
       "path": "tests/test_geometry_flow.py",
       "sha256": "3a1f64a2bb77180cd7416b52d120dd14bd899881f5fb7bc812636133edbe506d",
       "bytes": 4675
     },
     {
       "path": "tests/test_geometry_information.py",
-      "sha256": "f5bf06db827ba262f7664e84db14cf341c7a6bb339dd0b4afedbc3c895e4267e",
-      "bytes": 7936
+      "sha256": "bd90ded1ea5704d16df995c061aa17d5c3260187d0397c09d576af487f974b63",
+      "bytes": 9790
     },
     {
       "path": "tests/test_handoff_freeze.py",
@@ -2004,8 +2029,8 @@
     },
     {
       "path": "tests/test_v1_clocks.py",
-      "sha256": "c8af15e363c41dfeff08bd4f5572dea855c5c5b1b7b911271867713bc244ebb1",
-      "bytes": 1862
+      "sha256": "30baaff64327bf3f34cb650d64ad2bcc00ed0370856d81083477bcf8d9900c6b",
+      "bytes": 2107
     },
     {
       "path": "tests/test_v1_costs_serial.py",

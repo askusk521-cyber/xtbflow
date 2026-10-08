@@ -85,6 +85,16 @@
   "cpu_core_hours_conservative_total": 13.156347222222221,
   "cpu_core_hours_upper_before_preparation": 12.156347222222221,
   "cpu_seconds_upper_before_preparation": 43762.85,
+  "gpu_budget_hours": 2,
+  "gpu_hours_conservative": 0.8166916666666667,
+  "gpu_jobs": [
+    2700,
+    2707,
+    2708,
+    2710,
+    2714
+  ],
+  "gpu_seconds_conservative": 2940.09,
   "interrupted_conservative_bounds": [
     {
       "processes": 1,

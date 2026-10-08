@@ -769,28 +769,28 @@
     },
     {
       "path": "docs/evidence/review_enum/REPORT_ZH.md",
-      "sha256": "748f177ffe6fe5dfff7b8d696cd75d99b916b2d530ac5450581254b4349f8bce",
-      "bytes": 3993
+      "sha256": "2bdbcd2aed025fffad15ed98245f5e1b7c6a179c0faf908c8e4591b13a8833ff",
+      "bytes": 4280
     },
     {
       "path": "docs/evidence/review_enum/SHA256SUMS",
-      "sha256": "b23a3127cc18d3e06400e4c95fc415b1382827a68e08e402759068c3558c3125",
+      "sha256": "ceab88eee7b4e630940111372b3b8e67740182f5a08444d30732e38dfa45d488",
       "bytes": 645
     },
     {
       "path": "docs/evidence/review_enum/SHA256SUMS.remote",
-      "sha256": "df5634616f61efa810a7d5b32d934a15c7683348d976f6e7c0aa9ccf4eb07141",
-      "bytes": 186277
+      "sha256": "ee3ffe496db2af03b998011c206fa72bb294315fc9196cbef60038ebc87926f4",
+      "bytes": 196383
     },
     {
       "path": "docs/evidence/review_enum/VALIDATION.md",
-      "sha256": "23ae668abf3c4cfe8a93925890a213bf20b36b24245781aa967dbbd8e22576c1",
-      "bytes": 2930
+      "sha256": "bf6df3eff8574880687268826828c124227d93e295eefbd21c743e0ce87837ed",
+      "bytes": 3133
     },
     {
       "path": "docs/evidence/review_enum/manifest.json",
-      "sha256": "4fa179bb4082cff052a34b162023f7138b3ca5a926ec8f6ee65b6b00b4042739",
-      "bytes": 241577
+      "sha256": "88750d8c0ee6ebb7f10deb47c4ee047b423e165a3958016d519b8a216a9a0347",
+      "bytes": 254612
     },
     {
       "path": "docs/evidence/review_enum/recall.png",
@@ -799,13 +799,13 @@
     },
     {
       "path": "docs/evidence/review_enum/resources.json",
-      "sha256": "29887f7ef69a68c2179bfa91761a8d7b8dcfeeed0b8b45ee4036c19a60cea0cc",
-      "bytes": 4604
+      "sha256": "ae6be0dadafe3fea93ec0a86983c30dc54229c7a448f611530522b9035305653",
+      "bytes": 4786
     },
     {
       "path": "docs/evidence/review_enum/results.json",
-      "sha256": "8c74d1f150f6496f1e14abdd4aa7625df1be6feeae03652c788e5d3cce6b5a44",
-      "bytes": 471707
+      "sha256": "ea2237f229c718069abef225cd0c76c068357c653b6829b3275b74603d8be0b4",
+      "bytes": 472527
     },
     {
       "path": "docs/evidence/rgd1_hdf5_only_ids_v1.jsonl",

@@ -4125,12 +4125,20 @@
       "sha256": "7be18c5fc3b43f014de5364e3f03677a89dff628cd26b5e8a30096d672d2a6a7"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/014d6ce15b8287009931.scores.npz",
+      "sha256": "08d75b6a357fa4407a2db8f6cf13d2aee061e6ab3ca90e7e81daeb5eb39f3c3f"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/01d056283c911b5af890.json",
       "sha256": "ec7e43010427e89dab4024e7033d6dfa966fdf0616b0a7819f1b0fb04844a65d"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/01d056283c911b5af890.npz",
       "sha256": "11f3d6bc7da2bc133ce66f0f9d10465d70b51b87bb063e1bed667974c3bdbdfa"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/01d056283c911b5af890.scores.npz",
+      "sha256": "361e2952a521b78c999cfb18caca387378ce9e23d27e81deeb85fbbe1a0b9ee2"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/0a2cfb31c397a40a0f1d.json",
@@ -4141,12 +4149,20 @@
       "sha256": "9550d011884e281c13909725e4bc0534e4f590ea802bdaf9a672da30bc939a2d"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/0a2cfb31c397a40a0f1d.scores.npz",
+      "sha256": "0ecd5bf5b3e73358b915d1aea536c4f19f5b9b2c8a0b01e38f59761e92bdbbab"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/0aa48426f2df29ce0c39.json",
       "sha256": "1be6294f123e74fc3e43732a9ed0894075b02deae5640f20c6062566a79ce89e"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/0aa48426f2df29ce0c39.npz",
       "sha256": "aa3fccb12cace2bf677230d029bf02c402667658e8bc378b431de49914a9a0a2"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/0aa48426f2df29ce0c39.scores.npz",
+      "sha256": "ce21dade46a2c83d301a58ad85a29a71eddcfa5027ed4e92362d9744cebbe495"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/0adf473069a983308701.json",
@@ -4157,12 +4173,20 @@
       "sha256": "4e6afd0ef2416e8cb20bffd767b5cfdd9d8eaf63ef77551ac6a71434be801681"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/0adf473069a983308701.scores.npz",
+      "sha256": "515ee44889723e1660631543d69ed89e1bd114290bef94c6189e8f781a45d647"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/0ce865acd287b9ead9f9.json",
       "sha256": "6fce8ed92426ad9f5815f7088ac38a7851f7a10b08ed173393787f1cce4dd070"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/0ce865acd287b9ead9f9.npz",
       "sha256": "dab87d703ade78b8641bd93454de4b702cf2d7dfe491260715a8354488a7c88b"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/0ce865acd287b9ead9f9.scores.npz",
+      "sha256": "746020b88ee9b20680d12c432bb6dd739163ddba8724a0c0e9753ebc7c8227cc"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/15b99eb85e92af05dcf7.json",
@@ -4173,12 +4197,20 @@
       "sha256": "d55d93f4df32c259c1d64b4cf28208ce7648c295881274aec952d368b8b94d95"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/15b99eb85e92af05dcf7.scores.npz",
+      "sha256": "41b2e0069e0da884887d5cc4c9efe58f8d6d0c67bffed3fbe19b5d127ca51c78"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/160abb350f28ba50dcc5.json",
       "sha256": "04359e5f456c74c0dd21cabbb40c56542686d76ff06e24b3598282a1db6071b1"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/160abb350f28ba50dcc5.npz",
       "sha256": "93e7bff328fd42eba809e5d376fd62138a7221b2b7717e83ab6c1f009441a0b4"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/160abb350f28ba50dcc5.scores.npz",
+      "sha256": "7692a7e506ed141387c5959fb2bb2621ebf89e41f8ba544e6a5cf956535f02ea"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/170ce43be766c37128b8.json",
@@ -4189,12 +4221,20 @@
       "sha256": "0431d7c9bec21af91f86d19e9363d3265a8918408bf455a7fd1843a8a83ea856"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/170ce43be766c37128b8.scores.npz",
+      "sha256": "18844def0bd85d9933520661f8120527a94b11eafcfcc71d45e383abb6e684d9"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/1aea67148141173a40a8.json",
       "sha256": "3218e0e441b7115155d4b89a6a11ea0c0a1d68b7c9f66f808a1f2ea819704e7b"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/1aea67148141173a40a8.npz",
       "sha256": "41f88511343b56175b36831117a34c855016c2446c399bd0de12d0440ed08070"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/1aea67148141173a40a8.scores.npz",
+      "sha256": "4287cb098588e4e13033eb1f15c644b2cd3945a9f95c507a8b359f3b1adec2fd"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/1f38b54466a8d4bc95cc.json",
@@ -4205,12 +4245,20 @@
       "sha256": "2faf527abc7d343653c4d17051c2f0cede7518724fc8fc2c7a88aed760388ca7"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/1f38b54466a8d4bc95cc.scores.npz",
+      "sha256": "9616a8639da88acae2206b5d4969353a71d83336129b1f07cd1607686ab32809"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/21cafcccc529b354d3db.json",
       "sha256": "745f2cd5b8cc9097f5d47c996c8df191a4286a4950a83eeca0392df97899a2de"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/21cafcccc529b354d3db.npz",
       "sha256": "4fa9f25d2e161d5c90f5a72381c3686e3bf225a81046980b403270e5c149e99f"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/21cafcccc529b354d3db.scores.npz",
+      "sha256": "1791ca671922e17e1181ddcf94622d998fef78d3986de78c136af031585d05af"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/26e6c19c93989152a85c.json",
@@ -4221,12 +4269,20 @@
       "sha256": "b66835eda3cdfbeb5deec3ba33712e7ee967ce46620c30e95a4161688a6e85d3"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/26e6c19c93989152a85c.scores.npz",
+      "sha256": "82340df67596d95223a8409411ec454c49ea421cee2ec38d5a89306a1aa92264"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/2a1ff26a9a41750a2ffe.json",
       "sha256": "0843fcf95341fd52aa1c8d5d42ad4ef971e13d05efe1cf4c8d3894898aa3b13d"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/2a1ff26a9a41750a2ffe.npz",
       "sha256": "6fc083b6f28c56fd581ffc9e32b085b8591d344b8b68be71fdd5dffccaeac447"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/2a1ff26a9a41750a2ffe.scores.npz",
+      "sha256": "8cc6157da011609d341f2302ab9c85d138e194d843050219e5f98952e9df94df"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/2e4d95297150f7a00499.json",
@@ -4237,12 +4293,20 @@
       "sha256": "53f96168fcfa6e0632594a60da0eb8e1776c87821817fcddb2775e319897e224"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/2e4d95297150f7a00499.scores.npz",
+      "sha256": "b0b7d010cee99f5ea0c534b6cbfe7746fcd3b9d66a9d16a4e9fe1a454a153420"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/31226007825bdff44b0b.json",
       "sha256": "f0e979df39a34056e10ab0a13a5ba653d229fb6c056c5c779193155dcca1327f"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/31226007825bdff44b0b.npz",
       "sha256": "363acac871189d01ec339a37f68b8631fdb47fb87bef783950926131856982e7"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/31226007825bdff44b0b.scores.npz",
+      "sha256": "316e41f99eb9ae6e44a49ed895096bd831958195314a2d0ee95a5afaa8b84f23"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/35e02a85cc4db136628c.json",
@@ -4253,12 +4317,20 @@
       "sha256": "0773c031fc901cb0316d9ab90eaab371d4b05469ecf05ca7169223dc6936fbc4"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/35e02a85cc4db136628c.scores.npz",
+      "sha256": "cd0924e2a3e7bd91406f9bed11f1023ea41acb61109da73c894b51c8b7e019df"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/36f020e5dde61d62e886.json",
       "sha256": "7bb45da8fea5f88cb01277b1581d2fe6ac61b1101faf34231216fd2ffa9fbce8"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/36f020e5dde61d62e886.npz",
       "sha256": "cb1f59cfdedec0fa2ca172f8f466b23b3120cbedc41ab2b6051ed62533c9a0e7"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/36f020e5dde61d62e886.scores.npz",
+      "sha256": "2790a8b580e95afc28d16fa7a0a50e3b77a45806421f40ad856032c78ce18d54"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/3742528fa00eb0983794.json",
@@ -4269,12 +4341,20 @@
       "sha256": "574f0cd8b00809220176a66b3586750819f1a12381133e13f109154bd959be07"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/3742528fa00eb0983794.scores.npz",
+      "sha256": "9bb327d9bad40ceb5596b6fd4ee5e7a94731207d3f145783d51414d532832a94"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/3d9c156adda892d7d482.json",
       "sha256": "17a0ffefe8884e63e6f9d43ee289203e2043661b71cc81ebfcac6c8f39f5a0c1"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/3d9c156adda892d7d482.npz",
       "sha256": "0c071ce9b7eecc3f593dcee7a58d67bfd3aa3a2bc0239ff9608add96e6d7ad42"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/3d9c156adda892d7d482.scores.npz",
+      "sha256": "e2b17c77b350fe93e8856b6a51a567f5b3408b58f9209f639046be79b58e2165"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/3f44309d41b1729db605.json",
@@ -4285,12 +4365,20 @@
       "sha256": "d7e804b9ef1034bab08da15121d2f94a2a2a93f95646c473705356e5d6e20bc4"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/3f44309d41b1729db605.scores.npz",
+      "sha256": "e81d8263040056a000d9c1ec2ff3b5ab08a997b0d467a13a339efef26a4f6cb8"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/40ab26b9eb48c91ab2d3.json",
       "sha256": "a41b0cf75a3f1b1106ea60f1ccddc9fa8ea2424e8664fe61061c91c2eb7e2ff0"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/40ab26b9eb48c91ab2d3.npz",
       "sha256": "4e1b43b8c1d8368e4b41a79bc794b0bc7cd250c44d4c4170753f91408d8c0aae"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/40ab26b9eb48c91ab2d3.scores.npz",
+      "sha256": "25c892e62deacaaf27e63fefdc78a3505957be0e8e9f047deb57bc19eb115552"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/46989992f4cc46514ca1.json",
@@ -4301,12 +4389,20 @@
       "sha256": "8138869ba3d3e302d011a50c4f0bf990bd47fec464bd7bf8c14adb9c66f4cd35"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/46989992f4cc46514ca1.scores.npz",
+      "sha256": "eb77603606b3e2e241824e00f9001beac3261e953bf04cc7cc972787aee8c99a"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/47450ddd0c6c36d0f7bc.json",
       "sha256": "6840cc3d02faa7201d753625bcfb55605381ef4fdadb53928d6afc014d254cf6"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/47450ddd0c6c36d0f7bc.npz",
       "sha256": "0ca092a4c5adbde5ee65aa289f452272abab21cd1f0c81ae446688753402d4fb"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/47450ddd0c6c36d0f7bc.scores.npz",
+      "sha256": "2519eaacfd5cf142a65a496e57462262ab8d43d7c329391c83f65c84ecc4afe5"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/5267430d9fc631588c0f.json",
@@ -4317,12 +4413,20 @@
       "sha256": "bf08c4b6eda00191c372ce132fea78055a0e67a48915b9c27a728aa403e4176d"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/5267430d9fc631588c0f.scores.npz",
+      "sha256": "20a9e3e704ade93607db7797a8208506f4dd84dcbff1c2928bde585051e3577d"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/5d1a97640f55c6493178.json",
       "sha256": "b415f3b000b1e057516bb113a3ebe467ea942ae328d5a96fd4f195e12b9b2092"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/5d1a97640f55c6493178.npz",
       "sha256": "888ca5cc9a1b4745a9086a19e55f5137f1dac12649bc62397820a56172a089b1"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/5d1a97640f55c6493178.scores.npz",
+      "sha256": "c477b7a6d5a9700b216f267f11a4674a99d34fdcc5430654b55addc801155d16"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/61f204a24927fd6cd350.json",
@@ -4333,12 +4437,20 @@
       "sha256": "afd92ce3d8ddfebd8171a6aea9178dfdaf84e326cf9c6854b4f35840bd861e3f"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/61f204a24927fd6cd350.scores.npz",
+      "sha256": "706507354bf63588166cc6a5d92bf79faa27d8bbf7e9106d8f06bbf1648c49e4"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/6680a7e756ff4aa4ac20.json",
       "sha256": "0be3482c9911af6bfc540fd37e75ea45a80716c230305f3dd703054fd76a4442"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/6680a7e756ff4aa4ac20.npz",
       "sha256": "c8f1500abd85e84b740cd4e0584163d4eb11229dd5ff01f6c10f175a893ebfb7"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/6680a7e756ff4aa4ac20.scores.npz",
+      "sha256": "2f149280a8bb8794645d0fa448f5a52692524397c7bfb8dc4723a3e65cf74869"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/686ca8631ee575131ecf.json",
@@ -4349,12 +4461,20 @@
       "sha256": "728341d9e791b76760b7a1037fe6949466c2f85db0173c4595d8f6ee811aac63"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/686ca8631ee575131ecf.scores.npz",
+      "sha256": "ddbe648cbe5ef07ad2ef40002ea003954753ac8e67a8185d119e9a4ce97435ce"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/73e553e22900046fd379.json",
       "sha256": "f1c3115a054904edbc69c15e907cac22b2366a3df9d2367119b6953b6a61a3b6"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/73e553e22900046fd379.npz",
       "sha256": "be042b5da7eb6e7646b74a3484637ba5728b5d6abf26f3ae24e3e254b6faa384"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/73e553e22900046fd379.scores.npz",
+      "sha256": "16aba26c95980143d2a16bf121b0bb72a91ac8ba109109d9abbffb78cccf530c"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/75c86bf8c5d9a9ebdfe5.json",
@@ -4365,12 +4485,20 @@
       "sha256": "251c5b2149b0510659b18b678a071351ff6b3e30fbd3fcbc459868907203c167"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/75c86bf8c5d9a9ebdfe5.scores.npz",
+      "sha256": "e3f0ae70d21c3eec65c167c294ed378a996f8bd86816dbd792abe571a4b5c9a4"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/809763c0a82dc9db9a99.json",
       "sha256": "adee88b5b7cb52acc8a7eda38fd6b4de74ac74be05a12a9ea616c99d84165cf3"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/809763c0a82dc9db9a99.npz",
       "sha256": "223133d64bd07845facca47d9ababfeb6fae76416cca5eb91a2d39963bfcc309"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/809763c0a82dc9db9a99.scores.npz",
+      "sha256": "58dbc8d21752a1e7a0f82b3fb32d0b66c889603fdb48ea592eda5b9d60b0e13f"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/843f2616cc838e2765f8.json",
@@ -4381,12 +4509,20 @@
       "sha256": "d54113b5db15e948aba93ff6fddc3223f84ce79a0fed397690531643f8c19f3b"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/843f2616cc838e2765f8.scores.npz",
+      "sha256": "46084042756bd02022834e6892f3d8a05cefef5954a2c15e9b2bdfa478383ec9"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/87178cfc1efeb1cd089e.json",
       "sha256": "4c0b4b21da585c2227c20a693995b95af2b3c9fcfffd0ea1127d958892d4b251"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/87178cfc1efeb1cd089e.npz",
       "sha256": "146fec3a31f42c5cc184fb7a33f40c4aef82554e6990c1e94ce93ae3f71abaa8"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/87178cfc1efeb1cd089e.scores.npz",
+      "sha256": "e138f277dba95b9812098d331dab292ddac0b53929152fa57543868384947dfd"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/8a29f6957628d73a577b.json",
@@ -4397,12 +4533,20 @@
       "sha256": "f6b74bc54b03cb8747748ab30e0eaad38fa1f4a2a4df5dced4fed945f6987d0e"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/8a29f6957628d73a577b.scores.npz",
+      "sha256": "29318d88580c35e53eb6dd90c042151464c58b753634fd238edfa056454fbc2c"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/8b34bad6257f209c00e7.json",
       "sha256": "e6ee18d44d1d340a24b50e86b42414b5b5a03c32571fb15e8edc7151436a153f"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/8b34bad6257f209c00e7.npz",
       "sha256": "b7cf3de27286a8e9bbc6c62b51bdf5fde16988468b5b257f6cee9c87e77d4786"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/8b34bad6257f209c00e7.scores.npz",
+      "sha256": "573716eff19bf6ac969077924ec853ff00d8565a89c91878e957012787829a1e"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/8cad40bc3ed87b352cad.json",
@@ -4413,12 +4557,20 @@
       "sha256": "ce87f4850872005630f2157cd84fb6102f92aa1a5dd847cbe0d383ecec2da3f3"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/8cad40bc3ed87b352cad.scores.npz",
+      "sha256": "61b8e49f6d9b7b3c45645ad92b617b914b1b296ea19c11b0500e414e7eb65e46"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/947c9c06b8545788476a.json",
       "sha256": "62bff50a6c81ddefb7be944f3dc0953a03955ff67886d96c4b182ac4e62ce51e"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/947c9c06b8545788476a.npz",
       "sha256": "a9d58a8f16e6bae85f162195e24bd5a69a1213055cd12d0fde5cd464391d57da"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/947c9c06b8545788476a.scores.npz",
+      "sha256": "4b1b4bec968186e723f40b8795bad023bca2eb1f5c974204b77d9c0727514f5d"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/95770a1be1afd7c011aa.json",
@@ -4429,12 +4581,20 @@
       "sha256": "78700cd72e585559c6c0ca3d5a8fff445fcbaea34bed9d2072405a2fa9a489af"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/95770a1be1afd7c011aa.scores.npz",
+      "sha256": "1b4bf3fcd298a189ee53345a2377e14c6ca8f8869441d2abdee7b5484f53024a"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/9d3e992bce876e4448ed.json",
       "sha256": "0758bc660fe826de99d0e2204e10016c4efb73acedbc0427b6ed26f28a870e24"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/9d3e992bce876e4448ed.npz",
       "sha256": "e7deb20247759f629e4fcd1ea6915c2162da3d841425115ea603310e9a8dd6ab"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/9d3e992bce876e4448ed.scores.npz",
+      "sha256": "328fddc1a6bb65b514c09ef1405d97f431b20546949b090f0efc290eabad66a9"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/a0d47a8dc125dcf88a41.json",
@@ -4445,12 +4605,20 @@
       "sha256": "616a029f79702582fc701d1074ce9a17f0d47c2262157192c53b8332a2c7699b"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/a0d47a8dc125dcf88a41.scores.npz",
+      "sha256": "66b9928c0f721004a23724284f30078aa5a5b006cc4a29c628f1dbd181640b1f"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/a1c0c47add9d52c1095b.json",
       "sha256": "b2a9af0346001a9b18f13e99dc6e74729c44ae21782b0ac2d0f654d72ea1bbec"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/a1c0c47add9d52c1095b.npz",
       "sha256": "bf386dfaac7776aead11ee15ad8df6a615ac8a23acb89e7a68ec725cfcd28135"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/a1c0c47add9d52c1095b.scores.npz",
+      "sha256": "4e4021786148df8472e3c3bf7226ef5a43411f7df55ab20f9f638e781410a91b"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/a1d76353e63921b45ef6.json",
@@ -4461,12 +4629,20 @@
       "sha256": "a0704ed423908a74861b2d2f69af0ca78ca75e6fa0321e5a6c104b7828feed8b"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/a1d76353e63921b45ef6.scores.npz",
+      "sha256": "f92ee90d71013bd7c1ee7795a006c0aa1718cd06bac64d41003d9d1a6477f430"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/acf3a5ba1dfecff2a6c7.json",
       "sha256": "6add1baf4db50d1fc741a53c876e1ca8da27f8f7e99cf6f108ec825526c60f21"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/acf3a5ba1dfecff2a6c7.npz",
       "sha256": "1190ad0db378738a54acdd6211e4fa4ea9fa203a757961347acf2fc23361926e"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/acf3a5ba1dfecff2a6c7.scores.npz",
+      "sha256": "96066c3d28174768f3bf91d943342e732afc3732e460647042e4c589ac2a0fe0"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/b165c6e502a62910d16b.json",
@@ -4477,12 +4653,20 @@
       "sha256": "72f4b12079fa2a355933ba3928e3c3193d2b26b9bd2f2a62eb87eb18df496c5c"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/b165c6e502a62910d16b.scores.npz",
+      "sha256": "b73026068df19951c4727382446b5a1c3a1e2f797e9258efd5a0cfa96c4bedeb"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/b27bed247804380ea061.json",
       "sha256": "0feb386b3204bb0385c4cdcd96c3d1061d2f66936d009f578cc71b5b307e748c"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/b27bed247804380ea061.npz",
       "sha256": "1e84c65204390091dee3040d3668b7c6f97d3143f62d7bcc13c628373827ff2d"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/b27bed247804380ea061.scores.npz",
+      "sha256": "39d45990af6a47a077e9407bedcf9a98fc76e81f77a3e688e041155d8deeea62"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/b96ccfbc50c2e14c88a6.json",
@@ -4493,12 +4677,20 @@
       "sha256": "7e9b01c47558cff713a3f7d93ea70b41422286edcae6e0370bb430d39d395831"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/b96ccfbc50c2e14c88a6.scores.npz",
+      "sha256": "3ba6dcd4fa201af93c275a419d2c4860deabf994a1a235ba0058658c5872a223"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/bb4e6175247896bf6652.json",
       "sha256": "f7a2c30c3daf306483f685b621febd6f295fe2526493ea21115b94224ee0310c"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/bb4e6175247896bf6652.npz",
       "sha256": "d67320620cf3fea0f17ed25b0c53b9f1b0ea9f6246bc8e03f5947427c0655e5e"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/bb4e6175247896bf6652.scores.npz",
+      "sha256": "4ca3c4f780a49ac0ac1f6cd2305f842c9dd643ab1b5aeac5339f558e2ba4336c"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/bd1dc2338304ee4fcc5f.json",
@@ -4509,12 +4701,20 @@
       "sha256": "189dd484b15446fcdd87bd64f8b3e16f4b080f05709e7493b16ce54dff161a8c"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/bd1dc2338304ee4fcc5f.scores.npz",
+      "sha256": "a7754aa3bccf84a528711000d06d9bc21812d6cbc88f7e71322613715cff3e1e"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/c0c10369f6fbf98ac2d2.json",
       "sha256": "6f8f827b2b24bc086e6b40c8585d11270e1c5793498aacfc9b09dfa50a09eafc"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/c0c10369f6fbf98ac2d2.npz",
       "sha256": "4b773d0f5feb1f3e9e8b8d73a0ef9dadd66d215cdf41ae8663d41279562a410d"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/c0c10369f6fbf98ac2d2.scores.npz",
+      "sha256": "69a155bf05002b31c694a021518c73bbc7065ab4174cdedf0f546561338234c3"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/c6194a507b44c3861957.json",
@@ -4525,12 +4725,20 @@
       "sha256": "26a1fc448ddcf8d261d057a99a9838ae29f381d1fc3306b51e65ed50f7e3b9fe"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/c6194a507b44c3861957.scores.npz",
+      "sha256": "2bb1deae42b043cc42fcb0886dacbf8334d86680c06c69003480cc62da8cafab"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d0efb4b7d0df2bb83d4d.json",
       "sha256": "30ee201a869ce7f133d3a9649ba30df82b95956b899855f1141df56ac75d2dd7"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d0efb4b7d0df2bb83d4d.npz",
       "sha256": "c6ce7cd0d91eccfdcde57d095e56306b6b9163d455b54ce9d8ad3c6609767a43"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d0efb4b7d0df2bb83d4d.scores.npz",
+      "sha256": "37f4641a8cc5a12b87a94295b793480534e657c7eb23b872911cd93b03c60852"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d0fce4ffd8b01b32ca2e.json",
@@ -4541,12 +4749,20 @@
       "sha256": "bfe051d5297eb62bf778833f25757a9a32239d1d30065c8aa98985d513cbe48e"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d0fce4ffd8b01b32ca2e.scores.npz",
+      "sha256": "5b9bd1b8d1a44cf867b3f5509fe4fa5aeeaaa7ff91dfedbf62d102bf65cd4503"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d1928a3aa57312a4a0f6.json",
       "sha256": "382b8623a840a65036ebac0eac24be64f1f476d5100c4e70aaf886ae899e19f8"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d1928a3aa57312a4a0f6.npz",
       "sha256": "b01a5b45466c7351b0748413b8ce5414c0e3cb98b6d46f397dc3e735a9965379"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d1928a3aa57312a4a0f6.scores.npz",
+      "sha256": "704427e568fb26f14fd504be26a27dca8577b07459fbc4f390d9c6d12ded1bd0"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d3c9062d9dd19b87e18d.json",
@@ -4557,12 +4773,20 @@
       "sha256": "a5ece01d265dbf71c7c2becd3cfce297aa97287d10b00da976ea89ba174f91e2"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d3c9062d9dd19b87e18d.scores.npz",
+      "sha256": "82c014c2e58cee42211e5c0c7dccaaa7e0b0c349cfd549e18480ed9f556d267e"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d608e03e721c761b4e32.json",
       "sha256": "43ee20ad5378b9b553995bd14e8dce8e967299dd712b1e4a0dfff4d7fc98db76"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d608e03e721c761b4e32.npz",
       "sha256": "efc0bdbdd816049dc676c946d3d90b22e20e4d5cc57937240f76358c5f27d681"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d608e03e721c761b4e32.scores.npz",
+      "sha256": "89bdc8cb5d8f3fc90efc7bef5131be714113ef7b205e8724a59fb9fede9ed835"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d768a55a4e2d7b34b6e7.json",
@@ -4573,12 +4797,20 @@
       "sha256": "fbe294d64a6130269d92721d1976bbc2a0981653b3d106bc9a382366eadb5187"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d768a55a4e2d7b34b6e7.scores.npz",
+      "sha256": "88e466c7b801867c807368e1c20bd8c56359d2754cf4495850f04ea5ac27eb2b"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d9997f29ddb5e0afced1.json",
       "sha256": "32a4176e6f505b9feab20eee201389bf1bd71af4dbdb502442574c17de8b3cd4"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d9997f29ddb5e0afced1.npz",
       "sha256": "84383723d402b010541560ade9ef1207dc9acbeeafa9a5f45a99b555f96504e3"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/d9997f29ddb5e0afced1.scores.npz",
+      "sha256": "2fe1651b18559d0098218da57b433865de66ab500b6c4d1ce0f33a2581f9bf49"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/e07bba936199b0c4abda.json",
@@ -4589,12 +4821,20 @@
       "sha256": "a70b4fb7772c64addf5fa04da9cc7351e3c5b66f29dd171884cb6c9995a6c720"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/e07bba936199b0c4abda.scores.npz",
+      "sha256": "cd320a724ce986d71b1344f76d1955f2e223f27941cb848c04527e0fbe441498"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/e41d3bdbab06fa0d4698.json",
       "sha256": "7aae2c48d2dbd4503b7954f37ddd0ba35c19408ecc7cf16194ed338881fc7794"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/e41d3bdbab06fa0d4698.npz",
       "sha256": "3b761396beaa92427bf0f1a45a6b17da079e1a1b1cd630fe7ddf370032037700"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/e41d3bdbab06fa0d4698.scores.npz",
+      "sha256": "f677f8a5a72c0924a872e90ee6ff6468060e01cc11ff99ee495129e316b8768f"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/f066d88e4107f19d501d.json",
@@ -4605,12 +4845,20 @@
       "sha256": "82bfe943eef473ea93d9b77cd2f24685153d976261a6969e6d5e8690e4e20010"
     },
     {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/f066d88e4107f19d501d.scores.npz",
+      "sha256": "f2786de6ee857b4a36a2f5bac729095324faadbb002164dd0c10831f95ed44c3"
+    },
+    {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/f9e69b5b6aaea7c62658.json",
       "sha256": "f2d93593ec9cf33512944f74326f3b755b627b96c5ba947606f130574fd17a71"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/f9e69b5b6aaea7c62658.npz",
       "sha256": "dc52cf5845c2535aa949c18aaecfa032e3eca39f97483aa590ab489b16dd3b50"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436/f9e69b5b6aaea7c62658.scores.npz",
+      "sha256": "6604a867a5bee924c9906b318adab81f4f00d5f17231912768c72f6c5cdab341"
     },
     {
       "path": "/home/lhshen/xtbflow-runs/review-align-20261009/training-b3-6f8ab54/shard-0.json",
@@ -4645,9 +4893,10 @@
   "scorer_sources": [
     "75cd0cc",
     "d414174",
-    "15a65e8"
+    "15a65e8",
+    "3268573"
   ],
-  "source_commit": "62ecad0c006c21deeb2d587a9daebc33a837ab2b",
+  "source_commit": "08a4203a619b70a1bb4585e27648cf132797c30a",
   "training_events_recovered": 2547,
   "training_parents": 386,
   "training_sources": [

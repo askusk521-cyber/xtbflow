@@ -238,6 +238,11 @@
       "bytes": 4027
     },
     {
+      "path": "configs/review/open_world_o1.json",
+      "sha256": "45409557e05ba000d2fc6835dc1acf4358d7e823564b962c0d5eb5ae4389e867",
+      "bytes": 16904
+    },
+    {
       "path": "configs/rules/core_v1.yaml",
       "sha256": "a4de309daad0bab9d502028976cef7b57f91691de5895ed6d4dc1d1c764b2941",
       "bytes": 903
@@ -671,6 +676,56 @@
       "path": "docs/evidence/reaction_qm_coordinate_mapping_provenance_20261002.json",
       "sha256": "094cf902dc6adf7016d994a89b0b12c3e0456c3588b99e08fc92f3826c4880cb",
       "bytes": 3702
+    },
+    {
+      "path": "docs/evidence/review_open_world/REPORT_ZH.md",
+      "sha256": "196f86ef36c052b8ab4d34ae4dc439db8344a280f1c38f182ca94feb6764fdaa",
+      "bytes": 4321
+    },
+    {
+      "path": "docs/evidence/review_open_world/SHA256SUMS",
+      "sha256": "bf50dcdfa1f6986e84d1661fec668079bbd3ec9b780aef72119c696a91f47dfc",
+      "bytes": 735
+    },
+    {
+      "path": "docs/evidence/review_open_world/SHA256SUMS.remote",
+      "sha256": "b064716db8f2a0a45b99c63bee4f0d873a76071ff74d8bb48d7467a2d3bc6ed1",
+      "bytes": 24705
+    },
+    {
+      "path": "docs/evidence/review_open_world/STAGE2_PROPOSAL_ZH.md",
+      "sha256": "ed8a3137e49f81546031a109f7425d3de8e6756f1ece73983148193fbdaa66b0",
+      "bytes": 2081
+    },
+    {
+      "path": "docs/evidence/review_open_world/VALIDATION.md",
+      "sha256": "c4a9c043d0be6b9301047b10543ce28c90a29eea364aa754ab5a6b50f1c0d40d",
+      "bytes": 2638
+    },
+    {
+      "path": "docs/evidence/review_open_world/hessian_check.json",
+      "sha256": "4f22a3ffecbf0d3da1004eb06cb610e091ef0851eb13918308f5d497dd2c6099",
+      "bytes": 212
+    },
+    {
+      "path": "docs/evidence/review_open_world/manifest.json",
+      "sha256": "2fee416e5a2463b88f3b30773183e780a2c4041f0476198c475d37a1deba044e",
+      "bytes": 31156
+    },
+    {
+      "path": "docs/evidence/review_open_world/pip-freeze.txt",
+      "sha256": "7240e406c3fcab4dce748721528716e2ede2ad117f64b96fe85be8a058fedabb",
+      "bytes": 1634
+    },
+    {
+      "path": "docs/evidence/review_open_world/results.json",
+      "sha256": "1953190c3cbcaee5d84fd85ce3d2d8339a85405dd9db185218b07fed60c80fcb",
+      "bytes": 36755
+    },
+    {
+      "path": "docs/evidence/review_open_world/verdicts.csv",
+      "sha256": "732eb039e3a81944367981798f79bc4adb9166bb7bc009988c589a3cd054c2b3",
+      "bytes": 15566
     },
     {
       "path": "docs/evidence/rgd1_hdf5_only_ids_v1.jsonl",
@@ -1111,6 +1166,36 @@
       "path": "scripts/prepare_spice_openff_pilot.py",
       "sha256": "9121a7e5cef736d6459b5dc3400465c5924d678ba1bec4963335cb8b197c0010",
       "bytes": 17349
+    },
+    {
+      "path": "scripts/review_open_world_analyze.py",
+      "sha256": "47f56c7b7fe43dec8d83b92210144526750718c4dd742a8b1c9edb520f58d3b6",
+      "bytes": 2964
+    },
+    {
+      "path": "scripts/review_open_world_manifest.py",
+      "sha256": "d699010b3623c97e12dfa990c32b8ce58c5fac8f9ba52715559b60be64f205d2",
+      "bytes": 2087
+    },
+    {
+      "path": "scripts/review_open_world_report.py",
+      "sha256": "b601edfd972996f28fcf5b25b72c29f9b91f22872671eb92306d24faacfb994c",
+      "bytes": 4483
+    },
+    {
+      "path": "scripts/review_open_world_run.py",
+      "sha256": "38594360c9f450f67ef327575f14bea1c40e7bae9655e508cd8ef461787d15e9",
+      "bytes": 3130
+    },
+    {
+      "path": "scripts/review_open_world_select.py",
+      "sha256": "db3ef4bbc7695d61c1a95e7390aa1c11b272ace1eab65748d67ab5896e128bd0",
+      "bytes": 2884
+    },
+    {
+      "path": "scripts/review_xtb_hessian_check.py",
+      "sha256": "8d53f32e23235e72e08ead1c6cf6a69c83a18ab2b636de48ae2eba6328f74592",
+      "bytes": 1004
     },
     {
       "path": "scripts/run_dft_da_blind_rollout.py",
@@ -1728,6 +1813,11 @@
       "bytes": 1942
     },
     {
+      "path": "src/xtbflow/v1/xtb_chain.py",
+      "sha256": "07f5932824fefdb158e27800f6f59cdf92b316ed67dbc9cc14dbcab7b09e14a0",
+      "bytes": 5531
+    },
+    {
       "path": "src/xtbflow/validation/__init__.py",
       "sha256": "28bde676c7adc27be4ecab057c647000e060a97fc6e7503672fcfaa0fc92959c",
       "bytes": 711
@@ -1931,6 +2021,16 @@
       "path": "tests/test_reaction_qm_coordinate_mapping.py",
       "sha256": "2994a7429aaa7d854d4f527e4dfd1f3e76d2bb17ecfb0934d19b22068feb9bca",
       "bytes": 889
+    },
+    {
+      "path": "tests/test_review_open_world_analysis.py",
+      "sha256": "fd00267d9593db23e2939c580e48417d181bbb7a16c27a2337dae6fb25e1bf41",
+      "bytes": 540
+    },
+    {
+      "path": "tests/test_review_xtb_chain.py",
+      "sha256": "8c8f68be75653232c9e878c55c4e0fc68b9a362b766cc2a1d48fe2aeaaa133e1",
+      "bytes": 329
     },
     {
       "path": "tests/test_runtime_budget.py",

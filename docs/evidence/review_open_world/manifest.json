@@ -1,0 +1,516 @@
+{
+  "analysis_commit": "7521aeb1778a6f0dde7990f5c663a1153ae11b83",
+  "chains": 120,
+  "completed_chain_wall_seconds": 3005.3117486082483,
+  "config_sha256": "45409557e05ba000d2fc6835dc1acf4358d7e823564b962c0d5eb5ae4389e867",
+  "cpu_direct_authorized": true,
+  "dirty": false,
+  "files": [
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H2O2/rxn3478/verdict.json",
+      "sha256": "2b1b1607aa5348745689ad28c8cd3a113be1a36475a51f22b73dd7bb0fafc6ad"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H10O/rxn9368/verdict.json",
+      "sha256": "afb909db4ff328af6900f8a803f557f9706d350ff5754ead352fe2bf936e075c"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H6O2/rxn1307/verdict.json",
+      "sha256": "5d4998ba61afd4325a9d76a2915af6909a8553c6eef364c25aa4a0149711fd6a"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C6H8O/rxn7721/verdict.json",
+      "sha256": "53a40a6fec249f6b2141930d7265e3bf503249dabe6caa562444b200b6565ea9"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H10O2/rxn3546/verdict.json",
+      "sha256": "62205a5f07ae1b9237d593fa1179e2ff27991f2db0b6e76f89ada46a121c1dd6"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H3NO2/rxn6520/verdict.json",
+      "sha256": "58e2c8b59a6030ae06bbc03027df70c1943e2b0393319e3825003e0464f3ad0c"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C5H8O2/rxn8399/verdict.json",
+      "sha256": "d5f6d0930289ea987af237061310f7f994c0a42b53a3aec764a5bb4b62a1ce32"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C5H3NO/rxn7069/verdict.json",
+      "sha256": "7d653e405d5cf931553a59c3f372108e2b4e83c1060444e398b59dcd2425fd1d"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C5H6O/rxn9332/verdict.json",
+      "sha256": "79b0de58d1acf54a3e9f4512f48a3e0010da5f25439b155bc47d2e7856cf543a"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C6H8O/rxn6374/verdict.json",
+      "sha256": "0db76e0e86d9450d55d7c375afa17f62c75d134e9b7f261b413da7c2be3b4e15"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C5H6N2/rxn7776/verdict.json",
+      "sha256": "64943abd9eb0d5d2d10ef57125eba23462eaf8ba9379febd51060d05a3543946"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C5H11N/rxn2210/verdict.json",
+      "sha256": "bae27dfcf325cd17792ff46938da9b99a9b18c0c3f540579214e30e8c66a210e"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C3H3NO/rxn2914/verdict.json",
+      "sha256": "0233e78e59cc433be28bd8f8664bde365591141d3e7a762722f2343c91b3c02d"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H5NO/rxn0512/verdict.json",
+      "sha256": "aabd10bd0d489c9e8b03b925f786e37c451c60a64dc8fad38fc6cd0c5b06231b"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H5NO/rxn2333/verdict.json",
+      "sha256": "475b002ed2720991aca8722fe33ceedec7b42a4dc8e8acf8059f0f85b0b3903c"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C6H8O/rxn7964/verdict.json",
+      "sha256": "45bb05c61f3303e24774c48dc8fe5c2ba210ebae00ef59dc8f90337f629c940e"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C6H10/rxn2905/verdict.json",
+      "sha256": "d34f4aa0807a569ad0ba1aba9bb731d04e332949518db1dd3237a01a3847d80e"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C2H3N3O/rxn3195/verdict.json",
+      "sha256": "b699cad10c1525ab9d704012115e5f0e44b16172a0a154049d76788e979d278b"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C5H7NO/rxn6236/verdict.json",
+      "sha256": "ebec97b7d454989715d0bf5cc9ebdda9a848bc19623c1e5b8d6699fe519fd57b"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C6H11N/rxn5004/verdict.json",
+      "sha256": "8148cb6334f208bc1a133b57bb4e21c1096ca1a1f13005e5cf03379192c6c3f9"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H8O/rxn0255/verdict.json",
+      "sha256": "770e5162d14a27f10dea7280488aea3805d80f74ae801c8de5385e306b6989b4"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H7NO2/rxn7920/verdict.json",
+      "sha256": "aa774ddca925121ec68b15b80be147cf1239e4ff520365748add9582c98ee144"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C5H8/rxn0763/verdict.json",
+      "sha256": "7ee4f8ced2aca4c734ae4737e47c95b0064f404295389b0f45b05e957dc0e293"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C6H10O/rxn5917/verdict.json",
+      "sha256": "7cfe7402b340e22148a2e907e4224d097fa7bc50529bd0f96b563b619261d57d"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C5H6O/rxn1901/verdict.json",
+      "sha256": "33eec58a3eb35d14d375d395ebc62cc042ad72f542b1811d2701cef1ba688c66"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H8O/rxn2388/verdict.json",
+      "sha256": "124fc1c63a9cdb43a543d0632708bfb6f3b7d417ffe135ddc826e28520e225a6"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C5H11N/rxn8968/verdict.json",
+      "sha256": "aa7692e2da18afcf65cf022d53b070b2265ff72ac6e0e32d8d3fdae57834b0a5"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H9N/rxn9345/verdict.json",
+      "sha256": "2069ead6ffdafc93266999a356b14d95fc2dee9e8e0006a95cf090ca697e0a99"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H3NO2/rxn6595/verdict.json",
+      "sha256": "ca9945781dfece33e51c2088fe7768207903ccd09d10c860d76584eebf9490f2"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H6O2/rxn4464/verdict.json",
+      "sha256": "4c0ed34b3d729bbdaba4ea5190c64f37cbca51e30bd0ea2e0b0e4e10f1ae2db5"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C2H3N3O/rxn3459/verdict.json",
+      "sha256": "84ce2fc99924074d72ae282c92a084bb3bfad2e16f92a544a39e8fa0a3462fa4"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H6N2O/rxn5102/verdict.json",
+      "sha256": "267c5899dedbcb4210be9b49d2e4703c2bb3a11c7c68d1844dce3778b93545ba"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C2H4N4/rxn0302/verdict.json",
+      "sha256": "1399be9555346da086616edc718feb19fb27ab5cbf8d3c187775161911451bc7"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C2H3N3O/rxn4176/verdict.json",
+      "sha256": "b493dd2d977d7d17e8772ccb29e4dbaa5c37a25f1f93e63ba7eb41839cdb6199"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C2H4N4/rxn0340/verdict.json",
+      "sha256": "af4a002019edb0ef36743047eeeeb55e20a8d1980867b0665acb6eb03474fdb8"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C2H4N2O2/rxn1325/verdict.json",
+      "sha256": "e5eb4067f6cd1587fba7f4e0ba004aa393bd28ce7fbc7efdb947f1ac8373defc"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C2H3N3O/rxn0000/verdict.json",
+      "sha256": "fdee18dc7a62b82517d97ef44b571cfe0cc86f1743ad814006774678959f7f5f"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C5H8O2/rxn5446/verdict.json",
+      "sha256": "ff3b1877fd5723fd79d011e36186ccee4f1a878bb8ced8111896ad53cc985947"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C5H8O2/rxn6529/verdict.json",
+      "sha256": "5c3d9bc743e18daf28559c8beee9493ed972a05b1d6bc8a956941c9fd97c8067"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/BASELINE/C4H6N2O/rxn8468/verdict.json",
+      "sha256": "738301dbee5ed31bbd01e43ca286682cab354958c256ea694978ed10b0affef3"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/df87c4af439bf126856b_anchor_e836478f3910/B0/s0/p9/endpoint/verdict.json",
+      "sha256": "f97b92598da56356b4428140af06a630f5c6aa96da66e4dad32620a141348a85"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/2bd4d7187c1b806a4321_anchor_78ac41d9222c/B0/s0/p59/endpoint/verdict.json",
+      "sha256": "7d99e5d3930b544e8c7aee2123980f408e52d09e784461c23f1d26e2369f7e48"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/bff0aef391d6eb124693_anchor_045c2a4c3b3e/B0/s0/p33/endpoint/verdict.json",
+      "sha256": "3424343849faf7c2f1ddd1a7032ffe569f05c4e848120a84528169f8a4d1c021"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/c9f30c051784a84d74e8_anchor_dd1e1d91c53e/B0/s0/p38/endpoint/verdict.json",
+      "sha256": "23d47dca614dca4a5f0d33a77caa4e7e07af27c74eed645dc58c57debc21a714"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/6c9e7003ade9f81d3cde_anchor_395419f953cc/B0/s0/p20/endpoint/verdict.json",
+      "sha256": "014248816f13aa815c9b51880206bed64947393f832aab4eb789496219350872"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/613b6b9cb8cd989e3930_anchor_fd73058443ab/B0/s0/p58/endpoint/verdict.json",
+      "sha256": "ae4996fb87aa6ca2f33e582433c65c46c6603180b65fd496317c33e335b07090"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/06a981a4a18d5123650e_anchor_5a9da176a200/B0/s0/p11/endpoint/verdict.json",
+      "sha256": "0bcfe4216460db353797bea3285f1795ae490461649a8257f0bd5fee6c395468"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/3693f2be75f7e78e10df_anchor_dd492780b8dc/B0/s0/p54/endpoint/verdict.json",
+      "sha256": "007be0a027bc675f9ea8eec02d6bb2b2cdb778ffefee392a2e8da42dc37225f4"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/164edb135c14df5fc8ef_anchor_118df23ef176/B0/s0/p14/endpoint/verdict.json",
+      "sha256": "29fe8e3747b85815e77f579efa69796eb24c5fe3c32d4aaddff26bd5b245d814"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/139ebb58421a75a21621_anchor_ebf4e7431271/B0/s0/p22/endpoint/verdict.json",
+      "sha256": "5e491285ac6266961fd33692754abf9cf7917cd0aff72059e903d3434622d39e"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/18115e1b6d48bae6e848_anchor_2902b49ce199/B0/s0/p56/endpoint/verdict.json",
+      "sha256": "2e6858f015092e612a6943d1920f4ed3f520da0ee95fd1f35795981316b0f5bb"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/cf39a21f2ef809e09427_anchor_41e5d4e73c61/B0/s0/p39/endpoint/verdict.json",
+      "sha256": "d6ab731f021142287f6ccf4fd30221deeca3373b7996cdc6b0f25fe260dbb965"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/d7c2d32be5d3d1a71498_anchor_3723164a90fc/B0/s0/p11/endpoint/verdict.json",
+      "sha256": "98e3667e720cde6e806cf7b28079dd79b6f4df39b4ddf7f3f80aaf3353f51389"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/36773d8e7aab7224644f_anchor_d50fdc4e7694/B0/s0/p58/endpoint/verdict.json",
+      "sha256": "4004984e0d6ff65b289abcfc99314437872f89078ea2c7d6fecb5fa1266176c0"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/3795486124b2b70efd27_anchor_2f5091010473/B0/s0/p61/endpoint/verdict.json",
+      "sha256": "26f5db19efedb55abe8da148f28675cf90ee21a074edd033b93c1f07856398e0"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/5a16c51cb5a7e3fb1149_anchor_d5e44190a97c/B0/s0/p28/endpoint/verdict.json",
+      "sha256": "20360a94396a3612eccad5f126f52e44b21c6b7a79f9692bb22a3366f821456c"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/0109798be640476374f2_anchor_62054c321159/B0/s0/p61/endpoint/verdict.json",
+      "sha256": "425b1f6cbf093a2185342681a310180df0059fbb3fffb46ee6be3561bb49b452"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/37ee97653805530aec63_anchor_7564b1bc3ed2/B0/s0/p55/endpoint/verdict.json",
+      "sha256": "105de067d8742a3b47e794a742bb72ef7b9bd15f628b83544fa59853f05f4995"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/06f02050ef7bf1169928_anchor_e15736b65b91/B0/s0/p24/endpoint/verdict.json",
+      "sha256": "b012e93fa1512b0828faca65731dac301b1dbe313dcf08c3da7fbd9f903e936f"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/KNOWN_EVENT_GEOMETRY_MISS/761ce8db7b595eaf07f6_anchor_48b1f8c9a853/B0/s0/p49/endpoint/verdict.json",
+      "sha256": "d1a12574f719171b868fbc488ee366fd2f6564305f04d361b1c86851aa547cbd"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/dbbf15c07b5a6a19ba49_anchor_31913c8ea3a9/B0/s0/p3/endpoint/verdict.json",
+      "sha256": "b7b2baaeddd284c1eb5fcfe6bd3327fe5666544b3dab73e5d394bc38e06e2ea9"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/b9857901a6575f45ade0_anchor_a5c99f10cbcc/B0/s0/p50/endpoint/verdict.json",
+      "sha256": "ac2a6ac6d4b2ad1aa95a9b067e8e22723f1c7f5a4dae4def141649372597a8ef"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/1dd6e1f03fb1adc3044f_anchor_e899bc83f4f1/B0/s0/p61/endpoint/verdict.json",
+      "sha256": "e8c78bc08c259b4e99ce9f87a70ede53b58eba99643c30c58585e16897e8e3b4"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/86e8b6f43f20cf1e79e6_anchor_00c3b8198a8c/B0/s0/p40/endpoint/verdict.json",
+      "sha256": "0ece68561fbecd488f4fefb78515965544a88aed127306b11dd1e8b6f04ef105"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/1f26b917e1b972ad3fd9_anchor_308e614b9b64/B0/s0/p31/endpoint/verdict.json",
+      "sha256": "7d7a638ed3b0468385e8298d2cdfbf8dca775d4b49dd6bb39df79ad30d92d6a4"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/b7fc38c46e18372646e0_anchor_14427c2a54a5/B0/s0/p37/endpoint/verdict.json",
+      "sha256": "1493bdb5f66a5ddc7677dff61b399136688aa8d219c3efcdf0fd295f0ad0e34c"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/8a883642220d4e0500ba_anchor_b20033b146a1/B0/s0/p4/endpoint/verdict.json",
+      "sha256": "6a78d869f00c41dab19087e553e8e3c4cd6cf1ea5e696e086ad7833a2ab67f01"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/059bf679a499aca9a05c_anchor_b21f58fafc9f/B0/s0/p33/endpoint/verdict.json",
+      "sha256": "fa3b3c4866b51a7b703f4446e2d0580c8f1270dfe9f9293397e22dd3983f7f23"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/281779a5ec203c658539_anchor_c7417e14390c/B0/s0/p11/endpoint/verdict.json",
+      "sha256": "e702a51ce093dd29cf4d0c6f61be6fa4c64607e8826781bd22cbe431e3205c81"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/490a49d8326b3868df6c_anchor_a2610c0956a0/B0/s0/p41/endpoint/verdict.json",
+      "sha256": "31e926acc63d6eb467a866205dccba51a7f9ed0c7a721fffe1d31e3d0b2266fe"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/8962b71ed3a7a171af9e_anchor_f8a25a150927/B0/s0/p19/endpoint/verdict.json",
+      "sha256": "179f7138def77cc02bd50f8008912b5190d95c8cf70e72be54e46bf5f0c2a100"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/a9460cfa7d3e4acccdb6_anchor_3d022ea3117c/B0/s0/p25/endpoint/verdict.json",
+      "sha256": "c1175e3432d612f0a67e03ee9e21368a895fffa2becd3a050aaf391971d43f3f"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/fcb8f2fa182b960cb7c8_anchor_6377e3691a5a/B0/s0/p48/endpoint/verdict.json",
+      "sha256": "c2998772406890b5812b351cbddeb9d7a4547d16736d45f3d5c28bdc1f1ec457"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/cf39a21f2ef809e09427_anchor_41e5d4e73c61/B0/s0/p51/endpoint/verdict.json",
+      "sha256": "ed041bb4b2af529f20aaea634e82e9f3faf4d51c80923c69ccd086cff491dbeb"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/b6a6acf47c59295c4fd0_anchor_e31b0f68d34c/B0/s0/p44/endpoint/verdict.json",
+      "sha256": "149c655aa840ba22207861db6890a1ad8cdd4538bffc7290882ffe65f50b530b"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/be8172c3f5b8c091330a_anchor_fbc06e562b91/B0/s0/p14/endpoint/verdict.json",
+      "sha256": "826a228e3b09b6647b54967ef905b2b9bf7a441e5bb249a014faa313be1ad0f1"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/f654459482fe40bfdc99_anchor_89d3a728ea37/B0/s0/p58/endpoint/verdict.json",
+      "sha256": "ed448f8409df529c138d0393b2d50aff435b3fff355010b41546248cbe9bae97"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/4bac09c213063d306b3e_anchor_a0f098a1d31f/B0/s0/p34/endpoint/verdict.json",
+      "sha256": "9ba85994767d8b3243077871d7e88ecd6af466138740c0543cff197198bf1361"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/b3946dd993435c17e643_anchor_2a4a8e6ae4c3/B0/s0/p7/endpoint/verdict.json",
+      "sha256": "8ad68b856c7172f6490bd18a8e5fcde2fe35c31fafe969316ec44b5ec2106e00"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/854e36201fd5181b6d38_anchor_df9f1c12fa91/B0/s0/p0/endpoint/verdict.json",
+      "sha256": "0f1ea002b0490fbebe62fb452202b020afbbcd12b4cb3911b61d5c6d2ed88305"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/be70179e2d6f299d6b1b_anchor_403d504038b5/B0/s0/p39/endpoint/verdict.json",
+      "sha256": "26b304b2f01c38295429d8281359b459609306a0fff2c6a9f92353bc789e16df"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/d677da7acd18ec98859b_anchor_198abcf250e1/B0/s0/p28/endpoint/verdict.json",
+      "sha256": "b216ce298f18dfc31817bf85d8d72a1166d4b45a2900ba4c77288a01e8c7c802"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/8fe6d50aaad53c21d3c5_anchor_054767360022/B0/s0/p40/endpoint/verdict.json",
+      "sha256": "5332f65db3b861b79a912d27eefe4a18fa3373d9bc1be52377afb065fd33e025"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/4f5559117464139fee00_anchor_729c6cc585e4/B0/s0/p25/endpoint/verdict.json",
+      "sha256": "947c96af5634f3022235c7def629dd821591258054c5067d34a8c3d80a06ac1a"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/a93f4d7da96617f54016_anchor_3b222f764ec1/B0/s0/p40/endpoint/verdict.json",
+      "sha256": "c1fdf005f7cd6dc133e104f76916aefc2c972807265502b6cf93a2436c5b933e"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/e193d2b0c22148150613_anchor_0b316c25baaf/B0/s0/p43/endpoint/verdict.json",
+      "sha256": "a078ca410b6e1871b56fe40703dc75b1870a99c21ae4f8a1b5cdd10244fe06ec"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/7dc6922783059ead3fb0_anchor_28d2cd4a7ddf/B0/s0/p51/endpoint/verdict.json",
+      "sha256": "c340cf6c121eea3830a9ce96d71e723727ea2bbca372d06bcb947391d82073df"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/4c90a5cab2d89d679e6a_anchor_d6cc21edf663/B0/s0/p56/endpoint/verdict.json",
+      "sha256": "bc4481a46dac89f87770105efd3d930902e69f5c56e395a7b8b69d36ab0c9397"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/5b2d3d450552ae85d0f4_anchor_23521829f2ca/B0/s0/p11/endpoint/verdict.json",
+      "sha256": "103b7c84f9071b36ca6e71aa52d26b67f3d02cfdb18eb79f0775baa4e1f747e3"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/13bf28b59fe70fb07791_anchor_c06606784cea/B0/s0/p26/endpoint/verdict.json",
+      "sha256": "d8f1421d172e08ae5eee703b293b170b909441898b9ef2a03cccc3e21b584b4b"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/f8510fca77167ae2fe1b_anchor_883ec3e2175e/B0/s0/p22/endpoint/verdict.json",
+      "sha256": "696f37bc42a5a3d1fd02084d8c95ee2a309bf9551c5ed3edb1fbde03278bc586"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/73a8b208b741c5cda518_anchor_9fd885044327/B0/s0/p9/endpoint/verdict.json",
+      "sha256": "9dc0803b60053c4efff94b375dba8abf174be7ed63ba30c13e5ab89ba7249b94"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/c0f8c54d5d73fed95b92_anchor_b04cb969d0e8/B0/s0/p22/endpoint/verdict.json",
+      "sha256": "037e1b70e820867ab12344549e533000e19c4865d3e5d422e895fbae3af66fa7"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/a6ee19115420a88ad88e_anchor_db2eb655774c/B0/s0/p52/endpoint/verdict.json",
+      "sha256": "4e774335f8fc5e8f609196fd6cc6d21fcaf18d8ee1bdc3df2a100b6bda891090"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/610169b6b7344da8fe44_anchor_4aaafcc490c9/B0/s0/p23/endpoint/verdict.json",
+      "sha256": "56f06fc24f509a51c179a25eb130630cf4505bd1c07a61063d37f1089c94c640"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/c3b4e41e7e5bccb5a55b_anchor_776e2745449e/B0/s0/p54/endpoint/verdict.json",
+      "sha256": "b487693ee8158a359e94d26d7dc72ba041d30cbd1d1d4ce4559695ea7f8a6817"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/1e19147f0c2d3f0c553e_anchor_ca3aa111c44a/B0/s0/p43/endpoint/verdict.json",
+      "sha256": "adda8e040bb0546979b9018f96cda2b1231a32061f9926e2b168f378d931aac7"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/3e4899195c01fa43baa1_anchor_535d70a04eef/B0/s0/p18/endpoint/verdict.json",
+      "sha256": "0c12146e34f4a29e21473b3698e287b5a6547f8ad39cb629d94da05f96d37f60"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/5b02d759a9ea9d4dd169_anchor_82f81a41654e/B0/s0/p30/endpoint/verdict.json",
+      "sha256": "be6cde99b554d3fea0ceeee49e5681a3022646e042520f98226136c02de3b4fa"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/OUTSIDE_CATALOGUE_EVENT/c01f85b5738c7adf3243_anchor_c39feef758cf/B0/s0/p35/endpoint/verdict.json",
+      "sha256": "199cb53b0bb38d3aeba887fae5b4bf9daac0a2e0d0a23b7081bce61ee9c92ba2"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/6140474f8e0cdc063c5c_anchor_45c31318b588/B0/s0/p22/endpoint/verdict.json",
+      "sha256": "12f1ca72a9941741bf25cfe86fdd64181d2753af9f4ef24a67720b93c7544b13"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/1c1a8252964a0c934217_anchor_26e57b36721b/B0/s0/p8/endpoint/verdict.json",
+      "sha256": "21896ef473653adf472ba29d087dfcf4b8cf44fda5076da78e54243a22744447"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/b9857901a6575f45ade0_anchor_a5c99f10cbcc/B0/s0/p24/endpoint/verdict.json",
+      "sha256": "99d04a175535d4192a9fef3e8a9a31011d6efdea6fc75031f53d6c3cf8b5eed0"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/73a8b208b741c5cda518_anchor_9fd885044327/B0/s0/p45/endpoint/verdict.json",
+      "sha256": "f9bc26017bb752983e8e0cd46ec217788315541175c9143fa4785d0183895021"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/a1cffecda1a49c4fb953_anchor_00c1796902f9/B0/s0/p61/endpoint/verdict.json",
+      "sha256": "f9a1cbf57f053249ce4ebe1a7319788569e0d52f1f1f02e760e30b667bb9cd5f"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/303508f21c5696efb5be_anchor_46eeb638f070/B0/s0/p26/endpoint/verdict.json",
+      "sha256": "7b8e42e3525e3b3d8c0072e73b2241cb9dd66ea29c2529c56422f3c389c7adb2"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/7f95af910c0b3f06823d_anchor_360f34bb7275/B0/s0/p22/endpoint/verdict.json",
+      "sha256": "bbf15bcb3bd5eebcff4c147afed82f1ee25cb5d8e151446ede336b2fa4294dd8"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/af2e99784efbbdda88d0_anchor_b9ef437b8bc2/B0/s0/p59/endpoint/verdict.json",
+      "sha256": "03d801dd4e168e6661c1d505c09a84662f77e95eaf07fb21ae7f2c2ade971fe6"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/c0c9054feb57266951ed_anchor_ae3136fba260/B0/s0/p11/endpoint/verdict.json",
+      "sha256": "9e501930b0bcb47a1f2ebd6b177a0fc3954dbf78c16ddf91d7c2879b14fca7b7"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/34848379ebc530f73eaa_anchor_ea47a2dafa68/B0/s0/p47/endpoint/verdict.json",
+      "sha256": "84a5b8cc045f7a5acd811dc584c9c133fe4dbb567d8a2541fdc0eee5668f00e6"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/8303021b27a2c6ce2b4c_anchor_2213196d96e4/B0/s0/p37/endpoint/verdict.json",
+      "sha256": "caadefe4878c5dd1c550086a74e90e1653560fc7c9d805d3a188ae82a1f466ad"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/8a883642220d4e0500ba_anchor_b20033b146a1/B0/s0/p23/endpoint/verdict.json",
+      "sha256": "6e2625fd299f34e61e424f2c17019421852f1fc08daee1df7ea88d9a3997babd"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/3900e57e1fe4494b8b86_anchor_fe6ec2170187/B0/s0/p47/endpoint/verdict.json",
+      "sha256": "0690584d2c43c6da1972fda593c9803f64c660c7f02cc26cc19298cdceb8b3c9"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/2f5b6749fb86e442d36c_anchor_4b441965440a/B0/s0/p18/endpoint/verdict.json",
+      "sha256": "4579cce11e7be301bb87bd62b6d8a90cbaf7b9fa7db887608d864f2362c23d0a"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/f4bf5b727619a15f8f02_anchor_2ea34d79245c/B0/s0/p33/endpoint/verdict.json",
+      "sha256": "5de11747e3069f00f0d341ac71f590339609a029013d4d20a29254524d50df84"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/db33309ba90a9a79b2e1_anchor_637c009344fa/B0/s0/p26/endpoint/verdict.json",
+      "sha256": "343c46ac41b454614e339ed1f1dbc5c6b250ede73756362bc535d1d05d278445"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/6bd92a6f8181b1329aca_anchor_2fd9207dd92f/B0/s0/p17/endpoint/verdict.json",
+      "sha256": "27510e544f36ed7c40537dae6e3239ff3c9e38f9f3f57cdc8a9a20158650f008"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/6da06407e8fc6de0de03_anchor_aed0302151c8/B0/s0/p23/endpoint/verdict.json",
+      "sha256": "6a4f24195f30202c5d9aca5d8f0ba5d1863620f45fb94366f1d7cc7962548e7b"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/3e5b3283891e0b420878_anchor_54d631a94c01/B0/s0/p58/endpoint/verdict.json",
+      "sha256": "255e3bbabdcc6bae1282ecbd8c72c27b109af8c9b27892224d2a2f12f0fc3fb7"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/PROXY_MATCH/a01f970da298193876d3_anchor_8b687fdaf9eb/B0/s0/p50/endpoint/verdict.json",
+      "sha256": "079ca377e916632e7b44fa97ed86fa63e1ccb800d5dcf8d115b601b1d5654992"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/pip-freeze.txt",
+      "sha256": "7240e406c3fcab4dce748721528716e2ede2ad117f64b96fe85be8a058fedabb"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/positive_control_gate.json",
+      "sha256": "2c9cbbd5c70155f84dac199f8f5bbf87f0a767b75a65f5d6b860642516fb8624"
+    },
+    {
+      "path": "/home/lhshen/xtbflow-runs/review-align-20261009/open-621b900/run.log",
+      "sha256": "a81e4fa9dd375aa808a5eef9a8a593316cf94f5f47e48ebe95bf8cf85361695f"
+    }
+  ],
+  "gpu_hours": 0,
+  "gradient_calls": 63116,
+  "numerical_settings": {
+    "accuracy": 0.1,
+    "charge": 0,
+    "electronic_temperature": "tblite default",
+    "hessian_step_bohr": 0.005,
+    "max_iterations": 250,
+    "method": "GFN2-xTB",
+    "uhf": 0
+  },
+  "protocol": "review-xtb-o1-1",
+  "slurm_jobs": [],
+  "source_commit": "621b90095d1c56c7854c9528fcf8bf1fe057701a"
+}

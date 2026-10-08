@@ -1,0 +1,12 @@
+{
+  "frequencies_cm1": [
+    1539.5220947474697,
+    3642.938516605083,
+    3651.0998115730704
+  ],
+  "gradient_calls": 22,
+  "passed": true,
+  "status": "MINIMUM_PASS",
+  "symmetry_error": 0.0,
+  "tr_rank": 6
+}

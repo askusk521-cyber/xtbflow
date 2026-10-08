@@ -723,6 +723,11 @@
       "bytes": 303
     },
     {
+      "path": "docs/evidence/explore_smc_decomposition/independent_audit.json",
+      "sha256": "da7bbbed32ab8ba5c44fa8821ad9c5860ed1a3c1a56d971234c8b8b7dba7e387",
+      "bytes": 1062
+    },
+    {
       "path": "docs/evidence/explore_smc_decomposition/results.json",
       "sha256": "823a1f5b3965d1d3f34db4931cb18d1904c9f1e3a3b2107de22d737a0624ab0a",
       "bytes": 335108
@@ -1386,6 +1391,11 @@
       "path": "scripts/finalize_smc.py",
       "sha256": "89fb24da88547350b36b8cc13d37b21b9a3826500181a00fb6f111773aa11a10",
       "bytes": 6984
+    },
+    {
+      "path": "scripts/independent_smc_supplement_audit.py",
+      "sha256": "78b8b5f0eb693065a50ec3c98ad59df36bcccfb02623c942fa63f3eb2877cd70",
+      "bytes": 3679
     },
     {
       "path": "scripts/joint_flow_smoke.py",

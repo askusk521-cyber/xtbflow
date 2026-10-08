@@ -14,8 +14,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--data', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--index', type=int, choices=range(5))
     args = parser.parse_args()
     ids = sorted(json.loads((args.data / 'split_manifest.json').read_text())['train']['parent_ids'])[:5]
+    if args.index is not None:
+        ids = ids[args.index:args.index+1]
     parents = {p['parent_id']: p for p in json.loads((args.data / 'parent_catalog.json').read_text())
                if p['parent_id'] in ids}
     RDLogger.DisableLog('rdApp.warning')
@@ -30,7 +33,7 @@ def main():
             if count % 1000 == 0:
                 print(json.dumps(dict(parent_id=pid, events=count, seconds=time.monotonic()-start)), flush=True)
         rows.append(dict(parent_id=pid, legal_events=count, seconds=time.monotonic()-start))
-        write_json(args.out, dict(complete=len(rows) == 5, parents=rows))
+        write_json(args.out, dict(complete=len(rows) == len(ids), parents=rows))
         print(json.dumps(rows[-1]), flush=True)
 
 

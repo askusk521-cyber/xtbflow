@@ -1239,13 +1239,23 @@
     },
     {
       "path": "scripts/v1b_d1.py",
-      "sha256": "54e990f1df9c405d67ef6904e12b30ee77817f1192d1594d10c9cf25425981b7",
-      "bytes": 6595
+      "sha256": "1b040e764ec459acefc57f18e2531734a78921545921baeb34389cde18672852",
+      "bytes": 7327
     },
     {
       "path": "scripts/v1b_freeze.py",
       "sha256": "ad956c5fecaa29f608f01bc725463469e55204fd87498ca5b0af6edc91def787",
       "bytes": 6246
+    },
+    {
+      "path": "scripts/v1b_report.py",
+      "sha256": "ff7ed80926a55b6a335f2e077900749fe65d897a4281e695472ec97a74c24a89",
+      "bytes": 4923
+    },
+    {
+      "path": "scripts/v1b_run.py",
+      "sha256": "3aa6c419f54ae8f98cf6fa017e52581b1817a0b11222a76a56771e96d09ff6df",
+      "bytes": 8710
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -1669,8 +1679,8 @@
     },
     {
       "path": "src/xtbflow/v1/qc_protocol.py",
-      "sha256": "155c1f548d271345360a35d3229b6021428a1faee1782b4acbb08a523ff1c810",
-      "bytes": 14827
+      "sha256": "30efc04694cb749c59fb176d2fcec3a6803ea0f40646c2a3ea2036fd589fbf4e",
+      "bytes": 15325
     },
     {
       "path": "src/xtbflow/v1/rng.py",

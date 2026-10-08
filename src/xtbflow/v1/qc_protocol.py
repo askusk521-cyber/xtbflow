@@ -31,6 +31,10 @@ TIGHT=dict(convergence_energy=1e-6,convergence_grms=3e-5,convergence_gmax=1e-4,
 VERY_TIGHT=dict(convergence_energy=2e-7,convergence_grms=8e-6,convergence_gmax=3e-5,
                 convergence_drms=1e-4,convergence_dmax=2e-4)
 SYMBOLS={1:'H',6:'C',7:'N',8:'O'}
+# D1 revision 2: 80 steps of the default 0.1 trust left 3/8 IRCs short of their minima;
+# applied identically to every arm and reference. Per-direction iteration cap.
+IRC=dict(maxiter=150,trust=0.2,tmax=0.2)
+PROTOCOL_VERSION='v1b-h-gpu4pyscf-2'
 
 
 @dataclass
@@ -223,11 +227,11 @@ def minimum_stage(z,x,method,meter,workdir,label):
                 frequencies_cm1=freq.tolist(),engine_calls=calls)
 
 
-def irc_stage(z,ts,method,meter,workdir,maxiter=80):
+def irc_stage(z,ts,method,meter,workdir,irc=IRC):
     """Bidirectional IRC from the SAME optimized TS and its final Hessian."""
     frames,energies,conv,calls=geometric_run(z,np.asarray(ts['x_ts']),method,meter,'irc',workdir,irc=True,
                                              irc_direction='both',hessian='file:'+ts['hessian_file'],
-                                             maxiter=maxiter,**TIGHT)
+                                             **irc,**TIGHT)
     if not frames:return dict(status='IRC_LIMIT',engine_calls=calls)
     return dict(status='IRC_COMPLETE' if conv else 'IRC_LIMIT',first=frames[0].tolist(),last=frames[-1].tolist(),
                 n_frames=len(frames),energies_hartree=energies,engine_calls=calls)
@@ -273,19 +277,21 @@ def endpoint_identity(z,b_r,perms,b_predicted,x_end1,x_end2):
                 product_be=product.tolist())
 
 
-def certification_chain(z,x_raw,b_r,perms,b_predicted,method,workdir,meter=None,energy_exclusion_hartree=None):
+def certification_chain(z,x_raw,b_r,perms,b_predicted,method,workdir,meter=None,energy_exclusion_hartree=None,
+                        reuse_ts=None):
     """Full strict chain for one start structure. Returns a JSON-serialisable verdict.
 
     `energy_exclusion_hartree` is the Stage-B pre-registered short circuit: an
     absolute TS energy above which the candidate cannot be a best_cert_hit. It
     only ends the chain with ENERGY_EXCLUDED_FOR_BEST; strict_joint_graph stays
-    unknown (None), never 0.
+    unknown (None), never 0. `reuse_ts` continues from an already certified TS
+    stage (same structure and final Hessian); its cost stays in the earlier record.
     """
     meter=meter or Meter();workdir=Path(workdir);workdir.mkdir(parents=True,exist_ok=True)
-    t0=time.perf_counter();out=dict(method=method.as_dict(),n_atoms=len(z))
+    t0=time.perf_counter();out=dict(method=method.as_dict(),n_atoms=len(z),protocol_version=PROTOCOL_VERSION)
     try:
-        ts=ts_stage(z,x_raw,method,meter,workdir)
-        if ts['status']=='FREQUENCY_GRAY_ZONE':
+        ts=reuse_ts if reuse_ts is not None else ts_stage(z,x_raw,method,meter,workdir)
+        if ts['status']=='FREQUENCY_GRAY_ZONE' and reuse_ts is None:
             out['gray_zone_first']=ts
             ts=ts_stage(z,np.asarray(ts['x_ts']),method,meter,workdir/'retry',tight=VERY_TIGHT,label='ts_retry')
             if ts['status']=='FREQUENCY_GRAY_ZONE':ts['status']='FREQUENCY_GRAY_AT_CAP'

@@ -77,12 +77,21 @@ def run(a):
     from xtbflow.v1 import qc_protocol as qc
     items={i['item_id']:i for i in json.loads(a.plan.read_text())['items']}
     i=items[a.item];work=a.work/f"{i['kind']}_{i['item_id']}"
-    if (work/'verdict.json').exists():raise FileExistsError('item already ran')
+    reuse=None
+    if a.resume_irc:
+        # Re-run IRC/endpoints from the SAME certified TS under the revised IRC settings;
+        # the first-pass verdict is kept beside the new one, never overwritten.
+        old=work/'verdict.json';first=json.loads(old.read_text());reuse=first['ts']
+        if first.get('protocol_version') is not None or reuse.get('status')!='TS_OPTFREQ_PASS':
+            raise ValueError('resume only first-pass chains with a passing TS')
+        old.rename(work/'verdict_pass1.json');work=work/'irc_revision2';work.mkdir()
+    elif (work/'verdict.json').exists():raise FileExistsError('item already ran')
     work.mkdir(parents=True,exist_ok=True)
     z=np.asarray(i['z']);x=np.asarray(i['x_start'],dtype=float)
     method=qc.Method(device='gpu');meter=qc.Meter();t0=time.perf_counter()
     if i['kind'] in ('candidate','reference'):
-        out=qc.certification_chain(z,x,i['b_r'],i['perms'],i['b_predicted'],method,work,meter)
+        out=qc.certification_chain(z,x,i['b_r'],i['perms'],i['b_predicted'],method,work,meter,reuse_ts=reuse)
+        if reuse is not None:(work.parent/'verdict.json').write_text(json.dumps(out,indent=1,default=float))
     elif i['kind']=='anchor':
         out=qc.minimum_stage(z,x,method,meter,work,'anchor')
         qc.finish(out,meter,t0,work)
@@ -116,6 +125,7 @@ def main():
     r=sub.add_parser('run')
     r.add_argument('--plan',type=Path,required=True);r.add_argument('--item',required=True)
     r.add_argument('--work',type=Path,required=True)
+    r.add_argument('--resume-irc',action='store_true')
     a=ap.parse_args()
     plan(a) if a.cmd=='plan' else run(a)
 

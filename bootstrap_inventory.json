@@ -1128,6 +1128,11 @@
       "bytes": 2884
     },
     {
+      "path": "scripts/review_xtb_hessian_check.py",
+      "sha256": "8d53f32e23235e72e08ead1c6cf6a69c83a18ab2b636de48ae2eba6328f74592",
+      "bytes": 1004
+    },
+    {
       "path": "scripts/run_dft_da_blind_rollout.py",
       "sha256": "bf5bc082dc2982e23397c45e002e4ab3ffa904c467ca1748ab5555b057a965cc",
       "bytes": 16945

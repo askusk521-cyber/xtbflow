@@ -20,7 +20,25 @@ from xtbflow.calculators.xtb_oracle import BOHR_IN_ANGSTROM, KELVIN_TO_HARTREE
 from xtbflow.v1.metrics import cluster_summary
 
 
+_AIMNET = {}
+
+
 def energy(method, z, x, cfg):
+    if method in ('AIMNet2', 'AIMNet2-rxn'):
+        import torch
+        from aimnet.calculators import AIMNet2Calculator
+        if method not in _AIMNET:
+            filename = 'aimnet2_wb97m_d3_0.pt' if method == 'AIMNet2' else 'aimnet2_rxn_0.pt'
+            _AIMNET[method] = AIMNet2Calculator(str(Path(os.environ['REVIEW_AIMNET_MODELS'])/filename), device='cpu')
+        if min_distance(x) < cfg['min_distance_angstrom']:
+            return float('nan'), 'collapsed'
+        try:
+            result = _AIMNET[method]({'coord':torch.tensor(np.asarray(x),dtype=torch.float32),
+                'numbers':torch.tensor(z,dtype=torch.int64), 'charge':torch.tensor([0.])}, forces=False)
+            value = float(result['energy'].detach().reshape(-1)[0])*23.060547830619
+            return (value,'ok') if np.isfinite(value) else (float('nan'),'nonfinite')
+        except (RuntimeError,ValueError) as exc:
+            return float('nan'), 'aimnet_failed:'+type(exc).__name__
     if method == 'g-xTB':
         symbols = {1:'H',6:'C',7:'N',8:'O'}
         if min_distance(x) < cfg['min_distance_angstrom']:

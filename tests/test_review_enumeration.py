@@ -8,6 +8,20 @@ from xtbflow.v1.enumeration import enumerate_events, bounded_formations
 from xtbflow.v1.proxy import valid_endpoint
 
 
+def test_break_orbit_pruning_preserves_canonical_products():
+    from itertools import permutations
+    z = np.array([6, 1, 1, 1, 1])
+    br = np.zeros((5, 5), dtype=int)
+    br[0, 1:] = 1
+    br[1:, 0] = 1
+    perms = np.array([(0,) + p for p in permutations((1, 2, 3, 4))])
+    identity = np.arange(5)[None, :]
+    labelled = enumerate_events(z, br, identity, 2)
+    expected = {canonical_event(br, b, perms) for _, b in labelled}
+    actual = {c for c, _ in enumerate_events(z, br, perms, 2)}
+    assert actual == expected
+
+
 def test_capacity_pruned_multisets():
     from itertools import combinations_with_replacement
     pairs = [(0, 1), (0, 2), (1, 2)]

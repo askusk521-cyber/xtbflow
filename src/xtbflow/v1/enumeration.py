@@ -61,7 +61,17 @@ def enumerate_events(z, br, perms, size=2, stop_after=None):
     bonds = [(i, j) for i, j in pairs if br[i, j] > 0]
     seen = set()
     for nb in range(size + 1):
+        broken_orbits = set()
         for broken in combinations_with_replacement(bonds, nb):
+            if broken in broken_orbits:
+                continue
+            # Reactant automorphisms preserve the entire enumeration domain.
+            # Enumerate formations from one representative broken multiset;
+            # every omitted product has the same canonical_event as a retained one.
+            for permutation in perms:
+                mapped = tuple(sorted(tuple(sorted((int(permutation[i]), int(permutation[j]))))
+                                      for i, j in broken))
+                broken_orbits.add(mapped)
             bp = br.copy()
             for i, j in broken:
                 bp[i, j] -= 1

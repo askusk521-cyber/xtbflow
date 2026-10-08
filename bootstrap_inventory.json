@@ -708,6 +708,31 @@
       "bytes": 281
     },
     {
+      "path": "docs/evidence/explore_smc_strict/SHA256SUMS",
+      "sha256": "a88f76a71dccc471f9e3ae2aa254f58ddb0f9e2d5d4ba02937d700b777374c04",
+      "bytes": 429
+    },
+    {
+      "path": "docs/evidence/explore_smc_strict/STATUS.md",
+      "sha256": "f23b17e601dd29b5c4cabcee3851f8ba72c2100b4bdb4058c7125ae69c9adfb8",
+      "bytes": 3903
+    },
+    {
+      "path": "docs/evidence/explore_smc_strict/failed_c1_manifest.json",
+      "sha256": "c621db3a648dacd65d51ebb20f200d65b71889201bdd19297a6259d092599e0c",
+      "bytes": 1857
+    },
+    {
+      "path": "docs/evidence/explore_smc_strict/saved_state_diagnostic.json",
+      "sha256": "c95be3fdd2395bd0633f58154faff6c3ba310bf1945be878545c2862b4f88d18",
+      "bytes": 103797
+    },
+    {
+      "path": "docs/evidence/explore_smc_strict/smoke-time.txt",
+      "sha256": "7e24105d40a726e5115891fd33dcc76aa96abbfba758ca730ef624f78d4da5b0",
+      "bytes": 924
+    },
+    {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
       "sha256": "a8f35cecb50117422a0dd28953d079634aa780dd5336baf6ee23cfd817952d57",
       "bytes": 6712
@@ -1326,6 +1351,11 @@
       "path": "scripts/cp2k_smoke.py",
       "sha256": "183b80700f75ba2ba53e9608bb9465242532b52d7c25f85a141fc2ef35844c66",
       "bytes": 4125
+    },
+    {
+      "path": "scripts/diagnose_smc_saved_states.py",
+      "sha256": "6a725794dfa4cc2a71a68aed670beef81661b0b7a1600889c69bec062de1bcba",
+      "bytes": 2596
     },
     {
       "path": "scripts/explore_geometry_information.py",

@@ -33,8 +33,8 @@ def main():
     manifest=dict(source_commit=source,dirty=bool(subprocess.check_output(['git','status','--porcelain']).strip()),
         config_sha256={str(c):file_hash(c) for c in configs},
         training_parents=len(recovery),training_events_recovered=sum(r['recovered'] for r in recovery),
-        enumeration_sources=['9403d6c','7c28436','d414174'],training_sources=['6f8ab54','d414174'],
-        scorer_sources=['75cd0cc','d414174'],
+        enumeration_sources=['9403d6c','7c28436','d414174'],training_sources=['6f8ab54','d414174','15a65e8'],
+        scorer_sources=['75cd0cc','d414174','15a65e8'],
         note='Resumed only missing parents from pushed clean clones; canonical event domain unchanged. Earlier pilot using 344 split-reserve parents excluded.',
         files=[dict(path=str(f),sha256=file_hash(f)) for f in files])
     a.out.mkdir(parents=True,exist_ok=True);write_json(a.out/'manifest.json',manifest)

@@ -619,18 +619,18 @@
     },
     {
       "path": "docs/evidence/explore_smc/COMPLETION_AUDIT_ZH.md",
-      "sha256": "9ae1b7d0a798951e90ad010964f4f02285b87367605bf34702b9f2f02b277352",
-      "bytes": 4506
+      "sha256": "85ce6fa996136122bfdb45ff576f12c9bb5fdf542b82ace72ffccfc9c74ad7d1",
+      "bytes": 5765
     },
     {
       "path": "docs/evidence/explore_smc/REPORT_ZH.md",
-      "sha256": "c457c08ee1b9bffb9dfd8c152184ccb682d052fb40ebbe2e735bf7908209bd1e",
-      "bytes": 8204
+      "sha256": "bf34aa9318fe51824efb579215e05e6dc226f38ef762e83b27923fb6713807b4",
+      "bytes": 8776
     },
     {
       "path": "docs/evidence/explore_smc/SHA256SUMS",
-      "sha256": "a4861d29a213e70089de11dc5c8a1995c667e6d612fb7ce356c2f641c21944ff",
-      "bytes": 48630
+      "sha256": "9bb95e1fc6208a672402fefb704402d063a10a2994ce98fa9e8c13a0cb72e463",
+      "bytes": 97428
     },
     {
       "path": "docs/evidence/explore_smc/analyze-repeat.sha256",
@@ -658,6 +658,11 @@
       "bytes": 3200
     },
     {
+      "path": "docs/evidence/explore_smc/clone_initial_manifest.json",
+      "sha256": "854be880ffddfd92192028e0392cf8e16ed2b313a96f8f2c60fc4d80c9d4cc86",
+      "bytes": 38677
+    },
+    {
       "path": "docs/evidence/explore_smc/coverage_audit.json",
       "sha256": "9ed2224ae1b5b6995405353b77d2f0adddfd217486ee874f0c7c08af9c6a4676",
       "bytes": 298
@@ -674,8 +679,8 @@
     },
     {
       "path": "docs/evidence/explore_smc/results.json",
-      "sha256": "610e1fe34ea20ce041718ad713a187ce5a7f34daa3a1df786f0491953254ac81",
-      "bytes": 912196
+      "sha256": "527d0c2195fdd2d6c5aa8bcf7995ba3979b1aee603ba5462266e836b3c7ea6a0",
+      "bytes": 954178
     },
     {
       "path": "docs/evidence/explore_smc/s0_manifest.json",
@@ -691,6 +696,11 @@
       "path": "docs/evidence/explore_smc/slurm-2702.txt",
       "sha256": "dc612060b16384f61c727891f4a95a7cd089c0eb757f1b9d0ea6f9204a18be5a",
       "bytes": 1307
+    },
+    {
+      "path": "docs/evidence/explore_smc/supplement-repeat.sha256",
+      "sha256": "ac2e01ad9b67c5c4d890d368a323635b8d1c6754a849d7f02c5d3a3545bfb7e6",
+      "bytes": 281
     },
     {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",

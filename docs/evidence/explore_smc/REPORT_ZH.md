@@ -71,11 +71,13 @@ C1：5952 条 none 事件/status，差异 0；检查点 raw 最大有限值误�
 
 原始输出留在 n2 `/home/lhshen/xtbflow-runs/explore-smc-20261009/smc-2116d43`；张量和逐候选数据不进入仓库。SHA256SUMS 包含原始输出及日志哈希。各阶段 manifest 保存已推送源码、干净状态、配置、输入和 Slurm 作业号。
 ```bash
-cd /home/lhshen/xtbflow-runs/explore-smc-20261009/source-2116d43
+cd /home/lhshen/xtbflow-runs/explore-smc-20261009/source-cdf8d7a
 export CUDA_VISIBLE_DEVICES= PYTHONPATH=src:vendor/mechai_reusable OMP_NUM_THREADS=1
-nice -n 10 /home/lhshen/miniconda3/envs/xtbflow/bin/python scripts/explore_smc.py analyze --out /home/lhshen/xtbflow-runs/explore-smc-20261009/smc-2116d43 --workers 1
+nice -n 10 /home/lhshen/miniconda3/envs/xtbflow/bin/python scripts/finalize_smc.py results --out /home/lhshen/xtbflow-runs/explore-smc-20261009/smc-2116d43
 ```
-analyze-repeat.sha256 与逐字节 cmp 记录验证确定性。独立 coverage_audit.json 核查完整种群、方案及复现，不代替化学验证。
+冻结科学分析的 analyze-repeat.sha256 和完整补充结果的 supplement-repeat.sha256 分别记录两次逐字节相同的复算。finalize_smc.py 先调用原始 source-2116d43 的 analyze，逐字节核对原始科学结果不变，再添加资源与覆盖证据。results.json 的 supplemental_evidence 包含计量数字和审计计数。独立 coverage_audit.json 核查完整种群、方案及复现，不代替化学验证。
+
+克隆初态已补充持久化于原始输出的 clone_initial_states/，按冻结 G2 公式在 CPU 重建；clone_initial_manifest.json 记录输入、源码和输出哈希。此为事后证据补全，不声称 C1 当时已经写出初态张量，也未重跑或选择性改变科学实验。
 
 ## 偏差、资源和局限
 

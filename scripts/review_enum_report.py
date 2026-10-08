@@ -23,6 +23,8 @@ def main():
     for arm,ids in sorted(r['generator_hit_outside_best'].items()):lines.append(f'|{arm}|{len(ids)}|')
     if 'development' in r:
         d=r['development'];lines+=['','## dev辅助检查',f"母体数 {d['n_parents']}；最佳通道覆盖率 {d['best_coverage']:.6f}；目录通道覆盖率均值 {d['channel_coverage_parent_mean']:.6f}；合法事件数中位数 {d['n_enum']['median']:.3f}，95%分位 {d['n_enum']['p95']:.3f}。dev结果不用于选域或调参。"]
+        lines+=['','|dev枚举方法|1|2|4|8|16|32|64|','|---|---:|---:|---:|---:|---:|---:|---:|']
+        for scorer,curve in sorted(d['rates'].items()):lines.append('|'+scorer+'|'+'|'.join(f"{curve[str(k)]:.6f}" for k in (1,2,4,8,16,32,64))+'|')
     lines+=['','## 复现与证据边界','','manifest.json 列出配置哈希、干净已推送源码与原始结果文件；SHA256SUMS.remote 指向 n2 大文件。训练集所有域内目录事件的重新生成检查、B0完整候选轴全精度复现、CPU/GPU与Slurm用量详见 VALIDATION.md。',
         '', '```bash','export CUDA_VISIBLE_DEVICES= PYTHONPATH=src:vendor/mechai_reusable OPENBLAS_NUM_THREADS=1',
         'python scripts/review_enum_analyze.py --enumdir /home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c --devdir /home/lhshen/xtbflow-runs/review-align-20261009/enum-dev-7c28436 --out results.json',

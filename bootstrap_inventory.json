@@ -1313,6 +1313,11 @@
       "bytes": 4464
     },
     {
+      "path": "scripts/audit_smc_strict.py",
+      "sha256": "6f5e72830d6ca7067678e42438ada651b1058f5ba986b5c4dd215da52dc8ff6f",
+      "bytes": 5095
+    },
+    {
       "path": "scripts/audit_track_b_manifest.py",
       "sha256": "72a679bb61e5a6823c63a14755686195209376d9e1d457fade97566317ef9f77",
       "bytes": 3817

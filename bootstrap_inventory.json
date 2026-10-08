@@ -168,6 +168,11 @@
       "bytes": 1328
     },
     {
+      "path": "configs/explore/geometry_information.json",
+      "sha256": "1238968d357334109300af905d892273a0c9354075138a0d893eede47db02134",
+      "bytes": 5397
+    },
+    {
       "path": "configs/host.local.example.yaml",
       "sha256": "bbf9be89b615824ff4f63d6f23d7afb73ea5d152052bd63d63dbd65c6e04c6cc",
       "bytes": 542
@@ -828,6 +833,26 @@
       "bytes": 3999
     },
     {
+      "path": "docs/evidence/v1a/formal/RESULT_ZH.md",
+      "sha256": "bae74f311188f81b4675d962652ea75074a1f8cde45d113cdf29e3c79c9df605",
+      "bytes": 5657
+    },
+    {
+      "path": "docs/evidence/v1a/formal/SHA256SUMS",
+      "sha256": "556e34761d725660a4de59d89f64334ea54df9f9e40685482898c564576f59df",
+      "bytes": 1254
+    },
+    {
+      "path": "docs/evidence/v1a/formal/freeze.json",
+      "sha256": "fef5e7dc87951d2af40822f2006c1c6af363c32b3c51588b65b8b7c2c51207dc",
+      "bytes": 29898
+    },
+    {
+      "path": "docs/evidence/v1a/formal/gate.json",
+      "sha256": "467b4f581c3c2c14f0a58977eb8c6989e95ebcb882c1943f366c7120f7090c6a",
+      "bytes": 113612
+    },
+    {
       "path": "docs/evidence/workflow_b_software_acceptance_20260929.json",
       "sha256": "2fe89dcd76c896b6f9949e7aec55781568b37f6bc2c1c89a5fb3bfd210080da9",
       "bytes": 4166
@@ -1031,6 +1056,11 @@
       "path": "scripts/cp2k_smoke.py",
       "sha256": "183b80700f75ba2ba53e9608bb9465242532b52d7c25f85a141fc2ef35844c66",
       "bytes": 4125
+    },
+    {
+      "path": "scripts/explore_geometry_information.py",
+      "sha256": "87314db0534d8b3c522d4f2341443c1b6c5db0b7fb48c49cc43babf8ea3cb92c",
+      "bytes": 23717
     },
     {
       "path": "scripts/joint_flow_smoke.py",
@@ -1598,6 +1628,11 @@
       "bytes": 1798
     },
     {
+      "path": "src/xtbflow/v1/geometry_information.py",
+      "sha256": "1ec9fe28d7bd1c3c6f3e9d418de5fe81e31eaa210bd1fbe0ac2e3f47d7a61611",
+      "bytes": 5353
+    },
+    {
       "path": "src/xtbflow/v1/guidance.py",
       "sha256": "fd32541a895a75c5fbbc8c224ef365b378a78d65e1aa28b7a049d7c960f0a68c",
       "bytes": 3256
@@ -1766,6 +1801,11 @@
       "path": "tests/test_geometry_flow.py",
       "sha256": "3a1f64a2bb77180cd7416b52d120dd14bd899881f5fb7bc812636133edbe506d",
       "bytes": 4675
+    },
+    {
+      "path": "tests/test_geometry_information.py",
+      "sha256": "e8b282ed510183615be97db0f51f65a450b74c104d0666884a10c19a8e5cb3cd",
+      "bytes": 5478
     },
     {
       "path": "tests/test_handoff_freeze.py",

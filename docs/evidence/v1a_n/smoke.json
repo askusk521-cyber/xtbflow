@@ -1,0 +1,62 @@
+{
+  "arms": [
+    "A0",
+    "B0"
+  ],
+  "checks": {
+    "any_valid_endpoint": true,
+    "clock_increments_sum_to_one": {
+      "event": true,
+      "geometry": true,
+      "joint": true
+    },
+    "manifest_complete": true,
+    "matcher_ran": true,
+    "outside_sealed_dirs": true,
+    "step_errors": [],
+    "steps_exact": true
+  },
+  "exploratory": true,
+  "gpu_hour_limit": 20.0,
+  "n_parents": 10,
+  "nfe_overrides": {
+    "nfe_event": 25,
+    "nfe_geometry": 25,
+    "nfe_joint": 25
+  },
+  "per_arm": {
+    "A0": {
+      "KNOWN_EVENT_GEOMETRY_MISS": 55,
+      "OUTSIDE_CATALOGUE_EVENT": 392,
+      "PROXY_MATCH": 214,
+      "completed": 661,
+      "streams": 10
+    },
+    "B0": {
+      "INVALID_OUTPUT": 158,
+      "KNOWN_EVENT_GEOMETRY_MISS": 136,
+      "OUTSIDE_CATALOGUE_EVENT": 579,
+      "PROXY_MATCH": 407,
+      "completed": 1280,
+      "streams": 10
+    }
+  },
+  "projected_full_gpu_hours": {
+    "from_smoke_per_parent": 3.460640631885384,
+    "from_v1a_same_arm_wall": 0.16703768052639337,
+    "note": "Smoke batches hold only a few parents, so per-parent scaling overstates the full run; the new arms make the same number of network calls per parent as V1a A0/B0 under the 3200-unit cap."
+  },
+  "proxy_status": {
+    "INVALID_OUTPUT": 158,
+    "KNOWN_EVENT_GEOMETRY_MISS": 191,
+    "OUTSIDE_CATALOGUE_EVENT": 971,
+    "PROXY_MATCH": 621
+  },
+  "run": "/home/lhshen/xtbflow-runs/v1a-n-20261008/smoke/streams",
+  "schema": "xtbflow-v1a-n-smoke/1",
+  "smoke_gpu_wall_s": {
+    "A0": 64.49082730989903,
+    "B0": 56.93515977379866
+  },
+  "status": "SMOKE_PASS"
+}

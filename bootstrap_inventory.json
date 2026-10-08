@@ -273,6 +273,11 @@
       "bytes": 6212
     },
     {
+      "path": "configs/v1a_n/nfe.json",
+      "sha256": "585e4fdde7e1dbfd4436f8927964ad4704129fb6d01973d60a2004eea333ae9a",
+      "bytes": 3414
+    },
+    {
       "path": "configs/v1a_r/reanalysis.json",
       "sha256": "65e17466d03a26613bea4548decb14c2de52c6d579b548fe0ab813efaaab94cf",
       "bytes": 5563
@@ -851,6 +856,11 @@
       "path": "docs/evidence/v1a/formal/gate.json",
       "sha256": "467b4f581c3c2c14f0a58977eb8c6989e95ebcb882c1943f366c7120f7090c6a",
       "bytes": 113612
+    },
+    {
+      "path": "docs/evidence/v1a_n/smoke.json",
+      "sha256": "3f343f1a5922861bc06444239de5886c631142a2220ef6e24fdc10815a1a12f7",
+      "bytes": 1577
     },
     {
       "path": "docs/evidence/v1a_r/REPORT_ZH.md",

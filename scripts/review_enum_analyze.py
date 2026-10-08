@@ -12,7 +12,8 @@ from xtbflow.v1.review_enum_metrics import GRID,random_recall,generator_curve,ra
 def analyze(root,enumdir):
     parents={r['parent_id']:r for r in json.loads((root/'data/parent_catalog.json').read_text())}
     split=json.loads((root/'data/split_manifest.json').read_text())
-    ids=sorted(split['screen_reserve']['parent_ids']);groups={p:parents[p]['split_group'] for p in ids}
+    ids=sorted(json.loads((root/'formal/freeze.json').read_text())['parent_ids']);groups={p:parents[p]['split_group'] for p in ids}
+    assert len(ids)==342
     gen=defaultdict(lambda:defaultdict(list));rawgen=defaultdict(lambda:defaultdict(list))
     with gzip.open('/home/lhshen/xtbflow-runs/v1a-r-20261008/extract/streams.jsonl.gz','rt') as handle:
         for line in handle:

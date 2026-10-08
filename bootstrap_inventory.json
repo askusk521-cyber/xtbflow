@@ -258,6 +258,11 @@
       "bytes": 669
     },
     {
+      "path": "configs/review/enum_domain_selected.json",
+      "sha256": "79e803b4ac99d15f1d52065cae7fa2a708b5bc04d213237ce9b3fc7d9755a079",
+      "bytes": 425
+    },
+    {
       "path": "configs/rules/core_v1.yaml",
       "sha256": "a4de309daad0bab9d502028976cef7b57f91691de5895ed6d4dc1d1c764b2941",
       "bytes": 903
@@ -1194,13 +1199,13 @@
     },
     {
       "path": "scripts/review_enum_acquire.py",
-      "sha256": "4fccfadd4d3115f907bd9e38c4decf3291e3789df96b30d73e13b5d570451ff9",
-      "bytes": 3954
+      "sha256": "741e4ea371d01aa4c49183f193171c3a422b2c34883ab1d99d87b3aba3841dc5",
+      "bytes": 4056
     },
     {
       "path": "scripts/review_enum_analyze.py",
-      "sha256": "804eb8a1ae8af0b8c3e06cafb9b6563704023efcec656c9638af1961bbac4910",
-      "bytes": 3518
+      "sha256": "319f6912cde6897b0da88c90493c5a8ab8495367b921f021e53df37edc8f50fd",
+      "bytes": 3571
     },
     {
       "path": "scripts/review_enum_domain_audit.py",

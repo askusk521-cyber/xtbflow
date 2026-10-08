@@ -1128,6 +1128,11 @@
       "bytes": 2964
     },
     {
+      "path": "scripts/review_open_world_manifest.py",
+      "sha256": "d699010b3623c97e12dfa990c32b8ce58c5fac8f9ba52715559b60be64f205d2",
+      "bytes": 2087
+    },
+    {
       "path": "scripts/review_open_world_run.py",
       "sha256": "38594360c9f450f67ef327575f14bea1c40e7bae9655e508cd8ef461787d15e9",
       "bytes": 3130

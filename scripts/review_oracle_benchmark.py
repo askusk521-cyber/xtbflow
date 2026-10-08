@@ -159,8 +159,8 @@ def analyze(args):
     diffs = [abs(r['barrier']-r['expected_gfn2']) for r in rows if r['part']=='T2a' and r['method']=='GFN2-xTB' and r['barrier'] is not None]
     anchor = out['metrics']['T2a/GFN2-xTB']['rho']
     out['reproduction'] = dict(max_barrier_error=max(diffs), rho=anchor['estimate'], ci_two95=anchor['ci_two95'],
-        passed=len(diffs)==558 and max(diffs)<=1e-6 and abs(anchor['estimate']-0.7491015704725383)<1e-9 and
-        np.max(np.abs(np.array(anchor['ci_two95'])-[0.6524459560799384,0.8457571848651383]))<1e-9)
+        passed=bool(len(diffs)==558 and max(diffs)<=1e-6 and abs(anchor['estimate']-0.7491015704725383)<1e-9 and
+        np.max(np.abs(np.array(anchor['ci_two95'])-[0.6524459560799384,0.8457571848651383]))<1e-9))
     write_json(args.out/'results.json', out)
 
 

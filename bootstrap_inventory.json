@@ -1118,6 +1118,11 @@
       "bytes": 17349
     },
     {
+      "path": "scripts/review_open_world_run.py",
+      "sha256": "38594360c9f450f67ef327575f14bea1c40e7bae9655e508cd8ef461787d15e9",
+      "bytes": 3130
+    },
+    {
       "path": "scripts/review_open_world_select.py",
       "sha256": "db3ef4bbc7695d61c1a95e7390aa1c11b272ace1eab65748d67ab5896e128bd0",
       "bytes": 2884
@@ -1738,6 +1743,11 @@
       "bytes": 1942
     },
     {
+      "path": "src/xtbflow/v1/xtb_chain.py",
+      "sha256": "07f5932824fefdb158e27800f6f59cdf92b316ed67dbc9cc14dbcab7b09e14a0",
+      "bytes": 5531
+    },
+    {
       "path": "src/xtbflow/validation/__init__.py",
       "sha256": "28bde676c7adc27be4ecab057c647000e060a97fc6e7503672fcfaa0fc92959c",
       "bytes": 711
@@ -1941,6 +1951,11 @@
       "path": "tests/test_reaction_qm_coordinate_mapping.py",
       "sha256": "2994a7429aaa7d854d4f527e4dfd1f3e76d2bb17ecfb0934d19b22068feb9bca",
       "bytes": 889
+    },
+    {
+      "path": "tests/test_review_xtb_chain.py",
+      "sha256": "8c8f68be75653232c9e878c55c4e0fc68b9a362b766cc2a1d48fe2aeaaa133e1",
+      "bytes": 329
     },
     {
       "path": "tests/test_runtime_budget.py",

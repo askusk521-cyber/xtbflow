@@ -858,6 +858,26 @@
       "bytes": 113612
     },
     {
+      "path": "docs/evidence/v1a_n/REPORT_ZH.md",
+      "sha256": "6917aa955429e5b127091ccc3666949ae04b059ef61ef8839cd843fc5ddc5f1b",
+      "bytes": 5145
+    },
+    {
+      "path": "docs/evidence/v1a_n/SHA256SUMS",
+      "sha256": "e7a45b77adb5ec3becc981b05926b8e69fdde2aac8367694383d16e34c60777f",
+      "bytes": 1181
+    },
+    {
+      "path": "docs/evidence/v1a_n/nfe_result.json",
+      "sha256": "a0c6ed11972b58a92ab507e060587877c9803b54e80230eed02da42125fe0e26",
+      "bytes": 20393
+    },
+    {
+      "path": "docs/evidence/v1a_n/nfe_tables_ZH.md",
+      "sha256": "15036572f84e1cba2161f67e350a94ef2e0613cbf95fdf3a31b5b76ef9355c82",
+      "bytes": 2707
+    },
+    {
       "path": "docs/evidence/v1a_n/smoke.json",
       "sha256": "3f343f1a5922861bc06444239de5886c631142a2220ef6e24fdc10815a1a12f7",
       "bytes": 1577

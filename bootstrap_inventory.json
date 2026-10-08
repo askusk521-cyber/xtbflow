@@ -493,6 +493,36 @@
       "bytes": 43624
     },
     {
+      "path": "docs/evidence/explore_geolead/REPORT_ZH.md",
+      "sha256": "63ea588d6e8c4b8b7677e5b743bab9eb8c9a7bc5a6ffe2a718bea0fa3610c98d",
+      "bytes": 6600
+    },
+    {
+      "path": "docs/evidence/explore_geolead/SHA256SUMS",
+      "sha256": "aeeddc84fd8fb77e5bf0ff4599443780cd13cedb2857be4d2760b8ca5a51bb80",
+      "bytes": 965
+    },
+    {
+      "path": "docs/evidence/explore_geolead/geolead_results.json",
+      "sha256": "4a4543ba26138fdf5a323b5c91e42e9e454bb5b80757c5f5498a47c678970458",
+      "bytes": 34231
+    },
+    {
+      "path": "docs/evidence/explore_geolead/manifest_geometry_lead2.json",
+      "sha256": "f7816bda5fa0889de6375c1ae0e857d7b701f0de52429f97f466e131aca770f2",
+      "bytes": 1237
+    },
+    {
+      "path": "docs/evidence/explore_geolead/manifest_geometry_lead3.json",
+      "sha256": "7077a1878a3d1d2b982244e9172f34cb36b78d63d059aab0036331730a9b5e66",
+      "bytes": 1237
+    },
+    {
+      "path": "docs/evidence/explore_geolead/manifest_sync.json",
+      "sha256": "ae9c8490de16cd43ee67a8d218f928f131b9bc87d0b129c4147bd6b7ff003ca1",
+      "bytes": 1227
+    },
+    {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
       "sha256": "a8f35cecb50117422a0dd28953d079634aa780dd5336baf6ee23cfd817952d57",
       "bytes": 6712

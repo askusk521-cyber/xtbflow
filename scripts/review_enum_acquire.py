@@ -56,6 +56,8 @@ def main():
             if target.exists():continue
             if not path.exists():
                 continue  # Streaming scoring pass; rerun after all enumeration completes.
+            if not meta.exists():
+                continue  # Metadata is the completion marker, written after the NPZ.
             data=np.load(path);b=data['b'];scores={'S_E':[],'S_N':[]}
             with torch.no_grad():
                 for start in range(0,len(b),256):

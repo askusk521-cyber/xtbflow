@@ -1323,6 +1323,11 @@
       "bytes": 23543
     },
     {
+      "path": "scripts/finalize_smc.py",
+      "sha256": "89fb24da88547350b36b8cc13d37b21b9a3826500181a00fb6f111773aa11a10",
+      "bytes": 6984
+    },
+    {
       "path": "scripts/joint_flow_smoke.py",
       "sha256": "be9cab15cb5032dd57fa8e9be21c2d815bd0966c1675a4fe48c25314dd081207",
       "bytes": 11435

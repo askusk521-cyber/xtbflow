@@ -1218,6 +1218,11 @@
       "bytes": 1565
     },
     {
+      "path": "scripts/review_enum_manifest.py",
+      "sha256": "4327290fdf7564ceab8eb9b1ec7ba01e440354b96c0fbc8151d22733d6975039",
+      "bytes": 2685
+    },
+    {
       "path": "scripts/review_enum_plot.py",
       "sha256": "886611031b1f84c1e3fea35ba0c95fed431fe75de49c565b682a1b1018198574",
       "bytes": 1232

@@ -1,0 +1,13 @@
+{
+  "version": "smc-decomposition-1",
+  "exploratory": true,
+  "input": "/home/lhshen/xtbflow-runs/explore-smc-20261009/raw-ranking-726912a/results.json",
+  "input_sha256": "34099a894a477dca0099864ebe85909c3d2222a0c71a29204320b242ee007a8d",
+  "question": "Separate best-channel availability from endpoint ranking loss for every fixed arm and both endpoint rankers.",
+  "definition": "For each parent average over three training seeds: availability=hit_infinity; ranking_loss=availability-H. Identity deltaH=deltaAvailability-deltaRankingLoss.",
+  "scope": "All13 arms, both rankers, all24 original paired comparisons. No selected subgroups, new chemistry, generation, or parameter optimization.",
+  "interval": "Paired parent values, split_group cluster_summary two-sided95%.",
+  "interpretation": "Posthoc algebraic mechanism diagnostic. Availability is the oracle-ranking ceiling within generated candidates; it is not an implementable oracle selection arm or chemical certification. Ranker loss can change when candidate diversity changes; decomposition is not causal identification.",
+  "gates": "Exact input hash; parent catalogue hash pinned in input provenance;62 parents/3seed-averaged values; H<=availability; availability equal across rankers; all identities within1e-12.",
+  "resources": "CPU only, one worker, nice10, no writes to existing outputs; under1core-hour."
+}

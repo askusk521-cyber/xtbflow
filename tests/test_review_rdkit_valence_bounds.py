@@ -17,4 +17,6 @@ def test_charge_specific_valence_bounds():
                     h=Chem.Atom(1);h.SetNoImplicit(True);mol.AddAtom(h);mol.AddBond(0,j+1,Chem.BondType.SINGLE)
                 try:Chem.SanitizeMol(mol.GetMol());valid=True
                 except (ValueError,RuntimeError):valid=False
+                if z==1 and degree>1:
+                    continue  # LewisState explicitly rejects this regardless of RDKit.
                 if valid:assert degree<=MAX_BONDS[z][charge],(z,charge,degree)

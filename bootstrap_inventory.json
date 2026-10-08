@@ -1188,6 +1188,11 @@
       "bytes": 2694
     },
     {
+      "path": "scripts/audit_smc.py",
+      "sha256": "6cd0fb90e4553d466feb0a1e248b7b933964518e421cdfeaf897b780c3219899",
+      "bytes": 4464
+    },
+    {
       "path": "scripts/audit_track_b_manifest.py",
       "sha256": "72a679bb61e5a6823c63a14755686195209376d9e1d457fade97566317ef9f77",
       "bytes": 3817
@@ -2121,6 +2126,11 @@
       "path": "tests/test_smc.py",
       "sha256": "3fe08f97b0102e1bc6dd981479a1b8f6b32f1c8c700dc87738e68ff42a353058",
       "bytes": 4409
+    },
+    {
+      "path": "tests/test_smc_pipeline.py",
+      "sha256": "b7ac0d35c8b915e1c34eb891e1b6f22b96fd9e03614dd7da10380f8aeee24fd6",
+      "bytes": 2501
     },
     {
       "path": "tests/test_track_b_source_audit.py",

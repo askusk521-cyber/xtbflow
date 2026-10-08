@@ -1239,8 +1239,8 @@
     },
     {
       "path": "scripts/v1b_d1.py",
-      "sha256": "1b040e764ec459acefc57f18e2531734a78921545921baeb34389cde18672852",
-      "bytes": 7327
+      "sha256": "e1561f9a3c64cd04372e03f33c8f9d05f0fad13038e9c388fb935ec576e4a57e",
+      "bytes": 7877
     },
     {
       "path": "scripts/v1b_freeze.py",
@@ -1679,8 +1679,8 @@
     },
     {
       "path": "src/xtbflow/v1/qc_protocol.py",
-      "sha256": "30efc04694cb749c59fb176d2fcec3a6803ea0f40646c2a3ea2036fd589fbf4e",
-      "bytes": 15325
+      "sha256": "84824b2aabb92d8a29919d410afc60782b822978134cfa14668f09f3a2500371",
+      "bytes": 16576
     },
     {
       "path": "src/xtbflow/v1/rng.py",

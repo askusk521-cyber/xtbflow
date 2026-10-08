@@ -77,8 +77,13 @@ def run(a):
     from xtbflow.v1 import qc_protocol as qc
     items={i['item_id']:i for i in json.loads(a.plan.read_text())['items']}
     i=items[a.item];work=a.work/f"{i['kind']}_{i['item_id']}"
-    reuse=None
-    if a.resume_irc:
+    reuse=None;reuse_irc=None
+    if a.resume_endpoints:
+        # Endpoint retry rule added after IRC revision 2: keep the completed IRC, redo endpoints.
+        old=work/'verdict.json';prev=json.loads(old.read_text());reuse,reuse_irc=prev['ts'],prev['irc']
+        if prev.get('irc',{}).get('status')!='IRC_COMPLETE':raise ValueError('resume endpoints only after a complete IRC')
+        old.rename(work/'verdict_rev2_endpoints1.json');work=work/'endpoint_revision2';work.mkdir()
+    elif a.resume_irc:
         # Re-run IRC/endpoints from the SAME certified TS under the revised IRC settings;
         # the first-pass verdict is kept beside the new one, never overwritten.
         old=work/'verdict.json';first=json.loads(old.read_text());reuse=first['ts']
@@ -90,7 +95,7 @@ def run(a):
     z=np.asarray(i['z']);x=np.asarray(i['x_start'],dtype=float)
     method=qc.Method(device='gpu');meter=qc.Meter();t0=time.perf_counter()
     if i['kind'] in ('candidate','reference'):
-        out=qc.certification_chain(z,x,i['b_r'],i['perms'],i['b_predicted'],method,work,meter,reuse_ts=reuse)
+        out=qc.certification_chain(z,x,i['b_r'],i['perms'],i['b_predicted'],method,work,meter,reuse_ts=reuse,reuse_irc=reuse_irc)
         if reuse is not None:(work.parent/'verdict.json').write_text(json.dumps(out,indent=1,default=float))
     elif i['kind']=='anchor':
         out=qc.minimum_stage(z,x,method,meter,work,'anchor')
@@ -126,6 +131,7 @@ def main():
     r.add_argument('--plan',type=Path,required=True);r.add_argument('--item',required=True)
     r.add_argument('--work',type=Path,required=True)
     r.add_argument('--resume-irc',action='store_true')
+    r.add_argument('--resume-endpoints',action='store_true')
     a=ap.parse_args()
     plan(a) if a.cmd=='plan' else run(a)
 

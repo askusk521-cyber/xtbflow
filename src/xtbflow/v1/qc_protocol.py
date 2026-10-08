@@ -33,8 +33,8 @@ VERY_TIGHT=dict(convergence_energy=2e-7,convergence_grms=8e-6,convergence_gmax=3
 SYMBOLS={1:'H',6:'C',7:'N',8:'O'}
 # D1 revision 2: 80 steps of the default 0.1 trust left 3/8 IRCs short of their minima;
 # applied identically to every arm and reference. Per-direction iteration cap.
-IRC=dict(maxiter=150,trust=0.2,tmax=0.2)
-PROTOCOL_VERSION='v1b-h-gpu4pyscf-2'
+IRC=dict(maxiter=300,trust=0.2,tmax=0.2)  # revision 3: one D1 backward IRC was still descending at step 150
+PROTOCOL_VERSION='v1b-h-gpu4pyscf-3'  # 3 = revision-2 IRC + one uniform endpoint retry
 
 
 @dataclass
@@ -218,13 +218,30 @@ def ts_stage(z,x_raw,method,meter,workdir,tight=TIGHT,label='ts',maxiter=200):
                 hessian_file=str(workdir/f'{label}_final.hess'))
 
 
-def minimum_stage(z,x,method,meter,workdir,label):
+MIN_RETRY_DISPLACEMENT=0.10  # Angstrom, largest atom; D1 revision 2, all arms alike
+
+
+def minimum_stage(z,x,method,meter,workdir,label,retry=True):
+    """Opt+Freq to a minimum. One uniform retry if a clear negative mode remains:
+    displace along that mode (largest atom MIN_RETRY_DISPLACEMENT) and re-optimize
+    at VeryTight before the final frequency check (D1 revision 2)."""
     frames,_,conv,calls=geometric_run(z,x,method,meter,label+'_opt',workdir,maxiter=200,**TIGHT)
     if not conv:return dict(status='MIN_OPT_LIMIT',engine_calls=calls)
     xm=frames[-1];e,h=hessian(z,xm,method,meter,label+'_freq')
-    freq,_,_=harmonic(z,xm,h)
-    return dict(status=classify_minimum(freq),x=xm.tolist(),energy_hartree=e,
-                frequencies_cm1=freq.tolist(),engine_calls=calls)
+    freq,modes,_=harmonic(z,xm,h)
+    out=dict(status=classify_minimum(freq),x=xm.tolist(),energy_hartree=e,
+             frequencies_cm1=freq.tolist(),engine_calls=calls)
+    if out['status']=='MINIMUM_HAS_NEGATIVE_MODE' and retry:
+        mode=np.asarray(modes[0]);step=MIN_RETRY_DISPLACEMENT/np.linalg.norm(mode,axis=1).max()
+        frames,_,conv,more=geometric_run(z,xm+step*mode,method,meter,label+'_retry_opt',Path(workdir)/'retry',
+                                         maxiter=200,**VERY_TIGHT)
+        first=out
+        if not conv:return dict(status='MIN_OPT_LIMIT',engine_calls=calls+more,first_attempt=first)
+        xm=frames[-1];e,h=hessian(z,xm,method,meter,label+'_retry_freq')
+        freq,_,_=harmonic(z,xm,h)
+        out=dict(status=classify_minimum(freq),x=xm.tolist(),energy_hartree=e,frequencies_cm1=freq.tolist(),
+                 engine_calls=calls+more,first_attempt=first)
+    return out
 
 
 def irc_stage(z,ts,method,meter,workdir,irc=IRC):
@@ -278,7 +295,7 @@ def endpoint_identity(z,b_r,perms,b_predicted,x_end1,x_end2):
 
 
 def certification_chain(z,x_raw,b_r,perms,b_predicted,method,workdir,meter=None,energy_exclusion_hartree=None,
-                        reuse_ts=None):
+                        reuse_ts=None,reuse_irc=None):
     """Full strict chain for one start structure. Returns a JSON-serialisable verdict.
 
     `energy_exclusion_hartree` is the Stage-B pre-registered short circuit: an
@@ -302,7 +319,7 @@ def certification_chain(z,x_raw,b_r,perms,b_predicted,method,workdir,meter=None,
         if energy_exclusion_hartree is not None and ts['energy_hartree']>energy_exclusion_hartree:
             out['strict_status']='ENERGY_EXCLUDED_FOR_BEST';out['strict_joint_graph']=None
             return finish(out,meter,t0,workdir)
-        irc=irc_stage(z,ts,method,meter,workdir/'irc');out['irc']=irc
+        irc=reuse_irc if reuse_irc is not None else irc_stage(z,ts,method,meter,workdir/'irc');out['irc']=irc
         if irc['status']!='IRC_COMPLETE':
             out['strict_status']='PROTOCOL_FAILURE';out['strict_joint_graph']=0
             return finish(out,meter,t0,workdir)

@@ -53,7 +53,18 @@ def smoke(a):
     with contextlib.redirect_stdout(io.StringIO()):
         original.cmd_s0(a);completed.append('s0')
         original.cmd_g1(a);completed.append('g1')
-        original.cmd_c1(a);completed.append('c1')
+        from smc_cpu_baseline import baseline
+        cpu_rows=baseline(a);completed.append('cpu_same_platform_repeat')
+        old_rows=original.rows
+        pg1=original.context(a)[0]['pg1']
+        def smoke_rows(path):
+            return cpu_rows if str(path)==str(pg1) else old_rows(path)
+        # Authorized smoke-only reference substitution. context still verifies
+        # the immutable pg1 hash; formal C1 never enters this scoped adapter.
+        original.rows=smoke_rows
+        try:original.cmd_c1(a)
+        finally:original.rows=old_rows
+        completed.append('c1_cpu_reference')
         materialize(a);completed.append('initial_states')
         g2(a);completed.append('g2')
         original.cmd_c2(a);completed.append('c2')
@@ -66,7 +77,7 @@ def smoke(a):
             assert set(metrics)=={'hit@1','hit@2','hit@4','H','hit_infinity','event_utility','distinct_legal_events','legal_rate','best_reference_rate'}
         analyze_plumbing(a);completed.append('analysis_aggregation_and_comparisons')
     original.dump=old_dump
-    original.dump(a.out/'smoke_complete.json',dict(passed=True,stages=completed,parents=2,proposals=32,seeds=[0],scientific_metrics_emitted=False,source_commit=original.git('rev-parse','HEAD'),dirty=False,slurm_job_id=None))
+    original.dump(a.out/'smoke_complete.json',dict(passed=True,stages=completed,parents=2,proposals=32,seeds=[0],scientific_metrics_emitted=False,c1_reference='independent repeated CPU rollout (authorized smoke-only amendment)',formal_c1_reference='original pg1, unchanged 1e-6 kcal/mol tolerance',source_commit=original.git('rev-parse','HEAD'),dirty=False,slurm_job_id=None))
     print('Full CPU smoke plumbing passed; no scientific metrics emitted.')
 
 

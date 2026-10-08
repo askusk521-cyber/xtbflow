@@ -1163,6 +1163,11 @@
       "bytes": 5412
     },
     {
+      "path": "docs/explore/SMOKE_AMENDMENT_ZH.md",
+      "sha256": "c8516188dcd8d06b4af7054925d67b097bbb005f7a242d7bab630da359ba0ddb",
+      "bytes": 1309
+    },
+    {
       "path": "docs/model_design.md",
       "sha256": "bdf387e56ea531479b11068b397e98912004ae24c8e784fb37339106cdcb87ef",
       "bytes": 4233
@@ -1369,8 +1374,8 @@
     },
     {
       "path": "scripts/explore_smc_strict.py",
-      "sha256": "e25abb14052ab57180fdb28e97cc557b9e48dbbf50834e2bc2e7a724923cf0ae",
-      "bytes": 5396
+      "sha256": "3de5b160df77e54bdf543deaf24731e31b919d04cb9cffab9f0f11aaaf6265ba",
+      "bytes": 6097
     },
     {
       "path": "scripts/finalize_smc.py",
@@ -1466,6 +1471,11 @@
       "path": "scripts/run_spice_openff_pilot.py",
       "sha256": "8e2e3f10f7a103a6dcc06ca23a3fbdb8b840208fb7bc98f233da344dd013c864",
       "bytes": 6840
+    },
+    {
+      "path": "scripts/smc_cpu_baseline.py",
+      "sha256": "76cd716d3d67ddc4d4e3fc3ef6376605b467694e7dcd47f09d187decb0ec1bfc",
+      "bytes": 2077
     },
     {
       "path": "scripts/smc_evidence.py",

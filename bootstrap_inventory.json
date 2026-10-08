@@ -678,6 +678,11 @@
       "bytes": 3702
     },
     {
+      "path": "docs/evidence/review_open_world/STAGE2_PROPOSAL_ZH.md",
+      "sha256": "ed8a3137e49f81546031a109f7425d3de8e6756f1ece73983148193fbdaa66b0",
+      "bytes": 2081
+    },
+    {
       "path": "docs/evidence/rgd1_hdf5_only_ids_v1.jsonl",
       "sha256": "1e853e181d9fa149a744619d68a43d7e493f9c4364210314ba8811887444ddf0",
       "bytes": 6478

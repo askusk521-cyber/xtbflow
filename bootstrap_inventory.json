@@ -723,6 +723,11 @@
       "bytes": 303
     },
     {
+      "path": "docs/evidence/explore_smc_decomposition/SUPPLEMENT_AUDIT_ZH.md",
+      "sha256": "730b5bcbf07ddedfb0bd0a5e220b0c4e2a6d445f8fa5a5029678e9ee66cd9ac1",
+      "bytes": 4297
+    },
+    {
       "path": "docs/evidence/explore_smc_decomposition/independent_audit.json",
       "sha256": "da7bbbed32ab8ba5c44fa8821ad9c5860ed1a3c1a56d971234c8b8b7dba7e387",
       "bytes": 1062

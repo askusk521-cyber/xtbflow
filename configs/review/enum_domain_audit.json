@@ -1,0 +1,16 @@
+{
+  "task": "T1-0",
+  "exploratory": true,
+  "data_scope": "split_manifest.train.parent_ids only; never inspect evaluation records",
+  "domain_ladder": [2, 3],
+  "coverage_target": 0.95,
+  "coverage_unit": "unique (parent_id, channel_id)",
+  "diagonal_delta": [-2, 0, 2],
+  "diagonal_changes_only_on_bond_edit_atoms": true,
+  "electron_conservation": true,
+  "maximum_absolute_formal_charge": 1,
+  "b3f3_feasibility_parents": "first five training parent_ids sorted lexicographically",
+  "b3f3_maximum_mean_legal_events": 50000,
+  "stop_if_neither_domain_reaches_target": true,
+  "outputs": "training-only domain coverage and event-size counts; no evaluation metrics"
+}

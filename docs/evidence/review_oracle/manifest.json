@@ -1,0 +1,35 @@
+{
+  "acquisitions": {
+    "oracle-79f46bd": {
+      "candidates": 2644,
+      "config_sha256": "0f3984201b52a5f8e4e843950fc1f1fda40ea16d6116e0d4727e7b28b6a0c027",
+      "dirty": false,
+      "raw_sha256": "a92a09970004c16e634122cc4fd4e065703525684a3cb8f114f9cf1b61dd84a1",
+      "references": 558,
+      "source_commit": "79f46bd36929e92df7afd809aa2adfbc6ccb3582"
+    },
+    "oracle-bda223a": {
+      "candidates": 2644,
+      "config_sha256": "0f3984201b52a5f8e4e843950fc1f1fda40ea16d6116e0d4727e7b28b6a0c027",
+      "dirty": false,
+      "raw_sha256": "9151dd58888602626a3b952c27919a51e734a443bd4bbebf9e316afec109056a",
+      "references": 558,
+      "source_commit": "bda223a698dc2e0869922dd4bf6b034c16d6e33d"
+    },
+    "oracle-e21ba39": {
+      "candidates": 2644,
+      "config_sha256": "0f3984201b52a5f8e4e843950fc1f1fda40ea16d6116e0d4727e7b28b6a0c027",
+      "dirty": false,
+      "raw_sha256": "53bb9dd0c68bc8cd276aa8b1f0fbb20c98952c7865411a5e990144b1b834e042",
+      "references": 558,
+      "source_commit": "e21ba3947d7bddea87667902b91561ee89c4cbae"
+    }
+  },
+  "analysis_source_commit": "bda223a",
+  "cpu_compute_core_hours": 0.069625,
+  "cpu_compute_seconds": 250.65,
+  "cpu_direct_user_authorized": true,
+  "dirty": false,
+  "gpu_hours": 0,
+  "slurm_jobs": []
+}

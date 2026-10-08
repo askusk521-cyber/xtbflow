@@ -248,6 +248,11 @@
       "bytes": 4027
     },
     {
+      "path": "configs/review/oracle_benchmark.json",
+      "sha256": "0f3984201b52a5f8e4e843950fc1f1fda40ea16d6116e0d4727e7b28b6a0c027",
+      "bytes": 1832
+    },
+    {
       "path": "configs/rules/core_v1.yaml",
       "sha256": "a4de309daad0bab9d502028976cef7b57f91691de5895ed6d4dc1d1c764b2941",
       "bytes": 903

@@ -87,9 +87,15 @@ def run(a):
         # Re-run IRC/endpoints from the SAME certified TS under the revised IRC settings;
         # the first-pass verdict is kept beside the new one, never overwritten.
         old=work/'verdict.json';first=json.loads(old.read_text());reuse=first['ts']
-        if first.get('protocol_version') is not None or reuse.get('status')!='TS_OPTFREQ_PASS':
-            raise ValueError('resume only first-pass chains with a passing TS')
-        old.rename(work/'verdict_pass1.json');work=work/'irc_revision2';work.mkdir()
+        version=first.get('protocol_version')
+        if reuse.get('status')!='TS_OPTFREQ_PASS':raise ValueError('resume only chains with a passing TS')
+        if version is None:
+            old.rename(work/'verdict_pass1.json');work=work/'irc_revision2'
+        elif version=='v1b-h-gpu4pyscf-2' and first.get('irc',{}).get('status')=='IRC_LIMIT':
+            # Revision 3 raised the per-direction cap to 300 after this chain stopped at 150.
+            old.rename(work/'verdict_rev2.json');work=work/'irc_revision3'
+        else:raise ValueError('resume IRC only from a first pass or a revision-2 step cap')
+        work.mkdir()
     elif (work/'verdict.json').exists():raise FileExistsError('item already ran')
     work.mkdir(parents=True,exist_ok=True)
     z=np.asarray(i['z']);x=np.asarray(i['x_start'],dtype=float)

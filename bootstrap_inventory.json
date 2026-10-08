@@ -848,6 +848,11 @@
       "bytes": 113612
     },
     {
+      "path": "docs/evidence/v1b/gpu4pyscf_benchmark.json",
+      "sha256": "b7d5318cfadbe1d791711186f78bccc94d84ac20eee42c04f55129ef3f4fc9a3",
+      "bytes": 4745
+    },
+    {
       "path": "docs/evidence/workflow_b_software_acceptance_20260929.json",
       "sha256": "2fe89dcd76c896b6f9949e7aec55781568b37f6bc2c1c89a5fb3bfd210080da9",
       "bytes": 4166
@@ -911,6 +916,11 @@
       "path": "docs/v1a/v1a_gate_power_v21.py",
       "sha256": "698a6422c8ce7b6d6323a69d024d2128a598094da9fb9ece131a47b677b72ece",
       "bytes": 5583
+    },
+    {
+      "path": "docs/v1b/D1_REPORT_ZH.md",
+      "sha256": "5429de3a3caa6d5abc66b3e5f98cac610bc197340b56e20f7506a6fe9fec25cb",
+      "bytes": 4110
     },
     {
       "path": "pyproject.toml",
@@ -1239,8 +1249,8 @@
     },
     {
       "path": "scripts/v1b_d1.py",
-      "sha256": "e1561f9a3c64cd04372e03f33c8f9d05f0fad13038e9c388fb935ec576e4a57e",
-      "bytes": 7877
+      "sha256": "08f6fa4402c8106e677732ec2c2dd2a8f381353efa6a2638364bd3de82de9c33",
+      "bytes": 8249
     },
     {
       "path": "scripts/v1b_freeze.py",

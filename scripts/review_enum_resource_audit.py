@@ -17,12 +17,13 @@ def main():
         dict(run='initial-screen-9403d6c',processes=8,wall_seconds_upper=1200),
         dict(run='initial-dev-7c28436',processes=2,wall_seconds_upper=1200),
         dict(run='initial-training-6f8ab54',processes=4,wall_seconds_upper=1800),
-        dict(run='training-d414174-shard0',processes=1,wall_seconds_upper=1500)]
+        dict(run='training-d414174-shard0',processes=1,wall_seconds_upper=1500),
+        dict(run='screen-d414174-shard7',processes=1,wall_seconds_upper=1800)]
     completed=[]
     import re
     patterns=['feasibility-shards-7d4bec3/parent-1.log','feasibility-shards-7d4bec3/parent-3.log',
               'feasibility-shards-7d4bec3/parent-4.log','feasibility-fast-1f02afa/*.log',
-              'enum-screen-9403d6c/resume*.log','enum-dev-7c28436/resume*.log',
+              'enum-screen-9403d6c/resume-d414174-[0123456].log','enum-screen-9403d6c/resume-15a65e8-7.log','enum-dev-7c28436/resume*.log',
               'training-b3-6f8ab54/resume-d414174-[123].log','training-b3-6f8ab54/resume-15a65e8-0.log']
     for pattern in patterns:
         for path in sorted(a.run.glob(pattern)):

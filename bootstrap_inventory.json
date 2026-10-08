@@ -1224,8 +1224,8 @@
     },
     {
       "path": "scripts/review_enum_manifest.py",
-      "sha256": "35a6d1afbaa0a9dd878030ceaa24116d0fe6456ecaabcce1c3eb7d52d0074b25",
-      "bytes": 2705
+      "sha256": "c44d7180d13e30d8f071b284476e1b46f485babcbac85900b128dd1dd1f1f62b",
+      "bytes": 2715
     },
     {
       "path": "scripts/review_enum_plot.py",
@@ -1244,8 +1244,8 @@
     },
     {
       "path": "scripts/review_enum_resource_audit.py",
-      "sha256": "1d2295fe614990d412352cd1e354225ab4eba4236ed9b3c5aef8eb0dd42539d6",
-      "bytes": 2699
+      "sha256": "469b4b692ce8522ea1a3e5ee9ef06ca21e1a5128aa2bd186bac6da02370dd622",
+      "bytes": 2838
     },
     {
       "path": "scripts/review_enum_training_check.py",

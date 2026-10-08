@@ -1,0 +1,15 @@
+{
+  "exploratory": true,
+  "version": 1,
+  "methods": ["GFN2-xTB", "GFN1-xTB", "g-xTB", "AIMNet2", "AIMNet2-rxn", "UMA", "MACE-OMol25"],
+  "availability": "Evaluate only accessible, ungated, license-permitted methods; record unavailable reasons; do not accept terms or download over 1 GB.",
+  "xtb": {"accuracy": 1.0, "max_iterations": 250, "electronic_temperature_kelvin": 300.0, "charge": 0, "uhf": 0, "min_distance_angstrom": 0.5},
+  "T2a": {"input": "check_a_rows.jsonl, 558 dev reference records", "geometry": "T1xCache.reaction(cache_index).x_ts and z; parent anchor reactant", "channel_pool": "min", "metrics": ["rho", "top1", "concordance_gap2", "mae", "median_signed_error"]},
+  "T2b": {"arm": "B0", "training_seed": 0, "statuses": ["PROXY_MATCH", "KNOWN_EVENT_GEOMETRY_MISS"], "selection": "sha256(candidate_id) ascending, at most 8 per parent", "target": "minimum catalogue barrier per channel", "metric": "within_parent_rho min_n=4; at least 2 different target values"},
+  "interval": "cluster_summary, split_group formula clusters, two-sided 95% t interval",
+  "comparisons": "paired parent rho difference of each method minus GFN2-xTB, separately for T2a and T2b; lower>0 BETTER_THAN_GFN2; upper<0 WORSE_THAN_GFN2; otherwise INCONCLUSIVE",
+  "failure_policy": "record all failures; ranking on finite data only; paired comparisons use intersecting parent IDs; reproduction failure invalidates downstream interpretation",
+  "reproduction": {"barrier_absolute_tolerance_kcal": 0.000001, "rho": 0.7491015704725383, "rho_absolute_tolerance": 1e-9, "interval": [0.6524459560799384, 0.8457571848651383]},
+  "compute": {"cpu_core_hours": 20, "gpu_hours": 1, "gpu_slurm_only": true, "cpu_direct_authorized": true},
+  "determinism": "sort parent IDs, channel IDs and candidate hashes; exclude timing from numerical inference"
+}

@@ -9,7 +9,7 @@ from xtbflow.v1.proxy import valid_endpoint
 VALENCE = {1: 1, 6: 4, 7: 5, 8: 6}
 # RDKit strict explicit valence for CHNO at q=-1,0,+1 (isoelectronic rule).
 # Carbon ions use the documented special-case maximum of three.
-MAX_BONDS = {1: {-1: 0, 0: 1, 1: 0}, 6: {-1: 3, 0: 4, 1: 3},
+MAX_BONDS = {1: {-1: 1, 0: 1, 1: 1}, 6: {-1: 3, 0: 4, 1: 3},
              7: {-1: 2, 0: 3, 1: 4}, 8: {-1: 1, 0: 2, 1: 3}}
 
 

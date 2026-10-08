@@ -1719,7 +1719,7 @@
     },
     {
       "path": "src/xtbflow/v1/enumeration.py",
-      "sha256": "9146b0ec6380ba19534f1c51243832ae34b307cfab162a7d7d74d34dda70adfa",
+      "sha256": "e2c202b8b23ba255cd770d9b6bae89340e59e8963a1a04b22093562f6164480e",
       "bytes": 4445
     },
     {
@@ -1766,6 +1766,11 @@
       "path": "src/xtbflow/v1/pulses.py",
       "sha256": "c8e2eae54818abda4dd3ddfe1499fc59b34468b293d2cef49b7034fd9760bb2b",
       "bytes": 2812
+    },
+    {
+      "path": "src/xtbflow/v1/review_enum_metrics.py",
+      "sha256": "7c9b8b0e79097cbe4b7081320d62fb158bb8fd37f18dd06cf858a8f603498c5c",
+      "bytes": 2030
     },
     {
       "path": "src/xtbflow/v1/rng.py",
@@ -2013,9 +2018,19 @@
       "bytes": 889
     },
     {
+      "path": "tests/test_review_enum_metrics.py",
+      "sha256": "5958d3ac75671a6ce460513ea4f652322774e8be498a4d6f7023d0962302f4e8",
+      "bytes": 1059
+    },
+    {
       "path": "tests/test_review_enumeration.py",
       "sha256": "2fffd375c779e78db2147fd04b78412b0d3a9a9ee21de5a5e946f93772d0d23b",
       "bytes": 2101
+    },
+    {
+      "path": "tests/test_review_rdkit_valence_bounds.py",
+      "sha256": "c101cde235bd97c9e9d6b560e00137b46972aa1886f5cf7533d3eb5c666b5c44",
+      "bytes": 978
     },
     {
       "path": "tests/test_runtime_budget.py",

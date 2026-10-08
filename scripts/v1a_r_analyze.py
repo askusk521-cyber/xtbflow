@@ -218,8 +218,11 @@ def tables(res,cfg):
                 if star['kappa_star'] is None:
                     lines.append(f"- {pair}：网格内不翻转（κ=0 符号 {star['sign_at_zero']:+.0f}；最后可估 κ={star['last_estimated_kappa']}）")
                 else:
+                    g=star['gpu_seconds_at_kappa_star']
                     lines.append(f"- {pair}：κ\\*={star['kappa_star']}（前一格 κ={star['kappa_before']}：{fmt(star['before'])}；"
-                                 f"κ\\*：{fmt(star['at_kappa_star'])}）")
+                                 f"κ\\*：{fmt(star['at_kappa_star'])}）；κ\\* 折合 GPU 秒/验证单元："
+                                 f"f 单次调用 {g['f_call_dev']:.3g}，逐分子(批64) {g['per_molecule_dev']:.3g}，"
+                                 f"逐分子(批512) {g['per_molecule_frozen']:.3g}")
             lines.append('')
     return '\n'.join(lines)+'\n'
 
@@ -318,7 +321,17 @@ def main():
                   *[abs(x-y) for x,y in zip(s['ci_two95'],gate['primary']['ci_two95'])])
     res['reproduction_kappa0']=dict(max_abs_deviation=worst,tolerance=cfg['operational']['reproduction_tolerance'],
                                     passed=worst<=cfg['operational']['reproduction_tolerance'])
-    res['gpu_seconds_per_unit']=gpu_seconds(parents,order)
+    res['gpu_seconds_per_unit']=gpu=gpu_seconds(parents,order)
+    convert=lambda kappa:None if kappa is None else {k:kappa*gpu[k]['median'] for k in
+                                                       ('f_call_dev','per_molecule_dev','per_molecule_frozen')}
+    for m in modes:
+        for block in res['analysis_b'][m].values():
+            for star in block['kappa_star'].values():
+                star['gpu_seconds_at_kappa_star']=convert(star['kappa_star'])
+                star['gpu_seconds_at_kappa_before']=convert(star['kappa_before'])
+            block['frontier_path']=[dict(kappa=int(k),top=item['ranking'][0] if 'ranking' in item else None,
+                                         b1_rank=item['ranking'].index('B1')+1 if 'ranking' in item else None,
+                                         gpu_seconds=convert(int(k))) for k,item in block['kappa'].items()]
     (a.out/'reanalysis.json').write_text(json.dumps(res,indent=1,sort_keys=True,allow_nan=False)+'\n')
     (a.out/'report_tables_ZH.md').write_text(tables(res,cfg),encoding='utf-8')
     figures(res,cfg,a.out)

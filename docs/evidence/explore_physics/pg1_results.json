@@ -1,0 +1,3049 @@
+{
+  "config_sha256": "3293e85653999aff276b4553f5d655d12b2466a172ee42a7f9018713973cd6a8",
+  "dirty": false,
+  "exploratory": true,
+  "physics": {
+    "arms": {
+      "descent_0.3": {
+        "applied_steps_mean": 22.91364247311828,
+        "barrier_shift_vs_none_kcal": {
+          "ci_two95": [
+            -0.3109765527834898,
+            -0.05732134410405945
+          ],
+          "estimate": -0.1841489484437746,
+          "lower_one95": -0.28901266654840424,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.060800492216655885,
+          "upper_one95": -0.07928523033914496
+        },
+        "changed_vs_none": {
+          "ci_two95": [
+            0.09248630792492213,
+            0.12290347702131443
+          ],
+          "estimate": 0.10769489247311828,
+          "lower_one95": 0.09512011641284811,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.007290916131886542,
+          "upper_one95": 0.12026966853338845
+        },
+        "displacement_rms_sum_mean": 0.1373587516127079,
+        "force_failures": 4,
+        "mean_abs_cos_u_force": null,
+        "means": {
+          "best_event": 0.11441532258064514,
+          "best_reference": 0.067372311827957,
+          "proxy_match": 0.23235887096774197,
+          "utility": 0.14221579115173072,
+          "valid": 0.8002352150537634
+        },
+        "n_both_catalogue": 2190
+      },
+      "descent_1.0": {
+        "applied_steps_mean": 22.916834677419356,
+        "barrier_shift_vs_none_kcal": {
+          "ci_two95": [
+            -2.632586574863004,
+            -0.03481206876141507
+          ],
+          "estimate": -1.3336993218122095,
+          "lower_one95": -2.407646491773562,
+          "n_formula_groups": 21,
+          "n_parents": 61,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.6226797764617126,
+          "upper_one95": -0.259752151850857
+        },
+        "changed_vs_none": {
+          "ci_two95": [
+            0.2813815227868994,
+            0.36310772452492873
+          ],
+          "estimate": 0.32224462365591405,
+          "lower_one95": 0.28845815648484274,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.019589557488447727,
+          "upper_one95": 0.35603109082698536
+        },
+        "displacement_rms_sum_mean": 0.4580489281121822,
+        "force_failures": 0,
+        "mean_abs_cos_u_force": null,
+        "means": {
+          "best_event": 0.11676747311827955,
+          "best_reference": 0.07123655913978495,
+          "proxy_match": 0.21370967741935484,
+          "utility": 0.1434098141022537,
+          "valid": 0.702956989247312
+        },
+        "n_both_catalogue": 1873
+      },
+      "none": {
+        "applied_steps_mean": 0.0,
+        "barrier_shift_vs_none_kcal": null,
+        "changed_vs_none": null,
+        "displacement_rms_sum_mean": 0.0,
+        "force_failures": 0,
+        "mean_abs_cos_u_force": null,
+        "means": {
+          "best_event": 0.11256720430107527,
+          "best_reference": 0.06602822580645161,
+          "proxy_match": 0.23403897849462366,
+          "utility": 0.14026584007631304,
+          "valid": 0.8148521505376345
+        },
+        "n_both_catalogue": 2287
+      },
+      "random_0.3": {
+        "applied_steps_mean": 22.909778225806452,
+        "barrier_shift_vs_none_kcal": {
+          "ci_two95": [
+            -0.17536512656889452,
+            0.028810507537099253
+          ],
+          "estimate": -0.07327730951589764,
+          "lower_one95": -0.15768565362281364,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.04894036718946723,
+          "upper_one95": 0.011131034591018357
+        },
+        "changed_vs_none": {
+          "ci_two95": [
+            0.10955352772228015,
+            0.14683088087987034
+          ],
+          "estimate": 0.12819220430107525,
+          "lower_one95": 0.11278135634902506,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.008935284366188501,
+          "upper_one95": 0.14360305225312545
+        },
+        "displacement_rms_sum_mean": 0.13745865114790548,
+        "force_failures": 0,
+        "mean_abs_cos_u_force": null,
+        "means": {
+          "best_event": 0.11206317204301072,
+          "best_reference": 0.0655241935483871,
+          "proxy_match": 0.23168682795698922,
+          "utility": 0.14042720019698246,
+          "valid": 0.8111559139784946
+        },
+        "n_both_catalogue": 2156
+      },
+      "random_1.0": {
+        "applied_steps_mean": 22.900201612903224,
+        "barrier_shift_vs_none_kcal": {
+          "ci_two95": [
+            -0.45486271999798206,
+            0.17468270730231378
+          ],
+          "estimate": -0.14009000634783414,
+          "lower_one95": -0.40035067501759725,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.15090039763771235,
+          "upper_one95": 0.12017066232192897
+        },
+        "changed_vs_none": {
+          "ci_two95": [
+            0.29514394837667757,
+            0.36614637420396745
+          ],
+          "estimate": 0.3306451612903225,
+          "lower_one95": 0.30129201531921995,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.01701909636057042,
+          "upper_one95": 0.35999830726142507
+        },
+        "displacement_rms_sum_mean": 0.45800409921299745,
+        "force_failures": 0,
+        "mean_abs_cos_u_force": null,
+        "means": {
+          "best_event": 0.10803091397849461,
+          "best_reference": 0.05981182795698926,
+          "proxy_match": 0.20329301075268819,
+          "utility": 0.13469686051354762,
+          "valid": 0.7743615591397848
+        },
+        "n_both_catalogue": 1864
+      },
+      "saddle_0.3": {
+        "applied_steps_mean": 22.913474462365592,
+        "barrier_shift_vs_none_kcal": {
+          "ci_two95": [
+            -0.16091946745064034,
+            0.018179221721328423
+          ],
+          "estimate": -0.07137012286465595,
+          "lower_one95": -0.1454113954725187,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.04292948886681625,
+          "upper_one95": 0.0026711497432067993
+        },
+        "changed_vs_none": {
+          "ci_two95": [
+            0.10193775778823318,
+            0.13159718844832596
+          ],
+          "estimate": 0.11676747311827956,
+          "lower_one95": 0.10450595405830848,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.007109288204203359,
+          "upper_one95": 0.12902899217825065
+        },
+        "displacement_rms_sum_mean": 0.13739881898878614,
+        "force_failures": 3,
+        "mean_abs_cos_u_force": 0.32037904028785763,
+        "means": {
+          "best_event": 0.11475134408602149,
+          "best_reference": 0.06770833333333334,
+          "proxy_match": 0.23706317204301075,
+          "utility": 0.1432011379083201,
+          "valid": 0.8235887096774194
+        },
+        "n_both_catalogue": 2198
+      },
+      "saddle_1.0": {
+        "applied_steps_mean": 22.913138440860216,
+        "barrier_shift_vs_none_kcal": {
+          "ci_two95": [
+            -0.6164470370997148,
+            0.010935578265981627
+          ],
+          "estimate": -0.30275572941686657,
+          "lower_one95": -0.5621222689961847,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.15038197725564997,
+          "upper_one95": -0.043389189837548414
+        },
+        "changed_vs_none": {
+          "ci_two95": [
+            0.2476207947430933,
+            0.29404587192357334
+          ],
+          "estimate": 0.2708333333333333,
+          "lower_one95": 0.25164072052721465,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.011127969965468816,
+          "upper_one95": 0.290025946139452
+        },
+        "displacement_rms_sum_mean": 0.45806750051692247,
+        "force_failures": 9,
+        "mean_abs_cos_u_force": 0.3374380969926865,
+        "means": {
+          "best_event": 0.11928763440860214,
+          "best_reference": 0.07224462365591398,
+          "proxy_match": 0.24227150537634407,
+          "utility": 0.14850738165491426,
+          "valid": 0.8227486559139786
+        },
+        "n_both_catalogue": 2031
+      }
+    },
+    "comparisons": {
+      "descent_0.3-none": {
+        "best_event": {
+          "ci_two95": [
+            -0.002002830050640697,
+            0.005699066609780487
+          ],
+          "estimate": 0.001848118279569895,
+          "lower_one95": -0.0013359264103623497,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0018461245499091553,
+          "upper_one95": 0.00503216296950214
+        },
+        "best_reference": {
+          "ci_two95": [
+            -0.0015473048658192967,
+            0.0042354769088300505
+          ],
+          "estimate": 0.0013440860215053769,
+          "lower_one95": -0.0010465764885785101,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0013861177151088368,
+          "upper_one95": 0.003734748531589264
+        },
+        "proxy_match": {
+          "ci_two95": [
+            -0.004810448845691493,
+            0.0014502337919280529
+          ],
+          "estimate": -0.00168010752688172,
+          "lower_one95": -0.0042683392555807895,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0015006693060287553,
+          "upper_one95": 0.0009081242018173497
+        },
+        "utility": {
+          "ci_two95": [
+            -0.0015554092914567197,
+            0.005455311442291963
+          ],
+          "estimate": 0.0019499510754176215,
+          "lower_one95": -0.0009483542523598693,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0016804514822486322,
+          "upper_one95": 0.004848256403195112
+        },
+        "valid": {
+          "ci_two95": [
+            -0.02191591483091808,
+            -0.007317956136823845
+          ],
+          "estimate": -0.014616935483870962,
+          "lower_one95": -0.020651884394914798,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0034990926406760427,
+          "upper_one95": -0.008581986572827126
+        }
+      },
+      "descent_0.3-random_0.3": {
+        "best_event": {
+          "ci_two95": [
+            -0.0019658331451977173,
+            0.006670134220466542
+          ],
+          "estimate": 0.002352150537634412,
+          "lower_one95": -0.0012180487581281104,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.002070018862742729,
+          "upper_one95": 0.005922349833396935
+        },
+        "best_reference": {
+          "ci_two95": [
+            -0.0021387121084788284,
+            0.005834948667618615
+          ],
+          "estimate": 0.0018481182795698932,
+          "lower_one95": -0.0014482765401530831,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0019112656999212688,
+          "upper_one95": 0.00514451309929287
+        },
+        "proxy_match": {
+          "ci_two95": [
+            -0.003255763671572753,
+            0.004599849693078132
+          ],
+          "estimate": 0.0006720430107526894,
+          "lower_one95": -0.002575549773556311,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0018829700431586137,
+          "upper_one95": 0.0039196357950616895
+        },
+        "utility": {
+          "ci_two95": [
+            -0.0025100336278971597,
+            0.006087215537393614
+          ],
+          "estimate": 0.0017885909547482274,
+          "lower_one95": -0.0017656018317428262,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0020607382110553194,
+          "upper_one95": 0.005342783741239281
+        },
+        "valid": {
+          "ci_two95": [
+            -0.019684344509806162,
+            -0.0021570533396562
+          ],
+          "estimate": -0.010920698924731182,
+          "lower_one95": -0.018166664540707186,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.004201245998131883,
+          "upper_one95": -0.003674733308755178
+        }
+      },
+      "descent_1.0-none": {
+        "best_event": {
+          "ci_two95": [
+            -0.008636767501656267,
+            0.01703730513606487
+          ],
+          "estimate": 0.004200268817204301,
+          "lower_one95": -0.006413661524286454,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0061540082764569215,
+          "upper_one95": 0.014814199158695055
+        },
+        "best_reference": {
+          "ci_two95": [
+            -0.007314575196216486,
+            0.017731241862883156
+          ],
+          "estimate": 0.005208333333333334,
+          "lower_one95": -0.005145869576431442,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.006003417052184756,
+          "upper_one95": 0.01556253624309811
+        },
+        "proxy_match": {
+          "ci_two95": [
+            -0.03438785983627558,
+            -0.006270742314262062
+          ],
+          "estimate": -0.020329301075268823,
+          "lower_one95": -0.03195321174161529,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.006739599765966144,
+          "upper_one95": -0.008705390408922358
+        },
+        "utility": {
+          "ci_two95": [
+            -0.010460092777312267,
+            0.016748040829193536
+          ],
+          "estimate": 0.0031439740259406332,
+          "lower_one95": -0.008104153176018515,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.006521718691228433,
+          "upper_one95": 0.014392101227899783
+        },
+        "valid": {
+          "ci_two95": [
+            -0.14596199773775453,
+            -0.07782832484289064
+          ],
+          "estimate": -0.11189516129032258,
+          "lower_one95": -0.1400623347738744,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.01633146376178587,
+          "upper_one95": -0.08372798780677077
+        }
+      },
+      "descent_1.0-random_1.0": {
+        "best_event": {
+          "ci_two95": [
+            -0.005151020675023658,
+            0.022624138954593545
+          ],
+          "estimate": 0.008736559139784944,
+          "lower_one95": -0.0027459825548041966,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.006657633350676236,
+          "upper_one95": 0.020219100834374084
+        },
+        "best_reference": {
+          "ci_two95": [
+            -0.0022391380421138,
+            0.0250886004077052
+          ],
+          "estimate": 0.0114247311827957,
+          "lower_one95": 0.00012715808678832527,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0065503876603491456,
+          "upper_one95": 0.022722304278803073
+        },
+        "proxy_match": {
+          "ci_two95": [
+            -0.0045029895676914535,
+            0.025336322901024784
+          ],
+          "estimate": 0.010416666666666666,
+          "lower_one95": -0.0019192174156899104,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.007152405404761031,
+          "upper_one95": 0.022752550749023243
+        },
+        "utility": {
+          "ci_two95": [
+            -0.006299441314446586,
+            0.023725348491858755
+          ],
+          "estimate": 0.008712953588706085,
+          "lower_one95": -0.0036996087662749724,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.007196863839023677,
+          "upper_one95": 0.02112551594368714
+        },
+        "valid": {
+          "ci_two95": [
+            -0.10176431124014043,
+            -0.04104482854480576
+          ],
+          "estimate": -0.0714045698924731,
+          "lower_one95": -0.09650663954825325,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.01455430170047379,
+          "upper_one95": -0.04630250023669294
+        }
+      },
+      "random_0.3-none": {
+        "best_event": {
+          "ci_two95": [
+            -0.003179772430302533,
+            0.0021717079141734983
+          ],
+          "estimate": -0.0005040322580645172,
+          "lower_one95": -0.002716390242776023,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0012827358867410767,
+          "upper_one95": 0.0017083257266469886
+        },
+        "best_reference": {
+          "ci_two95": [
+            -0.002567989574526721,
+            0.001559925058397688
+          ],
+          "estimate": -0.0005040322580645165,
+          "lower_one95": -0.002210555371390451,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0009894503756369862,
+          "upper_one95": 0.0012024908552614175
+        },
+        "proxy_match": {
+          "ci_two95": [
+            -0.006777666362559153,
+            0.002073365287290333
+          ],
+          "estimate": -0.0023521505376344095,
+          "lower_one95": -0.006011259659410698,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0021215692109684183,
+          "upper_one95": 0.0013069585841418785
+        },
+        "utility": {
+          "ci_two95": [
+            -0.0030383213340142525,
+            0.003361041575353042
+          ],
+          "estimate": 0.00016136012066939457,
+          "lower_one95": -0.0024842034838422795,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.001533910605613732,
+          "upper_one95": 0.002806923725181069
+        },
+        "valid": {
+          "ci_two95": [
+            -0.010817162029970042,
+            0.0034246889116904804
+          ],
+          "estimate": -0.003696236559139781,
+          "lower_one95": -0.009583966798189873,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0034137345408252334,
+          "upper_one95": 0.0021914936799103113
+        }
+      },
+      "random_1.0-none": {
+        "best_event": {
+          "ci_two95": [
+            -0.00965554484092029,
+            0.0005829641957589959
+          ],
+          "estimate": -0.004536290322580647,
+          "lower_one95": -0.008768997117854532,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0024541439233030063,
+          "upper_one95": -0.000303583527306763
+        },
+        "best_reference": {
+          "ci_two95": [
+            -0.010721168947521028,
+            -0.0017116267514037057
+          ],
+          "estimate": -0.006216397849462367,
+          "lower_one95": -0.009941036890087861,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0021595637756564056,
+          "upper_one95": -0.0024917588088368735
+        },
+        "proxy_match": {
+          "ci_two95": [
+            -0.039598644327554014,
+            -0.021893291156316958
+          ],
+          "estimate": -0.030745967741935484,
+          "lower_one95": -0.03806554605281475,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0042439269955675,
+          "upper_one95": -0.023426389431056217
+        },
+        "utility": {
+          "ci_two95": [
+            -0.010787685783482735,
+            -0.0003502733420481614
+          ],
+          "estimate": -0.005568979562765449,
+          "lower_one95": -0.009883915107351829,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.002501820550862324,
+          "upper_one95": -0.0012540440181790687
+        },
+        "valid": {
+          "ci_two95": [
+            -0.051854244798488304,
+            -0.029126937997210604
+          ],
+          "estimate": -0.040490591397849454,
+          "lower_one95": -0.049886297900760636,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.005447676187966615,
+          "upper_one95": -0.031094884894938273
+        }
+      },
+      "saddle_0.3-descent_0.3": {
+        "best_event": {
+          "ci_two95": [
+            -0.0023148265820946362,
+            0.0029868695928473203
+          ],
+          "estimate": 0.0003360215053763422,
+          "lower_one95": -0.0018557551825927334,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0012708027510959317,
+          "upper_one95": 0.0025277981933454177
+        },
+        "best_reference": {
+          "ci_two95": [
+            -0.0019994520194373164,
+            0.0026714950301900023
+          ],
+          "estimate": 0.00033602150537634287,
+          "lower_one95": -0.0015949968925655523,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0011196138301823393,
+          "upper_one95": 0.002267039903318238
+        },
+        "proxy_match": {
+          "ci_two95": [
+            0.0013921511838821932,
+            0.008016450966655443
+          ],
+          "estimate": 0.004704301075268818,
+          "lower_one95": 0.0019657462130298524,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0015878273877368296,
+          "upper_one95": 0.007442855937507784
+        },
+        "utility": {
+          "ci_two95": [
+            -0.0020090215129166056,
+            0.003979715026095486
+          ],
+          "estimate": 0.00098534675658944,
+          "lower_one95": -0.0014904596086704502,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0014354845351824816,
+          "upper_one95": 0.00346115312184933
+        },
+        "valid": {
+          "ci_two95": [
+            0.012856244474857616,
+            0.03385074477245422
+          ],
+          "estimate": 0.023353494623655918,
+          "lower_one95": 0.014674148465473656,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.005032326986629371,
+          "upper_one95": 0.03203284078183818
+        }
+      },
+      "saddle_0.3-none": {
+        "best_event": {
+          "ci_two95": [
+            -0.0008120344416712734,
+            0.005180314011563747
+          ],
+          "estimate": 0.0021841397849462364,
+          "lower_one95": -0.00029315978345686175,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0014363503016051056,
+          "upper_one95": 0.004661439353349334
+        },
+        "best_reference": {
+          "ci_two95": [
+            -0.0006609904723352195,
+            0.004021205526098659
+          ],
+          "estimate": 0.00168010752688172,
+          "lower_one95": -0.00025556130423190406,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0011223101738841682,
+          "upper_one95": 0.003615776357995344
+        },
+        "proxy_match": {
+          "ci_two95": [
+            -0.0012449052532584968,
+            0.007293292350032692
+          ],
+          "estimate": 0.0030241935483870976,
+          "lower_one95": -0.0005055867043207906,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0020465837055971855,
+          "upper_one95": 0.006553973801094986
+        },
+        "utility": {
+          "ci_two95": [
+            0.00010407691822114694,
+            0.005766518745792976
+          ],
+          "estimate": 0.0029352978320070612,
+          "lower_one95": 0.000594385115561401,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0013572725435323037,
+          "upper_one95": 0.0052762105484527215
+        },
+        "valid": {
+          "ci_two95": [
+            0.0011115565023175709,
+            0.01636156177725233
+          ],
+          "estimate": 0.00873655913978495,
+          "lower_one95": 0.002432047347693549,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.003655386506154652,
+          "upper_one95": 0.015041070931876352
+        }
+      },
+      "saddle_0.3-random_0.3": {
+        "best_event": {
+          "ci_two95": [
+            -0.0004888504952187756,
+            0.005865194581240283
+          ],
+          "estimate": 0.0026881720430107538,
+          "lower_one95": 6.134330493427981e-05,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0015230480392136266,
+          "upper_one95": 0.005315000781087228
+        },
+        "best_reference": {
+          "ci_two95": [
+            -0.0006749054510408726,
+            0.005043185020933346
+          ],
+          "estimate": 0.002184139784946237,
+          "lower_one95": -0.00017977866353188505,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0013706113785141275,
+          "upper_one95": 0.004548058233424359
+        },
+        "proxy_match": {
+          "ci_two95": [
+            2.2958211513011972e-05,
+            0.010729729960530003
+          ],
+          "estimate": 0.0053763440860215075,
+          "lower_one95": 0.000950052584479881,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0025663852746439122,
+          "upper_one95": 0.009802635587563134
+        },
+        "utility": {
+          "ci_two95": [
+            -0.00026844192306889466,
+            0.00581631734574423
+          ],
+          "estimate": 0.0027739377113376678,
+          "lower_one95": 0.00025843454457342464,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0014585009331751918,
+          "upper_one95": 0.005289440878101911
+        },
+        "valid": {
+          "ci_two95": [
+            0.003987158001493936,
+            0.020878433396355527
+          ],
+          "estimate": 0.012432795698924732,
+          "lower_one95": 0.005449765661197495,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.004048794674950255,
+          "upper_one95": 0.01941582573665197
+        }
+      },
+      "saddle_1.0-descent_1.0": {
+        "best_event": {
+          "ci_two95": [
+            -0.003943078118647126,
+            0.00898340069929229
+          ],
+          "estimate": 0.0025201612903225823,
+          "lower_one95": -0.0028237803456757963,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.003098443272072365,
+          "upper_one95": 0.00786410292632096
+        },
+        "best_reference": {
+          "ci_two95": [
+            -0.00456579446367449,
+            0.006581923495932551
+          ],
+          "estimate": 0.0010080645161290303,
+          "lower_one95": -0.003600518763954612,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.002672078931732683,
+          "upper_one95": 0.005616647796212673
+        },
+        "proxy_match": {
+          "ci_two95": [
+            0.015391853076215599,
+            0.04173180283776289
+          ],
+          "estimate": 0.028561827956989246,
+          "lower_one95": 0.01767261704322578,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.006313617287031616,
+          "upper_one95": 0.039451038870752714
+        },
+        "utility": {
+          "ci_two95": [
+            -0.002452315460484877,
+            0.012647450565805969
+          ],
+          "estimate": 0.005097567552660546,
+          "lower_one95": -0.0011448337615894274,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.003619374549943042,
+          "upper_one95": 0.011339968866910518
+        },
+        "valid": {
+          "ci_two95": [
+            0.07664952694354304,
+            0.16293380638979024
+          ],
+          "estimate": 0.11979166666666664,
+          "lower_one95": 0.08412084246471879,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.020682116831755554,
+          "upper_one95": 0.1554624908686145
+        }
+      },
+      "saddle_1.0-none": {
+        "best_event": {
+          "ci_two95": [
+            -0.001950570368246034,
+            0.015391430583299798
+          ],
+          "estimate": 0.006720430107526882,
+          "lower_one95": -0.0004489345927714758,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.004156832415802097,
+          "upper_one95": 0.01388979480782524
+        },
+        "best_reference": {
+          "ci_two95": [
+            -0.0033608538952991747,
+            0.015793649594223903
+          ],
+          "estimate": 0.006216397849462364,
+          "lower_one95": -0.0017022743702671305,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.004591284548784813,
+          "upper_one95": 0.01413507006919186
+        },
+        "proxy_match": {
+          "ci_two95": [
+            -0.0013995107872465402,
+            0.017864564550687405
+          ],
+          "estimate": 0.008232526881720433,
+          "lower_one95": 0.0002685565130438692,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.004617548635184431,
+          "upper_one95": 0.016196497250397
+        },
+        "utility": {
+          "ci_two95": [
+            -0.0004993349776546956,
+            0.016982418134857062
+          ],
+          "estimate": 0.008241541578601182,
+          "lower_one95": 0.001014401872268692,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.00419033064443815,
+          "upper_one95": 0.015468681284933672
+        },
+        "valid": {
+          "ci_two95": [
+            -0.009238839242568533,
+            0.025031849995256705
+          ],
+          "estimate": 0.007896505376344086,
+          "lower_one95": -0.006271356242568922,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.008214594863286155,
+          "upper_one95": 0.022064366995257094
+        }
+      },
+      "saddle_1.0-random_1.0": {
+        "best_event": {
+          "ci_two95": [
+            0.0012191202441841527,
+            0.021294320616030902
+          ],
+          "estimate": 0.011256720430107527,
+          "lower_one95": 0.0029574224829173427,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.004811973191131464,
+          "upper_one95": 0.019556018377297712
+        },
+        "best_reference": {
+          "ci_two95": [
+            0.002079545117624834,
+            0.022786046280224626
+          ],
+          "estimate": 0.01243279569892473,
+          "lower_one95": 0.003872511397441221,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.0049632943448123966,
+          "upper_one95": 0.02099308000040824
+        },
+        "proxy_match": {
+          "ci_two95": [
+            0.029361725362548118,
+            0.04859526388476372
+          ],
+          "estimate": 0.03897849462365592,
+          "lower_one95": 0.031027148494205403,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.004610229040069193,
+          "upper_one95": 0.04692984075310644
+        },
+        "utility": {
+          "ci_two95": [
+            0.003006078749691313,
+            0.02461496353304194
+          ],
+          "estimate": 0.013810521141366628,
+          "lower_one95": 0.004877182006429096,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.005179593346104492,
+          "upper_one95": 0.022743860276304158
+        },
+        "valid": {
+          "ci_two95": [
+            0.028649908481687504,
+            0.0681242850666996
+          ],
+          "estimate": 0.048387096774193554,
+          "lower_one95": 0.03206797634249717,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.009461905153887737,
+          "upper_one95": 0.06470621720588994
+        }
+      }
+    },
+    "readings": {
+      "descent_0.3": "NO_DETECTABLE_SHIFT",
+      "descent_1.0": "NO_DETECTABLE_SHIFT",
+      "saddle_0.3": "SHIFT_NOT_SPECIFIC",
+      "saddle_1.0": "NO_DETECTABLE_SHIFT"
+    }
+  },
+  "reproduction_vs_geolead1": {
+    "commit_step": 1.0,
+    "final_event": 1.0,
+    "n": 5952,
+    "proxy_status": 1.0
+  },
+  "rows_sha256": {
+    "descent_0.3": "8636bb726c77942248dd265ccc72e4d4a2c90a8b30e4bd11dfed2c189e1c93a8",
+    "descent_1.0": "5c7f98c4d1d44c938f7ced59a0a0ab13079ea2eb28322fcc4113b2895c92dd33",
+    "none": "b842f4c418f8cbd30f60d8090100a9855334ef7f59b2fc76d0095b3bf3a39b62",
+    "random_0.3": "51805877664295346e099b13bbe88bf5a7e99c671d05c86770f7b02f3b34c0a2",
+    "random_1.0": "66fc3c9c86d8ceb98fdd8e015a1154b54805166bbe67f524754601928e474776",
+    "saddle_0.3": "13790639f625c4323064c63f947c44b6680291f8a92c354a8f5f12240d7ea998",
+    "saddle_1.0": "9eb2ecedc7a4847cc3145f482fcb85c13170567d4fa2147b065ce3ee46492d55"
+  },
+  "source_commit": "1efad90fe6fee08e9fee9bbc404c24a7783cfa69",
+  "time_window": {
+    "descent_0.3": {
+      "commit": {
+        "cdf": {
+          "0.0": 0.0012597102666386732,
+          "0.1": 0.003569179088809574,
+          "0.2": 0.015536426621876969,
+          "0.3": 0.0631954650430401,
+          "0.4": 0.17195045139617887,
+          "0.5": 0.32731471761494857,
+          "0.6": 0.4950661347889985,
+          "0.7": 0.6514801595633004,
+          "0.8": 0.8039051018265799,
+          "0.9": 0.9311358387570858,
+          "1.0": 1.0
+        },
+        "committed_by": {
+          "0.4": 0.17195045139617887,
+          "0.5": 0.32731471761494857
+        },
+        "median_t": 0.62,
+        "parent_share_by_0.5": {
+          "ci_two95": [
+            0.26721353113123486,
+            0.3603453133837767
+          ],
+          "estimate": 0.31377942225750577,
+          "lower_one95": 0.275277768727281,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.022323445402318464,
+          "upper_one95": 0.35228107578773055
+        },
+        "quartiles_t": [
+          0.46,
+          0.78
+        ]
+      },
+      "final_status": {
+        "INVALID_OUTPUT": 1189,
+        "KNOWN_EVENT_GEOMETRY_MISS": 894,
+        "OUTSIDE_CATALOGUE_EVENT": 2486,
+        "PROXY_MATCH": 1383
+      },
+      "n_valid_final": 4763,
+      "signals": {
+        "hX_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              0.04809315890019921,
+              0.16070717786801564
+            ],
+            [
+              0.042939211281453525,
+              0.16279379209530967
+            ],
+            [
+              0.0615023357777322,
+              0.1787355526541389
+            ],
+            [
+              0.1040958559201253,
+              0.20606612505293911
+            ],
+            [
+              0.16234770420714953,
+              0.250989157410924
+            ],
+            [
+              0.21601668318838652,
+              0.31627065130732357
+            ],
+            [
+              0.27647095939908434,
+              0.3942355356642164
+            ],
+            [
+              0.35495467183265583,
+              0.48599195197914624
+            ],
+            [
+              0.4339104489423022,
+              0.5932695369406283
+            ],
+            [
+              0.518980591559181,
+              0.7025581369767886
+            ],
+            [
+              0.5711814808957084,
+              0.7632730476857116
+            ]
+          ],
+          "mean": [
+            0.10440016838410743,
+            0.1028665016883816,
+            0.12011894421593555,
+            0.1550809904865322,
+            0.20666843080903677,
+            0.26614366724785504,
+            0.33535324753165036,
+            0.42047331190590104,
+            0.5135899929414652,
+            0.6107693642679848,
+            0.66722726429071
+          ],
+          "n_parents": [
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.6,
+          "window_fraction": 0.5049338652110015
+        },
+        "xtb_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              -0.06211189251440461,
+              0.047788826376043224
+            ],
+            [
+              -0.08439319414918997,
+              0.03613342226545393
+            ],
+            [
+              -0.09425961173303671,
+              0.02903861712445298
+            ],
+            [
+              -0.08254017925238365,
+              0.04044061556983518
+            ],
+            [
+              -0.015655974956145048,
+              0.13294639178342915
+            ],
+            [
+              0.016082956175663535,
+              0.20654970362275277
+            ],
+            [
+              0.12567580026543457,
+              0.32886656828990374
+            ],
+            [
+              0.2631513526811302,
+              0.4671673834727821
+            ],
+            [
+              0.40101690435282333,
+              0.5643645142617761
+            ],
+            [
+              0.4863871281101896,
+              0.6205342698438451
+            ],
+            [
+              0.47354130194352334,
+              0.6206159498708602
+            ]
+          ],
+          "mean": [
+            -0.007161533069180696,
+            -0.024129885941868025,
+            -0.032610497304291865,
+            -0.021049781841274238,
+            0.05864520841364205,
+            0.11131632989920816,
+            0.22727118427766915,
+            0.36515936807695615,
+            0.48269070930729974,
+            0.5534606989770173,
+            0.5470786259071918
+          ],
+          "n_parents": [
+            60,
+            60,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.7,
+          "window_fraction": 0.34851984043669954
+        },
+        "xtb_vs_final_xtb": {
+          "ci_two95": [
+            [
+              -0.029916679586417614,
+              0.04119594807806172
+            ],
+            [
+              0.02188013107889448,
+              0.09317334298168264
+            ],
+            [
+              0.05762378974343256,
+              0.13773065020531872
+            ],
+            [
+              0.12275906197239904,
+              0.21518062393497012
+            ],
+            [
+              0.22667897506368195,
+              0.31489090859127367
+            ],
+            [
+              0.35523948294445074,
+              0.44327083269465195
+            ],
+            [
+              0.5275777288215664,
+              0.6163526783855939
+            ],
+            [
+              0.6763792424813668,
+              0.7514747830827235
+            ],
+            [
+              0.8096812396496977,
+              0.8644204690918689
+            ],
+            [
+              0.9340091273234556,
+              0.9618285709028929
+            ],
+            [
+              -1.0,
+              1.0
+            ]
+          ],
+          "mean": [
+            0.005639634245822051,
+            0.05752673703028856,
+            0.09767721997437563,
+            0.16896984295368458,
+            0.2707849418274778,
+            0.39925515781955134,
+            0.5719652036035802,
+            0.7139270127820452,
+            0.8370508543707833,
+            0.9479188491131743,
+            1.0
+          ],
+          "n_parents": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "reading": "SIGNAL_NEVER_INFORMATIVE",
+          "t_geo": null,
+          "window_fraction": null
+        }
+      }
+    },
+    "descent_1.0": {
+      "commit": {
+        "cdf": {
+          "0.0": 0.0016730401529636712,
+          "0.1": 0.0040630975143403445,
+          "0.2": 0.01768642447418738,
+          "0.3": 0.07098470363288718,
+          "0.4": 0.18881453154875716,
+          "0.5": 0.34655831739961757,
+          "0.6": 0.49952198852772467,
+          "0.7": 0.6312141491395793,
+          "0.8": 0.7691204588910134,
+          "0.9": 0.904397705544933,
+          "1.0": 1.0
+        },
+        "committed_by": {
+          "0.4": 0.18881453154875716,
+          "0.5": 0.34655831739961757
+        },
+        "median_t": 0.62,
+        "parent_share_by_0.5": {
+          "ci_two95": [
+            0.28088063505133953,
+            0.3742699755200295
+          ],
+          "estimate": 0.3275753052856845,
+          "lower_one95": 0.2889671744932174,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.022385181435249844,
+          "upper_one95": 0.3661834360781516
+        },
+        "quartiles_t": [
+          0.44,
+          0.8
+        ]
+      },
+      "final_status": {
+        "INVALID_OUTPUT": 1768,
+        "KNOWN_EVENT_GEOMETRY_MISS": 825,
+        "OUTSIDE_CATALOGUE_EVENT": 2087,
+        "PROXY_MATCH": 1272
+      },
+      "n_valid_final": 4184,
+      "signals": {
+        "hX_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              0.05444366806800155,
+              0.16842482228884034
+            ],
+            [
+              0.05517782343954924,
+              0.17672668824875465
+            ],
+            [
+              0.08320965144519601,
+              0.19222296069012348
+            ],
+            [
+              0.12963329704694904,
+              0.22750980655636333
+            ],
+            [
+              0.18711141346727841,
+              0.26579700010259666
+            ],
+            [
+              0.23058721213466676,
+              0.31176903589586363
+            ],
+            [
+              0.25456432934873113,
+              0.3672456080170305
+            ],
+            [
+              0.2961855772607602,
+              0.42839670066198443
+            ],
+            [
+              0.37291562151775104,
+              0.5197268446598678
+            ],
+            [
+              0.4571030677885706,
+              0.6497820796297471
+            ],
+            [
+              0.5213763193531135,
+              0.7242372821542212
+            ]
+          ],
+          "mean": [
+            0.11143424517842095,
+            0.11595225584415195,
+            0.13771630606765975,
+            0.17857155180165618,
+            0.22645420678493755,
+            0.2711781240152652,
+            0.3109049686828808,
+            0.3622911389613723,
+            0.44632123308880944,
+            0.5534425737091588,
+            0.6228068007536673
+          ],
+          "n_parents": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.7,
+          "window_fraction": 0.36878585086042065
+        },
+        "xtb_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              -0.07547441743144297,
+              0.024773868429422006
+            ],
+            [
+              -0.1126393739441742,
+              0.021467917315334088
+            ],
+            [
+              -0.13505177294672516,
+              -0.008557575368802736
+            ],
+            [
+              -0.13367548178634692,
+              0.021904242070673166
+            ],
+            [
+              -0.04046214265916294,
+              0.13494052979159454
+            ],
+            [
+              -0.007574265857956758,
+              0.1966848516301224
+            ],
+            [
+              0.1266784162669447,
+              0.32692938708528435
+            ],
+            [
+              0.26174011268383546,
+              0.4167593879894199
+            ],
+            [
+              0.37957404777141834,
+              0.5255995792248047
+            ],
+            [
+              0.38576910005540027,
+              0.5510888821450927
+            ],
+            [
+              0.2591384492301741,
+              0.44707451649574287
+            ]
+          ],
+          "mean": [
+            -0.02535027450101048,
+            -0.04558572831442006,
+            -0.07180467415776394,
+            -0.05588561985783687,
+            0.047239193566215795,
+            0.09455529288608282,
+            0.22680390167611453,
+            0.3392497503366277,
+            0.45258681349811153,
+            0.4684289911002465,
+            0.3531064828629585
+          ],
+          "n_parents": [
+            59,
+            59,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.6,
+          "window_fraction": 0.5004780114722753
+        },
+        "xtb_vs_final_xtb": {
+          "ci_two95": [
+            [
+              0.00819240828148593,
+              0.09489305665509144
+            ],
+            [
+              0.0664043438417833,
+              0.15888676575911154
+            ],
+            [
+              0.10074873431538152,
+              0.20563268098219933
+            ],
+            [
+              0.1875796176301752,
+              0.29273803884986604
+            ],
+            [
+              0.2914147011429895,
+              0.38336733184850025
+            ],
+            [
+              0.3717854454726312,
+              0.45489070478604404
+            ],
+            [
+              0.5407297885770571,
+              0.6055652194010862
+            ],
+            [
+              0.6631897553171967,
+              0.7187540462119714
+            ],
+            [
+              0.7633549661191953,
+              0.8245192167784182
+            ],
+            [
+              0.9066654562777228,
+              0.9360053499150689
+            ],
+            [
+              -1.0,
+              1.0
+            ]
+          ],
+          "mean": [
+            0.051542732468288686,
+            0.11264555480044741,
+            0.15319070764879042,
+            0.24015882824002063,
+            0.3373910164957449,
+            0.4133380751293376,
+            0.5731475039890717,
+            0.690971900764584,
+            0.7939370914488068,
+            0.9213354030963958,
+            1.0
+          ],
+          "n_parents": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "reading": "SIGNAL_NEVER_INFORMATIVE",
+          "t_geo": null,
+          "window_fraction": null
+        }
+      }
+    },
+    "none": {
+      "commit": {
+        "cdf": {
+          "0.0": 0.0012371134020618556,
+          "0.1": 0.0035051546391752578,
+          "0.2": 0.015463917525773196,
+          "0.3": 0.06206185567010309,
+          "0.4": 0.16989690721649484,
+          "0.5": 0.3241237113402062,
+          "0.6": 0.49237113402061855,
+          "0.7": 0.6538144329896908,
+          "0.8": 0.8041237113402062,
+          "0.9": 0.934020618556701,
+          "1.0": 1.0
+        },
+        "committed_by": {
+          "0.4": 0.16989690721649484,
+          "0.5": 0.3241237113402062
+        },
+        "median_t": 0.62,
+        "parent_share_by_0.5": {
+          "ci_two95": [
+            0.2640269854301779,
+            0.359183779076394
+          ],
+          "estimate": 0.31160538225328593,
+          "lower_one95": 0.2722665678184992,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.022808835353980494,
+          "upper_one95": 0.35094419668807264
+        },
+        "quartiles_t": [
+          0.46,
+          0.78
+        ]
+      },
+      "final_status": {
+        "INVALID_OUTPUT": 1102,
+        "KNOWN_EVENT_GEOMETRY_MISS": 894,
+        "OUTSIDE_CATALOGUE_EVENT": 2563,
+        "PROXY_MATCH": 1393
+      },
+      "n_valid_final": 4850,
+      "signals": {
+        "hX_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              0.03584737997361955,
+              0.15653232562868316
+            ],
+            [
+              0.027144489577044864,
+              0.15762024755589088
+            ],
+            [
+              0.04817299243133066,
+              0.17748577976060623
+            ],
+            [
+              0.09273949805727148,
+              0.20432561818035444
+            ],
+            [
+              0.15097193406614676,
+              0.24300189109084344
+            ],
+            [
+              0.2073164964784245,
+              0.30182964506532517
+            ],
+            [
+              0.27222435462940087,
+              0.390707738787597
+            ],
+            [
+              0.3574714828998856,
+              0.4910763741464319
+            ],
+            [
+              0.43497851577725943,
+              0.5917856325270685
+            ],
+            [
+              0.5059390433992585,
+              0.6886238523955241
+            ],
+            [
+              0.5701797773586075,
+              0.7580827840842903
+            ]
+          ],
+          "mean": [
+            0.09618985280115136,
+            0.09238236856646787,
+            0.11282938609596845,
+            0.14853255811881297,
+            0.1969869125784951,
+            0.25457307077187485,
+            0.33146604670849894,
+            0.42427392852315876,
+            0.513382074152164,
+            0.5972814478973913,
+            0.6641312807214489
+          ],
+          "n_parents": [
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.7,
+          "window_fraction": 0.3461855670103093
+        },
+        "xtb_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              -0.06705021808384103,
+              0.022582195641219303
+            ],
+            [
+              -0.08834936805298332,
+              0.03132988803462776
+            ],
+            [
+              -0.09434064336678677,
+              0.039962922498201575
+            ],
+            [
+              -0.09424939675309918,
+              0.04233128711731887
+            ],
+            [
+              -0.027640049087218815,
+              0.1311051222873062
+            ],
+            [
+              0.024794358195619037,
+              0.20975090605462404
+            ],
+            [
+              0.11855678439178179,
+              0.32428717486548453
+            ],
+            [
+              0.23452606262333603,
+              0.4301992542763257
+            ],
+            [
+              0.3660478053666778,
+              0.53438397448801
+            ],
+            [
+              0.46888449459736903,
+              0.6169381076972512
+            ],
+            [
+              0.473109973230123,
+              0.6211733476228725
+            ]
+          ],
+          "mean": [
+            -0.02223401122131086,
+            -0.028509740009177786,
+            -0.027188860434292594,
+            -0.025959054817890157,
+            0.05173253660004369,
+            0.11727263212512154,
+            0.22142197962863316,
+            0.3323626584498309,
+            0.4502158899273439,
+            0.5429113011473101,
+            0.5471416604264977
+          ],
+          "n_parents": [
+            60,
+            60,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.7,
+          "window_fraction": 0.3461855670103093
+        },
+        "xtb_vs_final_xtb": {
+          "ci_two95": [
+            [
+              -0.01167291434633417,
+              0.045642639181292445
+            ],
+            [
+              0.026909385242924126,
+              0.09283475003508665
+            ],
+            [
+              0.06081438150670699,
+              0.13028655711174233
+            ],
+            [
+              0.11366785206550596,
+              0.2025276953068727
+            ],
+            [
+              0.20903932955743107,
+              0.2995257108751794
+            ],
+            [
+              0.3471592038865872,
+              0.4352773408548655
+            ],
+            [
+              0.513274327761945,
+              0.608981950186512
+            ],
+            [
+              0.6878465390264441,
+              0.7635338983955111
+            ],
+            [
+              0.8405496906161256,
+              0.8902813702779115
+            ],
+            [
+              0.9670725635660771,
+              0.9807093197662446
+            ],
+            [
+              -1.0,
+              1.0
+            ]
+          ],
+          "mean": [
+            0.016984862417479138,
+            0.05987206763900539,
+            0.09555046930922466,
+            0.15809777368618932,
+            0.2542825202163052,
+            0.39121827237072637,
+            0.5611281389742285,
+            0.7256902187109776,
+            0.8654155304470186,
+            0.9738909416661609,
+            1.0
+          ],
+          "n_parents": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "reading": "SIGNAL_NEVER_INFORMATIVE",
+          "t_geo": null,
+          "window_fraction": null
+        }
+      }
+    },
+    "random_0.3": {
+      "commit": {
+        "cdf": {
+          "0.0": 0.0012427506213753107,
+          "0.1": 0.0035211267605633804,
+          "0.2": 0.015741507870753936,
+          "0.3": 0.06234465617232809,
+          "0.4": 0.17108533554266778,
+          "0.5": 0.3233222866611433,
+          "0.6": 0.49130074565037285,
+          "0.7": 0.6534797017398508,
+          "0.8": 0.8086164043082021,
+          "0.9": 0.9372410936205469,
+          "1.0": 1.0
+        },
+        "committed_by": {
+          "0.4": 0.17108533554266778,
+          "0.5": 0.3233222866611433
+        },
+        "median_t": 0.62,
+        "parent_share_by_0.5": {
+          "ci_two95": [
+            0.2629067823499393,
+            0.3596581308806858
+          ],
+          "estimate": 0.31128245661531256,
+          "lower_one95": 0.27128443650213946,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.02319104600264275,
+          "upper_one95": 0.35128047672848567
+        },
+        "quartiles_t": [
+          0.46,
+          0.78
+        ]
+      },
+      "final_status": {
+        "INVALID_OUTPUT": 1124,
+        "KNOWN_EVENT_GEOMETRY_MISS": 895,
+        "OUTSIDE_CATALOGUE_EVENT": 2554,
+        "PROXY_MATCH": 1379
+      },
+      "n_valid_final": 4828,
+      "signals": {
+        "hX_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              0.03318049670677018,
+              0.15486057936984818
+            ],
+            [
+              0.025063774109492926,
+              0.15200636681606966
+            ],
+            [
+              0.044788606715175844,
+              0.17188519201855373
+            ],
+            [
+              0.0948677354931752,
+              0.20711098326484675
+            ],
+            [
+              0.15581383567837803,
+              0.252714519910483
+            ],
+            [
+              0.20143465192736634,
+              0.31297143184932585
+            ],
+            [
+              0.27014176885996594,
+              0.4030457186221898
+            ],
+            [
+              0.3366594411589072,
+              0.4965012306222579
+            ],
+            [
+              0.41697827622958994,
+              0.6003068981261166
+            ],
+            [
+              0.518440386284917,
+              0.7142292078630079
+            ],
+            [
+              0.5680355040739784,
+              0.7696186704195347
+            ]
+          ],
+          "mean": [
+            0.09402053803830918,
+            0.08853507046278129,
+            0.10833689936686479,
+            0.15098935937901098,
+            0.2042641777944305,
+            0.2572030418883461,
+            0.33659374374107787,
+            0.4165803358905826,
+            0.5086425871778533,
+            0.6163347970739624,
+            0.6688270872467565
+          ],
+          "n_parents": [
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.6,
+          "window_fraction": 0.5086992543496272
+        },
+        "xtb_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              -0.06684937619876673,
+              0.018152043820369015
+            ],
+            [
+              -0.09075073993396958,
+              0.04022764772016783
+            ],
+            [
+              -0.10263935359482328,
+              0.04112343810092943
+            ],
+            [
+              -0.09780165473416715,
+              0.044041279639823
+            ],
+            [
+              -0.03764300955186932,
+              0.1261769370456981
+            ],
+            [
+              -0.006947999067229552,
+              0.22228540716644457
+            ],
+            [
+              0.09635601019282002,
+              0.32373688851424987
+            ],
+            [
+              0.23007732767136319,
+              0.4309114817493898
+            ],
+            [
+              0.35471596741526223,
+              0.5335328433721137
+            ],
+            [
+              0.4737434493173168,
+              0.6256822141057782
+            ],
+            [
+              0.4864436287540868,
+              0.6358817952891893
+            ]
+          ],
+          "mean": [
+            -0.024348666189198856,
+            -0.02526154610690087,
+            -0.030757957746946927,
+            -0.02688018754717207,
+            0.044266963746914384,
+            0.10766870404960752,
+            0.21004644935353495,
+            0.3304944047103765,
+            0.44412440539368797,
+            0.5497128317115475,
+            0.561162712021638
+          ],
+          "n_parents": [
+            60,
+            60,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.7,
+          "window_fraction": 0.34652029826014913
+        },
+        "xtb_vs_final_xtb": {
+          "ci_two95": [
+            [
+              -0.012293773085141239,
+              0.05739220467768935
+            ],
+            [
+              0.033510333557614,
+              0.10352764190772513
+            ],
+            [
+              0.06104960279569077,
+              0.13602726521364047
+            ],
+            [
+              0.11161296627534864,
+              0.20562623130194455
+            ],
+            [
+              0.2043974044845847,
+              0.2945185837184879
+            ],
+            [
+              0.3384958197034121,
+              0.4295580096886847
+            ],
+            [
+              0.5032796440411932,
+              0.5993286363834806
+            ],
+            [
+              0.6730961789134036,
+              0.7605603972646555
+            ],
+            [
+              0.8346743250087039,
+              0.888515718491885
+            ],
+            [
+              0.9640482275271759,
+              0.9796682490703562
+            ],
+            [
+              -1.0,
+              1.0
+            ]
+          ],
+          "mean": [
+            0.022549215796274055,
+            0.06851898773266957,
+            0.09853843400466562,
+            0.1586195987886466,
+            0.2494579941015363,
+            0.3840269146960484,
+            0.5513041402123369,
+            0.7168282880890295,
+            0.8615950217502945,
+            0.971858238298766,
+            1.0
+          ],
+          "n_parents": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "reading": "SIGNAL_NEVER_INFORMATIVE",
+          "t_geo": null,
+          "window_fraction": null
+        }
+      }
+    },
+    "random_1.0": {
+      "commit": {
+        "cdf": {
+          "0.0": 0.0013018008244738556,
+          "0.1": 0.003688435669342591,
+          "0.2": 0.016272510305923193,
+          "0.3": 0.0648730744196138,
+          "0.4": 0.17357344326318072,
+          "0.5": 0.31872423519201565,
+          "0.6": 0.4847038403124322,
+          "0.7": 0.6500325450206118,
+          "0.8": 0.8055977435452376,
+          "0.9": 0.9357778259926232,
+          "1.0": 1.0
+        },
+        "committed_by": {
+          "0.4": 0.17357344326318072,
+          "0.5": 0.31872423519201565
+        },
+        "median_t": 0.62,
+        "parent_share_by_0.5": {
+          "ci_two95": [
+            0.2552826067040134,
+            0.3522814757208507
+          ],
+          "estimate": 0.3037820412124321,
+          "lower_one95": 0.26368169353968046,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.02325037601784873,
+          "upper_one95": 0.3438823888851837
+        },
+        "quartiles_t": [
+          0.46,
+          0.78
+        ]
+      },
+      "final_status": {
+        "INVALID_OUTPUT": 1343,
+        "KNOWN_EVENT_GEOMETRY_MISS": 935,
+        "OUTSIDE_CATALOGUE_EVENT": 2464,
+        "PROXY_MATCH": 1210
+      },
+      "n_valid_final": 4609,
+      "signals": {
+        "hX_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              0.04756615158065087,
+              0.13293150058565548
+            ],
+            [
+              0.03555236303611625,
+              0.135305309672079
+            ],
+            [
+              0.058121880901340545,
+              0.1486761867205887
+            ],
+            [
+              0.09932879990738247,
+              0.1848039918622587
+            ],
+            [
+              0.14298342125260255,
+              0.23771434351351017
+            ],
+            [
+              0.18696227854997446,
+              0.2913085851683887
+            ],
+            [
+              0.2364340531567935,
+              0.37330092709789325
+            ],
+            [
+              0.2947454338135642,
+              0.45596145996220716
+            ],
+            [
+              0.3734554133782889,
+              0.5487052203963041
+            ],
+            [
+              0.46762137275007865,
+              0.6482079342821261
+            ],
+            [
+              0.5320707826690219,
+              0.725050778461765
+            ]
+          ],
+          "mean": [
+            0.09024882608315317,
+            0.08542883635409762,
+            0.10339903381096462,
+            0.1420663958848206,
+            0.19034888238305636,
+            0.2391354318591816,
+            0.3048674901273434,
+            0.3753534468878857,
+            0.4610803168872965,
+            0.5579146535161024,
+            0.6285607805653934
+          ],
+          "n_parents": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.7,
+          "window_fraction": 0.34996745497938814
+        },
+        "xtb_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              -0.05011729938279145,
+              0.05304589933235703
+            ],
+            [
+              -0.08630601371159195,
+              0.04609069533513856
+            ],
+            [
+              -0.08967842131686878,
+              0.0369676652290178
+            ],
+            [
+              -0.10049106909088608,
+              0.04102728568189583
+            ],
+            [
+              -0.050735355990257774,
+              0.10469877089542004
+            ],
+            [
+              -0.020575132498022106,
+              0.19267056811089284
+            ],
+            [
+              0.06245059931689466,
+              0.2653809803904064
+            ],
+            [
+              0.1327516543961219,
+              0.34813557195078754
+            ],
+            [
+              0.23914857331645228,
+              0.447025218953178
+            ],
+            [
+              0.3405511340103093,
+              0.5391981272897778
+            ],
+            [
+              0.32165761536714,
+              0.5191831768238581
+            ]
+          ],
+          "mean": [
+            0.001464299974782794,
+            -0.020107659188226698,
+            -0.02635537804392549,
+            -0.029731891704495122,
+            0.02698170745258113,
+            0.08604771780643537,
+            0.16391578985365055,
+            0.24044361317345472,
+            0.34308689613481513,
+            0.4398746306500435,
+            0.420420396095499
+          ],
+          "n_parents": [
+            61,
+            61,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.7,
+          "window_fraction": 0.34996745497938814
+        },
+        "xtb_vs_final_xtb": {
+          "ci_two95": [
+            [
+              -0.019767862665353023,
+              0.07656245654388259
+            ],
+            [
+              0.019369389518455377,
+              0.08649017260982204
+            ],
+            [
+              0.04872597319934093,
+              0.11288581236911632
+            ],
+            [
+              0.10265110060578442,
+              0.17764413906229382
+            ],
+            [
+              0.1766194908735967,
+              0.2589678669502483
+            ],
+            [
+              0.27098149276960726,
+              0.3711025617637457
+            ],
+            [
+              0.40947200704114484,
+              0.5217565334907158
+            ],
+            [
+              0.5844153034865593,
+              0.6881688098629266
+            ],
+            [
+              0.7603754313826792,
+              0.8351959906004476
+            ],
+            [
+              0.9286643732637954,
+              0.9526014190215446
+            ],
+            [
+              -1.0,
+              1.0
+            ]
+          ],
+          "mean": [
+            0.028397296939264783,
+            0.05292978106413871,
+            0.08080589278422863,
+            0.14014761983403912,
+            0.2177936789119225,
+            0.32104202726667647,
+            0.46561427026593033,
+            0.636292056674743,
+            0.7977857109915634,
+            0.94063289614267,
+            1.0
+          ],
+          "n_parents": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "reading": "SIGNAL_NEVER_INFORMATIVE",
+          "t_geo": null,
+          "window_fraction": null
+        }
+      }
+    },
+    "saddle_0.3": {
+      "commit": {
+        "cdf": {
+          "0.0": 0.0012239902080783353,
+          "0.1": 0.00346797225622195,
+          "0.2": 0.015299877600979192,
+          "0.3": 0.06140350877192982,
+          "0.4": 0.16727866177070583,
+          "0.5": 0.3196654426764586,
+          "0.6": 0.4959200326397389,
+          "0.7": 0.6625866993064056,
+          "0.8": 0.8159934720522236,
+          "0.9": 0.9398204814361485,
+          "1.0": 1.0
+        },
+        "committed_by": {
+          "0.4": 0.16727866177070583,
+          "0.5": 0.3196654426764586
+        },
+        "median_t": 0.62,
+        "parent_share_by_0.5": {
+          "ci_two95": [
+            0.2606804096746805,
+            0.35555406493950387
+          ],
+          "estimate": 0.3081172373070922,
+          "lower_one95": 0.26889547524259005,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.02274096782212997,
+          "upper_one95": 0.3473389993715943
+        },
+        "quartiles_t": [
+          0.46,
+          0.76
+        ]
+      },
+      "final_status": {
+        "INVALID_OUTPUT": 1050,
+        "KNOWN_EVENT_GEOMETRY_MISS": 911,
+        "OUTSIDE_CATALOGUE_EVENT": 2580,
+        "PROXY_MATCH": 1411
+      },
+      "n_valid_final": 4902,
+      "signals": {
+        "hX_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              0.05365534513147371,
+              0.145511161047874
+            ],
+            [
+              0.04355747249061158,
+              0.1476105336396068
+            ],
+            [
+              0.06640021446772967,
+              0.1689668166593722
+            ],
+            [
+              0.1114034940499771,
+              0.19391931019956862
+            ],
+            [
+              0.17204994000995,
+              0.24426214894338472
+            ],
+            [
+              0.2248587438132073,
+              0.31481579063741055
+            ],
+            [
+              0.28263570759559775,
+              0.403357481066535
+            ],
+            [
+              0.3578938056315516,
+              0.500366855059363
+            ],
+            [
+              0.4407866848747656,
+              0.6046590975828102
+            ],
+            [
+              0.5277403301770949,
+              0.7114767673230633
+            ],
+            [
+              0.5714779457878472,
+              0.7634993181958667
+            ]
+          ],
+          "mean": [
+            0.09958325308967386,
+            0.09558400306510918,
+            0.11768351556355093,
+            0.15266140212477286,
+            0.20815604447666736,
+            0.26983726722530893,
+            0.3429965943310664,
+            0.4291303303454573,
+            0.5227228912287879,
+            0.6196085487500791,
+            0.6674886319918569
+          ],
+          "n_parents": [
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.6,
+          "window_fraction": 0.5040799673602612
+        },
+        "xtb_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              -0.058897978089210656,
+              0.02114458909656329
+            ],
+            [
+              -0.07580611823864256,
+              0.04979699452186534
+            ],
+            [
+              -0.08341639170231482,
+              0.06001654662236236
+            ],
+            [
+              -0.0979163468445297,
+              0.04724097687084282
+            ],
+            [
+              -0.04473803644431449,
+              0.13190358264578791
+            ],
+            [
+              -0.0236679644282055,
+              0.1923380681867644
+            ],
+            [
+              0.08174849757503591,
+              0.3063571180714997
+            ],
+            [
+              0.23178362126955557,
+              0.429256137982284
+            ],
+            [
+              0.37125956049331876,
+              0.544023116780485
+            ],
+            [
+              0.4535423710508144,
+              0.609704555383638
+            ],
+            [
+              0.48243218566988977,
+              0.6316748681995888
+            ]
+          ],
+          "mean": [
+            -0.018876694496323683,
+            -0.013004561858388611,
+            -0.011699922539976234,
+            -0.025337684986843436,
+            0.04358277310073671,
+            0.08433505187927946,
+            0.1940528078232678,
+            0.3305198796259198,
+            0.4576413386369019,
+            0.5316234632172262,
+            0.5570535269347393
+          ],
+          "n_parents": [
+            60,
+            60,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61,
+            61
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.7,
+          "window_fraction": 0.33741330069359443
+        },
+        "xtb_vs_final_xtb": {
+          "ci_two95": [
+            [
+              -0.04038457896312772,
+              0.021481362807160145
+            ],
+            [
+              0.00926457494658486,
+              0.06260262685625603
+            ],
+            [
+              0.04140114014496829,
+              0.10333885011023089
+            ],
+            [
+              0.08029354443891527,
+              0.1719974114808756
+            ],
+            [
+              0.1541505261071894,
+              0.26160071557970954
+            ],
+            [
+              0.27211352539660427,
+              0.38292767756769375
+            ],
+            [
+              0.43883137035399766,
+              0.5585226514915144
+            ],
+            [
+              0.6424599687900524,
+              0.7338294451232091
+            ],
+            [
+              0.8239956755478033,
+              0.8830522829112011
+            ],
+            [
+              0.9608594105806594,
+              0.9775229231378644
+            ],
+            [
+              -1.0,
+              1.0
+            ]
+          ],
+          "mean": [
+            -0.009451608077983786,
+            0.03593360090142045,
+            0.07236999512759959,
+            0.12614547795989545,
+            0.2078756208434495,
+            0.327520601482149,
+            0.498677010922756,
+            0.6881447069566308,
+            0.8535239792295022,
+            0.9691911668592619,
+            1.0
+          ],
+          "n_parents": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "reading": "SIGNAL_NEVER_INFORMATIVE",
+          "t_geo": null,
+          "window_fraction": null
+        }
+      }
+    },
+    "saddle_1.0": {
+      "commit": {
+        "cdf": {
+          "0.0": 0.001225239942822136,
+          "0.1": 0.0032673065141923625,
+          "0.2": 0.014907085971002655,
+          "0.3": 0.06085358382683276,
+          "0.4": 0.16418215233816622,
+          "0.5": 0.31100673881968555,
+          "0.6": 0.5029609965284868,
+          "0.7": 0.6706146620379825,
+          "0.8": 0.8098836022054319,
+          "0.9": 0.9275066367163569,
+          "1.0": 1.0
+        },
+        "committed_by": {
+          "0.4": 0.16418215233816622,
+          "0.5": 0.31100673881968555
+        },
+        "median_t": 0.6,
+        "parent_share_by_0.5": {
+          "ci_two95": [
+            0.2518445637768737,
+            0.3501630881892108
+          ],
+          "estimate": 0.30100382598304226,
+          "lower_one95": 0.2603579189578555,
+          "n_formula_groups": 21,
+          "n_parents": 62,
+          "scope": "conditional on frozen models and specified evaluation design",
+          "se_cluster": 0.023566693975680054,
+          "upper_one95": 0.34164973300822904
+        },
+        "quartiles_t": [
+          0.48,
+          0.76
+        ]
+      },
+      "final_status": {
+        "INVALID_OUTPUT": 1055,
+        "KNOWN_EVENT_GEOMETRY_MISS": 896,
+        "OUTSIDE_CATALOGUE_EVENT": 2559,
+        "PROXY_MATCH": 1442
+      },
+      "n_valid_final": 4897,
+      "signals": {
+        "hX_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              0.05152543459428489,
+              0.1437298115631012
+            ],
+            [
+              0.045255254889126774,
+              0.1476067134616179
+            ],
+            [
+              0.06517157790154648,
+              0.16230134284104253
+            ],
+            [
+              0.10189077664427362,
+              0.1902530944680498
+            ],
+            [
+              0.15485617740126828,
+              0.23978703252637018
+            ],
+            [
+              0.20336264466436263,
+              0.2943615836064468
+            ],
+            [
+              0.2441752702640697,
+              0.3869092589835259
+            ],
+            [
+              0.31864787521805765,
+              0.4915708300262353
+            ],
+            [
+              0.3885391810969142,
+              0.5820325037228318
+            ],
+            [
+              0.4749383195015242,
+              0.6727414672303362
+            ],
+            [
+              0.5443431420458648,
+              0.749621602622856
+            ]
+          ],
+          "mean": [
+            0.09762762307869303,
+            0.09643098417537234,
+            0.1137364603712945,
+            0.1460719355561617,
+            0.19732160496381923,
+            0.24886211413540474,
+            0.3155422646237978,
+            0.4051093526221465,
+            0.485285842409873,
+            0.5738398933659302,
+            0.6469823723343604
+          ],
+          "n_parents": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.7,
+          "window_fraction": 0.3293853379620176
+        },
+        "xtb_vs_final_event_barrier": {
+          "ci_two95": [
+            [
+              -0.04403106959950178,
+              0.0749340048642487
+            ],
+            [
+              -0.07554749499978167,
+              0.07255637518061753
+            ],
+            [
+              -0.09125384608559839,
+              0.05399519763501435
+            ],
+            [
+              -0.09323443794412747,
+              0.05090946751702242
+            ],
+            [
+              -0.03100698133451539,
+              0.12725494702956885
+            ],
+            [
+              -0.03149937258378274,
+              0.1715540153774607
+            ],
+            [
+              0.08035564403845726,
+              0.31531507658096447
+            ],
+            [
+              0.23523841455542818,
+              0.4308542071649415
+            ],
+            [
+              0.358953349765352,
+              0.537011145731436
+            ],
+            [
+              0.45106151488041657,
+              0.6150395576478406
+            ],
+            [
+              0.4171280997080818,
+              0.6189860526501528
+            ]
+          ],
+          "mean": [
+            0.015451467632373456,
+            -0.0014955599095820742,
+            -0.018629324225292017,
+            -0.021162485213552525,
+            0.04812398284752674,
+            0.07002732139683898,
+            0.19783536030971086,
+            0.3330463108601848,
+            0.447982247748394,
+            0.5330505362641286,
+            0.5180570761791173
+          ],
+          "n_parents": [
+            61,
+            61,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "reading": "WINDOW_EXISTS",
+          "t_geo": 0.7,
+          "window_fraction": 0.3293853379620176
+        },
+        "xtb_vs_final_xtb": {
+          "ci_two95": [
+            [
+              -0.03415724323380858,
+              0.02703143772329051
+            ],
+            [
+              -0.011384085753185603,
+              0.05042344105044867
+            ],
+            [
+              0.022485086922146402,
+              0.09639695598525586
+            ],
+            [
+              0.05155606765279161,
+              0.14348634771831892
+            ],
+            [
+              0.1086411376533418,
+              0.21647099926302174
+            ],
+            [
+              0.19785263405184356,
+              0.31032729165410194
+            ],
+            [
+              0.34190485162628775,
+              0.46392964357878713
+            ],
+            [
+              0.5193351973554742,
+              0.6260173764866387
+            ],
+            [
+              0.7225139459733214,
+              0.7983970775320959
+            ],
+            [
+              0.903284124412143,
+              0.9329685729475721
+            ],
+            [
+              -1.0,
+              1.0
+            ]
+          ],
+          "mean": [
+            -0.0035629027552590365,
+            0.019519677648631533,
+            0.05944102145370113,
+            0.09752120768555526,
+            0.16255606845818177,
+            0.25408996285297275,
+            0.40291724760253744,
+            0.5726762869210564,
+            0.7604555117527086,
+            0.9181263486798575,
+            1.0
+          ],
+          "n_parents": [
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          "reading": "SIGNAL_NEVER_INFORMATIVE",
+          "t_geo": null,
+          "window_fraction": null
+        }
+      }
+    }
+  },
+  "version": "pg-1"
+}

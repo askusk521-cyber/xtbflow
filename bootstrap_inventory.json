@@ -753,6 +753,41 @@
       "bytes": 3702
     },
     {
+      "path": "docs/evidence/review_oracle/LICENSES.md",
+      "sha256": "398c135dcfd73bd573b0a1b7035495a0dea01552e344b73259e0a832bfcc60ba",
+      "bytes": 2568
+    },
+    {
+      "path": "docs/evidence/review_oracle/REPORT_ZH.md",
+      "sha256": "0b62c38e2445d844b4d495c6d29761c4e54168f4ae34f643454eea0fa322a79a",
+      "bytes": 3595
+    },
+    {
+      "path": "docs/evidence/review_oracle/SHA256SUMS",
+      "sha256": "74925bb9faeb5bad9109c919b7bd6d265ea38adc25c5400f12d3888e80e1a70e",
+      "bytes": 568
+    },
+    {
+      "path": "docs/evidence/review_oracle/SHA256SUMS.remote",
+      "sha256": "1d44d2b611a4f65042b47ca095613cce262361359efdb382e1cc1893c1a7de90",
+      "bytes": 1540
+    },
+    {
+      "path": "docs/evidence/review_oracle/manifest.json",
+      "sha256": "6e7e24516a82caae08fe71ec1833a481ff2e4913699f0944abb506f2f46991b8",
+      "bytes": 1278
+    },
+    {
+      "path": "docs/evidence/review_oracle/pip-freeze-aimnet.txt",
+      "sha256": "137e66d2d02b296d8ecf08c47b8da7fead47ec46e0ebfcbebaa2aadcb3fabb75",
+      "bytes": 879
+    },
+    {
+      "path": "docs/evidence/review_oracle/results.json",
+      "sha256": "8c121c32f1ce8ea6756a456d0dd1afbb1e36c999ff7ce844f827c96a41cd4684",
+      "bytes": 199270
+    },
+    {
       "path": "docs/evidence/rgd1_hdf5_only_ids_v1.jsonl",
       "sha256": "1e853e181d9fa149a744619d68a43d7e493f9c4364210314ba8811887444ddf0",
       "bytes": 6478
@@ -1986,6 +2021,11 @@
       "path": "tests/test_reaction_qm_coordinate_mapping.py",
       "sha256": "2994a7429aaa7d854d4f527e4dfd1f3e76d2bb17ecfb0934d19b22068feb9bca",
       "bytes": 889
+    },
+    {
+      "path": "tests/test_review_oracle_benchmark.py",
+      "sha256": "be82781185b3c12acfcaff4ccea2e2133f699d9374b968341d3e8c2a09e6c977",
+      "bytes": 900
     },
     {
       "path": "tests/test_runtime_budget.py",

@@ -1,0 +1,58 @@
+{
+  "version": "v1a-n-1",
+  "exploratory": true,
+  "question": "Does B0's per-budget advantage over A0 in V1a survive when the cascade uses as many network calls per candidate as B0 (A0 with 25 event + 25 geometry steps)?",
+  "new_arms": {
+    "A0-25+25": {"program": "A0", "nfe_event": 25, "nfe_geometry": 25, "guidance": "none"},
+    "B0-25": {"program": "B0", "nfe_joint": 25, "guidance": "none"}
+  },
+  "reused_arms": {
+    "A0-50+50": "sealed V1a A0 streams (screen/efficiency_s{seed}), not re-run",
+    "B0-50": "sealed V1a B0 streams (screen/efficiency_s{seed}), not re-run"
+  },
+  "parents": "the 342 frozen V1a formal screen parents (formal/freeze.json)",
+  "training_seeds": [0, 1, 2],
+  "sampling_seed": 0,
+  "noise_namespace": "efficiency",
+  "noise_note": "Same semantic keys as V1a (query, training seed, sampling seed 0, proposal number, cascade/joint group), so proposal j of a new arm starts from the same noise as proposal j of the sealed arm with the same program.",
+  "checkpoints": "frozen V1a generators bound in formal/freeze.json (event_s*, geometry_s*, joint_s*)",
+  "path": "sync (frozen V1a path)",
+  "cost_table": {
+    "path": "/home/lhshen/xtbflow-runs/v1a-20261007/evidence/cost_calibration_512.json",
+    "sha256": "6c142a6b52502aac4ecbe88e6379c734eaaabd1b6674736a716297118e991e20"
+  },
+  "cap_units": 3200.0,
+  "budgets_b0_equivalent": [4, 8, 16, 32, 64],
+  "auc_weights": [0.125, 0.25, 0.25, 0.25, 0.125],
+  "cost_mismatch_report_fraction": 0.10,
+  "cost_accounting": "Budgets are charged at each arm's actual logical cost (25*w_g + 25*w_h for A0-25+25, 25 for B0-25), never at a nominal 50.",
+  "primary": {
+    "contrast": ["B0-50", "A0-25+25"],
+    "statistic": "normalized log-budget joint best-reference recall AUC (V1a definition), parent-paired difference, mean over training seeds within parent",
+    "interval": "formula_cluster_sandwich_t_two_sided_95",
+    "interpretation": {
+      "lower_bound_above_zero": "Under this control, 'joint generation is cheaper per network call' still holds.",
+      "otherwise": "V1a's B0 budget advantage can be explained by the number of integration steps and cannot be credited to joint generation."
+    }
+  },
+  "secondary": {
+    "count_aligned_pairs": [["A0-25+25", "A0-50+50"], ["B0-25", "B0-50"]],
+    "count_grid": [1, 2, 4, 8, 16],
+    "endpoints": ["joint_best_reference", "event_best"],
+    "method": "task R analysis A on the completed-candidate axis (xtbflow.v1.reanalysis count_prefix + paired_difference); censoring, seed aggregation and coverage flag as in configs/v1a_r/reanalysis.json",
+    "count_coverage_min_parents": 0.80
+  },
+  "descriptive": {
+    "auc_contrasts": [["B0-25", "A0-25+25"], ["B0-25", "B0-50"], ["A0-25+25", "A0-50+50"], ["B0-50", "A0-50+50"]],
+    "table": "five-arm-format rows (recall and completed candidates at budgets 4/8/16/32/64, AUC, event AUC) for A0-25+25 and B0-25 next to the sealed A0 and B0"
+  },
+  "sources": {
+    "sealed_v1a_reports": "screen/efficiency_s{seed}.json, sha256 from docs/evidence/v1a/formal/SHA256SUMS",
+    "sealed_count_streams": "task R extract streams.jsonl.gz (sha256 recorded in docs/evidence/v1a_r/extract_manifest.json)",
+    "new_reports": "v1a-n run root screen/nfe_s{seed}.json and .candidates.jsonl, produced by scripts/v1a_stream_evaluate.py"
+  },
+  "stop_rules": {
+    "gpu_hours_projected_max": 20,
+    "on_stop": "ask the owner before running"
+  }
+}

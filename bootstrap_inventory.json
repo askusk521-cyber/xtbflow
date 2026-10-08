@@ -1199,8 +1199,8 @@
     },
     {
       "path": "scripts/review_enum_acquire.py",
-      "sha256": "741e4ea371d01aa4c49183f193171c3a422b2c34883ab1d99d87b3aba3841dc5",
-      "bytes": 4056
+      "sha256": "ab0974ff4796b623ea9a4355b56c544326e33d21a2021bd86a7f8561b4bc4132",
+      "bytes": 4181
     },
     {
       "path": "scripts/review_enum_analyze.py",

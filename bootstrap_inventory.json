@@ -1719,8 +1719,8 @@
     },
     {
       "path": "src/xtbflow/v1/enumeration.py",
-      "sha256": "0865b6b6fbadaf48b04baeab4e60c837515ffe65b21ee375c809daf8f63010ef",
-      "bytes": 3968
+      "sha256": "9146b0ec6380ba19534f1c51243832ae34b307cfab162a7d7d74d34dda70adfa",
+      "bytes": 4445
     },
     {
       "path": "src/xtbflow/v1/formal.py",

@@ -6,6 +6,9 @@ import json
 from pathlib import Path
 import subprocess
 import time
+import os
+import re
+import tempfile
 
 import numpy as np
 
@@ -18,6 +21,21 @@ from xtbflow.v1.metrics import cluster_summary
 
 
 def energy(method, z, x, cfg):
+    if method == 'g-xTB':
+        symbols = {1:'H',6:'C',7:'N',8:'O'}
+        if min_distance(x) < cfg['min_distance_angstrom']:
+            return float('nan'), 'collapsed'
+        with tempfile.TemporaryDirectory(prefix='review-gxtb-') as tmp:
+            xyz = Path(tmp)/'input.xyz'
+            xyz.write_text(str(len(z))+'\n\n'+''.join(f'{symbols[int(a)]} {p[0]:.12f} {p[1]:.12f} {p[2]:.12f}\n' for a,p in zip(z,x)))
+            try:
+                run = subprocess.run([os.environ['REVIEW_GXTB_BINARY'], str(xyz), '--gxtb', '--chrg', '0', '--acc', '1.0'], cwd=tmp, capture_output=True, text=True, timeout=120)
+            except subprocess.TimeoutExpired:
+                return float('nan'), 'timeout'
+            matches = re.findall(r'TOTAL ENERGY\s+([-+0-9.Ee]+)', run.stdout)
+            if run.returncode or not matches:
+                return float('nan'), 'gxtb_failed'
+            return float(matches[-1])*HARTREE_TO_KCAL, 'ok'
     if method == 'GFN2-xTB':
         return xtb_energy_kcal(z, x, cfg)
     if min_distance(x) < cfg['min_distance_angstrom']:
@@ -88,7 +106,7 @@ def acquire(args):
             done.add((r['method'], r['part'], r['id']))
     anchors = {}
     with raw.open('a') as handle:
-        for method in ('GFN2-xTB', 'GFN1-xTB'):
+        for method in args.methods.split(','):
             for job in jobs:
                 key = (method, job['part'], job['id'])
                 if key in done:
@@ -119,8 +137,9 @@ def analyze(args):
     groups = {r['parent_id']: r['split_group'] for r in rows}
     out = {'exploratory': True, 'metrics': {}, 'comparisons': {}}
     rhos = {}
+    methods = sorted({r['method'] for r in rows})
     for part in ('T2a', 'T2b'):
-        for method in ('GFN2-xTB', 'GFN1-xTB'):
+        for method in methods:
             subset = [r for r in rows if r['part'] == part and r['method'] == method]
             good = [r for r in subset if r['barrier'] is not None]
             by = defaultdict(list)
@@ -149,13 +168,13 @@ def analyze(args):
             name = part+'/'+method
             out['metrics'][name] = result
             rhos[name] = rho
-    for part in ('T2a', 'T2b'):
-        a, b = rhos[part+'/GFN1-xTB'], rhos[part+'/GFN2-xTB']
+    for part, method in ((part, method) for part in ('T2a', 'T2b') for method in methods if method != 'GFN2-xTB'):
+        a, b = rhos[part+'/'+method], rhos[part+'/GFN2-xTB']
         ids = sorted(a.keys() & b.keys())
         summary = cluster_summary([a[p]-b[p] for p in ids], [groups[p] for p in ids])
         lo, hi = summary['ci_two95']
         summary['reading'] = 'BETTER_THAN_GFN2' if lo > 0 else 'WORSE_THAN_GFN2' if hi < 0 else 'INCONCLUSIVE'
-        out['comparisons'][part+'/GFN1-minus-GFN2'] = summary
+        out['comparisons'][part+'/'+method+'-minus-GFN2'] = summary
     diffs = [abs(r['barrier']-r['expected_gfn2']) for r in rows if r['part']=='T2a' and r['method']=='GFN2-xTB' and r['barrier'] is not None]
     anchor = out['metrics']['T2a/GFN2-xTB']['rho']
     out['reproduction'] = dict(max_barrier_error=max(diffs), rho=anchor['estimate'], ci_two95=anchor['ci_two95'],
@@ -171,6 +190,7 @@ def main():
     p.add_argument('--check', type=Path, default=Path('/home/lhshen/xtbflow-runs/explore-geoinfo-20261008/full-68f5733/heads/check_a_rows.jsonl'))
     p.add_argument('--cache', type=Path, default=Path('/home/lhshen/data/t1x/t1x_m0_v1.npz'))
     p.add_argument('--config', type=Path, default=Path('configs/review/oracle_benchmark.json'))
+    p.add_argument('--methods', default='GFN2-xTB,GFN1-xTB')
     p.add_argument('--out', type=Path, required=True)
     args = p.parse_args()
     (acquire if args.mode == 'acquire' else analyze)(args)

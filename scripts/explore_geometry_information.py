@@ -104,8 +104,9 @@ def cmd_heads(a):
     jobs+=[(parents[p]['atomic_numbers'],parents[p]['x_r'],xcfg) for p in anchors]
     with mp.get_context('fork').Pool(a.workers) as pool:energies=pool.map(_xtb_job,jobs,chunksize=4)
     anchor={p:energies[len(refs)+k] for k,p in enumerate(anchors)}
-    device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    if device.type!='cuda' and not a.smoke:raise RuntimeError('allocated GPU required')
+    # Smoke runs are CPU-only so they can check plumbing on the login node.
+    device=torch.device('cpu' if a.smoke else 'cuda')
+    if not a.smoke and not torch.cuda.is_available():raise RuntimeError('allocated GPU required')
     a.out.mkdir(parents=True,exist_ok=True);heads=a.out/'clean_heads';heads.mkdir(exist_ok=True)
     rows=ScoreRows(cache,split,cat/'reference_catalog.jsonl')
     spec=cfg['check_a_information_bound']['matched_training']
@@ -219,8 +220,8 @@ def cmd_trajectories(a):
     models={};started=time.monotonic();count=0
     # Workers fork with the matchers and anchor energies, before CUDA is initialized.
     with path.open('w') as f,ctx.Pool(a.workers) as pool:
-        if not torch.cuda.is_available():raise RuntimeError('allocated GPU required')
-        device=torch.device('cuda')
+        device=torch.device('cpu' if a.smoke else 'cuda')
+        if not a.smoke and not torch.cuda.is_available():raise RuntimeError('allocated GPU required')
         q_all=query_from_parents(qrows,device);score=load_scores(root,'X',device)[0]
         samp=spec['sampling'];k_props=a.proposals or samp['proposals_per_parent_per_seed']
         tb,tx=clock_grid(samp['path'],samp['n_steps']);grid=[observation_index(tx,t) for t in spec['grid_t']]
@@ -257,7 +258,7 @@ def cmd_trajectories(a):
     write_json(a.out/'check_b_manifest.json',dict(
         stage='check_b',n_parents=len(qrows),proposals_per_parent_per_seed=k_props,seeds=list(a.seeds),
         trajectories=count,generators=models,grid_steps=grid,rows_sha256=file_hash(path),
-        smoke=bool(a.limit_parents or a.proposals),split_hash=split['split_hash'],**provenance(a.config)))
+        smoke=bool(a.smoke or a.limit_parents or a.proposals),split_hash=split['split_hash'],**provenance(a.config)))
 
 
 # ---------------------------------------------------------------- analysis
@@ -399,7 +400,7 @@ def main():
         p.add_argument('--workers',type=int,default=max(1,(os.cpu_count() or 2)-1))
     h.add_argument('--train-steps',type=int);h.add_argument('--smoke',action='store_true')
     t.add_argument('--seeds',type=int,nargs='+',default=[0,1,2]);t.add_argument('--proposals',type=int)
-    t.add_argument('--batch-size',type=int,default=256)
+    t.add_argument('--batch-size',type=int,default=256);t.add_argument('--smoke',action='store_true')
     z.add_argument('--check-a',type=Path);z.add_argument('--check-b',type=Path);z.add_argument('--out',type=Path,required=True)
     a=ap.parse_args()
     {'heads':cmd_heads,'trajectories':cmd_trajectories,'analyze':cmd_analyze}[a.cmd](a)

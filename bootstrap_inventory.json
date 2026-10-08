@@ -1059,8 +1059,8 @@
     },
     {
       "path": "scripts/explore_geometry_information.py",
-      "sha256": "87314db0534d8b3c522d4f2341443c1b6c5db0b7fb48c49cc43babf8ea3cb92c",
-      "bytes": 23717
+      "sha256": "353135f5c6daa1ea8dfb1ef2e8434402e006cd9b2a2d71e4ac8b5f6039e24f16",
+      "bytes": 23880
     },
     {
       "path": "scripts/joint_flow_smoke.py",

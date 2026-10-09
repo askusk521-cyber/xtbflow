@@ -188,9 +188,19 @@
       "bytes": 3897
     },
     {
+      "path": "configs/explore/smc_oracle.json",
+      "sha256": "3f02dc7e2513760f94284fdb63005b7353a0dac89071b04ad8d20de74e5cf557",
+      "bytes": 3234
+    },
+    {
       "path": "configs/explore/smc_selection.json",
       "sha256": "0f659f66be7939b5f615e5b6a4d64415c232360a6379db9206df164e7cacf3e3",
       "bytes": 6031
+    },
+    {
+      "path": "configs/explore/u_diagnostic.json",
+      "sha256": "dd80bcf250c09dcf89000b409e34e4fda7e8f92ce078b6f9fdc079e464a1a613",
+      "bytes": 1820
     },
     {
       "path": "configs/host.local.example.yaml",
@@ -1241,6 +1251,11 @@
       "path": "docs/explore/SMC_SELECTION_DESIGN_ZH.md",
       "sha256": "27e3d16653cce9c207d81b3b79819eafe206fc35c77a4c9cd4837dc9ffdb74c6",
       "bytes": 5412
+    },
+    {
+      "path": "docs/handoffs/HANDOFF_FOLLOWUP_ZH.md",
+      "sha256": "fe0e1f52eb9dbf11702fd21e771c40099fb606f24a484e5ea013f2c69ed35667",
+      "bytes": 34895
     },
     {
       "path": "docs/model_design.md",

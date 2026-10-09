@@ -1463,6 +1463,11 @@
       "bytes": 6984
     },
     {
+      "path": "scripts/followup_u_math.py",
+      "sha256": "026fdde06cd1bcea2a534f3cfa86d2d30653ed73b1cbf62058f887b723c8e292",
+      "bytes": 2257
+    },
+    {
       "path": "scripts/joint_flow_smoke.py",
       "sha256": "be9cab15cb5032dd57fa8e9be21c2d815bd0966c1675a4fe48c25314dd081207",
       "bytes": 11435
@@ -2286,6 +2291,11 @@
       "path": "tests/test_explore_rollout.py",
       "sha256": "4d10d4153142e9dab197b0801a8290f3009fc60151921b283b91394c221ed87f",
       "bytes": 3138
+    },
+    {
+      "path": "tests/test_followup_u_math.py",
+      "sha256": "c8a5cfac256ef9c14eef9f7796f0bd9e95e7daca6ee6ddc761ad135f14b467f8",
+      "bytes": 1350
     },
     {
       "path": "tests/test_geometry_flow.py",

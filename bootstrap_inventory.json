@@ -1179,8 +1179,8 @@
     },
     {
       "path": "scripts/review_open_world_dft.py",
-      "sha256": "d63cc71c6790960e622a10d4320afcfcf5e73cc94a1c64c6dc9c49ef9e9014a2",
-      "bytes": 10152
+      "sha256": "d2b24aef0d5d8428315b23997084eebea92779a6d9b858380cbfc7585df7fbbe",
+      "bytes": 10383
     },
     {
       "path": "scripts/review_open_world_manifest.py",

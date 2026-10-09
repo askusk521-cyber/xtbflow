@@ -88,7 +88,11 @@ def plan(a):
              a.root / 'screen/efficiency_s0.candidates.jsonl', Path('src/xtbflow/v1/qc_protocol.py')]
     parents = {r['parent_id']: r for r in json.loads(files[3].read_text())}
     split = json.loads(files[5].read_text())
-    screen = set(split['screen_frozen']['parent_ids'])
+    freeze_path = a.root / 'formal/freeze.json'
+    files.append(freeze_path)
+    screen = set(json.loads(freeze_path.read_text())['parent_ids'])
+    if not screen.issubset(set(split['screen_reserve']['parent_ids'])):
+        raise ValueError('Frozen screen is outside screen reserve')
     refs = {r['reference_id']: r for r in map(json.loads, files[4].open())}
     wanted = {r['candidate_id'] for r in selected}
     candidates = {r['candidate_id']: r for r in map(json.loads, files[6].open()) if r['candidate_id'] in wanted}

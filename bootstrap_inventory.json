@@ -1463,6 +1463,11 @@
       "bytes": 2886
     },
     {
+      "path": "scripts/followup_thermo.py",
+      "sha256": "df9a4e942e922cb069ec2d8173ae04d5e63df807bc07bf7101724d38bb8ed46f",
+      "bytes": 6771
+    },
+    {
       "path": "scripts/joint_flow_smoke.py",
       "sha256": "be9cab15cb5032dd57fa8e9be21c2d815bd0966c1675a4fe48c25314dd081207",
       "bytes": 11435
@@ -2291,6 +2296,11 @@
       "path": "tests/test_followup_enum_gate.py",
       "sha256": "ce786103f622c64ee2df16cf9fce89f16922f17319fad35bc4f547d053344ca7",
       "bytes": 787
+    },
+    {
+      "path": "tests/test_followup_thermo.py",
+      "sha256": "9f9aeb97561c8c6cb4c812bf68685f1d46117e0145a10dce05e153fac7dfc687",
+      "bytes": 1658
     },
     {
       "path": "tests/test_geometry_flow.py",

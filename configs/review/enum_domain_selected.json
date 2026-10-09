@@ -1,0 +1,11 @@
+{
+  "selected_domain": "b3f3",
+  "size": 3,
+  "training_unique_events": 2603,
+  "training_covered_events": 2547,
+  "training_coverage": 0.9784863618901268,
+  "feasibility_parent_counts": [65130, 15888, 25953, 35696, 31670],
+  "feasibility_mean": 34867.4,
+  "maximum_feasible_mean": 50000,
+  "decision": "First domain with training coverage >=95%; five frozen training parents have mean <=50000. No evaluation labels used."
+}

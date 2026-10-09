@@ -243,6 +243,11 @@
       "bytes": 16904
     },
     {
+      "path": "configs/review/open_world_o2.json",
+      "sha256": "379eae313b4c335aa381c2c24a2633c02638a69b887eed3626023d66e08a44fc",
+      "bytes": 3654
+    },
+    {
       "path": "configs/rules/core_v1.yaml",
       "sha256": "a4de309daad0bab9d502028976cef7b57f91691de5895ed6d4dc1d1c764b2941",
       "bytes": 903

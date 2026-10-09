@@ -1,0 +1,87 @@
+{
+  "execution_order": "smallest-parent anchor first, then anchor/reference/candidate per parent; one Slurm job globally; check squeue -u lhshen before every submission",
+  "exploratory": true,
+  "gpu_budget_hours": 16,
+  "interpretation": "No population discovery-rate extrapolation; computational failure is not channel nonexistence.",
+  "job_wall_minutes": 120,
+  "method": "omegaB97X/6-31G(d)",
+  "metrics": [
+    "candidate/reference strict pass counts and Wilson 95% CI",
+    "paired-pass delta_Ea_DFT and anchor-relative barriers",
+    "baseline minus catalogue barrier; discuss absolute difference >2 kcal/mol",
+    "DFT/xTB sign agreement and scatter",
+    "counts delta_Ea_DFT <0 and <=5",
+    "stage times, GPU wall time, gradient/Hessian calls"
+  ],
+  "protocol_version": "v1b-h-gpu4pyscf-3",
+  "retry_policy": "protocol built-ins only; no external retry; timeout JOB_TIMEOUT",
+  "sample": [
+    {
+      "candidate_id": "4f5559117464139fee00_anchor_729c6cc585e4/B0/s0/p25/endpoint",
+      "delta_ea_xtb_kcal": -0.5996801776515899,
+      "parent_id": "4f5559117464139fee00",
+      "reference_id": "C5H6N2/rxn7776"
+    },
+    {
+      "candidate_id": "8fe6d50aaad53c21d3c5_anchor_054767360022/B0/s0/p40/endpoint",
+      "delta_ea_xtb_kcal": 1.6124025232542294,
+      "parent_id": "8fe6d50aaad53c21d3c5",
+      "reference_id": "C4H8O/rxn0255"
+    },
+    {
+      "candidate_id": "5b2d3d450552ae85d0f4_anchor_23521829f2ca/B0/s0/p11/endpoint",
+      "delta_ea_xtb_kcal": 1.8859497828349607,
+      "parent_id": "5b2d3d450552ae85d0f4",
+      "reference_id": "C3H3NO/rxn2914"
+    },
+    {
+      "candidate_id": "c0f8c54d5d73fed95b92_anchor_b04cb969d0e8/B0/s0/p22/endpoint",
+      "delta_ea_xtb_kcal": 2.6592267913493055,
+      "parent_id": "c0f8c54d5d73fed95b92",
+      "reference_id": "C4H6N2O/rxn5102"
+    },
+    {
+      "candidate_id": "a9460cfa7d3e4acccdb6_anchor_3d022ea3117c/B0/s0/p25/endpoint",
+      "delta_ea_xtb_kcal": 2.8346759667601047,
+      "parent_id": "a9460cfa7d3e4acccdb6",
+      "reference_id": "C6H10O/rxn5917"
+    },
+    {
+      "candidate_id": "3e4899195c01fa43baa1_anchor_535d70a04eef/B0/s0/p18/endpoint",
+      "delta_ea_xtb_kcal": 20.401106443963787,
+      "parent_id": "3e4899195c01fa43baa1",
+      "reference_id": "C5H8O2/rxn8399"
+    },
+    {
+      "candidate_id": "7dc6922783059ead3fb0_anchor_28d2cd4a7ddf/B0/s0/p51/endpoint",
+      "delta_ea_xtb_kcal": 23.725554220839992,
+      "parent_id": "7dc6922783059ead3fb0",
+      "reference_id": "C6H8O/rxn7964"
+    },
+    {
+      "candidate_id": "a6ee19115420a88ad88e_anchor_db2eb655774c/B0/s0/p52/endpoint",
+      "delta_ea_xtb_kcal": 23.729135717854504,
+      "parent_id": "a6ee19115420a88ad88e",
+      "reference_id": "C4H7NO2/rxn7920"
+    },
+    {
+      "candidate_id": "8962b71ed3a7a171af9e_anchor_f8a25a150927/B0/s0/p19/endpoint",
+      "delta_ea_xtb_kcal": 26.257366839946787,
+      "parent_id": "8962b71ed3a7a171af9e",
+      "reference_id": "C5H7NO/rxn6236"
+    },
+    {
+      "candidate_id": "e193d2b0c22148150613_anchor_0b316c25baaf/B0/s0/p43/endpoint",
+      "delta_ea_xtb_kcal": 38.26090303864663,
+      "parent_id": "e193d2b0c22148150613",
+      "reference_id": "C2H3N3O/rxn0000"
+    }
+  ],
+  "schema": "xtbflow-open-world-o2/1",
+  "selection": "strict outside candidates with strict same-parent baseline; ascending delta_Ea_xTB, ties sha256(candidate_id); one per parent; first ten",
+  "sources": {
+    "docs/evidence/review_open_world/results.json": "1953190c3cbcaee5d84fd85ce3d2d8339a85405dd9db185218b07fed60c80fcb",
+    "docs/evidence/review_open_world/verdicts.csv": "732eb039e3a81944367981798f79bc4adb9166bb7bc009988c589a3cd054c2b3"
+  },
+  "split": "screen"
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "xtbflow-smc-oracle/1", "version": "smc-2", "exploratory": true,
+  "reuse": "smc-1 G1 trajectories/checkpoints, all 13 existing-arm endpoints, plans.json; never regenerate these arms",
+  "gates": ["AIMNet2/g-xTB 558 true TS min-aggregated within-parent rho matches 0.9239845589178955/0.9089169115946805 to <1e-9", "all smc-1 SHA256SUMS entries match", "original relaxed-score parent metrics for all 13 arms exactly match smc-1 results.json", "new-arm survivor event agreement with none >=0.999; report maximum coordinate difference"],
+  "checkpoints": [30,35,40,45], "fractions": [0.6,0.7,0.8,0.9],
+  "methods": {"aimnet": "AIMNet2", "gxtb": "g-xTB"},
+  "energy": "review_oracle_benchmark.energy(method,z,x,cfg) from configs/review/oracle_benchmark.json xtb block",
+  "checkpoint_score": "predicted endpoint x_hat energy minus anchored reactant energy; min distance <0.5 Angstrom or energy failure => failed",
+  "selection": "selection_plan and score_key; successes before failures; ascending barrier; tie_hash(parent_id,seed,proposal); retain 16, one clone each",
+  "restart": "restart_state with smc-1 noise addresses independent of arm name; cmd_g2 rollout(start=k_c), unchanged batch layout; one GPU job for eight new arms",
+  "endpoint_rankers": ["AIMNet2", "g-xTB", "GFN2-xTB"], "primary_ranker": "AIMNet2",
+  "endpoint_energy": "raw endpoint energy minus anchor; GFN2 archived raw_barrier reusable for old arms",
+  "population_metrics": "population_metrics(rows,best,curvature_layers=False) after replacing score by ranker status/barrier",
+  "primary_metric": "H=mean(hit@1,hit@2,hit@4)", "primary_arm": "aimnet_0.7", "comparators": ["none","random_0.7"],
+  "secondary_metrics": ["hit@infinity", "mean event utility", "distinct valid events", "valid fraction", "best-reference hit"],
+  "intervals": "metric per parent and training seed; average seeds within parent; paired differences; cluster_summary grouped by split_group, two-sided 95% CI",
+  "readings": [
+    ["none lower>0 and matched random lower>0", "IN_GENERATION_SELECTION_HELPS"],
+    ["none lower>0 and matched random CI includes 0", "NOT_PHYSICS_SPECIFIC"],
+    ["none CI includes 0", "NO_GAIN_OVER_POSTHOC"],
+    ["none upper<0", "SELECTION_HURTS"],
+    ["otherwise", "UNCLASSIFIED_BY_FROZEN_TABLE"]
+  ],
+  "report_readings": "all eight new arms under all three endpoint rankers; random comparator at matching fraction",
+  "diagnostics": ["checkpoint Spearman with endpoint catalogue barrier using smc-1 checkpoint_correlations", "false pruning", "clone event change", "clone-only best hits", "PR117 decomposition deltaH into availability hit@infinity and ranking loss"],
+  "line_recommendation": [["any new arm IN_GENERATION_SELECTION_HELPS under primary ranker", "NEEDS_HELDOUT_CONFIRMATION"], ["primary arm NO_GAIN_OVER_POSTHOC or SELECTION_HURTS and no new arm IN_GENERATION_SELECTION_HELPS under primary ranker", "LINE_CLOSURE_RECOMMENDED"], ["otherwise", "NO_FROZEN_RECOMMENDATION"]],
+  "cpu_core_hours_max": 10, "gpu_hours_max": 0.5, "workers_max": 48,
+  "claim_limits": "Exploratory last mechanism-line test. Recommendation only, owner decides. No held-out confirmation in scope. Report first sentence: 本报告全部结果为探索性"
+}

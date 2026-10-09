@@ -1,0 +1,9 @@
+00ade05cbbc33b6c4b83774ed667c745838591a645bd9f2292b77db00be5e7bd  ./inspect_u_npz_error.py
+630568baf9c45cc9c39f528f8fd6e7c92e51769ea33c436bd5fcbb1d4b1df320  ./replay_u_npz.py
+622f467e946e2fadafdb76d2cc236887eae086628a9b645796bb7084bc270d48  ./u-aimnet-hessians.SHA256SUMS
+a688c1fe2ee698e3135d83652014df1406680ca25adeef6ea2d789f8b2e77f33  ./u-gfn2-hessians.SHA256SUMS
+4703d26b947246433c2d408dd62503815cdf5086800b6f6984014ad2f9594eae  ./u-npz-replay-diagnostic.json
+2c99ec94d0529d28cd7f2d5b0a64dc7dc4310685542214ad0b771059b2e1c966  ./u-npz-replay-in-aimnet.json
+f8f84c930c4b0b015330bfd02018876b670c76c3f0cbcc0f685167bfb0f8e157  ./u-npz-replay.log
+94860d5ffe9aa5125dbcdc60a438aa4a68d8532d736cdc2a24b6839109318787  ./U_NUMERICAL_AUDIT.md
+d0cd5c3ebd65bb3a58058c5a176b5ecd47a59ca9e14bd61116eb8003f338f900  ./U_REPLAY_ADDENDUM.md

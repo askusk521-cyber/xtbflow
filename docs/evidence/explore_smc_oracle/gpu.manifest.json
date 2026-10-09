@@ -1,0 +1,15 @@
+{
+  "config_sha256": "3f02dc7e2513760f94284fdb63005b7353a0dac89071b04ad8d20de74e5cf557",
+  "cpu_children_s": 0.025536,
+  "cpu_self_s": 24.09024,
+  "dirty": false,
+  "input_sha256": {
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-new/g2_manifest.json": "7cac90bf55dd7ebf64fd63a4246d33d1cd24da84d3389d43b3833eba5acf7d06",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-new/plan_manifest.json": "92a728cf906063c5b016eea9c862c4e856652019046d8eb326995b06fd9cb6e5",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-new/plans.json": "32e6a79dd42203ffe01b21a97869c555b96d1db0be0ac7c990b3b5508b640394"
+  },
+  "slurm_job_id": "2754",
+  "source_commit": "8b007e1f2375b2f61db962abf1cb4a8367c0732a",
+  "stage": "g2",
+  "wall_s": 22.831108649028465
+}

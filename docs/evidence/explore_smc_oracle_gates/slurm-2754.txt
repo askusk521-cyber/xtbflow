@@ -1,0 +1,30 @@
+JobId=2754 JobName=fu-smc2
+   UserId=lhshen(1010) GroupId=group(1001) MCS_label=N/A
+   Priority=4294900914 Nice=0 Account=(null) QOS=(null)
+   JobState=COMPLETED Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:24 TimeLimit=00:25:00 TimeMin=N/A
+   SubmitTime=2026-10-09T15:54:33 EligibleTime=2026-10-09T15:54:33
+   AccrueTime=2026-10-09T15:54:33
+   StartTime=2026-10-09T15:54:34 EndTime=2026-10-09T15:54:58 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-09T15:54:34 Scheduler=Main
+   Partition=main AllocNode:Sid=node2:1033975
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=node2
+   BatchHost=node2
+   NumNodes=1 NumCPUs=8 NumTasks=1 CPUs/Task=8 ReqB:S:C:T=0:0:*:*
+   TRES=cpu=8,mem=64G,node=1,billing=8
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=8 MinMemoryNode=64G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=(null)
+   WorkDir=/home/lhshen/xtbflow-runs/followup-20261009/source-8b007e1
+   StdErr=/home/lhshen/xtbflow-runs/followup-20261009/smc2-jobs/slurm-2754.log
+   StdIn=/dev/null
+   StdOut=/home/lhshen/xtbflow-runs/followup-20261009/smc2-jobs/slurm-2754.log
+   Power=
+   TresPerNode=gres:gpu:pro6000:1
+   MailUser=lhshen MailType=INVALID_DEPEND,BEGIN,END,FAIL,REQUEUE,STAGE_OUT
+   
+

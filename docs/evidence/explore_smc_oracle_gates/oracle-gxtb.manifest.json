@@ -1,0 +1,16 @@
+{
+  "config_sha256": "3f02dc7e2513760f94284fdb63005b7353a0dac89071b04ad8d20de74e5cf557",
+  "cpu_children_s": 21.472993,
+  "cpu_self_s": 2.501498596,
+  "dirty": false,
+  "input_sha256": {
+    "/home/lhshen/xtbflow-runs/review-align-20261009/tools/gxtb/xtb-6.7.1/bin/xtb": "1b4e30b68ed4e88b4075f60d97f4756ee440fe92d3294cc20826d53f8121cd26",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/data/parent_catalog.json": "ebbbee13124444ae3e8ad7b5f9475183fed285894e27b0dcdb46cc13b4ba0ece",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/data/reference_catalog.jsonl": "864b0323430468613a0086159206a8fc34061c7041134309edc89d0f574319d9",
+    "configs/review/oracle_benchmark.json": "0f3984201b52a5f8e4e843950fc1f1fda40ea16d6116e0d4727e7b28b6a0c027",
+    "docs/evidence/explore_geoinfo/check_a_rows.jsonl": "34c49edbaba62458157b7864c6cb89e1f40c6af8f4596a72a518f4da57f85c7d"
+  },
+  "slurm_job_id": null,
+  "source_commit": "a188a6183ddfd01c2d435cbeda8ea693b1b8a175",
+  "wall_s": 29.271570309996605
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "xtbflow-u-diagnostic/1", "exploratory": true,
+  "input": "558 development check-A reference records; unrelaxed anchored x_ts; event_direction(b_p,b_r,x)",
+  "primary_method": "GFN2-xTB", "secondary_method": "AIMNet2",
+  "hessian": {"gradient": "explore_geometry_information._force_job; units converted as xtb_score.gradient_to_force", "difference": "central", "step_angstrom": 0.005, "symmetrize": true, "units": "kcal/mol/Angstrom^2", "projection": "exact translation/rotation span removed via orthogonal complement", "mass_amu": {"1": 1.00782503, "6": 12.0, "7": 14.0030740, "8": 15.9949146}, "imaginary_frequency_cut_cm1": -30},
+  "metrics": {"imaginary_count": "mass-weighted projected Hessian frequencies < -30 cm^-1", "c_u": "u^T H u", "overlap": "absolute dot of normalized u with lowest projected Cartesian Hessian eigenvector", "best_neg_overlap": "maximum absolute dot with negative projected Cartesian eigenmodes; zero if none"},
+  "secondary": "AIMNet2Calculator forces=True, repeat c_u and overlap using the same finite differences",
+  "reading_order": [["overlap median >=0.7 and fraction c_u<0 >=0.7", "U_IS_REACTION_MODE"], ["overlap median <0.3 or fraction c_u<0 <0.5", "U_NOT_REACTION_MODE"], ["otherwise", "U_PARTIAL"]],
+  "additional": ["fraction with exactly one imaginary frequency", "overlap median stratified by sum of broken and formed bond orders", "parent-mean overlap and c_u with cluster_summary 95% CI grouped by split_group"],
+  "tests": ["GFN2-optimized water has only positive internal frequencies outside six rigid modes", "Hessian symmetry"],
+  "cpu_core_hours_max": 2, "gpu_hours": 0, "workers_max": 48,
+  "claim_limits": "Exploratory diagnostic of approximate potential surfaces, not chemical certification. Report first sentence: 本报告全部结果为探索性"
+}

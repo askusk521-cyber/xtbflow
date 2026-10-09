@@ -1,0 +1,68 @@
+{
+  "config_sha256": "3f02dc7e2513760f94284fdb63005b7353a0dac89071b04ad8d20de74e5cf557",
+  "dirty": false,
+  "gpu_runtime_s": 24,
+  "input_sha256": {
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-aimnet/rows.jsonl": "c056087f78cf0707530368886e1f9bba02f1e7d7b5fec8271fc46947c8fc3c24",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-gxtb/rows.jsonl": "5aa350ad4249d7f87ae691298710ce0caab36862b62b3a203aa9f49ac5e3cba8",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-decoded/manifest.json": "3d6b755068d04df945e57fc6c6a2997589c81df91d6b14e90a3c3baabd5dc801",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-jobs/slurm-2754.txt": "9652916e58b799c9cc918b3115c3eb1c3eb3d7b9bf88d08d5500e1cb1577d654",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-new/plans.json": "32e6a79dd42203ffe01b21a97869c555b96d1db0be0ac7c990b3b5508b640394"
+  },
+  "n_plans": 1488,
+  "n_scores": 47616,
+  "passed": true,
+  "scope": "Independent score ordering, slot mapping and survivor gate audit; not endpoint ranking or scientific analysis",
+  "slurm_job_id": "2754",
+  "source_commit": "8b007e1f2375b2f61db962abf1cb4a8367c0732a",
+  "survivor_checks": {
+    "aimnet_0.6": {
+      "agreement": 1.0,
+      "max_abs_dx": 0.0,
+      "mismatches": 0,
+      "n": 2976
+    },
+    "aimnet_0.7": {
+      "agreement": 1.0,
+      "max_abs_dx": 0.0,
+      "mismatches": 0,
+      "n": 2976
+    },
+    "aimnet_0.8": {
+      "agreement": 1.0,
+      "max_abs_dx": 0.0,
+      "mismatches": 0,
+      "n": 2976
+    },
+    "aimnet_0.9": {
+      "agreement": 1.0,
+      "max_abs_dx": 0.0,
+      "mismatches": 0,
+      "n": 2976
+    },
+    "gxtb_0.6": {
+      "agreement": 1.0,
+      "max_abs_dx": 0.0,
+      "mismatches": 0,
+      "n": 2976
+    },
+    "gxtb_0.7": {
+      "agreement": 1.0,
+      "max_abs_dx": 0.0,
+      "mismatches": 0,
+      "n": 2976
+    },
+    "gxtb_0.8": {
+      "agreement": 1.0,
+      "max_abs_dx": 0.0,
+      "mismatches": 0,
+      "n": 2976
+    },
+    "gxtb_0.9": {
+      "agreement": 1.0,
+      "max_abs_dx": 0.0,
+      "mismatches": 0,
+      "n": 2976
+    }
+  }
+}

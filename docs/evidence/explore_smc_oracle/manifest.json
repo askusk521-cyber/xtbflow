@@ -1,0 +1,26 @@
+{
+  "config_sha256": "3f02dc7e2513760f94284fdb63005b7353a0dac89071b04ad8d20de74e5cf557",
+  "cpu_children_s": 0.009085,
+  "cpu_self_s": 5.954907,
+  "dirty": false,
+  "input_sha256": {
+    "/home/lhshen/xtbflow-runs/explore-smc-20261009/smc-2116d43/endpoint_rows.json": "6f5b4dcb8407a5d7f7cd34ede10eb7dc3abf269aafe5920e4c147361f8a66fda",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-aimnet/manifest.json": "d62d3210a4d4ca6604fb8a586409c25abb1202ec903e0ac3d32a9b12e48e514f",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-aimnet/rows.jsonl": "c056087f78cf0707530368886e1f9bba02f1e7d7b5fec8271fc46947c8fc3c24",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-gxtb/manifest.json": "ad5c3ff12b3a4e00eeece1b74c7bd177d74965189b63774a7478f67de9007085",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-gxtb/rows.jsonl": "5aa350ad4249d7f87ae691298710ce0caab36862b62b3a203aa9f49ac5e3cba8",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-decoded/manifest.json": "3d6b755068d04df945e57fc6c6a2997589c81df91d6b14e90a3c3baabd5dc801",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-decoded/new_rows.json": "5967c7a620facbc46dddacad90638d366db8568c0bc567f266db4361d16fa850",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-endpoint-aimnet/manifest.json": "aed62ce3bf978c9ab15915b6bfdbc8e61509fe7a22e3242d32b99c813441624e",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-endpoint-aimnet/rows.jsonl": "ac1f0257e52dd419beff600ad3a53ef596701062461d6e7a90fa86e690be33f9",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-endpoint-gfn2/manifest.json": "80a2498668d75221ada25b34a9a3cdb14208818c74d2b57ce7d5264410e14953",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-endpoint-gfn2/rows.jsonl": "62e0b829afc947fb70e56c90406064fff490029232f95bae4301a953a747bdb3",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-endpoint-gxtb/manifest.json": "da9b2df8b367be5124d0a1e0e1f0fe2580613662b2599276be5dc0094dc3b73a",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-endpoint-gxtb/rows.jsonl": "9eb8960ec3debcdbacdaaee1cbf27a0f93ef4919661fdf555ef1efaeca80f7e6",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-new/plans.json": "32e6a79dd42203ffe01b21a97869c555b96d1db0be0ac7c990b3b5508b640394"
+  },
+  "slurm_job_id": null,
+  "source_commit": "8b007e1f2375b2f61db962abf1cb4a8367c0732a",
+  "stage": "analyze",
+  "wall_s": 4.7484579109586775
+}

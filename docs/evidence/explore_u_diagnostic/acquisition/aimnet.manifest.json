@@ -1,0 +1,22 @@
+{
+  "complete": true,
+  "config_sha256": "dd80bcf250c09dcf89000b409e34e4fda7e8f92ce078b6f9fdc079e464a1a613",
+  "cpu_cap_s": 3400,
+  "cpu_s": 425.227954074,
+  "dirty": false,
+  "input_sha256": {
+    "/home/lhshen/xtbflow-runs/review-align-20261009/tools/aimnet2_wb97m_d3_0.pt": "f0f7c054539ad3261bd36f9b11c56d12f87cb723e25bea7521755bbd3ec24e28",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/data/parent_catalog.json": "ebbbee13124444ae3e8ad7b5f9475183fed285894e27b0dcdb46cc13b4ba0ece",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/data/reference_catalog.jsonl": "864b0323430468613a0086159206a8fc34061c7041134309edc89d0f574319d9",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/data/split_manifest.json": "4ec80a3e0246be760d22ef546895df54c05f6612839443f28db330c4ac0d2eea",
+    "configs/explore/u_diagnostic.json": "dd80bcf250c09dcf89000b409e34e4fda7e8f92ce078b6f9fdc079e464a1a613",
+    "configs/review/oracle_benchmark.json": "0f3984201b52a5f8e4e843950fc1f1fda40ea16d6116e0d4727e7b28b6a0c027",
+    "docs/evidence/explore_geoinfo/check_a_rows.jsonl": "34c49edbaba62458157b7864c6cb89e1f40c6af8f4596a72a518f4da57f85c7d"
+  },
+  "method": "AIMNet2",
+  "slurm_job_id": null,
+  "source_commit": "a861037fac6803d543765f3c563706fd0d647ff0",
+  "stage": "references",
+  "started_unix": 1791530345.050984,
+  "wall_s": 431.74601340293884
+}

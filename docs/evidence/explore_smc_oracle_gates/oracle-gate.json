@@ -1,0 +1,43 @@
+{
+  "methods": {
+    "AIMNet2": {
+      "expected": 0.9239845589178955,
+      "failures": 0,
+      "passed": true,
+      "rows_sha256": "00ecb9538baf123cc1c7df5dca7bf35f4b97ef63194cf916f92c2207487d3cac",
+      "summary": {
+        "ci_two95": [
+          0.8846422172890708,
+          0.9633269005467203
+        ],
+        "estimate": 0.9239845589178955,
+        "lower_one95": 0.8914554873201186,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conditional on frozen models and specified evaluation design",
+        "se_cluster": 0.01886051343823522,
+        "upper_one95": 0.9565136305156725
+      }
+    },
+    "g-xTB": {
+      "expected": 0.9089169115946805,
+      "failures": 0,
+      "passed": true,
+      "rows_sha256": "16133ad4d9c9f44955828f7d80d1e21097a251036a9595e6052efe02f7600b91",
+      "summary": {
+        "ci_two95": [
+          0.8379844058708894,
+          0.9798494173184715
+        ],
+        "estimate": 0.9089169115946805,
+        "lower_one95": 0.8502684310576605,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "scope": "conditional on frozen models and specified evaluation design",
+        "se_cluster": 0.034004673388100544,
+        "upper_one95": 0.9675653921317005
+      }
+    }
+  },
+  "passed": true
+}

@@ -1,0 +1,18 @@
+{
+  "config_sha256": "3f02dc7e2513760f94284fdb63005b7353a0dac89071b04ad8d20de74e5cf557",
+  "cpu_children_s": 0.010407,
+  "cpu_self_s": 2.423307,
+  "dirty": false,
+  "input_sha256": {
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-aimnet/manifest.json": "d62d3210a4d4ca6604fb8a586409c25abb1202ec903e0ac3d32a9b12e48e514f",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-aimnet/rows.jsonl": "c056087f78cf0707530368886e1f9bba02f1e7d7b5fec8271fc46947c8fc3c24",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-gxtb/manifest.json": "ad5c3ff12b3a4e00eeece1b74c7bd177d74965189b63774a7478f67de9007085",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-gxtb/rows.jsonl": "5aa350ad4249d7f87ae691298710ce0caab36862b62b3a203aa9f49ac5e3cba8"
+  },
+  "n": 1488,
+  "plans_sha256": "32e6a79dd42203ffe01b21a97869c555b96d1db0be0ac7c990b3b5508b640394",
+  "slurm_job_id": null,
+  "source_commit": "8b007e1f2375b2f61db962abf1cb4a8367c0732a",
+  "stage": "plan",
+  "wall_s": 1.1421172658447176
+}

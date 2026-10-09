@@ -173,6 +173,11 @@
       "bytes": 3669
     },
     {
+      "path": "configs/explore/enum_thermo_tau.json",
+      "sha256": "e2423c7e7cb178e0a9e9ec96f46b19a3c5706d09b3e4b282b7a97882aac78e6c",
+      "bytes": 989
+    },
+    {
       "path": "configs/explore/geometry_information.json",
       "sha256": "af016782705c8325dd36b3433b74f157fbcb9ead080b9926f627a41d4b6c853d",
       "bytes": 6508
@@ -1471,6 +1476,11 @@
       "path": "scripts/followup_thermo_inputs.py",
       "sha256": "63b24b439a85d18a896536022d497092962534ef7cd9792a1a93a227207bc573",
       "bytes": 2462
+    },
+    {
+      "path": "scripts/freeze_thermo_tau.py",
+      "sha256": "81e7c4e653f699a31137bf2ca8a73978cd8f1d5d13f0cdfe57fa311290994cd7",
+      "bytes": 1956
     },
     {
       "path": "scripts/joint_flow_smoke.py",

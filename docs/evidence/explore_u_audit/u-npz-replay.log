@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/lhshen/xtbflow-runs/followup-20261009/replay_u_npz.py", line 21, in <module>
+    if maxerr>1e-10:raise RuntimeError('Numerical replay mismatch')
+RuntimeError: Numerical replay mismatch

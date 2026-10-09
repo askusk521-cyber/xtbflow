@@ -733,6 +733,56 @@
       "bytes": 281
     },
     {
+      "path": "docs/evidence/explore_u_audit/SHA256SUMS",
+      "sha256": "28d023736c53993fc8131798f096cec0e8ecdaff97cce3c4e151aa37ff576398",
+      "bytes": 823
+    },
+    {
+      "path": "docs/evidence/explore_u_audit/U_NUMERICAL_AUDIT.md",
+      "sha256": "94860d5ffe9aa5125dbcdc60a438aa4a68d8532d736cdc2a24b6839109318787",
+      "bytes": 3533
+    },
+    {
+      "path": "docs/evidence/explore_u_audit/U_REPLAY_ADDENDUM.md",
+      "sha256": "d0cd5c3ebd65bb3a58058c5a176b5ecd47a59ca9e14bd61116eb8003f338f900",
+      "bytes": 1797
+    },
+    {
+      "path": "docs/evidence/explore_u_audit/inspect_u_npz_error.py",
+      "sha256": "00ade05cbbc33b6c4b83774ed667c745838591a645bd9f2292b77db00be5e7bd",
+      "bytes": 1123
+    },
+    {
+      "path": "docs/evidence/explore_u_audit/replay_u_npz.py",
+      "sha256": "630568baf9c45cc9c39f528f8fd6e7c92e51769ea33c436bd5fcbb1d4b1df320",
+      "bytes": 1135
+    },
+    {
+      "path": "docs/evidence/explore_u_audit/u-aimnet-hessians.SHA256SUMS",
+      "sha256": "622f467e946e2fadafdb76d2cc236887eae086628a9b645796bb7084bc270d48",
+      "bytes": 49662
+    },
+    {
+      "path": "docs/evidence/explore_u_audit/u-gfn2-hessians.SHA256SUMS",
+      "sha256": "a688c1fe2ee698e3135d83652014df1406680ca25adeef6ea2d789f8b2e77f33",
+      "bytes": 49573
+    },
+    {
+      "path": "docs/evidence/explore_u_audit/u-npz-replay-diagnostic.json",
+      "sha256": "4703d26b947246433c2d408dd62503815cdf5086800b6f6984014ad2f9594eae",
+      "bytes": 7985
+    },
+    {
+      "path": "docs/evidence/explore_u_audit/u-npz-replay-in-aimnet.json",
+      "sha256": "2c99ec94d0529d28cd7f2d5b0a64dc7dc4310685542214ad0b771059b2e1c966",
+      "bytes": 8889
+    },
+    {
+      "path": "docs/evidence/explore_u_audit/u-npz-replay.log",
+      "sha256": "f8f84c930c4b0b015330bfd02018876b670c76c3f0cbcc0f685167bfb0f8e157",
+      "bytes": 234
+    },
+    {
       "path": "docs/evidence/explore_u_diagnostic/REPORT_ZH.md",
       "sha256": "d0dacd9772b6dcf778667115c624db47685e33b89a3055597d2e13175f3ecd26",
       "bytes": 2469

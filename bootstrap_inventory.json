@@ -503,6 +503,86 @@
       "bytes": 2049
     },
     {
+      "path": "docs/evidence/explore_enum_thermo/REPORT_ZH.md",
+      "sha256": "b09fd539c20cc45594b053fab8c79adebe509b5ee0f8a6906d00b6159f26945a",
+      "bytes": 3619
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/SHA256SUMS",
+      "sha256": "8d8ffae75e2a30972523435ce83ec83c376dedea54e9d16cafad6e6417e850ee",
+      "bytes": 1413
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/acquisition/screen.manifest.json",
+      "sha256": "1d5994e4e7fdd36cbf949b94e1bb9145ccc596fbbb7b10783dc7d110f5ee9027",
+      "bytes": 146928
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/acquisition/thermo-budget.json",
+      "sha256": "ca9fb85cf8f32e73d857181c11f71fd87bf8f39a7677cf95a55e88b2fb27daa8",
+      "bytes": 202
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/acquisition/thermo-smoke.manifest.json",
+      "sha256": "f3ac805afb39c2dc29579ed81e21c2a5692dcacd6a58b7508f81e257260654ed",
+      "bytes": 799
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/acquisition/thermo-timing.manifest.json",
+      "sha256": "eb07f6c6922ad04d88a274e0ac7504ee0854005c19d77d886904a63263f3329e",
+      "bytes": 801
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/acquisition/thermo-train.manifest.json",
+      "sha256": "5928058298391dcf1d4c3c64683a500e60946683173c5801b74b59283407348a",
+      "bytes": 804
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/gates/b0-reproduction.json",
+      "sha256": "f70cad23a4d5c753c8264c00a2b2fa9dc02a709a52a53cb6775a569b9f92e493",
+      "bytes": 372
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/gates/b2f2-gate.json",
+      "sha256": "3562530efc44cff54e4156951140568a8cc05022d53d0f1496e95fb529aa0f56",
+      "bytes": 69696
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/gates/t1-analysis-replay.sha256",
+      "sha256": "8f5b4f1fd8e49555560a7461454dbf4a3b4d9c849b2e885985bf2f0c868f6ad6",
+      "bytes": 259
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/manifest.json",
+      "sha256": "b7d07efc41dad1a7af7fe47fa251e1b0c9edc075b2bc2a2d94600b1838448144",
+      "bytes": 626
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/recall.png",
+      "sha256": "6b582eba941505d349a81127cc2acde4f26f8c01b16f3650754cd9748f83f998",
+      "bytes": 89406
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/results.json",
+      "sha256": "7d4a3372791b4b4f727e305f4331fa6f91cd790e24c255e38e06cbe5002c03b3",
+      "bytes": 171810
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/validation/t1-bootstrap.log",
+      "sha256": "1b05f86df6aeed0a3c6e53dff571ce9924ef2a783ad3493c31b8f8992f633d65",
+      "bytes": 151
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/validation/t1-pytest.log",
+      "sha256": "67d2919b1da019104b72c880a3b42fc14f4ad4740920673fc7bd19e12fa93178",
+      "bytes": 1886
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/validation/t1-unittest.log",
+      "sha256": "e935a63fc1282857f632ca910749a89ffdd97b68ecf4fb909fcb2758132d67da",
+      "bytes": 977
+    },
+    {
       "path": "docs/evidence/explore_geoinfo/REPORT_ZH.md",
       "sha256": "263ea01d037cf001c279793b76f9dfd1a7ba24bd2e1bf2cd6f6f364da86f7934",
       "bytes": 8913

@@ -1,0 +1,9 @@
+{
+  "mean_cpu_s_per_event": 0.18997747638461537,
+  "rows": 39,
+  "parents": 5,
+  "full_core_hours": 33.57957438140512,
+  "subset_core_hours": 16.36339329926154,
+  "selection": "full",
+  "stop": false
+}

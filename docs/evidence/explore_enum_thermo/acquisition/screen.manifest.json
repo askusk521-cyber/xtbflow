@@ -1,0 +1,3105 @@
+{
+  "aggregate_worker_cpu_cap_s": 172800,
+  "complete": true,
+  "config_sha256": "b3abf1e0d3d47b6885134dbd2d90291b445c581841b8ed5534d261ecc9de79cd",
+  "cpu_s": 27451.453521000003,
+  "dirty": false,
+  "ended_unix": 1791529395.1103773,
+  "enum_input_sha256": {
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/0109798be640476374f2.npz": "cd77d9534217667fa02be4cc9979bd6765bc7303d89c572e596b8047c12d08c1",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/02442afa5f1cb5e461d6.npz": "add4d2efb273971186d98ebf7475b794a9538aadb0d15789202c6d8e86058cdf",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/03ea5371121e40e9e5fb.npz": "8e0acb6814656058c8530e1d1ec9481d377a44ceb4aa22729e3295ea9b4fa826",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/059bf679a499aca9a05c.npz": "20cc2674bbff5f55c5e1a9131c2eea7d8366ea5559ab6091f9baf4346d1c5c44",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/06137a651d65fca2aca1.npz": "e8659cc4768dc8929231fedbd5bda987bebc92bff71a21a1da5e2ce67b40067c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/06a981a4a18d5123650e.npz": "fe6d60c19e64b261ca961de9b6011c031549f2053eb12042e3d641eed395ad36",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/06f02050ef7bf1169928.npz": "0b2ffb8be6e73b01ff01d554f775e7ac0f634be8a737729f7d5b656c0063e1e1",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/077187e6313049515340.npz": "59202210954d60cfd1eb30409214daff80300a47fd1e122108c8bdeb21ef46ba",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/08c6f1ea3c7fcc6795c0.npz": "a42cd55aa80878c2cabc3cf2766c97cbb3467543e330aed86082d9d847729afc",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/0968786d6385497151c8.npz": "e9ea099e10d72e640ec62072576916d6380da5cd2be0ba35915ccd10757f9890",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/09d4b308e0e4b6f9b7b9.npz": "6e4f767d831e64fa242bd8b133f44c2e961db8f07d77472ee8bdae837bcd0354",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/0b504eae12deba14da50.npz": "9472c31638eb93f872dd6abfefba938667a8d22b545dbbe2c21d3d50a68b97d7",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/0c9ffa92a537c20f25b0.npz": "c916829a2b329a7b40c9309cd434c6a8ca52fa3462e6d78e717c108a1f51c975",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/0d885e13b874a7a28f9c.npz": "d9ac80f3fa7babbf879ea9d4e7100df729a3765f052f38732846370268167098",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/0ffea92d9e61dc763e32.npz": "2dfc6d6e6649112a7b75fea3d97c759afef5a09cd0cc30db7f08442eb943e489",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/10828b435cd731e861ca.npz": "027f026a405809f74e44ca4e795ef0fefc1de5998c061896798b78d4e5e4014d",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/10cd35936a8daf013ba5.npz": "616d994400f6f431ae031ff8d2576ab2744f608043f6772cb610b7ed25d71fb0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/12767d2e8d7b396e866a.npz": "7bcd1b02885084e762a300f3973196b59fe3c7344aa0f7bdba2086b98e045384",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/12b847c5189e8d4d98d6.npz": "86f84d8ec0ff553bb863fbb33d453b549f78d64a78428eb8eb252d31f7f7444c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/139ebb58421a75a21621.npz": "d548f00a4b45dbed715083d056ace376cd34b3d0cacc401bca0e7f64acc3262c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/13bf28b59fe70fb07791.npz": "b89b28e23673815ec221b862bdfa8e91c0e43d9411bdd76d452bc41c5c6d6d78",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/13e61012073a9865d941.npz": "36b02027530d11e36e2e224df06f46f965cf3d3be1c48bd6326fa4c426468441",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/13f1f0bcc2a84a998675.npz": "430cd062bab129e25b331b8bf095ccfafd57e58185f8c07a79758d7cee522168",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/150d15f5ddaf854bc777.npz": "5765ea628db170c75bb11ba7ba50e699b4b43c0875ced2388ac4a185f860a1ef",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/15936be3ab45f50b5aa7.npz": "ddbb970aa689b6ea6c9f1e7d332e6b3766c545d357d087e3b33df66985e1928c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/15db6ffd811ea6eae8bd.npz": "9f9abccac384236850d6d21591e94e358770b0b8522c3c5b4b0c501e94086fd0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/16451e2e21e3ab231555.npz": "335198c0d230350f7683679828e08ecc228d2289f918f4b9f711302547eeae56",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/164edb135c14df5fc8ef.npz": "da6ee0defc3600e6fdf5096b384b735031d2508d362cede704495162fa7cc762",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/16f0745d283f76b1be2f.npz": "7275bde8499b86c03ceee9819669ddb571fa49ac676d6f22449177cb3d87856a",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/171991eee39d364d1003.npz": "8195ed318f3976de7f91bea4c122869ece3d790131c68a3cc506e860e8ea2566",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/176374640a0d84eeccc4.npz": "ee06b6d176a032ef6ea4d1a97d7dfef05d3fb6ca1d7bb92c72fa5ca7e2c73c75",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/18115e1b6d48bae6e848.npz": "d2c216fb271be8ebaeedf52b83e9df235d9afe12e2bfb60a1767ebe2d3549c64",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/193b4e37607273cf7870.npz": "f7617610c81ed902ed6e61a187713fad9d125492d82801ddc17c2bf75abad51f",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/19a26a3000136bd28fdc.npz": "30b0c10ac38ee0c5647734f4c4de8fd4c0f85c4a5763686b30c4bd7394e4a085",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/1c1a8252964a0c934217.npz": "ea1eb3e896b9060def1b33dcd5f73c66a6a6fa894cad71f2844f09f94d1ebb0a",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/1daa6fb846b0bdd95369.npz": "b14a0e7b1aa5946c80ec30fe3e2a2d2cc1a3db736d1c7d2d2e6679ec08d7930f",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/1dd6e1f03fb1adc3044f.npz": "f5bfa5e92c94db5f28c04af3e4f5da18543f3a7374180d83f08024f7ed4fb1d8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/1e19147f0c2d3f0c553e.npz": "52b68b879cc126c895d6ccb050956cea7abfcebd78ab952d4b1c2c1fa9ad4d04",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/1e31da5f055cda5d9a97.npz": "bfcf821bf97a1ab685631b7859f045b0ae659c717d2be36eb63e0f531d4b448f",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/1f26b917e1b972ad3fd9.npz": "1064691af1444d3fc0b70527046907f775c5e75ab03b19837dc7faf1ae09b96b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/1f285230047b81a63f4f.npz": "8d5f6bf40f973564cd637040c6bbcb1a6b3be086c2ead42ee06a2cde745137a7",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/1f6d61c49f2d59eeba41.npz": "33d68f4463ea4142264807f6fc7a66c1a44d1d915d5bbd5958be00972b86a032",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/215334bd3bbcafaa79a6.npz": "13c7949ecb9a18c63025aed8fe2ef61d459b23aeed8216ca3bb45579634b4034",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/2179b3bd5245f7a4c48f.npz": "bee291e5aa7c6f8e57cf43863d9ba0bf76c9996529b61ff837ce93d1a5e2a2bf",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/224a0dc3b1e6848864f4.npz": "c5b9b46c0b8470a5171bc293423543151ffd30de605e3a3e2e1781d3c9ee61b1",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/22794d3f4e405ab969d4.npz": "d37b6c0141600ca828e7da2e502a793feaf5523a810334193b06474b0ee1ef29",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/22de66da129d318a4fe5.npz": "768e91973e112b5db06dd8f5a3f7d2444d4f03462c09fdc33670d9c085e9e952",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/23b129348aac7168763a.npz": "cf46dd7e75442edf8e90695d48755023a9b31097f974e53ef1daaee8b89799d0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/240d2703bcb141818c18.npz": "4aa6ca5dc2efa29e5d963d68b3c9b6847a67389e8053821adcc5555460d16846",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/24f121168e5ba3d79436.npz": "f54f771a87fa444ae15bace0cb722aa80e570922ec84d72740c462e811e0472b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/258639e686d6723ab996.npz": "ab97b98663d5be8d53be16355c708630e5d11e3a796fecd10e76db3c7e54ef74",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/2594536a093255f80373.npz": "52e143f3a0c680ddea0326e9537d51f25cb59976393bd2566a9f9cb5d6cf7502",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/27a4a6ecd47c5990df53.npz": "fb38cf6c7f38eb8ad731540b89eb7a91d942a4b1a498be08a2ca74e91e8f61d8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/27e24c7cbbabe43a3da4.npz": "ff476d13d25a0a9fcfdd08fb3fab0d6097f2e85ed98149e29d56213fc75470a7",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/281779a5ec203c658539.npz": "4c5d1553f332435725ee843339da988d36c590c2818a187d95ac24fa14fd0643",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/289b4cc1cb5ae87a70f5.npz": "9f62839487b9b97efd7e338a7d29dd6d76974167725b14e90a47794ccd733cd6",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/2b7c1f68c2cadae2142d.npz": "554b522d1d0b1c696522b6ca428680504ae8a86bca4edd1d6ab69c765c1a8182",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/2bd4d7187c1b806a4321.npz": "90fff882dbaa3e08a1b32f09d3f6fbc7894390ddd4f710c34261a57421c22d27",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/2c19c0c681e2232a7417.npz": "e2ad83a6cf9bbd7901f8a8ed0454350a57ce0f4e3e53bc8e623c7436b8e19c4b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/2c70191cb394c563576d.npz": "cf96e2c2dfc868ab6f3a60a2d78a14636e4c5389fba412aefef1da50fb7f3514",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/2cdd0142f57509e863e1.npz": "39e22fc1ba2569f1e11fb68e5c7954964a7aa1915a0432aeb7a62ca680622d73",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/2d09f037cf22e53376ce.npz": "0978996ef7a7ba56e337af56674682d86b8b3ce29aa657cbea5498d357e019d3",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/2f0ac2c267e78984638b.npz": "2d03e86b112c93216197898ca4e92b98fcd0e7e4d32446b46832489b766ef634",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/2f5b6749fb86e442d36c.npz": "392dc087b568f3d518dd1b1d62ec0ed7ed718b55a0fa747f9ec8ede0b4b01ce9",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/2fcf1278caf6ef863659.npz": "3fb12ea96d0a68c79d296e0b304c3e884840f6995cc226136d87bf46afbcc8be",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/303508f21c5696efb5be.npz": "9d663573c3c6ab227a0f96f7db3110a1c032cadadc8743b99d23211d95ec4165",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/30b044396f6d4b842239.npz": "b7ef680e4981f02dd6c6e714eb7f38c85de886da18c05470fc8d9f303958b0bb",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/317dcdb6b4a4f0b73781.npz": "753cc1bd2275a2896445d67ca966b010c50a8e0b7a7fe664b5d927f4eeb4e5eb",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/31d2226d543fda193617.npz": "37e8593227fcbf8788fbac02b01dfa6491dfd961a08c71f62ce128d448a47bd0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/32089220ac4d0b9eb156.npz": "5a76a4959e1f30794398d79266f6927f29d6fcd26d36d4ac1eebf93c14cc8064",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/327fcbdfbdd614e621c5.npz": "553a60bbdbb1f3d11e349085d77c1d5611ce667819a6f859f47b9bf76023c515",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/32a4c61ccc2f0f689d50.npz": "bdc433328c7bc00f7c0824638bbffc49f72c1ca8b51780c68680c516b084c292",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/34848379ebc530f73eaa.npz": "89f78c7a698ecf270bec8ae8d10c3bf43842dbe0ed48a81a1b8231b894b2e5e7",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/36773d8e7aab7224644f.npz": "cd77aaa999a25de69b31e20f3c03d2d618e6dadc3bd246405e15a515166366bb",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/3693f2be75f7e78e10df.npz": "81fbe359d75e9bd1041e8a96416d613993b4702f5d51631355189fbdacb95c77",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/3795486124b2b70efd27.npz": "a9aa59a928dc269300b52a85b551f25ae946e19f1b0bc67a2eb6709f16a10db4",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/37c8a39059ca94bff6c7.npz": "fe214c9681231da19825721eb000d6849e048571cb525e29ed6f474d1009538b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/37ee97653805530aec63.npz": "c6b9ce702a39c0aefde684b2e2fea4436bceb7b199b8aeb3fd44214dd0e7f3b7",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/38551459bb12140e9fa9.npz": "66cb6ed495835141f0293c48632c8df2453de11c9fe7221ce2a494e2457b027c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/3900e57e1fe4494b8b86.npz": "38a6cd6173ff1b0dce157f09436e02adcb3df249023acbb75b105e14310d6779",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/39e505a198e1a48fc175.npz": "ef413a6dbe15696f34aa71041c4c8ed93ab98568557ab65d497b8b74a17d6dfe",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/3c6c2f30334dd0f44c6d.npz": "0fa37d4845751681c4663c59172131c8a4791d846c3d339c775aef0eac6c2706",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/3e4899195c01fa43baa1.npz": "02ee4ea671186db6f65d55d77341265570edd6a9b9a75a94d106ef3c12fe9c4b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/3e5b3283891e0b420878.npz": "e48807c32e5cd72f5973d7921c090d6ab82462113f581893142fa2f7690841f3",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/3e97879655b5981bacda.npz": "3d6bda6159fc53771aa417494c5fa83b33a288899434680443e149866b71e7a3",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/3edd5500d4ae419e7b5d.npz": "1dbca471b8ce56625ddad8c6054d48c6be3fe03f057ec719a6c6d97df2989a62",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/3efa2a19404450d1ea09.npz": "714f2dc0793a1fa2b9261ce429b31d9ec90a060c032ece0b051c5b701a9a7620",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/3f6bb88b41bdeac6b561.npz": "969c1cba4c9b37f8b05ec52385d9d46c8b84b1f30c17281d46def5c5ae20f25c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/40ca5e627cb7d2b33095.npz": "47f1d7f3780821dd122e5e6ad32c29ac14c13d06af79f5fd64653df0ceb8ab7e",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/41cb92c90ebeadd3e9f2.npz": "be72e6872eb82bdcffad6a6ab82a5d899774776c881c37dc653e0ce503b814a2",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/42a0f713da5fa4290de8.npz": "b2085d994ac1ee7a07f6bff8025e83c4538ca5fcc392186349e96bda98392422",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/42a8670e6fcd4b3cf39a.npz": "9efe86b9895214d4b25cbd6a962e34926d23e46e95e68c8262e04bc91d382949",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/42d6e0e16b181979867d.npz": "00cd4c57ffb1abe80649dcc9d624a3ccadb39bb96e70645ae9af9bfd388c8335",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/42f3279edf7e3f0d319e.npz": "6ca8c2e9fc7825a2326bdbd2af271a181ecfcbf895ec20cbe2d95af87a1ca083",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/437020bf5c9d97079871.npz": "d7b1d9836c566175445a07c55de85fe8d6da8eea807e418478e58f37f22af1ed",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/438bf94eabf3454b94a9.npz": "766ad355286717c7e7ff9f37c637bcd88fb0d5d377eea7fd19536eff2af225c7",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/439fcaadf615a247facb.npz": "73d5c810bb512e683c1ece6d67aa5e80235d3f5b46d0e5a0b0f8cec720a7533c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4498f55faf380ace7206.npz": "9496a745b6255513575c5e99913b8403ea75eecb1bcbe90ca44f9462e15b5bba",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/44ac0f0613caaf60a20f.npz": "d7187bf6120c24408eda20d6fd3ad616c9f7e4368a4f5c6ada151ad2a1ef2a59",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/44ee588fb3be8f516a48.npz": "cf198daf5d725360f8879c5b1e769204d6d1c000b8e158e10da038ebe98c197c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/44f53289af81036a81a0.npz": "a52ad90dc103b08941c7cd64835a99272b0d9465f96da738d3382636f6f11c6e",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/450dc9c43d48d7f6febb.npz": "f310282c86d69104e4d6b257d2a5fb0b5d417b369500b1fd0ccfbb5d4b2f9122",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/458b64e6f9ed5fed9822.npz": "5c418fa953df6f256d35c92efeb637c0c973164a416379cb87426c531118f00d",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/47940ad3beb0b1f4b721.npz": "76ca9ab8608c363b7b48462c92bf67950325bda5932015be5aff033d2f081cc8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/47df1a83b5e8841492a4.npz": "c9f5918f6baa7a9203a4e0f561512e1338d1ea775b9f9f9bf5d2663a471d296f",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/490a49d8326b3868df6c.npz": "4a7d88bc38ee74dca0832785651c828dcb54d596857cf5ebb41c75861d0702dd",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4bac09c213063d306b3e.npz": "424cf88fe5f35b6e5853dcee56178dca84c0e5d9515123714eef5ba67d4701e2",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4c71bfad776917e9de04.npz": "e32732bdfb2f3a7edafea1989ba5850d0776553666674d2228303dfbfbfccd0b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4c89b2612795bae77905.npz": "62c5d2a0ba6547d7691475144b9a1e4a0b244b6b0bc65cdd25500acb42b74f8b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4c90a5cab2d89d679e6a.npz": "c97e2602303bb98256706fff9ff1f14cd60c93e99bd46db2cadfc9fd8103c6c8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4c9f2a574b931394dfa2.npz": "d9feb50518610686f81b2e7d629adbc258472ca848a0971a6a56b2b610d0cd0f",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4ca71ae8e7ec09702e42.npz": "34c2135204d3776b688e9d63db0b9993d4caba2d0b78e42900ea75c75388226f",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4ce2db032944f7b2cc44.npz": "bdccae4f5b5c8dbc1fb90b7f9d7866744c12230ddfb7f1d22ff62be268fa6338",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4d2468661603af705edb.npz": "77d4e088148d6e681dbd8406883c7141ef30e094569979e9d3e11b30e7f14e78",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4ddc0e82a03a8f891af2.npz": "5fe2b00e5c79d0e65faa0dd344ed405071493eea8e296583908063a399a54d5b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4e27d9f9eb02b5a6f632.npz": "36b852c475e6e5e4582dc1ad758c73453041e7b7c86bf59d7ca34ae33cb26d58",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4ecfd50ef8c21ab6eef2.npz": "a694617456e3b0d7edc4eaafb08701a738d18f2a054abc1e311923f775c37a7e",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4ef4251bc7b3da39f078.npz": "72c0cdf4c6abf7990e23b977f3295796f7652b7c92ea95ec52bccf648714d6a5",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4f5559117464139fee00.npz": "c6ba5d34ca34ad9e41e09429e2d7e263ce20b02879174def818860e4834be01a",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/4f5845cb24ba3fbf067f.npz": "64e89e99dd9651eeeda39e2f885a934bdc8507413d02297778dbfeb96d03d1f6",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/5055bf03b7d9378b0e07.npz": "830fcdc68fe4e85a1bc135765d7d31983e7369301673f36b7b0a98c184c0d39c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/5070c0b62fa54a032747.npz": "fec75169740d38486dd256da1d836a497e4833e94d2343af7e37b1598162487b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/5133a5c28d2fa0eed208.npz": "2a457ea5cf5d7dfd04efa60f35aabb99a796d4c086faf7214d8e7795f8851b05",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/51d45131c7925d2b013b.npz": "77584b79c3be42c9fd43ba6387cc16c516bf3448c655540c2baef4a80604f4db",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/53210cf146dae740fcd7.npz": "506da546d04737f5c1bebcc71d617537f51587427cbbb28056595edb238be598",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/5329f412c46ae587f4ba.npz": "f618c709e6178318e461db8c4091ca7007cda04e2764b510f1d32fd1ccbff1b0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/545672723f468412217c.npz": "98dbbcb416e4add6b937cdbf46b268f943dd4b47087053ecc133d9ac0fb67220",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/54c4ff1690f74a458482.npz": "4af10755032c6e842d47775e85c80d068660f66270466f50d5f5d57b5236684c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/54cd6aef1458180b414e.npz": "2b17bead04f098302a2fcd7def861233b11f6c6291e4f76426bfd728b0edcc32",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/56f8b83af2572d0429ee.npz": "a35840420993d0d40475e85ec08ab90ca1b6cca64aef9642fd8eb8f54b51342d",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/5908e3520334a86652fc.npz": "7b99310a7ab46017a08bfd6f9ecee0582e1e23e489352419705f37fc8d43d18e",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/5a16c51cb5a7e3fb1149.npz": "98decffebba80f9ee327d3102ff06191f900aee84ea4ee07be671a07885157cc",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/5b02d759a9ea9d4dd169.npz": "b1102f77a099c4fd3a905611ac361471a2d5f3b3ddd612ffd120942a2f9342f7",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/5b2d3d450552ae85d0f4.npz": "89f2965e4506e4973a647872b814e7233af35ffc9017f032021102fb5c0d95e4",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/5b4b561592d2d163d172.npz": "194d9409424500f416b21beeb7ce8d12cd17976611daf3a2414f1e63ffe6ae05",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/5f08d5417eb65e8ccad2.npz": "4a03f66f18ec26ebcb6d092cd39a67d9215efa07eaf9b4eec49a91d3cdb5e45b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/5f85174235549973b2d4.npz": "2d488469d10a32f3c422ced35c2eb3fea5ae6e8c25d53baa6a594b660a7cca67",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/60c1b7fd735dcc9e8691.npz": "46f4813da513e497aefd0f89b7c39ea9bea8ba4ff7582cacef6d725d99feca83",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/610169b6b7344da8fe44.npz": "7cfd822ad6e7a72e9bedff05e5ed3d2932cf9e75ee71e53c25aaf6f291a9e166",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/613b6b9cb8cd989e3930.npz": "0c244b5a51b928b05d4d939fd6dd8bc834f1bc739076d5a57dc4ee3a2d617fee",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6140474f8e0cdc063c5c.npz": "12073f75830debedc6d2a368ea87a31243c312451772918b64fe38c41733d381",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6278eeb677c70d87b584.npz": "7ebe1dc3d9990f4ad7ca6e3671bcd14d7d24ab207bfa83f107a47dde99882084",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/62d447fda817bf1743c7.npz": "a5b9098c20bbb70f153eebc98dc9fbdd2013312f40545bc2bf213ca745601723",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6385adeb39775c61d581.npz": "12f559e3fe741f276204f6030b0031d5e379f076c1867f0d2e450a865a75f39a",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/63f684019eea256fff8f.npz": "616fc46a14de27f7508d87c506f9b53309482587b1d7857e4349a061f616fae8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/65367c463e052a989c6f.npz": "2b0dbff35fa153e82fcd065fa024974bebbe46e3c5ebb2b64716e7462a5bc802",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/65dec391f62eb581076a.npz": "4cfeac8add3b9f3793d83dfe279e9203a39c8e7e6858fd820726e45327aecfa8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/675963e917690f5fc21a.npz": "1a81d26979a1f10ec88fbeca3fbf1670be9e223ff3215b3f7a26dd4f641ed1ec",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/682c530aba824069ee51.npz": "6fc7cff9e9f736ef56357a07ea75cce9d3fa94decbf04dcc008ddd2e25a3b963",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/68e406cbe07bf1a7418f.npz": "9a5ec8005a1ad6bdba5f4967f61361b6740b2c1a9b9533b176610aa4c7ddbcb2",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/699cabf94167a970302f.npz": "896b2152b3348fae7da8208418ea44721a7da21c81d9073b63eb152704e44415",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6a9f78e93d42c9ac2809.npz": "ee9817b69e1f54144cde5e7eb446f125bcf3668612fea55cad12e00aab501623",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6b278ab284c7d18842a4.npz": "d973d40fda2e362489600cfcc296dd6526f77970874955210b15555ef6c12410",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6bc6b4ad42d55c2e3d24.npz": "250b6db82ef1ef18a22f46ac09503fe81996aedaa0e1a3752c1ab81613734129",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6bd92a6f8181b1329aca.npz": "235229a7fcb7290e7782cbbe8644bff8f744173ff9cfb20159db2286cd1d322c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6be9cc7669392789b21b.npz": "ab12d96fd7c6c5a80ff01887cd543c5220f678b23c27e39a52f3bc14b26b002c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6c122e7c858fc90257a5.npz": "49cf801fed9b23569c2c9d46e29a7be60f31673e289146247713d2eeded7be79",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6c1ed76d7cc8a21eb579.npz": "d8b18046f012d41eb9a08e7a274b0023c911ab1998537b383cdf8012c8ebded4",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6c3d04034a2cffc5b7a1.npz": "df9edeeba7a10cf67a96b6660fcb19f348696ac1fd11109fd3c0088ae391840c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6c9e7003ade9f81d3cde.npz": "186839797fbe32919b8a797a77cd2796676d3fa9db63a02e9c58f64a2d71a6ee",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6cd8e6f29ce73ed37e6d.npz": "55b5f9fb13897bf6931664f0c89a23292f7211c1075bb4d56df0b9548e241243",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6d61261edc6a0296f44d.npz": "8fe8463330f1bdaeb171f5d3cc951898a279b674b943bcb473749742bdb43130",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6da06407e8fc6de0de03.npz": "0e1b79193fb9a62dc0d4b2ea13e03355aedeea0ee5f5b2c7d2201ed29c98ca2a",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6dcd487459b34cbcebe2.npz": "20589fb54979544d9a42e6d6979d8e2fd5af229dce776e60a14925656a435ede",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6e2a46df48725b2955f8.npz": "6b97dbf3bec0b3bc24aeff1b9b1a7ba0a086407049e77b1a347c34fb47305cb8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6efac4f82a0cdc4b7476.npz": "a54d5264c4fd65f427ee310447bea55a0eb1f1753b91f97184a930852a40ce5b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/6faff17388798b53d9f9.npz": "36414ae278005cbce2d2d680dd6c47ea36b6257f8a5083550f5390e514e8fd2c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7010a607d1c52212413e.npz": "59504c03af2b45d6fca760e5973b11dbf842bb2acf3927887df3df55de522846",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/70fde9904c7545f98054.npz": "e13917e0de29a7e9c6dcc6f19b2a52be9ade0f860db45f0e34ef8b1ef396fe53",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/737ffd54eda0fd6ce0b3.npz": "c90b9e8b5c74f8fc689c7e33a249ff8c0c543e37591204a271ba83356b1639b8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/73a8b208b741c5cda518.npz": "cbff3c44d124c87f3d85103ce7142c7731e4fa36eee4981a4c0c7719024bf821",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/73bf037f6350608691e1.npz": "439425339672bb50b9ce6ddeda10388addf98cb18e2a597b679515890df36ead",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/73c6796f773c711a6800.npz": "dab7a34824a7e9c99cad7c6f4a7f7a11aacb7fed2b11ace202b3b0e97cee27bb",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7425905c981e259b275b.npz": "62223a913d978c94b37076b93ca0fc4d18de7b6a31177deaedd1992e060964c5",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/75629c2c4086ec81e4ad.npz": "499b61044a41971e921f26b63ba04710872c8b615b8e2288f073d24e86241f19",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/761ce8db7b595eaf07f6.npz": "d54d23c970d954b9e171da719ec2e52d7df98286a9b092d4940bce80c4db54a0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/766e8d4df2ea8dfb19ab.npz": "05bced6a79547449447d946d3c968d8750ce5cf73b6ba52a92cf0080b1eede8a",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7809fb5063b7e542aa7a.npz": "17b942be1b28f21c62b1cdf132fd3a653e8d3dd6e06baca3befa2d7e58599a01",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7a4fede1c5d72bfa7b82.npz": "9aa370a64e4826adea062baccca483fee9e802cf837bac317d1c240724dd7961",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7b497297625f0ee813cc.npz": "eb9240fc42d9d0ff31bd1ed3d0b57c79c5120a9e964648c5c2f15a1afa06f314",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7c15eec0ae7972268639.npz": "84beab7cf66f08690ed08b71436f9cb581b9d9ceb8cbf55c486160ac9aeae206",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7c7ca97231faa96059cf.npz": "d753d96a124e9951a5294c9885eb1248455ea54a32fd820f27b2c483b5c6ecd8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7dc6922783059ead3fb0.npz": "4902f8e1af623231c77e37610bdd4c9176d960cc3113804b75ace950d5348eca",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7e1db2ca71904cd26fde.npz": "f2c533543f12251e86cb9afcc37ac46f3848ddca2d2ed277101af056b4164816",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7eaf582f48c19547f88f.npz": "4b2296fdee809fda610fb56b3552eb843bbcdaf82445b7538fecff36b4178745",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7f897cc32c18af9fda3b.npz": "4e94d8a4c4b35d83dba9d2d922018f6bf9a0d4ec541d775f3a218d6a52ff070c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7f9115244f4c2f2a774b.npz": "4ff7b4a5326d34626369f482431b427fed380349b86b2c3b83abc652cef532cc",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7f95af910c0b3f06823d.npz": "059904fde377a063e36811b02576df5c961c0dc4aedfd38517312ff675d36f91",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7fd0bc17206f244def9a.npz": "91c0ee921cd33b4ca8bd845d437712229f0160c078056cc059d488e7da329c6d",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/7ff29f9ac700c98545af.npz": "391a72881cde97c4f249943ca1c04d36eb4300aeba534bce71e6112f06e5d100",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/800319d4a969c733bf09.npz": "5568f0998639b2fae6d8e165e6d846597cfaf22207f603adfd658574dc8c0b6b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8112b7bf3eeebc3c01c5.npz": "90bfef407e1f4a0039942aca84eea4b75ab393a94b53a30bf240e794e63ff632",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8207af1b4eb819146b62.npz": "86eabeba7c3aa69250f25c10e171120edd1879b0bdc4804dcd72d05ae1d7f4d3",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/829c15553fdc448bff11.npz": "8f2e901bce87f078b84c12b5921ffa4d0ec865681be71f45b44cc3ca5c8a2eff",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8303021b27a2c6ce2b4c.npz": "0ce4fa15ceed256a49dde7545268dd0a396c2501082f79cfee7e5c3ac86db626",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/837e1c1b1bee174ebda9.npz": "0b3e550f7245af62f289e07e8e1b2c305039a854849a4921c135d997314f6540",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/83ef80c922bb0c62fb7c.npz": "9670cbcf4adb60901b2a9988999e6bd770ca926a503c6a63b32e77de800e55e8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/83fdc208f0587a8cd780.npz": "b8724e5a9eb528c5ba65c7158954d585864cd9ed9297f4367e374231a72b0ca3",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/84b7ae98dee709e2d846.npz": "0d81a74a5a7d915d702a47ebf9d5e699b7dbe4394e33c712a1e8a8ee98e71cbd",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/850e8d083a1a5992715d.npz": "8d09af4b390d6db4630a7942799a3f140a6bb34730fe74e9d2fdba8f76dd71fc",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8516346f758287d1adf5.npz": "bb21e34faf0b23463b2ac98eff470812ab52125172597aa060249b4e06b8482f",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/854a56a1c3c64b7cf28e.npz": "038080733db7da7a32de6aa458a9e686f1b29b07e48be9220d61fa672db1eb69",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/854e36201fd5181b6d38.npz": "a80f7aefdfc44c8047256a9f77a4e828ad182c68a5fb1a1de6ef69cafbec7aa9",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/86e8b6f43f20cf1e79e6.npz": "a131c70a76d49068e257e09dd0e151b6bd4d39d64aa7354ae2b87e476f947810",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/86eca66399858d919d18.npz": "4be81475157c4bf644aa00fc2fa1cd93e70131f4e5ce9864b61996a3b535f751",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/87d2b5e8cb024711bfaf.npz": "cb5d98cbaae323e5f946daa69a3b0f6d2159e4f3761ce7ae307de25f7169993e",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/89388b633adc436b486b.npz": "fe35ccc155c98cc3159d9e83f04f5bc97e5659e756c808cdda6f323df9f21ca0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8962b71ed3a7a171af9e.npz": "24bfc8c2120e5f08c0269e22cfe567a1e9a901e5d05745af4450630468bb107d",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8a883642220d4e0500ba.npz": "fd8b78d4c05e2c3eaa80c06ab9838cc7feaf876bfe5ad54dd796f2a70cd65856",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8bb51173fa2d62935d99.npz": "e27d01a6566619307878e84dbad3dcbddab9ccc6ea10f8727f527fdb82565c9b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8bcdda562ed2c9f508c5.npz": "b3245248c4d0a50c00651109367be16ef47628659d0b5ea40e3a1d2db5bb2129",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8bdb07ea9beac7ae10a1.npz": "fa9b2054db700c10f6e8a63bb6773656dfa3987a91848cc28b771b3e1136129f",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8c9e4dd32558c3636150.npz": "a75501cccd63abbd94b20b07a7fe6a550921c625ac1e373adeed95f0ac508cba",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8cd43435ab1b599b2237.npz": "a6608acdbf82c60d81f781b3c5be75c5cc3945100f0ed52a112cd097e373fe55",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8cdcb8400466612cf1d7.npz": "1f6971ac3d8b3e29e30f6c3f6b6c6f7d2517846345d682b07e2926cb66422fb4",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8e37a1ef1d69b22a0b8a.npz": "54796bf48f2b3700586ff853dd153315eb917814b6ac6c6025732eed398adaed",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/8fe6d50aaad53c21d3c5.npz": "e3e86769f92a9a16b9ecc79115bf1c7d975e43f2cd402ce2b03927cca61e8365",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/9065947a29669081bb34.npz": "624f08b46d5dc030c6315dd7af31395aeac5e9da83da679d7eed64efed8ac037",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/91c5cffc858861ac7131.npz": "8d42d162a2a7f2ede667737bc6758fb1dd3dced525b029e4db5996055f159cb1",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/92212650eb535215a63e.npz": "5f18f111a750d2666248ed931946af138dbf803e1f67a4830b6579b0144a8ab8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/9239d57e4706a358b1d1.npz": "2cc1a8b3e31a34c81449709a40c8a4be0cb7e966f3732e2ead108f42e92e72f5",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/92bd6581b9ee06739431.npz": "5a15c1c13e8c98b7e3e368ad6f099cc53ceb08dde6f04e177347104c4b505608",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/93195250f3afc41f08ab.npz": "ae9c67a8ca23b89cb24c13f262aadcbbb95207476320fd9d4a50398c67714071",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/9325470bbc030865f58f.npz": "46e5ad14661c83b89cca096597c2456cf3378222b0329e4f085098ef7028d469",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/96b26803c4e01784b0c3.npz": "066469c5f8c1615ae3af322fed0120a6bccdff8d77d3e06abf9ef5aff2dfccd3",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/9942aa0142fbba1aa46d.npz": "538d14d476b79e788f6cdadcb056645b7147bcb93b2857372b130e5254a58bf4",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/9a277b27bda12dd59032.npz": "d8d6397835a52c0c8ed5fe8901495f58b9246cbe230fd0468db02856f72b07e8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/9aa2861f97271a8047e1.npz": "30cd82f729a929b1ab28f678521780a295fec1e4d0dc4eb7529620ced5e0e238",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/9caa8a7ba256cf533080.npz": "243dc025fb01f2fe27d5b2944fb3af04bac572613f218f915542b71c189bc6f9",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/9d6b9c525eb0e3147b28.npz": "45b640e5411bd21ac30d4ed01e886065cc55903389a7c589ad0e314681308f32",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a01f970da298193876d3.npz": "8933e317066e2086b40070be63a6019a0f9aae6a271a8c7c9a04aaa591c7c6b3",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a0d9934286e1767fd6a2.npz": "aaf6f4595ac6bbfd6483a9d7662ef332c0b26fae389ad965d8611610ed7fbf71",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a1cffecda1a49c4fb953.npz": "069a1dd3451a3047fa8af8eeb83f89eab3f6e03be1f8bf6e44c6d9c8b7b26126",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a23bc512622596062cdb.npz": "90a7910c98b2d538cfccdbc1d013494dbbd73fcbdf6f84680f6db38daf10f4fa",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a2a9f21a436b5b4edf35.npz": "dc767732807d401b609ab3a4b8675a3eed39ec6164b97174dece45e2b3758b92",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a40f49e8109e6dcb3eee.npz": "5dceba425e853cae5ff67a64b7a341465e3236da77920a3aca91d95c5163bfb6",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a56962e0638a6e6b90b2.npz": "3ed166393dda6268c5697d8705ab4b426325bf8b169495205d81a8edd8c764f0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a6ee19115420a88ad88e.npz": "c43c5212b4a1aaf468653511907e898ef217d37756805c2948fc3c31ab538caf",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a716066814e2aec188e9.npz": "f81b6512da052982a02963b2f2396efc69eb1ad6ebc9d62236efd28201b5157a",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a7cb70f3d1c7a84c186f.npz": "7c5e3b6f6e1fcf4d7bf269b74508dc041a7d60f7305af8cd6c3870b07921df40",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a7ead335bb3bd6388203.npz": "7f4b203462d85e42e20709e8645440eec18698964e3314bdf8f4be0a80abeae3",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a93f4d7da96617f54016.npz": "5210d7f435ff9412ed3cd1223984f43d613bc4981e3a053426bc184733fce4a2",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/a9460cfa7d3e4acccdb6.npz": "fa369bd91791257d1a79cfeb72db91fea96f999274214e562e9251c52dd89c5f",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/ab42fef8fed3a002893f.npz": "96ebc4dc46ef3c5b7326cb1d938df94ddfae2a0bc5674f9dee3159f502058896",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/aee1348b593c4db0fa9d.npz": "8508c3eb733b2c044d56cdc936ec7d5f5f98defbf44edb0738e5ff0c6dfe1dbe",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/af2e99784efbbdda88d0.npz": "b2a3726e7ad451731fc7030407355c6306142c6dd4c26646ef81eacb3733a357",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b199b01a0061b6d72dfb.npz": "064e5c3073fbf4553979254e7cd52bd5529d1b8b0c8e3906aca191807ac4b7ed",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b29fffe442d5c644cd73.npz": "4653b7ff45b275ae4d484fc060861aaa0f31a431034d730ea4bc8293e6697eb9",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b3946dd993435c17e643.npz": "fdd17d6669f59ee10e86399aec6067d1ccde43721c0cce97205e4c6f4606cda1",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b4f65e381480dc583dab.npz": "f111729e8fead67b2e407ad853c5f5ea72d9762004030e065420edc1b73b4a88",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b5deef22d036ed476545.npz": "3e9a1611aee119b277801c509504187c53a20e2a72337d6a650c1fa1d2e86ccd",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b6854ec26ea1d892c9bf.npz": "07c933e543c06643bc7451e284b9ae494904bfea014f97e664aa136866520903",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b6a6acf47c59295c4fd0.npz": "2de277b1cbc25b915ad44ea11aba065e5a3292c5bd2e07433861586d261a487e",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b6d7c2dcf4cd5734d6c9.npz": "06ca2ab110c4e6028de61168bed260f8e99c98ca5579added0193855faecbb25",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b6d8a8a2ee12cdc81ece.npz": "1e67d50346d4c91c11acf7ee7fecf712ee109a9fdddc030171ffdb2f22fb54a9",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b7fc38c46e18372646e0.npz": "710caa3eb1e79ebd532824484a5c98b34d8d80c79e672f464573afad80861396",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b8273a968ef0e806f982.npz": "9d84eca476521fbbaf69918058ad549d771774b3d4a712df97050f6ea4d22c65",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b9857901a6575f45ade0.npz": "995d6ae9650e790ed301d27f32aafcb702d3ce10523a2c8ca4f23bdaff640a3a",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/b9b04a825c5fcc5357da.npz": "00925a38536e02ca66a951980d9ce2b888b2b579332713e2834cb1cb60c61dba",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/ba02b6ee3eb7d1039da1.npz": "29f96df0164b5e69c5c840eac2e45cd176d69892e4d0802d41343389a2bffdf1",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/ba2e3f509cfa03935d38.npz": "4527a78ff0db13025d45ef54db5f20123d35a1a48e8c38433c29ebeab1c37189",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/bbacc06c6842f883eb78.npz": "a9a682a5f6490372f5f5f8eaf3ceed9a99e743e7adc09c3d30589f863a2bd69e",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/bcefd8d11e5ba90f807e.npz": "bc7859b927169cc0c51b0ea7c43364afdcfa37be6cf847c8181942430bda1a93",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/bdf456a20883547bb95b.npz": "9a639c19c15e93684196bc683042aa6a72182f04071247aeb64459db9db5b241",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/be70179e2d6f299d6b1b.npz": "f4699027096a86db5e3083fb2d86f13b2282b50e34a780358cc77c6257d8f153",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/be8172c3f5b8c091330a.npz": "e0983615cb3f8589d016fc6bfe6f68545bba6362035082bac27e895ca75e83ed",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/bf330aeab892991e8c23.npz": "c6181397ea8428c597fe505185526c3bde09d61000a67f97ce0dcffb13dce0f0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/bf82b818147599e32e2d.npz": "725754bf304a09393c21a1ef3ebdcac4cc34e45e3887cc420bfe10fd80c6a175",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/bfd3cb25235522dca312.npz": "71e6117e388dd8ee5b0645f825c9e72906108eab7f44033c00aac9d2e3e87c8e",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/bff0aef391d6eb124693.npz": "dfe955ab209c9a89bdcdca337ef3d2deca252d92dddbcfe6a21c2b497725e198",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c000321541ae766839be.npz": "425cf56231185d18cc271161ffd770009190fdcbf0791b54a1c8d8c60525ef4e",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c01f85b5738c7adf3243.npz": "f5d82f7f911a5b42fe0cfe0c99e7d9480edad9974471d419492ec875df6b52bd",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c05ae5a4bf6098fd09a3.npz": "71854516d1d72c98519b9d7a54fdd25aeb25f8e363dbf9566ce326dd4ddf1378",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c0c9054feb57266951ed.npz": "0e7705c763b36d7e88c39596aa86a624b45223309fda82815bbdc1a95cad5900",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c0f8c54d5d73fed95b92.npz": "5cdf4227be3dc5fc80af573058cce3f5cffb1bda6a4bf1ab723652c731650caa",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c178f45008986fa9ab13.npz": "0adf3c56c774f57b34acf0dc926b09f462dc1637799ab8b8fca7e5269994537e",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c19baeb4ebb617e3a809.npz": "fc577c8d319e1e45ac387fdc4ae638fae224ae5e4d6b52593712d9a80b2ea16e",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c2bd3c13ab14e2776535.npz": "d708fd71184e17c1cd52caf52b2a490eeb523afabc6525c571a2b812828c8230",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c310045bf7c9c515e452.npz": "bfa7661b6442d0320ad6e0ad0cae2a6a85d6145a146873e679b87f0341517f12",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c3b4e41e7e5bccb5a55b.npz": "7759ec7549da58b245c6df36829fc4087eabdd097ccff9c558335b7554d52789",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c42fb9b903a852059da0.npz": "2a37c469c60e8b4cfb9400dae9ab4a2facc1e11f4761d47f64a091a5be902217",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c6c0ab2f1c6a562902e7.npz": "70410eaeb92b5947a0768f2c68646717a257520c2e3ef2c59f369fd14edf4c6c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c7d349ea2b2fdc91052a.npz": "614a794a92b7c8911b4f05f9ddfc6cee9c005bb30d35aec124b156180e33152d",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c81a27b0beab3a5ac6ef.npz": "9ac693f672c1a0b91cbba672b75843d7acaeb7d7efacaa4e333bd73dca864bf5",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c831448debb24a06dc0d.npz": "00a74a645a2e4e4d79601669524d9fb7b33ae866a58ccbe063717f8280a92a46",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c89bb0cca65f625d980c.npz": "82dbc4f41d9ee7fa43d621201e0a3002f82d406a7dd7ff67d7067b93d0109801",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c91a7e175543e18651c7.npz": "c668f5a8bd30e09c2531eb9c89815cea3863fcd0471e7d5af97ade90b0dc34f0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/c9f30c051784a84d74e8.npz": "8b4db7e4c82106734b84f6b783e79c63d5c7dfc5cd32a86ed315be9a79618a21",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/ca3285773a302355690c.npz": "d6b37e32e42bb729e83e86e1670b49cbd771dbbeae1832730cc039d1d1f1687c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/caa814c1d7cf545b8b44.npz": "aba03bb0b7e6b37299bd719c6f4089f45c787136b99971885bbe9db0cb1fb13b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/cd65984e4fd6fe7bb2d9.npz": "a68f7e843ba97f56b1798d62caeaa87172b565974c31eb85bb3f5cd891b098a4",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/cdef16d24742e4e8ed2d.npz": "20264fb5f92795a95467d3467b3c350d828acbf8a16955d0c6313e4d6a3dd203",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/cf39a21f2ef809e09427.npz": "93b40e42c892e9f5e0e8235ed01a2b4222681939b3631e6a246e71a7bd229506",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/cf83c83591be64e1b629.npz": "4d9f88f3a94f7853bada4de98030607c075c44699fd4d291cec822d0420d9b60",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/d2606f7d87815a81fb7a.npz": "dba1e9f2478b40ea0d35bb465b050a3f1619812a191aab920f274026a28999d1",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/d273eb13f067936e377f.npz": "6875a748f4c6652f68cafec4428e32e8bac3210b112e1e116bb17522383511fb",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/d375ff897de59b2535ab.npz": "8f6e2371b17d008dcb98ed0488be4676c9b2c23b2e7fd10b37ee567466d9ee25",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/d5cf087e92ee78324552.npz": "33ef90f55a1ea01c05db0cb8887db9591fcaafced3d603e61b00b97e42a04449",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/d677da7acd18ec98859b.npz": "2703965299ae31254584c9575febf6a2f328f34961ff7cadf14b327dbae3ba59",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/d7c2d32be5d3d1a71498.npz": "0689009ad9771df1d694934a795873a6ca62b8987531ba58c578f81f73ac6237",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/d7cdd23b6f166502b1b9.npz": "c1713c737102d44de57564577a1e8037fe448b1ed8ccf1133eb0451027bce7c7",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/d86cb5fea715aebdde7f.npz": "3cba69ea562a025ff1fa5190d7a5e7a7d2e2be73443846472426563b95076e1d",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/d8b6125390894d72905a.npz": "a26d9faeb3445299fa2628b15cdb60db6a0cdee2485a20def07f0a8505c6388f",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/d8efddd1e6ffbeca6798.npz": "1dc64b1720c20b047298b91adc2c1f39ee106b9d2129b65eb81d55788e031b34",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/db33309ba90a9a79b2e1.npz": "af9d246c3d6924198f4e3312c73780800831424ddb438de746513fb9187f5d74",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/dbbf15c07b5a6a19ba49.npz": "b5f4c61657e0d12de5851c996ebf4a5a453ad6dbef3249ce431a8df3a9fce336",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/dcff19953153c9873f7e.npz": "69c34ef46f61a57553deddcb10cc307b980a6ed1d26101693b2102abcb74462b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/df51658fa4bfc3190feb.npz": "eabe05020e6168bdeb3f757a3d4e0fa883d6ff8ba18560e5590da290e30aa890",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/df87c4af439bf126856b.npz": "6278000f882eda7e1fb91fd2f42395b7332ce5577f08e7cf51b50849eccc7a7f",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/dfb18f4ebf036a6e4f54.npz": "b1e58d1b7fa555c5824355bff4dfa549b49c9a2a8bcee7f909a8ecdb733c63a0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/e094d90013800aae33b4.npz": "2f910cc60a1d3026c5179a4d6a00116524c3cc7337a3a2757b32b7359c891f4c",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/e0afba5f7c0cdd4968fe.npz": "1c0b652aa8627e2503f2ca2ce16c6d89264f0cf6437c069d119edb2dc12dc0c2",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/e0e44ebd377e1907cb13.npz": "595ea8e0b36611be48f014962627959bae1110fc67aa138ad215d0b3544c50a6",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/e12cd25d9b19457579d3.npz": "cf7488b2fc5366a95bf9e0ca6d26bb9a841c4176fb6d4bd32368b1de4513a460",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/e193d2b0c22148150613.npz": "de16ea7a381ca70c4bb691221e9e574028d6fd7a2730b273aadfd0514827fe75",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/e23875f9a485042553e9.npz": "8a590080df7c97bf8fe04b93776b1717cdac07716d3649088652177ecd2e4279",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/e262f0a61daf927f56a5.npz": "ded9932eb475668307ad6a8c5e42d75c797dc6e142ac06b6b99a8b2a485ba6ed",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/e44944be7e4723f88201.npz": "0c54ec158805b45b5f48abb93e777c69bb689acf62d85d4305ab8cc5ebc6b149",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/e5336d6583076e3b7b32.npz": "15ebae2c5dea711896c2d259936668f5c9fea089f1b7894f8162e9e0ed7dae56",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/e649923a4c73730aa5a7.npz": "cf8de02cb72469c338211477ca3904367363f1ff2803bd08487f6f66366819c5",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/ea19e077465dae436b76.npz": "7f87f7b58b5f07f47d7dc103b5794c5015f3ba33a9e22a7212f984783b6af108",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/ea3eca228e69afe97f9c.npz": "217334be66d38d0c3e145480487fad38ae122c4d2521ac36fbb80de7b4098d97",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/eb7049f94bfe79e53974.npz": "b607ef5d172031b6f3bf0b6820d3e81a90e820b7b56e1a02f24a9fa57a8c4f14",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/ed96d07121c3304c6f1a.npz": "336bee01ee9e89596ce705e07bf693392e68bc8118e3b0bee97198723f346b61",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/edb3e739e7b886690176.npz": "13ee0b62c89c5171861a12c81421f801434f83fde9e23d48867fb328e5890a8d",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f216d340a25d0c3ae309.npz": "512951d22fad0eb66e742282c920d0b44492dabd4caf6551e0fbbbb1253dddc9",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f21867f1128f500cce2d.npz": "e6feb7cfd39be577eea7b55f90ba6bc4d263b42076543df2083094f50ab4ab9d",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f27bf277c8d43c1bc450.npz": "130012479e04fa898dd8e027a8a0e3de32954f4ed383f7a2169a939e96dd22c0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f336aac78a090284025e.npz": "93412391b9f31b5ad82b4ddbdc652dcbde1975bc91bbf1f4d37e870b145262f7",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f3f25d5d5379d90afa88.npz": "e321debbef269212fb0508a087c5be9c50ccc2ee6241004da135a89ec1912039",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f4bf5b727619a15f8f02.npz": "f6e67fce4e51daf0602d8c35c65316d20e9a179c9bf2422c80a1f675a3607c7b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f654459482fe40bfdc99.npz": "871c901a8b203c8f157c603604147b18c1417fc4ebe0d20bcc6b6d66df759df0",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f6d2400937dc0a36cc8d.npz": "cf382b0ac4b333f0244346021c51c00d4d4bab038a752168be1ca17270796d9b",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f6ed844a84625abea984.npz": "32baf227e886e4e86901f8fb402cef3a6f581f48a665604b77472e711d69eef7",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f747f89ad647a61c5c3c.npz": "6f846fb52a5775a667140a6d5663b9bb6a38f8eea72080a671478d06e4265199",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f7fb1ec5d6fedfdadc8a.npz": "73928770c63a6b47336418ecf61c9301f2503db3756dcf296baf33ecdc26ba30",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f8510fca77167ae2fe1b.npz": "928932e7b84888de0eb76301df93019b598dcd705ce2b46bed32007f71c76cf1",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f8aa49ceb606490583ff.npz": "a15e36b865ba245d7a01a24bac141c1b91c0370aa3965acbb2a55acdfd92c0f4",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/f97c7ef9e990577fe860.npz": "7157ffee2dfb28c2343c4a41bde8684bea2eb24d26c17aeef56842fa8e56f8f6",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/fcb8f2fa182b960cb7c8.npz": "9624fed6a4df1f3e8591fac9fc0da295171c0c3474cec38b359919f456883839",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/fd7a8c0a8ae415ebba3e.npz": "bf58d13746c09b08cdd7b87342d9cfc1bf3c1e0b32f85fdf8e4a912f8dbe4041",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/enum-screen-9403d6c/ff13d2803fa1f5d63562.npz": "e98cd2f99755db3dff15161ee4d872de13c01e5e2899b5f786be15ca15531045"
+  },
+  "input_sha256": {
+    "/home/lhshen/xtbflow-runs/followup-20261009/b2f2-gate.json": "3562530efc44cff54e4156951140568a8cc05022d53d0f1496e95fb529aa0f56",
+    "/home/lhshen/xtbflow-runs/followup-20261009/source-1b1afac/configs/explore/enum_thermo_tau.json": "e2423c7e7cb178e0a9e9ec96f46b19a3c5706d09b3e4b282b7a97882aac78e6c",
+    "/home/lhshen/xtbflow-runs/followup-20261009/source-1b1afac/configs/review/oracle_benchmark.json": "0f3984201b52a5f8e4e843950fc1f1fda40ea16d6116e0d4727e7b28b6a0c027",
+    "/home/lhshen/xtbflow-runs/followup-20261009/thermo-budget.json": "ca9fb85cf8f32e73d857181c11f71fd87bf8f39a7677cf95a55e88b2fb27daa8",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/tools/aimnet2_wb97m_d3_0.pt": "f0f7c054539ad3261bd36f9b11c56d12f87cb723e25bea7521755bbd3ec24e28",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/data/parent_catalog.json": "ebbbee13124444ae3e8ad7b5f9475183fed285894e27b0dcdb46cc13b4ba0ece",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/formal/freeze.json": "fef5e7dc87951d2af40822f2006c1c6af363c32b3c51588b65b8b7c2c51207dc"
+  },
+  "parent_results": [
+    {
+      "cpu_s": 223.836678253,
+      "failures": 18,
+      "output_sha256": "e255cbd67041d062b194f33cffdfbf7a6870e00c1fd3e41be3ed45227e76253c",
+      "parent_id": "0109798be640476374f2",
+      "rows": 4043,
+      "wall_s": 230.6378526049666
+    },
+    {
+      "cpu_s": 163.376185432,
+      "failures": 383,
+      "output_sha256": "3b2041154d5a4e0a96c57569f62af6435de94f8c6795fe49df3ca2e290c8e650",
+      "parent_id": "02442afa5f1cb5e461d6",
+      "rows": 2632,
+      "wall_s": 171.05525319604203
+    },
+    {
+      "cpu_s": 531.741764158,
+      "failures": 61,
+      "output_sha256": "3085a015926225e058efee9ef82e05002075db79b8a58490f82d6f77f28aecd2",
+      "parent_id": "03ea5371121e40e9e5fb",
+      "rows": 5806,
+      "wall_s": 540.9427458960563
+    },
+    {
+      "cpu_s": 15.477501401000001,
+      "failures": 44,
+      "output_sha256": "a3d59bc694aad613a7ffc378eb9b2b11ca5b778f67839d0dcaa1e11d0f702378",
+      "parent_id": "059bf679a499aca9a05c",
+      "rows": 877,
+      "wall_s": 28.795135063817725
+    },
+    {
+      "cpu_s": 66.073948258,
+      "failures": 26,
+      "output_sha256": "ba5b0b8ecccf9c536a78ebd0343c1b6610d4a6f3d017a38f064bbb1da1349d4c",
+      "parent_id": "06137a651d65fca2aca1",
+      "rows": 1796,
+      "wall_s": 85.55667227087542
+    },
+    {
+      "cpu_s": 127.84463970600001,
+      "failures": 260,
+      "output_sha256": "37abdeb2cbdc9bf053e2070a3367dcaf21eb93f2751afd1fb4bb10481bb63286",
+      "parent_id": "06a981a4a18d5123650e",
+      "rows": 2316,
+      "wall_s": 135.94631300400943
+    },
+    {
+      "cpu_s": 62.376242215999994,
+      "failures": 143,
+      "output_sha256": "fe72e21f275c37c19aef30852028f36c7b3e87a728505de8649d5b485114e999",
+      "parent_id": "06f02050ef7bf1169928",
+      "rows": 1321,
+      "wall_s": 72.50979624013416
+    },
+    {
+      "cpu_s": 15.457867333,
+      "failures": 0,
+      "output_sha256": "4215d23d2ef1055256da0fb5b6498af966789e6c1c76af9c4e7f92f19211657a",
+      "parent_id": "077187e6313049515340",
+      "rows": 761,
+      "wall_s": 27.57710313098505
+    },
+    {
+      "cpu_s": 112.671849497,
+      "failures": 18,
+      "output_sha256": "9dd98ca68253c0ce7cb2b4a73c5f2cdb32b8221f6d20e3a037c511a1a9a29a0c",
+      "parent_id": "08c6f1ea3c7fcc6795c0",
+      "rows": 2221,
+      "wall_s": 134.65710447798483
+    },
+    {
+      "cpu_s": 11.818154331,
+      "failures": 0,
+      "output_sha256": "beff048bd89ab7885a5af324f7c5169dcbdc8093dda6be2196487bd0ce71caa9",
+      "parent_id": "0968786d6385497151c8",
+      "rows": 468,
+      "wall_s": 29.1729248999618
+    },
+    {
+      "cpu_s": 313.591648347,
+      "failures": 242,
+      "output_sha256": "a02f39340a06317d6c584c587f293c698963ee4c30c81557dac2be9c5000790a",
+      "parent_id": "09d4b308e0e4b6f9b7b9",
+      "rows": 5270,
+      "wall_s": 331.9739035998937
+    },
+    {
+      "cpu_s": 11.31707026,
+      "failures": 62,
+      "output_sha256": "6c9a706e19492293faf9322aff039ad236932c14e13a649f29bbf9bb97164fd7",
+      "parent_id": "0b504eae12deba14da50",
+      "rows": 515,
+      "wall_s": 22.52384986099787
+    },
+    {
+      "cpu_s": 7.66238925,
+      "failures": 0,
+      "output_sha256": "f3f9e3e777d9f7ec98c630a95df094930006d6106abadf8fe86c8a51ebfda74e",
+      "parent_id": "0c9ffa92a537c20f25b0",
+      "rows": 186,
+      "wall_s": 23.180817486951128
+    },
+    {
+      "cpu_s": 82.746629736,
+      "failures": 19,
+      "output_sha256": "6030dabbfb31b8250a159ad1da6d96a3cf43ac2070b0151228c20e0a387cb06f",
+      "parent_id": "0d885e13b874a7a28f9c",
+      "rows": 1900,
+      "wall_s": 96.91828564298339
+    },
+    {
+      "cpu_s": 174.07338197,
+      "failures": 174,
+      "output_sha256": "a3f236982a012848967356e160cb8237e9a2bdfe0f362256e79eece64fd64aa9",
+      "parent_id": "0ffea92d9e61dc763e32",
+      "rows": 3763,
+      "wall_s": 194.6579641129356
+    },
+    {
+      "cpu_s": 70.931747433,
+      "failures": 230,
+      "output_sha256": "0659045e09723f697cefb626ad05e2570871c7ca36917107b040542f7ab16ed2",
+      "parent_id": "10828b435cd731e861ca",
+      "rows": 2800,
+      "wall_s": 87.65493978001177
+    },
+    {
+      "cpu_s": 57.186825545000005,
+      "failures": 0,
+      "output_sha256": "9a373c8662d1b6ec46f7efc3bfca9680a304c9d50ebdd8d2513572512086f61a",
+      "parent_id": "10cd35936a8daf013ba5",
+      "rows": 1884,
+      "wall_s": 57.20477600581944
+    },
+    {
+      "cpu_s": 108.076246661,
+      "failures": 501,
+      "output_sha256": "ca36bdc8d1fdb6b7c67d1b914fe61640286f634858d78cd341d908eb5f1349d5",
+      "parent_id": "12767d2e8d7b396e866a",
+      "rows": 2762,
+      "wall_s": 108.08968147309497
+    },
+    {
+      "cpu_s": 12.424843612,
+      "failures": 73,
+      "output_sha256": "2a901e8851d41fcaf28ce3ae64bec5a9f285e1799eb02c78ff35dc924b5a5c88",
+      "parent_id": "12b847c5189e8d4d98d6",
+      "rows": 699,
+      "wall_s": 12.447703891899437
+    },
+    {
+      "cpu_s": 158.48874515800003,
+      "failures": 298,
+      "output_sha256": "defdbd211652d68cad49f643731d68645ae6af33003724fe0e30ebfafeaefb39",
+      "parent_id": "139ebb58421a75a21621",
+      "rows": 2955,
+      "wall_s": 158.52181441080756
+    },
+    {
+      "cpu_s": 11.585847305,
+      "failures": 0,
+      "output_sha256": "5c8c18b217e0f5f9ecf6132d0743bafffaf2d3bf86eedc8fb8cebf26c291de05",
+      "parent_id": "13bf28b59fe70fb07791",
+      "rows": 789,
+      "wall_s": 11.586612543091178
+    },
+    {
+      "cpu_s": 45.185263019999994,
+      "failures": 8,
+      "output_sha256": "a32dfba584c5011444e0a6f93d94c491e94002e5f958f22aea959aae0387fb97",
+      "parent_id": "13e61012073a9865d941",
+      "rows": 2431,
+      "wall_s": 45.209527500206605
+    },
+    {
+      "cpu_s": 187.0676093,
+      "failures": 235,
+      "output_sha256": "cc027b9ddeca65d73bf41d0e8942915232fca01e0cc81bc1fc1f222416e3f6cd",
+      "parent_id": "13f1f0bcc2a84a998675",
+      "rows": 3841,
+      "wall_s": 187.10143499216065
+    },
+    {
+      "cpu_s": 13.316906981000002,
+      "failures": 11,
+      "output_sha256": "d49781063bee460846ae14557aea3e3813e07a35c0f4815af31db819dd7e5a9b",
+      "parent_id": "150d15f5ddaf854bc777",
+      "rows": 909,
+      "wall_s": 13.31909760297276
+    },
+    {
+      "cpu_s": 40.715342029,
+      "failures": 117,
+      "output_sha256": "25f1219c304678103bc4ea3d7bed4df4af20a82525281529c95bdb0ce4f3a4cb",
+      "parent_id": "15936be3ab45f50b5aa7",
+      "rows": 2054,
+      "wall_s": 40.71623171004467
+    },
+    {
+      "cpu_s": 2.361888393000001,
+      "failures": 21,
+      "output_sha256": "25f3dbbe0e5f74379c56983d1bb64580c97ee416b303093db1b8b14fac54ec44",
+      "parent_id": "15db6ffd811ea6eae8bd",
+      "rows": 258,
+      "wall_s": 2.362041237996891
+    },
+    {
+      "cpu_s": 188.26222593699998,
+      "failures": 244,
+      "output_sha256": "73414c3c047690119b4ab128ce35def8e0e266e76c2e4fca96d1f06eb1979b45",
+      "parent_id": "16451e2e21e3ab231555",
+      "rows": 3530,
+      "wall_s": 188.2720964839682
+    },
+    {
+      "cpu_s": 19.95605450299999,
+      "failures": 0,
+      "output_sha256": "63d7506d00a657dc7da156e2e07d7dbc2e7dd5ae4368dd9a73a36e6e0fcdc764",
+      "parent_id": "164edb135c14df5fc8ef",
+      "rows": 955,
+      "wall_s": 19.956480705877766
+    },
+    {
+      "cpu_s": 105.951629965,
+      "failures": 4,
+      "output_sha256": "4f9a18c17af140510b14183f8902f4e24ac8a01a24d6ebbb1ee6be3441c1584f",
+      "parent_id": "16f0745d283f76b1be2f",
+      "rows": 2730,
+      "wall_s": 105.96163737797178
+    },
+    {
+      "cpu_s": 42.442712763,
+      "failures": 6,
+      "output_sha256": "39109b66dfd80c19a1a321cca01e012820626f84e2d39d549e325277450093a2",
+      "parent_id": "171991eee39d364d1003",
+      "rows": 2175,
+      "wall_s": 42.446965344948694
+    },
+    {
+      "cpu_s": 24.99866324,
+      "failures": 0,
+      "output_sha256": "9388d0bf4945f59c521552c79f33ac19ee58105e5d42de56b91c3a3b296a4c73",
+      "parent_id": "176374640a0d84eeccc4",
+      "rows": 1148,
+      "wall_s": 25.0000877098646
+    },
+    {
+      "cpu_s": 138.176351088,
+      "failures": 56,
+      "output_sha256": "73c8c92382c31772ef0058a04103b4fcfe5f47e656203530ff77aaa29610f9c1",
+      "parent_id": "18115e1b6d48bae6e848",
+      "rows": 2884,
+      "wall_s": 138.1912588989362
+    },
+    {
+      "cpu_s": 13.437479729000003,
+      "failures": 81,
+      "output_sha256": "f7b1116368b3ab4af6106df293860d94bd83a68176bbd7362ce7b216d2ffe644",
+      "parent_id": "193b4e37607273cf7870",
+      "rows": 853,
+      "wall_s": 13.438059465959668
+    },
+    {
+      "cpu_s": 112.50700300099999,
+      "failures": 361,
+      "output_sha256": "7d842ebc8f94ee2e7278d514b83b3cd18823b17c63c676eed2e20e9aac78a02c",
+      "parent_id": "19a26a3000136bd28fdc",
+      "rows": 2130,
+      "wall_s": 112.52792227105238
+    },
+    {
+      "cpu_s": 9.220299353000001,
+      "failures": 2,
+      "output_sha256": "8c1126a9570e37dbe4cf749b7cb7c2235069f753c813cec151be0773cdc31f09",
+      "parent_id": "1c1a8252964a0c934217",
+      "rows": 895,
+      "wall_s": 9.221103535965085
+    },
+    {
+      "cpu_s": 28.931343327000008,
+      "failures": 12,
+      "output_sha256": "3411b5485f94e32b33bc1046d08ae7cd56ca70c1b8ae80a56f7567bfe02643db",
+      "parent_id": "1daa6fb846b0bdd95369",
+      "rows": 1033,
+      "wall_s": 28.932655240874738
+    },
+    {
+      "cpu_s": 18.520986648999994,
+      "failures": 14,
+      "output_sha256": "f612a9c5f29d64466d3563f636488cf30c6e7b6645bf6e167677d0598bf9ffa7",
+      "parent_id": "1dd6e1f03fb1adc3044f",
+      "rows": 1088,
+      "wall_s": 18.52217882894911
+    },
+    {
+      "cpu_s": 28.978337857,
+      "failures": 104,
+      "output_sha256": "560d40638c0de67ac41fdf161514e2c37f55f1b1bef65ae22c168498905e3914",
+      "parent_id": "1e19147f0c2d3f0c553e",
+      "rows": 755,
+      "wall_s": 28.980254891095683
+    },
+    {
+      "cpu_s": 16.930142958000005,
+      "failures": 180,
+      "output_sha256": "8ea82bc2e7e7453441ca00086efaa7da3e8981b80026cab5048c1ba12a94dc78",
+      "parent_id": "1e31da5f055cda5d9a97",
+      "rows": 1019,
+      "wall_s": 16.93355266400613
+    },
+    {
+      "cpu_s": 83.795223528,
+      "failures": 0,
+      "output_sha256": "8aa2f7e95612b14237924d98bc8a98bead79873ba387a9e8132c078ab55d0cea",
+      "parent_id": "1f26b917e1b972ad3fd9",
+      "rows": 2299,
+      "wall_s": 83.80766799207777
+    },
+    {
+      "cpu_s": 79.41194846900001,
+      "failures": 123,
+      "output_sha256": "ab07f91ea24122ad3b0249e4e0378203bc85085b2b1f1ae6ce798ad8322df230",
+      "parent_id": "1f285230047b81a63f4f",
+      "rows": 2294,
+      "wall_s": 79.41822386789136
+    },
+    {
+      "cpu_s": 412.587562723,
+      "failures": 27,
+      "output_sha256": "6cfefdf846d001bd95e639caa067108edc70be18362c9649bc2853782c5b3d2b",
+      "parent_id": "1f6d61c49f2d59eeba41",
+      "rows": 5577,
+      "wall_s": 412.6201271750033
+    },
+    {
+      "cpu_s": 9.74962776999999,
+      "failures": 88,
+      "output_sha256": "cdf5b00459c1001db7c1fc3fc75b33e24be54e68742b8c697d1af2e7d47656d1",
+      "parent_id": "215334bd3bbcafaa79a6",
+      "rows": 709,
+      "wall_s": 9.750002070097253
+    },
+    {
+      "cpu_s": 255.15910874999997,
+      "failures": 148,
+      "output_sha256": "fc4b21f93c1d11dbd82255383da56ae7988f21ae7ab9a4173103d944c6fd4499",
+      "parent_id": "2179b3bd5245f7a4c48f",
+      "rows": 4231,
+      "wall_s": 255.17264203098603
+    },
+    {
+      "cpu_s": 26.87820078300001,
+      "failures": 12,
+      "output_sha256": "93f420d213623132471fe1b1681fba59feec1d81ea5e9f5bc13944c1330caa58",
+      "parent_id": "224a0dc3b1e6848864f4",
+      "rows": 1467,
+      "wall_s": 26.88033324899152
+    },
+    {
+      "cpu_s": 28.671440639999986,
+      "failures": 74,
+      "output_sha256": "9a8af2ffda9dca0a89ed5c5c33247bd2efde5bf3ca2ef6b7835f20310ac298e0",
+      "parent_id": "22794d3f4e405ab969d4",
+      "rows": 1140,
+      "wall_s": 28.672874848125502
+    },
+    {
+      "cpu_s": 66.84639971300001,
+      "failures": 3,
+      "output_sha256": "9fe383a9bf27fdde657c10d71b5ede03f7bbb3ee53b552f2c34ced568ef248d0",
+      "parent_id": "22de66da129d318a4fe5",
+      "rows": 2195,
+      "wall_s": 66.86710035684519
+    },
+    {
+      "cpu_s": 74.60475644599998,
+      "failures": 11,
+      "output_sha256": "7c0eedb07d79ff24730f16eb83fc3a1084953b3f31f48c603110fd280d392636",
+      "parent_id": "23b129348aac7168763a",
+      "rows": 1900,
+      "wall_s": 74.61054718890227
+    },
+    {
+      "cpu_s": 69.43321494999998,
+      "failures": 170,
+      "output_sha256": "985f1333c229604a71573d2ebe27e86ce6e35ba63b580cd983e073639f8e554a",
+      "parent_id": "240d2703bcb141818c18",
+      "rows": 1166,
+      "wall_s": 69.45812254515477
+    },
+    {
+      "cpu_s": 145.236103659,
+      "failures": 8,
+      "output_sha256": "88bbc94d3f8364c21646ae390db19e01b2a6f77e99a35969b85b360a551d9318",
+      "parent_id": "24f121168e5ba3d79436",
+      "rows": 3247,
+      "wall_s": 145.25741527811624
+    },
+    {
+      "cpu_s": 53.369511818999996,
+      "failures": 9,
+      "output_sha256": "973732407cedd31be0caff14ebce19ebd903a915bb180c82a4fd73a5f1cc5dbb",
+      "parent_id": "258639e686d6723ab996",
+      "rows": 2135,
+      "wall_s": 53.37265882710926
+    },
+    {
+      "cpu_s": 191.51658557800002,
+      "failures": 542,
+      "output_sha256": "ef42f8cad6e45d886e40b08444fdecefd5cb2c8f683f3bcb3e3df9fa34f2c099",
+      "parent_id": "2594536a093255f80373",
+      "rows": 3252,
+      "wall_s": 191.52521083084866
+    },
+    {
+      "cpu_s": 68.589438462,
+      "failures": 200,
+      "output_sha256": "e58d3fba8f9a8bb5c4e44045ef360121f041d2be07156025473c0844347a2c25",
+      "parent_id": "27a4a6ecd47c5990df53",
+      "rows": 2338,
+      "wall_s": 68.59313875879161
+    },
+    {
+      "cpu_s": 53.72885994099997,
+      "failures": 43,
+      "output_sha256": "b839c787ddf52ae8bc8c9a3b56344843bd36c7c2523050a92c2cea9e2b2940e0",
+      "parent_id": "27e24c7cbbabe43a3da4",
+      "rows": 2137,
+      "wall_s": 53.747078977990896
+    },
+    {
+      "cpu_s": 95.52986069300002,
+      "failures": 82,
+      "output_sha256": "910e3c287393f124d73587b8949243347f6642b64b479663b63c1ceab6282d9e",
+      "parent_id": "281779a5ec203c658539",
+      "rows": 3085,
+      "wall_s": 95.54051473201253
+    },
+    {
+      "cpu_s": 156.909425187,
+      "failures": 5,
+      "output_sha256": "973ab802e74efe5c8d148ae61601c1d42f315f70b5b30b97e89d340b6bbb1ee6",
+      "parent_id": "289b4cc1cb5ae87a70f5",
+      "rows": 3337,
+      "wall_s": 156.91955654299818
+    },
+    {
+      "cpu_s": 201.59130576900003,
+      "failures": 609,
+      "output_sha256": "3395043dcf2300fc537a5df4dacb3acfb8bbeb9f699283afa7d9655742dbadce",
+      "parent_id": "2b7c1f68c2cadae2142d",
+      "rows": 2612,
+      "wall_s": 201.64006370585412
+    },
+    {
+      "cpu_s": 2.513881094999988,
+      "failures": 25,
+      "output_sha256": "4a9168f52b9ff01e031dba9d36c12a1f51153855862d4f24963988e224abbe19",
+      "parent_id": "2bd4d7187c1b806a4321",
+      "rows": 318,
+      "wall_s": 2.5136198510881513
+    },
+    {
+      "cpu_s": 1.304955580000012,
+      "failures": 0,
+      "output_sha256": "a29998d68c93f3ad344bae336f5ad7e7ff7e0bb9d99ad7cd1e8c39c760c71ffb",
+      "parent_id": "2c19c0c681e2232a7417",
+      "rows": 146,
+      "wall_s": 1.3045489508658648
+    },
+    {
+      "cpu_s": 82.39647001899999,
+      "failures": 345,
+      "output_sha256": "923d14ae21bbc68727f2ffa1de97ca83c6686e8ab9bc2e4bbef971c5061a1d24",
+      "parent_id": "2c70191cb394c563576d",
+      "rows": 2849,
+      "wall_s": 82.40022129705176
+    },
+    {
+      "cpu_s": 7.48206768899999,
+      "failures": 59,
+      "output_sha256": "78e166bcdd3a768c0bdc02c1b92f9a71c43bd4e80d3182dd04f8fe9920d8bf11",
+      "parent_id": "2cdd0142f57509e863e1",
+      "rows": 466,
+      "wall_s": 7.4827801149804145
+    },
+    {
+      "cpu_s": 18.02080356700003,
+      "failures": 100,
+      "output_sha256": "546162f9bc9d81ff2475427b340ae0292e2a7479741321ca7c5b1d85f55a5552",
+      "parent_id": "2d09f037cf22e53376ce",
+      "rows": 780,
+      "wall_s": 18.028018704848364
+    },
+    {
+      "cpu_s": 3.345498767999999,
+      "failures": 29,
+      "output_sha256": "83afb25bcf6ade592c3abcdd8d69208086876425b5a2b2ae6c16110c031161bf",
+      "parent_id": "2f0ac2c267e78984638b",
+      "rows": 241,
+      "wall_s": 3.355641548987478
+    },
+    {
+      "cpu_s": 80.04210521500002,
+      "failures": 72,
+      "output_sha256": "2d8a1673073f7282e792c54bc790180f55479d5fefed16a05262b5ee6e2169de",
+      "parent_id": "2f5b6749fb86e442d36c",
+      "rows": 2510,
+      "wall_s": 80.04832611698657
+    },
+    {
+      "cpu_s": 3.3907197849999875,
+      "failures": 1,
+      "output_sha256": "081ad793cf4f0c1925d4f5439521b3152ebd852b4266132774dcaa3a72d6b886",
+      "parent_id": "2fcf1278caf6ef863659",
+      "rows": 373,
+      "wall_s": 3.3915109478402883
+    },
+    {
+      "cpu_s": 115.96291438499998,
+      "failures": 587,
+      "output_sha256": "c8e86500f1f8dcce9e49068efd368375f40d4ea09803f053ea9a71a9c5b111cc",
+      "parent_id": "303508f21c5696efb5be",
+      "rows": 2788,
+      "wall_s": 115.97174788406119
+    },
+    {
+      "cpu_s": 7.432697630999996,
+      "failures": 5,
+      "output_sha256": "927d4e8e085abb441f678b0a2e90b9edc4cd82c07b0000d1908871da42bedec9",
+      "parent_id": "30b044396f6d4b842239",
+      "rows": 445,
+      "wall_s": 7.4328875578939915
+    },
+    {
+      "cpu_s": 301.74421725800005,
+      "failures": 385,
+      "output_sha256": "17ff9ff9db99be6295054142587af8ec4fac7d4a55947b6e1194c0b5bf868df5",
+      "parent_id": "317dcdb6b4a4f0b73781",
+      "rows": 4357,
+      "wall_s": 301.77811626391485
+    },
+    {
+      "cpu_s": 206.997112911,
+      "failures": 72,
+      "output_sha256": "5b1778f7360d084bd9c2bd68a284bda783512ebf421f38b3d1f256caac573c71",
+      "parent_id": "31d2226d543fda193617",
+      "rows": 3836,
+      "wall_s": 207.00739189679734
+    },
+    {
+      "cpu_s": 195.634824396,
+      "failures": 271,
+      "output_sha256": "27a89783de990a8f9924edab572160227cb1794b09212c97c3035af23e391993",
+      "parent_id": "32089220ac4d0b9eb156",
+      "rows": 4307,
+      "wall_s": 195.67139645293355
+    },
+    {
+      "cpu_s": 71.4140112,
+      "failures": 2,
+      "output_sha256": "927760538caf4cc1330c37ab097e8111276a9e9674f4757afe19d8a99ecc879c",
+      "parent_id": "327fcbdfbdd614e621c5",
+      "rows": 2239,
+      "wall_s": 71.41988135688007
+    },
+    {
+      "cpu_s": 63.858425447,
+      "failures": 5,
+      "output_sha256": "d94e8ecdc201cf7fa4396a114030f30c2ea401fa946964bc2e378e6f1802c3b2",
+      "parent_id": "32a4c61ccc2f0f689d50",
+      "rows": 2331,
+      "wall_s": 63.86333702504635
+    },
+    {
+      "cpu_s": 4.413341341000034,
+      "failures": 2,
+      "output_sha256": "0b9874f4dbea37a5da5cb5876208c0f4a5124c8b98d6685d2187bd4704b94a0f",
+      "parent_id": "34848379ebc530f73eaa",
+      "rows": 470,
+      "wall_s": 4.414723244030029
+    },
+    {
+      "cpu_s": 3.3189310430000205,
+      "failures": 21,
+      "output_sha256": "4a33824d0f1fac7b04a70c02f86c24825c684bd4c14ea4e90d34fb555603db33",
+      "parent_id": "36773d8e7aab7224644f",
+      "rows": 263,
+      "wall_s": 3.3205400840379298
+    },
+    {
+      "cpu_s": 107.42063358000001,
+      "failures": 167,
+      "output_sha256": "f500070acfc080e7102e5b337121501c16a40884fb7b3ea1254d3bd496fadd93",
+      "parent_id": "3693f2be75f7e78e10df",
+      "rows": 3193,
+      "wall_s": 107.45326011418365
+    },
+    {
+      "cpu_s": 3.420727311999997,
+      "failures": 58,
+      "output_sha256": "143e8ed66ee4459d13f00b186c559480af3f788028bf44b1ff078a2ccd6102ad",
+      "parent_id": "3795486124b2b70efd27",
+      "rows": 310,
+      "wall_s": 3.4213209371082485
+    },
+    {
+      "cpu_s": 452.18722585499995,
+      "failures": 0,
+      "output_sha256": "09994a1f6c0309b5b735eb90a4a97fed2022b6a52464d38818ad1575cb467f2b",
+      "parent_id": "37c8a39059ca94bff6c7",
+      "rows": 4928,
+      "wall_s": 452.2138158639427
+    },
+    {
+      "cpu_s": 116.14510829799997,
+      "failures": 184,
+      "output_sha256": "3ccc1ea289ff0dac3a9fabec6358cd3156d609b0922a076a7356ea6623dfc02c",
+      "parent_id": "37ee97653805530aec63",
+      "rows": 3349,
+      "wall_s": 116.16705843200907
+    },
+    {
+      "cpu_s": 14.91423258499998,
+      "failures": 141,
+      "output_sha256": "66af8853e37574988961ff77c5ee0b27f9ff13a409f29baba48f1306afa7255a",
+      "parent_id": "38551459bb12140e9fa9",
+      "rows": 1113,
+      "wall_s": 14.914753244025633
+    },
+    {
+      "cpu_s": 2.7408455830000094,
+      "failures": 0,
+      "output_sha256": "2d431d0b651d3541b3e6c4699b12a8885e60fe8b2948f96a2d5fbd89db2ddee7",
+      "parent_id": "3900e57e1fe4494b8b86",
+      "rows": 364,
+      "wall_s": 2.7416647621430457
+    },
+    {
+      "cpu_s": 50.71531759000004,
+      "failures": 0,
+      "output_sha256": "6f4c87564d918c036f1f7d4b0d4d0bd9160ee31fb9c55ff977792e31a99c2346",
+      "parent_id": "39e505a198e1a48fc175",
+      "rows": 1815,
+      "wall_s": 50.71954902284779
+    },
+    {
+      "cpu_s": 201.51776133199996,
+      "failures": 8,
+      "output_sha256": "18a1b5b301cdd22642959947a27b7e458d7773c7e1deefffadb12ac1c202d7d6",
+      "parent_id": "3c6c2f30334dd0f44c6d",
+      "rows": 3450,
+      "wall_s": 201.53241699305363
+    },
+    {
+      "cpu_s": 185.54083528899997,
+      "failures": 30,
+      "output_sha256": "0d7979d075fb1f51e854e64f93ecf38ded300a6f2e13862f844acb9437261c11",
+      "parent_id": "3e4899195c01fa43baa1",
+      "rows": 3356,
+      "wall_s": 185.5640156250447
+    },
+    {
+      "cpu_s": 77.91097025700003,
+      "failures": 325,
+      "output_sha256": "1ba3d89f4ca552ec894528056db0761acb3288ee3bef7d16f428c655304e0dc5",
+      "parent_id": "3e5b3283891e0b420878",
+      "rows": 2824,
+      "wall_s": 77.91891377000138
+    },
+    {
+      "cpu_s": 66.38445691199996,
+      "failures": 210,
+      "output_sha256": "0df9e8da072e86c5709da3c427584872d234fdfe1e7202a74a8e8033de24ae41",
+      "parent_id": "3e97879655b5981bacda",
+      "rows": 1653,
+      "wall_s": 66.39588994183578
+    },
+    {
+      "cpu_s": 66.76421833699999,
+      "failures": 158,
+      "output_sha256": "2988032a72d4bc33bcddc6799df7bcc954821b5ba87c8e154d0bfc8bd61f0394",
+      "parent_id": "3edd5500d4ae419e7b5d",
+      "rows": 1307,
+      "wall_s": 66.76682310900651
+    },
+    {
+      "cpu_s": 3.4598836880000476,
+      "failures": 0,
+      "output_sha256": "c9856a70969217c840585e9ab67d9785b1231e02fd5706691d83f0c4e1782c06",
+      "parent_id": "3efa2a19404450d1ea09",
+      "rows": 353,
+      "wall_s": 3.460057821124792
+    },
+    {
+      "cpu_s": 38.555490986999985,
+      "failures": 34,
+      "output_sha256": "54cf91f9ab8ee091a83812a90de371f5ec0ea13d11aece8437c666aeb77f7653",
+      "parent_id": "3f6bb88b41bdeac6b561",
+      "rows": 1527,
+      "wall_s": 38.55881346692331
+    },
+    {
+      "cpu_s": 14.248962508999966,
+      "failures": 1,
+      "output_sha256": "65a80fd420a00da09389622d4583c4992f4126ddfd1dda5859c3a4058b40de89",
+      "parent_id": "40ca5e627cb7d2b33095",
+      "rows": 802,
+      "wall_s": 14.249992390861735
+    },
+    {
+      "cpu_s": 38.54563025599998,
+      "failures": 203,
+      "output_sha256": "d46034c7e0fea07ac44e1f93bb0a71a68a3b29d21571557cfb724046e8a539be",
+      "parent_id": "41cb92c90ebeadd3e9f2",
+      "rows": 2147,
+      "wall_s": 38.54803045815788
+    },
+    {
+      "cpu_s": 8.05031048799998,
+      "failures": 0,
+      "output_sha256": "befb8c86b725b230cb7dde5f67c70d1fb0f4d707ec961312f00b161556046b6e",
+      "parent_id": "42a0f713da5fa4290de8",
+      "rows": 487,
+      "wall_s": 8.050834123976529
+    },
+    {
+      "cpu_s": 122.86881631900008,
+      "failures": 187,
+      "output_sha256": "af3866703c823ab9b44864d3dbf37764991b485124e78810873927b4ec175b44",
+      "parent_id": "42a8670e6fcd4b3cf39a",
+      "rows": 2173,
+      "wall_s": 122.87395431892946
+    },
+    {
+      "cpu_s": 13.341872429999967,
+      "failures": 9,
+      "output_sha256": "1a56390f0b5298088aeabd615ee6aa86b03022bd0d08ed5015a2e0d2ef3ca9c0",
+      "parent_id": "42d6e0e16b181979867d",
+      "rows": 703,
+      "wall_s": 13.360683633945882
+    },
+    {
+      "cpu_s": 10.204249060999985,
+      "failures": 82,
+      "output_sha256": "af1363ba0c4c6ebb287299e87ab2baaa739aa6c6b0baee3c2dd95f481c6b8427",
+      "parent_id": "42f3279edf7e3f0d319e",
+      "rows": 830,
+      "wall_s": 10.205445408122614
+    },
+    {
+      "cpu_s": 103.20183792100005,
+      "failures": 99,
+      "output_sha256": "90b5e3c76cbd923fd1971b317c4c774aa9bec39f35751f336cdd2c8e7b1b8461",
+      "parent_id": "437020bf5c9d97079871",
+      "rows": 2339,
+      "wall_s": 103.20850666891783
+    },
+    {
+      "cpu_s": 5.370796755000015,
+      "failures": 66,
+      "output_sha256": "1fd9ca4d184624a82dd9e6ce080313c803440e0123ddceed0b2cd8a374a59df1",
+      "parent_id": "438bf94eabf3454b94a9",
+      "rows": 452,
+      "wall_s": 5.370482911122963
+    },
+    {
+      "cpu_s": 303.86905864299996,
+      "failures": 604,
+      "output_sha256": "ffa2e3de742e9ef38ada7b207cb3d29c2c10df38de7476da55f0606afdbc2245",
+      "parent_id": "439fcaadf615a247facb",
+      "rows": 3743,
+      "wall_s": 303.88190423115157
+    },
+    {
+      "cpu_s": 5.7306089900000075,
+      "failures": 54,
+      "output_sha256": "75ab56e87899f88c8fa3064ffc8de6eeb1312904091fe7c5e80a828e46b8545b",
+      "parent_id": "4498f55faf380ace7206",
+      "rows": 498,
+      "wall_s": 5.731228257995099
+    },
+    {
+      "cpu_s": 1.2058929749999834,
+      "failures": 10,
+      "output_sha256": "8897adfbccbe1525609fd17378066d67b0dd9a10f0e76394a6c79b8655568c44",
+      "parent_id": "44ac0f0613caaf60a20f",
+      "rows": 192,
+      "wall_s": 1.2062655629124492
+    },
+    {
+      "cpu_s": 12.358390014000008,
+      "failures": 0,
+      "output_sha256": "da6da9b2eb194f08185e2a5531a7b2895fd6f76824b92c2b241d0f47cc577d9c",
+      "parent_id": "44ee588fb3be8f516a48",
+      "rows": 864,
+      "wall_s": 12.358843483030796
+    },
+    {
+      "cpu_s": 4.353586958999983,
+      "failures": 2,
+      "output_sha256": "e16d4f41c3460b84eac25a8acd75938be5ca2e93657db3590c321c3ef10bdf7e",
+      "parent_id": "44f53289af81036a81a0",
+      "rows": 501,
+      "wall_s": 4.354148448910564
+    },
+    {
+      "cpu_s": 17.02112974099998,
+      "failures": 122,
+      "output_sha256": "5b1589483111ed393dfe5ead40dad55f4ba8ff4f9f0c366cdeca7e99f4ca535e",
+      "parent_id": "450dc9c43d48d7f6febb",
+      "rows": 1217,
+      "wall_s": 17.022088821046054
+    },
+    {
+      "cpu_s": 95.66004627699999,
+      "failures": 18,
+      "output_sha256": "c890bbc8523b112ca1ef9697faa20102dbcc049b2b4be78517599f7a5513c0af",
+      "parent_id": "458b64e6f9ed5fed9822",
+      "rows": 2469,
+      "wall_s": 95.66608209093101
+    },
+    {
+      "cpu_s": 29.655824961000008,
+      "failures": 84,
+      "output_sha256": "575ecd040e8a7fc58e02bf588ee6e569f9bf8093a967f0b909926ee55b2a2e7d",
+      "parent_id": "47940ad3beb0b1f4b721",
+      "rows": 1229,
+      "wall_s": 29.658296407200396
+    },
+    {
+      "cpu_s": 2.047841620999975,
+      "failures": 0,
+      "output_sha256": "e0ff9a5199f0049bac1298f2956c582b7b8943ebd59c5cfbe2164713c2ebdf70",
+      "parent_id": "47df1a83b5e8841492a4",
+      "rows": 275,
+      "wall_s": 2.047954512061551
+    },
+    {
+      "cpu_s": 29.488797073,
+      "failures": 188,
+      "output_sha256": "02ea79f9fb8a5b29c7efcb1adc088fe71078451e4ff628c402f7bde34742d057",
+      "parent_id": "490a49d8326b3868df6c",
+      "rows": 1240,
+      "wall_s": 29.489652869058773
+    },
+    {
+      "cpu_s": 8.858500255999957,
+      "failures": 15,
+      "output_sha256": "c90330b34f5fb358fa882ec1e085ad72b4e0ae8135eef48c784d9ef860b668ec",
+      "parent_id": "4bac09c213063d306b3e",
+      "rows": 699,
+      "wall_s": 8.858745981007814
+    },
+    {
+      "cpu_s": 97.71806965000007,
+      "failures": 173,
+      "output_sha256": "62faef37bb69611b58995d141067847ed76f90405689794f0e1929da32fdc02a",
+      "parent_id": "4c71bfad776917e9de04",
+      "rows": 2958,
+      "wall_s": 97.72596209100448
+    },
+    {
+      "cpu_s": 19.492396540000016,
+      "failures": 160,
+      "output_sha256": "92c664de10d6bfec82b2b241ba5fcc31b5604beced6521396f4070a3f4e57c30",
+      "parent_id": "4c89b2612795bae77905",
+      "rows": 1289,
+      "wall_s": 19.494119751965627
+    },
+    {
+      "cpu_s": 166.48871422700006,
+      "failures": 236,
+      "output_sha256": "0ab8e0086c46c370efbbb4e888bb995a82aaa171b877860b50996397ccee698e",
+      "parent_id": "4c90a5cab2d89d679e6a",
+      "rows": 2576,
+      "wall_s": 166.50113938213326
+    },
+    {
+      "cpu_s": 107.11541782699999,
+      "failures": 9,
+      "output_sha256": "acd5c237f621786f81bb44cb4dceed72a06a67e31584d16801cd328535ce9428",
+      "parent_id": "4c9f2a574b931394dfa2",
+      "rows": 2247,
+      "wall_s": 107.1207210929133
+    },
+    {
+      "cpu_s": 273.12260501400004,
+      "failures": 314,
+      "output_sha256": "bdb2a1a67b9f34f187a48ecc62f4398fdb8f407cafd6c8130e2577d8686dafa5",
+      "parent_id": "4ca71ae8e7ec09702e42",
+      "rows": 4199,
+      "wall_s": 273.1408890108578
+    },
+    {
+      "cpu_s": 90.52570058599997,
+      "failures": 9,
+      "output_sha256": "0e5aeaaa9e0cb6dcc63b06953a12d650b75e36610d073dc0d183a6ead8355e78",
+      "parent_id": "4ce2db032944f7b2cc44",
+      "rows": 2581,
+      "wall_s": 90.53290957491845
+    },
+    {
+      "cpu_s": 38.359327336000035,
+      "failures": 2,
+      "output_sha256": "2480833e99935fb28f4fd77eb7c54c60681c2dcc593564ac7187cf4e5fa0acf7",
+      "parent_id": "4d2468661603af705edb",
+      "rows": 1502,
+      "wall_s": 38.361063888063654
+    },
+    {
+      "cpu_s": 5.001700149000044,
+      "failures": 10,
+      "output_sha256": "5b1cb330bbf31574a009feffd0d8d2bb3320f3dae3b0fc3522dd75b1500fc236",
+      "parent_id": "4ddc0e82a03a8f891af2",
+      "rows": 454,
+      "wall_s": 5.00221586599946
+    },
+    {
+      "cpu_s": 112.07531320399994,
+      "failures": 380,
+      "output_sha256": "76b5cd710b360c770b670889ee540558da66f654b98ae215ac2576d44ef447db",
+      "parent_id": "4e27d9f9eb02b5a6f632",
+      "rows": 1905,
+      "wall_s": 112.0837910999544
+    },
+    {
+      "cpu_s": 21.024036684000066,
+      "failures": 45,
+      "output_sha256": "62fa824b38b967b19f5445ab6f977b8c96bc31de64f162aad7bf0119a8bffb49",
+      "parent_id": "4ecfd50ef8c21ab6eef2",
+      "rows": 1032,
+      "wall_s": 21.024435262894258
+    },
+    {
+      "cpu_s": 39.155153604999896,
+      "failures": 47,
+      "output_sha256": "14009ecdc5358a4b9c3b22b819dc619900ed93b03f549c303a3e0d0918967659",
+      "parent_id": "4ef4251bc7b3da39f078",
+      "rows": 1731,
+      "wall_s": 39.15743232704699
+    },
+    {
+      "cpu_s": 213.09496900699992,
+      "failures": 765,
+      "output_sha256": "16d6942d5ddd2f856561be2ca71bd24b9d28e910faa76c9e36c361cbe04270c0",
+      "parent_id": "4f5559117464139fee00",
+      "rows": 2687,
+      "wall_s": 213.10478184511885
+    },
+    {
+      "cpu_s": 9.673368167000035,
+      "failures": 70,
+      "output_sha256": "e629c8d7bbc01756eeeaeae18228180d189df7972a24b4e4fb2691aacb398ee7",
+      "parent_id": "4f5845cb24ba3fbf067f",
+      "rows": 675,
+      "wall_s": 9.67356234183535
+    },
+    {
+      "cpu_s": 63.70793882299995,
+      "failures": 194,
+      "output_sha256": "37cee539c7042b731a6e4fb922c02b50ab9301b7d34e67cdfbde747800a75b38",
+      "parent_id": "5055bf03b7d9378b0e07",
+      "rows": 2795,
+      "wall_s": 63.71097665512934
+    },
+    {
+      "cpu_s": 5.22872127800008,
+      "failures": 24,
+      "output_sha256": "3699f238b8959ba262d3754874c592e0f7eea357669d11d79fccf8ddb3aba865",
+      "parent_id": "5070c0b62fa54a032747",
+      "rows": 243,
+      "wall_s": 5.229034326970577
+    },
+    {
+      "cpu_s": 39.29283020699995,
+      "failures": 43,
+      "output_sha256": "7ab80a2be37fa095503d644aed2eb26c2a03561730a355a41d7a16e4071ebd34",
+      "parent_id": "5133a5c28d2fa0eed208",
+      "rows": 1727,
+      "wall_s": 39.29638424096629
+    },
+    {
+      "cpu_s": 39.12884877400006,
+      "failures": 225,
+      "output_sha256": "e1f3f1e0eb3e6215fa9adb55305c515d981d7f8deed24e8c25a99e27540a3bea",
+      "parent_id": "51d45131c7925d2b013b",
+      "rows": 2147,
+      "wall_s": 39.142744588898495
+    },
+    {
+      "cpu_s": 7.947500526999988,
+      "failures": 0,
+      "output_sha256": "a9e7a10efe520b573633262aa65b6f2c7066b69cc11e1fcd6adf74f30f3fc733",
+      "parent_id": "53210cf146dae740fcd7",
+      "rows": 680,
+      "wall_s": 7.9473180011846125
+    },
+    {
+      "cpu_s": 9.640205186000003,
+      "failures": 0,
+      "output_sha256": "8b0689d009d1ec73590826d90797de4b60bfb626f3910102fb49fe598d0c1f2b",
+      "parent_id": "5329f412c46ae587f4ba",
+      "rows": 761,
+      "wall_s": 9.641001585870981
+    },
+    {
+      "cpu_s": 19.102304962999938,
+      "failures": 4,
+      "output_sha256": "7484396291d78a666cfc758466a0c68531fed9cf7d27d51d217bf49548760e09",
+      "parent_id": "545672723f468412217c",
+      "rows": 1183,
+      "wall_s": 19.103933840058744
+    },
+    {
+      "cpu_s": 184.06918886999995,
+      "failures": 188,
+      "output_sha256": "27b62f17e82b3050621b27029ab3ecdee0a07051a7665cd1c6e521f8e96f1b03",
+      "parent_id": "54c4ff1690f74a458482",
+      "rows": 3518,
+      "wall_s": 184.07816540496424
+    },
+    {
+      "cpu_s": 33.65057811700001,
+      "failures": 20,
+      "output_sha256": "2d1e2452a70f35ccebca7ae8c050acc708e2c4f1bd4914f26478dd9b4d9a8baf",
+      "parent_id": "54cd6aef1458180b414e",
+      "rows": 1721,
+      "wall_s": 33.652900385903195
+    },
+    {
+      "cpu_s": 307.53196697300007,
+      "failures": 404,
+      "output_sha256": "9a0c9d01b0e8cb11454d7e6604512d032ffa1797f27cf93da86293030395e936",
+      "parent_id": "56f8b83af2572d0429ee",
+      "rows": 4339,
+      "wall_s": 307.54801361914724
+    },
+    {
+      "cpu_s": 11.294439155000077,
+      "failures": 41,
+      "output_sha256": "14f8b22b153f2322f584bc0f38abe2bc562f389db1b8686006514b282b04597b",
+      "parent_id": "5908e3520334a86652fc",
+      "rows": 699,
+      "wall_s": 11.29505322384648
+    },
+    {
+      "cpu_s": 10.674325566999983,
+      "failures": 17,
+      "output_sha256": "f83124b1b1277731ab5c80112f141d25672f7c24487dcb9197654659572358f5",
+      "parent_id": "5a16c51cb5a7e3fb1149",
+      "rows": 612,
+      "wall_s": 10.675419660983607
+    },
+    {
+      "cpu_s": 8.076447090999977,
+      "failures": 0,
+      "output_sha256": "d1b250788ef11ce620b818685fbb1744cf1edf33ea59594ffe8663c1d7cb3906",
+      "parent_id": "5b02d759a9ea9d4dd169",
+      "rows": 579,
+      "wall_s": 8.077000221936032
+    },
+    {
+      "cpu_s": 10.572340082999972,
+      "failures": 70,
+      "output_sha256": "948dab74d202367288a451f006e10af5c83b594c039a29a9cc955532cdb62671",
+      "parent_id": "5b2d3d450552ae85d0f4",
+      "rows": 925,
+      "wall_s": 10.57277342188172
+    },
+    {
+      "cpu_s": 197.61618888099997,
+      "failures": 535,
+      "output_sha256": "03d2e1ffab144924fc50cc3cbd700bf7cd71db1cb2a66ac11a14bf46c87346fd",
+      "parent_id": "5b4b561592d2d163d172",
+      "rows": 3781,
+      "wall_s": 197.63092832290567
+    },
+    {
+      "cpu_s": 11.650380822999978,
+      "failures": 41,
+      "output_sha256": "6ccbfb41638bbd447de545293881fa4fef1fb1e8c7571fea7b926a239f0e2f52",
+      "parent_id": "5f08d5417eb65e8ccad2",
+      "rows": 943,
+      "wall_s": 11.650950969895348
+    },
+    {
+      "cpu_s": 37.582553246999964,
+      "failures": 12,
+      "output_sha256": "bda96a79a53187448db4b8743eca5c4591c04c914b03996dd3a58590bf18ee9e",
+      "parent_id": "5f85174235549973b2d4",
+      "rows": 1740,
+      "wall_s": 37.585543379886076
+    },
+    {
+      "cpu_s": 127.32845355100005,
+      "failures": 100,
+      "output_sha256": "c12a300d38d00ec4e80c4b93e2b833ab7589373b7bfb5a71778039a0a18d67e0",
+      "parent_id": "60c1b7fd735dcc9e8691",
+      "rows": 3125,
+      "wall_s": 127.33454963192344
+    },
+    {
+      "cpu_s": 27.965194431999976,
+      "failures": 77,
+      "output_sha256": "accdb48ad56fc192aa030f4a93703b287197bb30d77d371c36f4a4cdc2763272",
+      "parent_id": "610169b6b7344da8fe44",
+      "rows": 1390,
+      "wall_s": 27.96769426111132
+    },
+    {
+      "cpu_s": 12.134140565000052,
+      "failures": 42,
+      "output_sha256": "9243cf0fea9c1e8e0dee9dafa608b39281e38cca61a70be017d714790cc6eb2b",
+      "parent_id": "613b6b9cb8cd989e3930",
+      "rows": 587,
+      "wall_s": 12.135237701004371
+    },
+    {
+      "cpu_s": 353.0915023719999,
+      "failures": 602,
+      "output_sha256": "0d91ae643489a208e0f8688bcf0a39ac73be6dd088a9c89c0e0d0f59bdf90c10",
+      "parent_id": "6140474f8e0cdc063c5c",
+      "rows": 5899,
+      "wall_s": 353.11366152507253
+    },
+    {
+      "cpu_s": 216.98268260999998,
+      "failures": 730,
+      "output_sha256": "0c5661e1bd7ca2a5055a710a636d09559597a678876614d9977a2feed23d5c56",
+      "parent_id": "6278eeb677c70d87b584",
+      "rows": 4766,
+      "wall_s": 216.99197883717716
+    },
+    {
+      "cpu_s": 50.73997922299998,
+      "failures": 73,
+      "output_sha256": "8457a79ec977d67fb157199e45bc1e48c3e55cf701c131bdb46d7b5dce57caef",
+      "parent_id": "62d447fda817bf1743c7",
+      "rows": 2064,
+      "wall_s": 50.74239874794148
+    },
+    {
+      "cpu_s": 190.74335338799995,
+      "failures": 6,
+      "output_sha256": "57f0bd71e688eef3d17084e5f8af7da8d763df083a535f7a14b9d717b49ca718",
+      "parent_id": "6385adeb39775c61d581",
+      "rows": 3682,
+      "wall_s": 190.7543069049716
+    },
+    {
+      "cpu_s": 269.35602380399996,
+      "failures": 32,
+      "output_sha256": "b01be9537a7205c3831a5e25ba5f7e06ca07a957fb1b0bafed1581a855abc165",
+      "parent_id": "63f684019eea256fff8f",
+      "rows": 4241,
+      "wall_s": 269.37132078805007
+    },
+    {
+      "cpu_s": 74.8431644499999,
+      "failures": 0,
+      "output_sha256": "2556b400f3bf519d769ccdfb1d1548ab630c640fd36b875d5f9dab23acec76aa",
+      "parent_id": "65367c463e052a989c6f",
+      "rows": 1704,
+      "wall_s": 74.84713445208035
+    },
+    {
+      "cpu_s": 38.16370809399996,
+      "failures": 7,
+      "output_sha256": "eede665b119db314d6e595197c2850c9978803b8056bc905ca911d81dfd19a6e",
+      "parent_id": "65dec391f62eb581076a",
+      "rows": 1541,
+      "wall_s": 38.16599029605277
+    },
+    {
+      "cpu_s": 113.14552425199997,
+      "failures": 774,
+      "output_sha256": "e12099a1ecb5e247f15066af5d6d7cc50a5dd48ad3ac9db1a8d3c930dddd6ec8",
+      "parent_id": "675963e917690f5fc21a",
+      "rows": 3136,
+      "wall_s": 113.15019113686867
+    },
+    {
+      "cpu_s": 30.11609814899998,
+      "failures": 231,
+      "output_sha256": "cfd2e94bff395426b4598900d95cad97dd80d65b66816f46ee349322ff2057ed",
+      "parent_id": "682c530aba824069ee51",
+      "rows": 1695,
+      "wall_s": 30.1184061341919
+    },
+    {
+      "cpu_s": 9.01249777999999,
+      "failures": 2,
+      "output_sha256": "f84dcb3e44401d2a866fdfe5068592ee0f3ecece857429622636a8f6081b0fa1",
+      "parent_id": "68e406cbe07bf1a7418f",
+      "rows": 883,
+      "wall_s": 9.0125615040306
+    },
+    {
+      "cpu_s": 14.834939114000008,
+      "failures": 98,
+      "output_sha256": "fe8a04b0b24d06961ca1fe8ca1108688cd2cd836807cc67f6149b0845cba58bf",
+      "parent_id": "699cabf94167a970302f",
+      "rows": 702,
+      "wall_s": 14.836160943144932
+    },
+    {
+      "cpu_s": 53.85251930200002,
+      "failures": 0,
+      "output_sha256": "051980509b1138bbc5ba67a0b9616eb1b107724b9f4604d2cba37534d9835982",
+      "parent_id": "6a9f78e93d42c9ac2809",
+      "rows": 1895,
+      "wall_s": 53.855946362018585
+    },
+    {
+      "cpu_s": 381.49993905200006,
+      "failures": 684,
+      "output_sha256": "79259667b73e861381998050ca2a7952a5128a5a596583f785620637149bc160",
+      "parent_id": "6b278ab284c7d18842a4",
+      "rows": 4371,
+      "wall_s": 381.5163998887874
+    },
+    {
+      "cpu_s": 142.17423160200008,
+      "failures": 166,
+      "output_sha256": "e59dbb7e668d0dd886077c4717f6ae025b5e5b499cfae8db5f094a9e07c3815b",
+      "parent_id": "6bc6b4ad42d55c2e3d24",
+      "rows": 2812,
+      "wall_s": 142.1848663140554
+    },
+    {
+      "cpu_s": 190.58168236999995,
+      "failures": 44,
+      "output_sha256": "9fcbd5c9faeb9c412aadb6a338ab2272fddefef6bae8ef3d3c50b9bbfe309155",
+      "parent_id": "6bd92a6f8181b1329aca",
+      "rows": 3722,
+      "wall_s": 190.5890494179912
+    },
+    {
+      "cpu_s": 20.416569812000034,
+      "failures": 0,
+      "output_sha256": "5ab3d2a773d417c2e7471291ded55c857380c7e738e0a9d626bce1f0792fe14c",
+      "parent_id": "6be9cc7669392789b21b",
+      "rows": 970,
+      "wall_s": 20.4178188838996
+    },
+    {
+      "cpu_s": 9.245495450000021,
+      "failures": 51,
+      "output_sha256": "d3877e7fdd7ec014928370d4fce8276f427bccbc837b5b6533bcf36b2fe1cf4f",
+      "parent_id": "6c122e7c858fc90257a5",
+      "rows": 657,
+      "wall_s": 9.245944353984669
+    },
+    {
+      "cpu_s": 4.1697913630000585,
+      "failures": 0,
+      "output_sha256": "3d8c5a5509dd935d98f0ab894ea8a240d0e0e1c873e313a1f46d448ac092859a",
+      "parent_id": "6c1ed76d7cc8a21eb579",
+      "rows": 397,
+      "wall_s": 4.170288353925571
+    },
+    {
+      "cpu_s": 16.391494937999937,
+      "failures": 91,
+      "output_sha256": "0304961615bdf0682e2e40084fb8f15e688e2a84a7f7b814c966616bcbd80625",
+      "parent_id": "6c3d04034a2cffc5b7a1",
+      "rows": 467,
+      "wall_s": 16.392178888898343
+    },
+    {
+      "cpu_s": 10.294577876999938,
+      "failures": 78,
+      "output_sha256": "e52799781d7fec573439b5fe07b39eb6a17ae58829bae3af7672df1c92640eb0",
+      "parent_id": "6c9e7003ade9f81d3cde",
+      "rows": 614,
+      "wall_s": 10.29568274691701
+    },
+    {
+      "cpu_s": 41.063496566000026,
+      "failures": 301,
+      "output_sha256": "138e4252d7ec3f35e6cec8ed33cda7b339a886b69dd121bb322e22bbfe8a5212",
+      "parent_id": "6cd8e6f29ce73ed37e6d",
+      "rows": 2225,
+      "wall_s": 41.06501394812949
+    },
+    {
+      "cpu_s": 54.14370040899996,
+      "failures": 0,
+      "output_sha256": "ebe67d107cece708f2038bee17fcb5402159375929b4118eff6062d79b06feb8",
+      "parent_id": "6d61261edc6a0296f44d",
+      "rows": 1859,
+      "wall_s": 54.146170638967305
+    },
+    {
+      "cpu_s": 20.262067539999975,
+      "failures": 0,
+      "output_sha256": "f52311902c6e77163f422561764267984c43075106aa81590e8b987873217a5a",
+      "parent_id": "6da06407e8fc6de0de03",
+      "rows": 1092,
+      "wall_s": 20.262802919140086
+    },
+    {
+      "cpu_s": 75.21193523,
+      "failures": 99,
+      "output_sha256": "d868ec1cc4c4a0b2a07d1ae973c663263359cd32e2fe1ecad282d322c41da320",
+      "parent_id": "6dcd487459b34cbcebe2",
+      "rows": 1313,
+      "wall_s": 75.21636310592294
+    },
+    {
+      "cpu_s": 26.254288510999913,
+      "failures": 33,
+      "output_sha256": "121b3a33a397981470ad95d9cbafa86a7f0c3deda6d2f6168f76703cc4f8f2c5",
+      "parent_id": "6e2a46df48725b2955f8",
+      "rows": 1398,
+      "wall_s": 26.254622366046533
+    },
+    {
+      "cpu_s": 6.559621971999945,
+      "failures": 2,
+      "output_sha256": "685e58169fab23a2d491baae53570636606bfd84d540f576cd5460ce53105818",
+      "parent_id": "6efac4f82a0cdc4b7476",
+      "rows": 546,
+      "wall_s": 6.5606954880058765
+    },
+    {
+      "cpu_s": 2.457923844999982,
+      "failures": 0,
+      "output_sha256": "cc9293649afde51134df0c7c309ec0ddeb8e1f91b4877ccd48f696e146dcf9ee",
+      "parent_id": "6faff17388798b53d9f9",
+      "rows": 317,
+      "wall_s": 2.4578162520192564
+    },
+    {
+      "cpu_s": 6.5827518549999695,
+      "failures": 0,
+      "output_sha256": "1b0594c295328ec40a1e2793aa0e16704197640769d86df41c42d235b57f1f81",
+      "parent_id": "7010a607d1c52212413e",
+      "rows": 476,
+      "wall_s": 6.582837213994935
+    },
+    {
+      "cpu_s": 53.69338574300002,
+      "failures": 26,
+      "output_sha256": "637645b1ade40578421c6d1cc819c683d905df122a5dd5b6624041aed68d5537",
+      "parent_id": "70fde9904c7545f98054",
+      "rows": 1351,
+      "wall_s": 53.69606965105049
+    },
+    {
+      "cpu_s": 55.37738678400001,
+      "failures": 122,
+      "output_sha256": "b6d101f34cf107af78791d0c11509ebd00a93e103dc1baa9226738c71489c2cd",
+      "parent_id": "737ffd54eda0fd6ce0b3",
+      "rows": 1666,
+      "wall_s": 55.380497159902006
+    },
+    {
+      "cpu_s": 27.7391183499999,
+      "failures": 98,
+      "output_sha256": "f55c2968224d0caf99af2e7418b6f25f95cc54c4f26e63aec4a649ade6657899",
+      "parent_id": "73a8b208b741c5cda518",
+      "rows": 1348,
+      "wall_s": 27.740625831997022
+    },
+    {
+      "cpu_s": 2.4408437810000123,
+      "failures": 0,
+      "output_sha256": "c26d184c2b434fe6ed7d71d4b82104d8e7808210fcea3bdd867d7316bc0893ba",
+      "parent_id": "73bf037f6350608691e1",
+      "rows": 323,
+      "wall_s": 2.4402127971407026
+    },
+    {
+      "cpu_s": 63.80736246499998,
+      "failures": 217,
+      "output_sha256": "150c74a72d20d89bfb9da86cf0346fd21e81962dddfaeb226db3570e273194a3",
+      "parent_id": "73c6796f773c711a6800",
+      "rows": 2795,
+      "wall_s": 63.810154299018905
+    },
+    {
+      "cpu_s": 7.806778804000032,
+      "failures": 137,
+      "output_sha256": "cd7c2f157f525b76dae3d5d92813084e148ebc38907ae10176c6eaf170eeb671",
+      "parent_id": "7425905c981e259b275b",
+      "rows": 562,
+      "wall_s": 7.806253848830238
+    },
+    {
+      "cpu_s": 159.92875416899994,
+      "failures": 9,
+      "output_sha256": "5c926257487a85dc41754d6b9d00d833f67cac20d61089a7567d8f1ff7c4673e",
+      "parent_id": "75629c2c4086ec81e4ad",
+      "rows": 3382,
+      "wall_s": 159.94115373003297
+    },
+    {
+      "cpu_s": 109.97934278800005,
+      "failures": 182,
+      "output_sha256": "35f1c9ca8dccee0ef2cd7d55b989edc89394a94169f1cbf14237deebad4cc70b",
+      "parent_id": "761ce8db7b595eaf07f6",
+      "rows": 2316,
+      "wall_s": 109.9842658129055
+    },
+    {
+      "cpu_s": 40.910392,
+      "failures": 106,
+      "output_sha256": "cb9e257e3de9c18af88adec0338496cf600513ecc76087829cb8474337b720a7",
+      "parent_id": "766e8d4df2ea8dfb19ab",
+      "rows": 733,
+      "wall_s": 40.91216704202816
+    },
+    {
+      "cpu_s": 45.07596194400003,
+      "failures": 35,
+      "output_sha256": "9acc5e30c032bc45e082067c76c195a3cde60e96dd4814d66de7c7d9cfa63b05",
+      "parent_id": "7809fb5063b7e542aa7a",
+      "rows": 1349,
+      "wall_s": 45.088499972829595
+    },
+    {
+      "cpu_s": 22.975356750999936,
+      "failures": 7,
+      "output_sha256": "411a65e999f624848a6a811863a5cfda327d1b4881797c6f22c0a34df66df8e5",
+      "parent_id": "7a4fede1c5d72bfa7b82",
+      "rows": 925,
+      "wall_s": 22.976766753010452
+    },
+    {
+      "cpu_s": 12.96734608600002,
+      "failures": 0,
+      "output_sha256": "3af53d20ab6c2403731989d13a31af6021088c0ac5b2672e30dc6f108b76ab95",
+      "parent_id": "7b497297625f0ee813cc",
+      "rows": 938,
+      "wall_s": 12.968260475900024
+    },
+    {
+      "cpu_s": 44.52754343999993,
+      "failures": 21,
+      "output_sha256": "d9c863fb1f6761590c54342091917ccae6359e715efb32346a65c3798c4e283d",
+      "parent_id": "7c15eec0ae7972268639",
+      "rows": 1464,
+      "wall_s": 44.52948784199543
+    },
+    {
+      "cpu_s": 0.5489806790000102,
+      "failures": 9,
+      "output_sha256": "ae5d751f89725cd79064e4d6d0986c350bcff9ac5de4d6ddf207ab68fcc03c04",
+      "parent_id": "7c7ca97231faa96059cf",
+      "rows": 98,
+      "wall_s": 0.5496636079624295
+    },
+    {
+      "cpu_s": 83.99547878700002,
+      "failures": 42,
+      "output_sha256": "605752b94ca1aa9f1d0612fb696d8bb3d56bf329870fcb0cd3fcb6a057dc20c3",
+      "parent_id": "7dc6922783059ead3fb0",
+      "rows": 2027,
+      "wall_s": 84.01286429492757
+    },
+    {
+      "cpu_s": 7.5655432320000955,
+      "failures": 0,
+      "output_sha256": "66156812ca194825dcf284ed9e39c2f032d25427ad6c832f5d590e066f5cf64d",
+      "parent_id": "7e1db2ca71904cd26fde",
+      "rows": 622,
+      "wall_s": 7.565384031971917
+    },
+    {
+      "cpu_s": 6.168641283000056,
+      "failures": 77,
+      "output_sha256": "07c3a8bbddf42e733467c3bcaf256bbc019ec99248089e7ecf3ac51db950de8b",
+      "parent_id": "7eaf582f48c19547f88f",
+      "rows": 502,
+      "wall_s": 6.169050513068214
+    },
+    {
+      "cpu_s": 1.4239564209999571,
+      "failures": 0,
+      "output_sha256": "0b99c91c94001f3bafaed002b241f387d317f526c7bbe7d577b3ede0bbe346f1",
+      "parent_id": "7f897cc32c18af9fda3b",
+      "rows": 201,
+      "wall_s": 1.423531830077991
+    },
+    {
+      "cpu_s": 183.01499778700008,
+      "failures": 224,
+      "output_sha256": "955b7e67c9236766c436c24ab3bdd368d1d61d6261dd0490870d3d231764b803",
+      "parent_id": "7f9115244f4c2f2a774b",
+      "rows": 3803,
+      "wall_s": 183.04927695309743
+    },
+    {
+      "cpu_s": 9.193626911000024,
+      "failures": 73,
+      "output_sha256": "d0e39dde036527e490657add3784013d4cc03f08a806a0d21661059f909fd265",
+      "parent_id": "7f95af910c0b3f06823d",
+      "rows": 651,
+      "wall_s": 9.194460446946323
+    },
+    {
+      "cpu_s": 10.267319326999996,
+      "failures": 70,
+      "output_sha256": "88a3da26a2d1d056fbddadc847c3420c5054298d117015cb7fc8cac667fda330",
+      "parent_id": "7fd0bc17206f244def9a",
+      "rows": 922,
+      "wall_s": 10.267149292165413
+    },
+    {
+      "cpu_s": 50.02882945299996,
+      "failures": 116,
+      "output_sha256": "304b2eaba020fa56b198e4131ec9ef4b97743d461049419c79cb35c79b74ea7e",
+      "parent_id": "7ff29f9ac700c98545af",
+      "rows": 780,
+      "wall_s": 50.03033493482508
+    },
+    {
+      "cpu_s": 86.68536370699996,
+      "failures": 9,
+      "output_sha256": "e9049a524272bceff208f3fe1b81f24aa2e8ae43ff0b50a16f6d91c66a9bfe1a",
+      "parent_id": "800319d4a969c733bf09",
+      "rows": 2748,
+      "wall_s": 86.68968146899715
+    },
+    {
+      "cpu_s": 290.09917014200005,
+      "failures": 18,
+      "output_sha256": "87c6f542b7d4181be215d8d2070d930a890d670b9dec9e1a4614e480e36e6b6c",
+      "parent_id": "8112b7bf3eeebc3c01c5",
+      "rows": 4068,
+      "wall_s": 290.1145000180695
+    },
+    {
+      "cpu_s": 97.71783733200004,
+      "failures": 133,
+      "output_sha256": "9f00c54254d380efef4f7635268e4f2fa93a9a705ef5bc9661b2a3eaf5735dbc",
+      "parent_id": "8207af1b4eb819146b62",
+      "rows": 1900,
+      "wall_s": 97.72248610388488
+    },
+    {
+      "cpu_s": 28.119660896999903,
+      "failures": 26,
+      "output_sha256": "5c5e1f5c3171a8a1c7c3078fd034d0fa4b872cfe9cce5b7832eeb06a16099e54",
+      "parent_id": "829c15553fdc448bff11",
+      "rows": 1478,
+      "wall_s": 28.128485433990136
+    },
+    {
+      "cpu_s": 62.47608977900006,
+      "failures": 19,
+      "output_sha256": "e0251a0010096daf204cd3213caa3d341852453fec54a90f687bffc7b508bbb0",
+      "parent_id": "8303021b27a2c6ce2b4c",
+      "rows": 1955,
+      "wall_s": 62.4820018960163
+    },
+    {
+      "cpu_s": 364.273334105,
+      "failures": 241,
+      "output_sha256": "46848c7396016643e774d8d9794ab72e7a8cd62f20457c5313808ec0b37623cd",
+      "parent_id": "837e1c1b1bee174ebda9",
+      "rows": 4803,
+      "wall_s": 364.2861972420942
+    },
+    {
+      "cpu_s": 63.48152791000007,
+      "failures": 91,
+      "output_sha256": "fc6299faf2667ec057b603869a22e1c5321beef4e60b6911a5a0ea33451ac3eb",
+      "parent_id": "83ef80c922bb0c62fb7c",
+      "rows": 1596,
+      "wall_s": 63.503960157046095
+    },
+    {
+      "cpu_s": 27.046637120000014,
+      "failures": 0,
+      "output_sha256": "d6984ee558739255505bfe729a1ea3903c4733ccd8f3c1289f464fa2078c9cb4",
+      "parent_id": "83fdc208f0587a8cd780",
+      "rows": 1187,
+      "wall_s": 27.047981431009248
+    },
+    {
+      "cpu_s": 84.64151397699993,
+      "failures": 413,
+      "output_sha256": "4983ca880b82756694e8ee443c5112cee373e7c90a60f06d71f93e7305a61707",
+      "parent_id": "84b7ae98dee709e2d846",
+      "rows": 2829,
+      "wall_s": 84.65549387712963
+    },
+    {
+      "cpu_s": 1.1938512529999343,
+      "failures": 0,
+      "output_sha256": "126fdb656c0bab2db104bea42444a290dd73227b7f8d1933e2cd1c26c96601c0",
+      "parent_id": "850e8d083a1a5992715d",
+      "rows": 183,
+      "wall_s": 1.1936949179507792
+    },
+    {
+      "cpu_s": 389.119016139,
+      "failures": 342,
+      "output_sha256": "b50ca3a70c63bf016ed3ce6de62e6b15e5496d01ce8ef90368da1c4dfa86e462",
+      "parent_id": "8516346f758287d1adf5",
+      "rows": 4439,
+      "wall_s": 389.1325118581299
+    },
+    {
+      "cpu_s": 27.00362652499996,
+      "failures": 76,
+      "output_sha256": "9b9783904d19fa776f0325435cc967520617b38b51a00247f79bfe7e14bb2a5c",
+      "parent_id": "854a56a1c3c64b7cf28e",
+      "rows": 1400,
+      "wall_s": 27.01230450696312
+    },
+    {
+      "cpu_s": 11.636052107000069,
+      "failures": 21,
+      "output_sha256": "ca1ff2ab90749da03a2a3aeab30c6f867f96d85e720b73348f3cc81787185708",
+      "parent_id": "854e36201fd5181b6d38",
+      "rows": 575,
+      "wall_s": 11.639318434055895
+    },
+    {
+      "cpu_s": 15.865542128000016,
+      "failures": 146,
+      "output_sha256": "81f530f4f0fc5d224abc8474282b9ced0624ac35a64b8a63ebd401f020714e1c",
+      "parent_id": "86e8b6f43f20cf1e79e6",
+      "rows": 1018,
+      "wall_s": 15.866012265905738
+    },
+    {
+      "cpu_s": 143.89971461900006,
+      "failures": 14,
+      "output_sha256": "79b81748dfaf31e64599b253be7cde2ab0e9269b86e923ad1430a70cc0379af1",
+      "parent_id": "86eca66399858d919d18",
+      "rows": 3498,
+      "wall_s": 143.90856355894357
+    },
+    {
+      "cpu_s": 27.135880257000053,
+      "failures": 0,
+      "output_sha256": "81600c179342cc6a5c43b8dc90c8a8185157a3ba9fd060348e285602dde0eca8",
+      "parent_id": "87d2b5e8cb024711bfaf",
+      "rows": 1172,
+      "wall_s": 27.15760942013003
+    },
+    {
+      "cpu_s": 83.46092234599996,
+      "failures": 6,
+      "output_sha256": "b6d8f97db9680e4e2d45a597fd6e404d2ab5d0111306148f86dc3cf4b220d572",
+      "parent_id": "89388b633adc436b486b",
+      "rows": 2369,
+      "wall_s": 83.47092228406109
+    },
+    {
+      "cpu_s": 118.54710454300005,
+      "failures": 53,
+      "output_sha256": "a27181bffbe32de7078be6ba25a7009c7a3aeb2220f5947a4006bd0fdd20f200",
+      "parent_id": "8962b71ed3a7a171af9e",
+      "rows": 2718,
+      "wall_s": 118.55329390102997
+    },
+    {
+      "cpu_s": 46.350539304999984,
+      "failures": 124,
+      "output_sha256": "fa1bd93a09b82fe322eefd5eebcc1d1516ac9312e15484b0bb2efbc467f312bf",
+      "parent_id": "8a883642220d4e0500ba",
+      "rows": 742,
+      "wall_s": 46.353721452876925
+    },
+    {
+      "cpu_s": 13.321234885999957,
+      "failures": 0,
+      "output_sha256": "ac29d49b246a75e976d1e28e63c8d389a06d7d55ecbc9cdd6d7547c57dd29578",
+      "parent_id": "8bb51173fa2d62935d99",
+      "rows": 785,
+      "wall_s": 13.322260437067598
+    },
+    {
+      "cpu_s": 301.74008129899994,
+      "failures": 321,
+      "output_sha256": "183bdb5fe291c631d86d2f72eb67b20974efaf25605cc12e11bf1d4205b138bf",
+      "parent_id": "8bcdda562ed2c9f508c5",
+      "rows": 4357,
+      "wall_s": 301.7567213270813
+    },
+    {
+      "cpu_s": 58.68568226399998,
+      "failures": 4,
+      "output_sha256": "f848bd9ff477a7e0a3ef980ca695a49b7ebc48bbeb7056a26dc79f7f60956097",
+      "parent_id": "8bdb07ea9beac7ae10a1",
+      "rows": 1529,
+      "wall_s": 58.68856202880852
+    },
+    {
+      "cpu_s": 49.019288416999984,
+      "failures": 0,
+      "output_sha256": "67f6652eba475d8b8cd7b4e726d16ea514fb31d68ee39af7bd0c6d56bbf7790e",
+      "parent_id": "8c9e4dd32558c3636150",
+      "rows": 1538,
+      "wall_s": 49.02271616109647
+    },
+    {
+      "cpu_s": 1.4829603270000007,
+      "failures": 18,
+      "output_sha256": "8e5d38024ad9d5cb4d53d21bf0295a433b79e0ba2854014bad54f5fab93fbf33",
+      "parent_id": "8cd43435ab1b599b2237",
+      "rows": 185,
+      "wall_s": 1.4825470407959074
+    },
+    {
+      "cpu_s": 25.63361550000002,
+      "failures": 41,
+      "output_sha256": "27f6db8e232c73d29a784bbc39733cefc4005ecd8a90f937c75dc7c6f0e4cbec",
+      "parent_id": "8cdcb8400466612cf1d7",
+      "rows": 1176,
+      "wall_s": 25.6362973889336
+    },
+    {
+      "cpu_s": 3.226871247999952,
+      "failures": 0,
+      "output_sha256": "7075d06582c28bf60b6a8da20f34577c9c81a38993664c73ced9b0978e50186b",
+      "parent_id": "8e37a1ef1d69b22a0b8a",
+      "rows": 324,
+      "wall_s": 3.226558408001438
+    },
+    {
+      "cpu_s": 8.660040068999933,
+      "failures": 0,
+      "output_sha256": "6961ac9a7ea79d52b2c987d4e15baca8b0b92ae31f2ca32019dfbf72276d337b",
+      "parent_id": "8fe6d50aaad53c21d3c5",
+      "rows": 741,
+      "wall_s": 8.66067388211377
+    },
+    {
+      "cpu_s": 52.29779342699999,
+      "failures": 0,
+      "output_sha256": "26a815d60455a20fb7492d3dcfd91aa0eee69158eb3daa021d00355c90add920",
+      "parent_id": "9065947a29669081bb34",
+      "rows": 1815,
+      "wall_s": 52.30151191004552
+    },
+    {
+      "cpu_s": 375.7611567729999,
+      "failures": 409,
+      "output_sha256": "351b6be98b64f093313e973d12d900b4b9f733e34cac706222734abf8661580f",
+      "parent_id": "91c5cffc858861ac7131",
+      "rows": 4484,
+      "wall_s": 375.78360965801403
+    },
+    {
+      "cpu_s": 55.9120660750001,
+      "failures": 238,
+      "output_sha256": "2f3146fa19799068d9c206b142633e84d5e2596b3bb7c2c240733fefab7d2ea2",
+      "parent_id": "92212650eb535215a63e",
+      "rows": 1856,
+      "wall_s": 55.92445204104297
+    },
+    {
+      "cpu_s": 20.094602825000038,
+      "failures": 64,
+      "output_sha256": "ac3f24a0c151ab79d6b6679bec3c8ffb4d4343502e369242d5d58e2482a603ef",
+      "parent_id": "9239d57e4706a358b1d1",
+      "rows": 996,
+      "wall_s": 20.096642907941714
+    },
+    {
+      "cpu_s": 181.21132512200006,
+      "failures": 150,
+      "output_sha256": "1809ae84d43cfcdd0ecd5aa864e4e4c97e5a71abb95bc00ac3d40bf78600ca3b",
+      "parent_id": "92bd6581b9ee06739431",
+      "rows": 3575,
+      "wall_s": 181.22109729098156
+    },
+    {
+      "cpu_s": 134.60020130300006,
+      "failures": 113,
+      "output_sha256": "e00ba200fa8f63a84abdf630cf9e37178c5ec3130f7838594abe138c87ddb618",
+      "parent_id": "93195250f3afc41f08ab",
+      "rows": 3014,
+      "wall_s": 134.61187885701656
+    },
+    {
+      "cpu_s": 7.9014530580000155,
+      "failures": 43,
+      "output_sha256": "bd636242238c8335670d07352ec0a330a8641bbb79c41fcdf503fc8db7d33892",
+      "parent_id": "9325470bbc030865f58f",
+      "rows": 516,
+      "wall_s": 7.902015822939575
+    },
+    {
+      "cpu_s": 32.87381390999985,
+      "failures": 1,
+      "output_sha256": "f3aab35cc6b8c474d11b7828edf85c866fc7ae9352d6b452672e2daeb3a044b3",
+      "parent_id": "96b26803c4e01784b0c3",
+      "rows": 1538,
+      "wall_s": 32.88229091791436
+    },
+    {
+      "cpu_s": 6.771456691000026,
+      "failures": 15,
+      "output_sha256": "31b3c658b5700b15b334ca8febe346a733eab7eabcf75cf34bc1791589187698",
+      "parent_id": "9942aa0142fbba1aa46d",
+      "rows": 377,
+      "wall_s": 6.772582483012229
+    },
+    {
+      "cpu_s": 39.671156655000004,
+      "failures": 235,
+      "output_sha256": "aa9ba20a8743e17241229f0e533aa643f01e931d274b196367eb25a052b83263",
+      "parent_id": "9a277b27bda12dd59032",
+      "rows": 2125,
+      "wall_s": 39.67470530979335
+    },
+    {
+      "cpu_s": 15.801974309000002,
+      "failures": 2,
+      "output_sha256": "cea6f8d73a212926cec7801104ad1727b356ccece5649d02373e873396666a6f",
+      "parent_id": "9aa2861f97271a8047e1",
+      "rows": 1207,
+      "wall_s": 15.803303599823266
+    },
+    {
+      "cpu_s": 11.921496560999913,
+      "failures": 0,
+      "output_sha256": "de5ed35dae59120fdbe54394b1d0447ecf27a03a5c245076af5f055d0effe408",
+      "parent_id": "9caa8a7ba256cf533080",
+      "rows": 741,
+      "wall_s": 11.922408228972927
+    },
+    {
+      "cpu_s": 18.50515531799988,
+      "failures": 1,
+      "output_sha256": "8730c0a2676565bd6b135eab60237d50f4a88bef47083fc1399d8c26c830c99e",
+      "parent_id": "9d6b9c525eb0e3147b28",
+      "rows": 1158,
+      "wall_s": 18.506141658173874
+    },
+    {
+      "cpu_s": 28.665602975999946,
+      "failures": 0,
+      "output_sha256": "c732fe94e0915aeba3492d73079a5652198215aec48e59136e717fc6eab441a5",
+      "parent_id": "a01f970da298193876d3",
+      "rows": 1192,
+      "wall_s": 28.667509743012488
+    },
+    {
+      "cpu_s": 395.03039034100016,
+      "failures": 375,
+      "output_sha256": "1f2115f1e802842d0047cda755654fef8975520bc8e1a96164009bc3ffd6e5e3",
+      "parent_id": "a0d9934286e1767fd6a2",
+      "rows": 4811,
+      "wall_s": 395.06440797494724
+    },
+    {
+      "cpu_s": 191.03046763299994,
+      "failures": 286,
+      "output_sha256": "e5afaae17f6249d12fbce2a9790d4c49a43681713dba4ca8b5060716638141c6",
+      "parent_id": "a1cffecda1a49c4fb953",
+      "rows": 3473,
+      "wall_s": 191.04255675408058
+    },
+    {
+      "cpu_s": 4.023762525999928,
+      "failures": 21,
+      "output_sha256": "ca327e2f005e358de90b690424fa9114f0372b6beb587bff646f6606bae75e6d",
+      "parent_id": "a23bc512622596062cdb",
+      "rows": 481,
+      "wall_s": 4.023984001018107
+    },
+    {
+      "cpu_s": 26.530734930000108,
+      "failures": 234,
+      "output_sha256": "a07f7ba53de1656d1cf2986c3dfc3a218d5930be169af729e9041a1cd949e230",
+      "parent_id": "a2a9f21a436b5b4edf35",
+      "rows": 969,
+      "wall_s": 26.532085716957226
+    },
+    {
+      "cpu_s": 102.63210127700017,
+      "failures": 81,
+      "output_sha256": "e215c95caa650228a1575cd957ce539b01244b9f584f07874cf151baf4f3f80d",
+      "parent_id": "a40f49e8109e6dcb3eee",
+      "rows": 2894,
+      "wall_s": 102.63813859107904
+    },
+    {
+      "cpu_s": 40.26345773700018,
+      "failures": 122,
+      "output_sha256": "cbc81402be17c02d5c4cb85c5d93d269447fe50a3d9abad97fc0d2834506f36b",
+      "parent_id": "a56962e0638a6e6b90b2",
+      "rows": 2058,
+      "wall_s": 40.26538574602455
+    },
+    {
+      "cpu_s": 119.06512541200004,
+      "failures": 10,
+      "output_sha256": "b6c0f91ecc0052c37b24dd6e56e8cdd05e98ad0dbce443f77457de08356d3f97",
+      "parent_id": "a6ee19115420a88ad88e",
+      "rows": 3094,
+      "wall_s": 119.08882449404337
+    },
+    {
+      "cpu_s": 83.09461615300006,
+      "failures": 0,
+      "output_sha256": "bcfbc84da756fb3664a76f9f86181ef23da70452aa239240d52faa1b25cb4ecd",
+      "parent_id": "a716066814e2aec188e9",
+      "rows": 1847,
+      "wall_s": 83.09888905193657
+    },
+    {
+      "cpu_s": 86.70834633599998,
+      "failures": 20,
+      "output_sha256": "7265a394c6c12ffacf4f7b361aa122fffe352641d939b2d79263cbfefd9fb818",
+      "parent_id": "a7cb70f3d1c7a84c186f",
+      "rows": 1978,
+      "wall_s": 86.71501847892068
+    },
+    {
+      "cpu_s": 51.246105553999996,
+      "failures": 0,
+      "output_sha256": "93f0cd4c9a052e8a5b151046848380eafd647e9a41432121d84bc858d92ebeed",
+      "parent_id": "a7ead335bb3bd6388203",
+      "rows": 1964,
+      "wall_s": 51.24941356503405
+    },
+    {
+      "cpu_s": 2.863910111999985,
+      "failures": 2,
+      "output_sha256": "16090d29e3211e5d25e88ce7ac9149bf262bcaf555364a5f9caf59c262939a4b",
+      "parent_id": "a93f4d7da96617f54016",
+      "rows": 286,
+      "wall_s": 2.8640966219827533
+    },
+    {
+      "cpu_s": 120.33051713700002,
+      "failures": 26,
+      "output_sha256": "0e844b45e2e8774514df006a48e7cbb644a84229fa1dad95eb240d4f56ad9a91",
+      "parent_id": "a9460cfa7d3e4acccdb6",
+      "rows": 2299,
+      "wall_s": 120.33446160308085
+    },
+    {
+      "cpu_s": 138.98819537500003,
+      "failures": 186,
+      "output_sha256": "d88e8607ff84e1dd623e082f1e699143f6fec64033285f97eaf26d1bb0719026",
+      "parent_id": "ab42fef8fed3a002893f",
+      "rows": 2851,
+      "wall_s": 138.99798144516535
+    },
+    {
+      "cpu_s": 7.995682412000178,
+      "failures": 71,
+      "output_sha256": "44bbc14479ca3126cd8af5fa16b7a1ac22bba0fd2bdc630e908425c0afea54ad",
+      "parent_id": "aee1348b593c4db0fa9d",
+      "rows": 669,
+      "wall_s": 8.015605905093253
+    },
+    {
+      "cpu_s": 65.3250816719999,
+      "failures": 0,
+      "output_sha256": "0b97e7acb7d3bcdc9974347b1a34058df95f42ba17e3f6617d1b0f4b0091f72d",
+      "parent_id": "af2e99784efbbdda88d0",
+      "rows": 2195,
+      "wall_s": 65.32771267392673
+    },
+    {
+      "cpu_s": 63.57397120499991,
+      "failures": 190,
+      "output_sha256": "aca40581fad068b61ec4863596571534487769ab000366b300ca4c93164d9869",
+      "parent_id": "b199b01a0061b6d72dfb",
+      "rows": 2820,
+      "wall_s": 63.57987869693898
+    },
+    {
+      "cpu_s": 83.46967541999993,
+      "failures": 371,
+      "output_sha256": "59e0351568ca791f8af42071576a2e0850a459b462e0caacfb576774d9fbdd33",
+      "parent_id": "b29fffe442d5c644cd73",
+      "rows": 2829,
+      "wall_s": 83.47327306307852
+    },
+    {
+      "cpu_s": 9.551505228999986,
+      "failures": 28,
+      "output_sha256": "496071241d9062b7bb88ea7f81e7833a595b42de2df274976e755954cd67c9b7",
+      "parent_id": "b3946dd993435c17e643",
+      "rows": 587,
+      "wall_s": 9.551697650924325
+    },
+    {
+      "cpu_s": 43.846335099000044,
+      "failures": 3,
+      "output_sha256": "fd3c4239008ab40bccf363605319ff942e5f351a852e1e40f2dfe9194ddd9955",
+      "parent_id": "b4f65e381480dc583dab",
+      "rows": 1769,
+      "wall_s": 43.8487728710752
+    },
+    {
+      "cpu_s": 104.19426074900002,
+      "failures": 293,
+      "output_sha256": "f8969aab9be665c2a75990e7d868249c20e48fcfffad5d5a69a8881c09489e0f",
+      "parent_id": "b5deef22d036ed476545",
+      "rows": 3586,
+      "wall_s": 104.21784405200742
+    },
+    {
+      "cpu_s": 51.87985001700008,
+      "failures": 175,
+      "output_sha256": "556bc346db678bf4c94ec86750948f311ea32f480bd1d77ae76f52b942c6f859",
+      "parent_id": "b6854ec26ea1d892c9bf",
+      "rows": 1448,
+      "wall_s": 51.892328097019345
+    },
+    {
+      "cpu_s": 4.343808285000023,
+      "failures": 0,
+      "output_sha256": "99c42643ac01483784a3230ab847cdbd3b46da5d830a6a6b91b438a398c9666c",
+      "parent_id": "b6a6acf47c59295c4fd0",
+      "rows": 433,
+      "wall_s": 4.343748371116817
+    },
+    {
+      "cpu_s": 20.27485681400003,
+      "failures": 170,
+      "output_sha256": "c31cf9b49bec6a55278cb4315ab28b80ebc720810f33832a5e545cc55a9147d6",
+      "parent_id": "b6d7c2dcf4cd5734d6c9",
+      "rows": 727,
+      "wall_s": 20.275963912019506
+    },
+    {
+      "cpu_s": 215.98589987000014,
+      "failures": 771,
+      "output_sha256": "aa313454fb676495cbdb70cb9a8db115269fc9b383a7e7ed577e4e3bb8123f6a",
+      "parent_id": "b6d8a8a2ee12cdc81ece",
+      "rows": 2687,
+      "wall_s": 216.010834956076
+    },
+    {
+      "cpu_s": 27.974595606000094,
+      "failures": 0,
+      "output_sha256": "f88f963c45d6e8e99ffde4f1974883203b09a3367b91b677c4472603ffab2626",
+      "parent_id": "b7fc38c46e18372646e0",
+      "rows": 1200,
+      "wall_s": 27.97612978401594
+    },
+    {
+      "cpu_s": 418.29883693700003,
+      "failures": 8,
+      "output_sha256": "1e9937e357f4cbc66692b365456aceeabc4df5620f7c02863fed9ba486aecda1",
+      "parent_id": "b8273a968ef0e806f982",
+      "rows": 5176,
+      "wall_s": 418.3179756340105
+    },
+    {
+      "cpu_s": 8.408658936000165,
+      "failures": 0,
+      "output_sha256": "799f1c76234035de2ca0fa4bf36f66d27b77163abb7f0bd5dce6fdea208ac4ca",
+      "parent_id": "b9857901a6575f45ade0",
+      "rows": 684,
+      "wall_s": 8.408814070979133
+    },
+    {
+      "cpu_s": 45.117987127000106,
+      "failures": 68,
+      "output_sha256": "a522a4a6ee893eadbe79f4816ec5474f51684bca3ad6ab7aed4cf0795f050ab9",
+      "parent_id": "b9b04a825c5fcc5357da",
+      "rows": 1321,
+      "wall_s": 45.12288430193439
+    },
+    {
+      "cpu_s": 24.073073049000186,
+      "failures": 72,
+      "output_sha256": "b33687586d27f80b123a8c5fc6859a2241fa50c0e4f81f7d4c1c774c8822b359",
+      "parent_id": "ba02b6ee3eb7d1039da1",
+      "rows": 1631,
+      "wall_s": 24.07443287409842
+    },
+    {
+      "cpu_s": 89.12534590199994,
+      "failures": 12,
+      "output_sha256": "775ac1786e781fdc8fc13fab644137b1c8bdffbd2caec74a0d3aa1f299113e8d",
+      "parent_id": "ba2e3f509cfa03935d38",
+      "rows": 2258,
+      "wall_s": 89.12878547911532
+    },
+    {
+      "cpu_s": 109.12206810900011,
+      "failures": 0,
+      "output_sha256": "21ec30003b471830be397c9a80adbc1e8b6d506afdc42a978da5b7a0f9bc5ad0",
+      "parent_id": "bbacc06c6842f883eb78",
+      "rows": 2035,
+      "wall_s": 109.1266450129915
+    },
+    {
+      "cpu_s": 11.699568264999925,
+      "failures": 0,
+      "output_sha256": "149b5b2f1cf6c6b046ccd09b932b607b0518b716465c9ef3dc32f3aecbfbe59a",
+      "parent_id": "bcefd8d11e5ba90f807e",
+      "rows": 809,
+      "wall_s": 11.700388899073005
+    },
+    {
+      "cpu_s": 35.930570503000126,
+      "failures": 33,
+      "output_sha256": "562bd5dba077a5fe6a9cbf3219b670961ebaa3030f8e4d0278f1e3324daf4887",
+      "parent_id": "bdf456a20883547bb95b",
+      "rows": 2014,
+      "wall_s": 35.93206414603628
+    },
+    {
+      "cpu_s": 115.71958457100004,
+      "failures": 282,
+      "output_sha256": "354369a46685c81e4d4e17bb795130dfa630ff64fd649c34412e5892a8ad0d8f",
+      "parent_id": "be70179e2d6f299d6b1b",
+      "rows": 3232,
+      "wall_s": 115.72447934490629
+    },
+    {
+      "cpu_s": 10.715194171999883,
+      "failures": 1,
+      "output_sha256": "ffae880b3e9668d40b1ce7a8b3c620a7b69ea17c0c914c97f1a3d23f0ee8a447",
+      "parent_id": "be8172c3f5b8c091330a",
+      "rows": 844,
+      "wall_s": 10.715563318924978
+    },
+    {
+      "cpu_s": 12.824507492000066,
+      "failures": 13,
+      "output_sha256": "f63db3d061237ca5beff56b550bb7a55005ce8a93d9f2ee2c7a78d99a6bada5c",
+      "parent_id": "bf330aeab892991e8c23",
+      "rows": 755,
+      "wall_s": 12.824583288980648
+    },
+    {
+      "cpu_s": 24.15515313900005,
+      "failures": 0,
+      "output_sha256": "b34e9fc2218220c1c416ba202757109eb29204dc1d54593b6c90a9fb30005225",
+      "parent_id": "bf82b818147599e32e2d",
+      "rows": 990,
+      "wall_s": 24.15582237089984
+    },
+    {
+      "cpu_s": 164.87543434600002,
+      "failures": 28,
+      "output_sha256": "f9c076ede233135fc5d667da6692689f9773708f81a2f3003d604e0202a8e299",
+      "parent_id": "bfd3cb25235522dca312",
+      "rows": 3738,
+      "wall_s": 164.8879984940868
+    },
+    {
+      "cpu_s": 14.240435451999929,
+      "failures": 94,
+      "output_sha256": "154c76b4f71616f6683898dd05f59b12a263cebbedf99f8952eea37ea41ccc50",
+      "parent_id": "bff0aef391d6eb124693",
+      "rows": 699,
+      "wall_s": 14.241122524021193
+    },
+    {
+      "cpu_s": 13.610821671999929,
+      "failures": 35,
+      "output_sha256": "7c6b2aabc41a73e1564d2a77b6d6f2c260d4eaa36fef29e9508295347de38c0e",
+      "parent_id": "c000321541ae766839be",
+      "rows": 497,
+      "wall_s": 13.612019269028679
+    },
+    {
+      "cpu_s": 60.931596958,
+      "failures": 126,
+      "output_sha256": "26ab2d46be561222d5f555bcdf4fe206dcd1b119a3509c081c1d85853d8b2e57",
+      "parent_id": "c01f85b5738c7adf3243",
+      "rows": 2748,
+      "wall_s": 60.93389559909701
+    },
+    {
+      "cpu_s": 26.009888551999893,
+      "failures": 112,
+      "output_sha256": "4e838d779a6844a03498201ce51e92d79da2262a6b654647a6b7a93620018820",
+      "parent_id": "c05ae5a4bf6098fd09a3",
+      "rows": 907,
+      "wall_s": 26.010908948024735
+    },
+    {
+      "cpu_s": 357.43669866000005,
+      "failures": 169,
+      "output_sha256": "2877f934cdc9b50d07162372090cd8e8d9add0c1abbf71d6423fd58df262b823",
+      "parent_id": "c0c9054feb57266951ed",
+      "rows": 4645,
+      "wall_s": 357.4501707521267
+    },
+    {
+      "cpu_s": 121.12129074199993,
+      "failures": 170,
+      "output_sha256": "ed19b61b5284f3934e8bf4d4b31da3cab173a8e88e23493df26509b85e902731",
+      "parent_id": "c0f8c54d5d73fed95b92",
+      "rows": 2920,
+      "wall_s": 121.12941009085625
+    },
+    {
+      "cpu_s": 45.50160153899992,
+      "failures": 6,
+      "output_sha256": "9e8864a8eaa9e640dd7004948f05ec8eb68a84e51092fb6bf7dc004de188e2d5",
+      "parent_id": "c178f45008986fa9ab13",
+      "rows": 1822,
+      "wall_s": 45.504284129012376
+    },
+    {
+      "cpu_s": 320.37639411600003,
+      "failures": 21,
+      "output_sha256": "c3c75114662a8451e693fb2e79eee128ecd5f224221cea7d55d539ae9b255830",
+      "parent_id": "c19baeb4ebb617e3a809",
+      "rows": 4717,
+      "wall_s": 320.41624014801346
+    },
+    {
+      "cpu_s": 213.91273013299997,
+      "failures": 242,
+      "output_sha256": "b7d0b45598bab594517a0e7172c624a994bf06181e0d2dfbe1adb08c814f2a2e",
+      "parent_id": "c2bd3c13ab14e2776535",
+      "rows": 3353,
+      "wall_s": 213.92182120494545
+    },
+    {
+      "cpu_s": 3.990890021000041,
+      "failures": 1,
+      "output_sha256": "40fed88c54dd670cf934aa4184854095d48c83a6ff164d8486799eac9bc7c621",
+      "parent_id": "c310045bf7c9c515e452",
+      "rows": 313,
+      "wall_s": 3.991697272984311
+    },
+    {
+      "cpu_s": 81.78323675599995,
+      "failures": 351,
+      "output_sha256": "092519a89aa0e5378c977fa624c4122fc052542f1173a82a974299764df6b416",
+      "parent_id": "c3b4e41e7e5bccb5a55b",
+      "rows": 2824,
+      "wall_s": 81.78740331996232
+    },
+    {
+      "cpu_s": 27.093010653000192,
+      "failures": 0,
+      "output_sha256": "12de10b6fadc651759c234bfcb9fe645af439888624ad8e582c527c2defd8df2",
+      "parent_id": "c42fb9b903a852059da0",
+      "rows": 1167,
+      "wall_s": 27.09574760007672
+    },
+    {
+      "cpu_s": 45.43387592599993,
+      "failures": 284,
+      "output_sha256": "d953109d788e032dcbb26169396141a58e4e4c67b9220da1b925fb2f7dbfc6c5",
+      "parent_id": "c6c0ab2f1c6a562902e7",
+      "rows": 2114,
+      "wall_s": 45.43591471016407
+    },
+    {
+      "cpu_s": 132.32924187999993,
+      "failures": 130,
+      "output_sha256": "631a94f6bdf98f619a0405aa70781205401a2dd204510fa8dea0f18a7d7ee19f",
+      "parent_id": "c7d349ea2b2fdc91052a",
+      "rows": 2717,
+      "wall_s": 132.33810224593617
+    },
+    {
+      "cpu_s": 4.314847339999915,
+      "failures": 1,
+      "output_sha256": "43305184b6815a539e7f6feb7c459cdc35334ad5474ce866ed0f99ead3845444",
+      "parent_id": "c81a27b0beab3a5ac6ef",
+      "rows": 414,
+      "wall_s": 4.315123884938657
+    },
+    {
+      "cpu_s": 344.59378904000005,
+      "failures": 42,
+      "output_sha256": "9a8ba79ec950549dedbfabf0bd086d12e7530fa73d16d357a9c697f3c831619f",
+      "parent_id": "c831448debb24a06dc0d",
+      "rows": 5036,
+      "wall_s": 344.60556768090464
+    },
+    {
+      "cpu_s": 1.9929399699999522,
+      "failures": 11,
+      "output_sha256": "d0821097ea63678945cde3a96ca3ac3b3667766bc39a815f6fcc58a6bc7599ac",
+      "parent_id": "c89bb0cca65f625d980c",
+      "rows": 270,
+      "wall_s": 1.9926696608308703
+    },
+    {
+      "cpu_s": 86.21773850699992,
+      "failures": 0,
+      "output_sha256": "60a0ac18d464ecaffa0a4299eed4523da69df2317057f11b836b3d065c003b3d",
+      "parent_id": "c91a7e175543e18651c7",
+      "rows": 2299,
+      "wall_s": 86.22158036986366
+    },
+    {
+      "cpu_s": 8.678672852999853,
+      "failures": 0,
+      "output_sha256": "4dc8bc80148031a11c1e24fd421ff239a664d0229b4c051cf4dc364d78524ae4",
+      "parent_id": "c9f30c051784a84d74e8",
+      "rows": 514,
+      "wall_s": 8.67899263300933
+    },
+    {
+      "cpu_s": 153.136242155,
+      "failures": 8,
+      "output_sha256": "ff00f8bce245326ec119f80e2c8ad709f37c52c7600d2e7098f7c3ffdae1d2c2",
+      "parent_id": "ca3285773a302355690c",
+      "rows": 3449,
+      "wall_s": 153.1512021429371
+    },
+    {
+      "cpu_s": 15.994234394999921,
+      "failures": 23,
+      "output_sha256": "59f3692c282e9a742222258b11c0e38b2ec4854e4bf2375d18871e32291ae8f8",
+      "parent_id": "caa814c1d7cf545b8b44",
+      "rows": 566,
+      "wall_s": 15.994943424826488
+    },
+    {
+      "cpu_s": 70.6172841990001,
+      "failures": 409,
+      "output_sha256": "d94bd50af5c29248342bfb177924fc512f3cc43723bac9e8863dbc765697e3a8",
+      "parent_id": "cd65984e4fd6fe7bb2d9",
+      "rows": 1903,
+      "wall_s": 70.62080362904817
+    },
+    {
+      "cpu_s": 36.94656860600003,
+      "failures": 42,
+      "output_sha256": "00c5b26114f1d934913927e12fa732e1303f30f7c5d186ffde477ca36dcad7af",
+      "parent_id": "cdef16d24742e4e8ed2d",
+      "rows": 1005,
+      "wall_s": 36.95220168796368
+    },
+    {
+      "cpu_s": 41.96931381400009,
+      "failures": 251,
+      "output_sha256": "a0d3f2e9d53133d63be49f298ca0385618bfaddb88bd221dc9bde857592fa96d",
+      "parent_id": "cf39a21f2ef809e09427",
+      "rows": 2124,
+      "wall_s": 41.97202518302947
+    },
+    {
+      "cpu_s": 103.83957154399991,
+      "failures": 245,
+      "output_sha256": "bfff8451eacecff25175445129bff0ed7882db90dce8752c96d9358321c73962",
+      "parent_id": "cf83c83591be64e1b629",
+      "rows": 1431,
+      "wall_s": 103.842518462101
+    },
+    {
+      "cpu_s": 56.74727895199999,
+      "failures": 145,
+      "output_sha256": "81b1c51d6361816ca756272e974cfec3f8195b2fc633bc3f59d4648d18791a41",
+      "parent_id": "d2606f7d87815a81fb7a",
+      "rows": 918,
+      "wall_s": 56.7509325039573
+    },
+    {
+      "cpu_s": 53.39298724399987,
+      "failures": 70,
+      "output_sha256": "84ec1bb159a5361f92438f53ac279ec05b94ea29d935aea1c15ccfb350bd9783",
+      "parent_id": "d273eb13f067936e377f",
+      "rows": 1705,
+      "wall_s": 53.39700057101436
+    },
+    {
+      "cpu_s": 2.894775827000103,
+      "failures": 15,
+      "output_sha256": "70ba24d04a8f14ede38120d27accc81d8ca5a036b2e35d58887ec7762e914879",
+      "parent_id": "d375ff897de59b2535ab",
+      "rows": 245,
+      "wall_s": 2.8953635909128934
+    },
+    {
+      "cpu_s": 58.652711358999795,
+      "failures": 344,
+      "output_sha256": "2ece0beafc11f08f16af20751f0e27c88f28ac40698e0146b9c2e7e30c3d705e",
+      "parent_id": "d5cf087e92ee78324552",
+      "rows": 2733,
+      "wall_s": 58.65696591301821
+    },
+    {
+      "cpu_s": 48.87559962799992,
+      "failures": 305,
+      "output_sha256": "87ba7ff7c17566e04cfb765ee32cab00825e6e76637ee3abba50d4f1b856751b",
+      "parent_id": "d677da7acd18ec98859b",
+      "rows": 2093,
+      "wall_s": 48.87922064703889
+    },
+    {
+      "cpu_s": 320.91713655299986,
+      "failures": 466,
+      "output_sha256": "2857a66c8ee3f1f7d0a24fb7f45c96f3220d5613db99f661143684c3dd70ab59",
+      "parent_id": "d7c2d32be5d3d1a71498",
+      "rows": 4184,
+      "wall_s": 320.93375687184744
+    },
+    {
+      "cpu_s": 7.585776598999928,
+      "failures": 97,
+      "output_sha256": "bcb9fc7e7a6695489d558776cd6dfac2d384ee92b958ee1fd070177787280cea",
+      "parent_id": "d7cdd23b6f166502b1b9",
+      "rows": 609,
+      "wall_s": 7.586036326829344
+    },
+    {
+      "cpu_s": 49.20199139900001,
+      "failures": 0,
+      "output_sha256": "d4c9be9f25b5967714cb5fc98facd56780e3b257ae8a49607bad52f6406ca9c6",
+      "parent_id": "d86cb5fea715aebdde7f",
+      "rows": 1386,
+      "wall_s": 49.20464644301683
+    },
+    {
+      "cpu_s": 81.7075977070001,
+      "failures": 304,
+      "output_sha256": "b44d3ebfd84673ee384323861061e1978c1792f655324fa329dcfd82ac9f7a4d",
+      "parent_id": "d8b6125390894d72905a",
+      "rows": 1441,
+      "wall_s": 81.71225164202042
+    },
+    {
+      "cpu_s": 41.45127494500002,
+      "failures": 14,
+      "output_sha256": "afdeddc998973b8c6952e182f201869f8ede25bd3aa6ad53aeac1443ee2c0098",
+      "parent_id": "d8efddd1e6ffbeca6798",
+      "rows": 1854,
+      "wall_s": 41.453967296052724
+    },
+    {
+      "cpu_s": 0.7209642389998407,
+      "failures": 0,
+      "output_sha256": "e0063a257e6663c306a7b4f1e188ea7d83453d17b568e45e9d250b1117846280",
+      "parent_id": "db33309ba90a9a79b2e1",
+      "rows": 108,
+      "wall_s": 0.721258067060262
+    },
+    {
+      "cpu_s": 47.65083288400001,
+      "failures": 12,
+      "output_sha256": "374b053f3ca9865cebb076761063a344d765e485a7b6c68bf157eabf18093f08",
+      "parent_id": "dbbf15c07b5a6a19ba49",
+      "rows": 2478,
+      "wall_s": 47.6527912360616
+    },
+    {
+      "cpu_s": 9.928488450000032,
+      "failures": 11,
+      "output_sha256": "4af02a79deef5067a2b7d0e1ace8996945505c3626ec3bfbb0350b8bb39b4ffd",
+      "parent_id": "dcff19953153c9873f7e",
+      "rows": 441,
+      "wall_s": 9.928397071082145
+    },
+    {
+      "cpu_s": 100.90370242900008,
+      "failures": 0,
+      "output_sha256": "ce8556e9ec5d0c96af3814704d98d2bb6b1bc0a38ffa6b9d6f774ff0ba98d039",
+      "parent_id": "df51658fa4bfc3190feb",
+      "rows": 2435,
+      "wall_s": 100.91121521918103
+    },
+    {
+      "cpu_s": 67.68392461500002,
+      "failures": 279,
+      "output_sha256": "995631198bdb17ed66de6ae6c6dee2edbce217cb774b8b160531db414c8dd239",
+      "parent_id": "df87c4af439bf126856b",
+      "rows": 2765,
+      "wall_s": 67.68813885189593
+    },
+    {
+      "cpu_s": 24.564500645999942,
+      "failures": 57,
+      "output_sha256": "5c2672cc24ee89117afba1f90d7a53a9f7d0a62199882d6e01e94011c2c41693",
+      "parent_id": "dfb18f4ebf036a6e4f54",
+      "rows": 951,
+      "wall_s": 24.56637067301199
+    },
+    {
+      "cpu_s": 85.90549843999997,
+      "failures": 31,
+      "output_sha256": "8e5a58e22d2350dfc7239d8850e1bf8b9516cb9403fc2bd8464de6b738b8b0ad",
+      "parent_id": "e094d90013800aae33b4",
+      "rows": 2601,
+      "wall_s": 85.9100054919254
+    },
+    {
+      "cpu_s": 256.99160206700003,
+      "failures": 543,
+      "output_sha256": "1b3f7d28b91683adc5659a09ee27ff5d156dc72108f2b330296ec99b3a87e681",
+      "parent_id": "e0afba5f7c0cdd4968fe",
+      "rows": 3688,
+      "wall_s": 257.00179643789306
+    },
+    {
+      "cpu_s": 126.57872688799989,
+      "failures": 3,
+      "output_sha256": "2bd44f93c8d0ffa58d02598f46c371b20f6b09263ae9ef4c57358585287375f1",
+      "parent_id": "e0e44ebd377e1907cb13",
+      "rows": 3020,
+      "wall_s": 126.58576021809131
+    },
+    {
+      "cpu_s": 164.67125004900004,
+      "failures": 421,
+      "output_sha256": "d6c5e0f55e53beed2b0fb69e56488f892d413c5f8e6c7959294e55162a3e65eb",
+      "parent_id": "e12cd25d9b19457579d3",
+      "rows": 2864,
+      "wall_s": 164.68240318307653
+    },
+    {
+      "cpu_s": 20.22126002600021,
+      "failures": 151,
+      "output_sha256": "b6f86f23065954f7089b972f97edb2f942e71742b698a8e681650767edd9558a",
+      "parent_id": "e193d2b0c22148150613",
+      "rows": 1444,
+      "wall_s": 20.223061277065426
+    },
+    {
+      "cpu_s": 19.87601637700004,
+      "failures": 1,
+      "output_sha256": "44c6536089f9b95f53650325f7185e5c54f461b6d451b474e7790e48c5a077b5",
+      "parent_id": "e23875f9a485042553e9",
+      "rows": 1169,
+      "wall_s": 19.87691826815717
+    },
+    {
+      "cpu_s": 5.144770264000044,
+      "failures": 57,
+      "output_sha256": "9c561f316e6bbd44128b84eca9a1c2a7bb58b37ed99a7036b3bb2d5990846abf",
+      "parent_id": "e262f0a61daf927f56a5",
+      "rows": 308,
+      "wall_s": 5.144781864946708
+    },
+    {
+      "cpu_s": 350.44355975099984,
+      "failures": 659,
+      "output_sha256": "5322523aa45cb28752c1f31b72e45fb7802c0a152d5888e57d912aff86676687",
+      "parent_id": "e44944be7e4723f88201",
+      "rows": 4069,
+      "wall_s": 350.4644053650554
+    },
+    {
+      "cpu_s": 19.542776897000067,
+      "failures": 0,
+      "output_sha256": "19f232f4091c11750b1bc003ac5c65ab39135fab085810787583e2d44e925d08",
+      "parent_id": "e5336d6583076e3b7b32",
+      "rows": 955,
+      "wall_s": 19.543745045084506
+    },
+    {
+      "cpu_s": 34.748963729000025,
+      "failures": 38,
+      "output_sha256": "9e09eb2fb30608da4ab1848910f689f1b1aa6aace5ec0bd7ad77aff04f79a54f",
+      "parent_id": "e649923a4c73730aa5a7",
+      "rows": 990,
+      "wall_s": 34.750779300928116
+    },
+    {
+      "cpu_s": 6.653606335999939,
+      "failures": 0,
+      "output_sha256": "dd1dd7f713520d53427e8fe1ce480754102db68e38cb5437d42b6a557d78bcf2",
+      "parent_id": "ea19e077465dae436b76",
+      "rows": 568,
+      "wall_s": 6.654388753930107
+    },
+    {
+      "cpu_s": 2.75385008000012,
+      "failures": 0,
+      "output_sha256": "32395807254e07c811f3473527b955d0ab55821d9924ed694b7babdf3fa0a686",
+      "parent_id": "ea3eca228e69afe97f9c",
+      "rows": 312,
+      "wall_s": 2.7545692580752075
+    },
+    {
+      "cpu_s": 42.49236371500001,
+      "failures": 227,
+      "output_sha256": "033291e57bdb3f6a41dbe97fac54bdba1b5f58e83403956f59dcc7374c32e664",
+      "parent_id": "eb7049f94bfe79e53974",
+      "rows": 1025,
+      "wall_s": 42.4952808318194
+    },
+    {
+      "cpu_s": 187.43279486899996,
+      "failures": 39,
+      "output_sha256": "502140a743e436f5148832fcc21831b44a282b933521ad406cb68e59244ef91b",
+      "parent_id": "ed96d07121c3304c6f1a",
+      "rows": 3356,
+      "wall_s": 187.44299251306802
+    },
+    {
+      "cpu_s": 5.3938047440001355,
+      "failures": 21,
+      "output_sha256": "9b1032120380870e0a3de89b95fa6311553191ad79167e1c85f4d003cb64b322",
+      "parent_id": "edb3e739e7b886690176",
+      "rows": 289,
+      "wall_s": 5.393541577970609
+    },
+    {
+      "cpu_s": 69.7265143159998,
+      "failures": 0,
+      "output_sha256": "f43f59407091a186f45d62eed9b9200acd122d4a76fa705d3c4bddb47b4369a3",
+      "parent_id": "f216d340a25d0c3ae309",
+      "rows": 2239,
+      "wall_s": 69.73011575290002
+    },
+    {
+      "cpu_s": 107.23225628099999,
+      "failures": 4,
+      "output_sha256": "06da3063b6abb8bf4a6e70e3a2b90cad224509fdade3bf028a608c29b280302c",
+      "parent_id": "f21867f1128f500cce2d",
+      "rows": 2260,
+      "wall_s": 107.24136393680237
+    },
+    {
+      "cpu_s": 21.423526653999943,
+      "failures": 61,
+      "output_sha256": "e9261056a8e1c1f2d258f07c2dce496b0b276d7b10df90fd6454b59eca396a2d",
+      "parent_id": "f27bf277c8d43c1bc450",
+      "rows": 920,
+      "wall_s": 21.424566793954
+    },
+    {
+      "cpu_s": 231.16093852500012,
+      "failures": 181,
+      "output_sha256": "2e0e2e35bb51a1302d159a646452a0ff9993fdcbaa2e2fc2f7bf2288ab0a6d8f",
+      "parent_id": "f336aac78a090284025e",
+      "rows": 3439,
+      "wall_s": 231.17463020491414
+    },
+    {
+      "cpu_s": 208.33503957800008,
+      "failures": 465,
+      "output_sha256": "ad4d4d25aff144e979f7e034b286a617af54f28ff393fef174f08944cb3f06e9",
+      "parent_id": "f3f25d5d5379d90afa88",
+      "rows": 3132,
+      "wall_s": 208.35093391803093
+    },
+    {
+      "cpu_s": 80.83511722200001,
+      "failures": 6,
+      "output_sha256": "c9fab206adebf3ae5534c9576757fcb31d09304d36773db0316bc2ce81dbaa9c",
+      "parent_id": "f4bf5b727619a15f8f02",
+      "rows": 2564,
+      "wall_s": 80.83995017688721
+    },
+    {
+      "cpu_s": 60.09083783599999,
+      "failures": 0,
+      "output_sha256": "b56cdc7246de8c0182e78527431e6767c7cf7b0092d9a0155e77de51c4b25e7d",
+      "parent_id": "f654459482fe40bfdc99",
+      "rows": 1939,
+      "wall_s": 60.09566242899746
+    },
+    {
+      "cpu_s": 24.505094006000036,
+      "failures": 177,
+      "output_sha256": "4cf280d6dc4bbdf298a406cb3c2547c7313f0b0d4a5d2f1e84002793362165e7",
+      "parent_id": "f6d2400937dc0a36cc8d",
+      "rows": 1139,
+      "wall_s": 24.50712795718573
+    },
+    {
+      "cpu_s": 88.43567151899992,
+      "failures": 10,
+      "output_sha256": "1866fbdf6f2971a03ee520e1882013a765216ba0229adef565c660529bfba140",
+      "parent_id": "f6ed844a84625abea984",
+      "rows": 3176,
+      "wall_s": 88.4393873740919
+    },
+    {
+      "cpu_s": 14.859426288000122,
+      "failures": 31,
+      "output_sha256": "0afd2d09a6fe3f0bd2f82eb2931d7b0ed47c612e3015823e5094f9dc51706b48",
+      "parent_id": "f747f89ad647a61c5c3c",
+      "rows": 1008,
+      "wall_s": 14.872831353917718
+    },
+    {
+      "cpu_s": 271.192060805,
+      "failures": 8,
+      "output_sha256": "d61e7c589fdaac57a30776089527de85c6c0a7bbcd065952938e2356325f19a1",
+      "parent_id": "f7fb1ec5d6fedfdadc8a",
+      "rows": 4259,
+      "wall_s": 271.22115897596814
+    },
+    {
+      "cpu_s": 48.47946865199992,
+      "failures": 26,
+      "output_sha256": "2dcb646b56d680374dacadd166bc085caa8f9d489617eaf29cc0f6efba071c47",
+      "parent_id": "f8510fca77167ae2fe1b",
+      "rows": 1646,
+      "wall_s": 48.48215438402258
+    },
+    {
+      "cpu_s": 16.051300047999803,
+      "failures": 51,
+      "output_sha256": "1030acbd000b67f0c47aab012c25bdf8a6690b57416033f7fdac6f82d8d0fd1e",
+      "parent_id": "f8aa49ceb606490583ff",
+      "rows": 918,
+      "wall_s": 16.05176479788497
+    },
+    {
+      "cpu_s": 84.578768373,
+      "failures": 25,
+      "output_sha256": "fa8014ae27a8509a82e73a9e6bc4563c90a10064f796d1d9ad515a0a0cc92ed6",
+      "parent_id": "f97c7ef9e990577fe860",
+      "rows": 1952,
+      "wall_s": 84.58447484206408
+    },
+    {
+      "cpu_s": 95.9063922580001,
+      "failures": 243,
+      "output_sha256": "602833cf405cd34a2b270381495f21da79b75aa5925ea070eb01813d8eb846c7",
+      "parent_id": "fcb8f2fa182b960cb7c8",
+      "rows": 2457,
+      "wall_s": 95.91462685610168
+    },
+    {
+      "cpu_s": 26.25331059700011,
+      "failures": 9,
+      "output_sha256": "e849a9de6fd3593562e2a072591d6bc7c1d47fc660e7c3baacca991ad512c19e",
+      "parent_id": "fd7a8c0a8ae415ebba3e",
+      "rows": 1287,
+      "wall_s": 26.255841878941283
+    },
+    {
+      "cpu_s": 28.650131050000027,
+      "failures": 91,
+      "output_sha256": "129bf406e340f84b685b53957be300883bfccc88096a65a3d32e68c142a31f3e",
+      "parent_id": "ff13d2803fa1f5d63562",
+      "rows": 951,
+      "wall_s": 28.651979034999385
+    }
+  ],
+  "slurm_job_id": null,
+  "source_commit": "1b1afac79dcb3e402457dba829cd12502cd1335a",
+  "started_unix": 1791527501.0450408,
+  "tau_sha256": "e2423c7e7cb178e0a9e9ec96f46b19a3c5706d09b3e4b282b7a97882aac78e6c",
+  "worker_cpu_cap_s": 10800,
+  "workers": 16
+}

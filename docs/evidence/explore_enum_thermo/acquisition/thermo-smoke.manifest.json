@@ -1,0 +1,18 @@
+{
+  "config_sha256": "b3abf1e0d3d47b6885134dbd2d90291b445c581841b8ed5534d261ecc9de79cd",
+  "cpu_s": 6.856253394,
+  "dirty": false,
+  "input_sha256": {
+    "../thermo-smoke-input.jsonl": "81a013b0948b48ca902163f7aa21631779e5eb5cc82ba1044e94966687365d5a",
+    "/home/lhshen/xtbflow-runs/review-align-20261009/tools/aimnet2_wb97m_d3_0.pt": "f0f7c054539ad3261bd36f9b11c56d12f87cb723e25bea7521755bbd3ec24e28",
+    "configs/review/oracle_benchmark.json": "0f3984201b52a5f8e4e843950fc1f1fda40ea16d6116e0d4727e7b28b6a0c027"
+  },
+  "output_sha256": "0818b2fefff22df4a02fad41c49bb8b4705374c030b27cd0d58e5fe883042b5c",
+  "parents": 2,
+  "rdkit": "2026.03.6",
+  "rows": 20,
+  "slurm_job_id": null,
+  "smoke": true,
+  "source_commit": "dc47ab96e44a0f5a3bfd5d6b9a52905ad22a3981",
+  "wall_s": 12.773887251038104
+}

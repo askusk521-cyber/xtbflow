@@ -1,0 +1,13 @@
+{
+  "byte_replay": true,
+  "config_sha256": "b3abf1e0d3d47b6885134dbd2d90291b445c581841b8ed5534d261ecc9de79cd",
+  "dirty": false,
+  "exploratory": true,
+  "input_sha256": {
+    "/home/lhshen/xtbflow-runs/followup-20261009/t1-results-repeat.json": "7d4a3372791b4b4f727e305f4331fa6f91cd790e24c255e38e06cbe5002c03b3",
+    "/home/lhshen/xtbflow-runs/followup-20261009/t1-results.json": "7d4a3372791b4b4f727e305f4331fa6f91cd790e24c255e38e06cbe5002c03b3"
+  },
+  "slurm_job_id": null,
+  "source_commit": "197d81a92bb70d7bc86ae9bc02bed7cae4ff2abe",
+  "tau_sha256": "e2423c7e7cb178e0a9e9ec96f46b19a3c5706d09b3e4b282b7a97882aac78e6c"
+}

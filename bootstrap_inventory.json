@@ -503,6 +503,11 @@
       "bytes": 2049
     },
     {
+      "path": "docs/evidence/explore_enum_thermo/FALLBACK_AUDIT_ZH.md",
+      "sha256": "5ff65affe967bee8468e5879a9d6987b413a0fc2dd7d22736e79ffc7231a2149",
+      "bytes": 3143
+    },
+    {
       "path": "docs/evidence/explore_enum_thermo/REPORT_ZH.md",
       "sha256": "b09fd539c20cc45594b053fab8c79adebe509b5ee0f8a6906d00b6159f26945a",
       "bytes": 3619

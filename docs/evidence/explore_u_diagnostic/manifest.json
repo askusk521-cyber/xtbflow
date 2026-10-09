@@ -1,0 +1,13 @@
+{
+  "config_sha256": "dd80bcf250c09dcf89000b409e34e4fda7e8f92ce078b6f9fdc079e464a1a613",
+  "dirty": false,
+  "input_sha256": {
+    "/home/lhshen/xtbflow-runs/followup-20261009/u-aimnet/manifest.json": "f5f65ab1786c3f6f3c6173ac9a1e6e17bc609ba34ae96c9fadd7660c850d7f90",
+    "/home/lhshen/xtbflow-runs/followup-20261009/u-aimnet/rows.jsonl": "f31ecd49122211714b158c0b0b4e6b18d34920647838b388eeef79ceda91217d",
+    "/home/lhshen/xtbflow-runs/followup-20261009/u-gfn2/manifest.json": "796adede4de54c6896ad1f98fb75b89a6b2d8361f4e899f177e0d4b3e8403496",
+    "/home/lhshen/xtbflow-runs/followup-20261009/u-gfn2/rows.jsonl": "2962da29c9faaac7f3fa63ecb46e6394d99acb153abadb825b16aaeb67ca350d",
+    "configs/explore/u_diagnostic.json": "dd80bcf250c09dcf89000b409e34e4fda7e8f92ce078b6f9fdc079e464a1a613"
+  },
+  "slurm_job_id": null,
+  "source_commit": "a188a6183ddfd01c2d435cbeda8ea693b1b8a175"
+}

@@ -1,0 +1,10 @@
+f5f65ab1786c3f6f3c6173ac9a1e6e17bc609ba34ae96c9fadd7660c850d7f90  ./acquisition/aimnet.manifest.json
+796adede4de54c6896ad1f98fb75b89a6b2d8361f4e899f177e0d4b3e8403496  ./acquisition/gfn2.manifest.json
+9a9e2b5f2a66c46043d408287d4e96c51a5786c057eeaac6405fff28b4a491a2  ./manifest.json
+d0dacd9772b6dcf778667115c624db47685e33b89a3055597d2e13175f3ecd26  ./REPORT_ZH.md
+f109ef3e7df330a6296885e90ac73ba120684413e3d6e080fd8f31043dade11d  ./results.json
+e7555f791ab1e716da9e7f1e5fd07e73779a3ed4350fd9c2e30f21ca0f6fbc4e  ./validation/manifest.json
+251f030abac3c9051b2ac48e2b44a6c7f75193e9cf7c0f1283e8a9db1f342267  ./validation/u-bootstrap.log
+0172b0b7625b90ba74729da54ef28b3282d3578ca0dcef3689f3dc954efdd8c1  ./validation/u-pytest.log
+ee34b517ace23cccb0823bb398c5738d22e245fc238ce6d445ac0ffd786ae7d8  ./validation/u-unittest.log
+0fdce44a0d32eaf73121aa4ace33f076b075f960086e18d633a90ff4e16a08da  ./validation/water.json

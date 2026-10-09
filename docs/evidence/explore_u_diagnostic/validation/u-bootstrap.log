@@ -1,0 +1,2 @@
+PASS: 520 files match the bootstrap inventory.
+This verifies files only; no training, quantum chemistry, remote upload or model validation is implied.

@@ -1,0 +1,17 @@
+{
+  "complete": true,
+  "config_sha256": "dd80bcf250c09dcf89000b409e34e4fda7e8f92ce078b6f9fdc079e464a1a613",
+  "cpu_cap_s": 120,
+  "cpu_s": 0.02602727199999988,
+  "dirty": false,
+  "input_sha256": {
+    "configs/explore/u_diagnostic.json": "dd80bcf250c09dcf89000b409e34e4fda7e8f92ce078b6f9fdc079e464a1a613",
+    "configs/review/oracle_benchmark.json": "0f3984201b52a5f8e4e843950fc1f1fda40ea16d6116e0d4727e7b28b6a0c027"
+  },
+  "method": "GFN2-xTB",
+  "slurm_job_id": null,
+  "source_commit": "a861037fac6803d543765f3c563706fd0d647ff0",
+  "stage": "water",
+  "started_unix": 1791529494.7722225,
+  "wall_s": 0.027515888214111328
+}

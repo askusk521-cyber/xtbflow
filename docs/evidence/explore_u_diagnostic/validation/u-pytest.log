@@ -1,0 +1,13 @@
+........................................................................ [ 21%]
+........................................................................ [ 42%]
+........................................................................ [ 64%]
+........................................................................ [ 85%]
+................................................                         [100%]
+=============================== warnings summary ===============================
+tests/test_energy_forces.py::test_direct_model_force_matches_finite_difference
+  /home/lhshen/xtbflow-runs/followup-20261009/source-a188a61/tests/test_energy_forces.py:72: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+  Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+    finite_difference_force = -float((e_plus - e_minus) / (2 * step))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+336 passed, 1 warning in 19.71s

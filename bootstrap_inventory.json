@@ -733,6 +733,76 @@
       "bytes": 281
     },
     {
+      "path": "docs/evidence/explore_smc_oracle/REPORT_ZH.md",
+      "sha256": "38d4af5552f830a77f5ae9f24cae45c781324eadff4cb2fdad65189c6c06cb94",
+      "bytes": 5021
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/RESTORE.md",
+      "sha256": "b99fbfaff6bb662b0d46b6ea2669b135b2114a5def49d1eef62c9bc22bfc809c",
+      "bytes": 727
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/SHA256SUMS",
+      "sha256": "1166eae7d3cdf2f92eaa5156b7463bfe8df2cd37b6daf6787e970abc5ecbeff5",
+      "bytes": 1134
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/checkpoint-aimnet.manifest.json",
+      "sha256": "d62d3210a4d4ca6604fb8a586409c25abb1202ec903e0ac3d32a9b12e48e514f",
+      "bytes": 107730
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/checkpoint-gxtb.manifest.json",
+      "sha256": "ad5c3ff12b3a4e00eeece1b74c7bd177d74965189b63774a7478f67de9007085",
+      "bytes": 107729
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/decode.manifest.json",
+      "sha256": "3d6b755068d04df945e57fc6c6a2997589c81df91d6b14e90a3c3baabd5dc801",
+      "bytes": 30732
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/endpoint-aimnet.manifest.json",
+      "sha256": "aed62ce3bf978c9ab15915b6bfdbc8e61509fe7a22e3242d32b99c813441624e",
+      "bytes": 78798
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/endpoint-gfn2.manifest.json",
+      "sha256": "80a2498668d75221ada25b34a9a3cdb14208818c74d2b57ce7d5264410e14953",
+      "bytes": 78648
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/endpoint-gxtb.manifest.json",
+      "sha256": "da9b2df8b367be5124d0a1e0e1f0fe2580613662b2599276be5dc0094dc3b73a",
+      "bytes": 78791
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/gpu.manifest.json",
+      "sha256": "7a02a40ef3d9a96361811ff29632cf515ec68ea40a93cba6918263436a23d9b2",
+      "bytes": 757
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/manifest.json",
+      "sha256": "fae868a008f0fcba08a12840d445d3b27d75ad1b66c5d63547de363122f2f3c3",
+      "bytes": 2430
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/packaging.json",
+      "sha256": "9bf9b31ccb719e74e946ccef639b6c21497cbb9ca55e0831e106b534b1b3e095",
+      "bytes": 3356
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/plans.manifest.json",
+      "sha256": "92a728cf906063c5b016eea9c862c4e856652019046d8eb326995b06fd9cb6e5",
+      "bytes": 1035
+    },
+    {
+      "path": "docs/evidence/explore_smc_oracle/results.json.gz",
+      "sha256": "a19ca8761d80413aaac2af117d36695f003d1d522a726a5904801abe5a528530",
+      "bytes": 195208
+    },
+    {
       "path": "docs/evidence/explore_smc_oracle_gates/SHA256SUMS",
       "sha256": "43d7d76f2f3425599da3d8af838b125338197b68602bee1680e45f6afefc6c83",
       "bytes": 727

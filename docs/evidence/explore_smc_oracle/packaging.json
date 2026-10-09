@@ -1,0 +1,63 @@
+{
+  "byte_replay": true,
+  "compressed_bytes": 195208,
+  "gpu_job_id": 2754,
+  "gpu_runtime_s": 24,
+  "input_manifest_sha256": {
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-aimnet/manifest.json": "d62d3210a4d4ca6604fb8a586409c25abb1202ec903e0ac3d32a9b12e48e514f",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-gxtb/manifest.json": "ad5c3ff12b3a4e00eeece1b74c7bd177d74965189b63774a7478f67de9007085",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-decoded/manifest.json": "3d6b755068d04df945e57fc6c6a2997589c81df91d6b14e90a3c3baabd5dc801",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-endpoint-aimnet/manifest.json": "aed62ce3bf978c9ab15915b6bfdbc8e61509fe7a22e3242d32b99c813441624e",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-endpoint-gfn2/manifest.json": "80a2498668d75221ada25b34a9a3cdb14208818c74d2b57ce7d5264410e14953",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-endpoint-gxtb/manifest.json": "da9b2df8b367be5124d0a1e0e1f0fe2580613662b2599276be5dc0094dc3b73a",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-new/oracle_g2_manifest.json": "7a02a40ef3d9a96361811ff29632cf515ec68ea40a93cba6918263436a23d9b2",
+    "/home/lhshen/xtbflow-runs/followup-20261009/smc2-new/plan_manifest.json": "92a728cf906063c5b016eea9c862c4e856652019046d8eb326995b06fd9cb6e5"
+  },
+  "measured_cpu_s": 3127.06,
+  "raw_results_bytes": 2631258,
+  "raw_results_path": "/home/lhshen/xtbflow-runs/followup-20261009/smc2-evidence/results.json",
+  "raw_results_sha256": "689b64a860ee57bb508362bbadc2bf3b05b13b312fa595cebc60f9763f6e9ee7",
+  "resources": [
+    {
+      "cpu_s": 19.59,
+      "log": "/home/lhshen/xtbflow-runs/followup-20261009/oracle-aimnet.log",
+      "sha256": "408bbc09dbb5ab0ef8680575cb68d20c5c5f5368f7e010d0158d9361dacf949d"
+    },
+    {
+      "cpu_s": 24.07,
+      "log": "/home/lhshen/xtbflow-runs/followup-20261009/oracle-gxtb.log",
+      "sha256": "92c18bc46ba8ffe89cb151d462377d70b31d338a24cfc07772e04c7d9b67c595"
+    },
+    {
+      "cpu_s": 126.87,
+      "log": "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-aimnet.log",
+      "sha256": "4baa46cc43b66ea5a274688719915eeacc0f33a16107ee52da6b4bd77155682f"
+    },
+    {
+      "cpu_s": 826.72,
+      "log": "/home/lhshen/xtbflow-runs/followup-20261009/smc-checkpoint-gxtb.log",
+      "sha256": "1e4019f04c6d39c828490bd07815641db1d8476ab6668bb73ca95c5c97a7e95b"
+    },
+    {
+      "cpu_s": 122.97,
+      "log": "/home/lhshen/xtbflow-runs/followup-20261009/smc2-decode.log",
+      "sha256": "2e9b3e82c6968647d385bb15ff0f903324765df655fa0f767897e7d8d29ad964"
+    },
+    {
+      "cpu_s": 224.53,
+      "log": "/home/lhshen/xtbflow-runs/followup-20261009/smc2-endpoint-aimnet.log",
+      "sha256": "2dc81a44bb997a6496301a8ed220de7732bc22f84734a9fbde7d587010f83d23"
+    },
+    {
+      "cpu_s": 1671.27,
+      "log": "/home/lhshen/xtbflow-runs/followup-20261009/smc2-endpoint-gxtb.log",
+      "sha256": "d2bfbc31f9a0d1afd0aa41bc0d4ad2486763dd943cc69b79d5c3b83c7a6e23cc"
+    },
+    {
+      "cpu_s": 111.04,
+      "log": "/home/lhshen/xtbflow-runs/followup-20261009/smc2-endpoint-gfn2.log",
+      "sha256": "29889178d07f5be54474bf09b3e78a0da557fc17250bc0aa3ae909b85d11bedf"
+    }
+  ],
+  "scope": "Completed acquisition commands including children; excludes unmetered development/tests/analysis, not exact total task usage"
+}

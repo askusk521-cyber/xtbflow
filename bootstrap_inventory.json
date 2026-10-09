@@ -438,6 +438,21 @@
       "bytes": 5338
     },
     {
+      "path": "docs/evidence/aimnet_provenance/SI_ADDENDUM_ZH.md",
+      "sha256": "ebd4fb1694ae44063a33cfd1131ff798d8aa0233dc709e48a0c72b2aff0fe9f1",
+      "bytes": 3491
+    },
+    {
+      "path": "docs/evidence/aimnet_provenance/SI_DOWNLOAD_SIZES.txt",
+      "sha256": "54544ec48d4c5188f56f5bc475aad85863c35b80ceff2ee72a41562bbf6bd814",
+      "bytes": 70
+    },
+    {
+      "path": "docs/evidence/aimnet_provenance/SI_SOURCES_SHA256SUMS",
+      "sha256": "5a70bc2544f526e73c4861fc20c47219f54777c186e91621033dbea10ad1250c",
+      "bytes": 597
+    },
+    {
       "path": "docs/evidence/cp2k_calibration_smoke.json",
       "sha256": "9b8c43a6f5ca121e01a14d3f42eafd19351c540e2a74af1b9d1518532c39cb76",
       "bytes": 4611

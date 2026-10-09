@@ -1,0 +1,11 @@
+{
+  "candidates": 2644,
+  "methods": [
+    "AIMNet2",
+    "AIMNet2-rxn",
+    "GFN1-xTB",
+    "GFN2-xTB",
+    "g-xTB"
+  ],
+  "passed": true
+}

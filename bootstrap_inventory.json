@@ -168,6 +168,11 @@
       "bytes": 1328
     },
     {
+      "path": "configs/explore/enum_thermo.json",
+      "sha256": "b3abf1e0d3d47b6885134dbd2d90291b445c581841b8ed5534d261ecc9de79cd",
+      "bytes": 3669
+    },
+    {
       "path": "configs/explore/geometry_information.json",
       "sha256": "af016782705c8325dd36b3433b74f157fbcb9ead080b9926f627a41d4b6c853d",
       "bytes": 6508
@@ -1241,6 +1246,11 @@
       "path": "docs/explore/SMC_SELECTION_DESIGN_ZH.md",
       "sha256": "27e3d16653cce9c207d81b3b79819eafe206fc35c77a4c9cd4837dc9ffdb74c6",
       "bytes": 5412
+    },
+    {
+      "path": "docs/handoffs/HANDOFF_FOLLOWUP_ZH.md",
+      "sha256": "fe0e1f52eb9dbf11702fd21e771c40099fb606f24a484e5ea013f2c69ed35667",
+      "bytes": 34895
     },
     {
       "path": "docs/model_design.md",

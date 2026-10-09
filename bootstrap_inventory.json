@@ -1473,6 +1473,11 @@
       "bytes": 7421
     },
     {
+      "path": "scripts/followup_u_analyze.py",
+      "sha256": "e498c7a959b8935322ed591a1e28f5642f7d89dafeb25891ee04df7db1ae587f",
+      "bytes": 6249
+    },
+    {
       "path": "scripts/followup_u_math.py",
       "sha256": "026fdde06cd1bcea2a534f3cfa86d2d30653ed73b1cbf62058f887b723c8e292",
       "bytes": 2257
@@ -2301,6 +2306,11 @@
       "path": "tests/test_explore_rollout.py",
       "sha256": "4d10d4153142e9dab197b0801a8290f3009fc60151921b283b91394c221ed87f",
       "bytes": 3138
+    },
+    {
+      "path": "tests/test_followup_u_analyze.py",
+      "sha256": "bb6f83bbb6ee6cb4f7d41ec683000c9c283a9a8fff609e57f10c274b2dd9bc53",
+      "bytes": 1335
     },
     {
       "path": "tests/test_followup_u_math.py",

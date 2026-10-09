@@ -433,6 +433,16 @@
       "bytes": 4036
     },
     {
+      "path": "docs/evidence/aimnet_provenance/DATASET_ADDENDUM_ZH.md",
+      "sha256": "64d6ca95d5aee12f22266f9962b488d274e8aff94360d780b490102e961aef09",
+      "bytes": 3443
+    },
+    {
+      "path": "docs/evidence/aimnet_provenance/DATASET_SOURCES_SHA256SUMS",
+      "sha256": "e33ab7a35c0490fbd559033aa1c560a027347143bb4f6bafe8b2a943116a0b02",
+      "bytes": 257
+    },
+    {
       "path": "docs/evidence/aimnet_provenance/REPORT_ZH.md",
       "sha256": "d6019438162c352cbbe10a37de35017e78dec1182e452f75ed2f962f975b0bd2",
       "bytes": 5338

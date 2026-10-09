@@ -1,0 +1,30 @@
+{
+  "distribution": {
+    "0": -167.44739132965333,
+    "1": -53.21949665051972,
+    "100": 287.41081821205444,
+    "25": 13.21726324751944,
+    "5": -24.341930953619887,
+    "50": 39.1514472887211,
+    "75": 89.10352372740454,
+    "95": 141.29530285176588,
+    "99": 183.1870192177373
+  },
+  "exploratory": true,
+  "failure_reasons": {
+    "product:ValueError:embedding_failed;reactant:ok": 19
+  },
+  "input_sha256": {
+    "../thermo-train-input.jsonl": "ce7174ae6b89710974be955f7fd043a12d1addf86af1abc1fef060107754ca94",
+    "../thermo-train.jsonl": "36269f22cd11e369c8e2394698da1d8238044d7012bb8a4c986c5609cfa45910",
+    "/home/lhshen/xtbflow-runs/v1a-20261007/data/split_manifest.json": "4ec80a3e0246be760d22ef546895df54c05f6612839443f28db330c4ac0d2eea"
+  },
+  "interpolation": "linear",
+  "percentile": 95,
+  "schema": "xtbflow-enum-thermo-tau/1",
+  "success_rate": 0.9927007299270073,
+  "successful": 2584,
+  "tau_kcal": 141.29530285176588,
+  "total": 2603,
+  "train_parents": 386
+}

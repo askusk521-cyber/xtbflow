@@ -1,0 +1,36 @@
+........................................................................ [ 21%]
+........................................................................ [ 42%]
+........................................................................ [ 63%]
+........................................................................ [ 84%]
+...................................................                      [100%]
+=============================== warnings summary ===============================
+tests/test_energy_forces.py::test_direct_model_force_matches_finite_difference
+  /home/lhshen/xtbflow-runs/followup-20261009/source-995a78e/tests/test_energy_forces.py:72: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+  Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+    finite_difference_force = -float((e_plus - e_minus) / (2 * step))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+339 passed, 1 warning in 19.77s
+	Command being timed: "/home/lhshen/miniconda3/envs/xtbflow/bin/python -m pytest -q tests --ignore=tests/reusable"
+	User time (seconds): 16.87
+	System time (seconds): 3.26
+	Percent of CPU this job got: 98%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:20.51
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 974108
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 686326
+	Voluntary context switches: 1827
+	Involuntary context switches: 1614
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 9176
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

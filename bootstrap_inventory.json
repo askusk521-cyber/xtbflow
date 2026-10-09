@@ -168,6 +168,16 @@
       "bytes": 1328
     },
     {
+      "path": "configs/explore/enum_thermo.json",
+      "sha256": "b3abf1e0d3d47b6885134dbd2d90291b445c581841b8ed5534d261ecc9de79cd",
+      "bytes": 3669
+    },
+    {
+      "path": "configs/explore/enum_thermo_tau.json",
+      "sha256": "e2423c7e7cb178e0a9e9ec96f46b19a3c5706d09b3e4b282b7a97882aac78e6c",
+      "bytes": 989
+    },
+    {
       "path": "configs/explore/geometry_information.json",
       "sha256": "af016782705c8325dd36b3433b74f157fbcb9ead080b9926f627a41d4b6c853d",
       "bytes": 6508
@@ -491,6 +501,91 @@
       "path": "docs/evidence/cp2k_runtime_evidence_provenance_20260929.json",
       "sha256": "3e1e18ee42d00732bacbefa2db56f7caf9a698765b164b82cf19579838184abf",
       "bytes": 2049
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/FALLBACK_AUDIT_ZH.md",
+      "sha256": "5ff65affe967bee8468e5879a9d6987b413a0fc2dd7d22736e79ffc7231a2149",
+      "bytes": 3143
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/REPORT_ZH.md",
+      "sha256": "b09fd539c20cc45594b053fab8c79adebe509b5ee0f8a6906d00b6159f26945a",
+      "bytes": 3619
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/SHA256SUMS",
+      "sha256": "8d8ffae75e2a30972523435ce83ec83c376dedea54e9d16cafad6e6417e850ee",
+      "bytes": 1413
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/acquisition/screen.manifest.json",
+      "sha256": "1d5994e4e7fdd36cbf949b94e1bb9145ccc596fbbb7b10783dc7d110f5ee9027",
+      "bytes": 146928
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/acquisition/thermo-budget.json",
+      "sha256": "ca9fb85cf8f32e73d857181c11f71fd87bf8f39a7677cf95a55e88b2fb27daa8",
+      "bytes": 202
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/acquisition/thermo-smoke.manifest.json",
+      "sha256": "f3ac805afb39c2dc29579ed81e21c2a5692dcacd6a58b7508f81e257260654ed",
+      "bytes": 799
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/acquisition/thermo-timing.manifest.json",
+      "sha256": "eb07f6c6922ad04d88a274e0ac7504ee0854005c19d77d886904a63263f3329e",
+      "bytes": 801
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/acquisition/thermo-train.manifest.json",
+      "sha256": "5928058298391dcf1d4c3c64683a500e60946683173c5801b74b59283407348a",
+      "bytes": 804
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/gates/b0-reproduction.json",
+      "sha256": "f70cad23a4d5c753c8264c00a2b2fa9dc02a709a52a53cb6775a569b9f92e493",
+      "bytes": 372
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/gates/b2f2-gate.json",
+      "sha256": "3562530efc44cff54e4156951140568a8cc05022d53d0f1496e95fb529aa0f56",
+      "bytes": 69696
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/gates/t1-analysis-replay.sha256",
+      "sha256": "8f5b4f1fd8e49555560a7461454dbf4a3b4d9c849b2e885985bf2f0c868f6ad6",
+      "bytes": 259
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/manifest.json",
+      "sha256": "b7d07efc41dad1a7af7fe47fa251e1b0c9edc075b2bc2a2d94600b1838448144",
+      "bytes": 626
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/recall.png",
+      "sha256": "6b582eba941505d349a81127cc2acde4f26f8c01b16f3650754cd9748f83f998",
+      "bytes": 89406
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/results.json",
+      "sha256": "7d4a3372791b4b4f727e305f4331fa6f91cd790e24c255e38e06cbe5002c03b3",
+      "bytes": 171810
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/validation/t1-bootstrap.log",
+      "sha256": "1b05f86df6aeed0a3c6e53dff571ce9924ef2a783ad3493c31b8f8992f633d65",
+      "bytes": 151
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/validation/t1-pytest.log",
+      "sha256": "67d2919b1da019104b72c880a3b42fc14f4ad4740920673fc7bd19e12fa93178",
+      "bytes": 1886
+    },
+    {
+      "path": "docs/evidence/explore_enum_thermo/validation/t1-unittest.log",
+      "sha256": "e935a63fc1282857f632ca910749a89ffdd97b68ecf4fb909fcb2758132d67da",
+      "bytes": 977
     },
     {
       "path": "docs/evidence/explore_geoinfo/REPORT_ZH.md",
@@ -1243,6 +1338,11 @@
       "bytes": 5412
     },
     {
+      "path": "docs/handoffs/HANDOFF_FOLLOWUP_ZH.md",
+      "sha256": "fe0e1f52eb9dbf11702fd21e771c40099fb606f24a484e5ea013f2c69ed35667",
+      "bytes": 34895
+    },
+    {
       "path": "docs/model_design.md",
       "sha256": "bdf387e56ea531479b11068b397e98912004ae24c8e784fb37339106cdcb87ef",
       "bytes": 4233
@@ -1446,6 +1546,41 @@
       "path": "scripts/finalize_smc.py",
       "sha256": "89fb24da88547350b36b8cc13d37b21b9a3826500181a00fb6f111773aa11a10",
       "bytes": 6984
+    },
+    {
+      "path": "scripts/followup_enum_gate.py",
+      "sha256": "d8543435fdff0fa85b76d58810ca5b61e3d1362396f7d6fee2701a2762939a60",
+      "bytes": 2886
+    },
+    {
+      "path": "scripts/followup_thermo.py",
+      "sha256": "df9a4e942e922cb069ec2d8173ae04d5e63df807bc07bf7101724d38bb8ed46f",
+      "bytes": 6771
+    },
+    {
+      "path": "scripts/followup_thermo_analyze.py",
+      "sha256": "11ff4ec7dc2c4a4386d50c574d2eb0914f525df7e2d40047009f72092641d6e0",
+      "bytes": 7374
+    },
+    {
+      "path": "scripts/followup_thermo_inputs.py",
+      "sha256": "63b24b439a85d18a896536022d497092962534ef7cd9792a1a93a227207bc573",
+      "bytes": 2462
+    },
+    {
+      "path": "scripts/followup_thermo_report.py",
+      "sha256": "070954f747277597f92805518d5324755952fbc4d14911428dac49a563787afb",
+      "bytes": 6169
+    },
+    {
+      "path": "scripts/followup_thermo_screen.py",
+      "sha256": "c3de372e15152f2e01b64fbbf96215278675e63bde68c26e78933d1339ff6efa",
+      "bytes": 5761
+    },
+    {
+      "path": "scripts/freeze_thermo_tau.py",
+      "sha256": "81e7c4e653f699a31137bf2ca8a73978cd8f1d5d13f0cdfe57fa311290994cd7",
+      "bytes": 1956
     },
     {
       "path": "scripts/joint_flow_smoke.py",
@@ -2271,6 +2406,21 @@
       "path": "tests/test_explore_rollout.py",
       "sha256": "4d10d4153142e9dab197b0801a8290f3009fc60151921b283b91394c221ed87f",
       "bytes": 3138
+    },
+    {
+      "path": "tests/test_followup_enum_gate.py",
+      "sha256": "ce786103f622c64ee2df16cf9fce89f16922f17319fad35bc4f547d053344ca7",
+      "bytes": 787
+    },
+    {
+      "path": "tests/test_followup_thermo.py",
+      "sha256": "9f9aeb97561c8c6cb4c812bf68685f1d46117e0145a10dce05e153fac7dfc687",
+      "bytes": 1658
+    },
+    {
+      "path": "tests/test_followup_thermo_analyze.py",
+      "sha256": "bd6bff23bdefe68c948a63d77589e8b05a23c26680624e81bbdc935fb1cee723",
+      "bytes": 1148
     },
     {
       "path": "tests/test_geometry_flow.py",

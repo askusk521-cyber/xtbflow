@@ -1473,6 +1473,11 @@
       "bytes": 6771
     },
     {
+      "path": "scripts/followup_thermo_analyze.py",
+      "sha256": "11ff4ec7dc2c4a4386d50c574d2eb0914f525df7e2d40047009f72092641d6e0",
+      "bytes": 7374
+    },
+    {
       "path": "scripts/followup_thermo_inputs.py",
       "sha256": "63b24b439a85d18a896536022d497092962534ef7cd9792a1a93a227207bc573",
       "bytes": 2462
@@ -2321,6 +2326,11 @@
       "path": "tests/test_followup_thermo.py",
       "sha256": "9f9aeb97561c8c6cb4c812bf68685f1d46117e0145a10dce05e153fac7dfc687",
       "bytes": 1658
+    },
+    {
+      "path": "tests/test_followup_thermo_analyze.py",
+      "sha256": "bd6bff23bdefe68c948a63d77589e8b05a23c26680624e81bbdc935fb1cee723",
+      "bytes": 1148
     },
     {
       "path": "tests/test_geometry_flow.py",

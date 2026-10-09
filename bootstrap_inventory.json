@@ -1458,6 +1458,11 @@
       "bytes": 6984
     },
     {
+      "path": "scripts/followup_enum_gate.py",
+      "sha256": "d8543435fdff0fa85b76d58810ca5b61e3d1362396f7d6fee2701a2762939a60",
+      "bytes": 2886
+    },
+    {
       "path": "scripts/joint_flow_smoke.py",
       "sha256": "be9cab15cb5032dd57fa8e9be21c2d815bd0966c1675a4fe48c25314dd081207",
       "bytes": 11435
@@ -2281,6 +2286,11 @@
       "path": "tests/test_explore_rollout.py",
       "sha256": "4d10d4153142e9dab197b0801a8290f3009fc60151921b283b91394c221ed87f",
       "bytes": 3138
+    },
+    {
+      "path": "tests/test_followup_enum_gate.py",
+      "sha256": "ce786103f622c64ee2df16cf9fce89f16922f17319fad35bc4f547d053344ca7",
+      "bytes": 787
     },
     {
       "path": "tests/test_geometry_flow.py",

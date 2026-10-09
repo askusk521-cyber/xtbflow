@@ -1523,6 +1523,16 @@
       "bytes": 5314
     },
     {
+      "path": "scripts/followup_smc_analyze.py",
+      "sha256": "fe8582236e7810c209a6682b2c4d9ee765d4cf39904d688ba1847134b75d9c81",
+      "bytes": 9407
+    },
+    {
+      "path": "scripts/followup_smc_endpoints.py",
+      "sha256": "ef66378ecf175fbdd9262f956fb65943387f01447240a934db4dff75d90fe649",
+      "bytes": 6116
+    },
+    {
       "path": "scripts/followup_smc_oracle.py",
       "sha256": "a765e2fc395ecf85bfc9046cb44dfa9add44bd968a4279602e1472a621e8a90e",
       "bytes": 8402
@@ -2366,6 +2376,11 @@
       "path": "tests/test_explore_rollout.py",
       "sha256": "4d10d4153142e9dab197b0801a8290f3009fc60151921b283b91394c221ed87f",
       "bytes": 3138
+    },
+    {
+      "path": "tests/test_followup_smc_analysis.py",
+      "sha256": "66314bad5d4c8d154055495d62b64bf9722d521206fb33dffc589240666513df",
+      "bytes": 986
     },
     {
       "path": "tests/test_followup_smc_oracle.py",

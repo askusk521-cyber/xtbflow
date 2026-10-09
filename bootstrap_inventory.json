@@ -1178,6 +1178,11 @@
       "bytes": 2964
     },
     {
+      "path": "scripts/review_open_world_dft.py",
+      "sha256": "d63cc71c6790960e622a10d4320afcfcf5e73cc94a1c64c6dc9c49ef9e9014a2",
+      "bytes": 10152
+    },
+    {
       "path": "scripts/review_open_world_manifest.py",
       "sha256": "d699010b3623c97e12dfa990c32b8ce58c5fac8f9ba52715559b60be64f205d2",
       "bytes": 2087
@@ -1921,6 +1926,11 @@
       "path": "tests/test_energy_forces.py",
       "sha256": "79b971518e6e2c05ecf19af765e1c7ef663db34e3761e3582ea8d67d37ac5a0f",
       "bytes": 9907
+    },
+    {
+      "path": "tests/test_followup_open_world_dft.py",
+      "sha256": "f1b4b54c997fb3bdd5849fc393aaf37f76d09e8d40e14676566a0e6beb493cb5",
+      "bytes": 2694
     },
     {
       "path": "tests/test_geometry_flow.py",

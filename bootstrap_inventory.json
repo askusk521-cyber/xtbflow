@@ -243,6 +243,11 @@
       "bytes": 16904
     },
     {
+      "path": "configs/review/open_world_o2.json",
+      "sha256": "379eae313b4c335aa381c2c24a2633c02638a69b887eed3626023d66e08a44fc",
+      "bytes": 3654
+    },
+    {
       "path": "configs/rules/core_v1.yaml",
       "sha256": "a4de309daad0bab9d502028976cef7b57f91691de5895ed6d4dc1d1c764b2941",
       "bytes": 903
@@ -426,6 +431,36 @@
       "path": "docs/data_contract.md",
       "sha256": "9964999089df7e67b9d5c0af99dcf5bd426974bca5128bee2623c928473d42a9",
       "bytes": 4036
+    },
+    {
+      "path": "docs/evidence/aimnet_provenance/DATASET_ADDENDUM_ZH.md",
+      "sha256": "64d6ca95d5aee12f22266f9962b488d274e8aff94360d780b490102e961aef09",
+      "bytes": 3443
+    },
+    {
+      "path": "docs/evidence/aimnet_provenance/DATASET_SOURCES_SHA256SUMS",
+      "sha256": "e33ab7a35c0490fbd559033aa1c560a027347143bb4f6bafe8b2a943116a0b02",
+      "bytes": 257
+    },
+    {
+      "path": "docs/evidence/aimnet_provenance/REPORT_ZH.md",
+      "sha256": "d6019438162c352cbbe10a37de35017e78dec1182e452f75ed2f962f975b0bd2",
+      "bytes": 5338
+    },
+    {
+      "path": "docs/evidence/aimnet_provenance/SI_ADDENDUM_ZH.md",
+      "sha256": "ebd4fb1694ae44063a33cfd1131ff798d8aa0233dc709e48a0c72b2aff0fe9f1",
+      "bytes": 3491
+    },
+    {
+      "path": "docs/evidence/aimnet_provenance/SI_DOWNLOAD_SIZES.txt",
+      "sha256": "54544ec48d4c5188f56f5bc475aad85863c35b80ceff2ee72a41562bbf6bd814",
+      "bytes": 70
+    },
+    {
+      "path": "docs/evidence/aimnet_provenance/SI_SOURCES_SHA256SUMS",
+      "sha256": "5a70bc2544f526e73c4861fc20c47219f54777c186e91621033dbea10ad1250c",
+      "bytes": 597
     },
     {
       "path": "docs/evidence/cp2k_calibration_smoke.json",
@@ -1173,6 +1208,11 @@
       "bytes": 2964
     },
     {
+      "path": "scripts/review_open_world_dft.py",
+      "sha256": "d2b24aef0d5d8428315b23997084eebea92779a6d9b858380cbfc7585df7fbbe",
+      "bytes": 10383
+    },
+    {
       "path": "scripts/review_open_world_manifest.py",
       "sha256": "d699010b3623c97e12dfa990c32b8ce58c5fac8f9ba52715559b60be64f205d2",
       "bytes": 2087
@@ -1916,6 +1956,11 @@
       "path": "tests/test_energy_forces.py",
       "sha256": "79b971518e6e2c05ecf19af765e1c7ef663db34e3761e3582ea8d67d37ac5a0f",
       "bytes": 9907
+    },
+    {
+      "path": "tests/test_followup_open_world_dft.py",
+      "sha256": "f1b4b54c997fb3bdd5849fc393aaf37f76d09e8d40e14676566a0e6beb493cb5",
+      "bytes": 2694
     },
     {
       "path": "tests/test_geometry_flow.py",

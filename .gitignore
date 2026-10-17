@@ -35,6 +35,8 @@ runs/
 !configs/runs/
 !configs/runs/**
 scratch/
+# Built project homepage (mkdocs build output)
+_site/
 private/
 *.ckpt
 *.pt

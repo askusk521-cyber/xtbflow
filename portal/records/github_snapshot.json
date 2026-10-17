@@ -1,0 +1,1010 @@
+{
+ "issues": {
+  "1": {
+   "closedAt": "2026-09-25T17:08:47Z",
+   "createdAt": "2026-09-25T17:08:43Z",
+   "state": "CLOSED",
+   "title": "[permission-check] ChatGPT GitHub connector write test"
+  },
+  "10": {
+   "closedAt": "2026-09-29T12:32:17Z",
+   "createdAt": "2026-09-25T17:14:12Z",
+   "state": "CLOSED",
+   "title": "[P1][EXP] 裸 GFN2、直接学习与 Delta 势的分组学习曲线"
+  },
+  "11": {
+   "closedAt": "2026-09-26T16:22:13Z",
+   "createdAt": "2026-09-25T17:14:38Z",
+   "state": "CLOSED",
+   "title": "[P1][CODE] 从反应物提出重原子核心事件的强规则基线"
+  },
+  "12": {
+   "closedAt": "2026-09-26T17:08:59Z",
+   "createdAt": "2026-09-25T17:14:54Z",
+   "state": "CLOSED",
+   "title": "[P1][CODE] 构造守恒事件流匹配及约束解码器"
+  },
+  "13": {
+   "closedAt": "2026-09-26T17:31:48Z",
+   "createdAt": "2026-09-25T17:15:10Z",
+   "state": "CLOSED",
+   "title": "[P1][CODE] 等变几何流、反应方向与严格输入模式隔离"
+  },
+  "14": {
+   "closedAt": "2026-09-26T17:43:27Z",
+   "createdAt": "2026-09-25T17:15:35Z",
+   "state": "CLOSED",
+   "title": "[P1][CODE] 鞍点感知物理引导与统一后处理接口"
+  },
+  "15": {
+   "closedAt": "2026-10-02T05:52:24Z",
+   "createdAt": "2026-09-25T17:15:53Z",
+   "state": "CLOSED",
+   "title": "[P1][EXP] 事件约束与物理几何模块的最小可归因消融"
+  },
+  "16": {
+   "closedAt": "2026-09-26T18:01:33Z",
+   "createdAt": "2026-09-25T17:16:07Z",
+   "state": "CLOSED",
+   "title": "[P2a][CODE] 接入 CP2K 能量／力及可版本化参考协议"
+  },
+  "17": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T17:16:38Z",
+   "state": "OPEN",
+   "title": "[TRACKER][BLOCKED] [P2a][EXP] 首批参考 E-F、目标域偏差与跨协议桥接 — 执行 #81"
+  },
+  "18": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T17:16:57Z",
+   "state": "OPEN",
+   "title": "[TRACKER] [P1-P2b][DATA] 提前并行建设独立反应物种子、竞争尝试与联合配对监督 — 执行 #76/#84"
+  },
+  "19": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T17:17:13Z",
+   "state": "OPEN",
+   "title": "[TRACKER][BLOCKED] [P2b][CODE] 独立 TS／反应模态／端点连通验证流水线 — 执行 #81"
+  },
+  "2": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T17:11:17Z",
+   "state": "OPEN",
+   "title": "[ROADMAP] 守恒物理流匹配：代码、实验与阶段验收总路线"
+  },
+  "20": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T17:17:35Z",
+   "state": "OPEN",
+   "title": "[TRACKER] [P2b][CODE] 联合事件—几何流与独立串联基线 — 执行 #77/#79"
+  },
+  "21": {
+   "closedAt": "2026-10-02T05:52:26Z",
+   "createdAt": "2026-09-25T17:17:52Z",
+   "state": "CLOSED",
+   "title": "[P2b][EXP] 等预算规则／串联／联合的独立通道发现基准"
+  },
+  "22": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T17:18:14Z",
+   "state": "OPEN",
+   "title": "[BACKLOG] [P3][EXP][CANDIDATE] Ala-SEt／核苷邻氧扰动：生命起源主应用候选的计算机理研究 — 选择协议 #85"
+  },
+  "23": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T17:18:41Z",
+   "state": "OPEN",
+   "title": "[BACKLOG] [P3][CODE] 可发布数据集、结果浏览器与从原始结果生成的主图 — 确认出口 #86"
+  },
+  "24": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T17:18:56Z",
+   "state": "OPEN",
+   "title": "[TRACKER] [P0-P3][RESEARCH] 先行工作／创新主张／证据矩阵与论文决策 — 执行 #75/#85"
+  },
+  "25": {
+   "closedAt": "2026-09-26T15:36:55Z",
+   "createdAt": "2026-09-25T18:03:58Z",
+   "state": "CLOSED",
+   "title": "[P0-P1][DESIGN] 冻结 XTBFlow v0.1 架构：守恒联合流提议器＋独立校正势"
+  },
+  "26": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T18:04:23Z",
+   "state": "OPEN",
+   "title": "[TRACKER] [P1-P2b][EXP] XTBFlow 架构选型：串联／联合／流内物理／末端优化四臂对照 — 执行 #74/#83"
+  },
+  "27": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T18:05:01Z",
+   "state": "OPEN",
+   "title": "[TRACKER] [P1-P2b][SCIENCE] 生命起源反应候选库与探索性筛选：以化学选择性确定主应用 — 执行 #84/#85"
+  },
+  "28": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T18:05:36Z",
+   "state": "OPEN",
+   "title": "[TRACKER] [P2b-P3][VALIDATION] 选题后独立确认：冻结主体系、迁移测试与论文证据链 — 执行 #86"
+  },
+  "3": {
+   "closedAt": "2026-09-26T14:49:12Z",
+   "createdAt": "2026-09-25T17:11:34Z",
+   "state": "CLOSED",
+   "title": "[P0][CODE] 封装复用代码、补跑 PyTorch 回归并建立 CI"
+  },
+  "4": {
+   "closedAt": "2026-09-26T15:06:49Z",
+   "createdAt": "2026-09-25T17:11:53Z",
+   "state": "CLOSED",
+   "title": "[P0][CODE] 运行清单、累计计算计费、断点续跑与硬预算熔断"
+  },
+  "43": {
+   "closedAt": null,
+   "createdAt": "2026-09-27T05:28:46Z",
+   "state": "OPEN",
+   "title": "[TRACKER][BLOCKED] [P0][BUG] CP2K 参考后端：修复力单位、输入渲染与失败判定后再准入 DFT 标签 — 验收 #81"
+  },
+  "44": {
+   "closedAt": "2026-09-29T12:49:49Z",
+   "createdAt": "2026-09-27T05:29:13Z",
+   "state": "CLOSED",
+   "title": "[P0][BUG] 联合流坐标反传 NaN 与 CI 漏测：补齐梯度、缺失标签和控制臂回归"
+  },
+  "45": {
+   "closedAt": null,
+   "createdAt": "2026-09-27T05:29:32Z",
+   "state": "OPEN",
+   "title": "[TRACKER][BLOCKED] [P0][BUG] TS 验证缓存和预算必须绑定物理协议：禁止跨配置复用与事后超额判定 — 验收 #81"
+  },
+  "46": {
+   "closedAt": "2026-09-29T07:31:58Z",
+   "createdAt": "2026-09-27T12:58:39Z",
+   "state": "CLOSED",
+   "title": "[P0][BUG] tblite 原生接口单位被当作 Å：修正坐标／力转换并重新验证 GFN2 求值"
+  },
+  "5": {
+   "closedAt": "2026-09-29T08:16:08Z",
+   "createdAt": "2026-09-25T17:12:10Z",
+   "state": "CLOSED",
+   "title": "[P1][DATA] 将来源审计转为真实逐记录清单与防泄漏划分"
+  },
+  "55": {
+   "closedAt": "2026-10-02T05:52:28Z",
+   "createdAt": "2026-09-29T11:31:48Z",
+   "state": "CLOSED",
+   "title": "research: freeze XTBFlow v0.1 novelty map and benchmark claim boundaries"
+  },
+  "56": {
+   "closedAt": "2026-10-02T05:52:30Z",
+   "createdAt": "2026-09-29T11:31:52Z",
+   "state": "CLOSED",
+   "title": "exp: establish TS generation baseline ladder before full XTBFlow training"
+  },
+  "57": {
+   "closedAt": null,
+   "createdAt": "2026-09-29T11:31:56Z",
+   "state": "OPEN",
+   "title": "[TRACKER][BLOCKED] data: define public reaction benchmark admission and leakage audit — 执行 #76"
+  },
+  "58": {
+   "closedAt": null,
+   "createdAt": "2026-09-29T11:37:49Z",
+   "state": "OPEN",
+   "title": "[TRACKER][BLOCKED] exp: train the first real-data joint event–geometry flow and falsify coupling gain — 执行 #79"
+  },
+  "59": {
+   "closedAt": "2026-10-02T05:52:32Z",
+   "createdAt": "2026-09-29T11:37:51Z",
+   "state": "CLOSED",
+   "title": "[P1][METHOD] Implement saddle-aware projector guidance as a strictly budgeted XTBFlow sampling ablation"
+  },
+  "6": {
+   "closedAt": "2026-09-26T16:51:17Z",
+   "createdAt": "2026-09-25T17:12:49Z",
+   "state": "CLOSED",
+   "title": "[P1][CODE] 统一计算器协议并接入 xTBloom／独立 GFN2 核对后端"
+  },
+  "60": {
+   "closedAt": "2026-10-02T05:52:34Z",
+   "createdAt": "2026-09-29T11:37:59Z",
+   "state": "CLOSED",
+   "title": "[P1][CHEM] Build a prebiotic reaction stress-test suite for XTBFlow after generic benchmark validation"
+  },
+  "7": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T17:13:11Z",
+   "state": "OPEN",
+   "title": "[TRACKER][BLOCKED] [P1][EXP] xTBloom 能量／力一致性、有限差分与成本资格测试 — 执行 #81"
+  },
+  "74": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:35:32Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][P0][总控] 联合模型科研执行图：并行工作包、交接合同与分阶段证伪"
+  },
+  "75": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:36:10Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][W00][P0] 对齐真实架构与项目状态，冻结并行交接接口和文件责任表"
+  },
+  "76": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:36:47Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][W01][P0][DATA] 交付最小可信 event–TS 配对开发集，解除真实联合训练的数据阻塞"
+  },
+  "77": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:37:35Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][W02][P0][MODEL] 实现可公平分别训练的控制工厂、真正独立模型与完整两阶段串联基线"
+  },
+  "78": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:38:32Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][W03][P0][EVAL] 冻结单候选配对指标、关键因果比较和按母体系计费统计"
+  },
+  "79": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:39:32Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][W04][P0][EXP] 运行 S1：真实配对数据上分别训练各控制臂，给出联合收益或负结果"
+  },
+  "8": {
+   "closedAt": null,
+   "createdAt": "2026-09-25T17:13:36Z",
+   "state": "OPEN",
+   "title": "[TRACKER][BLOCKED] [P1][DATA] 生产同构型 GFN2／公开参考 E-F 配对缓存 — 执行 #76/#80"
+  },
+  "80": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:40:22Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][W05][P1][PHYSICS] 完成 Delta 势多种子学习曲线并定义反应区使用资格"
+  },
+  "81": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:41:24Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][W06][P0][VALIDATION] 收敛参考协议、逐端物种判定与批次硬预算，交付可重放 TS 验证资格"
+  },
+  "82": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:42:28Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][W07][P1][EXP] 运行 S2：鞍点流内引导对同预算终端优化，分离势精度与介入时机"
+  },
+  "83": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:43:25Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][W08][P1][RESEARCH] 联合什么、何时联合：质子/水角色、方向与耦合时序的定向消融"
+  },
+  "84": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:44:27Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][W09][P1][DATA] 提前生产独立反应物种子与完整竞争尝试，不等待联合模型成功"
+  },
+  "85": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:48:25Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][W10][P1][SCIENCE] 冻结先行工作差异与竞争化学假设，交付不预设赢家的应用选择协议"
+  },
+  "86": {
+   "closedAt": null,
+   "createdAt": "2026-10-01T06:49:18Z",
+   "state": "OPEN",
+   "title": "[EXEC-20261001][W11][P0][CONFIRM] 建立开发—确认隔离、试验冻结和可复核的架构／论文决策出口"
+  },
+  "87": {
+   "closedAt": null,
+   "createdAt": "2026-10-02T06:15:45Z",
+   "state": "OPEN",
+   "title": "[DATA-POLICY] GitHub source-of-truth, raw data publication, and path/license gates"
+  },
+  "9": {
+   "closedAt": "2026-09-26T18:23:26Z",
+   "createdAt": "2026-09-25T17:13:53Z",
+   "state": "CLOSED",
+   "title": "[P1][CODE] 实现标量 Delta 势及同数据直接学习基线"
+  },
+  "92": {
+   "closedAt": null,
+   "createdAt": "2026-10-02T12:51:05Z",
+   "state": "OPEN",
+   "title": "[EXEC][P0] Blind reactant-only rollout and parent-level benchmark for paired_pilot_v1"
+  },
+  "93": {
+   "closedAt": null,
+   "createdAt": "2026-10-02T13:48:43Z",
+   "state": "OPEN",
+   "title": "[路线总入口][5条推进线] 先释放现有数据、再迁移训练与耦合证伪：AI agent 调度指南"
+  },
+  "94": {
+   "closedAt": null,
+   "createdAt": "2026-10-02T13:49:27Z",
+   "state": "OPEN",
+   "title": "[第1线][DATA] 把现有来源转成分任务可用数据：映射恢复、标签分层与独立母组扩展"
+  },
+  "95": {
+   "closedAt": null,
+   "createdAt": "2026-10-02T13:50:07Z",
+   "state": "OPEN",
+   "title": "[第2线][TRANSFER] 核心架构不变的分支预训练与多精度迁移：少量配对微调和真实盲生成"
+  },
+  "96": {
+   "closedAt": null,
+   "createdAt": "2026-10-02T13:50:42Z",
+   "state": "OPEN",
+   "title": "[第3线][COUPLING] 公平串联基线与联合机制探索：先排除优化/时序因素，再测试局部架构与规模"
+  },
+  "97": {
+   "closedAt": null,
+   "createdAt": "2026-10-02T13:51:20Z",
+   "state": "OPEN",
+   "title": "[第4线][PHYSICS] 反应区物理学习与可信TS验证：多精度标签、校正势及同预算搜索"
+  },
+  "98": {
+   "closedAt": null,
+   "createdAt": "2026-10-02T13:52:00Z",
+   "state": "OPEN",
+   "title": "[第5线][EVIDENCE] 冻结基准与数据效率评估，准备独立目标体系并建立科学证据出口"
+  }
+ },
+ "prs": {
+  "100": {
+   "baseRefName": "main",
+   "createdAt": "2026-10-06T15:28:25Z",
+   "headRefName": "agent/76-reaction-qm-task-funnel",
+   "headRefOid": "095d4505bfc6ac9975a73e00c9f7b6410dae6067",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: add Reaction-QM task admission funnel with IRC evidence"
+  },
+  "101": {
+   "baseRefName": "main",
+   "createdAt": "2026-10-06T18:05:04Z",
+   "headRefName": "m0/task0-env",
+   "headRefOid": "a803e78ee9d104a7535005032da983252fa7b073",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "M0 task 0: environment verification and NaN-safe geometry"
+  },
+  "102": {
+   "baseRefName": "m0/task1-data",
+   "createdAt": "2026-10-06T18:12:09Z",
+   "headRefName": "m0/task2-model",
+   "headRefOid": "bc969a2b46cb3313ada2f5db155a3ca217136542",
+   "isDraft": true,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "M0 task 2: equivariant networks and matched capacity"
+  },
+  "103": {
+   "baseRefName": "m0/task0-env",
+   "createdAt": "2026-10-06T18:15:01Z",
+   "headRefName": "m0/task1-data",
+   "headRefOid": "abfdd73f0e2d0e645a6970809b286e8e18404794",
+   "isDraft": true,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "M0 task 1: official Transition1x pipeline (84.58% retention, continued per owner instruction)"
+  },
+  "104": {
+   "baseRefName": "m0/task2-model",
+   "createdAt": "2026-10-06T18:15:29Z",
+   "headRefName": "m0/task3-train",
+   "headRefOid": "350a5d49f2a996ce4e60fbf7007b52d5d52cbc1d",
+   "isDraft": true,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "M0 task 3: training and sampling, completed after approved stabilization"
+  },
+  "105": {
+   "baseRefName": "m0/task3-train",
+   "createdAt": "2026-10-06T18:15:32Z",
+   "headRefName": "m0/task4-eval",
+   "headRefOid": "fa12ce624969e6058b9b33d8168fdd32f136530d",
+   "isDraft": true,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "M0 task 4: 闸门报告——无引导、等候选数的命中率 NO-GO（含义与边界见评论）"
+  },
+  "106": {
+   "baseRefName": "main",
+   "createdAt": "2026-10-07T12:02:55Z",
+   "headRefName": "codex/v1a-20261007",
+   "headRefOid": "ce76584fde7af54297ea7902c96dc018d1c6ca2e",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: V1a 代理筛查全流程与正式结果（GO_V1b）"
+  },
+  "107": {
+   "baseRefName": "codex/v1a-20261007",
+   "createdAt": "2026-10-08T02:54:53Z",
+   "headRefName": "v1a-r/reanalysis",
+   "headRefOid": "987a7d44f32519e3763527a881ddb9715d1fa10f",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: V1a-R 零算力重分析（探索性）：按候选数对齐与计入验证成本"
+  },
+  "108": {
+   "baseRefName": "v1a-r/reanalysis",
+   "createdAt": "2026-10-08T03:06:10Z",
+   "headRefName": "v1b/amend-v2.2",
+   "headRefOid": "5305eac4fbc244a6f24a0d0b1d571847f3bc7b72",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "docs: V1b 修订草案 v2.2（四臂认证，主决策不变；草案未冻结）"
+  },
+  "109": {
+   "baseRefName": "v1a-r/reanalysis",
+   "createdAt": "2026-10-08T03:24:24Z",
+   "headRefName": "v1a-n/nfe-control",
+   "headRefOid": "d60088576f9939ae6fb43edd8110c5af3ab53d12",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: V1a-N NFE 对齐串联对照（探索性）：B0 预算优势可由步数解释"
+  },
+  "110": {
+   "baseRefName": "codex/v1a-20261007",
+   "createdAt": "2026-10-08T08:41:08Z",
+   "headRefName": "explore/geometry-information",
+   "headRefOid": "e5ceb870d28d77ab1efaad4af5652ef4f4978738",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "docs: 几何信息检查(探索性):真实 TS 几何无可检出的排序增益,当前时钟下物理信号来得太晚"
+  },
+  "111": {
+   "baseRefName": "explore/geometry-information",
+   "createdAt": "2026-10-08T13:24:22Z",
+   "headRefName": "explore/geometry-lead-clock",
+   "headRefOid": "9cc15e03672264fddda0804bb8c2cb4eb31da8f0",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: 几何先行时钟(探索性):推迟事件让物理信号窗口从 15% 升到 28–35%,生成质量几乎不变"
+  },
+  "112": {
+   "baseRefName": "explore/geometry-lead-clock",
+   "createdAt": "2026-10-08T13:54:50Z",
+   "headRefName": "explore/physics-guidance",
+   "headRefOid": "ffca40f9dc9b8f72f67c695a7b99fa38e83794e3",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: 鞍点感知物理引导与窗口推大(探索性):物理能改写事件但方向性很弱,窗口约 35–38% 见顶"
+  },
+  "113": {
+   "baseRefName": "explore/geometry-lead-clock",
+   "createdAt": "2026-10-08T15:18:15Z",
+   "headRefName": "review/enum-baseline",
+   "headRefOid": "3db499ca1ae956dc572ee87439fe654b0192d8f3",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: explore bounded enumeration baseline against frozen V1a streams"
+  },
+  "114": {
+   "baseRefName": "explore/geometry-lead-clock",
+   "createdAt": "2026-10-08T15:18:20Z",
+   "headRefName": "review/oracle-benchmark",
+   "headRefOid": "98720d8e358904f72b76df0a40b81e969769cabd",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: benchmark exploratory physical oracle ranking"
+  },
+  "115": {
+   "baseRefName": "codex/v1b-20261007",
+   "createdAt": "2026-10-08T15:18:24Z",
+   "headRefName": "review/open-world-o1",
+   "headRefOid": "419308bd580c73b201271604faf5fb4259af5a8d",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: explore open-world candidates with CPU xTB certification"
+  },
+  "116": {
+   "baseRefName": "explore/physics-guidance",
+   "createdAt": "2026-10-08T15:51:17Z",
+   "headRefName": "explore/smc-selection",
+   "headRefOid": "0517ff946fb319b4a815343ed574915cfd6f3c0c",
+   "isDraft": true,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: explore in-generation SMC selection against post-hoc ranking"
+  },
+  "117": {
+   "baseRefName": "explore/smc-selection",
+   "createdAt": "2026-10-08T16:31:20Z",
+   "headRefName": "explore/smc-raw-ranking",
+   "headRefOid": "cc96b45664aa2657f159c15fad52023ac294ac62",
+   "isDraft": true,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: isolate endpoint raw-ranking ablation on fixed SMC candidates"
+  },
+  "118": {
+   "baseRefName": "explore/smc-selection",
+   "createdAt": "2026-10-08T17:00:10Z",
+   "headRefName": "explore/smc-strict-replication",
+   "headRefOid": "50bcb7db0e6736ea667e4dbea8616b64655f8555",
+   "isDraft": true,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: stage strict-order SMC replication and document smoke blocker"
+  },
+  "119": {
+   "baseRefName": "review/open-world-o1",
+   "createdAt": "2026-10-09T06:14:34Z",
+   "headRefName": "review/open-world-o2",
+   "headRefOid": "1823534d1adc2044297cee1a606650b70f189a52",
+   "isDraft": true,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: certify selected open-world channels with the frozen DFT protocol"
+  },
+  "120": {
+   "baseRefName": "explore/followup-base",
+   "createdAt": "2026-10-09T06:16:01Z",
+   "headRefName": "explore/enum-thermo",
+   "headRefOid": "b6db3df15eefd85a64eed329674a48d3ecba301e",
+   "isDraft": true,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: strengthen enumeration with a frozen thermodynamic baseline"
+  },
+  "121": {
+   "baseRefName": "explore/followup-base",
+   "createdAt": "2026-10-09T06:16:04Z",
+   "headRefName": "explore/smc-oracle",
+   "headRefOid": "dd55970b0dfb89a167c12f9588ca193c3f6966b8",
+   "isDraft": true,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: freeze reaction-direction and oracle-selection follow-ups"
+  },
+  "122": {
+   "baseRefName": "codex/v1a-20261007",
+   "createdAt": "2026-10-17T05:36:24Z",
+   "headRefName": "codex/v1b-20261007",
+   "headRefOid": "5998dfd3e339623cb1599b862293ae8edbfe0ca1",
+   "isDraft": true,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "docs: V1b D0/D1 已完成、按负责人决定暂缓（草稿，补开 PR）"
+  },
+  "123": {
+   "baseRefName": "main",
+   "createdAt": "2026-10-17T05:37:27Z",
+   "headRefName": "docs/status-20261017",
+   "headRefOid": "d919b26d434e06362f7274ee8d124a89331076d2",
+   "isDraft": false,
+   "mergedAt": "2026-10-17T06:41:01Z",
+   "state": "MERGED",
+   "title": "docs: 项目现状索引（2026-10-17）并补入缺失的阶段指导与交接文档"
+  },
+  "124": {
+   "baseRefName": "main",
+   "createdAt": "2026-10-17T06:42:34Z",
+   "headRefName": "docs/status-merged-note",
+   "headRefOid": "4645c7100be9e5e0ca6615e87ba7dc75a639ed0d",
+   "isDraft": false,
+   "mergedAt": "2026-10-17T06:46:29Z",
+   "state": "MERGED",
+   "title": "docs: 索引改正合并状态，并记录开放世界 DFT 已恢复运行"
+  },
+  "29": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T14:37:28Z",
+   "headRefName": "codex/issue-3-package-ci",
+   "headRefOid": "9b2e616c62995af8b583db8e4d69ffda9949a2a4",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T14:49:11Z",
+   "state": "MERGED",
+   "title": "feat: package reusable contracts and add CPU CI"
+  },
+  "30": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T14:59:17Z",
+   "headRefName": "codex/issue-4-runtime-budget",
+   "headRefOid": "5dd046f00032301e57e61c90f306151498241c3c",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T15:06:48Z",
+   "state": "MERGED",
+   "title": "feat: add bounded resumable runtime ledger"
+  },
+  "31": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T15:19:14Z",
+   "headRefName": "codex/issue-5-data-manifest",
+   "headRefOid": "9838f12c3d4da4431fc85bcc79b4ec1dba300448",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T15:23:10Z",
+   "state": "MERGED",
+   "title": "feat: add public record contract and leakage firewall"
+  },
+  "32": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T15:33:38Z",
+   "headRefName": "codex/issue-25-architecture",
+   "headRefOid": "89658d74767732bf8cdd5650d03502e064343fb0",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T15:36:54Z",
+   "state": "MERGED",
+   "title": "docs: freeze the xtbflow v0.1 architecture contract"
+  },
+  "33": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T16:18:44Z",
+   "headRefName": "codex/issue-11-core-rules",
+   "headRefOid": "da89a8f505ff8a2c94ba6ec50f927d018d4a04eb",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T16:22:11Z",
+   "state": "MERGED",
+   "title": "feat: add reactant-only core event rules (#11)"
+  },
+  "34": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T16:47:40Z",
+   "headRefName": "codex/issue-6-calculator-contract",
+   "headRefOid": "b2da8fdfb783728381f23e181a69c6230ed9e9ee",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T16:51:16Z",
+   "state": "MERGED",
+   "title": "feat: add calculator energy-force contracts (#6)"
+  },
+  "35": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T17:05:14Z",
+   "headRefName": "codex/issue-12-conserved-event-flow",
+   "headRefOid": "f6e8e38f3c67d43a20c475b4a392b64d2305f608",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T17:08:58Z",
+   "state": "MERGED",
+   "title": "feat: add conserved event flow and endpoint decoder (#12)"
+  },
+  "36": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T17:22:14Z",
+   "headRefName": "codex/issue-13-geometry-flow",
+   "headRefOid": "e41be1a97db25d9337fa7fd7d83162b5ddf94656",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T17:31:47Z",
+   "state": "MERGED",
+   "title": "feat: add equivariant geometry flow contracts (#13)"
+  },
+  "37": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T17:39:43Z",
+   "headRefName": "codex/issue-14-physical-guidance",
+   "headRefOid": "5d5fcdf8228d809cd2c7a1372a9719951ed8da13",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T17:43:26Z",
+   "state": "MERGED",
+   "title": "feat: add bounded physical guidance contracts (#14)"
+  },
+  "38": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T17:51:31Z",
+   "headRefName": "codex/issue-16-cp2k-contract",
+   "headRefOid": "9f29a1926ad6022332ec0b0c6f83368cb0697504",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T18:01:32Z",
+   "state": "MERGED",
+   "title": "feat: add CP2K reference protocol contract (#16)"
+  },
+  "39": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T18:19:37Z",
+   "headRefName": "codex/issue-9-delta-energy",
+   "headRefOid": "112d38c76f3beb29e6533cec2fdaf1f8ef3186dd",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T18:23:25Z",
+   "state": "MERGED",
+   "title": "feat: add conservative delta energy baseline (#9)"
+  },
+  "40": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T18:34:59Z",
+   "headRefName": "codex/issue-8-ef-pair-cache",
+   "headRefOid": "9b788874c2e7af3340d8a4b4910132b9b574e97c",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T18:37:59Z",
+   "state": "MERGED",
+   "title": "feat: add immutable energy force pairing cache (#8)"
+  },
+  "41": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T18:44:57Z",
+   "headRefName": "codex/issue-20-joint-flow",
+   "headRefOid": "6af6253912ce10bd2b5e0cb1c9ed076f58e69c42",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T18:51:02Z",
+   "state": "MERGED",
+   "title": "feat: add joint and serial event geometry flows (#20)"
+  },
+  "42": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-26T18:55:27Z",
+   "headRefName": "codex/issue-19-ts-validation",
+   "headRefOid": "a04d4e577c6a169a13d8780bf47611301ae60a10",
+   "isDraft": false,
+   "mergedAt": "2026-09-26T18:58:17Z",
+   "state": "MERGED",
+   "title": "feat: add transition state validation pipeline (#19)"
+  },
+  "47": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-28T13:51:19Z",
+   "headRefName": "feat/non-cp2k-engineering-closure",
+   "headRefOid": "d0f8436735ad14e6a7112e63512d4e9342ca013f",
+   "isDraft": false,
+   "mergedAt": "2026-09-29T04:06:09Z",
+   "state": "MERGED",
+   "title": "feat: close non-CP2K engineering slice"
+  },
+  "48": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T06:20:16Z",
+   "headRefName": "codex/issue-3-package-ci",
+   "headRefOid": "a2f0a1d24b9fcb8ad67e52a6900ad42a5e191c92",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "CLOSED",
+   "title": "feat: package CP2K adapter and CPU CI"
+  },
+  "49": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T06:20:28Z",
+   "headRefName": "codex/noncp2k-budget-recovery",
+   "headRefOid": "61edab4cd841835c52af4df04c0de430e34ccfe0",
+   "isDraft": false,
+   "mergedAt": "2026-09-29T06:47:09Z",
+   "state": "MERGED",
+   "title": "fix: harden P0 calculator and validation contracts"
+  },
+  "50": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T07:19:53Z",
+   "headRefName": "codex/cp2k-runtime-evidence-rebase",
+   "headRefOid": "945f3fe223d41321104509a424be35bfa2373579",
+   "isDraft": false,
+   "mergedAt": "2026-09-29T07:37:05Z",
+   "state": "MERGED",
+   "title": "fix: replay CP2K runtime evidence on hardened adapter"
+  },
+  "51": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T07:28:22Z",
+   "headRefName": "codex/gfn2-qualification-20260929",
+   "headRefOid": "f7cec984431f4d428a63dd32ec605c3edebb34e6",
+   "isDraft": false,
+   "mergedAt": "2026-09-29T07:31:33Z",
+   "state": "MERGED",
+   "title": "test: qualify bounded GFN2 CPU path"
+  },
+  "52": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T08:04:42Z",
+   "headRefName": "codex/spice2-pilot-20260929",
+   "headRefOid": "465c4690397c7a14b1e67419b1da10557b41c551",
+   "isDraft": false,
+   "mergedAt": "2026-09-29T08:16:07Z",
+   "state": "MERGED",
+   "title": "feat: deliver first real SPICE E/F pilot"
+  },
+  "53": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T08:27:18Z",
+   "headRefName": "codex/spice2-256-20260929",
+   "headRefOid": "fd0f94cf8655f1cd046c8edc13d72792202eaef6",
+   "isDraft": false,
+   "mergedAt": "2026-09-29T08:30:19Z",
+   "state": "MERGED",
+   "title": "feat: expand SPICE E/F pilot to 256 configs"
+  },
+  "54": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T08:51:27Z",
+   "headRefName": "codex/spice2-learning-curve-20260929",
+   "headRefOid": "036a68cb2726da6d87e2b9ca7677678db70f8e03",
+   "isDraft": false,
+   "mergedAt": "2026-09-29T12:31:45Z",
+   "state": "MERGED",
+   "title": "exp: run grouped SPICE energy-force learning curve"
+  },
+  "61": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T12:43:54Z",
+   "headRefName": "codex/workflow-d-research-validation-20260929",
+   "headRefOid": "2baa5ce9dad0b8271abec7321e8a256acebe5d5e",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "docs: establish workflow-D research governance"
+  },
+  "62": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T12:45:31Z",
+   "headRefName": "codex/workflow-b-model-baselines-20260929",
+   "headRefOid": "6c88173e5056b5e07aee7e657ffbb0059312ddc5",
+   "isDraft": false,
+   "mergedAt": "2026-09-29T12:48:20Z",
+   "state": "MERGED",
+   "title": "feat: register Workflow B shared event-geometry controls"
+  },
+  "63": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T13:19:27Z",
+   "headRefName": "codex/workflow-a-track-b-20260929",
+   "headRefOid": "be52a939637d3a90ec05405076e3b94a08e10e44",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: add Track-B data admission contracts"
+  },
+  "64": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T13:27:31Z",
+   "headRefName": "codex/workflow-c2-reference-validation-20260929",
+   "headRefOid": "36a72b3c1ce6554a57a7a6086445008f60aeef04",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: advance CP2K qualification and TS path validation"
+  },
+  "65": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T14:11:34Z",
+   "headRefName": "docs/human-merge-approval-20260929",
+   "headRefOid": "1f1bf6279774bcac3a954089a11bc0f1493c24cf",
+   "isDraft": false,
+   "mergedAt": "2026-09-30T05:14:41Z",
+   "state": "MERGED",
+   "title": "docs: require human approval before merges"
+  },
+  "66": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T14:20:07Z",
+   "headRefName": "codex/audit-fixes",
+   "headRefOid": "32a763c962176b70b456fdb042c73c2dfd817262",
+   "isDraft": false,
+   "mergedAt": "2026-09-30T05:18:09Z",
+   "state": "MERGED",
+   "title": "fix: close validation and control audit gaps"
+  },
+  "67": {
+   "baseRefName": "codex/workflow-a-track-b-20260929",
+   "createdAt": "2026-09-29T21:20:03Z",
+   "headRefName": "codex/track-b-real-development",
+   "headRefOid": "3a5f10a3b355998bf115d01a6e7fbcaa14680f9b",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: add quarantine-bound real joint development runner"
+  },
+  "68": {
+   "baseRefName": "codex/workflow-c2-reference-validation-20260929",
+   "createdAt": "2026-09-29T22:01:27Z",
+   "headRefName": "codex/c2-n2-runtime-evidence-20260930",
+   "headRefOid": "4f0ac1a4e2ba2850992ce1caf3c7813f05c23088",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "docs: record n2 CP2K runtime replay"
+  },
+  "69": {
+   "baseRefName": "codex/c2-n2-runtime-evidence-20260930",
+   "createdAt": "2026-09-29T22:14:29Z",
+   "headRefName": "codex/c2-reference-bridge-20260930",
+   "headRefOid": "5fd3da1c5e23d44a29d0456198924f57cf064cf9",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "docs: record CP2K GFN2 bridge pilot"
+  },
+  "70": {
+   "baseRefName": "codex/c2-reference-bridge-20260930",
+   "createdAt": "2026-09-29T22:24:20Z",
+   "headRefName": "codex/c2-kingfisher-preflight-20260930",
+   "headRefOid": "5638ace2993efa8d8d56a129cbf5bea979fd677c",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "docs: record Kingfisher candidate preflight"
+  },
+  "71": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-29T22:28:33Z",
+   "headRefName": "codex/docs-parallel-reaction-data-prompt-20260930",
+   "headRefOid": "55f6b958ee069b01c2dbf4e7cacb456590d4e80d",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: close Reaction-QM source audit gate"
+  },
+  "72": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-30T06:04:39Z",
+   "headRefName": "codex/project-development-rules",
+   "headRefOid": "8f4357d9f0d6ed9486b44977ed45f41d56f7940e",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "CLOSED",
+   "title": "docs: establish xtbflow development environment rules"
+  },
+  "73": {
+   "baseRefName": "main",
+   "createdAt": "2026-09-30T07:07:47Z",
+   "headRefName": "codex/sync-docs-20260930",
+   "headRefOid": "bc3157b4e25b5ab001a30b30e2a2a321dd4d0693",
+   "isDraft": false,
+   "mergedAt": "2026-09-30T09:23:16Z",
+   "state": "MERGED",
+   "title": "docs: archive superseded handoffs and refresh environment status"
+  },
+  "88": {
+   "baseRefName": "main",
+   "createdAt": "2026-10-02T06:36:19Z",
+   "headRefName": "codex/workflow-b-software-acceptance-20261002",
+   "headRefOid": "d108e283658945c0aad3198a03b1b104a2c31eab",
+   "isDraft": false,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "docs: record current Workflow B software acceptance"
+  },
+  "89": {
+   "baseRefName": "main",
+   "createdAt": "2026-10-02T06:43:43Z",
+   "headRefName": "codex/data-admission-contract-20261002",
+   "headRefOid": "104e5fa6b268deed954c75e3ca4f8493188ed8ed",
+   "isDraft": false,
+   "mergedAt": "2026-10-02T13:38:07Z",
+   "state": "MERGED",
+   "title": "fix: make public data manifests portable"
+  },
+  "90": {
+   "baseRefName": "main",
+   "createdAt": "2026-10-02T06:48:12Z",
+   "headRefName": "codex/handoff-freeze-validator-20261002",
+   "headRefOid": "e6ca5d776a4c92d9060d51f21c1d0d1afab576b5",
+   "isDraft": false,
+   "mergedAt": "2026-10-02T13:38:56Z",
+   "state": "MERGED",
+   "title": "feat: add handoff and freeze validator"
+  },
+  "91": {
+   "baseRefName": "main",
+   "createdAt": "2026-10-02T07:40:07Z",
+   "headRefName": "codex/paired-pilot-real-20261002",
+   "headRefOid": "9eef68ac454da4ae22819076cdcd84fbbd567203",
+   "isDraft": false,
+   "mergedAt": "2026-10-02T14:53:22Z",
+   "state": "MERGED",
+   "title": "Unblock real event-TS paired pilot and dataloader"
+  },
+  "99": {
+   "baseRefName": "main",
+   "createdAt": "2026-10-02T14:33:26Z",
+   "headRefName": "codex/cloud-task-routing-20261002",
+   "headRefOid": "6ddefe20f9d5f6579c10bfb96a13f269b9a8917c",
+   "isDraft": true,
+   "mergedAt": null,
+   "state": "OPEN",
+   "title": "feat: add cloud-only partial-label routing and blind input checks"
+  }
+ }
+}

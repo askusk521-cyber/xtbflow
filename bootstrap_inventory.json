@@ -9,8 +9,8 @@
     },
     {
       "path": ".gitignore",
-      "sha256": "156537a8a9c1f147e0e0531574e92e3061769a857a6f73de161eaaf8baaab41b",
-      "bytes": 738
+      "sha256": "3099db4302f2655319dd71b1122cd933c5ad763136c8ec37b2d90714c73fbac6",
+      "bytes": 792
     },
     {
       "path": "AGENTS.md",
@@ -728,9 +728,124 @@
       "bytes": 3700
     },
     {
+      "path": "mkdocs.yml",
+      "sha256": "5b60eacef377340bd58b2f5f0be6f85f1000b7658ae916ef9ef9ee2a120fb1a5",
+      "bytes": 3133
+    },
+    {
+      "path": "portal/about.md",
+      "sha256": "a488849a5a76877e3f561f53182b86fd1dc9d970ae1ac720bb80a8e38c05ffa9",
+      "bytes": 1894
+    },
+    {
+      "path": "portal/archive.md",
+      "sha256": "0b9fcb6787d9cc27a89231b3d152b9cafbdbd4c232fe800062e50f2643c28bc1",
+      "bytes": 1339
+    },
+    {
+      "path": "portal/assets/figures/serial_vs_joint.svg",
+      "sha256": "b2cfa49ec29f2f960e01a8ed51cdbf75d4f743e72338af84c45054dec588ca05",
+      "bytes": 5441
+    },
+    {
+      "path": "portal/assets/katex-init.js",
+      "sha256": "abc9e929fb66c398d6d927503eb282e0a4d09ec1c947c5f6b37c1bc3753ec3c2",
+      "bytes": 480
+    },
+    {
+      "path": "portal/assets/site.css",
+      "sha256": "a07b277008563b8ae2f21510ca52de8a4f5e1cbd6de2ef0d88c6a61be6132547",
+      "bytes": 17622
+    },
+    {
+      "path": "portal/assets/site.js",
+      "sha256": "60557212eaddcf6baec4adee1e4f32081c905ea1571c0f0f6b4fbcb58e561405",
+      "bytes": 2190
+    },
+    {
+      "path": "portal/data.md",
+      "sha256": "99df72511ede38365140bc8e048d8f18547c65be2b204a7e1a4892c2fd2c3307",
+      "bytes": 4353
+    },
+    {
+      "path": "portal/glossary.md",
+      "sha256": "149a1c05cf3468a278eae988411b2499c6f34e94f9b5417f09e5de5b47336f43",
+      "bytes": 3477
+    },
+    {
+      "path": "portal/includes/abbreviations.md",
+      "sha256": "13fb69825905ae2cd574318d0eae5fbe94ec87e74782e17dae5c3a693b50da97",
+      "bytes": 490
+    },
+    {
+      "path": "portal/index.md",
+      "sha256": "cbc1570e05eb17722e4e9c7920ee535ac28248f8b0e452eec823883c76db8a26",
+      "bytes": 3146
+    },
+    {
+      "path": "portal/paper/discussion.md",
+      "sha256": "f97806da60bc1bbad8475b1e8c5a90ada25c45a8fcf990b3c6e8c3e96baaba36",
+      "bytes": 3484
+    },
+    {
+      "path": "portal/paper/index.md",
+      "sha256": "b65c9ae2fba598cea99424a211abe63bf38ef986db4013fdadbb3df0eea16b72",
+      "bytes": 3208
+    },
+    {
+      "path": "portal/paper/introduction.md",
+      "sha256": "bdcb8d0c72570d276635edb37f713e9892f51ee95fb68b278b277fe8b5600393",
+      "bytes": 6976
+    },
+    {
+      "path": "portal/paper/methods.md",
+      "sha256": "71dc07b01160ae0207227461f543fbb3e07fb18964cdf15ce82eab15564b95d7",
+      "bytes": 9565
+    },
+    {
+      "path": "portal/paper/results.md",
+      "sha256": "20f1591429052951af880395769f32e94d5412caaac096bbfcab983cf755fa39",
+      "bytes": 9922
+    },
+    {
+      "path": "portal/progress.md",
+      "sha256": "c9d68fe178079500ef0758f2c3b2cb3579250d51f92b7a7981712366118e3a36",
+      "bytes": 1185
+    },
+    {
+      "path": "portal/records/experiments.yaml",
+      "sha256": "5ee49a610946288a63989a293555e945e8f0e244e929c974af44789981003063",
+      "bytes": 16079
+    },
+    {
+      "path": "portal/records/github_snapshot.json",
+      "sha256": "b656079097a86c81b26eeaa24c18e79bf5bc752a6ee48922f242cfd466ecba39",
+      "bytes": 35105
+    },
+    {
+      "path": "portal/records/legacy.yaml",
+      "sha256": "f26f04300915d8b19742b64644a4436932bb2c6ee71f7b182edd80db90a18a86",
+      "bytes": 4925
+    },
+    {
+      "path": "portal/records/progress.yaml",
+      "sha256": "fb4fc2d970979d5d11c7a91529d09758f84bab74c705f9ac095af4cab33ac310",
+      "bytes": 2860
+    },
+    {
+      "path": "portal/records/references.yaml",
+      "sha256": "f96eb8accc423ca21c6d0ba5aa3a52151637ef10ade20a878908241fe83729c5",
+      "bytes": 11318
+    },
+    {
+      "path": "portal/references.md",
+      "sha256": "ef274cd5168035db244c835be2b24e8730cc2129ef07747adbb11b724ed7d67a",
+      "bytes": 354
+    },
+    {
       "path": "pyproject.toml",
-      "sha256": "bdf4ecad3b0e8179e40238688a100bf5992fb0b30921ebf0ec0552a1735bf698",
-      "bytes": 1228
+      "sha256": "72c21abff938a0be24b9a8a951cfb6dad716a10015e9601175b4836dfaa5eb98",
+      "bytes": 1306
     },
     {
       "path": "schemas/calculator_protocol.schema.json",
@@ -853,6 +968,11 @@
       "bytes": 5243
     },
     {
+      "path": "scripts/check_portal.py",
+      "sha256": "42b3c0de36a411b896f0ae2cce086f2a47d5e07cb3b7221397275aa8086813ce",
+      "bytes": 5798
+    },
+    {
       "path": "scripts/cp2k_calibration_smoke.py",
       "sha256": "0e13ebd3d8f571a23c496531ba5d0c8068119b0f5cbd54e2cb7d8e7585557289",
       "bytes": 7339
@@ -871,6 +991,11 @@
       "path": "scripts/joint_flow_smoke.py",
       "sha256": "be9cab15cb5032dd57fa8e9be21c2d815bd0966c1675a4fe48c25314dd081207",
       "bytes": 11435
+    },
+    {
+      "path": "scripts/portal_hooks.py",
+      "sha256": "6da914fcbdea4f9c2ca00d1871ad1c135629fe8bab57723ba9feaa6cafb70d7e",
+      "bytes": 21843
     },
     {
       "path": "scripts/prepare_spice_openff_pilot.py",

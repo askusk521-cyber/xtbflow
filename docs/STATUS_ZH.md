@@ -81,6 +81,7 @@ explore/followup-base（#116 + 合并 #113、#114 + 交接文档，无 PR）← 
 
 | 文档 | 用途 | 位置 |
 |---|---|---|
+| 课题方向规划：以并联事件—几何生成为核心（2026-10-07） | 研究方向、实验组 E1–E5、按结果选论文主卖点的决策树、与竞争工作的差异；V1a 指导引用其中的母体数估算 | `docs/guides/DIRECTION_PLAN_ZH.md`（本次补入） |
 | M0 阶段执行指导 | M0 任务 0–4 与去/留闸门 | `docs/guides/M0_GUIDE_ZH.md`（本次补入） |
 | V1a 第一轮验证推进指导 v2.1 | V1a 代理筛查 | 分支 `codex/v1a-20261007`：`docs/v1a/protocol-v2.1.md` |
 | V1b 第一轮验证推进指导 v2.1 | V1b DFT 认证 | `docs/guides/V1B_GUIDE_v2.1_ZH.md`（本次补入） |

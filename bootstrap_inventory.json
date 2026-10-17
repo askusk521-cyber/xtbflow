@@ -19,8 +19,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "0c37214c0ecb362cc542616e42f9ea240a5c8ceb254568a23114e7fe4fddeef0",
-      "bytes": 5538
+      "sha256": "6222aeb432b00e2325edc32aeac90319b9d62795ead855d9fe8e457acfc9cdbd",
+      "bytes": 6032
     },
     {
       "path": "archive/README.md",
@@ -369,8 +369,8 @@
     },
     {
       "path": "docs/PROJECT_STATUS.md",
-      "sha256": "d787ca98b6f7ce97489a77dacfd467f7f5b864e1952162fc0a4b4a2f79769f66",
-      "bytes": 3418
+      "sha256": "35355d982fc7422b95ab697e2f23dbd87ea12ea6ddb944d37380cafa4fe6339e",
+      "bytes": 3658
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -381,6 +381,11 @@
       "path": "docs/REPOSITORY_MANAGEMENT.md",
       "sha256": "1bf9ce543a431c92e2a0285ad74595d44854fbfa0228e82483bcaac76e220ea5",
       "bytes": 3180
+    },
+    {
+      "path": "docs/STATUS_ZH.md",
+      "sha256": "c0c675de856e970b6a1e81c686d41e1261ff0631ab14394581a3cb0ba2bfb2ad",
+      "bytes": 11898
     },
     {
       "path": "docs/TRACK_B_DATA_GATE.md",
@@ -676,6 +681,41 @@
       "path": "docs/evidence/xtbloom_cpu_smoke_20260929.json",
       "sha256": "0a1da44eea592da8a75ee27deb9a7db28e4c12693b84c38550889deb69024883",
       "bytes": 2857
+    },
+    {
+      "path": "docs/guides/DIRECTION_PLAN_ZH.md",
+      "sha256": "56c60bc1e41575d0adc5bc877b53306bc071b985902b18ebc317455bd7cafcb8",
+      "bytes": 22805
+    },
+    {
+      "path": "docs/guides/M0_GUIDE_ZH.md",
+      "sha256": "3518fb2ab651a6c9192ee82ef7c8d9fbd166ea9bd615530cde70680bb8505459",
+      "bytes": 84795
+    },
+    {
+      "path": "docs/guides/V1A_FOLLOWUP_HANDOFF_ZH.md",
+      "sha256": "5537b10848bc32b0e73644f71388e080cc9f2cbcd0e8d538136502959d9a2a7a",
+      "bytes": 16580
+    },
+    {
+      "path": "docs/guides/V1B_GUIDE_v2.1_ZH.md",
+      "sha256": "888a94c34c183853d52c833c73e92c4beafc7889946138d5d8d3ceba5db9b634",
+      "bytes": 83907
+    },
+    {
+      "path": "docs/handoffs/HANDOFF_FOLLOWUP_ZH.md",
+      "sha256": "fe0e1f52eb9dbf11702fd21e771c40099fb606f24a484e5ea013f2c69ed35667",
+      "bytes": 34895
+    },
+    {
+      "path": "docs/handoffs/HANDOFF_REVIEW_ALIGNMENT_ZH.md",
+      "sha256": "cc8dc0bf8a72f4b1c23add0e013d94f3dcaa16658cb919a86a45144a09823cda",
+      "bytes": 34335
+    },
+    {
+      "path": "docs/handoffs/HANDOFF_SMC_SELECTION_ZH.md",
+      "sha256": "be874302f1304435b7587091c30fb7101b583705ae0c7f52438f0279641354f4",
+      "bytes": 22923
     },
     {
       "path": "docs/model_design.md",

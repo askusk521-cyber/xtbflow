@@ -24,7 +24,7 @@
 | V1a-R 零算力重分析 | 10-08 | 同候选数下 A1>A0、B1≈B0、B0≈A0；计入验证成本 κ 时前沿依次为 B0（κ≤300）→ A1 → A2（κ≥3000）；B1 在任何 κ 下都不在前沿 | #107 | `docs/evidence/v1a_r/REPORT_ZH.md` |
 | V1a-N 步数对齐对照 | 10-08 | AUC(B0-50) − AUC(A0-25+25) = −0.016 [−0.045, +0.013]：B0 的预算优势可由积分步数解释 | #109 | `docs/evidence/v1a_n/REPORT_ZH.md` |
 | V1b 修订草案 v2.2 | 10-08 | 四臂认证草案，**未冻结** | #108 | `docs/v1b/AMENDMENT_v2.2_ZH.md` |
-| V1b D0 + D1 | 10-08 | D0：M=342，Δ^proxy = +0.0673。D1：8/8 候选精修为一阶鞍点；协议升到 `v1b-h-gpu4pyscf-3`；003317dd 的端点软模仍是 `PROTOCOL_FAILURE`。约 6.1 + 0.6 GPU·h。**负责人 10-08 暂缓 V1b** | 分支 `codex/v1b-20261007`（本次补开草稿 PR） | `docs/v1b/D1_REPORT_ZH.md` |
+| V1b D0 + D1 | 10-08 | D0：M=342，Δ^proxy = +0.0673。D1：8/8 候选精修为一阶鞍点；协议升到 `v1b-h-gpu4pyscf-3`；003317dd 的端点软模仍是 `PROTOCOL_FAILURE`。约 6.1 + 0.6 GPU·h。**负责人 10-08 暂缓 V1b** | #122（草稿，分支 `codex/v1b-20261007`） | `docs/v1b/D1_REPORT_ZH.md` |
 | 几何信息检查 | 10-08 | 真实 TS 几何：`INCONCLUSIVE`；时间窗口：`NO_USABLE_WINDOW`（xTB 窗口 14.5%） | #110 | `docs/evidence/explore_geoinfo/REPORT_ZH.md` |
 | 几何先行时钟 | 10-08 | `GEOMETRY_LEAD_OPENS_WINDOW`：窗口 27.9% / 34.6%，合法率约 −1.5 pt | #111 | `docs/evidence/explore_geolead/REPORT_ZH.md` |
 | 鞍点感知物理引导 pg-1 + geolead-2 | 10-08 | α0.3 `SHIFT_NOT_SPECIFIC`，α1.0 `NO_DETECTABLE_SHIFT`；窗口在 35–38% 见顶 | #112 | `docs/explore/PHYSICS_GUIDANCE_DESIGN_ZH.md` |
@@ -51,7 +51,7 @@ main
    │     │                                                              ← #118 smc-strict-replication
    │     ├─ #113 review/enum-baseline
    │     └─ #114 review/oracle-benchmark
-   └─ codex/v1b-20261007（V1b D0/D1 草稿 PR）← #115 review/open-world-o1 ← #119 review/open-world-o2
+   └─ #122 codex/v1b-20261007（V1b D0/D1，草稿）← #115 review/open-world-o1 ← #119 review/open-world-o2
 explore/followup-base（#116 + 合并 #113、#114 + 交接文档，无 PR）← #120 explore/enum-thermo
                                                                ← #121 explore/smc-oracle
 ```
@@ -75,7 +75,7 @@ explore/followup-base（#116 + 合并 #113、#114 + 交接文档，无 PR）← 
    - 正式运行脚本 `scripts/v1b_run.py` 要求清单中已置位 `d1_protocol_validated` 和 `decision_rule_frozen`，两者都必须由有记录的步骤写入。
 3. **生成中筛选研究线是否关闭**：#121 给出预写建议 `LINE_CLOSURE_RECOMMENDED`，这只是建议，不是负责人决定。
 4. **M0 `NO-GO` 的正式确认**：#105 写的是"待负责人确认"。此后项目按 V1a 指导推进，但 GitHub 上没有单独的确认记录。
-5. **未合并 PR 的处理**：#101–#121 共 21 个，加上 V1b 草稿 PR。需要决定哪些合并、哪些作为证据存档后关闭。叠放顺序见第 2 节。
+5. **未合并 PR 的处理**：#101–#122 共 22 个。需要决定哪些合并、哪些作为证据存档后关闭。叠放顺序见第 2 节。
 
 ## 4. 规范文档（指导与交接）
 

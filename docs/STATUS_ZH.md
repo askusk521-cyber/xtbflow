@@ -15,15 +15,17 @@
 - **GPU 现状（2026-10-17 经 Slurm 实测）**：
   - GPU 计算正常：PyTorch 与 gpu4pyscf 都能运行；用冻结代码重算 10-09 的锚点能量，差 5.7×10⁻¹⁴ Eh（Slurm 3371）。
   - 坏的只是 `nvidia-smi`：NVML 用户态库 595.99 与已加载内核模块 595.91.07 不一致。
-  - 开放世界 DFT（#119）剩 28 项停着，原因是冻结的执行脚本在量化前用 `nvidia-smi` 记录 GPU 型号，失败即退出。V1b 的正式运行脚本不调用 `nvidia-smi`，不受影响。
-- **当前没有运行中的本项目作业**（2026-10-17 `squeue -u lhshen` 为空）。
+  - 开放世界 DFT（#119）的 28 项此前停着，原因是冻结的执行脚本在量化前用 `nvidia-smi` 记录 GPU 型号，失败即退出。
+  - V1b 的正式运行脚本不调用 `nvidia-smi`，不受影响。
+- **开放世界 DFT 继续**：负责人 10-17 批准一个带版本号的最小改动——执行脚本与调度器改用 CUDA 运行时（cupy）记录 GPU 信息并预检，`qc_protocol.py`、样本和设置都不变——然后继续剩余 28 项。由另一会话实施，代码、决定记录和进度都写在 #119。
+- 截至 2026-10-17 13:30（n2 时间），本项目没有运行中的作业。
 
 ## 1. 各阶段结论
 
 | 阶段 | 日期 | 结论（预写读法） | PR | 主要证据 |
 |---|---|---|---|---|
 | M0 联合 vs 串联闸门 | 10-07 | `NO-GO`：主终点 Δ(B−A) = −0.0150 [−0.0670, 0.0326]，合法率 −0.0267 [−0.0398, −0.0126]，35 个测试母体 | #101→#103→#102→#104→#105（栈，#105 含全部；含义与边界见 #105 评论） | `docs/m0/M0_GATE_REPORT.md`、`docs/evidence/m0/gate_result.json` |
-| V1a 代理筛查 | 10-07 | `GO_V1b`：AUC B1−A2 +0.0931（单侧 L +0.0723），M₀ +0.0212，Mᵣ +0.0211；**边界**：无引导 B0 的 AUC 0.494 高于 B1 的 0.265 | #106（含 M0 栈） | `docs/evidence/v1a/formal/`、`docs/v1a/FREEZE_DECISION_ZH.md` |
+| V1a 代理筛查 | 10-07 | `GO_V1b`：AUC B1−A2 +0.0931（单侧 L +0.0723），M₀ +0.0212，Mᵣ +0.0211；**边界**：无引导 B0 的 AUC 0.494 高于 B1 的 0.265 | #106（基于 M0 稳定化快照，**不含** #105 最后 5 个提交；M0 闸门报告只在 #105。CI 失败原因见 #106 评论） | `docs/evidence/v1a/formal/`、`docs/v1a/FREEZE_DECISION_ZH.md` |
 | V1a-R 零算力重分析 | 10-08 | 同候选数下 A1>A0、B1≈B0、B0≈A0；计入验证成本 κ 时前沿依次为 B0（κ≤300）→ A1 → A2（κ≥3000）；B1 在任何 κ 下都不在前沿 | #107 | `docs/evidence/v1a_r/REPORT_ZH.md` |
 | V1a-N 步数对齐对照 | 10-08 | AUC(B0-50) − AUC(A0-25+25) = −0.016 [−0.045, +0.013]：B0 的预算优势可由积分步数解释 | #109 | `docs/evidence/v1a_n/REPORT_ZH.md` |
 | V1b 修订草案 v2.2 | 10-08 | 四臂认证草案，**未冻结** | #108 | `docs/v1b/AMENDMENT_v2.2_ZH.md` |
@@ -37,7 +39,7 @@
 | 开放世界 xTB 认证（O1） | 10-09 | 阳性对照 17/20（闸门通过）；目录外 17/40 通过 xTB 认证；ΔEa < 0 只有 1/12 | #115 | `docs/evidence/review_open_world/` |
 | 枚举 + 热力学筛选（T1b） | 10-10 | 主比较 −0.0554 [−0.1070, −0.0039]；按交接修正后为 −0.0563 [−0.1075, −0.0051]；热力学筛选相对不筛（S_N2）+0.051 | #120 | `docs/evidence/explore_enum_thermo/` |
 | 反应坐标诊断 + 预言机 SMC（T2a/T2b） | 10-10 | T2a `U_NOT_REACTION_MODE`（真实 TS 上 c_u<0 只占 19%）；T2b 8 臂全部 `NO_GAIN_OVER_POSTHOC` → 预写建议 `LINE_CLOSURE_RECOMMENDED` | #121 | `docs/evidence/explore_u_diagnostic/`、`docs/evidence/explore_smc_oracle/` |
-| 开放世界 DFT（O2）+ AIMNet2 训练集核查 | 10-10 | 3b：两个模型都是 `UNRESOLVED`。3a：锚点通过 1 项、参考链失败 1 项（`EngineError:SCF_LIMIT`，按决定不重跑），基础设施失败 3 项；已用 801 GPU s，**剩 28 项等 GPU** | #119 | `docs/evidence/review_open_world_o2/DECISION_ZH.md`、`INFRASTRUCTURE_ZH.md` |
+| 开放世界 DFT（O2）+ AIMNet2 训练集核查 | 10-10 | 3b：两个模型都是 `UNRESOLVED`。3a：锚点通过 1 项、参考链失败 1 项（`EngineError:SCF_LIMIT`，按决定不重跑），基础设施失败 3 项；已用 801 GPU s，剩 28 项未做（10-17 已批准继续，见上文摘要） | #119 | `docs/evidence/review_open_world_o2/DECISION_ZH.md`、`INFRASTRUCTURE_ZH.md` |
 
 各 PR 的验收意见（逐项复跑、字节一致回放、独立复算）已贴在对应 PR 评论里：#113–#121。
 
@@ -59,7 +61,7 @@ M0 只检验一件事：参数、步数、数据相同且**无引导**时，联�
 ```text
 main
 ├─ #101 m0/task0-env ← #103 task1-data ← #102 task2-model ← #104 task3-train ← #105 task4-eval
-└─ #106 codex/v1a-20261007（含 M0 栈）
+└─ #106 codex/v1a-20261007（基于 M0 稳定化快照，缺 #105 最后 5 个提交）
    ├─ #107 v1a-r/reanalysis ← #108 v1b/amend-v2.2
    │                        ← #109 v1a-n/nfe-control
    ├─ #110 explore/geometry-information ← #111 explore/geometry-lead-clock
@@ -76,25 +78,15 @@ explore/followup-base（#116 + 合并 #113、#114 + 交接文档，无 PR）← 
 
 ## 3. 待负责人决定的事项
 
-1. **开放世界 DFT（#119）怎么继续**，两条路任选其一：
-   - 等管理员重载 NVIDIA 内核模块或重启 node2，不改代码；
-   - 批准一个带版本号的最小改动：执行脚本和调度器改用 CUDA 运行时（cupy）记录 GPU 信息并做预检，`qc_protocol.py`、样本和设置都不变。
-
-   `nvidia-smi` 恢复后，按 #119 运行第三版调度器：
-
-   ```bash
-   scripts/review_open_world_dispatch_v3.py --root /home/lhshen/xtbflow-runs/followup-20261009 \
-     --source /home/lhshen/xtbflow-runs/followup-20261009/source-bb09c34 --quarantine-preqc
-   ```
-
-   代码在 `086fe82`，n2 克隆 `source-086fe82`。预计约 11 GPU·h，在 16 GPU·h 上限内。
-2. **V1b 是否恢复**。负责人 10-17 已同意可同时占 2 张卡，以下几项仍待定：
+1. **V1b 是否恢复**。负责人 10-17 已同意可同时占 2 张卡，以下几项仍待定：
    - 规模：指导式分配约 230 GPU·h；四层普查约 330 GPU·h。
    - 版本：v2.1 两臂，或 v2.2 四臂（#108，305/564 GPU·h，用的是暂定单价）。
    - 端点软模规则：003317dd 端点负模 −42.3 cm⁻¹，需要预先写定统一的处理办法。
    - 正式运行脚本 `scripts/v1b_run.py` 要求清单中已置位 `d1_protocol_validated` 和 `decision_rule_frozen`，两者都必须由有记录的步骤写入。
-3. **生成中筛选研究线是否关闭**：#121 给出预写建议 `LINE_CLOSURE_RECOMMENDED`，这只是建议，不是负责人决定。
-4. **未合并 PR 的处理**：#101–#122 共 22 个。需要决定哪些合并、哪些作为证据存档后关闭。叠放顺序见第 2 节。
+2. **生成中筛选研究线是否关闭**：#121 给出预写建议 `LINE_CLOSURE_RECOMMENDED`，这只是建议，不是负责人决定。
+3. **未合并 PR 的处理**：#101–#123 共 23 个。需要决定哪些合并、哪些作为证据存档后关闭，叠放顺序见第 2 节。合并 #106 前需要先做两件事（详见 #106 评论）：
+   - 把 `scipy` 加进运行时依赖：CI 目前在 pytest 收集阶段就失败，一个用例都没跑；
+   - 把 #105 最后 5 个提交并入。
 
 ## 4. 规范文档（指导与交接）
 

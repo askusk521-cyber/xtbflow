@@ -1,0 +1,221 @@
+{
+  "aromatic": {
+    "of_which_integral_edits_only": 154,
+    "records_with_aromatic_bonds_in_verified_scope": 1893
+  },
+  "claim_limits": [
+    "Task admission only: no record is promoted to a development_* or confirmatory Track-B split here.",
+    "TS identity is source-declared for the reaction ID; the IRC asset that could verify it is not part of this audit.",
+    "Parent groups are project-derived, not an official Reaction-QM family annotation.",
+    "Energies are species-level EHG triples; no forces exist in the main HDF5.",
+    "The Zenodo record metadata declares CC-BY-4.0 (checked via the Zenodo API on 2026-10-06); attribution (DOI 10.5281/zenodo.18551029 and the dataset paper) is required and per-record third-party provenance was not independently verified. This funnel records identities and hashes only; no raw bytes are redistributed."
+  ],
+  "endpoint_component_assignment_counts": {
+    "none": 50,
+    "unique": 123659
+  },
+  "endpoint_mapping_status_counts": {
+    "ambiguous_center": 18042,
+    "ambiguous_center_hydrogen_only": 20833,
+    "no_graph_match": 50,
+    "representation_mismatch": 3973,
+    "symmetric_noncenter": 65439,
+    "unique_graph": 15372
+  },
+  "exclusion_reasons": {
+    "aromatic_representation_pending": {
+      "first_blocking_records": 0,
+      "next_action": "aromatic bond orders need an explicit Kekule/representation rule before a bond-electron label is trusted (#71)",
+      "records_with_reason": 1893
+    },
+    "endpoint_connectivity_mismatch": {
+      "first_blocking_records": 0,
+      "next_action": "an endpoint species is not the molecule written on the TS side (different connectivity); the event label cannot be tied to the endpoint geometry",
+      "records_with_reason": 29
+    },
+    "endpoint_mapping_not_certified": {
+      "first_blocking_records": 0,
+      "next_action": "endpoint local->global correspondence is ambiguous or absent; needs an independent mapping table or geometry-independent evidence",
+      "records_with_reason": 26097
+    },
+    "endpoint_representation_mismatch": {
+      "first_blocking_records": 0,
+      "next_action": "an endpoint species and the TS-side component share connectivity but disagree on bond orders/charges; the bond-order event label is representation dependent, so it is withheld until a resonance rule is agreed",
+      "records_with_reason": 3671
+    },
+    "forces_absent_in_source": {
+      "first_blocking_records": 0,
+      "next_action": "the main HDF5 has no forces; they exist only in the separate IRC asset (not downloaded)",
+      "records_with_reason": 38153
+    },
+    "non_integral_bond_edit": {
+      "first_blocking_records": 0,
+      "next_action": "a bond order changes by a non-integer amount; no integer event label can be derived",
+      "records_with_reason": 1739
+    },
+    "out_of_scope_element": {
+      "first_blocking_records": 161432,
+      "next_action": "outside the declared CHNOS pool (configs/task.yaml); deferred_out_of_scope, not a chemistry label",
+      "records_with_reason": 161432
+    },
+    "species_inventory_mismatch": {
+      "first_blocking_records": 305,
+      "next_action": "endpoint species do not add up to the TS atom inventory; in the examples inspected an identical molecule appears to be listed only once, which would need an explicit, verified duplicate-species rule",
+      "records_with_reason": 658
+    }
+  },
+  "funnel": [
+    {
+      "parent_groups": 162608,
+      "records": 199890,
+      "semantics": "reaction records in the pinned HDF5",
+      "stage": "source_records"
+    },
+    {
+      "parent_groups": 162608,
+      "records": 199890,
+      "semantics": "TS and endpoint species present, SMILES parse, contiguous unique map ids, coordinate shapes valid",
+      "stage": "readable"
+    },
+    {
+      "parent_groups": 33237,
+      "records": 38458,
+      "semantics": "CHNOS only, singlet, parity-consistent, charge conserved",
+      "stage": "in_scope"
+    },
+    {
+      "parent_groups": 33000,
+      "records": 38153,
+      "semantics": "TS and endpoint coordinate rows follow map order; both sides describe the same mapped atoms; species add up to the TS inventory",
+      "stage": "identity_verifiable"
+    }
+  ],
+  "grouping": {
+    "group_size_histogram_capped_at_1000": {
+      "1": 136455,
+      "10": 6,
+      "11": 2,
+      "12": 1,
+      "2": 18761,
+      "3": 4960,
+      "4": 1606,
+      "5": 525,
+      "6": 196,
+      "7": 66,
+      "8": 18,
+      "9": 12
+    },
+    "groups": 162608,
+    "largest_group_records": 12,
+    "official_family_annotation": false,
+    "rule": "reaction_qm_reactant_product_set_union_v1"
+  },
+  "identities": {
+    "code": {
+      "commit": "20198b0c76225a93bc5c5fa02112df95e539da98",
+      "dirty": false
+    },
+    "created_utc": "2026-10-06T15:42:31.615564+00:00",
+    "grouping_rule": "reaction_qm_reactant_product_set_union_v1",
+    "h5_sha256_computed": "3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a",
+    "h5_sha256_expected": "3d0fc655819a9a2747f554a9025cd36cbdffd1175c4a1d40934b6fe5530af82a",
+    "python": "3.10.19",
+    "rdkit": "2024.03.3",
+    "source_revision": "zenodo:18551029@v2"
+  },
+  "manifest": {
+    "file": "manifest.jsonl",
+    "rows": 199890,
+    "sha256": "5253657375e7fcef00056a3c216120c10a9de84358d9cfe1fc9e141dcaba2aee"
+  },
+  "official_split_crosscheck": {
+    "available": true,
+    "note": "Official partition is by reaction ID only; groups spanning it indicate that ID-level splits can leak a parent system.",
+    "records_in_official_split": 199890,
+    "verified_scope_groups": 33000,
+    "verified_scope_groups_spanning_multiple_official_partitions": 1447
+  },
+  "paired_joint_detail": {
+    "records": 11375,
+    "records_fully_certified_without_order_rule": 11375,
+    "records_relying_on_identical_species_order_rule": 0
+  },
+  "paired_joint_recoverable": {
+    "currently_certified": {
+      "parent_groups": 10328,
+      "records": 11375
+    },
+    "event_only_withheld_by_endpoint_representation_mismatch": 3671,
+    "if_all_centre_ambiguity_resolved": {
+      "parent_groups": 28473,
+      "records": 32883
+    },
+    "if_hydrogen_centre_ambiguity_resolved": {
+      "parent_groups": 17778,
+      "records": 20013
+    }
+  },
+  "run_scope": {
+    "complete": true,
+    "records_in_hdf5": 199890,
+    "records_processed": 199890,
+    "smoke_limit_per_chunk": null
+  },
+  "schema": "xtbflow-reaction-qm-task-funnel/v1",
+  "source_dataset": "Reaction-QM",
+  "source_revision": "zenodo:18551029@v2",
+  "task_id_lists": {
+    "energy_force": {
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "energy_only": {
+      "records": 38153,
+      "sha256": "8d281afe7e6a01b9c636dbd191e2cd78ea61b4383eb3bcc100a727f2bcd2aa93"
+    },
+    "event_only": {
+      "records": 32883,
+      "sha256": "e0db5dc9d8dec395193735a1504180797a43ba3cabc0d0f16f521c0eba705ee7"
+    },
+    "geometry_only": {
+      "records": 38153,
+      "sha256": "8d281afe7e6a01b9c636dbd191e2cd78ea61b4383eb3bcc100a727f2bcd2aa93"
+    },
+    "paired_joint": {
+      "records": 11375,
+      "sha256": "c5f3e04ece15562b7a19dcd2694c7f69bbcc4fab302c2a40bc223430806cbe52"
+    }
+  },
+  "tasks": {
+    "energy_force": {
+      "parent_groups": 0,
+      "records": 0,
+      "unavailable_reason": "forces_absent_in_source"
+    },
+    "energy_only": {
+      "parent_groups": 33000,
+      "records": 38153
+    },
+    "event_only": {
+      "parent_groups": 28473,
+      "records": 32883
+    },
+    "geometry_only": {
+      "parent_groups": 33000,
+      "records": 38153
+    },
+    "paired_joint": {
+      "parent_groups": 10328,
+      "records": 11375
+    }
+  },
+  "ts_event_distance_angstrom": {
+    "max": 7.9859,
+    "p50": 2.4281,
+    "p90": 3.1086,
+    "p99": 4.5082,
+    "records_measured": 38004,
+    "records_over_3A": 4878,
+    "records_over_4A": 756
+  }
+}

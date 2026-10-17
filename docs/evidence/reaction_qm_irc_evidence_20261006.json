@@ -1,0 +1,146 @@
+{
+  "baseline_main_funnel": {
+    "energy_force": {
+      "parent_groups": 0,
+      "records": 0,
+      "unavailable_reason": "forces_absent_in_source"
+    },
+    "energy_only": {
+      "parent_groups": 33000,
+      "records": 38153
+    },
+    "event_only": {
+      "parent_groups": 28473,
+      "records": 32883
+    },
+    "geometry_only": {
+      "parent_groups": 33000,
+      "records": 38153
+    },
+    "paired_joint": {
+      "parent_groups": 10328,
+      "records": 11375
+    }
+  },
+  "claim_limits": [
+    "IRC end frames are path-derived, reaction-ready complexes (TS-derived) and must not be used as blind reactant inputs (configs/task.yaml); they are not independently optimised minima or independent reactant seeds.",
+    "Pairing evidence is geometric and restricted to the sigma bonds named by the event: edge lengths at the two IRC ends (directional tier) and a covalent-radius bonded/non-bonded test (strict tier).",
+    "Unit consistency is measured from the work identity; absolute units are taken from the dataset documentation (eV, eV/angstrom) and cross-checked against the main HDF5 TS energy.",
+    "This is development-level evidence; no record is promoted to a Track-B split here."
+  ],
+  "energy_force": {
+    "frames": 4296626,
+    "parent_groups": 32803,
+    "records": 37898,
+    "unit_consistency": {
+      "criterion": "median least-squares slope of dE vs trapezoid force work within window",
+      "median_slope": 1.0068013553177861,
+      "mutually_consistent": true,
+      "records_in_window": 37590,
+      "records_with_slope": 37899,
+      "window": [
+        0.9,
+        1.1
+      ]
+    }
+  },
+  "identities": {
+    "code": {
+      "commit": "707c2914cab22361b59c7624f56b3d3b11156f37",
+      "dirty": false
+    },
+    "created_utc": "2026-10-06T17:16:25.426658+00:00",
+    "hartree_to_ev": 27.211386245988,
+    "python": "3.10.19",
+    "rdkit": "2024.03.3"
+  },
+  "inputs": {
+    "funnel_manifest_sha256": "5253657375e7fcef00056a3c216120c10a9de84358d9cfe1fc9e141dcaba2aee",
+    "irc_file": "B3LYPD3_TZVP_IRC.h5",
+    "irc_md5": "782a4e5e8099de8f2b8e0e90128028cb",
+    "irc_md5_expected_from_zenodo": "782a4e5e8099de8f2b8e0e90128028cb",
+    "irc_sha256": "2a55b17c4ddbc7c394825fd0143d131ad13dc796654ac4c486b2cbee6fd00ef5",
+    "source_revision": "zenodo:18551029@v2"
+  },
+  "irc_identity_ok": {
+    "parent_groups": 32804,
+    "records": 37899
+  },
+  "irc_manifest": {
+    "file": "irc_manifest.jsonl",
+    "rows": 38153,
+    "sha256": "446e2442ac9e888426a7023b9a61d99c7c409f4aa295bbf767094d93dce14b91"
+  },
+  "irc_present": {
+    "parent_groups": 33000,
+    "records": 38153
+  },
+  "irc_reasons": {
+    "irc_arrays_invalid": 254,
+    "irc_branch_not_continuous_with_ts": 138,
+    "irc_contradicts_declared_event": 490,
+    "irc_named_edges_do_not_change_along_path": 4,
+    "irc_second_branch_not_found": 56,
+    "irc_ts_frame_differs_from_main_hdf5": 1
+  },
+  "orientation_among_energy_force_ok": {
+    "connects_declared_reactant_and_product": 37210,
+    "contradicts_declared_event": 490,
+    "named_edges_do_not_change_along_path": 4,
+    "no_two_branches": 194
+  },
+  "path_paired_joint": {
+    "definition": "event_only (main funnel) AND step pairing by IRC: the event label, the TS and the path are mutually consistent",
+    "note": "Verified pairing, NOT a blind-safe training input: the IRC end frames are TS-derived reaction-ready complexes. Use for development-level supervision or as correspondence evidence only.",
+    "parent_groups": 27858,
+    "reactant_geometry_blind_input_safe": false,
+    "reactant_geometry_origin": "irc_end_frame_ts_derived",
+    "records": 32117
+  },
+  "records_examined": 38153,
+  "run_scope": {
+    "complete": true,
+    "records_examined": 38153,
+    "smoke_limit": null,
+    "verified_records_in_funnel": 38153
+  },
+  "schema": "xtbflow-reaction-qm-irc-evidence/v1",
+  "step_pairing_by_irc": {
+    "definition": "every formed/broken sigma bond named by the event changes length the stated way between the two IRC ends (none the wrong way, at least half clearly), so exactly one end is the reactant",
+    "parent_groups": 32241,
+    "records": 37210,
+    "strict_tier": {
+      "definition": "additionally both ends reproduce the absolute bonded/non-bonded state of every named edge",
+      "parent_groups": 29374,
+      "records": 33652
+    }
+  },
+  "task_id_lists": {
+    "energy_force": {
+      "records": 37898,
+      "sha256": "d6fe4a9c3d6ca4d221a90094f00621ca60d47a84a48f16386c043fdeec20448f"
+    },
+    "path_paired_joint": {
+      "records": 32117,
+      "sha256": "c687009a299879cf74c1524b0752ecd9ac8ffb4a6a9fb575c6a4db212d970ffb"
+    },
+    "step_pairing_by_irc": {
+      "records": 37210,
+      "sha256": "68be79be88913b53c65a0d52b145515ae48df75893d4fdc2b79572a1c4ff7c40"
+    }
+  },
+  "ts_frame_agreement_with_main_hdf5": {
+    "coordinate_max_dev_angstrom": {
+      "n": 37899,
+      "p05": 5.0895734351719815e-16,
+      "p50": 1.7453801094880915e-15,
+      "p95": 7.712320645911681e-07
+    },
+    "energy_dev_hartree": {
+      "n": 37899,
+      "p05": 1.5838482454455516e-05,
+      "p50": 3.323773989905021e-05,
+      "p95": 6.743667904629547e-05
+    }
+  }
+}

@@ -1,0 +1,282 @@
+{
+ "schema": "xtbflow-gpu4pyscf-benchmark/1",
+ "method": "RKS wB97X/6-31G(d), grids.level 5, conv_tol 1e-10, no density fitting",
+ "hardware": "1x NVIDIA RTX PRO 6000 Blackwell (96 GiB) via Slurm; CPU comparison: pyscf 2.14 with 8 OpenMP threads",
+ "software": {
+  "gpu4pyscf": "1.8.1",
+  "pyscf": "2.14.0",
+  "cupy": "14.2.0",
+  "geomeTRIC": "1.1.1"
+ },
+ "notes": [
+  "SCF rows inside geometry steps reuse the previous density matrix",
+  "the first GPU SCF in a fresh process includes ~2 min cupy JIT compilation (kernel cache then reused)",
+  "parity: |dE| <= 8e-12 Eh, max |dH| <= 1.4e-4 Eh/bohr^2 GPU vs CPU"
+ ],
+ "rows": [
+  {
+   "kind": "gradient",
+   "n_atoms": 6,
+   "nao": 48,
+   "calls": 342,
+   "median_s": 1.177,
+   "mean_s": 1.179
+  },
+  {
+   "kind": "gradient",
+   "n_atoms": 7,
+   "nao": 86,
+   "calls": 132,
+   "median_s": 1.283,
+   "mean_s": 1.281
+  },
+  {
+   "kind": "gradient",
+   "n_atoms": 8,
+   "nao": 76,
+   "calls": 167,
+   "median_s": 1.243,
+   "mean_s": 1.244
+  },
+  {
+   "kind": "gradient",
+   "n_atoms": 11,
+   "nao": 94,
+   "calls": 821,
+   "median_s": 1.328,
+   "mean_s": 1.328
+  },
+  {
+   "kind": "gradient",
+   "n_atoms": 14,
+   "nao": 76,
+   "calls": 706,
+   "median_s": 1.306,
+   "mean_s": 1.305
+  },
+  {
+   "kind": "gradient",
+   "n_atoms": 15,
+   "nao": 114,
+   "calls": 135,
+   "median_s": 1.449,
+   "mean_s": 1.45
+  },
+  {
+   "kind": "gradient",
+   "n_atoms": 18,
+   "nao": 120,
+   "calls": 883,
+   "median_s": 1.508,
+   "mean_s": 1.504
+  },
+  {
+   "kind": "gradient_cpu_benchmark",
+   "n_atoms": 6,
+   "nao": 48,
+   "calls": 1,
+   "median_s": 1.579,
+   "mean_s": 1.579
+  },
+  {
+   "kind": "gradient_cpu_benchmark",
+   "n_atoms": 18,
+   "nao": 120,
+   "calls": 1,
+   "median_s": 11.119,
+   "mean_s": 11.119
+  },
+  {
+   "kind": "gradient_gpu_benchmark",
+   "n_atoms": 6,
+   "nao": 48,
+   "calls": 1,
+   "median_s": 1.43,
+   "mean_s": 1.43
+  },
+  {
+   "kind": "gradient_gpu_benchmark",
+   "n_atoms": 18,
+   "nao": 120,
+   "calls": 1,
+   "median_s": 1.531,
+   "mean_s": 1.531
+  },
+  {
+   "kind": "hessian",
+   "n_atoms": 6,
+   "nao": 48,
+   "calls": 13,
+   "median_s": 16.812,
+   "mean_s": 16.781
+  },
+  {
+   "kind": "hessian",
+   "n_atoms": 7,
+   "nao": 86,
+   "calls": 5,
+   "median_s": 23.249,
+   "mean_s": 23.173
+  },
+  {
+   "kind": "hessian",
+   "n_atoms": 8,
+   "nao": 76,
+   "calls": 5,
+   "median_s": 20.767,
+   "mean_s": 20.765
+  },
+  {
+   "kind": "hessian",
+   "n_atoms": 11,
+   "nao": 94,
+   "calls": 7,
+   "median_s": 26.904,
+   "mean_s": 26.563
+  },
+  {
+   "kind": "hessian",
+   "n_atoms": 14,
+   "nao": 76,
+   "calls": 3,
+   "median_s": 24.567,
+   "mean_s": 25.423
+  },
+  {
+   "kind": "hessian",
+   "n_atoms": 15,
+   "nao": 114,
+   "calls": 5,
+   "median_s": 35.879,
+   "mean_s": 35.657
+  },
+  {
+   "kind": "hessian",
+   "n_atoms": 18,
+   "nao": 120,
+   "calls": 12,
+   "median_s": 40.352,
+   "mean_s": 40.061
+  },
+  {
+   "kind": "hessian_cpu_benchmark",
+   "n_atoms": 6,
+   "nao": 48,
+   "calls": 1,
+   "median_s": 21.97,
+   "mean_s": 21.97
+  },
+  {
+   "kind": "hessian_cpu_benchmark",
+   "n_atoms": 18,
+   "nao": 120,
+   "calls": 1,
+   "median_s": 309.43,
+   "mean_s": 309.43
+  },
+  {
+   "kind": "hessian_gpu_benchmark",
+   "n_atoms": 6,
+   "nao": 48,
+   "calls": 1,
+   "median_s": 23.617,
+   "mean_s": 23.617
+  },
+  {
+   "kind": "hessian_gpu_benchmark",
+   "n_atoms": 18,
+   "nao": 120,
+   "calls": 1,
+   "median_s": 43.052,
+   "mean_s": 43.052
+  },
+  {
+   "kind": "scf",
+   "n_atoms": 6,
+   "nao": 48,
+   "calls": 355,
+   "median_s": 5.966,
+   "mean_s": 5.702
+  },
+  {
+   "kind": "scf",
+   "n_atoms": 7,
+   "nao": 86,
+   "calls": 137,
+   "median_s": 6.904,
+   "mean_s": 6.642
+  },
+  {
+   "kind": "scf",
+   "n_atoms": 8,
+   "nao": 76,
+   "calls": 172,
+   "median_s": 7.435,
+   "mean_s": 7.244
+  },
+  {
+   "kind": "scf",
+   "n_atoms": 11,
+   "nao": 94,
+   "calls": 828,
+   "median_s": 7.735,
+   "mean_s": 7.344
+  },
+  {
+   "kind": "scf",
+   "n_atoms": 14,
+   "nao": 76,
+   "calls": 709,
+   "median_s": 5.365,
+   "mean_s": 5.199
+  },
+  {
+   "kind": "scf",
+   "n_atoms": 15,
+   "nao": 114,
+   "calls": 140,
+   "median_s": 8.544,
+   "mean_s": 8.127
+  },
+  {
+   "kind": "scf",
+   "n_atoms": 18,
+   "nao": 120,
+   "calls": 895,
+   "median_s": 8.014,
+   "mean_s": 8.074
+  },
+  {
+   "kind": "scf_cpu_benchmark",
+   "n_atoms": 6,
+   "nao": 48,
+   "calls": 2,
+   "median_s": 2.158,
+   "mean_s": 2.158
+  },
+  {
+   "kind": "scf_cpu_benchmark",
+   "n_atoms": 18,
+   "nao": 120,
+   "calls": 2,
+   "median_s": 20.286,
+   "mean_s": 20.286
+  },
+  {
+   "kind": "scf_gpu_benchmark",
+   "n_atoms": 6,
+   "nao": 48,
+   "calls": 2,
+   "median_s": 64.261,
+   "mean_s": 64.261
+  },
+  {
+   "kind": "scf_gpu_benchmark",
+   "n_atoms": 18,
+   "nao": 120,
+   "calls": 2,
+   "median_s": 10.808,
+   "mean_s": 10.808
+  }
+ ]
+}

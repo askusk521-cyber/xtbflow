@@ -11,7 +11,7 @@
 | 场景 | 改哪里 |
 |---|---|
 | 新实验出结果 | `experiments.yaml` 加一条（问题、结论、PR、证据路径、n2 目录）；有双侧区间的配对差值加进 `forest` |
-| 运行进度变化 | 不用改：本机定时任务每 30 分钟把 n2 状态写进置顶的运行状态 issue，网站构建时读取 |
+| 运行进度变化 | 不用改：本机定时任务每天 08:00 把 n2 状态写进置顶的运行状态 issue，网站每天重建时读取 |
 | 开始一项长任务 | 在 n2 的 `/home/lhshen/xtbflow-runs/run_status.d/` 放一个登记文件（格式见 `scripts/update_run_status.py`），进度会自动显示 |
 | 实验完成、写结论 | `progress.yaml` 的 `runs`（`status: done`）和 `experiments.yaml`，走 PR |
 | 负责人做出决定 | `progress.yaml` 的 `next`，同时更新相关实验的状态 |
@@ -28,9 +28,9 @@ mkdocs serve
 
 ## 运行状态如何自动更新
 
-1. 负责人电脑上的计划任务 `\xtbflow\run-status` 每 30 分钟运行一次 `scripts/update_run_status.py push`。它通过 ssh 只读地查看 n2 的 Slurm 队列和登记目录 `/home/lhshen/xtbflow-runs/run_status.d/` 中的长任务日志。
-2. 状态有变化时（或距上次更新超过 6 小时），它改写置顶的[运行状态 issue](https://github.com/askusk521-cyber/xtbflow/issues?q=is%3Aissue+label%3Arun-status)。
-3. issue 被改写、合并到 main、或每两小时一次，站点工作流重新构建并发布网站。
+1. 负责人电脑上的计划任务 `\xtbflow\run-status` 每天 08:00 运行一次 `scripts/update_run_status.py push`（电脑当时关机的话，开机后补跑）。它通过 ssh 只读地查看 n2 的 Slurm 队列和登记目录 `/home/lhshen/xtbflow-runs/run_status.d/` 中的长任务日志。
+2. 它改写置顶的[运行状态 issue](https://github.com/askusk521-cyber/xtbflow/issues?q=is%3Aissue+label%3Arun-status)。
+3. 站点工作流每天 08:40 左右（北京时间）重新构建并发布网站；负责人合并 PR 到 main 时也会立即重建。需要立刻更新时，可在 Actions 页面手动运行 “Project site”。
 
 电脑关机或 n2 不可达时，页面保留上次成功采集的结果，并显示采集失败的时间。本机日志在 `%LOCALAPPDATA%\xtbflow\run_status.log`。停用：`Disable-ScheduledTask -TaskPath "\xtbflow\" -TaskName "run-status"`。
 

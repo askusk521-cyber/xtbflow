@@ -5,7 +5,7 @@ hide:
 
 # 进展与下一步
 
-本页回答两个问题：**现在 n2 上在跑什么**，以及**接下来暂定做什么**。“正在运行”由本机定时任务每 30 分钟从 n2 采集（Slurm 队列与登记的长任务日志），写入置顶的[运行状态 issue](https://github.com/askusk521-cyber/xtbflow/issues?q=is%3Aissue+label%3Arun-status)，网站构建时读取，不需要改仓库。“最近完成”与“下一步”来自 [`portal/records/progress.yaml`](https://github.com/askusk521-cyber/xtbflow/blob/main/portal/records/progress.yaml)，改动走 PR。
+本页回答两个问题：**现在 n2 上在跑什么**，以及**接下来暂定做什么**。“正在运行”由本机定时任务每天 08:00 从 n2 采集（Slurm 队列与登记的长任务日志），写入置顶的[运行状态 issue](https://github.com/askusk521-cyber/xtbflow/issues?q=is%3Aissue+label%3Arun-status)，网站每天 08:40 左右重建时读取，不需要改仓库。“最近完成”与“下一步”来自 [`portal/records/progress.yaml`](https://github.com/askusk521-cyber/xtbflow/blob/main/portal/records/progress.yaml)，改动走 PR。
 
 ## 正在运行（自动更新） {#running}
 

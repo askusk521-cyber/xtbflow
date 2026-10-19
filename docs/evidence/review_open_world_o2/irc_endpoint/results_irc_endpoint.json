@@ -1,0 +1,474 @@
+{
+  "config_sha256": "112f5e1b619c53441a0e801e3a23d121553ecf7608b952e1a57991d50b2d879a",
+  "exploratory": true,
+  "gpu": {
+    "budget_s": 7200,
+    "total_runtime_s": 752,
+    "within_budget": true
+  },
+  "input_sha256": {
+    "/home/lhshen/xtbflow-runs/followup-20261009/o2-irc-endpoint/candidate_a236f9ad357245eb/verdict.json": "877b5e07cf765e2e4e3ee63b672730e138bffad20291a56014867dbddd60bbb8",
+    "/home/lhshen/xtbflow-runs/followup-20261009/o2-irc-endpoint/candidate_b57945825104c001/verdict.json": "301457c2d41ba7d191babcaf6d955e320044a1b1b939fc75ba7522361853fe03",
+    "/home/lhshen/xtbflow-runs/followup-20261009/o2-irc-endpoint/ledger.json": "7c477605de66a4910932de2180f8d6330a740c9d8ecf9cab042ffb07eef6b3ff",
+    "/home/lhshen/xtbflow-runs/followup-20261009/o2-plan.json": "0993c387fba18cd7761542099b1acb8146b9d78f2293f068d9ea872fe5d50fc8",
+    "/home/lhshen/xtbflow-runs/followup-20261009/o2-run/anchor_9e374f63ba7f47e0/verdict.json": "d30a76a4f09caacee94a999242ae7fe81b7e575f35640188984d6e79d2ac688e",
+    "/home/lhshen/xtbflow-runs/followup-20261009/o2-run/anchor_afe53f9b756acd4f/verdict.json": "4c53fe62709db27c68496772c5fcf6a54b56592d4c1fdf101419db76611642f4",
+    "/home/lhshen/xtbflow-runs/followup-20261009/o2-run/candidate_a236f9ad357245eb/irc/irc_irc.xyz": "2d3d7b2618e62ed48fda5512f21ac60bc26d8917dab157050d50980579a8bd6e",
+    "/home/lhshen/xtbflow-runs/followup-20261009/o2-run/candidate_a236f9ad357245eb/verdict.json": "7ee4e4cdcb6f7212f071edb6273ff243bd4813f28b0dd84b287830b2bfe5e915",
+    "/home/lhshen/xtbflow-runs/followup-20261009/o2-run/candidate_b57945825104c001/irc/irc_irc.xyz": "9e3cf0eb778f611dec2dbf6e168e19c17d303becdae75657b3765d6ad4744db6",
+    "/home/lhshen/xtbflow-runs/followup-20261009/o2-run/candidate_b57945825104c001/verdict.json": "5961e9ab53ba3c0834c1ad8be296da12c2ebee539ff9f0754b7f29aa51d8def1",
+    "/home/lhshen/xtbflow-runs/followup-20261009/o2-run/reference_526e94fdea776fe1/verdict.json": "f8268c951b109d1299a8e9555f29f3348cfbb55aa02bf4bb5a8c5d8ddee30874",
+    "/home/lhshen/xtbflow-runs/followup-20261009/o2-run/reference_64b20c822d45f57f/verdict.json": "70ff287666bcb657a087226ab22800da879271192a56e3baa35e4398d279b1a7"
+  },
+  "protocol_version": "v1b-h-gpu4pyscf-3",
+  "rows": [
+    {
+      "calls": {
+        "gradient": 14,
+        "hessian": 2,
+        "scf": 16
+      },
+      "candidate_ts_vs_anchor_kcal": 105.04831431489605,
+      "delta_ea_xtb_kcal": -0.5996801776515899,
+      "diagnostic_status": "IRC_REACTANT_MISMATCH",
+      "ends": [
+        {
+          "drop_from_frame_kcal": 2.0819668109503026e-05,
+          "energy_hartree": -303.41496160317826,
+          "frame_energy_hartree": -303.41496157,
+          "frame_iteration": 206,
+          "label": "first",
+          "lowest_frequencies_cm1": [
+            165.00952209868097,
+            348.2601998232401,
+            381.77441409205426
+          ],
+          "retried": false,
+          "rmsd_frame_to_minimum_angstrom": 0.00028078778372413,
+          "status": "MINIMUM_PASS"
+        },
+        {
+          "drop_from_frame_kcal": 0.07477456246859052,
+          "energy_hartree": -303.42007729085026,
+          "frame_energy_hartree": -303.41995813,
+          "frame_iteration": 301,
+          "label": "last",
+          "lowest_frequencies_cm1": [
+            117.25486727996498,
+            174.9975587965206,
+            365.36809039635494
+          ],
+          "retried": false,
+          "rmsd_frame_to_minimum_angstrom": 0.0400084072663863,
+          "status": "MINIMUM_PASS"
+        }
+      ],
+      "identity": {
+        "status": "IRC_REACTANT_MISMATCH"
+      },
+      "irc_frames": {
+        "first": {
+          "energy_hartree": -303.41496157,
+          "iteration": 206
+        },
+        "last": {
+          "energy_hartree": -303.41995813,
+          "iteration": 301
+        },
+        "n_frames": 508,
+        "ts_index": 206
+      },
+      "item_id": "a236f9ad357245eb",
+      "local_barrier_kcal": null,
+      "n_atoms": 13,
+      "o2_strict_status": "PROTOCOL_FAILURE",
+      "parent_id": "4f5559117464139fee00",
+      "passes": false,
+      "qc_kernel_wall_s": 199.25990266100416,
+      "reference_status": "STRICT_JOINT_GRAPH_VALID",
+      "reference_ts_vs_anchor_kcal": 61.283975596639664,
+      "slurm": {
+        "cumulative_gpu_s": 202,
+        "detail": "IRC_REACTANT_MISMATCH",
+        "exit_code": "0:0",
+        "item_id": "a236f9ad357245eb",
+        "job_id": "3490",
+        "kind": "candidate",
+        "outcome": "VERDICT",
+        "parent_id": "4f5559117464139fee00",
+        "runtime_s": 202,
+        "slurm_state": "COMPLETED",
+        "submitted_unix": 1792421059.211537
+      },
+      "stage_geometric_wall_s": {
+        "end_first_opt": 18.72569070299869,
+        "end_last_opt": 95.60177288499835
+      },
+      "stage_qc_kernel_wall_s": {
+        "end_first_freq": 42.82611563000319,
+        "end_first_opt": 18.678944128001604,
+        "end_last_freq": 42.42622086399933,
+        "end_last_opt": 95.32862203900004
+      },
+      "ts_energy_difference_vs_reference_kcal": 43.764338718256376,
+      "ts_imaginary_cm1": -1011.7797948210248,
+      "ts_rmsd_xtb_to_dft_angstrom": 0.14888830081912097,
+      "wall_s": 200.47927636500026
+    },
+    {
+      "calls": {
+        "gradient": 42,
+        "hessian": 2,
+        "scf": 44
+      },
+      "candidate_ts_vs_anchor_kcal": 100.56880276134615,
+      "delta_ea_xtb_kcal": 23.725554220839992,
+      "diagnostic_status": "STRICT_JOINT_GRAPH_VALID",
+      "ends": [
+        {
+          "drop_from_frame_kcal": 4.945526359075245e-05,
+          "energy_hartree": -308.41387840881197,
+          "frame_energy_hartree": -308.41387833,
+          "frame_iteration": 35,
+          "label": "first",
+          "lowest_frequencies_cm1": [
+            57.857814884436465,
+            109.39889105644653,
+            119.5546052615523
+          ],
+          "retried": false,
+          "rmsd_frame_to_minimum_angstrom": 0.0010199313618760128,
+          "status": "MINIMUM_PASS"
+        },
+        {
+          "drop_from_frame_kcal": 98.25678679372834,
+          "energy_hartree": -308.5733686167082,
+          "frame_energy_hartree": -308.41678646,
+          "frame_iteration": 301,
+          "label": "last",
+          "lowest_frequencies_cm1": [
+            130.69541291167815,
+            238.5512643782371,
+            367.58195958825263
+          ],
+          "retried": false,
+          "rmsd_frame_to_minimum_angstrom": 0.6543231798918299,
+          "status": "MINIMUM_PASS"
+        }
+      ],
+      "identity": {
+        "actual_event_id": "d44ac7df0e5d98a8a6085903",
+        "predicted_event_id": "d44ac7df0e5d98a8a6085903",
+        "product_be": [
+          [
+            4,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "reactant_end": 1,
+        "status": "STRICT_JOINT_GRAPH_VALID"
+      },
+      "irc_frames": {
+        "first": {
+          "energy_hartree": -308.41387833,
+          "iteration": 35
+        },
+        "last": {
+          "energy_hartree": -308.41678646,
+          "iteration": 301
+        },
+        "n_frames": 337,
+        "ts_index": 35
+      },
+      "item_id": "b57945825104c001",
+      "local_barrier_kcal": 100.56875540396523,
+      "n_atoms": 15,
+      "o2_strict_status": "PROTOCOL_FAILURE",
+      "parent_id": "7dc6922783059ead3fb0",
+      "passes": true,
+      "qc_kernel_wall_s": 547.0313769409877,
+      "reference_status": "STRICT_JOINT_GRAPH_VALID",
+      "reference_ts_vs_anchor_kcal": 77.93120706890699,
+      "slurm": {
+        "cumulative_gpu_s": 752,
+        "detail": "STRICT_JOINT_GRAPH_VALID",
+        "exit_code": "0:0",
+        "item_id": "b57945825104c001",
+        "job_id": "3491",
+        "kind": "candidate",
+        "outcome": "VERDICT",
+        "parent_id": "7dc6922783059ead3fb0",
+        "runtime_s": 550,
+        "slurm_state": "COMPLETED",
+        "submitted_unix": 1792421265.1070673
+      },
+      "stage_geometric_wall_s": {
+        "end_first_opt": 32.41611947899946,
+        "end_last_opt": 422.6995891709994
+      },
+      "stage_qc_kernel_wall_s": {
+        "end_first_freq": 46.42945591399621,
+        "end_first_opt": 32.348374226003216,
+        "end_last_freq": 47.00821050700324,
+        "end_last_opt": 421.245336293985
+      },
+      "ts_energy_difference_vs_reference_kcal": 22.637595692439163,
+      "ts_imaginary_cm1": -306.51180095925696,
+      "ts_rmsd_xtb_to_dft_angstrom": 0.5199836376954059,
+      "wall_s": 549.2699290159981
+    }
+  ],
+  "schema": "xtbflow-open-world-o2-irc-endpoint-results/1",
+  "supplementary": true
+}

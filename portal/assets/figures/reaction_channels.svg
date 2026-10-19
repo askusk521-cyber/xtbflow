@@ -1,0 +1,35 @@
+<svg viewBox="0 0 780 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="rc-title rc-desc" class="xf-schematic">
+<title id="rc-title">同一个反应物的多条反应通道</title>
+<desc id="rc-desc">能量随反应坐标变化的示意图。反应物出发有三条通道，各自越过一个过渡态到达不同产物。通道 3 的过渡态最低，即势垒最低、最容易发生。单端设定下只给反应物，模型要自己提出这些通道。</desc>
+<defs>
+<marker id="rc-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="xf-fill-axis"/></marker>
+<marker id="rc-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="xf-fill-s1"/></marker>
+</defs>
+<line class="xf-axis" x1="40" y1="276" x2="40" y2="24" marker-end="url(#rc-a)"/>
+<line class="xf-axis" x1="40" y1="276" x2="760" y2="276" marker-end="url(#rc-a)"/>
+<text class="xf-t-s" x="30" y="40" text-anchor="end" transform="rotate(-90 30 40)">能量</text>
+<text class="xf-t-s" x="752" y="268" text-anchor="end">反应坐标</text>
+<line class="xf-grid" x1="150" y1="210" x2="520" y2="210" stroke-dasharray="4 4"/>
+<line class="xf-flow-s2" x1="60" y1="210" x2="150" y2="210" stroke-width="3"/>
+<text class="xf-t-b" x="105" y="234" text-anchor="middle">反应物</text>
+<text class="xf-t-s" x="105" y="252" text-anchor="middle">唯一的输入</text>
+<path class="xf-flow" d="M150,210 C230,210 280,62 330,62 C380,62 470,160 610,160"/>
+<path class="xf-flow" d="M150,210 C250,210 340,105 400,105 C460,105 520,240 610,240"/>
+<path class="xf-flow-s1" d="M150,210 C280,210 410,150 470,150 C530,150 560,195 610,195" stroke-width="2.6"/>
+<circle class="xf-fill-axis" cx="330" cy="62" r="5"/>
+<circle class="xf-fill-axis" cx="400" cy="105" r="5"/>
+<circle class="xf-fill-s1" cx="470" cy="150" r="6"/>
+<text class="xf-t-s" x="330" y="50" text-anchor="middle">过渡态 1</text>
+<text class="xf-t-s" x="400" y="93" text-anchor="middle">过渡态 2</text>
+<text class="xf-t-s1" x="470" y="138" text-anchor="middle">过渡态 3</text>
+<line class="xf-flow-s1" x1="470" y1="207" x2="470" y2="160" marker-end="url(#rc-b)" stroke-width="1.6"/>
+<text class="xf-t-s1" x="478" y="190">势垒最低</text>
+<line class="xf-flow" x1="610" y1="160" x2="690" y2="160" stroke-width="3"/>
+<line class="xf-flow" x1="610" y1="240" x2="690" y2="240" stroke-width="3"/>
+<line class="xf-flow-s1" x1="610" y1="195" x2="690" y2="195" stroke-width="3"/>
+<text class="xf-t-s" x="696" y="164">产物 1</text>
+<text class="xf-t-s" x="696" y="244">产物 2</text>
+<text class="xf-t-s1" x="696" y="199">产物 3</text>
+<text class="xf-t-s" x="230" y="110" text-anchor="end">通道 1</text>
+<text class="xf-t-s" x="560" y="232">通道 2</text>
+</svg>

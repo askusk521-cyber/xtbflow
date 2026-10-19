@@ -1,0 +1,256 @@
+{
+  "descriptive": true,
+  "exploratory": true,
+  "rows": [
+    {
+      "ends": [
+        {
+          "label": "first",
+          "perceived": true,
+          "vs_predicted_product": [
+            [
+              "N0",
+              "C2",
+              0,
+              1
+            ],
+            [
+              "N0",
+              "H7",
+              1,
+              0
+            ],
+            [
+              "C1",
+              "C2",
+              2,
+              1
+            ],
+            [
+              "C1",
+              "H7",
+              0,
+              1
+            ]
+          ],
+          "vs_reactant": [
+            [
+              "N0",
+              "C1",
+              3,
+              2
+            ],
+            [
+              "N0",
+              "C2",
+              0,
+              1
+            ],
+            [
+              "C1",
+              "H7",
+              0,
+              1
+            ],
+            [
+              "C2",
+              "H7",
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "label": "last",
+          "perceived": true,
+          "vs_predicted_product": [],
+          "vs_reactant": [
+            [
+              "N0",
+              "C1",
+              3,
+              2
+            ],
+            [
+              "N0",
+              "H7",
+              0,
+              1
+            ],
+            [
+              "C1",
+              "C2",
+              1,
+              2
+            ],
+            [
+              "C2",
+              "H7",
+              1,
+              0
+            ]
+          ]
+        }
+      ],
+      "item_id": "a236f9ad357245eb",
+      "parent_id": "4f5559117464139fee00",
+      "predicted_event_vs_reactant": [
+        [
+          "N0",
+          "C1",
+          3,
+          2
+        ],
+        [
+          "N0",
+          "H7",
+          0,
+          1
+        ],
+        [
+          "C1",
+          "C2",
+          1,
+          2
+        ],
+        [
+          "C2",
+          "H7",
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "ends": [
+        {
+          "label": "first",
+          "perceived": true,
+          "vs_predicted_product": [],
+          "vs_reactant": [
+            [
+              "O0",
+              "C1",
+              2,
+              1
+            ],
+            [
+              "O0",
+              "C6",
+              0,
+              1
+            ],
+            [
+              "C1",
+              "C6",
+              1,
+              2
+            ],
+            [
+              "C4",
+              "C5",
+              1,
+              2
+            ],
+            [
+              "C4",
+              "C6",
+              1,
+              0
+            ],
+            [
+              "C5",
+              "C6",
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "label": "last",
+          "perceived": true,
+          "vs_predicted_product": [
+            [
+              "O0",
+              "C1",
+              1,
+              2
+            ],
+            [
+              "O0",
+              "C6",
+              1,
+              0
+            ],
+            [
+              "C1",
+              "C6",
+              2,
+              1
+            ],
+            [
+              "C4",
+              "C5",
+              2,
+              1
+            ],
+            [
+              "C4",
+              "C6",
+              0,
+              1
+            ],
+            [
+              "C5",
+              "C6",
+              0,
+              1
+            ]
+          ],
+          "vs_reactant": []
+        }
+      ],
+      "item_id": "b57945825104c001",
+      "parent_id": "7dc6922783059ead3fb0",
+      "predicted_event_vs_reactant": [
+        [
+          "O0",
+          "C1",
+          2,
+          1
+        ],
+        [
+          "O0",
+          "C6",
+          0,
+          1
+        ],
+        [
+          "C1",
+          "C6",
+          1,
+          2
+        ],
+        [
+          "C4",
+          "C5",
+          1,
+          2
+        ],
+        [
+          "C4",
+          "C6",
+          1,
+          0
+        ],
+        [
+          "C5",
+          "C6",
+          1,
+          0
+        ]
+      ]
+    }
+  ],
+  "schema": "xtbflow-open-world-o2-irc-endpoint-graphs/1"
+}

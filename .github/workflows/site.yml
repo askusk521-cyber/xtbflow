@@ -2,7 +2,12 @@ name: Project site
 
 # Builds the MkDocs homepage (mkdocs.yml, portal/) and publishes it to GitHub Pages.
 # - PRs that touch the site: check records and build strictly, no deploy.
-# - main, the daily schedule, or a manual run: build and deploy.
+# - main, the daily schedule, or a manual run: build the `site` branch and deploy.
+# The owner decided (2026-10-19) that site content goes live without a merge each
+# time: content lives on the `site` branch, the agent pushes there and then runs this
+# workflow on main (`gh workflow run site.yml --ref main`). Deployment stays limited
+# to main, nothing on `site` is merged into main automatically, and code changes
+# (including this file) still go through PR review.
 # Live n2 status comes from the pinned issue labelled run-status, which a scheduled
 # task on the owner's machine keeps current (scripts/update_run_status.py), so the
 # "running" section updates without commits. The owner asked for one update a day:
@@ -48,6 +53,8 @@ jobs:
       - name: Check out source with all branches
         uses: actions/checkout@v4
         with:
+          # PRs build their own content; every deploy builds the site branch.
+          ref: ${{ github.event_name != 'pull_request' && 'site' || '' }}
           # Evidence links are pinned to PR head commits on other branches;
           # check_portal.py needs those objects to verify every path.
           fetch-depth: 0

@@ -1,0 +1,36 @@
+{
+  "schema": "xtbflow-open-world-o2-analysis/1",
+  "exploratory": true,
+  "frozen_config": "configs/review/open_world_o2.json",
+  "implements": "the six entries of the frozen config's 'metrics' list; its sha256 is taken from o2-plan.json",
+  "written": "2026-10-19, after all 30 items were terminal. The author had seen each item's protocol status and IRC-local barrier, but had not computed any delta_Ea_DFT, anchor-relative barrier, catalogue difference or sign agreement.",
+  "hartree_to_kcal": 627.509474,
+  "pass_status": {
+    "anchor": "MINIMUM_PASS",
+    "reference": "STRICT_JOINT_GRAPH_VALID",
+    "candidate": "STRICT_JOINT_GRAPH_VALID"
+  },
+  "certification_counts": "Denominator = all planned items of that kind (10). Every item was attempted exactly once; an item that ended in a chain exception has no verdict and counts as attempted, not passed. Wilson 95% interval.",
+  "paired_parents": "Parents whose candidate and reference both pass. Every other parent is listed with the reason it is excluded.",
+  "delta_ea_dft_kcal": "(E_TS(candidate) - E_TS(reference)) * hartree_to_kcal, electronic energies",
+  "barrier_vs_anchor_kcal": "(E_TS - E_min(anchor)) * hartree_to_kcal, for both candidate and reference; the anchor must be MINIMUM_PASS",
+  "local_barrier_kcal": "qc_protocol's own TS minus IRC reactant-end energy; reported alongside, not used for any count",
+  "catalogue_check": {
+    "rows": "every reference that passes",
+    "primary": "barrier_vs_anchor_kcal - catalog_barrier_kcal",
+    "secondary": "local_barrier_kcal - catalog_barrier_kcal",
+    "flag_abs_kcal": 2.0,
+    "context": "report whether reference_id equals the parent's anchor_reference_id: the T1x catalogue barrier is measured from that reaction's own reactant geometry, which may differ from the anchor"
+  },
+  "sign_agreement": "Over paired parents: sign(delta_Ea_DFT) == sign(delta_Ea_xTB from the frozen plan); an exact zero counts as disagreement. Wilson 95% interval.",
+  "delta_counts": {
+    "below_zero": "delta_Ea_DFT < 0",
+    "at_most_plus5": "delta_Ea_DFT <= 5.0",
+    "interval": "Wilson 95% over paired parents"
+  },
+  "delta_ea_dft_summary": "xtbflow.v1.metrics.cluster_summary over paired parents, groups = parent split_group (handoff section 3, rule 4); null with a reason when fewer than two parents or groups",
+  "timings": "Per item: chain wall (verdict or unexpected_failure wall_s), Slurm RunTime of the attempt that produced the work directory, QC-kernel wall per stage (sum of scf/gradient/hessian rows), geomeTRIC wall per stage, and counts of scf, gradient and hessian calls from stage_timings",
+  "gpu_ledger": "Every Slurm job in o2-jobs/ledger.json, ledger_v2.json and ledger_v4.json, with dispatcher version, state and RunTime seconds; totals by category and against the 16 GPU-hour budget. The 2026-10-17 diagnostic GPU checks (Slurm 3371 and two short srun checks) are outside this ledger and are disclosed in the report.",
+  "plot": "delta_ea_scatter.svg: delta_Ea_xTB (x) against delta_Ea_DFT (y) for paired parents, with y=x and zero lines; descriptive only",
+  "determinism": "results.json is written with sorted keys and must be byte-identical when re-run from the same inputs and source commit"
+}

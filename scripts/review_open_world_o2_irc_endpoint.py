@@ -18,6 +18,7 @@ converged. Coordinates are Angstrom, energies electronic Hartree, neutral single
   run       --run-root R --item ITEM                 inside Slurm, clean clone
   submit    --run-root R --source S                  login node; serial sbatch, single use
   summarize --run-root R --out results_irc_endpoint.json   CPU only, deterministic
+  graphs    --run-root R --out graphs.json           CPU only; descriptive, added after the runs
 """
 import argparse
 import json
@@ -320,6 +321,48 @@ def summarize(root, config=CONFIG):
                 input_sha256=dict(sorted(sha.items())))
 
 
+def bond_changes(b, ref, perms, z):
+    """Fewest bond-order differences of graph b from ref over the parent's atom permutations.
+
+    Same matching as qc_protocol.endpoint_identity (b[p][:, p] against ref); each
+    difference is [atom i, atom j, order in ref, order in b], atoms labelled by element.
+    """
+    ref, best = np.asarray(ref), None
+    for p in np.asarray(perms):
+        bp = np.asarray(b)[np.ix_(p, p)]
+        d = [[f'{SYMBOLS[int(z[i])]}{i}', f'{SYMBOLS[int(z[j])]}{j}', int(ref[i, j]), int(bp[i, j])]
+             for i in range(len(bp)) for j in range(i + 1, len(bp)) if ref[i, j] != bp[i, j]]
+        if best is None or len(d) < len(best):
+            best = d
+    return best
+
+
+def graphs(root, config=CONFIG):
+    """Descriptive, added after the runs: how each minimised end differs from the reactant and the predicted product.
+
+    Not part of the frozen classification; uses the unchanged qc_protocol.perceive_be (RDKit).
+    """
+    from xtbflow.v1 import qc_protocol as qc
+    cfg = json.loads(Path(config).read_text(encoding='utf-8'))
+    plan = json.loads((root / 'o2-plan.json').read_text())
+    rows = []
+    for entry in cfg['items']:
+        item = next(i for i in plan['items'] if i['item_id'] == entry['item_id'])
+        z, identity = np.asarray(item['z']), [list(range(len(item['z'])))]
+        verdict = json.loads((root / OUT / f"{item['kind']}_{item['item_id']}" / 'verdict.json').read_text())
+        ends = []
+        for label, end in zip(('first', 'last'), verdict.get('endpoints', [])):
+            b = qc.perceive_be(z, np.asarray(end['x'])) if 'x' in end else None
+            ends.append(dict(label=label, perceived=b is not None,
+                             vs_reactant=None if b is None else bond_changes(b, item['b_r'], item['perms'], z),
+                             vs_predicted_product=None if b is None else bond_changes(b, item['b_predicted'],
+                                                                                      item['perms'], z)))
+        rows.append(dict(item_id=item['item_id'], parent_id=item['parent_id'],
+                         predicted_event_vs_reactant=bond_changes(item['b_predicted'], item['b_r'], identity, z),
+                         ends=ends))
+    return dict(schema='xtbflow-open-world-o2-irc-endpoint-graphs/1', exploratory=True, descriptive=True, rows=rows)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest='cmd', required=True)
@@ -332,11 +375,16 @@ def main():
     m = sub.add_parser('summarize')
     m.add_argument('--run-root', type=Path, required=True)
     m.add_argument('--out', type=Path, required=True)
+    g = sub.add_parser('graphs')
+    g.add_argument('--run-root', type=Path, required=True)
+    g.add_argument('--out', type=Path, required=True)
     a = p.parse_args()
     if a.cmd == 'run':
         run(a)
     elif a.cmd == 'submit':
         submit(a)
+    elif a.cmd == 'graphs':
+        write_json(a.out, graphs(a.run_root.resolve()))
     else:
         write_json(a.out, summarize(a.run_root.resolve()))
 

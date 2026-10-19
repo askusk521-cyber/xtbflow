@@ -137,6 +137,14 @@ def test_summarize_reports_ts_difference_and_end_descent(tmp_path):
     assert (tmp_path / 'a.json').read_bytes() == (tmp_path / 'b.json').read_bytes()
 
 
+def test_bond_changes_uses_the_best_permutation():
+    z = [6, 6, 1]
+    ref = np.array([[0, 1, 1], [1, 0, 0], [1, 0, 0]])
+    swapped = np.array([[0, 1, 0], [1, 0, 1], [0, 1, 0]])  # H moved to the other carbon
+    assert ie.bond_changes(swapped, ref, [[0, 1, 2]], z) == [['C0', 'H2', 1, 0], ['C1', 'H2', 0, 1]]
+    assert ie.bond_changes(swapped, ref, [[0, 1, 2], [1, 0, 2]], z) == []  # equivalent carbons
+
+
 def test_frozen_config_and_job_command():
     cfg = json.loads((ROOT / ie.CONFIG).read_text(encoding='utf-8'))
     assert [e['parent_id'][:4] for e in cfg['items']] == ['4f55', '7dc6']

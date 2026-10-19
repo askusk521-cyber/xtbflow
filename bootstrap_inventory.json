@@ -9,8 +9,8 @@
     },
     {
       "path": ".github/workflows/site.yml",
-      "sha256": "892f6f7b73128b57b9e76a60ea59bdf68bff317a229d55832c94dad312091c89",
-      "bytes": 3172
+      "sha256": "b567b4e16a49f646d40dfa313428db0ae32caf26abbf75ad2b7e14909dd66af9",
+      "bytes": 3728
     },
     {
       "path": ".gitignore",
@@ -744,13 +744,18 @@
     },
     {
       "path": "portal/about.md",
-      "sha256": "956631225bb542485120df736b9473c8b1ec96da839b887d61761b1aaabfb579",
-      "bytes": 3185
+      "sha256": "fbb93969b2686712ea6e4af3ec756cc435a77e08043ed12cc99f05cef49d35ff",
+      "bytes": 3689
     },
     {
       "path": "portal/archive.md",
       "sha256": "0b9fcb6787d9cc27a89231b3d152b9cafbdbd4c232fe800062e50f2643c28bc1",
       "bytes": 1339
+    },
+    {
+      "path": "portal/assets/figures/reaction_channels.svg",
+      "sha256": "f3ae86a13fa6381831e4ad7e9518c52dcc5cbd04d9129c23a7d4b3002dd2dd65",
+      "bytes": 2868
     },
     {
       "path": "portal/assets/figures/serial_vs_joint.svg",
@@ -764,8 +769,8 @@
     },
     {
       "path": "portal/assets/site.css",
-      "sha256": "47cb80f5b019123c866bf1985bde760a937fcb91876ac08ccbb6299c44baaea0",
-      "bytes": 17804
+      "sha256": "8eeb8e1a54b06f6927e70eb893e0ac3cf57806616654a06f078c42747f888fc4",
+      "bytes": 21276
     },
     {
       "path": "portal/assets/site.js",
@@ -789,8 +794,8 @@
     },
     {
       "path": "portal/index.md",
-      "sha256": "932f376d6aeb461cfd6a2c622a5d10734ae83704a219c5edc2ec47ae78f8d3cd",
-      "bytes": 3479
+      "sha256": "cfcc81b09b67538d24f2dd60651809010291a15f01bf93f8bffc95fec04a8892",
+      "bytes": 12743
     },
     {
       "path": "portal/paper/discussion.md",

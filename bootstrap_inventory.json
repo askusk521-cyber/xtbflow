@@ -253,6 +253,11 @@
       "bytes": 3231
     },
     {
+      "path": "configs/review/open_world_o2_irc_endpoint.json",
+      "sha256": "112f5e1b619c53441a0e801e3a23d121553ecf7608b952e1a57991d50b2d879a",
+      "bytes": 6166
+    },
+    {
       "path": "configs/rules/core_v1.yaml",
       "sha256": "a4de309daad0bab9d502028976cef7b57f91691de5895ed6d4dc1d1c764b2941",
       "bytes": 903
@@ -1293,6 +1298,11 @@
       "bytes": 14904
     },
     {
+      "path": "scripts/review_open_world_o2_irc_endpoint.py",
+      "sha256": "1edfbf7190468171419a68a2c0cf68bf15df35b3683f7459613a842fcfab6d4d",
+      "bytes": 18660
+    },
+    {
       "path": "scripts/review_open_world_report.py",
       "sha256": "b601edfd972996f28fcf5b25b72c29f9b91f22872671eb92306d24faacfb994c",
       "bytes": 4483
@@ -2131,6 +2141,11 @@
       "path": "tests/test_open_world_o2_analysis.py",
       "sha256": "5758ed55d639f38ebc33b6915eed2410309402ab20daf39ddf20ff66e24f691a",
       "bytes": 6746
+    },
+    {
+      "path": "tests/test_open_world_o2_irc_endpoint.py",
+      "sha256": "5db0571f484c48b9458bf2ded80128efb7241122426b9f4db17fb32ccf05f506",
+      "bytes": 7844
     },
     {
       "path": "tests/test_origin_seed_readiness.py",

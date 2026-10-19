@@ -1,0 +1,63 @@
+{
+  "schema": "xtbflow-open-world-o2-irc-endpoint/1",
+  "exploratory": true,
+  "supplementary": true,
+  "approval": {
+    "date": "2026-10-19",
+    "owner": "批准：先写好补充诊断规则并推送，再在 Slurm 上单卡运行：从 4f55 和 7dc6 的 IRC 两端最后一帧优化到极小点、算频率、判图身份。结果标为补充诊断，不改 O2 主结论。"
+  },
+  "written": "2026-10-19, before any supplementary calculation. The author had seen both items' O2 verdicts (TS_OPTFREQ_PASS, IRC_LIMIT, PROTOCOL_FAILURE), the tail of each irc.log (forward direction converged, backward direction stopped at its 300-iteration cap), the frame energies in irc_irc.xyz, and the O2 TS energies of these candidates and of their parents' references and anchors. No endpoint had been optimised.",
+  "already_known": "Each candidate's DFT TS was optimised and passed frequencies in O2. Its energy relative to the same parent's O2 reference TS is fixed by the stored TS energies whatever this diagnostic finds: about +43.8 kcal/mol for 4f55 and +22.6 kcal/mol for 7dc6. This diagnostic decides only whether that saddle connects the predicted event; it cannot make either candidate lower than its reference.",
+  "primary_results_unchanged": "O2 results.json, its counts and its paired rows are not recomputed. Both items stay PROTOCOL_FAILURE (IRC_LIMIT) under protocol v1b-h-gpu4pyscf-3; every number from this file is reported as a supplementary diagnostic.",
+  "protocol_version": "v1b-h-gpu4pyscf-3",
+  "plan_sha256": "0993c387fba18cd7761542099b1acb8146b9d78f2293f068d9ea872fe5d50fc8",
+  "selection": "Every O2 chain item whose verdict has irc.status == IRC_LIMIT. The submit step re-derives this set from the run root and requires it to equal 'items' exactly.",
+  "items": [
+    {
+      "item_id": "a236f9ad357245eb",
+      "kind": "candidate",
+      "parent_id": "4f5559117464139fee00",
+      "o2_verdict_sha256": "7ee4e4cdcb6f7212f071edb6273ff243bd4813f28b0dd84b287830b2bfe5e915",
+      "irc_xyz_sha256": "2d3d7b2618e62ed48fda5512f21ac60bc26d8917dab157050d50980579a8bd6e"
+    },
+    {
+      "item_id": "b57945825104c001",
+      "kind": "candidate",
+      "parent_id": "7dc6922783059ead3fb0",
+      "o2_verdict_sha256": "5961e9ab53ba3c0834c1ad8be296da12c2ebee539ff9f0754b7f29aa51d8def1",
+      "irc_xyz_sha256": "9e3cf0eb778f611dec2dbf6e168e19c17d303becdae75657b3765d6ad4744db6"
+    }
+  ],
+  "frames": "The first and the last frame of o2-run/<kind>_<item_id>/irc/irc_irc.xyz. geomeTRIC 1.1.1 with irc_direction='both' reverses the forward frames when it switches direction, so the file runs forward end -> TS -> backward end; these are the two frames certification_chain passes to minimum_stage when the IRC converges. The last frame is the last geometry geomeTRIC wrote, even if its final step would have been rejected.",
+  "frame_checks": {
+    "single_ts_frame": "exactly one frame comment 'Iteration 0 Energy ...'",
+    "ts_energy_abs_hartree": 1e-07,
+    "ts_coordinates_max_abs_angstrom": 1e-06,
+    "symbols": "every frame's element symbols equal the plan item's atomic numbers in order",
+    "on_failure": "stop before any quantum-chemistry call"
+  },
+  "procedure": "Inside one Slurm job per item, in a clean clone whose src/xtbflow/v1/qc_protocol.py has the sha256 recorded in o2-plan.json: qc_protocol.minimum_stage(z, frame, Method(device='gpu'), meter, work/<first|last>, 'end_<first|last>') for the first and then the last frame (TightOpt, maxiter 200, one uniform retry, exact Hessian frequencies), then, if both ends are MINIMUM_PASS or MINIMUM_GRAY_ZONE, qc_protocol.endpoint_identity(z, b_r, perms, b_predicted, x_first, x_last) with the plan item's graphs. This is lines 326-336 of certification_chain, unchanged and in the same order.",
+  "classification": {
+    "diagnostic_status": "endpoint_identity's status (STRICT_JOINT_GRAPH_VALID, STRICT_EVENT_MISMATCH, IRC_REACTANT_MISMATCH, EVALUATION_UNRESOLVED); ENDPOINT_FAILURE if either end is not MINIMUM_PASS or MINIMUM_GRAY_ZONE; PROTOCOL_FAILURE if qc_protocol raises SCFError outside geomeTRIC; a chain exception (e.g. geomeTRIC EngineError) is recorded and not retried",
+    "pass": "STRICT_JOINT_GRAPH_VALID"
+  },
+  "interpretation": {
+    "STRICT_JOINT_GRAPH_VALID": "Descending from the two ends of the stopped IRC reaches the reactant graph and the predicted product graph. Supplementary support that the O2 DFT saddle belongs to the predicted event; its TS-energy difference to the reference then is the candidate's DFT barrier difference. Not a strict pass: the stretch between the last frame and the minimum was an optimisation, not an IRC.",
+    "STRICT_EVENT_MISMATCH or IRC_REACTANT_MISMATCH": "The O2 DFT saddle does not connect the predicted event; the predicted channel's DFT TS remains unknown.",
+    "other": "No conclusion about the channel."
+  },
+  "reported": {
+    "hartree_to_kcal": 627.509474,
+    "per_item": "diagnostic_status; each end's minimum_stage status, energy and lowest frequencies; local barrier (TS minus reactant-end minimum) when identity names a reactant end",
+    "ts_energy_difference": "(E_TS(candidate) - E_TS(reference)) * hartree_to_kcal and the candidate TS minus anchor minimum, from the O2 verdicts, for both items regardless of diagnostic_status; labelled as conditional on connectivity unless diagnostic_status passes",
+    "descriptive": "for each end: energy drop from the IRC frame (comment energy, 8 decimals) to the minimum, and Kabsch RMSD (same atom order, Angstrom) between the frame and the minimum; Kabsch RMSD between the O1 xTB TS (plan x_start) and the O2 DFT TS",
+    "timings": "Slurm RunTime per job and qc_protocol stage timings"
+  },
+  "execution": {
+    "slurm": "sbatch --partition=main --gres=gpu:pro6000:1 --cpus-per-task=8 --mem=64G --time=01:00:00, one job at a time for the whole user, 4f55 first",
+    "attempts": "one per item; a timeout or chain exception is recorded and not retried; any other non-COMPLETED state stops",
+    "reserve_s": 3600,
+    "budget_s": 7200,
+    "outputs": "<run root>/o2-irc-endpoint/<kind>_<item_id>/ and <run root>/o2-irc-endpoint/ledger.json; o2-run/ is only read"
+  }
+}

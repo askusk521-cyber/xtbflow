@@ -2,79 +2,54 @@
 
 **守恒事件—几何流匹配与校准半经验势的反应步骤／过渡态提议研究。**
 
-> **现状（2026-10-17）：** 2026-10-06 以后，项目按 M0 → V1a → V1b 阶段指导推进，之后做了一系列探索性检查。各阶段结论、PR 叠放关系、待决事项和规范文档，见 [`docs/STATUS_ZH.md`](docs/STATUS_ZH.md)。
->
-> 本页下文和 [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) 写于 2026-09 下旬，其中"当前研究安排""第一项实际工作"等段落已过时，只作历史参考。合并必须经人工审批的规则仍然有效。
+任务是只给反应物，由模型同时生成电子事件（键级／电子记账变化）和三维过渡态几何。GFN2-xTB 等半经验方法有三种用途：校正势的底座、生成过程中的物理信号、低成本认证链。最终认证用 DFT（PySCF + gpu4pyscf）。
 
-远程仓库：`git@github.com:askusk521-cyber/xtbflow.git`。该仓库被指定为后续可版本化项目资产的远程主仓库；旧工程尚未迁入，不代表已完成训练、量化计算或目标机理验证。
+- **现状**：见 [`docs/STATUS_ZH.md`](docs/STATUS_ZH.md)，内容包括各阶段结论、PR 叠放关系和待负责人决定的事项。
+- **项目主页**：<https://askusk521-cyber.github.io/xtbflow/>，包括论文式说明、实验结果和每日更新的运行状态。
+- **历史材料**：2026-10-06 之前的 README 与状态页已原样存于 [`archive/status_20260930/`](archive/status_20260930/)；更早的启动与交接材料见 [`archive/`](archive/)。
 
-## 当前研究安排
+## 研究问题
 
-第一阶段采用公开参考数据与 xTBloom / GFN2-xTB，测试守恒事件流、同构型能量／力校正和几何生成。新增 DFT 不是首次模块训练的先决条件。CP2K 作为首选新增参考后端；VibeQC 保留为需要重新验证能力的替代候选。新增湿实验暂缓。
+核心假设：守恒事件与三维反应方向的联合（并联）流匹配，结合经参考数据校准的半经验势，能在同等物理计算预算下优于强规则、独立串联和统一物理后处理。**该假设尚未被证明。**
 
-核心假设：守恒事件与三维反应方向的联合流匹配，结合经参考数据校准的半经验势，能在同等物理计算预算下优于强规则、独立串联和统一物理后处理。该假设尚未被证明。
+联合模型与串联对照已在 Transition1x 上正式训练并评测过（M0，2026-10-07）。在无引导、候选数相同的条件下，联合的单候选命中率没有高于串联，差值区间包含 0。之后的检查都属探索性，读法见 `docs/STATUS_ZH.md`。
 
-## 当前授权与读取顺序
+## 授权、读取顺序与合并审批
 
-仓库所有者于 2026-09-25 在项目对话中指定本仓库并授权 AI 完整项目操作权限。Agent 可自主修改、提交、推送、测试、维护问题和执行有硬上限的项目计算，无需逐项重复请求许可；但合并操作必须遵守下述人工审批规则，日常授权不包含自行合并或绕过审批的权限。完整授权不等于已经取得集群连接、无限算力或科学验证结论。
+仓库所有者于 2026-09-25 指定本仓库，并授权 AI 完整的项目操作权限：Agent 可以修改、提交、推送、测试、维护 issue，并执行有硬上限的项目计算。完整授权不等于已经取得集群连接、无限算力或科学验证结论。
+
+读取顺序：
 
 1. `AGENTS.md`：当前执行指令。
-2. `configs/resources.yaml`：当前授权、资源状态和预算政策。
-3. `configs/task.yaml` 与 `configs/public_first_plan.yaml`：当前任务与阶段验收。
-4. `docs/model_design.md`、`docs/data_contract.md`：候选方法与数据合同。
+2. `configs/resources.yaml`：授权、资源状态和预算政策。
+3. `configs/task.yaml` 与 `configs/public_first_plan.yaml`：任务与阶段验收。
+4. `docs/model_design.md`、`docs/data_contract.md`：方法与数据合同。
 5. `archive/`：历史记录，不是现行权限或启动顺序。
 
-旧文档中“未批准”“预算为零”“只能写 starter 目录”等操作限制已由本次授权替代；科学适用范围、测试隔离和数据完整性要求仍然有效。
+**所有合并默认必须先经人工明确审批；唯一例外是仓库所有者或其明确委托的人类审批者清楚说明指定范围内“无需审批”。** 该规则适用于所有 PR、所有目标分支和所有合并方式，不因改动较小、仅改文档、测试通过或 AI 自审通过而豁免。审批与豁免须对应具体的 PR 或变更范围，并在 PR 中记录。未获批准时只提交待审变更，不得通过自动合并、直接推送或其他方式绕过审批。详见 [仓库管理规则](docs/REPOSITORY_MANAGEMENT.md)。
 
-## 仓库管理与合并审批
+## 软件现状
 
-**所有合并默认必须先经人工明确审批；唯一例外是仓库所有者或其明确委托的人类审批者清楚说明指定范围内“无需审批”。** 该规则适用于所有 PR、目标分支及合并方式，不因改动较小、仅修改文档、测试通过或 AI 自审通过而豁免。
+`main` 上的 `src/xtbflow` 包含：
 
-审批与明确豁免须对应具体 PR／变更范围，并在 PR 中记录；未获得批准或明确豁免时，只提交待审变更，不执行合并，也不得通过自动合并、直接推送或其他方式绕过审批。旧有“完整操作授权”“无需逐项许可”不覆盖此合并审批要求。详见 [仓库管理规则](docs/REPOSITORY_MANAGEMENT.md)。
+- **模型**：守恒事件流与约束解码（`models/event_flow.py`、`event_decoder.py`）、等变几何流（`geometry_flow.py`）、联合与串联事件—几何流（`joint_flow.py` 中的 `JointEventGeometryFlow`、`SerialEventGeometryFlow`）、Delta 能量／力模型（`delta_energy.py`）；
+- **训练**：事件流、几何流和联合流的训练，支持断点续跑（`training/`）；
+- **计算器**：GFN2-xTB／tblite 适配、xTBloom、CP2K（`calculators/`），单位边界为 Å、Hartree、Hartree/Å；
+- **运行时**：有硬上限的计费、重试与缓存账本（`runtime/`）。
 
-## 第一项实际工作
+`vendor/mechai_reusable/` 是旧工程的不可变快照，通过适配层调用，不在原处修改。
 
-读取已授权且实际可访问的旧工程与数据，复用已有审计，生成真实资产索引和公开数据子集清单；实现并验证 xTBloom 接口；在同一公开参考构型上补算半经验能量／力，开展最小校正势与流匹配消融。访问不到的旧路径记录为未连接，不得伪造数据记录或无理由重做全部审计。
+以下内容都还在**尚未合并**的 PR 分支上：M0、V1a、V1b 的实验代码（数据管线、训练与采样脚本、闸门评测、重分析），以及所有探索性检查。叠放关系见 `docs/STATUS_ZH.md` 第 2 节。模型权重、原始数据和运行输出不入库，只保存在 n2 的运行目录里，仓库中只提交它们的哈希。
 
-在新构型／新通道需要参考验证时接入 CP2K。扩大训练前需要开发集证据、可复现代码、真实资源上限；测试标签不得反馈训练。
-
-## 文件与执行边界
-
-初始化包包含启动文档、配置、历史材料及完整性检查，不包含旧工程代码、模型权重、真实数据集、计算器安装或性能结果。`docs/PROVENANCE.md` 记录来源。主机私有路径通过环境变量或忽略的本地配置提供，不发布凭据、受限原始数据和封存测试标签。
-
-在远端完成实际推送后，普通克隆方式为：
-
-```bash
-git clone git@github.com:askusk521-cyber/xtbflow.git
-cd xtbflow
-python scripts/validate_bootstrap.py
-```
-
-该命令只检查初始化文件完整性，不运行量化计算或训练。后续修改清单覆盖的文件时，应在同一提交更新 `bootstrap_inventory.json`。
-
-当前项目状态见 [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md)，n2 观察记录见
-[`docs/ENVIRONMENT_N2.md`](docs/ENVIRONMENT_N2.md)。初始化交接、旧资产索引和已结束
-行动清单保留在 [`archive/handoffs/`](archive/handoffs/)；GitHub 仓库授权不会自动
-提供 SSH、Slurm、GPU 或软件安装。
-
-## Current software status
-
-The first packaged software slice is now available under `src/xtbflow`. It
-exposes an explicit adapter to the immutable `vendor/mechai_reusable` snapshot;
-new xtbflow algorithms will be added under `src/xtbflow` instead of modifying
-the snapshot in place. Install the package and run the complete current test
-slice with:
+## 本地检查（CPU，与 CI 一致）
 
 ```bash
 python -m pip install -e ".[test]"
+python scripts/validate_bootstrap.py
 python -m unittest discover -s tests/reusable -p "test_*.py"
-python -m pytest -q tests/test_package.py
+python -m pytest -q tests --ignore=tests/reusable
 ```
 
-The current package contains contracts, untrained compatibility prototypes, and a standard-library runtime ledger for bounded, resumable execution. The ledger records calculator/protocol identities, per-system attempts, retries, cache hits, resource units, and cumulative stage caps before work is allowed to proceed.
+`validate_bootstrap.py` 只检查清单内文件的完整性，不运行量化计算或训练。修改清单覆盖的文件后，要运行 `python scripts/validate_bootstrap.py --refresh`，并在同一提交里更新 `bootstrap_inventory.json`。
 
-The public-data handoff is currently an explicit quarantine manifest: source identities are recorded, but zero scientific records are admitted until per-record geometry bytes, charge/spin evidence, licenses, and reference labels are verified.
-
-It does not yet contain a trained flow model, xTBloom or CP2K calculator
-backend, a reference energy/force dataset, or a chemical validation result.
-Those remain separate issues with their own evidence and budget gates.
+n2 运行环境见 [`docs/ENVIRONMENT_N2.md`](docs/ENVIRONMENT_N2.md)（2026-09-30 核查），之后的变化见 `docs/STATUS_ZH.md`。主机私有路径通过环境变量或被忽略的本地配置提供。不发布凭据、受限原始数据和封存的测试标签。

@@ -63,4 +63,5 @@ eras:
     prs: []
     issues: [93, 94, 95, 96, 97, 98]
     files:
-      - {path: docs/PROJECT_STATUS.md, label: 旧项目状态页（09-30 基准，已标注过时）}
+      - {path: archive/status_20260930/PROJECT_STATUS.md, label: 旧项目状态页（09-30 基准，10-19 归档）}
+      - {path: archive/status_20260930/README.md, label: 旧 README（2026-09 下旬，10-19 归档）}

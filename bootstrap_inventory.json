@@ -24,13 +24,13 @@
     },
     {
       "path": "README.md",
-      "sha256": "6222aeb432b00e2325edc32aeac90319b9d62795ead855d9fe8e457acfc9cdbd",
-      "bytes": 6032
+      "sha256": "4c5e4e3a5f4700680f4d6303e998db08b538b975e86a075db5d15870c45cd0a2",
+      "bytes": 4571
     },
     {
       "path": "archive/README.md",
-      "sha256": "f34c2e48eb573e9f966f041b783cfa14561097cf1c710aec3ab72a54ab2d6440",
-      "bytes": 1060
+      "sha256": "7890ea7d3656fb1405314da8265dd421a9d72443606e5c5d7f944a65341260cf",
+      "bytes": 1311
     },
     {
       "path": "archive/handoffs/ENVIRONMENT_N2_20260927.md",
@@ -116,6 +116,16 @@
       "path": "archive/reaction_flow_agent_starter/task.yaml",
       "sha256": "4d2fca5332f6a1879fc8780b43e76a1d00a4a5364a82459b8875b9087f83fb8e",
       "bytes": 2523
+    },
+    {
+      "path": "archive/status_20260930/PROJECT_STATUS.md",
+      "sha256": "35355d982fc7422b95ab697e2f23dbd87ea12ea6ddb944d37380cafa4fe6339e",
+      "bytes": 3658
+    },
+    {
+      "path": "archive/status_20260930/README.md",
+      "sha256": "6222aeb432b00e2325edc32aeac90319b9d62795ead855d9fe8e457acfc9cdbd",
+      "bytes": 6032
     },
     {
       "path": "archive/user_resources.redacted.yaml",
@@ -378,11 +388,6 @@
       "bytes": 6609
     },
     {
-      "path": "docs/PROJECT_STATUS.md",
-      "sha256": "35355d982fc7422b95ab697e2f23dbd87ea12ea6ddb944d37380cafa4fe6339e",
-      "bytes": 3658
-    },
-    {
       "path": "docs/PROVENANCE.md",
       "sha256": "07b8e206c34433ec1ff0c22ee34d259e0a37e2784db996d38fddf304f96e8390",
       "bytes": 1983
@@ -394,8 +399,8 @@
     },
     {
       "path": "docs/STATUS_ZH.md",
-      "sha256": "a1988fe545bba8a7ea81f1fc751d6c149dbb9e77a411f099d930d5f4f0beed0c",
-      "bytes": 12196
+      "sha256": "2274a5e288cd7b518ec938f32a4a807c0e53e57f20abb4f94da83a71d4a328df",
+      "bytes": 14115
     },
     {
       "path": "docs/TRACK_B_DATA_GATE.md",
@@ -839,8 +844,8 @@
     },
     {
       "path": "portal/records/legacy.yaml",
-      "sha256": "f26f04300915d8b19742b64644a4436932bb2c6ee71f7b182edd80db90a18a86",
-      "bytes": 4925
+      "sha256": "6921d35b5e2d2aa96faab8c0c7b822812fa453754660af5b77fc7251070794e7",
+      "bytes": 5045
     },
     {
       "path": "portal/records/progress.yaml",

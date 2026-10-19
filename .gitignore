@@ -37,6 +37,8 @@ runs/
 scratch/
 # Built project homepage (mkdocs build output)
 _site/
+# Live n2 status fetched from the run-status issue at build time
+portal/records/run_status.json
 private/
 *.ckpt
 *.pt

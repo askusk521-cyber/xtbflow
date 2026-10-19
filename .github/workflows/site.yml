@@ -1,0 +1,93 @@
+name: Project site
+
+# Builds the MkDocs homepage (mkdocs.yml, portal/) and publishes it to GitHub Pages.
+# - PRs that touch the site: check records and build strictly, no deploy.
+# - main, a schedule, or an edit of the run-status issue: build and deploy.
+# Live n2 status comes from the pinned issue labelled run-status, which a scheduled
+# task on the owner's machine keeps current (scripts/update_run_status.py), so the
+# "running" section updates without commits. Pages source must be "GitHub Actions".
+on:
+  push:
+    branches: [main]
+    paths:
+      - mkdocs.yml
+      - "portal/**"
+      - configs/run_status.json
+      - scripts/portal_hooks.py
+      - scripts/check_portal.py
+      - scripts/update_run_status.py
+      - .github/workflows/site.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - mkdocs.yml
+      - "portal/**"
+      - configs/run_status.json
+      - scripts/portal_hooks.py
+      - scripts/check_portal.py
+      - scripts/update_run_status.py
+      - .github/workflows/site.yml
+  issues:
+    types: [edited]
+  schedule:
+    # Every two hours, so PR states and the live status never lag by more than that.
+    - cron: "23 */2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+jobs:
+  build:
+    # Issue edits only matter for the run-status issue.
+    if: github.event_name != 'issues' || contains(github.event.issue.labels.*.name, 'run-status')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check out source with all branches
+        uses: actions/checkout@v4
+        with:
+          # Evidence links are pinned to PR head commits on other branches;
+          # check_portal.py needs those objects to verify every path.
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install site dependencies
+        # Keep in sync with [project.optional-dependencies].site in pyproject.toml.
+        run: python -m pip install --upgrade pip && python -m pip install "mkdocs>=1.6,<2" "mkdocs-material>=9.7,<10" "jieba>=0.42"
+      - name: Refresh PR states and check records against git
+        # Stale PR heads are warnings: the page flags them and the pinned links stay valid.
+        run: python scripts/check_portal.py --refresh-github --warn-stale
+      - name: Fetch live n2 status from the run-status issue
+        run: python scripts/update_run_status.py fetch --out portal/records/run_status.json
+      - name: Build site
+        run: python -m mkdocs build --strict
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request' && needs.build.result == 'success'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

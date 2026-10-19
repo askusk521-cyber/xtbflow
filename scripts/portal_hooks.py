@@ -64,6 +64,9 @@ def _load() -> dict:
     for item in data["experiments"]["experiments"]:
         item["date"] = str(item["date"])  # YAML reads bare dates as datetime.date
     data["by_id"] = {x["id"]: x for x in data["experiments"]["experiments"]}
+    # Live n2 status, fetched from the run-status issue by the site workflow; absent in local previews.
+    live = RECORDS / "run_status.json"
+    data["live"] = json.loads(live.read_text(encoding="utf-8")) if live.exists() else None
     return data
 
 
@@ -116,13 +119,24 @@ def evidence_links(item: dict) -> str:
 
 def viz_kpis(_arg) -> str:
     prog = _data["progress"]
+    live = _data["live"]
     active = [r for r in prog["runs"] if r["status"] == "running"]
     recent = [r for r in prog["runs"] if r["status"] == "done"]
     owner = [n for n in prog["next"] if n["owner"]]
     open_prs = [n for n, p in _data["github"]["prs"].items()
                 if 101 <= int(n) <= 122 and p["state"] == "OPEN"]
     total = len(_data["experiments"]["experiments"])
-    if active:
+    if live:
+        jobs = [j for j in live["queue"] if j["state"] == "RUNNING"]
+        waiting = [j for j in live["queue"] if j["state"] != "RUNNING"]
+        tracked = [r for r in live["runs"] if not r.get("complete") and "error" not in r]
+        run_value = f"{len(jobs)} 个作业" if jobs else ("排队中" if waiting else "无")
+        names = [f'{r.get("title", r["id"])} {r.get("done", "?")}/{r.get("total", "?")}' for r in tracked]
+        names += [j["name"] for j in jobs if not tracked]
+        if not names and recent:
+            names = [f'最近完成：{recent[0]["title"]}（{recent[0]["finished"]}）']
+        run_sub = "；".join(names) + f'（采集于 {live["collected_at"][5:16].replace("T", " ")}）'
+    elif active:
         run_value = " · ".join(f'{r["done"]} / {r["total"]}' for r in active)
         run_sub = "；".join(r["title"] for r in active)
     else:
@@ -310,6 +324,62 @@ def viz_running(_arg) -> str:
     return "".join(out)
 
 
+LIVE_STATE = {"RUNNING": ("running", "运行中"), "PENDING": ("paused", "排队"),
+              "COMPLETING": ("running", "收尾中"), "CONFIGURING": ("running", "启动中")}
+
+
+def viz_live(_arg) -> str:
+    live = _data["live"]
+    issues = f"{repo()}/issues?q=is%3Aissue+label%3Arun-status"
+    if not live:
+        return (f'<div class="xf-run"><p class="xf-muted">本次构建没有取到实时状态（本地预览时属正常）。'
+                f'网站在 GitHub 上构建时，会从<a href="{issues}">运行状态 issue</a>读取 n2 的最新情况。</p></div>')
+    out = [f'<p class="xf-muted xf-small">最近一次采集：<b>{e(live["collected_at"].replace("T", " "))}</b>'
+           f'（{e(live["host"])}）· 本机定时任务每 30 分钟检查一次 n2，状态有变化时更新'
+           f' · 数据来源：<a href="{e(live.get("issue_url", issues))}">运行状态 issue</a></p>']
+    if live.get("error"):
+        out.append(f'<div class="admonition warning"><p class="admonition-title">最近一次采集失败</p>'
+                   f'<p>{e(live["last_attempt"])}：{e(live["error"])}。下面是上次成功采集的结果。</p></div>')
+    if live["queue"]:
+        rows = "".join(
+            f'<tr><td>{e(j["job"])}</td><td><code>{e(j["name"])}</code></td>'
+            f'<td>{badge(*LIVE_STATE.get(j["state"], ("explore", j["state"])))}</td>'
+            f'<td>{e(j["elapsed"])}</td><td>{e(j["limit"])}</td><td>{e(j["reason"])}</td></tr>' for j in live["queue"])
+        out.append('<div class="xf-scroll"><table><thead><tr><th>Slurm 作业</th><th>名称</th><th>状态</th>'
+                   f'<th>已运行</th><th>时限</th><th>节点 / 原因</th></tr></thead><tbody>{rows}</tbody></table></div>')
+    else:
+        out.append('<p><b>n2 上当前没有本项目排队或运行中的作业。</b></p>')
+    for r in live["runs"]:
+        if "error" in r:
+            out.append(f'<p class="xf-muted">登记文件 {e(r["id"])} 有误：{e(r["error"])}</p>')
+            continue
+        exp = _data["by_id"].get(r.get("exp", ""))
+        done, total = r.get("done"), r.get("total")
+        pct = 100 * done / total if done is not None and total else 0
+        state = (badge("go", "已全部到达终态") if r.get("complete")
+                 else badge("running") if r.get("log_exists") else badge("paused", "日志缺失"))
+        counts = " ".join(f'<span class="xf-chip">{e(k)} × {v}</span>' for k, v in (r.get("counts") or {}).items())
+        link = f' · <a href="{e(site_link(exp["paper"]))}">结果与读法</a>' if exp else ""
+        pr = " " + pr_link(r["pr"]) if r.get("pr") else ""
+        log_time = (r.get("log_mtime") or "—").replace("T", " ")
+        out.append(
+            f'<div class="xf-run"><div class="xf-run-head">{state}<b>{e(r.get("title", r["id"]))}</b>{pr}</div>'
+            f'<div class="xf-progress" role="progressbar" aria-valuenow="{done or 0}" aria-valuemin="0" '
+            f'aria-valuemax="{total or 0}"><div style="width:{pct:.1f}%"></div></div>'
+            f'<div class="xf-run-meta"><span><b>{done if done is not None else "?"} / {total or "?"}</b> 项已结束</span>'
+            f'<span>日志更新于 {e(log_time)}</span><span>{link}</span></div>'
+            f'<div class="xf-run-meta xf-run-counts">{counts}</div>'
+            f'<div class="xf-run-meta xf-run-counts"><code class="xf-path">n2:{e(r.get("log", ""))}</code></div></div>')
+    if live["recent"]:
+        rows = "".join(f'<tr><td>{e(j["job"])}</td><td><code>{e(j["name"])}</code></td><td>{e(j["last_elapsed"])}</td>'
+                       f'<td>{e(j["left_queue_by"].replace("T", " "))}</td></tr>' for j in live["recent"])
+        out.append('<details class="xf-tableview"><summary>最近离开队列的作业</summary><table><thead><tr>'
+                   '<th>作业</th><th>名称</th><th>最后已运行</th><th>离开队列不晚于</th></tr></thead>'
+                   f'<tbody>{rows}</tbody></table></details>'
+                   '<p class="xf-muted xf-small">n2 未开启 Slurm 作业记账，查不到已结束作业的终态；结果以对应日志与 PR 为准。</p>')
+    return "".join(out)
+
+
 def viz_next(_arg) -> str:
     out = ['<ol class="xf-next">']
     for n in _data["progress"]["next"]:
@@ -324,11 +394,22 @@ def viz_next(_arg) -> str:
 
 # ---------------------------------------------------------------- data catalog & evidence boxes
 
+def stale_note(item: dict) -> str:
+    """Flag PRs that gained commits after the evidence links were pinned (links stay valid)."""
+    prs = _data["experiments"]["prs"]
+    stale = [p for p in item["prs"]
+             if _data["github"]["prs"].get(str(p), {}).get("headRefOid") not in (None, prs[p]["sha"])]
+    if not stale:
+        return ""
+    return (f'<span class="xf-stale">{" ".join("#" + str(p) for p in stale)} 在记录之后有新提交；'
+            f'链接仍指向记录时的版本</span>')
+
+
 def viz_evidence(key) -> str:
     item = _data["by_id"][key]
     prs = " ".join(pr_link(p) for p in item["prs"])
     return (f'<div class="xf-evbox"><div class="xf-evbox-head">{badge(item["status"], item["verdict"])}'
-            f'<span class="xf-muted">{e(LEVEL[item["level"]])} · {e(item["date"])} · PR {prs}</span></div>'
+            f'<span class="xf-muted">{e(LEVEL[item["level"]])} · {e(item["date"])} · PR {prs}</span>{stale_note(item)}</div>'
             f'<p><b>问题</b>　{e(item["question"])}</p><p><b>结论</b>　{e(item["finding"])}</p>'
             f'<div class="xf-evbox-links"><div><b>证据（固定到 PR 头提交）</b><ul class="xf-ev">{evidence_links(item)}</ul></div>'
             f'<div><b>原始输出（n2，未入库）</b><div>{raw_paths(item)}</div></div></div></div>')
@@ -343,7 +424,7 @@ def viz_catalog(_arg) -> str:
         out.append(f'<tr><td><b>{e(item["name"])}</b><div class="xf-muted xf-small">{e(item["date"])} · '
                    f'{e(LEVEL[item["level"]])}</div></td><td>{badge(item["status"], item["verdict"])}</td>'
                    f'<td><ul class="xf-ev">{evidence_links(item)}</ul></td><td>{raw_paths(item)}</td>'
-                   f'<td>{" ".join(pr_link(p) for p in item["prs"])}</td></tr>')
+                   f'<td>{" ".join(pr_link(p) for p in item["prs"])}{stale_note(item)}</td></tr>')
     out.append("</tbody></table></div></div>")
     return "".join(out)
 
@@ -408,7 +489,7 @@ def viz_figure(name) -> str:
 
 RENDERERS = {
     "kpis": viz_kpis, "roadmap": viz_roadmap, "forest": viz_forest, "v1a_curves": viz_v1a_curves,
-    "running": viz_running, "next": viz_next, "evidence": viz_evidence, "catalog": viz_catalog,
+    "running": viz_running, "live": viz_live, "next": viz_next, "evidence": viz_evidence, "catalog": viz_catalog,
     "references": viz_references, "legacy": viz_legacy, "figure": viz_figure,
 }
 

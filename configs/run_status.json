@@ -1,0 +1,12 @@
+{
+  "repo": "askusk521-cyber/xtbflow",
+  "label": "run-status",
+  "issue_title": "项目运行状态（自动更新）",
+  "ssh_host": "n2",
+  "slurm_user": "lhshen",
+  "registry": "/home/lhshen/xtbflow-runs/run_status.d",
+  "recent_hours": 72,
+  "finished_run_days": 7,
+  "heartbeat_hours": 6,
+  "ssh_timeout_s": 60
+}

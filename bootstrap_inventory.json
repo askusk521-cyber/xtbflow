@@ -8,9 +8,14 @@
       "bytes": 1114
     },
     {
+      "path": ".github/workflows/site.yml",
+      "sha256": "1f8aeee0f023931b2ddd2a8308e9913b86fb00c5565b1acf8a4ee44d3295aedd",
+      "bytes": 3247
+    },
+    {
       "path": ".gitignore",
-      "sha256": "3099db4302f2655319dd71b1122cd933c5ad763136c8ec37b2d90714c73fbac6",
-      "bytes": 792
+      "sha256": "8ab843ce3989fac511918f771f448a5e9ffce4f868c249efd25e8a21615ccbfa",
+      "bytes": 888
     },
     {
       "path": "AGENTS.md",
@@ -236,6 +241,11 @@
       "path": "configs/rules/core_v1.yaml",
       "sha256": "a4de309daad0bab9d502028976cef7b57f91691de5895ed6d4dc1d1c764b2941",
       "bytes": 903
+    },
+    {
+      "path": "configs/run_status.json",
+      "sha256": "2633ac14b60096cd83a6241675f41335ea83063b9379ce552a83158333dfceb5",
+      "bytes": 319
     },
     {
       "path": "configs/runs/README.md",
@@ -734,8 +744,8 @@
     },
     {
       "path": "portal/about.md",
-      "sha256": "c157f9881857bb7d6b948e3878aaaf9edac49e8d17414d30fe848f1835a5960e",
-      "bytes": 1924
+      "sha256": "74feaa5e5d0f2b166aeb49c616aaa5067e555438569d99952084045698410395",
+      "bytes": 3082
     },
     {
       "path": "portal/archive.md",
@@ -754,8 +764,8 @@
     },
     {
       "path": "portal/assets/site.css",
-      "sha256": "a07b277008563b8ae2f21510ca52de8a4f5e1cbd6de2ef0d88c6a61be6132547",
-      "bytes": 17622
+      "sha256": "47cb80f5b019123c866bf1985bde760a937fcb91876ac08ccbb6299c44baaea0",
+      "bytes": 17804
     },
     {
       "path": "portal/assets/site.js",
@@ -809,8 +819,8 @@
     },
     {
       "path": "portal/progress.md",
-      "sha256": "b41c40ab4ee75d80528ffb59893274b945548f77488775c2f6f4a1a503867105",
-      "bytes": 1266
+      "sha256": "92891cd60edebd7f2fbf78395b3a6180c6f72882f3975a76e6704ac714600e8b",
+      "bytes": 1589
     },
     {
       "path": "portal/records/experiments.yaml",
@@ -969,8 +979,8 @@
     },
     {
       "path": "scripts/check_portal.py",
-      "sha256": "42b3c0de36a411b896f0ae2cce086f2a47d5e07cb3b7221397275aa8086813ce",
-      "bytes": 5798
+      "sha256": "7e545c2516b71f790d9eed89604c3b6b487b0530ea73a70533ad02b9a69be10a",
+      "bytes": 6215
     },
     {
       "path": "scripts/cp2k_calibration_smoke.py",
@@ -994,8 +1004,8 @@
     },
     {
       "path": "scripts/portal_hooks.py",
-      "sha256": "cdb96895de5788fe00e70b80d6d09ce83b17c96a37309bcfba2b1097e205ddaf",
-      "bytes": 22821
+      "sha256": "16d8cc805446e8a9b7aec35d9ba8f1a3bb374d0ec390dd5384d32c26e7d877bb",
+      "bytes": 28556
     },
     {
       "path": "scripts/prepare_spice_openff_pilot.py",
@@ -1041,6 +1051,11 @@
       "path": "scripts/run_spice_openff_pilot.py",
       "sha256": "8e2e3f10f7a103a6dcc06ca23a3fbdb8b840208fb7bc98f233da344dd013c864",
       "bytes": 6840
+    },
+    {
+      "path": "scripts/update_run_status.py",
+      "sha256": "6aa1eb070b7d5e90ab238ff8d5bba2df8762d2631531e4e9461594770cec5642",
+      "bytes": 14749
     },
     {
       "path": "scripts/validate_bootstrap.py",

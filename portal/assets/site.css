@@ -237,6 +237,9 @@ svg .xf-row-title { font-size: 14px; font-weight: 700; fill: var(--xf-text); }
 .xf-next-head { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
 .md-typeset ol.xf-next p { margin: .3rem 0; font-size: .74rem; }
 
+.md-typeset .xf-stale { font-size: .62rem; color: var(--xf-warn-text); border: 1px dashed currentColor; border-radius: 4px; padding: 0 .4em; }
+.xf-run-counts { margin-top: .4rem; }
+
 /* ---------- 结果小节的证据框 ---------- */
 .xf-evbox { border: 1px solid var(--xf-border); border-radius: 8px; background: var(--xf-card); padding: .65rem .9rem; margin: .8rem 0 1.2rem; font-size: .74rem; }
 .xf-evbox p { margin: .35rem 0; }

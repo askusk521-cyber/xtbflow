@@ -73,6 +73,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--refresh-github", action="store_true",
                         help="Rewrite portal/records/github_snapshot.json from the GitHub API (needs gh).")
+    parser.add_argument("--warn-stale", action="store_true",
+                        help="Report PRs whose head moved past the recorded commit as warnings, not failures "
+                             "(scheduled site builds; the page flags them and the pinned links stay valid).")
     args = parser.parse_args()
 
     snapshot = refresh_snapshot() if args.refresh_github else (
@@ -80,6 +83,7 @@ def main() -> int:
     exp = yaml.safe_load((RECORDS / "experiments.yaml").read_text(encoding="utf-8"))
     legacy = yaml.safe_load((RECORDS / "legacy.yaml").read_text(encoding="utf-8"))
     failures: list[str] = []
+    warnings: list[str] = []
     checked = 0
     for path in sorted(RECORDS.glob("*.yaml")):
         failures.extend(unquoted_hash_lines(path))
@@ -89,7 +93,8 @@ def main() -> int:
             failures.append(f"#{number}: sha must be the full 40-character commit")
         live = snapshot["prs"].get(str(number), {}).get("headRefOid")
         if live and live != pr["sha"]:
-            failures.append(f"#{number}: recorded head {pr['sha'][:10]} != GitHub head {live[:10]} (update experiments.yaml)")
+            (warnings if args.warn_stale else failures).append(
+                f"#{number}: recorded head {pr['sha'][:10]} != GitHub head {live[:10]} (update experiments.yaml)")
 
     ids = {e["id"] for e in exp["experiments"]}
     for item in exp["experiments"]:
@@ -119,6 +124,8 @@ def main() -> int:
             if snapshot["issues"] and str(number) not in snapshot["issues"]:
                 failures.append(f"archive {era['id']}: issue #{number} not in snapshot")
 
+    for line in warnings:
+        print("WARN", line)
     for line in failures:
         print("FAIL", line)
     print(f"checked {checked} paths; {len(failures)} problem(s)")

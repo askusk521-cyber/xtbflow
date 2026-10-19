@@ -783,6 +783,36 @@
       "bytes": 1928
     },
     {
+      "path": "docs/evidence/review_open_world_o2/REPORT_ZH.md",
+      "sha256": "116d714b544193811bf21cc39f1e70805dc8c2dec71ca2dafa1495fa458090fd",
+      "bytes": 10718
+    },
+    {
+      "path": "docs/evidence/review_open_world_o2/SHA256SUMS",
+      "sha256": "309059314402ba03f6d3df775f9e467b0be400dc740a4e9b0397d4335d182bef",
+      "bytes": 663
+    },
+    {
+      "path": "docs/evidence/review_open_world_o2/SHA256SUMS.remote",
+      "sha256": "9539f41d8beb03a7a0407b30e12556005c18fe6c6d4cae22d634e5b5ae9cced6",
+      "bytes": 24433
+    },
+    {
+      "path": "docs/evidence/review_open_world_o2/delta_ea_scatter.svg",
+      "sha256": "4bcc4108804f31cfe53ea7b226613ec90a14d9dc7c0eb0995e8b67f64a2c0d68",
+      "bytes": 29936
+    },
+    {
+      "path": "docs/evidence/review_open_world_o2/manifest.json",
+      "sha256": "3615abe0fa4409e90da85d25c03b894dee7f2272a41e649ea490f03062153b19",
+      "bytes": 32936
+    },
+    {
+      "path": "docs/evidence/review_open_world_o2/results.json",
+      "sha256": "eb99b097a8161c3a1ed93287eccaf979a6407fecbb962d0610e7b5d2be0f0043",
+      "bytes": 49381
+    },
+    {
       "path": "docs/evidence/rgd1_hdf5_only_ids_v1.jsonl",
       "sha256": "1e853e181d9fa149a744619d68a43d7e493f9c4364210314ba8811887444ddf0",
       "bytes": 6478

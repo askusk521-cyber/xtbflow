@@ -7,6 +7,7 @@
   "registry": "/home/lhshen/xtbflow-runs/run_status.d",
   "recent_hours": 72,
   "finished_run_days": 7,
-  "heartbeat_hours": 6,
-  "ssh_timeout_s": 60
+  "heartbeat_hours": 20,
+  "ssh_timeout_s": 60,
+  "schedule_note": "每天 08:00"
 }

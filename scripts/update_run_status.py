@@ -1,7 +1,7 @@
 """Collect the n2 run status and publish it to the pinned GitHub status issue.
 
 The project homepage shows what is running on n2 without anyone editing the repo:
-a scheduled task on the owner's machine runs ``push`` every 30 minutes, which
+a scheduled task on the owner's machine runs ``push`` once a day, which
 reads the Slurm queue and the registered run ledgers over ssh (read-only) and
 rewrites the body of one pinned issue (label ``run-status``). The site workflow
 runs ``fetch`` before building, so the page follows the issue, not a commit.
@@ -134,7 +134,7 @@ def merge(cfg: dict, fresh: dict, previous: dict | None) -> dict:
     keep_until = now - dt.timedelta(days=cfg["finished_run_days"])
     runs = [r for r in fresh["runs"]
             if not r.get("complete") or (parse_time(r.get("log_mtime")) or now) >= keep_until]
-    return {"collected_at": fresh["collected_at"], "host": fresh["host"], "error": None,
+    return {"collected_at": fresh["collected_at"], "host": fresh["host"], "schedule": cfg["schedule_note"], "error": None,
             "last_attempt": fresh["collected_at"], "queue": fresh["queue"], "runs": runs,
             "recent": recent}
 
@@ -185,11 +185,11 @@ STATE_ZH = {"RUNNING": "运行中", "PENDING": "排队", "COMPLETING": "收尾�
 
 
 def render(cfg: dict, payload: dict) -> str:
-    lines = ["<!-- 本 issue 由 scripts/update_run_status.py 自动维护（本机定时任务，每 30 分钟检查一次）。"
+    lines = [f"<!-- 本 issue 由 scripts/update_run_status.py 自动维护（本机定时任务，{cfg['schedule_note']} 检查一次）。"
              "请不要手动编辑；改动会在下次检查时被覆盖。 -->",
              "## n2 运行状态（自动更新）", "",
-             f"最近一次采集：**{payload['collected_at'].replace('T', ' ')}**（{payload['host']}）。状态没有变化时，每 "
-             f"{cfg['heartbeat_hours']} 小时刷新一次时间戳。项目主页的“进展与下一步”页读取本 issue。", ""]
+             f"最近一次采集：**{payload['collected_at'].replace('T', ' ')}**（{payload['host']}）。本机定时任务"
+             f"{cfg['schedule_note']} 检查一次 n2；项目主页每天重建时读取本 issue。", ""]
     if payload.get("error"):
         lines += [f"> [!WARNING]", f"> {payload['last_attempt']} 采集失败：{payload['error']}。下面是上次成功采集的结果。", ""]
     lines += ["### Slurm 队列", ""]

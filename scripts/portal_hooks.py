@@ -335,7 +335,7 @@ def viz_live(_arg) -> str:
         return (f'<div class="xf-run"><p class="xf-muted">本次构建没有取到实时状态（本地预览时属正常）。'
                 f'网站在 GitHub 上构建时，会从<a href="{issues}">运行状态 issue</a>读取 n2 的最新情况。</p></div>')
     out = [f'<p class="xf-muted xf-small">最近一次采集：<b>{e(live["collected_at"].replace("T", " "))}</b>'
-           f'（{e(live["host"])}）· 本机定时任务每 30 分钟检查一次 n2，状态有变化时更新'
+           f'（{e(live["host"])}）· 本机定时任务{e(live.get("schedule", "每天"))} 检查一次 n2，网站每天重建一次'
            f' · 数据来源：<a href="{e(live.get("issue_url", issues))}">运行状态 issue</a></p>']
     if live.get("error"):
         out.append(f'<div class="admonition warning"><p class="admonition-title">最近一次采集失败</p>'

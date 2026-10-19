@@ -9,8 +9,8 @@
     },
     {
       "path": ".github/workflows/site.yml",
-      "sha256": "1f8aeee0f023931b2ddd2a8308e9913b86fb00c5565b1acf8a4ee44d3295aedd",
-      "bytes": 3247
+      "sha256": "b567b4e16a49f646d40dfa313428db0ae32caf26abbf75ad2b7e14909dd66af9",
+      "bytes": 3728
     },
     {
       "path": ".gitignore",
@@ -244,8 +244,8 @@
     },
     {
       "path": "configs/run_status.json",
-      "sha256": "2633ac14b60096cd83a6241675f41335ea83063b9379ce552a83158333dfceb5",
-      "bytes": 319
+      "sha256": "afa5154e596af041dd0d8ffb9b977fbc3a6308aeb4fdcc77052d9f6ffd4ea1f7",
+      "bytes": 355
     },
     {
       "path": "configs/runs/README.md",
@@ -744,13 +744,18 @@
     },
     {
       "path": "portal/about.md",
-      "sha256": "74feaa5e5d0f2b166aeb49c616aaa5067e555438569d99952084045698410395",
-      "bytes": 3082
+      "sha256": "fbb93969b2686712ea6e4af3ec756cc435a77e08043ed12cc99f05cef49d35ff",
+      "bytes": 3689
     },
     {
       "path": "portal/archive.md",
       "sha256": "0b9fcb6787d9cc27a89231b3d152b9cafbdbd4c232fe800062e50f2643c28bc1",
       "bytes": 1339
+    },
+    {
+      "path": "portal/assets/figures/reaction_channels.svg",
+      "sha256": "f3ae86a13fa6381831e4ad7e9518c52dcc5cbd04d9129c23a7d4b3002dd2dd65",
+      "bytes": 2868
     },
     {
       "path": "portal/assets/figures/serial_vs_joint.svg",
@@ -764,8 +769,8 @@
     },
     {
       "path": "portal/assets/site.css",
-      "sha256": "47cb80f5b019123c866bf1985bde760a937fcb91876ac08ccbb6299c44baaea0",
-      "bytes": 17804
+      "sha256": "8eeb8e1a54b06f6927e70eb893e0ac3cf57806616654a06f078c42747f888fc4",
+      "bytes": 21276
     },
     {
       "path": "portal/assets/site.js",
@@ -789,8 +794,8 @@
     },
     {
       "path": "portal/index.md",
-      "sha256": "932f376d6aeb461cfd6a2c622a5d10734ae83704a219c5edc2ec47ae78f8d3cd",
-      "bytes": 3479
+      "sha256": "cfcc81b09b67538d24f2dd60651809010291a15f01bf93f8bffc95fec04a8892",
+      "bytes": 12743
     },
     {
       "path": "portal/paper/discussion.md",
@@ -819,8 +824,8 @@
     },
     {
       "path": "portal/progress.md",
-      "sha256": "92891cd60edebd7f2fbf78395b3a6180c6f72882f3975a76e6704ac714600e8b",
-      "bytes": 1589
+      "sha256": "ac4b86e36d1898b2daa2a2a356033a4e1ad67e37eda5b21443f33fa4e9af47e7",
+      "bytes": 1608
     },
     {
       "path": "portal/records/experiments.yaml",
@@ -1004,8 +1009,8 @@
     },
     {
       "path": "scripts/portal_hooks.py",
-      "sha256": "16d8cc805446e8a9b7aec35d9ba8f1a3bb374d0ec390dd5384d32c26e7d877bb",
-      "bytes": 28556
+      "sha256": "9be7852267216a1e14f8c07bf6173110ee514db812f37f620d8de64e1b266fd4",
+      "bytes": 28579
     },
     {
       "path": "scripts/prepare_spice_openff_pilot.py",
@@ -1054,7 +1059,7 @@
     },
     {
       "path": "scripts/update_run_status.py",
-      "sha256": "6aa1eb070b7d5e90ab238ff8d5bba2df8762d2631531e4e9461594770cec5642",
+      "sha256": "510bcc89308652572c6b135c88382ad3efd11439d9e9bdb736e9f79d0efe940f",
       "bytes": 14749
     },
     {

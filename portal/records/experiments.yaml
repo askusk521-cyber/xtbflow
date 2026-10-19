@@ -1,0 +1,317 @@
+# 各阶段实验的结构化记录：主页路线图、结果森林图和数据目录都从这里生成。
+# 只摘录已有报告与 PR 描述中的数字，不在此产生新结论。
+# sha 是 PR 头提交（完整 40 位），用于生成不随分支移动而失效的永久链接；
+# 更新 PR 后请同步修改 sha，并运行 python scripts/check_portal.py 校验路径。
+repo: https://github.com/askusk521-cyber/xtbflow
+raw_root: /home/lhshen/xtbflow-runs
+
+prs:
+  101: {sha: a803e78ee9d104a7535005032da983252fa7b073, branch: m0/task0-env, title: M0 任务 0：环境与数值安全}
+  102: {sha: bc969a2b46cb3313ada2f5db155a3ca217136542, branch: m0/task2-model, title: M0 任务 2：等变网络与容量匹配}
+  103: {sha: abfdd73f0e2d0e645a6970809b286e8e18404794, branch: m0/task1-data, title: M0 任务 1：Transition1x 数据管线}
+  104: {sha: 350a5d49f2a996ce4e60fbf7007b52d5d52cbc1d, branch: m0/task3-train, title: M0 任务 3：训练与采样}
+  105: {sha: fa12ce624969e6058b9b33d8168fdd32f136530d, branch: m0/task4-eval, title: M0 任务 4：闸门报告}
+  106: {sha: ce76584fde7af54297ea7902c96dc018d1c6ca2e, branch: codex/v1a-20261007, title: V1a 代理筛查全流程与正式结果}
+  107: {sha: 987a7d44f32519e3763527a881ddb9715d1fa10f, branch: v1a-r/reanalysis, title: V1a-R 零算力重分析}
+  108: {sha: 5305eac4fbc244a6f24a0d0b1d571847f3bc7b72, branch: v1b/amend-v2.2, title: V1b 修订草案 v2.2}
+  109: {sha: d60088576f9939ae6fb43edd8110c5af3ab53d12, branch: v1a-n/nfe-control, title: V1a-N 步数对齐串联对照}
+  110: {sha: e5ceb870d28d77ab1efaad4af5652ef4f4978738, branch: explore/geometry-information, title: 几何信息检查}
+  111: {sha: 9cc15e03672264fddda0804bb8c2cb4eb31da8f0, branch: explore/geometry-lead-clock, title: 几何先行时钟}
+  112: {sha: ffca40f9dc9b8f72f67c695a7b99fa38e83794e3, branch: explore/physics-guidance, title: 鞍点感知物理引导}
+  113: {sha: 3db499ca1ae956dc572ee87439fe654b0192d8f3, branch: review/enum-baseline, title: 枚举基线（b3f3）}
+  114: {sha: 98720d8e358904f72b76df0a40b81e969769cabd, branch: review/oracle-benchmark, title: 物理预言机排序对比}
+  115: {sha: 419308bd580c73b201271604faf5fb4259af5a8d, branch: review/open-world-o1, title: 开放世界 xTB 认证（O1）}
+  116: {sha: 0517ff946fb319b4a815343ed574915cfd6f3c0c, branch: explore/smc-selection, title: 生成中 SMC 筛选}
+  117: {sha: cc96b45664aa2657f159c15fad52023ac294ac62, branch: explore/smc-raw-ranking, title: SMC 原始能量排序消融}
+  118: {sha: 50bcb7db0e6736ea667e4dbea8616b64655f8555, branch: explore/smc-strict-replication, title: SMC 严格顺序复验}
+  119: {sha: e6c8c1f58907ff72aa87a709865886a282cf5f66, branch: review/open-world-o2, title: 开放世界 DFT 认证（O2）}
+  120: {sha: b6db3df15eefd85a64eed329674a48d3ecba301e, branch: explore/enum-thermo, title: 枚举 + 热力学筛选（T1b）}
+  121: {sha: dd55970b0dfb89a167c12f9588ca193c3f6966b8, branch: explore/smc-oracle, title: 反应坐标诊断 + 预言机 SMC}
+  122: {sha: 5998dfd3e339623cb1599b862293ae8edbfe0ca1, branch: codex/v1b-20261007, title: V1b D0/D1（草稿）}
+
+# status 取值：go / nogo / paused / explore / running
+# level 取值：gate（预注册闸门，确认性）/ exploratory（探索性）
+experiments:
+  - id: m0
+    name: M0 联合 vs 串联闸门
+    short: M0
+    date: 2026-10-07
+    level: gate
+    status: nogo
+    verdict: NO-GO
+    question: 无引导、参数与步数相同时，联合生成“事件与 TS 几何同时命中”的比例是否高于串联？
+    finding: 主终点 Δ(B−A) = −0.0150 [−0.0670, 0.0326]，区间包含 0；合法率 −0.0267 [−0.0398, −0.0126]。35 个测试母体。“没有更好”，不是“更差”。
+    prs: [101, 103, 102, 104, 105]
+    evidence:
+      - {pr: 105, path: docs/m0/M0_GATE_REPORT.md, label: 闸门报告}
+      - {pr: 105, path: docs/evidence/m0/gate_result.json, label: gate_result.json}
+    raw: [m0/stabilize-20261007/replay, m0/stabilize-20261007/tune, m0/stabilize-20261007/full, m0/stabilize-20261007/test]
+    paper: paper/results.md#m0
+
+  - id: v1a
+    name: V1a 已知通道代理筛查
+    short: V1a
+    date: 2026-10-07
+    level: gate
+    status: go
+    verdict: GO_V1b
+    question: 生成中按几何势垒分数施加引导，能否经由耦合改变事件，并在有限 T1x 目录上提高低势垒已知通道的发现效率？
+    finding: 主比较 AUC(B1) − AUC(A2) = +0.0931 [+0.0682, +0.1180]；机制 M₀ +0.0212、Mᵣ +0.0211，下界均 > 0。边界：无引导 B0 的 AUC 0.494 高于 B1 的 0.265。
+    prs: [106]
+    evidence:
+      - {pr: 106, path: docs/evidence/v1a/formal/RESULT_ZH.md, label: 正式结果}
+      - {pr: 106, path: docs/evidence/v1a/formal/, label: formal/ 目录（gate.json、freeze.json、SHA256SUMS）}
+      - {pr: 106, path: docs/v1a/FREEZE_DECISION_ZH.md, label: 冻结前规划决定}
+      - {pr: 106, path: docs/v1a/protocol-v2.1.md, label: V1a 指导 v2.1}
+    raw: [v1a-20261007]
+    paper: paper/results.md#v1a
+
+  - id: v1a-r
+    name: V1a-R 零算力重分析
+    short: V1a-R
+    date: 2026-10-08
+    level: exploratory
+    status: explore
+    verdict: 探索性
+    question: 按候选数对齐、并计入验证成本 κ 后，各臂的相对位置如何？
+    finding: 同候选数下 A1>A0、B1≈B0、B0≈A0；前沿依次为 B0（κ≤300）→ A1 → A2（κ≥3000）；B1 在任何 κ 下都不在前沿。
+    prs: [107]
+    evidence:
+      - {pr: 107, path: docs/evidence/v1a_r/REPORT_ZH.md, label: 报告}
+    raw: [v1a-r-20261008]
+    paper: paper/results.md#v1a-r
+
+  - id: v1a-n
+    name: V1a-N 步数对齐对照
+    short: V1a-N
+    date: 2026-10-08
+    level: exploratory
+    status: explore
+    verdict: 探索性
+    question: B0 的单位预算优势，是否只是因为它每个候选用的积分步数更少？
+    finding: AUC(B0-50) − AUC(A0-25+25) = −0.016 [−0.045, +0.013]：B0 的预算优势可由积分步数解释。
+    prs: [109]
+    evidence:
+      - {pr: 109, path: docs/evidence/v1a_n/REPORT_ZH.md, label: 报告}
+    raw: [v1a-n-20261008]
+    paper: paper/results.md#v1a-n
+
+  - id: v1b-amend
+    name: V1b 修订草案 v2.2
+    short: V1b v2.2
+    date: 2026-10-08
+    level: gate
+    status: paused
+    verdict: 草案未冻结
+    question: 把 V1b 认证从两臂扩为四臂，主决策规则不变。
+    finding: 四臂认证草案，未冻结；按暂定单价估 305/564 GPU·h。
+    prs: [108]
+    evidence:
+      - {pr: 108, path: docs/v1b/AMENDMENT_v2.2_ZH.md, label: 修订草案}
+    raw: []
+    paper: paper/results.md#v1b
+
+  - id: v1b
+    name: V1b D0 + D1（DFT 认证准备）
+    short: V1b
+    date: 2026-10-08
+    level: gate
+    status: paused
+    verdict: 负责人暂缓
+    question: 冻结抽样总体（D0），并用 6–10 条开发链实测完整 DFT 认证链（D1）。
+    finding: D0：M=342，Δ^proxy = +0.0673。D1：8/8 候选精修为一阶鞍点；协议升到 v1b-h-gpu4pyscf-3；003317dd 的端点软模仍是 PROTOCOL_FAILURE。约 6.1 + 0.6 GPU·h。10-08 负责人暂缓。
+    prs: [122]
+    evidence:
+      - {pr: 122, path: docs/v1b/D1_REPORT_ZH.md, label: D1 报告}
+    raw: [v1b-20261007]
+    paper: paper/results.md#v1b
+
+  - id: geoinfo
+    name: 几何信息检查
+    short: 几何信息
+    date: 2026-10-08
+    level: exploratory
+    status: explore
+    verdict: INCONCLUSIVE / NO_USABLE_WINDOW
+    question: 真实 TS 几何能否改善事件排序？物理信号在生成过程中何时才可用？
+    finding: 真实 TS 几何没有可检出的排序增益；当前时钟下 xTB 可用窗口只有 14.5%。
+    prs: [110]
+    evidence:
+      - {pr: 110, path: docs/evidence/explore_geoinfo/REPORT_ZH.md, label: 报告}
+    raw: [explore-geoinfo-20261008]
+    paper: paper/results.md#geometry
+
+  - id: geolead
+    name: 几何先行时钟
+    short: 几何先行
+    date: 2026-10-08
+    level: exploratory
+    status: explore
+    verdict: GEOMETRY_LEAD_OPENS_WINDOW
+    question: 推迟事件定型、让几何先成形，能否打开物理信号的作用窗口？
+    finding: 窗口升到 27.9% / 34.6%，合法率约 −1.5 个百分点，生成质量几乎不变。
+    prs: [111]
+    evidence:
+      - {pr: 111, path: docs/evidence/explore_geolead/REPORT_ZH.md, label: 报告}
+    raw: [explore-geoinfo-20261008]
+    paper: paper/results.md#geometry
+
+  - id: physics
+    name: 鞍点感知物理引导
+    short: 物理引导
+    date: 2026-10-08
+    level: exploratory
+    status: explore
+    verdict: SHIFT_NOT_SPECIFIC / NO_DETECTABLE_SHIFT
+    question: 生成中施加鞍点感知的物理引导，能否让事件定向地偏向低势垒通道？
+    finding: α=0.3 时事件会变但没有方向性，α=1.0 时检不出偏移；窗口在 35–38% 见顶。
+    prs: [112]
+    evidence:
+      - {pr: 112, path: docs/explore/PHYSICS_GUIDANCE_DESIGN_ZH.md, label: 设计与结果}
+    raw: [explore-geoinfo-20261008]
+    paper: paper/results.md#geometry
+
+  - id: smc
+    name: 生成中 SMC 筛选
+    short: SMC
+    date: 2026-10-09
+    level: exploratory
+    status: explore
+    verdict: NO_GAIN_OVER_POSTHOC
+    question: 生成过程中按物理权重重采样粒子，是否胜过生成完再排序？
+    finding: relaxed_0.7 − none = −0.016 [−0.032, +0.000]；原始能量排序消融（#117）与严格顺序复验（#118）结论不变。
+    prs: [116, 117, 118]
+    evidence:
+      - {pr: 116, path: docs/evidence/explore_smc/REPORT_ZH.md, label: 报告}
+      - {pr: 117, path: docs/evidence/explore_smc/, label: 原始能量排序消融}
+      - {pr: 118, path: docs/evidence/explore_smc/, label: 严格顺序复验}
+    raw: [explore-smc-20261009]
+    paper: paper/results.md#selection
+
+  - id: enum
+    name: 枚举基线（b3f3）
+    short: 枚举 b3f3
+    date: 2026-10-09
+    level: exploratory
+    status: explore
+    verdict: GENERATION_BEATS_ENUMERATION
+    question: 穷举 b3f3 事件再用实反应势垒头排序，能否追上生成？
+    finding: AUC(S_N) − AUC(B0) = −0.177 [−0.230, −0.123]，生成胜过枚举。
+    prs: [113]
+    evidence:
+      - {pr: 113, path: docs/evidence/review_enum/, label: 证据目录}
+    raw: [review-align-20261009]
+    paper: paper/results.md#baselines
+
+  - id: oracle
+    name: 物理预言机排序对比
+    short: 预言机
+    date: 2026-10-09
+    level: exploratory
+    status: explore
+    verdict: 探索性
+    question: 不同物理预言机（GFN2-xTB、AIMNet2）给候选排序的能力差多少？
+    finding: GFN2 ρ 精确复现 0.7491；AIMNet2 的 ρ 提升：参考几何 +0.175 [0.071, 0.278]，生成几何 +0.111 [0.056, 0.166]。
+    prs: [114]
+    evidence:
+      - {pr: 114, path: docs/evidence/review_oracle/REPORT_ZH.md, label: 报告}
+    raw: [review-align-20261009]
+    paper: paper/results.md#baselines
+
+  - id: o1
+    name: 开放世界 xTB 认证（O1）
+    short: O1
+    date: 2026-10-09
+    level: exploratory
+    status: explore
+    verdict: 阳性对照通过
+    question: 目录之外生成的候选，能否通过 CPU xTB 认证？
+    finding: 阳性对照 17/20（闸门通过）；目录外 17/40 通过 xTB 认证；ΔEa < 0 只有 1/12。
+    prs: [115]
+    evidence:
+      - {pr: 115, path: docs/evidence/review_open_world/, label: 证据目录}
+    raw: [review-align-20261009]
+    paper: paper/results.md#open-world
+
+  - id: t1b
+    name: 枚举 + 热力学筛选（T1b）
+    short: T1b
+    date: 2026-10-10
+    level: exploratory
+    status: explore
+    verdict: GENERATION_BEATS_ENUMERATION
+    question: 给 b2f2 穷举加上 AIMNet2 产物热力学筛选后，能否追上生成？
+    finding: AUC(S_N_thermo) − AUC(B0) = −0.0554 [−0.1070, −0.0039]；热力学筛选相对不筛 +0.051。只看最佳通道属于 b2f2 的母体时，枚举胜过生成：+0.103 [0.042, 0.164]。
+    prs: [120]
+    evidence:
+      - {pr: 120, path: docs/evidence/explore_enum_thermo/REPORT_ZH.md, label: 报告}
+      - {pr: 120, path: docs/evidence/explore_enum_thermo/, label: 证据目录}
+    raw: [followup-20261009]
+    paper: paper/results.md#baselines
+
+  - id: t2
+    name: 反应坐标诊断 + 预言机 SMC（T2a/T2b）
+    short: T2
+    date: 2026-10-10
+    level: exploratory
+    status: explore
+    verdict: LINE_CLOSURE_RECOMMENDED
+    question: 生成器的速度方向是否就是反应模？换成物理预言机做 SMC 权重能否带来增益？
+    finding: T2a U_NOT_REACTION_MODE（真实 TS 上 c_u<0 只占 19%）；T2b 8 臂全部 NO_GAIN_OVER_POSTHOC，预写建议关闭该研究线（仅为建议）。
+    prs: [121]
+    evidence:
+      - {pr: 121, path: docs/evidence/explore_u_diagnostic/, label: T2a 证据}
+      - {pr: 121, path: docs/evidence/explore_smc_oracle/, label: T2b 证据}
+    raw: [followup-20261009]
+    paper: paper/results.md#selection
+
+  - id: o2
+    name: 开放世界 DFT 认证（O2）
+    short: O2
+    date: 2026-10-19
+    level: exploratory
+    status: explore
+    verdict: 候选 4/10 通过 DFT
+    question: 用冻结的 DFT 协议认证 O1 中通过 xTB 认证的目录外候选（10 个母体）；核查 AIMNet2 的训练数据是否覆盖 T1x。
+    finding: 候选 4/10 通过 DFT 严格认证（Wilson 95% 16.8%–68.7%），基准 9/10，锚点 10/10。两链都通过的 4 个母体 ΔEa_DFT 为 +8.8 至 +54.7 kcal/mol，没有一条候选通道低于同母体已知最佳通道；与 xTB 符号一致 4/4。3b：两个 AIMNet2 模型都是 UNRESOLVED。
+    prs: [119]
+    evidence:
+      - {pr: 119, path: docs/evidence/review_open_world_o2/REPORT_ZH.md, label: 3a 报告}
+      - {pr: 119, path: docs/evidence/review_open_world_o2/results.json, label: results.json}
+      - {pr: 119, path: docs/evidence/aimnet_provenance/REPORT_ZH.md, label: 3b AIMNet2 训练数据核查}
+      - {pr: 119, path: docs/evidence/review_open_world_o2/DECISION_ZH.md, label: 决定记录}
+      - {pr: 119, path: docs/evidence/review_open_world_o2/INFRASTRUCTURE_ZH.md, label: 基础设施记录}
+      - {pr: 119, path: docs/evidence/review_open_world_o2/DECISION_NVML_ZH.md, label: NVML 绕行决定}
+    raw: [followup-20261009]
+    paper: paper/results.md#open-world
+
+# 主页路线图：主线三个阶段 + 四条探索线。
+roadmap:
+  main: [m0, v1a, v1b]
+  lines:
+    - {name: 预算与积分步数, ids: [v1a-r, v1a-n]}
+    - {name: 几何与物理信号, ids: [geoinfo, geolead, physics]}
+    - {name: 生成中筛选, ids: [smc, t2]}
+    - {name: 基线与开放世界, ids: [enum, t1b, oracle, o1, o2]}
+
+# 森林图：只收录有双侧 95% 区间的配对差值。各行指标不同，读法见 favors。
+forest:
+  - {exp: m0, label: "M0：Hit@32，联合 − 串联", est: -0.0150, lo: -0.0670, hi: 0.0326, favors: 正值 = 联合更好}
+  - {exp: v1a, label: "V1a：AUC，B1 − A2（主比较）", est: 0.0931, lo: 0.0682, hi: 0.1180, favors: 正值 = 引导联合更好}
+  - {exp: v1a, label: "V1a：机制 M₀", est: 0.0212, lo: 0.0171, hi: 0.0253, favors: 正值 = 评分方向有效}
+  - {exp: v1a, label: "V1a：AUC，B1 − B0", est: -0.2293, lo: -0.2447, hi: -0.2138, favors: 正值 = 引导优于不引导}
+  - {exp: v1a-n, label: "V1a-N：AUC，B0 − 步数对齐串联", est: -0.016, lo: -0.045, hi: 0.013, favors: 正值 = 联合省步数之外仍有优势}
+  - {exp: smc, label: "SMC：生成中筛选 − 事后排序", est: -0.016, lo: -0.032, hi: 0.000, favors: 正值 = 生成中筛选更好}
+  - {exp: enum, label: "b3f3 枚举 − 生成 B0", est: -0.177, lo: -0.230, hi: -0.123, favors: 正值 = 枚举更好}
+  - {exp: t1b, label: "b2f2 枚举 + 热力学 − 生成 B0", est: -0.0554, lo: -0.1070, hi: -0.0039, favors: 正值 = 枚举更好}
+  - {exp: oracle, label: "AIMNet2 − GFN2：Spearman ρ（生成几何）", est: 0.111, lo: 0.056, hi: 0.166, favors: 正值 = AIMNet2 排序更准}
+
+# V1a 五臂成本曲线（RESULT_ZH.md 表格，母体 × 三个训练 seed 平均）
+v1a_curves:
+  budgets: [4, 8, 16, 32, 64]
+  arms:
+    - {arm: A0, desc: 独立串联，无引导, recall: [0.135, 0.233, 0.371, 0.525, 0.663], auc: 0.3822}
+    - {arm: A1, desc: 串联，事件级引导, recall: [0.020, 0.110, 0.233, 0.397, 0.544], auc: 0.2555}
+    - {arm: A2, desc: 强自适应串联（主对照）, recall: [0.000, 0.005, 0.198, 0.237, 0.498], auc: 0.1721}
+    - {arm: B0, desc: 联合，无引导, recall: [0.222, 0.356, 0.498, 0.641, 0.744], auc: 0.4945}
+    - {arm: B1, desc: 联合，几何引导（主方法）, recall: [0.079, 0.138, 0.238, 0.374, 0.542], auc: 0.2652}

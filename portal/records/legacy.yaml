@@ -1,0 +1,66 @@
+# 历史存档：2026-10-06 改按 M0 → V1a → V1b 阶段指导推进之前的工作。
+# 这些材料保留历史事实与边界，不是现行执行入口；状态取自 GitHub（2026-10-17）。
+eras:
+  - id: bootstrap
+    period: "2026-09-25 — 09-26"
+    title: 启动与接管
+    summary: 负责人指定本仓库并授予完整项目操作权限。两个先前生成的启动包按原始字节存档；旧工程 mechai 中可复用的代码与证据经整理后迁入 vendor/mechai_reusable/。
+    files:
+      - {path: archive/README.md, label: 存档说明}
+      - {path: archive/reaction_flow_agent_starter/, label: 反应流匹配 agent 启动包（AGENTS、gates、model_design、sources 等 9 个文件）}
+      - {path: archive/public_first_agent_addendum/, label: “公开数据先行”补充指令}
+      - {path: archive/user_resources.redacted.yaml, label: 资源配置脱敏副本}
+      - {path: archive/handoffs/HANDOFF_STATUS_20250925.md, label: 初始化交付状态}
+      - {path: archive/handoffs/LEGACY_ASSET_INDEX_20250925.md, label: 旧资产索引与 P0 交接}
+      - {path: archive/handoffs/MECHAI_RESEARCH_HANDOFF_20250926.md, label: mechai 研究交接}
+      - {path: vendor/mechai_reusable/, label: mechai 可复用代码（不可原地修改）}
+      - {path: docs/PROVENANCE.md, label: 来源与哈希记录}
+    note: 两份交接文件名中的“2025”为原文如此，正文日期是 2026-09-25 / 09-26。
+
+  - id: p0p3
+    period: "2026-09-26"
+    title: P0–P3 总路线与工程合同
+    summary: "以 issue #2 为总路线，拆出 #3–#28 的代码、数据、实验与科学任务；同日合并 #29–#42，建立 CI、运行预算账本、公开数据合同、v0.1 架构、守恒事件流、等变几何流、物理引导、CP2K 协议、Delta 势、能量/力配对缓存、联合与串联流、TS 验证流水线等合同。"
+    prs: [29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42]
+    issues: [2, 25]
+    files:
+      - {path: docs/architecture/architecture_v0.1.md, label: v0.1 架构合同}
+      - {path: docs/model_design.md, label: 模型设计}
+      - {path: docs/data_contract.md, label: 数据合同}
+      - {path: docs/sources.md, label: 先行工作与定位依据}
+
+  - id: physics
+    period: "2026-09-27 — 09-29"
+    title: 半经验势与参考计算资格
+    summary: 处理 tblite 单位与联合流 NaN 两个缺陷（#46、#44，均已关闭），完成非 CP2K 工程收口（#47、#49），重放 CP2K 运行证据（#50），GFN2 CPU 路径资格测试（#51），SPICE 能量/力试点扩到 256 构型并做分组学习曲线（#52–#54）。
+    prs: [47, 49, 50, 51, 52, 53, 54]
+    issues: [43, 44, 45, 46]
+    files:
+      - {path: docs/evidence/gfn2_qualification_20260929.json, label: GFN2 资格测试}
+      - {path: docs/evidence/spice2_openff_learning_curve_20260929.json, label: SPICE 学习曲线}
+      - {path: docs/evidence/spice2_learning_curve_runs_20260929/, label: 学习曲线逐次运行（9 个）}
+      - {path: docs/evidence/cp2k_runtime_evidence_provenance_20260929.json, label: CP2K 运行证据来源}
+      - {path: docs/CP2K_SETUP.md, label: CP2K 安装记录}
+
+  - id: workflows
+    period: "2026-09-29 — 10-02"
+    title: Workflow A–D 并行与执行图
+    summary: "按数据（A）、模型对照（B）、参考验证（C）、研究治理（D）四条工作流并行；10-01 发布执行图 #74（W00–W11，#75–#86）。期间确立“所有合并须人工批准”（#65），合并了共享事件—几何对照登记（#62）、审计修复（#66）、数据准入（#89）、交接冻结校验（#90）和真实配对试点（#91）。其余 PR 仍开放，10-06 后没有更新。"
+    prs: [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 73, 88, 89, 90, 91, 99, 100]
+    issues: [74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 92]
+    files:
+      - {path: docs/REPOSITORY_MANAGEMENT.md, label: 仓库管理与合并审批规则}
+      - {path: docs/TRACK_B_DATA_GATE.md, label: Track-B 数据闸门}
+      - {path: docs/DFT_DA_TRACK_B.md, label: DFT 数据准入（Track-B）}
+      - {path: docs/data/paired_pilot_v1.md, label: 配对试点 v1}
+      - {path: archive/handoffs/NEXT_ACTIONS_20260929.md, label: 09-29 行动清单}
+      - {path: archive/handoffs/ENVIRONMENT_N2_20260927.md, label: n2 环境记录（09-27）}
+
+  - id: fivelines
+    period: "2026-10-02 — 10-06"
+    title: 五条推进线
+    summary: "路线总入口 #93 把工作重排为五条线：数据释放（#94）、迁移训练（#95）、耦合证伪（#96）、反应区物理与 TS 验证（#97）、基准与证据出口（#98）。10-06 起项目改按 M0 阶段指导推进，这五个 issue 保持原状。"
+    prs: []
+    issues: [93, 94, 95, 96, 97, 98]
+    files:
+      - {path: docs/PROJECT_STATUS.md, label: 旧项目状态页（09-30 基准，已标注过时）}

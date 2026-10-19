@@ -1,0 +1,65 @@
+<svg viewBox="0 0 780 345" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="svj-title svj-desc" class="xf-schematic">
+<title id="svj-title">串联与联合中物理信号进入的位置</title>
+<desc id="svj-desc">上排：串联先由事件网络 g 生成并解码事件，再由几何网络 h 生成过渡态几何，物理信号只能作用在完成的候选上。下排：联合网络 f 每一步同时更新事件 b_t 与几何 x_t，物理信号在生成中作用于几何，再经耦合改变尚未定型的事件。</desc>
+<defs>
+<marker id="svj-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="xf-fill-axis"/></marker>
+<marker id="svj-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="xf-fill-s2"/></marker>
+</defs>
+<text class="xf-row-title" x="12" y="34">A　串联：两个网络依次积分</text>
+<rect class="xf-box" x="12" y="56" width="112" height="60" rx="6"/>
+<text class="xf-t-b" x="68" y="82" text-anchor="middle">反应物 R</text>
+<text class="xf-t-s" x="68" y="101" text-anchor="middle">Z, X_R, b_R</text>
+<line class="xf-flow" x1="124" y1="86" x2="150" y2="86" marker-end="url(#svj-a)"/>
+<rect class="xf-box" x="152" y="56" width="150" height="60" rx="6"/>
+<text class="xf-t-b" x="227" y="82" text-anchor="middle">事件网络 g</text>
+<text class="xf-t-s" x="227" y="101" text-anchor="middle">b：0 → 1，50 步</text>
+<line class="xf-flow" x1="302" y1="86" x2="324" y2="86" marker-end="url(#svj-a)"/>
+<rect class="xf-box-strong" x="326" y="56" width="104" height="60" rx="6"/>
+<text class="xf-t-b" x="378" y="82" text-anchor="middle">解码</text>
+<text class="xf-t-s" x="378" y="101" text-anchor="middle">整数事件 b̂_P</text>
+<line class="xf-flow" x1="430" y1="86" x2="452" y2="86" marker-end="url(#svj-a)"/>
+<rect class="xf-box" x="454" y="56" width="168" height="60" rx="6"/>
+<text class="xf-t-b" x="538" y="82" text-anchor="middle">几何网络 h</text>
+<text class="xf-t-s" x="538" y="101" text-anchor="middle">x：0 → 1，以 b̂_P 为条件</text>
+<line class="xf-flow" x1="622" y1="86" x2="644" y2="86" marker-end="url(#svj-a)"/>
+<rect class="xf-box" x="646" y="56" width="122" height="60" rx="6"/>
+<text class="xf-t-b" x="707" y="82" text-anchor="middle">候选</text>
+<text class="xf-t-s" x="707" y="101" text-anchor="middle">(b̂_P, X̂_TS)</text>
+<line class="xf-flow-s2" x1="707" y1="152" x2="707" y2="120" marker-end="url(#svj-o)"/>
+<text class="xf-t-s2" x="696" y="150" text-anchor="end">物理信号只能作用在完成的候选上：事后排序或丢弃，事件已无法改变</text>
+<line class="xf-grid" x1="12" y1="172" x2="768" y2="172"/>
+<text class="xf-row-title" x="12" y="200">B　联合：一个网络，事件与几何同步演化</text>
+<rect class="xf-box" x="12" y="232" width="112" height="60" rx="6"/>
+<text class="xf-t-b" x="68" y="258" text-anchor="middle">反应物 R</text>
+<text class="xf-t-s" x="68" y="277" text-anchor="middle">Z, X_R, b_R</text>
+<line class="xf-flow" x1="124" y1="262" x2="150" y2="262" marker-end="url(#svj-a)"/>
+<rect class="xf-box" x="152" y="214" width="470" height="96" rx="6"/>
+<text class="xf-t-s" x="164" y="231" font-weight="700">联合网络 f：每步同时更新 b_t 与 x_t（50 步，共用时间 t）</text>
+<text class="xf-t-s" x="164" y="258">事件 b_t</text>
+<text class="xf-t-s" x="164" y="294">几何 x_t</text>
+<line class="xf-flow" x1="216" y1="254" x2="604" y2="254"/>
+<line class="xf-flow" x1="216" y1="290" x2="604" y2="290"/>
+<circle class="xf-fill-axis" cx="240" cy="254" r="5" opacity="0.25"/>
+<circle class="xf-fill-axis" cx="310" cy="254" r="5" opacity="0.4"/>
+<circle class="xf-fill-axis" cx="380" cy="254" r="5" opacity="0.55"/>
+<circle class="xf-fill-axis" cx="450" cy="254" r="5" opacity="0.7"/>
+<circle class="xf-fill-axis" cx="520" cy="254" r="5" opacity="0.85"/>
+<circle class="xf-fill-axis" cx="590" cy="254" r="5"/>
+<circle class="xf-fill-axis" cx="240" cy="290" r="5" opacity="0.25"/>
+<circle class="xf-fill-axis" cx="310" cy="290" r="5" opacity="0.4"/>
+<circle class="xf-fill-axis" cx="380" cy="290" r="5" opacity="0.55"/>
+<circle class="xf-fill-s2" cx="450" cy="290" r="5"/>
+<circle class="xf-fill-axis" cx="520" cy="290" r="5" opacity="0.85"/>
+<circle class="xf-fill-axis" cx="590" cy="290" r="5"/>
+<line class="xf-flow" x1="275" y1="261" x2="275" y2="283" marker-start="url(#svj-a)" marker-end="url(#svj-a)"/>
+<line class="xf-flow" x1="345" y1="261" x2="345" y2="283" marker-start="url(#svj-a)" marker-end="url(#svj-a)"/>
+<line class="xf-flow" x1="415" y1="261" x2="415" y2="283" marker-start="url(#svj-a)" marker-end="url(#svj-a)"/>
+<line class="xf-flow-s2" x1="485" y1="283" x2="485" y2="261" marker-end="url(#svj-o)"/>
+<text class="xf-t-s2" x="494" y="275">经耦合改写事件</text>
+<line class="xf-flow" x1="622" y1="262" x2="644" y2="262" marker-end="url(#svj-a)"/>
+<rect class="xf-box" x="646" y="232" width="122" height="60" rx="6"/>
+<text class="xf-t-b" x="707" y="258" text-anchor="middle">解码 → 候选</text>
+<text class="xf-t-s" x="707" y="277" text-anchor="middle">(b̂_P, X̂_TS)</text>
+<line class="xf-flow-s2" x1="450" y1="332" x2="450" y2="298" marker-end="url(#svj-o)"/>
+<text class="xf-t-s2" x="460" y="334">物理信号（如势垒分数）在生成中作用于几何</text>
+</svg>

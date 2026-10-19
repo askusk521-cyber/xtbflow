@@ -1,0 +1,72 @@
+# 运行状态与暂定下一步。运行状态取自 n2 上 Slurm 队列与调度器日志，更新时同时改 updated。
+# runs 中 status: running 表示正在运行，done 表示最近完成；这里只记录事实与待决事项，不替负责人作决定。
+updated: "2026-10-19 18:20（n2 时间）"
+source: "n2 squeue（本项目当前无作业）与 /home/lhshen/xtbflow-runs/followup-20261009/o2-dispatch-v4.log"
+
+current_stage:
+  name: 探索性检查完成，等待负责人决定
+  note: 主线 V1b 自 10-08 起暂缓；开放世界 DFT（O2）10-18 跑完、10-19 出报告；n2 上当前没有本项目的作业。
+
+runs:
+  - id: o2-dft
+    title: 开放世界 DFT 认证（O2）剩余 28 项
+    status: done
+    exp: o2
+    pr: 119
+    started: "2026-10-17 14:40"
+    finished: "2026-10-18 00:48"
+    done: 28
+    total: 28
+    gpu_note: 任务 3a 共 33 个 Slurm 作业、37,395 GPU 秒（约 10.4 GPU·h，含恢复前的 801 s），上限 16 GPU·h
+    current: 调度器正常结束；配对分析与中文报告 10-19 完成（提交 e6c8c1f）
+    log: /home/lhshen/xtbflow-runs/followup-20261009/o2-dispatch-v4.log
+    runner: 执行脚本 v2 + 调度器 v4（提交 1823534），串行提交；qc_protocol 未改，协议 v1b-h-gpu4pyscf-3
+    # outcome: pass = 通过严格认证或锚点极小点；verdict = 其他协议判定；fail = 计算失败
+    items:
+      - {job: 3380, kind: 候选, item: c538c83b728169fe, outcome: fail, detail: "CHAIN_EXCEPTION：EngineError:SCF_LIMIT", runtime_s: 2519}
+      - {job: 3386, kind: 锚点, item: 7e440ab552b5e1e9, outcome: pass, detail: MINIMUM_PASS, runtime_s: 91}
+      - {job: 3389, kind: 参考, item: 793ad9d251fc8b33, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 2529}
+      - {job: 3395, kind: 候选, item: 08abfd11be911cc5, outcome: verdict, detail: STRICT_EVENT_MISMATCH, runtime_s: 1048}
+      - {job: 3397, kind: 锚点, item: afe53f9b756acd4f, outcome: pass, detail: MINIMUM_PASS, runtime_s: 125}
+      - {job: 3398, kind: 参考, item: 526e94fdea776fe1, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 1023}
+      - {job: 3401, kind: 候选, item: a236f9ad357245eb, outcome: verdict, detail: PROTOCOL_FAILURE, runtime_s: 6575}
+      - {job: 3407, kind: 锚点, item: 9349fbf4c104161c, outcome: pass, detail: MINIMUM_PASS, runtime_s: 107}
+      - {job: 3409, kind: 参考, item: bf8a5e45bd1ad3d6, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 1226}
+      - {job: 3411, kind: 候选, item: df925c66a137cc5c, outcome: verdict, detail: EVALUATION_UNRESOLVED, runtime_s: 762}
+      - {job: 3412, kind: 锚点, item: f130a0da41490573, outcome: pass, detail: MINIMUM_PASS, runtime_s: 134}
+      - {job: 3413, kind: 参考, item: f9ccb9693f880dc9, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 949}
+      - {job: 3414, kind: 候选, item: 98a2bcd101825aa9, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 1378}
+      - {job: 3415, kind: 锚点, item: 53a60e316226dba7, outcome: pass, detail: MINIMUM_PASS, runtime_s: 129}
+      - {job: 3416, kind: 参考, item: c7532b44b6577830, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 1798}
+      - {job: 3419, kind: 候选, item: 85b3397ef057ad99, outcome: verdict, detail: STRICT_EVENT_MISMATCH, runtime_s: 2128}
+      - {job: 3423, kind: 锚点, item: d5889e5c4df3b564, outcome: pass, detail: MINIMUM_PASS, runtime_s: 162}
+      - {job: 3424, kind: 参考, item: c0986c1aa0f160a7, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 1471}
+      - {job: 3425, kind: 候选, item: 64e8d782d69a8aeb, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 1726}
+      - {job: 3426, kind: 锚点, item: a3a53268227e592d, outcome: pass, detail: MINIMUM_PASS, runtime_s: 121}
+      - {job: 3427, kind: 参考, item: 21dc53662dd8f155, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 1286}
+      - {job: 3428, kind: 候选, item: 9307014275915e21, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 947}
+      - {job: 3429, kind: 锚点, item: 9e374f63ba7f47e0, outcome: pass, detail: MINIMUM_PASS, runtime_s: 124}
+      - {job: 3430, kind: 参考, item: 64b20c822d45f57f, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 722}
+      - {job: 3431, kind: 候选, item: b57945825104c001, outcome: verdict, detail: PROTOCOL_FAILURE, runtime_s: 3671}
+      - {job: 3432, kind: 锚点, item: 432b0644a0766a15, outcome: pass, detail: MINIMUM_PASS, runtime_s: 118}
+      - {job: 3433, kind: 参考, item: aa238f8f44d446ae, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 1010}
+      - {job: 3434, kind: 候选, item: 538610fe5fb61131, outcome: pass, detail: STRICT_JOINT_GRAPH_VALID, runtime_s: 2715}
+
+# 暂定下一步：按依赖排列；owner: true 表示需要负责人决定。
+next:
+  - title: 决定 O2 是否需要独立验收
+    detail: 10-19 的配对分析由原定验收方（Claude Code）自己完成，不算独立验收。需要的话，可由负责人或另一会话按交接第 11 节复跑字节一致回放与哈希核对。
+    owner: true
+    refs: [119]
+  - title: 决定 V1b 是否恢复
+    detail: 负责人 10-17 已同意可同时占 2 张卡。仍待定：规模（指导式分配约 230 GPU·h，或四层普查约 330 GPU·h）；版本（v2.1 两臂或 v2.2 四臂）；端点软模的统一处理规则（003317dd 端点负模 −42.3 cm⁻¹）；正式脚本要求的 d1_protocol_validated 与 decision_rule_frozen 两个标记须由有记录的步骤写入。
+    owner: true
+    refs: [122, 108]
+  - title: 决定是否关闭“生成中筛选”研究线
+    detail: "#121 的预写建议是 LINE_CLOSURE_RECOMMENDED，这只是建议，不是负责人决定。"
+    owner: true
+    refs: [121, 116]
+  - title: 处理 22 个未合并 PR（#101–#122）
+    detail: "决定哪些合并、哪些作为证据存档后关闭。合并 #106 前需先把 scipy 加进运行时依赖（CI 目前在收集阶段失败），并并入 #105 最后 5 个提交。"
+    owner: true
+    refs: [106, 105]

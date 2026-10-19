@@ -8,9 +8,14 @@
       "bytes": 1114
     },
     {
+      "path": ".github/workflows/site.yml",
+      "sha256": "1f8aeee0f023931b2ddd2a8308e9913b86fb00c5565b1acf8a4ee44d3295aedd",
+      "bytes": 3247
+    },
+    {
       "path": ".gitignore",
-      "sha256": "156537a8a9c1f147e0e0531574e92e3061769a857a6f73de161eaaf8baaab41b",
-      "bytes": 738
+      "sha256": "8ab843ce3989fac511918f771f448a5e9ffce4f868c249efd25e8a21615ccbfa",
+      "bytes": 888
     },
     {
       "path": "AGENTS.md",
@@ -236,6 +241,11 @@
       "path": "configs/rules/core_v1.yaml",
       "sha256": "a4de309daad0bab9d502028976cef7b57f91691de5895ed6d4dc1d1c764b2941",
       "bytes": 903
+    },
+    {
+      "path": "configs/run_status.json",
+      "sha256": "2633ac14b60096cd83a6241675f41335ea83063b9379ce552a83158333dfceb5",
+      "bytes": 319
     },
     {
       "path": "configs/runs/README.md",
@@ -728,9 +738,124 @@
       "bytes": 3700
     },
     {
+      "path": "mkdocs.yml",
+      "sha256": "5b60eacef377340bd58b2f5f0be6f85f1000b7658ae916ef9ef9ee2a120fb1a5",
+      "bytes": 3133
+    },
+    {
+      "path": "portal/about.md",
+      "sha256": "74feaa5e5d0f2b166aeb49c616aaa5067e555438569d99952084045698410395",
+      "bytes": 3082
+    },
+    {
+      "path": "portal/archive.md",
+      "sha256": "0b9fcb6787d9cc27a89231b3d152b9cafbdbd4c232fe800062e50f2643c28bc1",
+      "bytes": 1339
+    },
+    {
+      "path": "portal/assets/figures/serial_vs_joint.svg",
+      "sha256": "b2cfa49ec29f2f960e01a8ed51cdbf75d4f743e72338af84c45054dec588ca05",
+      "bytes": 5441
+    },
+    {
+      "path": "portal/assets/katex-init.js",
+      "sha256": "abc9e929fb66c398d6d927503eb282e0a4d09ec1c947c5f6b37c1bc3753ec3c2",
+      "bytes": 480
+    },
+    {
+      "path": "portal/assets/site.css",
+      "sha256": "47cb80f5b019123c866bf1985bde760a937fcb91876ac08ccbb6299c44baaea0",
+      "bytes": 17804
+    },
+    {
+      "path": "portal/assets/site.js",
+      "sha256": "60557212eaddcf6baec4adee1e4f32081c905ea1571c0f0f6b4fbcb58e561405",
+      "bytes": 2190
+    },
+    {
+      "path": "portal/data.md",
+      "sha256": "99df72511ede38365140bc8e048d8f18547c65be2b204a7e1a4892c2fd2c3307",
+      "bytes": 4353
+    },
+    {
+      "path": "portal/glossary.md",
+      "sha256": "149a1c05cf3468a278eae988411b2499c6f34e94f9b5417f09e5de5b47336f43",
+      "bytes": 3477
+    },
+    {
+      "path": "portal/includes/abbreviations.md",
+      "sha256": "13fb69825905ae2cd574318d0eae5fbe94ec87e74782e17dae5c3a693b50da97",
+      "bytes": 490
+    },
+    {
+      "path": "portal/index.md",
+      "sha256": "932f376d6aeb461cfd6a2c622a5d10734ae83704a219c5edc2ec47ae78f8d3cd",
+      "bytes": 3479
+    },
+    {
+      "path": "portal/paper/discussion.md",
+      "sha256": "09c3e6569f1a0ce6273595a49a279b5d58db7a78fbb72d7abce72d985fa7900f",
+      "bytes": 3704
+    },
+    {
+      "path": "portal/paper/index.md",
+      "sha256": "653bfb99b1ea020e7ea65ccac5379fd97da8327c4344a3d6c3d6d27e21f16282",
+      "bytes": 3306
+    },
+    {
+      "path": "portal/paper/introduction.md",
+      "sha256": "bdcb8d0c72570d276635edb37f713e9892f51ee95fb68b278b277fe8b5600393",
+      "bytes": 6976
+    },
+    {
+      "path": "portal/paper/methods.md",
+      "sha256": "9c858bd56fefa2a1dbae05b9dadd3fd3ddeb96c6268415d2f049d38c32c4d055",
+      "bytes": 9574
+    },
+    {
+      "path": "portal/paper/results.md",
+      "sha256": "adcfea9cea977b227af4d5eac4310439a7e45790521d98de799f38048b0ec822",
+      "bytes": 11284
+    },
+    {
+      "path": "portal/progress.md",
+      "sha256": "92891cd60edebd7f2fbf78395b3a6180c6f72882f3975a76e6704ac714600e8b",
+      "bytes": 1589
+    },
+    {
+      "path": "portal/records/experiments.yaml",
+      "sha256": "d6e5a401519c8632769ba9a6950de352b8aa23e520b6ad0e55f8b0b3e5620991",
+      "bytes": 16545
+    },
+    {
+      "path": "portal/records/github_snapshot.json",
+      "sha256": "3124de9a50f5ddab301479dbb066d3a0d04ee61a597b94a875bb946fbd128ba9",
+      "bytes": 35105
+    },
+    {
+      "path": "portal/records/legacy.yaml",
+      "sha256": "f26f04300915d8b19742b64644a4436932bb2c6ee71f7b182edd80db90a18a86",
+      "bytes": 4925
+    },
+    {
+      "path": "portal/records/progress.yaml",
+      "sha256": "e1c13f45ce3569163f2e922afc7b75425c0e22dec04ceebca90eeb0ab46bce25",
+      "bytes": 6076
+    },
+    {
+      "path": "portal/records/references.yaml",
+      "sha256": "f96eb8accc423ca21c6d0ba5aa3a52151637ef10ade20a878908241fe83729c5",
+      "bytes": 11318
+    },
+    {
+      "path": "portal/references.md",
+      "sha256": "ef274cd5168035db244c835be2b24e8730cc2129ef07747adbb11b724ed7d67a",
+      "bytes": 354
+    },
+    {
       "path": "pyproject.toml",
-      "sha256": "bdf4ecad3b0e8179e40238688a100bf5992fb0b30921ebf0ec0552a1735bf698",
-      "bytes": 1228
+      "sha256": "72c21abff938a0be24b9a8a951cfb6dad716a10015e9601175b4836dfaa5eb98",
+      "bytes": 1306
     },
     {
       "path": "schemas/calculator_protocol.schema.json",
@@ -853,6 +978,11 @@
       "bytes": 5243
     },
     {
+      "path": "scripts/check_portal.py",
+      "sha256": "7e545c2516b71f790d9eed89604c3b6b487b0530ea73a70533ad02b9a69be10a",
+      "bytes": 6215
+    },
+    {
       "path": "scripts/cp2k_calibration_smoke.py",
       "sha256": "0e13ebd3d8f571a23c496531ba5d0c8068119b0f5cbd54e2cb7d8e7585557289",
       "bytes": 7339
@@ -871,6 +1001,11 @@
       "path": "scripts/joint_flow_smoke.py",
       "sha256": "be9cab15cb5032dd57fa8e9be21c2d815bd0966c1675a4fe48c25314dd081207",
       "bytes": 11435
+    },
+    {
+      "path": "scripts/portal_hooks.py",
+      "sha256": "16d8cc805446e8a9b7aec35d9ba8f1a3bb374d0ec390dd5384d32c26e7d877bb",
+      "bytes": 28556
     },
     {
       "path": "scripts/prepare_spice_openff_pilot.py",
@@ -916,6 +1051,11 @@
       "path": "scripts/run_spice_openff_pilot.py",
       "sha256": "8e2e3f10f7a103a6dcc06ca23a3fbdb8b840208fb7bc98f233da344dd013c864",
       "bytes": 6840
+    },
+    {
+      "path": "scripts/update_run_status.py",
+      "sha256": "6aa1eb070b7d5e90ab238ff8d5bba2df8762d2631531e4e9461594770cec5642",
+      "bytes": 14749
     },
     {
       "path": "scripts/validate_bootstrap.py",

@@ -1,0 +1,122 @@
+# xtbflow 项目主页（GitHub Pages）。
+# 正文在 portal/，结构化数据在 portal/records/*.yaml，图表由 scripts/portal_hooks.py 在构建时生成。
+# 本地预览：pip install -e ".[site]" 后运行 mkdocs serve。
+site_name: xtbflow 项目主页
+site_description: 守恒事件—几何并联流匹配与单端反应通道发现：方案、结果、原始数据与历史存档
+site_url: https://askusk521-cyber.github.io/xtbflow/
+repo_url: https://github.com/askusk521-cyber/xtbflow
+repo_name: askusk521-cyber/xtbflow
+edit_uri: edit/main/portal/
+docs_dir: portal
+site_dir: _site
+copyright: 本站只汇总、不产生新结论；所有数字以所链 PR 与报告原文为准。
+
+theme:
+  name: material
+  language: zh
+  font: false
+  icon:
+    logo: material/flask-outline
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - content.tooltips
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色模式
+
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+
+hooks:
+  - scripts/portal_hooks.py
+
+# mkdocs serve 时修改钩子或数据也触发重建
+watch:
+  - scripts/portal_hooks.py
+  - portal/records
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.snippets:
+      auto_append:
+        - portal/includes/abbreviations.md
+
+extra_css:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css
+  - assets/site.css
+
+extra_javascript:
+  - assets/katex-init.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
+  - assets/site.js
+
+exclude_docs: |
+  includes/
+
+nav:
+  - 主页: index.md
+  - 论文:
+      - paper/index.md
+      - 1 引言: paper/introduction.md
+      - 2 方法与实验设计: paper/methods.md
+      - 3 结果: paper/results.md
+      - 4 讨论与证据边界: paper/discussion.md
+  - 进展与下一步: progress.md
+  - 数据与证据: data.md
+  - 参考文献: references.md
+  - 历史存档: archive.md
+  - 附录:
+      - 术语表: glossary.md
+      - 关于本站: about.md
+
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+  links:
+    not_found: warn
+    anchors: warn

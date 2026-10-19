@@ -1,0 +1,199 @@
+# 参考文献。条目与链接汇总自仓库文档（cited_in 注明出处），本站未重新核对；
+# 原文的核查日期与说明见 cited_in 指向的文件。
+groups:
+  - id: data
+    name: 数据集与基准
+    refs:
+      - key: t1x
+        text: "Schreiner, M. et al. Transition1x — a dataset for building generalizable reactive machine learning potentials. Scientific Data 9, 779 (2022)."
+        links:
+          - {label: arXiv:2207.12858, url: "https://arxiv.org/abs/2207.12858"}
+          - {label: Sci. Data, url: "https://www.nature.com/articles/s41597-022-01870-w"}
+          - {label: 官方仓库, url: "https://gitlab.com/matschreiner/Transition1x"}
+        note: 全部实验的数据来源。ωB97X/6-31G(d)，CINEB 0.05 eV/Å，TS 未逐条精修；因此目录只能作代理，严格认证留给 V1b。
+        cited_in: [docs/v1a/protocol-v2.1.md §14, docs/guides/V1B_GUIDE_v2.1_ZH.md §17]
+      - key: tsbench
+        text: "TSBench（预印本，2026-09-08）：LLM agent 构建 TS 并经量化验证。"
+        links:
+          - {label: arXiv:2609.08503, url: "https://arxiv.org/abs/2609.08503v1"}
+        note: 输入含产物与反应中心，并经 xTB 预筛，不能直接用来证明本项目的无产物设定。
+        cited_in: [docs/sources.md]
+
+  - id: models
+    name: 反应与过渡态生成模型（相关工作）
+    refs:
+      - key: molgen
+        text: "Tuo, Chen, Li. MolGEN：条件流匹配用于 TS、开放产物生成与网络探索。"
+        links:
+          - {label: arXiv:2507.10530, url: "https://arxiv.org/abs/2507.10530"}
+        note: 最接近的对手；产物模型与 TS 模型分别训练、依次使用，结构上正是本课题的串联对照。
+        cited_in: [docs/sources.md, docs/guides/DIRECTION_PLAN_ZH.md]
+      - key: flower
+        text: "Joung, J. F. et al. FlowER：固定原子与键—电子矩阵中的电子重分布，严格守恒。"
+        links:
+          - {label: arXiv:2502.12979, url: "https://arxiv.org/abs/2502.12979"}
+          - {label: 数据 DOI, url: "https://doi.org/10.6084/m9.figshare.28359407.v2"}
+        note: 只到二维；守恒的键—电子事件表示是本课题的出发点之一。方向规划记为 Nature 2025。
+        cited_in: [docs/sources.md, docs/guides/DIRECTION_PLAN_ZH.md]
+      - key: reactot
+        text: "Duan, C. et al. React-OT：给定反应物与产物的 TS 几何生成。"
+        links:
+          - {label: arXiv:2404.13430, url: "https://arxiv.org/abs/2404.13430"}
+        note: 双端设定；方向规划把它列为外部基线候选。
+        cited_in: [docs/sources.md]
+      - key: astra
+        text: "ASTRA：分数对齐上升结合物理力生成 TS 几何。"
+        links:
+          - {label: arXiv:2603.25980, url: "https://arxiv.org/abs/2603.25980v1"}
+        note: 需要已知稳态构型，不在离散反应通道之间做选择。
+        cited_in: [docs/guides/DIRECTION_PLAN_ZH.md]
+      - key: trefle
+        text: "Li et al. Trèfle（2026-09-25）：强化学习后训练，把物理条件摊销进单步流模型。"
+        links:
+          - {label: arXiv:2609.32073, url: "https://papers.cool/arxiv/2609.32073"}
+        note: 双端；物理只改几何。说明“把物理放进生成过程”正在升温。
+        cited_in: [docs/guides/DIRECTION_PLAN_ZH.md]
+      - key: recurveflow
+        text: "ReCurveflow：利用 NEB 曲线路径监督与离路径纠正（预印本，2026-08-21）。"
+        links:
+          - {label: arXiv:2608.20869, url: "https://arxiv.org/abs/2608.20869v1"}
+        note: 给定真实反应物/产物几何。
+        cited_in: [docs/sources.md]
+      - key: robust-ts
+        text: "Robust generative transition-state models for unseen chemistry. Nature Computational Science (2026-08-12)."
+        links:
+          - {label: DOI 10.1038/s43588-026-01034-5, url: "https://doi.org/10.1038/s43588-026-01034-5"}
+        note: 新元素/化学环境留出与平衡构象自监督预训练。
+        cited_in: [docs/sources.md]
+      - key: deepest
+        text: "Ren et al. DeePEST-OS / DORTS：GFN2-xTB 与 MACE Delta-learning，反应区能量/力数据及 TS 优化。Nature Communications (2026-05-08)."
+        links:
+          - {label: DOI 10.1038/s41467-026-72945-0, url: "https://doi.org/10.1038/s41467-026-72945-0"}
+          - {label: 数据, url: "https://doi.org/10.5281/zenodo.17141108"}
+          - {label: 代码, url: "https://doi.org/10.5281/zenodo.19305799"}
+        note: 说明“半经验势 + 机器学习校正”不是本项目可以宣称首创的组合。
+        cited_in: [docs/sources.md]
+      - key: bytecrn
+        text: "ByteCRN：规则枚举 + 生成 + 反向验证。"
+        links:
+          - {label: arXiv:2606.21002, url: "https://arxiv.org/abs/2606.21002"}
+        note: 工业级“枚举加生成”基线；对应本项目的枚举基线检查（#113、#120）。
+        cited_in: [docs/guides/DIRECTION_PLAN_ZH.md]
+      - key: multiflow
+        text: "Campbell, A. et al. Multiflow：一个多模态流模型同时完成蛋白质共设计、折叠与逆折叠（ICML 2024）。"
+        links:
+          - {label: arXiv:2402.04997, url: "https://arxiv.org/abs/2402.04997"}
+        note: 技术先例；两模态独立时间（E1、E3）的思路需引用它。
+        cited_in: [docs/guides/DIRECTION_PLAN_ZH.md]
+      - key: others
+        text: "TS-DFM、RitS、Drift-React：双端 TS 生成工作。"
+        links: []
+        note: 沿用 10 月初评估报告的检索，方向规划未给链接，本站也未核对。
+        cited_in: [docs/guides/DIRECTION_PLAN_ZH.md]
+
+  - id: qc
+    name: 量子化学方法与软件
+    refs:
+      - key: orca-tsopt
+        text: "ORCA 6.1 官方教程：TS 优化与验证（Exact Hessian、TS Verification）。"
+        links:
+          - {label: faccts.de, url: "https://www.faccts.de/docs/orca/6.1/tutorials/react/tsopt.html"}
+        note: 区分 V1a 的参考匹配与 V1b 的严格 TS 认证。
+        cited_in: [docs/guides/V1B_GUIDE_v2.1_ZH.md §17, docs/v1a/protocol-v2.1.md §14]
+      - key: orca-ts
+        text: "ORCA 6.1 手册：TS 搜索（Hessian 与 TS 关键词）。"
+        links:
+          - {label: faccts.de, url: "https://www.faccts.de/docs/orca/6.1/manual/contents/structurereactivity/optimizations_TS.html"}
+        cited_in: [docs/guides/V1B_GUIDE_v2.1_ZH.md §17]
+      - key: orca-irc
+        text: "ORCA 6.1 手册：IRC。"
+        links:
+          - {label: faccts.de, url: "https://www.faccts.de/docs/orca/6.1/manual/contents/structurereactivity/irc.html"}
+        note: 同方法基组、双向路径；V1b 的 D3C 严格 IRC 依此设计。
+        cited_in: [docs/guides/V1B_GUIDE_v2.1_ZH.md §17]
+      - key: orca-opt
+        text: "ORCA 6.1 手册：几何优化与收敛标准（TightOpt / VeryTightOpt）。"
+        links:
+          - {label: faccts.de, url: "https://www.faccts.de/docs/orca/6.1/manual/contents/structurereactivity/optimizations.html"}
+        cited_in: [docs/guides/V1B_GUIDE_v2.1_ZH.md §17, docs/sources.md]
+      - key: orca-semi
+        text: "ORCA 6.1 手册：半经验方法与 xTB 接口。"
+        links:
+          - {label: faccts.de, url: "https://www.faccts.de/docs/orca/6.1/manual/contents/modelchemistries/semiempirical.html"}
+        cited_in: [docs/guides/V1B_GUIDE_v2.1_ZH.md §17]
+      - key: xtb-path
+        text: "xTB 文档：反应路径方法（--path）。"
+        links:
+          - {label: xtb-docs, url: "https://xtb-docs.readthedocs.io/en/latest/path.html"}
+        note: 输出的 xtbpath_ts.xyz 只是 TS 初猜，不等于认证完成。
+        cited_in: [docs/guides/V1B_GUIDE_v2.1_ZH.md §17, docs/sources.md]
+      - key: xtb-hess
+        text: "xTB 文档：Hessian 与 --hess / --ohess 流程。"
+        links:
+          - {label: xtb-docs, url: "https://xtb-docs.readthedocs.io/en/latest/hessian.html"}
+        cited_in: [docs/guides/V1B_GUIDE_v2.1_ZH.md §17]
+      - key: xtb-python
+        text: "xtb-python General API：单位与 calculator 约定。"
+        links:
+          - {label: readthedocs, url: "https://xtb-python.readthedocs.io/en/latest/general-api.html"}
+        cited_in: [docs/guides/V1B_GUIDE_v2.1_ZH.md §17]
+      - key: dxtb
+        text: "dxtb：PyTorch 中的可微 xTB 实现。J. Chem. Phys. (2024)."
+        links:
+          - {label: DOI 10.1063/5.0216715, url: "https://doi.org/10.1063/5.0216715"}
+          - {label: 文档, url: "https://dxtb.readthedocs.io/en/latest/"}
+        cited_in: [docs/sources.md]
+      - key: qrc
+        text: "Goodman, J. M. 等. Quick Reaction Coordinate（QRC）方法页。"
+        links:
+          - {label: 原作者页面, url: "https://www-jmg.ch.cam.ac.uk/software/QRC/"}
+          - {label: pyQRC, url: "https://github.com/patonlab/pyQRC"}
+        note: 第一轮 V1b 不使用，仅供以后评估 QRC 分流时参考。
+        cited_in: [docs/guides/V1B_GUIDE_v2.1_ZH.md §17]
+      - key: kingfisher
+        text: "Kingfisher：活性溶剂与自动微溶剂化路径搜索（预印本）。"
+        links:
+          - {label: arXiv:2502.07965, url: "https://arxiv.org/abs/2502.07965v1"}
+        cited_in: [docs/sources.md]
+
+  - id: saddle
+    name: 鞍点搜索理论
+    refs:
+      - key: dimer
+        text: "Henkelman, G. & Jónsson, H. A dimer method for finding saddle points on high dimensional potential surfaces using only first derivatives. J. Chem. Phys. 111, 7010 (1999)."
+        links:
+          - {label: DOI 10.1063/1.480097, url: "https://doi.org/10.1063/1.480097"}
+        note: 沿不稳定方向反转力的思想不是新发明；与本项目的鞍点感知引导相关。
+        cited_in: [docs/sources.md]
+      - key: gad
+        text: "E, W. & Zhou, X. The gentlest ascent dynamics. Nonlinearity 24, 1831 (2011)."
+        links:
+          - {label: arXiv:1011.0042, url: "https://arxiv.org/abs/1011.0042"}
+          - {label: DOI, url: "https://doi.org/10.1088/0951-7715/24/6/008"}
+        note: 指数一鞍点的动力系统构造；不直接保证任意学习引导的全局收敛。
+        cited_in: [docs/sources.md]
+
+  - id: stats
+    name: 统计方法
+    refs:
+      - key: bates
+        text: "Bates, S., Hastie, T. & Tibshirani, R. Cross-validation: what does it estimate and how well does it do it?"
+        links:
+          - {label: arXiv:2104.00673, url: "https://arxiv.org/abs/2104.00673"}
+        note: 交叉验证区间与训练重叠；V1a 设计按母体留出时引用。
+        cited_in: [docs/v1a/protocol-v2.1.md §14]
+      - key: bengio
+        text: "Bengio, Y. & Grandvalet, Y. No unbiased estimator of the variance of K-fold cross-validation. JMLR 5, 1089–1105 (2004)."
+        links:
+          - {label: JMLR, url: "https://www.jmlr.org/papers/v5/grandvalet04a.html"}
+        cited_in: [docs/v1a/protocol-v2.1.md §14]
+
+  - id: application
+    name: 应用背景
+    refs:
+      - key: thioester
+        text: "Thioester-mediated RNA aminoacylation and peptidyl-RNA synthesis in water. Nature (2025-08-27)."
+        links:
+          - {label: DOI 10.1038/s41586-025-09388-y, url: "https://doi.org/10.1038/s41586-025-09388-y"}
+        note: "生命起源主应用候选（issue #22）的实验约束来源。"
+        cited_in: [docs/sources.md]

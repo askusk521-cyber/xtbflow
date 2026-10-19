@@ -124,4 +124,4 @@ V1a 的命中只是与 T1x 参考记录接近。V1b 用概率抽样加完整的�
 
 ## 2.8 计算资源 {#compute}
 
-GPU 计算在集群节点 n2（4 × RTX PRO 6000 Blackwell，96 GiB）上经 Slurm 提交。参考开销：M0 单次 60k 步训练约 0.45 GPU·h，修复后整轮约 5.6 GPU·h；V1b D1 约 6.1 + 0.6 GPU·h；开放世界 DFT 剩余 28 项预计约 11 GPU·h。原始输出留在 n2，仓库只提交报告、结果 JSON 和哈希（见[数据与证据](../data.md)）。
+GPU 计算在集群节点 n2（4 × RTX PRO 6000 Blackwell，96 GiB）上经 Slurm 提交。参考开销：M0 单次 60k 步训练约 0.45 GPU·h，修复后整轮约 5.6 GPU·h；V1b D1 约 6.1 + 0.6 GPU·h；开放世界 DFT（O2）共 33 个作业、约 10.4 GPU·h。原始输出留在 n2，仓库只提交报告、结果 JSON 和哈希（见[数据与证据](../data.md)）。

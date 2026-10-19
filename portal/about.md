@@ -11,7 +11,7 @@
 | 场景 | 改哪里 |
 |---|---|
 | 新实验出结果 | `experiments.yaml` 加一条（问题、结论、PR、证据路径、n2 目录）；有双侧区间的配对差值加进 `forest` |
-| 运行进度变化 | `progress.yaml` 的 `running` 与 `updated` |
+| 运行进度变化 | `progress.yaml` 的 `runs`（`status: running` 或 `done`）与 `updated` |
 | 负责人做出决定 | `progress.yaml` 的 `next`，同时更新相关实验的状态 |
 | PR 推了新提交 | `experiments.yaml` 中该 PR 的 `sha`（`check_portal.py` 会提示不一致） |
 | 新增参考文献 | `references.yaml` |

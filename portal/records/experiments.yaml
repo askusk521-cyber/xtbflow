@@ -24,7 +24,7 @@ prs:
   116: {sha: 0517ff946fb319b4a815343ed574915cfd6f3c0c, branch: explore/smc-selection, title: 生成中 SMC 筛选}
   117: {sha: cc96b45664aa2657f159c15fad52023ac294ac62, branch: explore/smc-raw-ranking, title: SMC 原始能量排序消融}
   118: {sha: 50bcb7db0e6736ea667e4dbea8616b64655f8555, branch: explore/smc-strict-replication, title: SMC 严格顺序复验}
-  119: {sha: 1823534d1adc2044297cee1a606650b70f189a52, branch: review/open-world-o2, title: 开放世界 DFT 认证（O2）}
+  119: {sha: e6c8c1f58907ff72aa87a709865886a282cf5f66, branch: review/open-world-o2, title: 开放世界 DFT 认证（O2）}
   120: {sha: b6db3df15eefd85a64eed329674a48d3ecba301e, branch: explore/enum-thermo, title: 枚举 + 热力学筛选（T1b）}
   121: {sha: dd55970b0dfb89a167c12f9588ca193c3f6966b8, branch: explore/smc-oracle, title: 反应坐标诊断 + 预言机 SMC}
   122: {sha: 5998dfd3e339623cb1599b862293ae8edbfe0ca1, branch: codex/v1b-20261007, title: V1b D0/D1（草稿）}
@@ -268,14 +268,17 @@ experiments:
   - id: o2
     name: 开放世界 DFT 认证（O2）
     short: O2
-    date: 2026-10-10
+    date: 2026-10-19
     level: exploratory
-    status: running
-    verdict: 运行中
-    question: 用冻结的 DFT 协议认证 O1 选出的开放世界通道；核查 AIMNet2 训练集是否覆盖这些分子。
-    finding: 3b：两个模型都是 UNRESOLVED。3a：锚点通过 1 项、参考链失败 1 项（SCF_LIMIT），基础设施失败 3 项；剩余 28 项于 10-17 恢复运行。
+    status: explore
+    verdict: 候选 4/10 通过 DFT
+    question: 用冻结的 DFT 协议认证 O1 中通过 xTB 认证的目录外候选（10 个母体）；核查 AIMNet2 的训练数据是否覆盖 T1x。
+    finding: 候选 4/10 通过 DFT 严格认证（Wilson 95% 16.8%–68.7%），基准 9/10，锚点 10/10。两链都通过的 4 个母体 ΔEa_DFT 为 +8.8 至 +54.7 kcal/mol，没有一条候选通道低于同母体已知最佳通道；与 xTB 符号一致 4/4。3b：两个 AIMNet2 模型都是 UNRESOLVED。
     prs: [119]
     evidence:
+      - {pr: 119, path: docs/evidence/review_open_world_o2/REPORT_ZH.md, label: 3a 报告}
+      - {pr: 119, path: docs/evidence/review_open_world_o2/results.json, label: results.json}
+      - {pr: 119, path: docs/evidence/aimnet_provenance/REPORT_ZH.md, label: 3b AIMNet2 训练数据核查}
       - {pr: 119, path: docs/evidence/review_open_world_o2/DECISION_ZH.md, label: 决定记录}
       - {pr: 119, path: docs/evidence/review_open_world_o2/INFRASTRUCTURE_ZH.md, label: 基础设施记录}
       - {pr: 119, path: docs/evidence/review_open_world_o2/DECISION_NVML_ZH.md, label: NVML 绕行决定}

@@ -116,18 +116,24 @@ def evidence_links(item: dict) -> str:
 
 def viz_kpis(_arg) -> str:
     prog = _data["progress"]
-    run = prog["running"][0]
-    owner = sum(1 for n in prog["next"] if n["owner"])
+    active = [r for r in prog["runs"] if r["status"] == "running"]
+    recent = [r for r in prog["runs"] if r["status"] == "done"]
+    owner = [n for n in prog["next"] if n["owner"]]
     open_prs = [n for n, p in _data["github"]["prs"].items()
                 if 101 <= int(n) <= 122 and p["state"] == "OPEN"]
     total = len(_data["experiments"]["experiments"])
-    running = sum(1 for x in _data["experiments"]["experiments"] if x["status"] == "running")
+    if active:
+        run_value = " · ".join(f'{r["done"]} / {r["total"]}' for r in active)
+        run_sub = "；".join(r["title"] for r in active)
+    else:
+        run_value = "无"
+        run_sub = f'最近完成：{recent[0]["title"]}（{recent[0]["finished"]}）' if recent else "n2 上当前没有本项目的作业"
     tiles = [
         ("当前阶段", prog["current_stage"]["name"], prog["current_stage"]["note"], ""),
-        ("正在运行", f'{run["done"]} / {run["total"]}', run["title"], "progress.md#running"),
-        ("待负责人决定", f"{owner} 项", "V1b 是否恢复、研究线去留、未合并 PR", "progress.md#next"),
-        ("已记录的阶段与检查", f"{total} 项", f"其中 {running} 项运行中；{len(open_prs)} 个 PR（#101–#122）待审",
-         "paper/results.md"),
+        ("正在运行", run_value, run_sub, "progress.md#running"),
+        ("待负责人决定", f"{len(owner)} 项", "、".join(n["title"].removeprefix("决定").strip() for n in owner[:3])
+         + ("等" if len(owner) > 3 else ""), "progress.md#next"),
+        ("已记录的阶段与检查", f"{total} 项", f"{len(open_prs)} 个 PR（#101–#122）待负责人审阅", "paper/results.md"),
     ]
     out = ['<div class="xf-kpis">']
     for label, value, sub, href in tiles:
@@ -262,29 +268,43 @@ def viz_v1a_curves(_arg) -> str:
 
 # ---------------------------------------------------------------- progress
 
+RUN_OUTCOME = {
+    # outcome -> (badge status, label). A protocol verdict other than a pass is not a failure of the run.
+    "pass": ("go", "通过"),
+    "verdict": ("explore", "其他判定"),
+    "fail": ("nogo", "计算失败"),
+}
+
+
 def viz_running(_arg) -> str:
     prog = _data["progress"]
     out = []
-    for run in prog["running"]:
+    if not any(r["status"] == "running" for r in prog["runs"]):
+        out.append('<p><b>n2 上当前没有本项目正在运行的作业。</b>下面是最近完成的一项。</p>')
+    for run in prog["runs"]:
+        is_running = run["status"] == "running"
         pct = 100 * run["done"] / run["total"]
         items = "".join(
             f'<tr><td>{r["job"]}</td><td>{e(r["kind"])}</td><td><code>{e(r["item"])}</code></td>'
-            f'<td>{badge("go" if r["outcome"] == "ok" else "nogo", "已判定" if r["outcome"] == "ok" else "失败")}'
-            f' {e(r["detail"])}</td><td>{r["runtime_s"]:,} s</td></tr>' for r in run["items"])
+            f'<td>{badge(*RUN_OUTCOME[r["outcome"]])} {e(r["detail"])}</td><td>{r["runtime_s"]:,} s</td></tr>'
+            for r in run["items"])
         exp = _data["by_id"][run["exp"]]
+        when = f'开始于 {e(run["started"])}' + ("" if is_running else f'，结束于 {e(run["finished"])}')
+        head_badge = badge("running") if is_running else badge("go", "已完成")
         out.append(
-            f'<div class="xf-run" id="run-{e(run["id"])}"><div class="xf-run-head">{badge("running")}'
+            f'<div class="xf-run" id="run-{e(run["id"])}"><div class="xf-run-head">{head_badge}'
             f'<b>{e(run["title"])}</b> {pr_link(run["pr"])}</div>'
             f'<div class="xf-progress" role="progressbar" aria-valuenow="{run["done"]}" aria-valuemin="0" '
             f'aria-valuemax="{run["total"]}"><div style="width:{pct:.1f}%"></div></div>'
             f'<div class="xf-run-meta"><span><b>{run["done"]} / {run["total"]}</b> 项已结束</span>'
-            f'<span>开始于 {e(run["started"])}</span><span>{e(run["current"])}</span></div>'
+            f'<span>{when}</span><span>{e(run["current"])}</span></div>'
             f'<dl class="xf-run-dl"><dt>GPU 用量</dt><dd>{e(run["gpu_note"])}</dd>'
             f'<dt>执行方式</dt><dd>{e(run["runner"])}</dd>'
             f'<dt>日志</dt><dd><code class="xf-path">n2:{e(run["log"])}</code></dd>'
+            f'<dt>结论</dt><dd>{e(exp["finding"])}</dd>'
             f'<dt>证据</dt><dd><ul class="xf-ev">{evidence_links(exp)}</ul></dd></dl>'
-            f'<details class="xf-tableview"><summary>已结束的 {run["done"]} 项</summary><table><thead><tr>'
-            f'<th>Slurm</th><th>类型</th><th>条目</th><th>结果</th><th>耗时</th></tr></thead><tbody>{items}'
+            f'<details class="xf-tableview"><summary>逐项结果（{len(run["items"])} 项）</summary><table><thead><tr>'
+            f'<th>Slurm</th><th>类型</th><th>条目</th><th>判定</th><th>耗时</th></tr></thead><tbody>{items}'
             f'</tbody></table></details></div>')
     out.append(f'<p class="xf-muted xf-small">状态更新于 {e(prog["updated"])}，来源：{e(prog["source"])}。</p>')
     return "".join(out)

@@ -734,8 +734,8 @@
     },
     {
       "path": "portal/about.md",
-      "sha256": "a488849a5a76877e3f561f53182b86fd1dc9d970ae1ac720bb80a8e38c05ffa9",
-      "bytes": 1894
+      "sha256": "c157f9881857bb7d6b948e3878aaaf9edac49e8d17414d30fe848f1835a5960e",
+      "bytes": 1924
     },
     {
       "path": "portal/archive.md",
@@ -779,18 +779,18 @@
     },
     {
       "path": "portal/index.md",
-      "sha256": "cbc1570e05eb17722e4e9c7920ee535ac28248f8b0e452eec823883c76db8a26",
-      "bytes": 3146
+      "sha256": "932f376d6aeb461cfd6a2c622a5d10734ae83704a219c5edc2ec47ae78f8d3cd",
+      "bytes": 3479
     },
     {
       "path": "portal/paper/discussion.md",
-      "sha256": "f97806da60bc1bbad8475b1e8c5a90ada25c45a8fcf990b3c6e8c3e96baaba36",
-      "bytes": 3484
+      "sha256": "09c3e6569f1a0ce6273595a49a279b5d58db7a78fbb72d7abce72d985fa7900f",
+      "bytes": 3704
     },
     {
       "path": "portal/paper/index.md",
-      "sha256": "b65c9ae2fba598cea99424a211abe63bf38ef986db4013fdadbb3df0eea16b72",
-      "bytes": 3208
+      "sha256": "653bfb99b1ea020e7ea65ccac5379fd97da8327c4344a3d6c3d6d27e21f16282",
+      "bytes": 3306
     },
     {
       "path": "portal/paper/introduction.md",
@@ -799,27 +799,27 @@
     },
     {
       "path": "portal/paper/methods.md",
-      "sha256": "71dc07b01160ae0207227461f543fbb3e07fb18964cdf15ce82eab15564b95d7",
-      "bytes": 9565
+      "sha256": "9c858bd56fefa2a1dbae05b9dadd3fd3ddeb96c6268415d2f049d38c32c4d055",
+      "bytes": 9574
     },
     {
       "path": "portal/paper/results.md",
-      "sha256": "20f1591429052951af880395769f32e94d5412caaac096bbfcab983cf755fa39",
-      "bytes": 9922
+      "sha256": "adcfea9cea977b227af4d5eac4310439a7e45790521d98de799f38048b0ec822",
+      "bytes": 11284
     },
     {
       "path": "portal/progress.md",
-      "sha256": "c9d68fe178079500ef0758f2c3b2cb3579250d51f92b7a7981712366118e3a36",
-      "bytes": 1185
+      "sha256": "b41c40ab4ee75d80528ffb59893274b945548f77488775c2f6f4a1a503867105",
+      "bytes": 1266
     },
     {
       "path": "portal/records/experiments.yaml",
-      "sha256": "5ee49a610946288a63989a293555e945e8f0e244e929c974af44789981003063",
-      "bytes": 16079
+      "sha256": "d6e5a401519c8632769ba9a6950de352b8aa23e520b6ad0e55f8b0b3e5620991",
+      "bytes": 16545
     },
     {
       "path": "portal/records/github_snapshot.json",
-      "sha256": "b656079097a86c81b26eeaa24c18e79bf5bc752a6ee48922f242cfd466ecba39",
+      "sha256": "3124de9a50f5ddab301479dbb066d3a0d04ee61a597b94a875bb946fbd128ba9",
       "bytes": 35105
     },
     {
@@ -829,8 +829,8 @@
     },
     {
       "path": "portal/records/progress.yaml",
-      "sha256": "fb4fc2d970979d5d11c7a91529d09758f84bab74c705f9ac095af4cab33ac310",
-      "bytes": 2860
+      "sha256": "e1c13f45ce3569163f2e922afc7b75425c0e22dec04ceebca90eeb0ab46bce25",
+      "bytes": 6076
     },
     {
       "path": "portal/records/references.yaml",
@@ -994,8 +994,8 @@
     },
     {
       "path": "scripts/portal_hooks.py",
-      "sha256": "6da914fcbdea4f9c2ca00d1871ad1c135629fe8bab57723ba9feaa6cafb70d7e",
-      "bytes": 21843
+      "sha256": "cdb96895de5788fe00e70b80d6d09ce83b17c96a37309bcfba2b1097e205ddaf",
+      "bytes": 22821
     },
     {
       "path": "scripts/prepare_spice_openff_pilot.py",

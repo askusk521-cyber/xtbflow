@@ -1,0 +1,134 @@
+{
+  "schema": "xtbflow-workflow-b-software-acceptance/v1",
+  "created_utc": "2026-10-02T06:35:02.355003+00:00",
+  "passed": true,
+  "protocol_id": "workflow-b-baseline-ladder-v0.1",
+  "protocol_sha256": "0335f093b48d2a4984e85d95b5afd8bedf17a14ee0b2e872b21ea56ec6ccdd9a",
+  "protocol_schema_sha256": "a6d670ff6315032a029fec704ca5e4d359c350891d4f60acf69ec11deddd4244",
+  "runtime_config_sha256": "506b2ad7f1c5f1803a0bd550d413d76a91aae644fd8ebd9da5f0a9acf0ed7d57",
+  "git": {
+    "commit": "a0c959358b988f220f66a3641c53bb9d997069da",
+    "dirty": false,
+    "dirty_entries": []
+  },
+  "runtime_constructor": {
+    "class": "xtbflow.models.JointEventGeometryFlow",
+    "model_id": "xtbflow-packed-pair-prototype-v0.1",
+    "status": "software_prototype_not_scientifically_trained",
+    "node_feature_dim": 8,
+    "condition_feature_dim": 4,
+    "hidden_dim": 64,
+    "radial_features": 16,
+    "control_modes": [
+      "both_off",
+      "serial_independent",
+      "joint_unidirectional",
+      "joint_bidirectional"
+    ]
+  },
+  "model_identity": {
+    "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+    "state_sha256": "8949b800a81797f9a574f628be552fac7692d19da6d6f6dfc27ec1537c86a346",
+    "total_parameters": 23387,
+    "trainable_parameters": 23387
+  },
+  "software_arm_execution": {
+    "strong_rule": {
+      "attempted": 1,
+      "accepted_candidates": 1,
+      "truncated": false
+    },
+    "learned_controls": {
+      "both_off": {
+        "event_velocity_finite": true,
+        "geometry_velocity_finite": true,
+        "conservation_residual_max_abs": 1.6653345369377348e-16
+      },
+      "serial_independent": {
+        "event_velocity_finite": true,
+        "geometry_velocity_finite": true,
+        "conservation_residual_max_abs": 1.6653345369377348e-16
+      },
+      "joint_unidirectional": {
+        "event_velocity_finite": true,
+        "geometry_velocity_finite": true,
+        "conservation_residual_max_abs": 1.6653345369377348e-16
+      },
+      "joint_bidirectional": {
+        "event_velocity_finite": true,
+        "geometry_velocity_finite": true,
+        "conservation_residual_max_abs": 1.1102230246251565e-16
+      }
+    },
+    "conservation_ablation": {
+      "event_velocity_finite": true,
+      "geometry_velocity_finite": true,
+      "conservation_residual_max_abs": 1.0364993727176812,
+      "only_changed_factor": "conservation_projection"
+    }
+  },
+  "measured_control_manifest": {
+    "schema": "xtbflow-joint-control/v2",
+    "modes": [
+      "both_off",
+      "serial_independent",
+      "joint_unidirectional",
+      "joint_bidirectional"
+    ],
+    "coupling_strength": 1.0,
+    "guidance_strength": 0.0,
+    "dataset_fingerprint": "not-executed-paired-corpus-blocked-by-issue-58",
+    "split_fingerprint": "not-executed",
+    "input_view_fingerprint": "reactant-side-contract-v0.1",
+    "model_identity_status": "measured",
+    "model_identities": {
+      "both_off": {
+        "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+        "state_sha256": "8949b800a81797f9a574f628be552fac7692d19da6d6f6dfc27ec1537c86a346",
+        "total_parameters": 23387,
+        "trainable_parameters": 23387
+      },
+      "serial_independent": {
+        "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+        "state_sha256": "8949b800a81797f9a574f628be552fac7692d19da6d6f6dfc27ec1537c86a346",
+        "total_parameters": 23387,
+        "trainable_parameters": 23387
+      },
+      "joint_unidirectional": {
+        "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+        "state_sha256": "8949b800a81797f9a574f628be552fac7692d19da6d6f6dfc27ec1537c86a346",
+        "total_parameters": 23387,
+        "trainable_parameters": 23387
+      },
+      "joint_bidirectional": {
+        "class": "xtbflow.models.joint_flow.JointEventGeometryFlow",
+        "state_sha256": "8949b800a81797f9a574f628be552fac7692d19da6d6f6dfc27ec1537c86a346",
+        "total_parameters": 23387,
+        "trainable_parameters": 23387
+      }
+    },
+    "same_generation_weights_for_controls": true,
+    "physical_budget_status": "measured",
+    "physical_call_budgets": {
+      "both_off": 0,
+      "serial_independent": 0,
+      "joint_unidirectional": 0,
+      "joint_bidirectional": 0
+    },
+    "same_physical_budget_for_controls": true
+  },
+  "checks": [
+    "six-arm first scientific matrix is frozen",
+    "unconstrained-event conservation ablation changes only the projection toggle",
+    "learned arms include the current-state joint_unidirectional ablation",
+    "learned software controls share one measured parameter state",
+    "software acceptance assigns zero calculator calls to every learned control",
+    "issue 58 remains the explicit paired event/TS supervision blocker",
+    "SPICE energy/force labels are not admitted as event/TS supervision"
+  ],
+  "limits": [
+    "This report is software acceptance only.",
+    "No real event/TS training or held-out scientific comparison was run.",
+    "No calculator or quantum-chemistry call was made."
+  ]
+}

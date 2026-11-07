@@ -153,8 +153,8 @@ reactant information, tool set, randomization policy, certification service, and
 budget vector. This design estimates J, P, and J×P interaction rather than
 assigning a combined gain to a single component.
 
-The panel is frozen from the audited #146 development-test split: 45 records in
-9 parent/family groups from the same Diels–Alder archive. Apply only declared
+The next panel must be frozen from the audited #146 development-test split:
+45 records in 9 parent/family groups from the same Diels–Alder archive. Apply only declared
 input filters (CHNO atoms, legal charge/multiplicity, complete reactant-only
 packet and mapping, complete identity/protocol fields, and no quarantine).
 Publish the full eligible pool and its manifest hash, sort deterministically by

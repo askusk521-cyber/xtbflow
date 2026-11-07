@@ -1,0 +1,224 @@
+{
+  "cases": [
+    {
+      "archived_verdict_sha256": "83f5080343bc24afd28a5fdaf39137b26cec2df943858286be7675260acfabf4",
+      "artifact_bytes": 647513,
+      "artifact_count": 19,
+      "cache_key": "48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d",
+      "cache_replay": {
+        "cache_hit": true,
+        "identical_record": true,
+        "new_calculator_calls": 0,
+        "new_channel": false
+      },
+      "candidate_sha256": "a8023d3e889edbb8bc22ff5013ba1cc15634737aabf293a4d981d1ccd2021da8",
+      "charged_calls": 202,
+      "evidence_status": "valid_alternative",
+      "execution_status": "completed",
+      "item_id": "08abfd11be911cc5",
+      "numerical_comparison": {
+        "actual_event_identical": true,
+        "aligned_ts_rmsd_angstrom": 1.7209719606980585e-11,
+        "max_endpoint_energy_difference_hartree": 1.7053025658242404e-13,
+        "max_frequency_difference_cm1": 3.3359768281115976e-08,
+        "passed": true,
+        "status": "compared",
+        "ts_energy_difference_hartree": 2.2737367544323206e-13
+      },
+      "observed_event_id": "8382f00b0f4144f3b208275d",
+      "passed": true,
+      "planned_event_id": "554a88f8a1149e46f48966fd",
+      "resources": {
+        "basis": "measured",
+        "cpu_seconds": 1174.846558,
+        "wall_seconds": 1077.8726580129005
+      },
+      "result_content_sha256": "ce5b417f84fa4d59561d125b3d9f5b4243ff5822309acc0a7acca1e0ea65e734"
+    },
+    {
+      "archived_verdict_sha256": "7607084d5d561cb0624cedbbc268b3b48808cabbd818e960f8f94fbb93f23df4",
+      "artifact_bytes": 399725,
+      "artifact_count": 11,
+      "cache_key": "3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b",
+      "cache_replay": {
+        "cache_hit": true,
+        "identical_record": true,
+        "new_calculator_calls": 0,
+        "new_channel": false
+      },
+      "candidate_sha256": "5a0b8aea92ae5c8f5cc0cbce193a2598d04b135dced80a325e6af3da914c4ead",
+      "charged_calls": 265,
+      "evidence_status": "attempted_unresolved",
+      "execution_status": "execution_failed",
+      "item_id": "98a2bcd101825aa9",
+      "numerical_comparison": {
+        "passed": false,
+        "status": "incomplete_chain"
+      },
+      "observed_event_id": null,
+      "passed": false,
+      "planned_event_id": null,
+      "resources": {
+        "basis": "measured",
+        "cpu_seconds": 1471.143259,
+        "wall_seconds": 1300.6843819138594
+      },
+      "result_content_sha256": "666cb8c83586ef33aecc21a9ac34fbba5aca55aa509af2d1bcac497fe5b53680"
+    }
+  ],
+  "claim_limits": [
+    "The panel deliberately includes one previously matched and one alternative channel; it cannot estimate discovery success or generalization.",
+    "Only gas-phase neutral singlet CHNO is supported. No solution, CP2K, xTB, open-shell, or experimental claim.",
+    "Raw geometry and source verdicts remain on n2; public outputs contain hashes, aggregate diagnostics and event IDs.",
+    "New final-gradient checks and rejection of endpoint gray zones are versioned protocol changes, not retroactive edits to old certificates.",
+    "Storage is monitored every 0.1 seconds with per-file limits; it is not a filesystem quota and transient overshoot is possible. Overshoot blocks successful certification and must be reported."
+  ],
+  "config_sha256": "7e932c5f60a8a74374029535f5087946b2d1df3f84c54b0dc07a8b4a5eecd4d3",
+  "gpu": {
+    "driver": 13020,
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "runtime": 12090
+  },
+  "host": "node2",
+  "input_plan_sha256": "0993c387fba18cd7761542099b1acb8146b9d78f2293f068d9ea872fe5d50fc8",
+  "ledger": {
+    "active_jobs": [],
+    "budget": {
+      "max_calculator_calls": 6000,
+      "max_concurrent_jobs": 1,
+      "max_cpu_core_hours": 16.0,
+      "max_gpu_hours": 2.0,
+      "max_retries_per_job": 0,
+      "max_storage_gb": 1.0,
+      "max_system_evaluations": 2,
+      "max_wall_minutes_per_job": 120,
+      "phase": "W07-reference-panel-20261107"
+    },
+    "by_calculator": {
+      "gpu4pyscf": 2
+    },
+    "by_operation": {
+      "other": 2
+    },
+    "by_status": {
+      "failure": 1,
+      "success": 1
+    },
+    "ledger_id": "8eb2663d89f34d038a43b006a62515da",
+    "phase": "W07-reference-panel-20261107",
+    "schema": "xtbflow-run-ledger/v1",
+    "totals": {
+      "attempts": 2,
+      "cache_hits": 0,
+      "calculator_calls": 467,
+      "cpu_core_hours": 0.7349971713888888,
+      "failures": 1,
+      "gpu_hours": 0.6607102888685444,
+      "retries": 0,
+      "storage_gb": 0.0009753163903951645,
+      "successes": 1,
+      "system_evaluations": 2
+    }
+  },
+  "probe_wall_seconds": 0.6649062919896096,
+  "protocol": {
+    "adapter_source_sha256": "a4d2ec271f39ba501f1be5bc34bd180bc1d22a10bffdfbedda5872cd7eb15ccf",
+    "device": "gpu",
+    "engine": "gpu4pyscf",
+    "evidence_scope": "gas_phase_neutral_singlet_CHNO_reference_protocol",
+    "execution_build": {
+      "driver": 13020,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+      "runtime": 12090
+    },
+    "installed_record_sha256": {
+      "cupy-cuda12x": "2975a4ba372a04a5a0a5380c01504c0e5788b79f6030cceaf3924a728e1774b9",
+      "geometric": "fb7620676807f51b34f6da5689a2e01475229072ed4f854137c86c9dfb479a4a",
+      "gpu4pyscf-cuda12x": "1fc29488f8471674b4e50a15ff2cb5a245044bd81fc468f4b237fbd8b2ba34cb",
+      "numpy": "a59db318ca8beff222112cb8713d425702f744c329d409dad511c539d889a9a6",
+      "pyscf": "c528ff36159f1d0f894bf81236b7d954914a7c3f08e99d802ad4634dc2df1f14",
+      "rdkit": "ebafa0c60b860d7fdbfd829623a19da563357b22881b87e0e4d7bfd0b0e7c0cb",
+      "scipy": "b8ea386fea9f83a6696fb52817f71582fb1174192a306225bc87ea13177b1b64"
+    },
+    "method": {
+      "basis": "6-31g*",
+      "charge": 0,
+      "conv_tol": 1e-10,
+      "density_fitting": false,
+      "dispersion": null,
+      "energy_kind": "electronic",
+      "grids_level": 5,
+      "max_cycle": 300,
+      "program": "gpu4pyscf",
+      "solvent": null,
+      "spherical": true,
+      "spin": 0,
+      "wavefunction": "RKS",
+      "xc": "wb97x"
+    },
+    "packages": {
+      "cupy-cuda12x": "14.2.0",
+      "geometric": "1.1.1",
+      "gpu4pyscf-cuda12x": "1.8.1",
+      "numpy": "2.4.6",
+      "pyscf": "2.14.0",
+      "rdkit": "2026.3.6",
+      "scipy": "1.17.1"
+    },
+    "protocol_source_sha256": "e69903868cf380d808762c09fadb743b577f0812e5ec249cc0172af6a7f6f956",
+    "thresholds": {
+      "allow_endpoint_gray_zone": false,
+      "irc": {
+        "maxiter": 300,
+        "tmax": 0.2,
+        "trust": 0.2
+      },
+      "min_retry_displacement_angstrom": 0.1,
+      "negative_frequency_cm1": -30.0,
+      "opt_maxiter": 200,
+      "tight": {
+        "convergence_dmax": 0.001,
+        "convergence_drms": 0.0006,
+        "convergence_energy": 1e-06,
+        "convergence_gmax": 0.0001,
+        "convergence_grms": 3e-05
+      },
+      "very_tight": {
+        "convergence_dmax": 0.0002,
+        "convergence_drms": 0.0001,
+        "convergence_energy": 2e-07,
+        "convergence_gmax": 3e-05,
+        "convergence_grms": 8e-06
+      }
+    },
+    "units": {
+      "coordinates": "Angstrom",
+      "energy": "Hartree",
+      "frequencies": "cm^-1",
+      "gradient": "Hartree/bohr",
+      "hessian": "Hartree/bohr^2"
+    },
+    "version": "xtbflow-reference-certification/1"
+  },
+  "protocol_sha256": "637e18f276d78daa7b9ed5155139dae6cb93943a9a1b5ad03e3516ff574e14d6",
+  "python": "3.11.17",
+  "schema": "xtbflow-certification-replay/v1",
+  "slurm_job_id": "4096",
+  "source_branch": "codex/w137-certification-service-20261107",
+  "source_commit": "931d81f53a85669e137600c62b343120ff0de3d0",
+  "stage_budget": {
+    "max_calculator_calls": 6000,
+    "max_concurrent_jobs": 1,
+    "max_cpu_core_hours": 16.0,
+    "max_gpu_hours": 2.0,
+    "max_retries_per_job": 0,
+    "max_storage_gb": 1.0,
+    "max_system_evaluations": 2,
+    "max_wall_minutes_per_job": 120,
+    "phase": "W07-reference-panel-20261107"
+  },
+  "started_at": "2026-11-07T14:14:12.998884+00:00",
+  "status": "replay_failed",
+  "unique_channels": 1,
+  "wall_seconds": 2379.4250037930906
+}

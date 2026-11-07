@@ -1,0 +1,71 @@
+{
+  "audited_at": "2026-11-07T14:54:46.611210+00:00",
+  "cases": [
+    {
+      "artifact_hashes_verified": true,
+      "by_primitive": {
+        "gradient": 99,
+        "hessian": 4,
+        "scf": 99
+      },
+      "by_stage": {
+        "end_first_freq": 3,
+        "end_first_opt": 4,
+        "end_last_freq": 3,
+        "end_last_opt": 6,
+        "irc": 160,
+        "ts_final_hessian": 3,
+        "ts_initial_hessian": 3,
+        "ts_optts": 20
+      },
+      "calls_file_sha256": "6ecc26422079f87ebdf6901c162506aa8bc8a953bbd73cad49fb17525dc14908",
+      "item_id": "08abfd11be911cc5",
+      "result_file_sha256": "8619d03451cfe5c5e6ab2b2d3de4e041340a5f289d1d8225e51106ed27f4b5b8",
+      "settlement_file_sha256": "9ec10e515cec941734aeed8a1e5ea121ea1313558da95bf8bb3dc1bd31356412",
+      "unfinished_calls": 0
+    },
+    {
+      "artifact_hashes_verified": true,
+      "by_primitive": {
+        "gradient": 131,
+        "hessian": 2,
+        "scf": 132
+      },
+      "by_stage": {
+        "irc": 237,
+        "ts_final_hessian": 3,
+        "ts_initial_hessian": 3,
+        "ts_optts": 22
+      },
+      "calls_file_sha256": "e0d884edb3b60ebe7233a7ff40dbadc76f6775b86dd637267816255c3f115f5e",
+      "item_id": "98a2bcd101825aa9",
+      "result_file_sha256": "4ea84240c84da266d01d23fc0a4d0d03c0d14be4518be962e6482067cbc8b334",
+      "settlement_file_sha256": "212d338d3f38296997253cdcabd14cba26e05f0e7262bb106a3554b096149284",
+      "unfinished_calls": 0
+    }
+  ],
+  "channel_index_sha256": "cc38bc95d9919aaabdf403424052ca0418cc0ce1ab29643ef86ee4985acb42b7",
+  "host": "node2",
+  "job_script_sha256": "8e847576675b2b285039288c8fdfad30040a2c71742df6ae0e40ad2f56ad03de",
+  "ledger_sha256": "baab222d04e2ce8e7af04fd712fcc94e9ad5414f375cf4a13b57464574771faa",
+  "new_calculator_calls": 0,
+  "panel_report_sha256": "0365ceceaae80a5f2bc724dc38b30ff080c17902814c6212a381c9086f5dac9b",
+  "process_exit_code": 1,
+  "scheduler_before_exit_sha256": "e5b4ae39570427b847298c7691d1779e6c343d1daed58e5bc2ef78086ed9ced2",
+  "scheduler_final": {
+    "EndTime": "2026-11-07T22:53:52",
+    "ExitCode": "1:0",
+    "JobId": "4096",
+    "JobState": "FAILED",
+    "MinMemoryNode": "64G",
+    "NumCPUs": "8",
+    "RunTime": "00:39:40",
+    "StartTime": "2026-11-07T22:14:12",
+    "TimeLimit": "02:00:00"
+  },
+  "scheduler_final_sha256": "15999c4940d8e6e5a838e44c19bccd6872d12c4fb66c81fc13a41348b6a8f90b",
+  "scheduler_log_sha256": "d283a5354f28348c0e62cb93e1d478c47ea9caf165df0460e586d42e6f36a570",
+  "schema": "xtbflow-reference-replay-artifact-audit/v1",
+  "source_commit": "931d81f53a85669e137600c62b343120ff0de3d0",
+  "status": "artifact_audit_passed"
+}

@@ -1,5 +1,21 @@
 # n2 运行环境
 
+## 2026-11-07 参考认证环境观察
+
+公共参考服务在 `node2` 的独立 `xtbflow-qc` 环境执行，源码为
+`931d81f53a85669e137600c62b343120ff0de3d0`，Slurm 作业为 4096。
+实际版本为 Python 3.11.17、NumPy 2.4.6、SciPy 1.17.1、RDKit 2026.3.6、
+PySCF 2.14.0、gpu4pyscf-cuda12x 1.8.1、CuPy-cuda12x 14.2.0 和 geomeTRIC 1.1.1。
+分配内的 CUDA 运算探针识别到 NVIDIA RTX PRO 6000 Blackwell Workstation Edition，
+CUDA driver/runtime 整数版本分别为 13020/12090。每个已安装发行包的 RECORD
+清单哈希保存在运行报告中；它们标识发行构建，不是安装文件的安全完整性证明。
+
+该作业使用 `main`、`gpu:pro6000:1`、8 CPU、64 GiB、120 分钟上限。
+科学计算采用版本化的气相中性单重态 wB97X/6-31G* 协议，不能称为 CP2K、
+xTB、溶液或实验结果。`nvidia-smi` 的历史 NVML 版本问题不作为本次 GPU 证据；
+本次依据分配内成功的 CuPy 探针和实际参考计算记录。完整状态、费用和限制见
+[参考认证证据](evidence/reference_certification_20261107.md)。
+
 ## 2026-11-07 增量观察
 
 W01 档案重放在 `node2` 的 `xtbflow` 环境执行，实际版本为 Python 3.10.19、

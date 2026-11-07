@@ -384,8 +384,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "6152638555e60f6ffdf05834e44590b0b6f0a2a19ad5c326a6b3fccd918f2c30",
-      "bytes": 3728
+      "sha256": "3a3982043a6537ca7f2fc6ec0152681b18ea03091d4b63b7f91045e6a26d54b3",
+      "bytes": 4828
     },
     {
       "path": "docs/HANDOFF_FREEZE.md",
@@ -556,6 +556,21 @@
       "path": "docs/evidence/reaction_qm_coordinate_mapping_provenance_20261002.json",
       "sha256": "094cf902dc6adf7016d994a89b0b12c3e0456c3588b99e08fc92f3826c4880cb",
       "bytes": 3702
+    },
+    {
+      "path": "docs/evidence/reference_certification_20261107.json",
+      "sha256": "0365ceceaae80a5f2bc724dc38b30ff080c17902814c6212a381c9086f5dac9b",
+      "bytes": 8061
+    },
+    {
+      "path": "docs/evidence/reference_certification_20261107.md",
+      "sha256": "5c351881b755e828154bfbec6b93f1d484d38650b8c9945edf580b2856d72c44",
+      "bytes": 5266
+    },
+    {
+      "path": "docs/evidence/reference_certification_20261107_artifacts.json",
+      "sha256": "42582325ec2c38419a4471b117785775ec03699ae9d903332e1837ce115ddf70",
+      "bytes": 2638
     },
     {
       "path": "docs/evidence/research_asset_replay_20261107.json",

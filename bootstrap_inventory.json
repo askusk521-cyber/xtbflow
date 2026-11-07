@@ -1139,8 +1139,8 @@
     },
     {
       "path": "scripts/replay_comparison_assets.py",
-      "sha256": "42a96d14c1d8bd82471ed3f43aa8a5be9169c92d46242ef82444ef6f61e2deb8",
-      "bytes": 11278
+      "sha256": "88811240a5205cd0a64e4bbcecef9377be74db6a89418973e08b412e0fa80760",
+      "bytes": 11871
     },
     {
       "path": "scripts/replay_research_o2.py",
@@ -1644,8 +1644,8 @@
     },
     {
       "path": "tests/test_discovery_accounting.py",
-      "sha256": "488dbc01798d13b3b606db6354268222992fb42fee181c929072715f9d0370ca",
-      "bytes": 7686
+      "sha256": "3257b99da86f7bafd05e6edacda6724cf394be18e668cff55b41cf8550f166ef",
+      "bytes": 8199
     },
     {
       "path": "tests/test_energy_forces.py",

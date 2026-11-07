@@ -13,6 +13,7 @@ from xtbflow.evaluation.certified_trace import read_reference_attempt
 from xtbflow.validation.certification import CertificationService
 from xtbflow.evaluation.comparison_matrix import functional_dispatch, validate_matrix
 from test_certification_service import FixtureBackend, budget, candidate, run
+from scripts.replay_comparison_assets import merge_manifest_inputs
 
 
 def costs(**changes):
@@ -140,3 +141,12 @@ def test_method_matrix_dispatches_actual_pair_and_rejects_missing_strong_control
     assert not dispatch["equal_total_budget_comparison"]
     with pytest.raises(ValueError):
         functional_dispatch(matrix, root, profile, ["serial_physics_backtracking", "joint_generation"])
+
+
+def test_comparison_input_union_cannot_hide_conflicting_hashes_or_path_escape():
+    row = {"path": "/fixture/xtbflow-runs/a", "sha256": "a"*64}
+    assert merge_manifest_inputs([row], [row]) == [row]
+    with pytest.raises(ValueError, match="conflicting"):
+        merge_manifest_inputs([row], [{**row, "sha256": "b"*64}])
+    with pytest.raises(ValueError):
+        merge_manifest_inputs([{**row, "path": "/fixture/xtbflow-runs/../escape"}])

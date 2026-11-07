@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from xtbflow.evaluation.certified_trace import read_reference_attempt  # noqa: E402
 from xtbflow.evaluation.comparison_matrix import functional_dispatch, validate_matrix  # noqa: E402
-from xtbflow.governance.research_replay import audit_inputs, check_source, git, logical_path  # noqa: E402
+from xtbflow.governance.research_replay import ReplayError, audit_inputs, check_source, git, logical_path  # noqa: E402
 from xtbflow.validation.certification import file_hash, write_json  # noqa: E402
 
 
@@ -71,7 +71,8 @@ def main() -> int:
     before = resource.getrusage(resource.RUSAGE_SELF)
     child_before = resource.getrusage(resource.RUSAGE_CHILDREN)
     report = dict(schema=cfg["schema"], status="preflight", host=socket.gethostname(),
-        source_commit=git(ROOT, "rev-parse", "HEAD"), python=platform.python_version(),
+        source_commit=git(ROOT, "rev-parse", "HEAD"), source_branch=git(ROOT, "branch", "--show-current"),
+        slurm_job_id=os.environ.get("SLURM_JOB_ID"), python=platform.python_version(),
         packages={p: importlib.metadata.version(p) for p in ("numpy", "scipy", "torch")},
         config_sha256=file_hash(config), started_at=datetime.now(timezone.utc).isoformat(),
         budget=cfg["budget"], claim_limits=cfg["claim_limits"], new_calculator_calls=0, new_gpu_seconds=0,
@@ -161,8 +162,14 @@ def main() -> int:
         report["status"] = "replay_passed" if all(r["byte_identical"] for r in report["replays"]) else "replay_mismatch"
     except subprocess.TimeoutExpired:
         report.update(status="execution_timeout", failure_type="analyzer_wall_limit")
+    except (ReplayError, TimeoutError) as exc:
+        report.update(failure_phase=report["status"], failure_type=type(exc).__name__,
+                      status="budget_exhausted" if "budget_exhausted" in str(exc) or isinstance(exc, TimeoutError)
+                      else "input_audit_failed")
+        print(f"{type(exc).__name__}: {exc}", file=sys.stderr)
     except Exception as exc:
-        report.update(status="execution_failed", failure_type=type(exc).__name__)
+        report.update(failure_phase=report["status"], failure_type=type(exc).__name__,
+                      status="preflight_failed" if report["status"] == "preflight" else "execution_failed")
         print(f"{type(exc).__name__}: {exc}", file=sys.stderr)
     after, child = resource.getrusage(resource.RUSAGE_SELF), resource.getrusage(resource.RUSAGE_CHILDREN)
     report.update(wall_seconds=time.monotonic()-start,

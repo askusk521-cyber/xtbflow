@@ -358,6 +358,11 @@
       "bytes": 556904
     },
     {
+      "path": "data/manifests/task_views_dft_da_20261107.json",
+      "sha256": "2d4a20aea9c64abce7d76753e3a38bde940d19e68a736397b8bc1270159d3aad",
+      "bytes": 352030
+    },
+    {
       "path": "data/manifests/track_b_reaction_ts.v0.1.jsonl",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
@@ -696,6 +701,16 @@
       "path": "docs/evidence/spice2_openff_pilot_summary_20260929.json",
       "sha256": "5b935bf54871deeb2adf20817bbea7c761e79dcd059fdfdfd8e06b90cfdaf011",
       "bytes": 9263
+    },
+    {
+      "path": "docs/evidence/task_views_20261107.json",
+      "sha256": "6e223fb939e0824fc8ed6394abf6ceb04cb2163d90198533312f8212b2040c4e",
+      "bytes": 6368
+    },
+    {
+      "path": "docs/evidence/task_views_20261107.md",
+      "sha256": "7399a3dd701a3d7e6848af370436ed0b289d5f830a01c3ec12b7fd99480eaa7e",
+      "bytes": 4960
     },
     {
       "path": "docs/evidence/track_b_manifest_audit_20260929.json",

@@ -1,0 +1,273 @@
+{
+  "audit_protocol_sha256": "6fc542e8b9371dc0a836e01821b60ffaac7979b834c71dd1e87ccc3b9ae01045",
+  "claim_limits": [
+    "Reuses existing development admission and splits; no confirmation or new source admission.",
+    "No energy/force labels are provided by this source adapter.",
+    "Task counts overlap; event/geometry/joint rows are not independent datasets.",
+    "A fixed randomly initialized model tests software input isolation, not predictive accuracy.",
+    "Declared partial conditioning, multi-fidelity ingestion and certified feedback promotion remain open."
+  ],
+  "counts": {
+    "energy_force": {
+      "test": {
+        "family_groups": 0,
+        "parent_groups": 0,
+        "records": 0
+      },
+      "train": {
+        "family_groups": 0,
+        "parent_groups": 0,
+        "records": 0
+      },
+      "validation": {
+        "family_groups": 0,
+        "parent_groups": 0,
+        "records": 0
+      }
+    },
+    "event_only": {
+      "test": {
+        "family_groups": 9,
+        "parent_groups": 9,
+        "records": 45
+      },
+      "train": {
+        "family_groups": 29,
+        "parent_groups": 29,
+        "records": 147
+      },
+      "validation": {
+        "family_groups": 3,
+        "parent_groups": 3,
+        "records": 9
+      }
+    },
+    "geometry_only": {
+      "test": {
+        "family_groups": 9,
+        "parent_groups": 9,
+        "records": 45
+      },
+      "train": {
+        "family_groups": 29,
+        "parent_groups": 29,
+        "records": 147
+      },
+      "validation": {
+        "family_groups": 3,
+        "parent_groups": 3,
+        "records": 9
+      }
+    },
+    "paired_joint": {
+      "test": {
+        "family_groups": 9,
+        "parent_groups": 9,
+        "records": 45
+      },
+      "train": {
+        "family_groups": 29,
+        "parent_groups": 29,
+        "records": 147
+      },
+      "validation": {
+        "family_groups": 3,
+        "parent_groups": 3,
+        "records": 9
+      }
+    }
+  },
+  "cpu_limit_seconds": 600,
+  "cpu_seconds": 3.250724,
+  "environment": {
+    "numpy": "2.2.6",
+    "python": "3.10.19",
+    "rdkit": "2024.3.3",
+    "torch": "2.10.0+cu128"
+  },
+  "host": "node2",
+  "invariance_cases": [
+    {
+      "attempts_identical": true,
+      "candidate_attempts": 4,
+      "flow_evaluations": 8,
+      "generated_output_sha256": "252ecddf2f095588654a4179da0fd5712746f5ea9e5674311c88fc71b4cb1c66",
+      "hidden_targets_changed": true,
+      "input_identical": true,
+      "parent_id": "ID63623",
+      "passed": true,
+      "record_id": "dft-da:R0",
+      "scope": "Randomly initialized fixed model; software input-isolation diagnostic only"
+    },
+    {
+      "attempts_identical": true,
+      "candidate_attempts": 4,
+      "flow_evaluations": 8,
+      "generated_output_sha256": "5fe6ec9af649de2646df518dc9a8f484874c98ecf983ab93434242c99813297d",
+      "hidden_targets_changed": true,
+      "input_identical": true,
+      "parent_id": "ID31786",
+      "passed": true,
+      "record_id": "dft-da:R100",
+      "scope": "Randomly initialized fixed model; software input-isolation diagnostic only"
+    },
+    {
+      "attempts_identical": true,
+      "candidate_attempts": 4,
+      "flow_evaluations": 8,
+      "generated_output_sha256": "9fc87bff76925891e833c15ab35a0357291cea6339bb7cf33daa83f2a38ad87f",
+      "hidden_targets_changed": true,
+      "input_identical": true,
+      "parent_id": "ID7427",
+      "passed": true,
+      "record_id": "dft-da:R1026",
+      "scope": "Randomly initialized fixed model; software input-isolation diagnostic only"
+    }
+  ],
+  "new_calculator_calls": 0,
+  "new_gpu_seconds": 0,
+  "schema": "xtbflow-task-view-audit/v1",
+  "source_assets": [
+    "4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed"
+  ],
+  "source_commit": "887bf8635e34c80a423e054526c1ba7a9576e944",
+  "source_manifest_sha256": "6b84937d3cc75bea44faa7608d690618ce22f7ab75c51b8e25515f05a193cc90",
+  "split_audit": {
+    "leakage_dimensions_checked": [
+      "family_id",
+      "input_fingerprint",
+      "parent_reaction_id",
+      "source_record",
+      "source_record_bytes",
+      "split_group"
+    ],
+    "record_count": 201,
+    "split_counts": {
+      "test": 45,
+      "train": 147,
+      "validation": 9
+    },
+    "strict_family_holdout": true
+  },
+  "started_at": "2026-11-07T14:21:49.739540+00:00",
+  "status": "task_views_verified",
+  "task_batch_shapes": {
+    "event_only": {
+      "reactant_input": {
+        "atom_mask": [
+          8,
+          46
+        ],
+        "atomic_numbers": [
+          8,
+          46
+        ],
+        "charge": [
+          8
+        ],
+        "multiplicity": [
+          8
+        ],
+        "reactant_coordinates": [
+          8,
+          46,
+          3
+        ]
+      },
+      "training_supervision": {
+        "event_bond_edits": [
+          8,
+          46,
+          46
+        ],
+        "event_mask": [
+          8,
+          46,
+          46
+        ]
+      }
+    },
+    "geometry_only": {
+      "reactant_input": {
+        "atom_mask": [
+          8,
+          46
+        ],
+        "atomic_numbers": [
+          8,
+          46
+        ],
+        "charge": [
+          8
+        ],
+        "multiplicity": [
+          8
+        ],
+        "reactant_coordinates": [
+          8,
+          46,
+          3
+        ]
+      },
+      "training_supervision": {
+        "ts_coordinates": [
+          8,
+          46,
+          3
+        ],
+        "ts_mask": [
+          8,
+          46
+        ]
+      }
+    },
+    "paired_joint": {
+      "reactant_input": {
+        "atom_mask": [
+          8,
+          46
+        ],
+        "atomic_numbers": [
+          8,
+          46
+        ],
+        "charge": [
+          8
+        ],
+        "multiplicity": [
+          8
+        ],
+        "reactant_coordinates": [
+          8,
+          46,
+          3
+        ]
+      },
+      "training_supervision": {
+        "event_bond_edits": [
+          8,
+          46,
+          46
+        ],
+        "event_mask": [
+          8,
+          46,
+          46
+        ],
+        "ts_coordinates": [
+          8,
+          46,
+          3
+        ],
+        "ts_mask": [
+          8,
+          46
+        ]
+      }
+    }
+  },
+  "task_manifest_sha256": "2d4a20aea9c64abce7d76753e3a38bde940d19e68a736397b8bc1270159d3aad",
+  "training_steps": 0,
+  "wall_limit_seconds": 600,
+  "wall_seconds": 2.2064924070145935
+}

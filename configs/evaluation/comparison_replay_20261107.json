@@ -1,0 +1,23 @@
+{
+  "schema": "xtbflow-comparison-replay/v1",
+  "assets": [113, 120],
+  "budget": {"max_wall_seconds": 600, "cpu_cores": 1, "max_input_bytes": 2147483648, "max_output_bytes": 67108864, "max_file_bytes": 16777216, "new_calculator_calls": 0, "new_gpu_seconds": 0},
+  "inputs": {
+    "v1a-20261007/data/parent_catalog.json": "ebbbee13124444ae3e8ad7b5f9475183fed285894e27b0dcdb46cc13b4ba0ece",
+    "v1a-20261007/data/split_manifest.json": "4ec80a3e0246be760d22ef546895df54c05f6612839443f28db330c4ac0d2eea",
+    "v1a-20261007/formal/freeze.json": "fef5e7dc87951d2af40822f2006c1c6af363c32b3c51588b65b8b7c2c51207dc",
+    "v1a-r-20261008/extract/streams.jsonl.gz": "ade829063229f61635f18d6e3f17c2c49f212f84e90b9b70be0635dd0027281e",
+    "followup-20261009/thermo-screen/manifest.json": "1d5994e4e7fdd36cbf949b94e1bb9145ccc596fbbb7b10783dc7d110f5ee9027"
+  },
+  "locator_note": "Logical paths under the private n2 runs root; source catalogue and physical acquisition hashes agree with archived manifests. Split/stream snapshots are additionally pinned before replay; byte-identical result replay is the historical consistency check.",
+  "enum_directory": "review-align-20261009/enum-screen-9403d6c",
+  "enum_development_directory": "review-align-20261009/enum-dev-7c28436",
+  "thermo_directory": "followup-20261009/thermo-screen",
+  "claim_limits": [
+    "Historical candidate-axis catalogue event-hit recall, not reference-certified channel discovery.",
+    "Archived best-event labels are used only in post-generation analysis; no training, tuning, generation or physical acquisition is executed.",
+    "Existing historical censoring/exclusion rules are replayed unchanged and cannot replace failure-inclusive new discovery statistics.",
+    "Historical training, tuning, full generator, enumeration and scheduler costs are not jointly complete; no equal-full-cost comparison is claimed.",
+    "Reference-service artifact audit is a separate cost/evidence example, not a paired method experiment."
+  ]
+}

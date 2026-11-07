@@ -178,6 +178,16 @@
       "bytes": 2649
     },
     {
+      "path": "configs/evaluation/comparison_matrix_20261107.json",
+      "sha256": "8705f104c5fc4394ff4dbe8b3e404703f9a7f0ac8d0e963c1fe1497272fcb429",
+      "bytes": 6792
+    },
+    {
+      "path": "configs/evaluation/comparison_replay_20261107.json",
+      "sha256": "b3d343ba5676a0c918a735dabd3f48992598d83dffba16e31aba7d66319aeeef",
+      "bytes": 1996
+    },
+    {
       "path": "configs/experiments/spice2_energy_learning_curve_v1.json",
       "sha256": "a1c86eeb6b19aed5c6faf17e4920e6740e542469a056b1b7f54523140d340b4a",
       "bytes": 1328
@@ -456,6 +466,11 @@
       "path": "docs/architecture/certification_service.md",
       "sha256": "a3d56f269988c4da8f41cf9dd935958760899abee3a40432efdd2cb8273b65d9",
       "bytes": 8909
+    },
+    {
+      "path": "docs/architecture/discovery_comparison.md",
+      "sha256": "280ece35be27e9a14d6c64dcbf264a404b3967543952f71c9c7538c69c856d0f",
+      "bytes": 8281
     },
     {
       "path": "docs/architecture/generation_bridge.md",
@@ -1123,6 +1138,11 @@
       "bytes": 10060
     },
     {
+      "path": "scripts/replay_comparison_assets.py",
+      "sha256": "42a96d14c1d8bd82471ed3f43aa8a5be9169c92d46242ef82444ef6f61e2deb8",
+      "bytes": 11278
+    },
+    {
       "path": "scripts/replay_research_o2.py",
       "sha256": "f1d9f7de98a713582c64d41b0794c8afabd706d91307c07d05fd82d18c161ec9",
       "bytes": 7086
@@ -1311,6 +1331,21 @@
       "path": "src/xtbflow/evaluation/blind_rollout.py",
       "sha256": "9a88f1ec8160973c221d4c6f22cd558eb6893ea4a219df5351a3b31ea1d97c8c",
       "bytes": 24173
+    },
+    {
+      "path": "src/xtbflow/evaluation/certified_trace.py",
+      "sha256": "c2b821daa53bf8798d781ef78bbf1256179d73ead87483993e991219cc858cea",
+      "bytes": 4317
+    },
+    {
+      "path": "src/xtbflow/evaluation/comparison_matrix.py",
+      "sha256": "bb8230a3ac46a751852e85e64d2f0f890f6e2f58f32373d3bb583ebdd13141f1",
+      "bytes": 2695
+    },
+    {
+      "path": "src/xtbflow/evaluation/discovery.py",
+      "sha256": "7ebc6dad3433c7686eb25415ed0056cdb9e122aa84e48367c18434effa28102c",
+      "bytes": 11411
     },
     {
       "path": "src/xtbflow/evaluation/terminal.py",
@@ -1606,6 +1641,11 @@
       "path": "tests/test_dft_da_identity.py",
       "sha256": "959d5dbbab3d08a165b8026783e9ffd2ae93471f7452b9d542c231490107f0b4",
       "bytes": 751
+    },
+    {
+      "path": "tests/test_discovery_accounting.py",
+      "sha256": "488dbc01798d13b3b606db6354268222992fb42fee181c929072715f9d0370ca",
+      "bytes": 7686
     },
     {
       "path": "tests/test_energy_forces.py",

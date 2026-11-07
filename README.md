@@ -5,6 +5,7 @@
 任务是只给反应物，由模型同时生成电子事件（键级／电子记账变化）和三维过渡态几何。GFN2-xTB 等半经验方法有三种用途：校正势的底座、生成过程中的物理信号、低成本认证链。最终认证用 DFT（PySCF + gpu4pyscf）。
 
 - **现状**：见 [`docs/STATUS_ZH.md`](docs/STATUS_ZH.md)，内容包括各阶段结论、PR 叠放关系和待负责人决定的事项。
+- **当前开发路线**：[总览 #129](https://github.com/askusk521-cyber/xtbflow/issues/129)，执行任务为 #131–#143；[模块交接表](docs/INNOVATION_ROADMAP.md)记录新任务与已有资产的关系。旧阶段报告保留为研究历史，自动运行状态使用 [#130](https://github.com/askusk521-cyber/xtbflow/issues/130)。
 - **项目主页**：<https://askusk521-cyber.github.io/xtbflow/>，包括论文式说明、实验结果和每日更新的运行状态。
 - **历史材料**：2026-10-06 之前的 README 与状态页已原样存于 [`archive/status_20260930/`](archive/status_20260930/)；更早的启动与交接材料见 [`archive/`](archive/)。
 

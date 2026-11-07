@@ -24,8 +24,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "4c5e4e3a5f4700680f4d6303e998db08b538b975e86a075db5d15870c45cd0a2",
-      "bytes": 4571
+      "sha256": "25a8bf9748b5798a29c53521f5cb125b547bc4f29ebbe14cd21397c514131eae",
+      "bytes": 4915
     },
     {
       "path": "archive/README.md",
@@ -228,6 +228,11 @@
       "bytes": 4396
     },
     {
+      "path": "configs/research/assets_20261107.json",
+      "sha256": "40b685778303ca06e4dd6be8c886277c09e0498eb01eeddf066ab93d4c6a183c",
+      "bytes": 10626
+    },
+    {
       "path": "configs/resources.yaml",
       "sha256": "c2213875ddbe39017669a235b036019525c52e02378687c529075f784a63e5fd",
       "bytes": 6301
@@ -254,8 +259,8 @@
     },
     {
       "path": "configs/run_status.json",
-      "sha256": "afa5154e596af041dd0d8ffb9b977fbc3a6308aeb4fdcc77052d9f6ffd4ea1f7",
-      "bytes": 355
+      "sha256": "b9d4043d755ea092f48e2e31635b0c12e41315cff9201dc55522b204c20841d3",
+      "bytes": 402
     },
     {
       "path": "configs/runs/README.md",
@@ -374,8 +379,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "3c0a29e003afb47f820f6d39b92c7499d1d095b4f6b3ff84beb8bf1cd67ee774",
-      "bytes": 2767
+      "sha256": "6152638555e60f6ffdf05834e44590b0b6f0a2a19ad5c326a6b3fccd918f2c30",
+      "bytes": 3728
     },
     {
       "path": "docs/HANDOFF_FREEZE.md",
@@ -383,9 +388,19 @@
       "bytes": 2014
     },
     {
+      "path": "docs/INNOVATION_ROADMAP.md",
+      "sha256": "b76af44802f55ac93157496db55a56fb3f7a561457d5cfa0f63fe9812d884e04",
+      "bytes": 5186
+    },
+    {
       "path": "docs/MECHAI_REUSE_MANIFEST.json",
       "sha256": "2b3a1f89841edac9f74545c19377391eeba815f3083d2f6a915d91b1bc01f8fb",
       "bytes": 6609
+    },
+    {
+      "path": "docs/PROJECT_STATUS.md",
+      "sha256": "cc189a05f9588c36042ca4b8413a8ba4258bdc6c39f0398c600e121dd52bd412",
+      "bytes": 443
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -411,6 +426,11 @@
       "path": "docs/architecture/architecture_v0.1.md",
       "sha256": "f7e7cdeb8afb97ecbb6aacf132ab217a8f750e68dfbf924daf1e48f298bdd4a1",
       "bytes": 5963
+    },
+    {
+      "path": "docs/architecture/research_asset_replay.md",
+      "sha256": "09619182ce0f7181c31b1679e3be624e40828537cb1727a3ba6d7abec4e998ab",
+      "bytes": 6477
     },
     {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
@@ -526,6 +546,21 @@
       "path": "docs/evidence/reaction_qm_coordinate_mapping_provenance_20261002.json",
       "sha256": "094cf902dc6adf7016d994a89b0b12c3e0456c3588b99e08fc92f3826c4880cb",
       "bytes": 3702
+    },
+    {
+      "path": "docs/evidence/research_asset_replay_20261107.json",
+      "sha256": "a45dc66cf95b9b9569a91c6c6a6e52c6db9bacd5ae0a24a732677e3c927ee259",
+      "bytes": 83946
+    },
+    {
+      "path": "docs/evidence/research_asset_replay_20261107.md",
+      "sha256": "7117885d5888f5477f489c975ec4762cfcfc3a665718638de79a58e9160484ee",
+      "bytes": 6694
+    },
+    {
+      "path": "docs/evidence/research_weight_audit_20261107.json",
+      "sha256": "d146d7b738719638d3590bfcf5d316958b92610966aacb9233776a97da2d49b3",
+      "bytes": 1642
     },
     {
       "path": "docs/evidence/rgd1_hdf5_only_ids_v1.jsonl",
@@ -1023,6 +1058,11 @@
       "bytes": 17349
     },
     {
+      "path": "scripts/replay_research_o2.py",
+      "sha256": "f1d9f7de98a713582c64d41b0794c8afabd706d91307c07d05fd82d18c161ec9",
+      "bytes": 7086
+    },
+    {
       "path": "scripts/run_dft_da_blind_rollout.py",
       "sha256": "bf5bc082dc2982e23397c45e002e4ab3ffa904c467ca1748ab5555b057a965cc",
       "bytes": 16945
@@ -1064,8 +1104,8 @@
     },
     {
       "path": "scripts/update_run_status.py",
-      "sha256": "510bcc89308652572c6b135c88382ad3efd11439d9e9bdb736e9f79d0efe940f",
-      "bytes": 14749
+      "sha256": "fbfc95e6c54d04c2e8d83f28741096bf4690c75c0f671d223aa9f274038e2105",
+      "bytes": 16128
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -1206,6 +1246,11 @@
       "path": "src/xtbflow/governance/handoff.py",
       "sha256": "3249b112984a729439d0a40ce4bc08644fe46a20c25fc729e3ae9077953a7697",
       "bytes": 12414
+    },
+    {
+      "path": "src/xtbflow/governance/research_replay.py",
+      "sha256": "14ddb74f4dca58dc68a645c7241760852335285f176212c4e11a3e27ca3d2784",
+      "bytes": 6632
     },
     {
       "path": "src/xtbflow/legacy.py",
@@ -1516,6 +1561,16 @@
       "path": "tests/test_reaction_qm_coordinate_mapping.py",
       "sha256": "2994a7429aaa7d854d4f527e4dfd1f3e76d2bb17ecfb0934d19b22068feb9bca",
       "bytes": 889
+    },
+    {
+      "path": "tests/test_research_replay.py",
+      "sha256": "4d52619506d652884ae6fea6b36fdc03ee807de93c9a1535ac3cfe3ac27008ba",
+      "bytes": 6218
+    },
+    {
+      "path": "tests/test_run_status_routing.py",
+      "sha256": "83561233277c0029146d6787aeb11bdd0a16422f94c51dba80d799d2fd9efcbf",
+      "bytes": 1602
     },
     {
       "path": "tests/test_runtime_budget.py",

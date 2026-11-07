@@ -1,0 +1,44 @@
+{
+  "schema": "xtbflow-research-weight-audit/v1",
+  "host": "node2",
+  "python": "3.10.19",
+  "source_commit": "35842c851b808fded088955cdf1faabc092bdeb7",
+  "registry_sha256": "40b685778303ca06e4dd6be8c886277c09e0498eb01eeddf066ab93d4c6a183c",
+  "research_commit": "9cc15e03672264fddda0804bb8c2cb4eb31da8f0",
+  "budget": {
+    "wall_seconds": 120,
+    "max_input_bytes": 2147483648,
+    "new_calculator_calls": 0
+  },
+  "files": [
+    {
+      "asset": "v1a-20261007/generators/joint_s0/ckpt_60000.pt",
+      "expected_sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda",
+      "status": "verified",
+      "bytes": 3901150,
+      "actual_sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda"
+    },
+    {
+      "asset": "v1a-20261007/generators/joint_s1/ckpt_60000.pt",
+      "expected_sha256": "65f321d775e20007903e16b284ca27c8b215cbc5b3610f349595f95771e9ec72",
+      "status": "verified",
+      "bytes": 3901150,
+      "actual_sha256": "65f321d775e20007903e16b284ca27c8b215cbc5b3610f349595f95771e9ec72"
+    },
+    {
+      "asset": "v1a-20261007/generators/joint_s2/ckpt_60000.pt",
+      "expected_sha256": "50bc3796220083f5ca1cf3208f40fee8e58065c23c4ce61d19511a1367b8679e",
+      "status": "verified",
+      "bytes": 3901150,
+      "actual_sha256": "50bc3796220083f5ca1cf3208f40fee8e58065c23c4ce61d19511a1367b8679e"
+    }
+  ],
+  "status": "verified",
+  "claim_limits": [
+    "Hash availability only; no checkpoint deserialization, training or scientific inference."
+  ],
+  "wall_seconds": 0.025844273157417774,
+  "cpu_seconds": 0.014648175,
+  "new_calculator_calls": 0,
+  "new_gpu_seconds": 0
+}

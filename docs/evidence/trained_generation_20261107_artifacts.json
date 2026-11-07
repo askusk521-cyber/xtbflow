@@ -1,0 +1,28 @@
+{
+  "audited_at": "2026-11-07T15:27:56.982348+00:00",
+  "candidate_identities_verified": 2,
+  "host": "node2",
+  "job_script_sha256": "d8ebef95cceb60dfc4dc14e1a584c7c3c86b41f61e645f7cbed7331117950eea",
+  "ledger_reconciled": true,
+  "ledger_sha256": "7f258f2f3474e097496db9ea70eca30823ad43f347d947365cd5ccebd8a0bca4",
+  "new_calculator_calls": 0,
+  "raw_artifacts_verified": 6,
+  "report_sha256": "482ae6c426d71b1218cb104f7530b1d6c2755ddc8bf2bd309a58f6a8783acaa6",
+  "scheduler_final": {
+    "EndTime": "2026-11-07T23:22:27",
+    "ExitCode": "0:0",
+    "JobId": "4100",
+    "JobState": "COMPLETED",
+    "MinMemoryNode": "64G",
+    "NumCPUs": "8",
+    "RunTime": "00:00:08",
+    "StartTime": "2026-11-07T23:22:19",
+    "TimeLimit": "00:12:00"
+  },
+  "scheduler_final_sha256": "03e6b3d0474716854a4c2313a12bd820e74ff7527c52e23529e7ab9e3afbc646",
+  "scheduler_log_sha256": "a962eed50015261c7086866230eb894c195cc921777f404aeedceaace2a37e70",
+  "schema": "xtbflow-generation-artifact-audit/v1",
+  "source_commit": "e07ac8512fa987e0fad2e37b14c576c534a7df87",
+  "status": "artifact_audit_passed",
+  "unfinished_model_calls": 0
+}

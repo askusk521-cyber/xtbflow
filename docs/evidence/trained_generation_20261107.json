@@ -1,0 +1,226 @@
+{
+  "artifacts": [
+    {
+      "bytes": 37451,
+      "path": "raw/calls.json",
+      "sha256": "1fdeec9febf81eefeb561d678aad3745c6cfea8cc28f4491e22f52336bef30ed"
+    },
+    {
+      "bytes": 62917,
+      "path": "raw/certification-plan.json",
+      "sha256": "baf51f5fbc4961fb3f80aa71363edc8ec35fe45d535dd483e629031d80264dd6"
+    },
+    {
+      "bytes": 13752,
+      "path": "raw/generation.json",
+      "sha256": "99e097f2a12c4330d3ab8d4e680e8f1bef8aa4a9f14e68663b4bd7f1055fe0f9"
+    },
+    {
+      "bytes": 22110,
+      "path": "raw/reactants.json",
+      "sha256": "19ff7955de150b9879508414d1ecac5e89b6b323ec0f23dd3d67cdf484e4cfcc"
+    },
+    {
+      "bytes": 8337,
+      "path": "raw/worker-packet.json",
+      "sha256": "3aa5566ea68752d67d777730899a8a5eaa21f108c7d06afe2751a86f38522799"
+    },
+    {
+      "bytes": 0,
+      "path": "raw/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "budget": {
+    "cpu_cores": 8,
+    "max_cpu_core_hours": 1.6,
+    "max_forward_evaluations": 150,
+    "max_gpu_hours": 0.2,
+    "max_output_bytes": 67108864,
+    "max_storage_gb": 0.25,
+    "max_wall_seconds": 600
+  },
+  "call_summary": {
+    "by_role": {
+      "event": 50,
+      "geometry": 50,
+      "joint": 50
+    },
+    "forward_evaluations": 150,
+    "kernel_invocations": 150,
+    "unfinished_calls": 0
+  },
+  "candidates": [
+    {
+      "candidate_content_sha256": "f474ae50c4c2cdd8474d6d92bd2ad9b7f789a15bce4afbca281b00905ffb40dd",
+      "candidate_id": "dft-da:R0:joint_generation:p0",
+      "forward_evaluations": 50,
+      "method": "joint_generation",
+      "query_id": "dft-da:R0",
+      "status": "generated",
+      "wall_seconds": 1.0065428509842604
+    },
+    {
+      "candidate_content_sha256": "edaaa7e118d33b45da917a84c1a461e7a9c8045b9099d0e8587ccd23cf1a84b2",
+      "candidate_id": "dft-da:R0:independent_event_then_geometry:p0",
+      "forward_evaluations": 100,
+      "method": "independent_event_then_geometry",
+      "query_id": "dft-da:R0",
+      "status": "generated",
+      "wall_seconds": 1.049363121856004
+    }
+  ],
+  "certification_candidates": 2,
+  "certification_plan_sha256": "baf51f5fbc4961fb3f80aa71363edc8ec35fe45d535dd483e629031d80264dd6",
+  "claim_limits": [
+    "Functional integration of existing trained models, not a method ranking or a new training result.",
+    "Matched proposal count is not matched total compute: serial executes separate event and geometry branches; all forwards and wall time are recorded.",
+    "Declared reactant endpoints from development data are not independently prepared confirmatory inputs.",
+    "Cross-dataset overlap of these historical weights with Diels-Alder chemistry is unresolved; no independent-generalization claim.",
+    "Reference certification is a separate bounded stage; generation success does not certify a TS."
+  ],
+  "config_sha256": "50d7d9c80cb0dba82e4e797e5cc2456e0ca14c21646b37d5a3dc31c3eeeac11e",
+  "cost_basis": "Program wall and process CPU; scheduler/import/setup overhead must also be reported for full-cost comparisons",
+  "cpu_seconds": 8.250481,
+  "environment": {
+    "cuda": "12.8",
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "numpy": "2.2.6",
+    "torch": "2.10.0+cu128"
+  },
+  "forbidden_imports": [],
+  "host": "node2",
+  "input_audit": {
+    "exclusions": [],
+    "selected": [
+      {
+        "atoms": 16,
+        "input_sha256": "7ffaa060a33da76edae9870ca4be2c6a43c13865a5c71c464ba7ad244d30535c",
+        "parent_id": "ID63623",
+        "record_id": "dft-da:R0"
+      }
+    ],
+    "selection": "Smallest mapped atom pool among admitted training rows, then record ID; no product/TS/energy-based selection",
+    "training_rows": 147
+  },
+  "ledger": {
+    "active_jobs": [],
+    "budget": {
+      "max_calculator_calls": 1,
+      "max_concurrent_jobs": 1,
+      "max_cpu_core_hours": 1.6,
+      "max_gpu_hours": 0.2,
+      "max_retries_per_job": 0,
+      "max_storage_gb": 0.25,
+      "max_system_evaluations": 150,
+      "max_wall_minutes_per_job": 12,
+      "phase": "W01-fresh-generation-20261107"
+    },
+    "by_calculator": {
+      "trained_generator": 1
+    },
+    "by_operation": {
+      "other": 1
+    },
+    "by_status": {
+      "success": 1
+    },
+    "ledger_id": "8156397ad4d54cf1a28db742f271ff6a",
+    "phase": "W01-fresh-generation-20261107",
+    "schema": "xtbflow-run-ledger/v1",
+    "totals": {
+      "attempts": 1,
+      "cache_hits": 0,
+      "calculator_calls": 0,
+      "cpu_core_hours": 0.002291800277777778,
+      "failures": 0,
+      "gpu_hours": 0.0020086773925383264,
+      "retries": 0,
+      "storage_gb": 0.00013463851064443588,
+      "successes": 1,
+      "system_evaluations": 150
+    }
+  },
+  "models": {
+    "event": {
+      "checkpoint_sha256": "29ec75a0e66f1ffbb85d565591b8e4a7c31aa612175d3e3d7113e6c5a69637af",
+      "dual_time": false,
+      "model_cfg": {
+        "edge_dim": 64,
+        "n_layers": 6,
+        "n_rbf": 32,
+        "n_rbf_reactant": 16,
+        "r_cut": 10.0,
+        "scalar_dim": 92,
+        "vector_dim": 23
+      },
+      "role": "event",
+      "seed": 0,
+      "sigma_b": 1.0,
+      "sigma_x": 0.5,
+      "split_hash": "a0225e6cb773049d94593f0d93bf6c753db125deeda3ade8899da6922835367f",
+      "training_status_sha256": "9fd08082c92b239a418f2f5ccc233d1840b934117b7a51ff7dd7e1a10013a8f9"
+    },
+    "geometry": {
+      "checkpoint_sha256": "82d98876f5ead70990d893ffb013f3cbad1a4b57ad1d102f48c447f4396118fc",
+      "dual_time": false,
+      "model_cfg": {
+        "edge_dim": 64,
+        "n_layers": 6,
+        "n_rbf": 32,
+        "n_rbf_reactant": 16,
+        "r_cut": 10.0,
+        "scalar_dim": 92,
+        "vector_dim": 23
+      },
+      "role": "geometry",
+      "seed": 0,
+      "sigma_b": 1.0,
+      "sigma_x": 0.5,
+      "split_hash": "a0225e6cb773049d94593f0d93bf6c753db125deeda3ade8899da6922835367f",
+      "training_status_sha256": "05b234ac6f5f7e0449568849ad6383b39f4c59094a31e3da085dd7f6d74c7341"
+    },
+    "joint": {
+      "checkpoint_sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda",
+      "dual_time": true,
+      "model_cfg": {
+        "edge_dim": 64,
+        "n_layers": 6,
+        "n_rbf": 32,
+        "n_rbf_reactant": 16,
+        "r_cut": 10.0,
+        "scalar_dim": 128,
+        "vector_dim": 32
+      },
+      "role": "joint",
+      "seed": 0,
+      "sigma_b": 1.0,
+      "sigma_x": 0.5,
+      "split_hash": "a0225e6cb773049d94593f0d93bf6c753db125deeda3ade8899da6922835367f",
+      "training_status_sha256": "db0747307a1b878d91121d4094e21a0ea774cc83df8e06652cd5bf8c40660c0e"
+    }
+  },
+  "new_calculator_calls": 0,
+  "packages": {
+    "numpy": "2.2.6",
+    "rdkit": "2024.3.3",
+    "torch": "2.10.0+cu128"
+  },
+  "python": "3.10.19",
+  "research_commit": "e84e330390a519bf4ac12048b297403c09717646",
+  "research_source": {
+    "commit": "e84e330390a519bf4ac12048b297403c09717646",
+    "dirty": false,
+    "pinned_files": 9
+  },
+  "schema": "xtbflow-generation-bridge-report/v1",
+  "settlement_status": "settled",
+  "slurm_job_id": "4100",
+  "source_commit": "e07ac8512fa987e0fad2e37b14c576c534a7df87",
+  "started_at": "2026-11-07T15:22:20.268686+00:00",
+  "status": "generation_completed",
+  "training_steps": 0,
+  "wall_seconds": 7.231238613137975,
+  "worker_packet_sha256": "3aa5566ea68752d67d777730899a8a5eaa21f108c7d06afe2751a86f38522799",
+  "worker_status": "completed"
+}

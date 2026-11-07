@@ -758,6 +758,21 @@
       "bytes": 8575
     },
     {
+      "path": "docs/evidence/trained_generation_20261107.json",
+      "sha256": "482ae6c426d71b1218cb104f7530b1d6c2755ddc8bf2bd309a58f6a8783acaa6",
+      "bytes": 7375
+    },
+    {
+      "path": "docs/evidence/trained_generation_20261107.md",
+      "sha256": "d750e8210ed15a9336e8ea4de1275e2503474aa8093e860b051515436288f842",
+      "bytes": 4840
+    },
+    {
+      "path": "docs/evidence/trained_generation_20261107_artifacts.json",
+      "sha256": "7d9557d944baf3850539658ab73f72848f823458c1928d4444350fa94a3ffd18",
+      "bytes": 1121
+    },
+    {
       "path": "docs/evidence/transition1x_track_b_audit_20260929.json",
       "sha256": "0e1e9cde9173f9f88e15c6f4e8f787edf8d19930f9d604fa84b31487c556eb59",
       "bytes": 4364

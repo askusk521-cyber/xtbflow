@@ -178,6 +178,16 @@
       "bytes": 2649
     },
     {
+      "path": "configs/evaluation/comparison_matrix_20261107.json",
+      "sha256": "8705f104c5fc4394ff4dbe8b3e404703f9a7f0ac8d0e963c1fe1497272fcb429",
+      "bytes": 6792
+    },
+    {
+      "path": "configs/evaluation/comparison_replay_20261107.json",
+      "sha256": "b3d343ba5676a0c918a735dabd3f48992598d83dffba16e31aba7d66319aeeef",
+      "bytes": 1996
+    },
+    {
       "path": "configs/experiments/spice2_energy_learning_curve_v1.json",
       "sha256": "a1c86eeb6b19aed5c6faf17e4920e6740e542469a056b1b7f54523140d340b4a",
       "bytes": 1328
@@ -458,6 +468,11 @@
       "bytes": 8909
     },
     {
+      "path": "docs/architecture/discovery_comparison.md",
+      "sha256": "280ece35be27e9a14d6c64dcbf264a404b3967543952f71c9c7538c69c856d0f",
+      "bytes": 8281
+    },
+    {
       "path": "docs/architecture/generation_bridge.md",
       "sha256": "0b6a45801d30f90cc8df3e83f723df48f88196b3784b15636f5a46505bba66e5",
       "bytes": 6872
@@ -486,6 +501,21 @@
       "path": "docs/data_contract.md",
       "sha256": "f66b5a57541e22b744060198e46e2645edb86c8586f3fd083b6b17d4e358aaef",
       "bytes": 4935
+    },
+    {
+      "path": "docs/evidence/comparison_assets_replay_20261107.json",
+      "sha256": "11c3dc9d88dde17b9e0c35500d62178c53ed04b0f9a0f7d10acf11d9fd8c1847",
+      "bytes": 559692
+    },
+    {
+      "path": "docs/evidence/comparison_assets_replay_20261107.md",
+      "sha256": "f619b219bea73f965229f6cbdf1f360146db5c595e7f7f30fb3a16da8cf23d31",
+      "bytes": 6915
+    },
+    {
+      "path": "docs/evidence/comparison_assets_replay_20261107_envelope.json",
+      "sha256": "68a86cfdd027c8fd17faea313717e8f69ed299b38e06f3d8b34f6fd369e4a215",
+      "bytes": 1487
     },
     {
       "path": "docs/evidence/cp2k_calibration_smoke.json",
@@ -1123,6 +1153,11 @@
       "bytes": 10060
     },
     {
+      "path": "scripts/replay_comparison_assets.py",
+      "sha256": "88811240a5205cd0a64e4bbcecef9377be74db6a89418973e08b412e0fa80760",
+      "bytes": 11871
+    },
+    {
       "path": "scripts/replay_research_o2.py",
       "sha256": "f1d9f7de98a713582c64d41b0794c8afabd706d91307c07d05fd82d18c161ec9",
       "bytes": 7086
@@ -1311,6 +1346,21 @@
       "path": "src/xtbflow/evaluation/blind_rollout.py",
       "sha256": "9a88f1ec8160973c221d4c6f22cd558eb6893ea4a219df5351a3b31ea1d97c8c",
       "bytes": 24173
+    },
+    {
+      "path": "src/xtbflow/evaluation/certified_trace.py",
+      "sha256": "c2b821daa53bf8798d781ef78bbf1256179d73ead87483993e991219cc858cea",
+      "bytes": 4317
+    },
+    {
+      "path": "src/xtbflow/evaluation/comparison_matrix.py",
+      "sha256": "bb8230a3ac46a751852e85e64d2f0f890f6e2f58f32373d3bb583ebdd13141f1",
+      "bytes": 2695
+    },
+    {
+      "path": "src/xtbflow/evaluation/discovery.py",
+      "sha256": "7ebc6dad3433c7686eb25415ed0056cdb9e122aa84e48367c18434effa28102c",
+      "bytes": 11411
     },
     {
       "path": "src/xtbflow/evaluation/terminal.py",
@@ -1606,6 +1656,11 @@
       "path": "tests/test_dft_da_identity.py",
       "sha256": "959d5dbbab3d08a165b8026783e9ffd2ae93471f7452b9d542c231490107f0b4",
       "bytes": 751
+    },
+    {
+      "path": "tests/test_discovery_accounting.py",
+      "sha256": "3257b99da86f7bafd05e6edacda6724cf394be18e668cff55b41cf8550f166ef",
+      "bytes": 8199
     },
     {
       "path": "tests/test_energy_forces.py",

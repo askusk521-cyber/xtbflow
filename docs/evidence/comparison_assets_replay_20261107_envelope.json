@@ -1,0 +1,36 @@
+{
+  "artifact_sha256": {
+    "pytest.log": "d89e2f18934e9a0d0cda86c33b73f8b87e3d67219565b23695964bb28db0c875",
+    "replay/report.json": "11c3dc9d88dde17b9e0c35500d62178c53ed04b0f9a0f7d10acf11d9fd8c1847",
+    "scheduler-4102.log": "498987b00138205084a0dc248bbf05a6ebf35b21cc595178ee4ac7863173dd91",
+    "scheduler-before-exit.txt": "3eaf334172efa3cf0800adae15bc5dcf8fd2dbd332f76cb639cc43ba85a3a0f2",
+    "scheduler-final.txt": "cd6241111e52e1284fb8166af959854faeb66914cd408afc5efd9f7992c66804",
+    "scheduler-start.txt": "f9f1817bcd2f700f96a34794c6368f357f70c9565e8bb91fe6766f91999e1207",
+    "unittest.log": "043f6fc5b58606ae848e28347ed3297cc95ae3a6553a15d6a9794903309efc94",
+    "xtbflow-w138-9129312-job.sh": "1b9d7f0c0f0c779cd466f38b3a06dc8936a09b9b11de8ba672aa471337f149e1"
+  },
+  "gpu_allocation": false,
+  "host": "node2",
+  "new_calculator_calls": 0,
+  "process_exit_code": 0,
+  "scheduler": {
+    "CPUs/Task": "1",
+    "EndTime": "2026-11-07T23:11:34",
+    "ExitCode": "0:0",
+    "JobId": "4102",
+    "JobState": "COMPLETED",
+    "MinMemoryNode": "8G",
+    "NumCPUs": "2",
+    "RunTime": "00:01:24",
+    "StartTime": "2026-11-07T23:10:10",
+    "TimeLimit": "00:12:00"
+  },
+  "scheduler_timezone_offset": "+0800",
+  "schema": "xtbflow-comparison-replay-envelope/v1",
+  "software_checks": {
+    "bootstrap_files": 362,
+    "pytest": "338 passed, 68 subtests; one existing warning",
+    "unittest": "56 passed"
+  },
+  "source_commit": "912931245c7349cc651f354b8660088c09f597b3"
+}

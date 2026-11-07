@@ -1,0 +1,45 @@
+{
+  "schema": "xtbflow-comparison-matrix/v1",
+  "scope": "Development integration and retrospective asset replay; full confirmatory experiment is not frozen",
+  "questions": {
+    "event_geometry_coupling": {"primary": ["joint_generation", "serial_physics_backtracking"], "diagnostics": ["independent_event_then_geometry", "joint_one_way"]},
+    "physical_feedback_timing": {"primary": ["joint_inflow_physics", "joint_terminal_physics"], "diagnostics": ["reactant_enumeration_search", "joint_generation"]},
+    "adaptive_chemistry_decisions": {"owner_issue": 140, "primary": ["adaptive_joint_tools", "fixed_joint_tools"]}
+  },
+  "methods": [
+    {"id": "independent_branches", "information": "reactant_only", "native_output": "separate event and geometry outputs", "training": "separate event/geometry", "feedback": "none", "status": "adapter_required", "entrypoint": null, "remaining": "Charge a declared common completion/search adapter; do not count a missing native interface as chemical failure"},
+    {"id": "independent_event_then_geometry", "information": "reactant_only", "native_output": "event and geometry candidate", "training": "separate event/geometry", "feedback": "shared terminal certification", "status": "functional_batch_available", "entrypoint": "scripts/run_research_generation.py", "remaining": "Independent equal-total-budget execution, tuning evidence and strong backtracking control"},
+    {"id": "joint_generation", "information": "reactant_only", "native_output": "event and geometry candidate", "training": "joint dual-clock", "feedback": "shared terminal certification", "status": "functional_batch_available", "entrypoint": "scripts/run_research_generation.py", "remaining": "Independent equal-total-budget execution, training/tuning totals and grouped experiment"},
+    {"id": "joint_one_way", "information": "reactant_only", "native_output": "event and geometry candidate", "training": "separately trained one-way baseline", "feedback": "shared terminal certification", "status": "implementation_required", "entrypoint": null, "remaining": "W03 one-way training; shared-weight masks are diagnostics only"},
+    {"id": "serial_physics_backtracking", "information": "reactant_only", "native_output": "event and geometry candidate", "training": "separate event/geometry", "feedback": "physics refinement, reranking, event resampling and backtracking", "status": "implementation_required", "entrypoint": null, "remaining": "Strong serial runner with the same information, physical tools and total caps as joint"},
+    {"id": "joint_terminal_physics", "information": "reactant_only", "native_output": "event and geometry candidate", "training": "joint", "feedback": "matched terminal refinement/reranking before shared certification", "status": "implementation_required", "entrypoint": null, "remaining": "Same physical-call allowance as inflow feedback; terminal certification alone is not this control"},
+    {"id": "joint_inflow_physics", "information": "reactant_only", "native_output": "event and geometry candidate", "training": "joint", "feedback": "candidate force/direction/curvature during flow", "status": "implementation_required", "entrypoint": null, "remaining": "W05/W06 observable geometry-to-event feedback loop and common billing"},
+    {"id": "reactant_enumeration_search", "information": "reactant_only", "native_output": "enumerated event then common geometry/path search", "training": "rule enumeration plus declared scorers", "feedback": "traditional physics search", "status": "historical_proxy_only", "entrypoint": "scripts/replay_comparison_assets.py", "remaining": "Complete geometry/physics search and reference certification; legacy event-hit recall is not a certificate"},
+    {"id": "known_product_path_search", "information": "known_product", "native_output": "path and TS candidate", "training": "declared independently", "feedback": "traditional path search", "status": "separate_information_condition", "entrypoint": null, "remaining": "Report separately from reactant-only primary comparisons"},
+    {"id": "fixed_joint_tools", "information": "reactant_only", "native_output": "fixed-policy discovery trace", "training": "frozen joint and physical tools", "feedback": "fixed allocation", "status": "implementation_required", "entrypoint": null, "remaining": "W09/W10 fixed-policy runner"},
+    {"id": "adaptive_joint_tools", "information": "reactant_only", "native_output": "adaptive discovery trace", "training": "same frozen tools as fixed policy", "feedback": "evidence-dependent allocation", "status": "implementation_required", "entrypoint": null, "remaining": "W09/W10 agent and policy attribution; do not attribute this effect to flow coupling"}
+  ],
+  "billing": {
+    "runtime_axes": ["raw_proposals", "joint_forwards", "event_forwards", "geometry_forwards", "energy_calls", "force_calls", "energy_force_calls", "hvp_calls", "hessian_calls", "reference_primitive_calls", "reference_attempts", "retries", "cache_hits", "wall_seconds", "cpu_seconds", "gpu_seconds", "storage_bytes"],
+    "separate_training_axes": ["training_gpu_seconds", "training_cpu_seconds", "tuning_gpu_seconds", "tuning_cpu_seconds"],
+    "unknown": "null, never zero; an unknown capped cost blocks budgeted comparison",
+    "failed_calls": "Charge before invocation; retain failures, timeouts, interrupted attempts and retries",
+    "cache": "No new physical primitive or unique channel; account lookup/setup resources separately",
+    "aggregate_warning": "reference_primitive_calls is an aggregate of reference primitives, not another additive primitive category",
+    "full_cost": "Training, tuning, generation, physics, reference, retries, cache, scheduler/setup CPU/GPU cost must all be available; no arbitrary conversion of candidate counts into full cost"
+  },
+  "statistics": {
+    "paired_seeds": [0, 1, 2],
+    "unit": "Average seeds within parent; resample complete declared independent groups",
+    "primary_group": "family_group when verified; otherwise report a narrower declared group and restricted claim",
+    "bootstrap_samples": 2000,
+    "bootstrap_seed": 138,
+    "interval": "two-sided 95% percentile cluster bootstrap; fewer than two independent groups yields no interval",
+    "minimum_practical_gain": 0.1,
+    "gain_unit": "unique reference-certified channels per parent at the same runtime budget",
+    "first_certification": "Right-censor when no in-budget certificate; do not impute a failure as a cheap success",
+    "stopping": "Run the complete frozen finite parent/seed batch; no significance-driven extension or early stop",
+    "frozen_confirmatory_inputs": null,
+    "full_experiment_status": "not_ready: strong controls, per-method budgets, training/tuning costs and independent groups remain required"
+  }
+}

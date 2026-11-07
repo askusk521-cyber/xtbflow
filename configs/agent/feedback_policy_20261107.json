@@ -1,0 +1,58 @@
+{
+  "schema": "xtbflow-feedback-policy/v1",
+  "policy": "evidence_heuristic_v1",
+  "seed": 139,
+  "max_actions": 16,
+  "budget": {
+    "raw_proposals": 0,
+    "joint_forwards": 0,
+    "event_forwards": 0,
+    "geometry_forwards": 0,
+    "energy_calls": 6000,
+    "force_calls": 6000,
+    "energy_force_calls": 0,
+    "hvp_calls": 0,
+    "hessian_calls": 6000,
+    "reference_primitive_calls": 6000,
+    "reference_attempts": 2,
+    "retries": 0,
+    "cache_hits": 64,
+    "storage_bytes": 1073741824,
+    "wall_seconds": 7200,
+    "cpu_seconds": 57600,
+    "gpu_seconds": 7200
+  },
+  "reference_envelope": {
+    "raw_proposals": 0,
+    "joint_forwards": 0,
+    "event_forwards": 0,
+    "geometry_forwards": 0,
+    "energy_calls": 3000,
+    "force_calls": 3000,
+    "energy_force_calls": 0,
+    "hvp_calls": 0,
+    "hessian_calls": 3000,
+    "reference_primitive_calls": 3000,
+    "reference_attempts": 1,
+    "retries": 0,
+    "cache_hits": 0,
+    "storage_bytes": 269484032,
+    "wall_seconds": 3305,
+    "cpu_seconds": 26440,
+    "gpu_seconds": 3305
+  },
+  "tool_profile": "verified_reference_replay",
+  "initial_sampler": "joint_event_lead2",
+  "samplers": {
+    "joint_event_lead2": {
+      "method": "joint_generation",
+      "clock": "event_lead2",
+      "steps": 50
+    },
+    "independent_serial": {
+      "method": "independent_event_then_geometry",
+      "clock": "serial",
+      "steps": 50
+    }
+  }
+}

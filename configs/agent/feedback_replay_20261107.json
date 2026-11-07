@@ -1,0 +1,26 @@
+{
+  "schema": "xtbflow-agent-replay/v1",
+  "max_wall_seconds": 120,
+  "max_input_bytes": 16777216,
+  "max_output_bytes": 16777216,
+  "new_calculator_calls": 0,
+  "gpu_seconds": 0,
+  "policies": [
+    "fixed",
+    "evidence_heuristic_v1"
+  ],
+  "attempts": [
+    {
+      "path": "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001",
+      "result_sha256": "4ea84240c84da266d01d23fc0a4d0d03c0d14be4518be962e6482067cbc8b334",
+      "request_sha256": "bf69ada8c8d89335742be8c52857f128859969ce6420f281baaed991de358ef3"
+    },
+    {
+      "path": "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001",
+      "result_sha256": "8619d03451cfe5c5e6ab2b2d3de4e041340a5f289d1d8225e51106ed27f4b5b8",
+      "request_sha256": "9fdd16676c37f3af45e0055f36f69a40ad304f70d2b583a898e6a51dd57254f8"
+    }
+  ],
+  "original_source_commit": "931d81f53a85669e137600c62b343120ff0de3d0",
+  "original_panel_report_sha256": "0365ceceaae80a5f2bc724dc38b30ff080c17902814c6212a381c9086f5dac9b"
+}

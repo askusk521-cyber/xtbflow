@@ -133,6 +133,16 @@
       "bytes": 2350
     },
     {
+      "path": "configs/agent/feedback_policy_20261107.json",
+      "sha256": "d56c5673d6e2bbc0964bd8fc1e24d18513576b703f70331cae9383ff28017da0",
+      "bytes": 1414
+    },
+    {
+      "path": "configs/agent/feedback_replay_20261107.json",
+      "sha256": "c3b5365c1f98145fec88d5ed90f911aa9a844ccefa8dc6b4d6ea128e8d522b88",
+      "bytes": 1033
+    },
+    {
       "path": "configs/calculators/cp2k/environment.yml",
       "sha256": "c75d298ff3320631533591f44e292e77692ad544fa4fb4fa00b2f60de0f0a650",
       "bytes": 181
@@ -473,6 +483,11 @@
       "bytes": 8281
     },
     {
+      "path": "docs/architecture/feedback_agent.md",
+      "sha256": "e8b4a069ed44f1858f1cf30a11e8b82b85ebc7441003cce79e0163a0a9f6f200",
+      "bytes": 6631
+    },
+    {
       "path": "docs/architecture/generation_bridge.md",
       "sha256": "0b6a45801d30f90cc8df3e83f723df48f88196b3784b15636f5a46505bba66e5",
       "bytes": 6872
@@ -499,8 +514,8 @@
     },
     {
       "path": "docs/data_contract.md",
-      "sha256": "f66b5a57541e22b744060198e46e2645edb86c8586f3fd083b6b17d4e358aaef",
-      "bytes": 4935
+      "sha256": "713f4e90b445078d444636c82f465406fa42e93ab7ad58c71b9a9ff0bd914b48",
+      "bytes": 5510
     },
     {
       "path": "docs/evidence/comparison_assets_replay_20261107.json",
@@ -541,6 +556,21 @@
       "path": "docs/evidence/cp2k_runtime_evidence_provenance_20260929.json",
       "sha256": "3e1e18ee42d00732bacbefa2db56f7caf9a698765b164b82cf19579838184abf",
       "bytes": 2049
+    },
+    {
+      "path": "docs/evidence/feedback_replay_20261107.json",
+      "sha256": "15a10b9252d6cd46e97e9877fa16308763eace52df8904235b118763ac807d06",
+      "bytes": 39864
+    },
+    {
+      "path": "docs/evidence/feedback_replay_20261107.md",
+      "sha256": "2dc64f9de1568a0c73e56c990300fde39dbff1b406708f74e9688658e2fbce40",
+      "bytes": 6097
+    },
+    {
+      "path": "docs/evidence/feedback_replay_20261107_artifacts.json",
+      "sha256": "55ddf42c0d25434b6fd49bd304688ce93f052cf609020348c0a3244567004d67",
+      "bytes": 7796
     },
     {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
@@ -1158,6 +1188,11 @@
       "bytes": 11871
     },
     {
+      "path": "scripts/replay_feedback_loop.py",
+      "sha256": "47687d6c63d8ff8f4bd31cf191689d02935479b38eebca9db203cee4dc6f34f3",
+      "bytes": 9298
+    },
+    {
       "path": "scripts/replay_research_o2.py",
       "sha256": "f1d9f7de98a713582c64d41b0794c8afabd706d91307c07d05fd82d18c161ec9",
       "bytes": 7086
@@ -1483,6 +1518,11 @@
       "bytes": 648
     },
     {
+      "path": "src/xtbflow/runtime/feedback_loop.py",
+      "sha256": "11182aac092e4ce29d8a1345ab82aea5ad905cf5edc26f5cd7df05325983ea88",
+      "bytes": 18126
+    },
+    {
       "path": "src/xtbflow/runtime/ledger.py",
       "sha256": "f88d13f3fdfca47123ff1ff47e7c7e1361f8131e6eba921d0c4c2a77bb9c95d4",
       "bytes": 27540
@@ -1666,6 +1706,11 @@
       "path": "tests/test_energy_forces.py",
       "sha256": "79b971518e6e2c05ecf19af765e1c7ef663db34e3761e3582ea8d67d37ac5a0f",
       "bytes": 9907
+    },
+    {
+      "path": "tests/test_feedback_loop.py",
+      "sha256": "91d631f7005d98825236365b089e34b8d549bd17aea89774da7bedd3a3a07b7d",
+      "bytes": 7566
     },
     {
       "path": "tests/test_generation_bridge.py",

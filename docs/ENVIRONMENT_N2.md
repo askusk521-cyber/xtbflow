@@ -1,5 +1,22 @@
 # n2 运行环境
 
+## 2026-11-07 增量观察
+
+W01 档案重放在 `node2` 的 `xtbflow` 环境执行，实际版本为 Python 3.10.19、
+PyTorch 2.10.0+cu128、**NumPy 2.2.6**、SciPy 1.15.3、RDKit 2024.3.3。
+NumPy 已不同于下方历史基线，后续作业应继续记录实际版本。
+提交 `8f9f988fdbc039027d9d123f70a01fbf1ec107c5` 的完整 pytest 为
+278 passed / 68 subtests passed，可复用 unittest 为 56 tests OK；没有新量化计算。
+证据：[档案重放](evidence/research_asset_replay_20261107.json)。
+
+本次 `sacct` 返回 `Slurm accounting storage is disabled`，不能据此取得
+历史作业结算；重放记录中的 CPU/wall time 来自进程计量，不冒充调度器结算。
+`quota` 命令不可用，磁盘可用空间约 427 GiB；用户配额仍未知。
+环境没有安装 MkDocs，网站构建交由现有 CI 执行。
+此次未重验 CP2K、GPU 或量化后端，下面的历史观察保留原样。
+
+## 2026-09-30 历史观察
+
 核查日期：2026-09-30。以下内容来自 `ssh n2` 的只读观察，记录环境身份和边界，
 不等同于训练或量化计算结果。
 

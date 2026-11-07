@@ -503,6 +503,21 @@
       "bytes": 4935
     },
     {
+      "path": "docs/evidence/comparison_assets_replay_20261107.json",
+      "sha256": "11c3dc9d88dde17b9e0c35500d62178c53ed04b0f9a0f7d10acf11d9fd8c1847",
+      "bytes": 559692
+    },
+    {
+      "path": "docs/evidence/comparison_assets_replay_20261107.md",
+      "sha256": "f619b219bea73f965229f6cbdf1f360146db5c595e7f7f30fb3a16da8cf23d31",
+      "bytes": 6915
+    },
+    {
+      "path": "docs/evidence/comparison_assets_replay_20261107_envelope.json",
+      "sha256": "68a86cfdd027c8fd17faea313717e8f69ed299b38e06f3d8b34f6fd369e4a215",
+      "bytes": 1487
+    },
+    {
       "path": "docs/evidence/cp2k_calibration_smoke.json",
       "sha256": "9b8c43a6f5ca121e01a14d3f42eafd19351c540e2a74af1b9d1518532c39cb76",
       "bytes": 4611

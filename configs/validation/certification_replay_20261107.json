@@ -1,0 +1,60 @@
+{
+  "schema": "xtbflow-certification-panel/v1",
+  "purpose": "Outcome-selected numerical regression panel; not a performance or independent confirmation benchmark",
+  "source_pr": 119,
+  "source_commit": "e84e330390a519bf4ac12048b297403c09717646",
+  "input_plan_sha256": "0993c387fba18cd7761542099b1acb8146b9d78f2293f068d9ea872fe5d50fc8",
+  "cases": [
+    {
+      "item_id": "08abfd11be911cc5",
+      "expected_evidence_status": "valid_alternative",
+      "archived_verdict_sha256": "83f5080343bc24afd28a5fdaf39137b26cec2df943858286be7675260acfabf4",
+      "archived_gpu_seconds": 1048
+    },
+    {
+      "item_id": "98a2bcd101825aa9",
+      "expected_evidence_status": "reference_ts_connected",
+      "archived_verdict_sha256": "7607084d5d561cb0624cedbbc268b3b48808cabbd818e960f8f94fbb93f23df4",
+      "archived_gpu_seconds": 1378
+    }
+  ],
+  "protocol_version": "xtbflow-reference-certification/1",
+  "numerical_tolerances": {
+    "ts_energy_hartree": 0.000001,
+    "endpoint_energy_hartree": 0.00001,
+    "frequencies_cm1": 1.0,
+    "aligned_ts_rmsd_angstrom": 0.001
+  },
+  "stage_budget": {
+    "phase": "W07-reference-panel-20261107",
+    "max_gpu_hours": 2.0,
+    "max_cpu_core_hours": 16.0,
+    "max_system_evaluations": 2,
+    "max_calculator_calls": 6000,
+    "max_storage_gb": 1.0,
+    "max_concurrent_jobs": 1,
+    "max_retries_per_job": 0,
+    "max_wall_minutes_per_job": 120
+  },
+  "per_candidate": {
+    "max_calls": 3000,
+    "max_wall_seconds": 3300,
+    "cpu_cores": 8,
+    "max_raw_bytes": 134217728
+  },
+  "scheduler": {
+    "partition": "main",
+    "gres": "gpu:pro6000:1",
+    "cpus_per_task": 8,
+    "memory_gb": 64,
+    "wall_minutes": 120
+  },
+  "budget_rationale": "Archived chains cost 1048 and 1378 GPU seconds. Each new chain receives 3300 seconds and 3000 charged primitives (SCF, gradient and Hessian separately), with no external retry. Internal numerical retries remain in the same envelope. The two 3305-second recovery envelopes fit 2 GPU-hours and 16 CPU-core-hours. This finite P2b stage supersedes the insufficient P2a 100-call pilot cap for this panel only; it creates no training budget.",
+  "claim_limits": [
+    "The panel deliberately includes one previously matched and one alternative channel; it cannot estimate discovery success or generalization.",
+    "Only gas-phase neutral singlet CHNO is supported. No solution, CP2K, xTB, open-shell, or experimental claim.",
+    "Raw geometry and source verdicts remain on n2; public outputs contain hashes, aggregate diagnostics and event IDs.",
+    "New final-gradient checks and rejection of endpoint gray zones are versioned protocol changes, not retroactive edits to old certificates.",
+    "Storage is monitored every 0.1 seconds with per-file limits; it is not a filesystem quota and transient overshoot is possible. Overshoot blocks successful certification and must be reported."
+  ]
+}

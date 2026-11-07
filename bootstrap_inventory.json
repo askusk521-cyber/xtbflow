@@ -443,6 +443,11 @@
       "bytes": 6477
     },
     {
+      "path": "docs/architecture/task_manifest.md",
+      "sha256": "1635b754eeb8824e919585d469705e316771856720b4972a8488c306c9723a9a",
+      "bytes": 3517
+    },
+    {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
       "sha256": "9e4b2a7d650857036e072b00107e9dc3c68738484c7f3a446b9b50d22b20971f",
       "bytes": 4884
@@ -1003,6 +1008,11 @@
       "bytes": 2694
     },
     {
+      "path": "scripts/audit_task_views.py",
+      "sha256": "6fc542e8b9371dc0a836e01821b60ffaac7979b834c71dd1e87ccc3b9ae01045",
+      "bytes": 8114
+    },
+    {
       "path": "scripts/audit_track_b_manifest.py",
       "sha256": "72a679bb61e5a6823c63a14755686195209376d9e1d457fade97566317ef9f77",
       "bytes": 3817
@@ -1221,6 +1231,11 @@
       "path": "src/xtbflow/data/splits.py",
       "sha256": "db70f17a4691a7b4fe861b89a5e06e4ef5da290a0048051b98afb5b9625f57a2",
       "bytes": 2573
+    },
+    {
+      "path": "src/xtbflow/data/task_manifest.py",
+      "sha256": "6cd1f7c1c0c148c710b9fa67f5826d703af92f775b607cfc872fdd4f6e39753c",
+      "bytes": 8136
     },
     {
       "path": "src/xtbflow/data/task_views.py",
@@ -1616,6 +1631,11 @@
       "path": "tests/test_saddle_guidance.py",
       "sha256": "80376ebff131aeae4c1c36cdaf0c66c9031863ca3f98895d97dc9f17710e5059",
       "bytes": 4324
+    },
+    {
+      "path": "tests/test_task_manifest.py",
+      "sha256": "694323aa1f272f83ce706b381142801ffeb66f4bf98013e5b0aa2d63a37ba2f0",
+      "bytes": 5352
     },
     {
       "path": "tests/test_track_b_source_audit.py",

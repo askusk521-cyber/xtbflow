@@ -33,6 +33,18 @@ in this interpreter. The numerical model, noise and rollout implementations stay
 at the pinned revision. The worker records and rejects imports of the reference
 catalogue or target-cache modules; it is never given their paths or label fields.
 
+The optional `--reactants` input replaces source-cache preparation with an
+explicit, bounded, hashed reactant packet under the same field contract.
+`--config` selects a recorded bounded protocol; method, seed, dimension, time,
+thread, storage and complete-forward envelopes are checked before launch.
+`conditioned_geometry` additionally requires `--conditioned-events`, keyed by
+query ID, containing earlier generated BE hypotheses with the same electron
+inventory. It runs only the trained geometry model and checks that the fixed
+event remains unchanged. Reference products/TS coordinates are not model inputs.
+The live action adapter supplies these inputs from verified source records;
+see [feedback agent](feedback_agent.md). Runner and worker lifetime are bound to
+their parents on Linux, so controller failure cannot leave a model worker running.
+
 ## Methods and costs
 
 Joint generation uses the trained dual-clock model (`event_lead2`, 50 steps).

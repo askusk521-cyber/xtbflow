@@ -1,0 +1,27 @@
+{
+  "schema": "xtbflow-feedback-generation-config/v1",
+  "input_source_commit": "e07ac8512fa987e0fad2e37b14c576c534a7df87",
+  "generation_report_sha256": "482ae6c426d71b1218cb104f7530b1d6c2755ddc8bf2bd309a58f6a8783acaa6",
+  "generation_plan_sha256": "baf51f5fbc4961fb3f80aa71363edc8ec35fe45d535dd483e629031d80264dd6",
+  "reactants_sha256": "19ff7955de150b9879508414d1ecac5e89b6b323ec0f23dd3d67cdf484e4cfcc",
+  "reference_protocol_sha256": "637e18f276d78daa7b9ed5155139dae6cb93943a9a1b5ad03e3516ff574e14d6",
+  "max_wall_seconds": 650,
+  "max_output_bytes": 268435456,
+  "stage_budget": {
+    "phase": "W09-feedback-generation-20261107",
+    "max_gpu_hours": 0.2,
+    "max_cpu_core_hours": 1.6,
+    "max_system_evaluations": 150,
+    "max_calculator_calls": 1,
+    "max_storage_gb": 0.25,
+    "max_concurrent_jobs": 1,
+    "max_retries_per_job": 0,
+    "max_wall_minutes_per_job": 12
+  },
+  "claim_limits": [
+    "A development functional loop on a single previously generated reactant, not a policy-effectiveness comparison or independent confirmation.",
+    "The old reference outcomes and their failed costs remain immutable; new generation uses only the original reactant and optionally an earlier generated event.",
+    "The returned proposals require a separate reference stage. No new certified channel is inferred from generation or sampler selection.",
+    "Physical-probe, reference-acquisition and intermediate-expansion adapters, both required adaptive chemical demonstrations and matched-budget policy comparisons remain incomplete."
+  ]
+}

@@ -14,6 +14,20 @@ import time
 import types
 
 
+def bind_parent_lifetime() -> None:
+    """Linux workers cannot outlive their runner after a crash or timeout."""
+    import ctypes
+    import signal
+    parent = os.getppid()
+    expected = int(os.environ.get("XTBFlow_PARENT_PID", parent))
+    if parent != expected or parent == 1:
+        raise RuntimeError("generation_parent_already_exited")
+    if ctypes.CDLL(None, use_errno=True).prctl(1, signal.SIGKILL) != 0:
+        raise OSError(ctypes.get_errno(), "PR_SET_PDEATHSIG failed")
+    if os.getppid() != expected:
+        raise RuntimeError("generation_parent_exited_during_setup")
+
+
 def write(path: Path, value: dict) -> None:
     data = json.dumps(value, sort_keys=True, indent=2, allow_nan=False) + "\n"
     fd, name = tempfile.mkstemp(dir=path.parent, prefix=".write-")
@@ -65,6 +79,7 @@ class ForwardMeter:
 
 
 def main() -> int:
+    bind_parent_lifetime()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--research-source", type=Path, required=True)
     parser.add_argument("--model-root", type=Path, required=True)
@@ -73,6 +88,10 @@ def main() -> int:
     args = parser.parse_args()
     packet = json.loads(args.packet.read_text())
     cfg, queries = packet["config"], packet["queries"]
+    available = sorted(os.sched_getaffinity(0))
+    if cfg["generation"]["cpu_cores"] > len(available):
+        raise ValueError("insufficient allocated CPU affinity")
+    os.sched_setaffinity(0, available[:cfg["generation"]["cpu_cores"]])
     # All project imports in this interpreter come from the pinned research tree.
     sys.path.insert(0, str(args.research_source.resolve() / "src"))
     import numpy as np
@@ -159,14 +178,23 @@ def main() -> int:
                             b = torch.tensor(b_dec, device="cuda", dtype=state.b.dtype)[None]
                             conditioned = State(b, initial_x, torch.ones_like(state.t_b), torch.zeros_like(state.t_x))
                             result = rollout(models["geometry"], q, conditioned, role="geometry", n_steps=cfg["steps_per_branch"], dual_time=False)
+                    elif method == "conditioned_geometry":
+                        b_dec = np.asarray(packet["conditioned_events"][query["query_id"]], dtype=np.int64)
+                        b = torch.tensor(b_dec, device="cuda", dtype=state.b.dtype)[None]
+                        conditioned = State(b, initial_x, torch.ones_like(state.t_b), torch.zeros_like(state.t_x))
+                        result = rollout(models["geometry"], q, conditioned, role="geometry", n_steps=cfg["steps_per_branch"], dual_time=False)
+                        if not torch.equal(result.state.b, b):
+                            raise ValueError("geometry_resampling_changed_fixed_event")
                     else:
                         raise ValueError("unregistered generation method")
                     if status == "generated":
-                        b_dec, _ = decode_be(result.state.b[0], q.element_index[0], len(query["atomic_numbers"]))
+                        if method != "conditioned_geometry":
+                            b_dec, _ = decode_be(result.state.b[0], q.element_index[0], len(query["atomic_numbers"]))
                         final_x = result.state.x[0].cpu().tolist()
                         if bool(result.failed[0]) or b_dec is None:
                             status = "numerical_failure" if bool(result.failed[0]) else "decode_failed"
-                    row = dict(candidate_id=f"{query['query_id']}:{method}:p{proposal}", query_id=query["query_id"],
+                    suffix = f":{cfg['candidate_namespace']}" if cfg.get("candidate_namespace") else ""
+                    row = dict(candidate_id=f"{query['query_id']}:{method}:p{proposal}{suffix}", query_id=query["query_id"],
                                method=method, proposal=proposal, status=status,
                                b_dec=None if b_dec is None else b_dec.tolist(), x=final_x,
                                forward_evaluations=meter.consumed-before, wall_seconds=time.monotonic()-started)

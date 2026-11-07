@@ -67,13 +67,15 @@ def load_generation(folder: Path, generation_config: Path) -> tuple[dict, list[t
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--generation", type=Path, required=True)
+    parser.add_argument("--generation-config", type=Path, default=ROOT / "configs/research/generation_bridge_20261107.json")
+    parser.add_argument("--config", type=Path, default=ROOT / "configs/validation/generated_candidates_20261107.json")
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     if socket.gethostname() != "node2" or not os.environ.get("SLURM_JOB_ID"):
         parser.error("use ssh n2 and a finite Slurm GPU allocation")
     if git(ROOT, "status", "--porcelain"):
         parser.error("clean committed source required")
-    config_path = ROOT / "configs/validation/generated_candidates_20261107.json"
+    config_path = args.config.resolve()
     cfg = json.loads(config_path.read_text())
     args.out = args.out.resolve()
     args.out.mkdir(parents=True, exist_ok=False)
@@ -86,7 +88,7 @@ def main() -> int:
     started = time.monotonic()
     service = None
     try:
-        generation, candidates = load_generation(args.generation, ROOT / "configs/research/generation_bridge_20261107.json")
+        generation, candidates = load_generation(args.generation, args.generation_config)
         if len(candidates) > cfg["max_candidates"]:
             raise ValueError("candidate cap exceeded")
         report["generation"] = dict(report_sha256=file_hash(args.generation / "report.json"),

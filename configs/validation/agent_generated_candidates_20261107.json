@@ -1,0 +1,38 @@
+{
+  "schema": "xtbflow-generated-certification/v1",
+  "selection": "Every finite contract-valid candidate in the frozen one-proposal feedback-generation handoff; no selection on the new reference outcome.",
+  "protocol_version": "xtbflow-reference-certification/1",
+  "max_candidates": 1,
+  "stage_budget": {
+    "phase": "W09-feedback-proposal-reference-20261107",
+    "max_gpu_hours": 1,
+    "max_cpu_core_hours": 8,
+    "max_system_evaluations": 1,
+    "max_calculator_calls": 3000,
+    "max_storage_gb": 0.5,
+    "max_concurrent_jobs": 1,
+    "max_retries_per_job": 0,
+    "max_wall_minutes_per_job": 60
+  },
+  "per_candidate": {
+    "max_calls": 3000,
+    "max_wall_seconds": 3300,
+    "cpu_cores": 8,
+    "max_raw_bytes": 134217728
+  },
+  "scheduler": {
+    "partition": "main",
+    "gres": "gpu:pro6000:1",
+    "cpus_per_task": 8,
+    "memory_gb": 64,
+    "wall_minutes": 60
+  },
+  "budget_rationale": "One independently bounded reference attempt after a real feedback-selected model proposal. Historical 9- and 13-atom chains used about 1048-1463 GPU seconds; this 16-atom development input may fail or time out. One 3305-second recovery envelope fits one GPU-hour and eight CPU-core-hours, with 3000 primitives and 0.5 GiB. No automatic retry, cap extension or training allocation is created.",
+  "claim_limits": [
+    "A functional development pipeline using historical trained weights, with unresolved training overlap; not independent confirmation or a method comparison.",
+    "Gas phase is explicitly declared for this new modeling task; the source geometry environment remains unknown.",
+    "Unresolved, alternative and matched channels retain distinct evidence states; a pipeline completion does not imply a certified TS.",
+    "Generation and reference ledgers are separate and both contribute to end-to-end cost. Scheduler/setup overhead must also be included in later cost comparisons.",
+    "Only gas-phase neutral singlet CHNO and this versioned reference protocol are supported; raw coordinates and weights remain private on n2."
+  ]
+}

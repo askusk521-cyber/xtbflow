@@ -1,0 +1,980 @@
+{
+  "claim_limits": [
+    "Retrospective replay of deliberately selected numerical-regression cases, not blind discovery or an independent policy comparison.",
+    "Historical reference costs are attributed once per unique evidence result in each policy episode; they are not new calculator spending.",
+    "Sampler changes are configuration records only; this increment does not execute a subsequent generator, probe, refinement or network expansion.",
+    "Repeated cache reads do not establish repeated physical convergence. The repeated-channel response has fixture tests only.",
+    "Full pipeline, training/tuning and shared overhead costs remain unavailable. W09 two real adaptive loops and W10 matched-budget effectiveness remain unfinished."
+  ],
+  "cpu_seconds": 0.14399218199999986,
+  "episodes": [
+    {
+      "actions": [
+        {
+          "action_id": "530c1ef4b3a85682b66a3da83ff8f76a01df245b37d51b12d71387f12496f7c9",
+          "candidate_id": "c0f8c54d5d73fed95b92_anchor_b04cb969d0e8/B0/s0/p22/endpoint",
+          "expected_cost": {
+            "cache_hits": 0,
+            "cpu_seconds": 26440,
+            "energy_calls": 3000,
+            "energy_force_calls": 0,
+            "event_forwards": 0,
+            "force_calls": 3000,
+            "geometry_forwards": 0,
+            "gpu_seconds": 3305,
+            "hessian_calls": 3000,
+            "hvp_calls": 0,
+            "joint_forwards": 0,
+            "raw_proposals": 0,
+            "reference_attempts": 1,
+            "reference_primitive_calls": 3000,
+            "retries": 0,
+            "storage_bytes": 269484032,
+            "wall_seconds": 3305
+          },
+          "expected_evidence": "Artifact-verified reference result, layered feedback and original charged cost",
+          "mechanistic_question": "Which endpoints did this attempted candidate actually connect?",
+          "name": "validate_connectivity",
+          "parameters": {
+            "profile": "verified_reference_replay"
+          },
+          "policy": "fixed",
+          "rationale": "unobserved_candidate",
+          "schema": "xtbflow-feedback-action/v1",
+          "seed": 139,
+          "sequence": 0,
+          "state_sha256": "df34cc333671a66964b462f7fede13501fcc49ca64974e9e09a7bee88f632472"
+        },
+        {
+          "action_id": "ffed739308f54823db5548fea3e47137f5ac598da233cffd0bfc387d31f008f5",
+          "candidate_id": null,
+          "expected_cost": {
+            "cache_hits": 0,
+            "cpu_seconds": 0,
+            "energy_calls": 0,
+            "energy_force_calls": 0,
+            "event_forwards": 0,
+            "force_calls": 0,
+            "geometry_forwards": 0,
+            "gpu_seconds": 0,
+            "hessian_calls": 0,
+            "hvp_calls": 0,
+            "joint_forwards": 0,
+            "raw_proposals": 0,
+            "reference_attempts": 0,
+            "reference_primitive_calls": 0,
+            "retries": 0,
+            "storage_bytes": 0,
+            "wall_seconds": 0
+          },
+          "expected_evidence": "Retained endpoints, unresolved attempts and explicit unfinished tools",
+          "mechanistic_question": "What evidence is established?",
+          "name": "finish",
+          "parameters": {},
+          "policy": "fixed",
+          "rationale": "reference_batch_complete",
+          "schema": "xtbflow-feedback-action/v1",
+          "seed": 139,
+          "sequence": 1,
+          "state_sha256": "d1ad81a179b22015086c7f90a0e54e1e4582d36e200d3166b91a93f740bea4cb"
+        }
+      ],
+      "artifacts": [
+        {
+          "bytes": 5676,
+          "path": "manifest.json",
+          "sha256": "9b4ea5693f9c5c71cfdba40436d732d660734bc95470e24155c31c59f57ff29b"
+        },
+        {
+          "bytes": 9538,
+          "path": "state.json",
+          "sha256": "b291e1254701d6571b1046518d9d8957e382d905d17b5c34ecf339461a3988be"
+        },
+        {
+          "bytes": 1155,
+          "path": "step-0000/action.json",
+          "sha256": "a5de677eeaa940841597f24f62764f170b993ff0980b15f73f72bc434f94c613"
+        },
+        {
+          "bytes": 5701,
+          "path": "step-0000/outcome.json",
+          "sha256": "bbc7b8b398ba39873bbf82632a998740b7005b6cad05a25332775c60edb283da"
+        },
+        {
+          "bytes": 351,
+          "path": "step-0000/transition.json",
+          "sha256": "89c78146b179ed1ddff1c11c4ad0975c2a25f67bc981ff795185f806021e227d"
+        },
+        {
+          "bytes": 969,
+          "path": "step-0001/action.json",
+          "sha256": "411ec9f835d4ecc392fc373bdee457ec4184be7bad1d813c2aea5eb2ea0d7da4"
+        },
+        {
+          "bytes": 257,
+          "path": "step-0001/outcome.json",
+          "sha256": "6f9392843d7d58af5065f6017c0604b5c51703ead40e4449730033debe2523a9"
+        },
+        {
+          "bytes": 351,
+          "path": "step-0001/transition.json",
+          "sha256": "2d67bb98a1794673a3ec46054a41e8ea7a09f4eb7d3f6f2ac916d83d58a20907"
+        }
+      ],
+      "configuration_sha256": "3758233b63c1ee3d083df33c8c8e8348d294c1c371a4685f90c6756a838373fd",
+      "duplicate_channels": 0,
+      "episode": 0,
+      "execution_statuses": [
+        "execution_failed"
+      ],
+      "historical_attributed_reference_cost": {
+        "cache_hits": 0,
+        "cpu_seconds": 1471.143259,
+        "energy_calls": 132,
+        "energy_force_calls": 0,
+        "event_forwards": 0,
+        "force_calls": 131,
+        "geometry_forwards": 0,
+        "gpu_seconds": 1300.6843819138594,
+        "hessian_calls": 2,
+        "hvp_calls": 0,
+        "joint_forwards": 0,
+        "raw_proposals": 0,
+        "reference_attempts": 1,
+        "reference_primitive_calls": 265,
+        "retries": 0,
+        "storage_bytes": 399725,
+        "wall_seconds": 1300.6843819138594
+      },
+      "initial_candidate": {
+        "atom_count": 13,
+        "candidate_id": "c0f8c54d5d73fed95b92_anchor_b04cb969d0e8/B0/s0/p22/endpoint",
+        "candidate_sha256": "5a0b8aea92ae5c8f5cc0cbce193a2598d04b135dced80a325e6af3da914c4ead",
+        "event_family": null,
+        "generation_protocol": null,
+        "geometry_sha256": "94a3de01e93cc0504f3f64075386b5a8790df4a57a2f2800ba439b49166a4fab",
+        "planned_product_be_sha256": "a483d91acea3bb343412a2d588d18b4d7fc13c7f3c087bda813e3c2b4f1050a5",
+        "pool": {
+          "charge": 0,
+          "environment": {
+            "kind": "gas",
+            "periodic": false
+          },
+          "input_sha256": "0993c387fba18cd7761542099b1acb8146b9d78f2293f068d9ea872fe5d50fc8",
+          "multiplicity": 1,
+          "parent_id": "c0f8c54d5d73fed95b92",
+          "reactant_be_sha256": "b96ba688df16d840b10859aef42dc066e1f70b9928835adfb5e37416b78281e4"
+        },
+        "pool_sha256": "3b48c61300c682da17cd6db3c7fe3b1850f694f0ff4960544ceb7f71924144ec",
+        "protocol_sha256": "637e18f276d78daa7b9ed5155139dae6cb93943a9a1b5ad03e3516ff574e14d6"
+      },
+      "observed_event_ids": [
+        null
+      ],
+      "observed_statuses": [
+        "attempted_unresolved"
+      ],
+      "policy": "fixed",
+      "replay_identical": true,
+      "reused_evidence": 0,
+      "sampler": "joint_event_lead2",
+      "sampler_changes": [],
+      "state_sha256": "63f36706a29854a9794d28dc6566fa76b1594d247cf96862efb8b6479141439a",
+      "stop_reason": "reference_batch_complete",
+      "unique_channels": 0
+    },
+    {
+      "actions": [
+        {
+          "action_id": "93af9ee33a1f33034e9ad9b952a2475e6ff1bbf0be8f0de5f62673bedd0cad20",
+          "candidate_id": "c0f8c54d5d73fed95b92_anchor_b04cb969d0e8/B0/s0/p22/endpoint",
+          "expected_cost": {
+            "cache_hits": 0,
+            "cpu_seconds": 26440,
+            "energy_calls": 3000,
+            "energy_force_calls": 0,
+            "event_forwards": 0,
+            "force_calls": 3000,
+            "geometry_forwards": 0,
+            "gpu_seconds": 3305,
+            "hessian_calls": 3000,
+            "hvp_calls": 0,
+            "joint_forwards": 0,
+            "raw_proposals": 0,
+            "reference_attempts": 1,
+            "reference_primitive_calls": 3000,
+            "retries": 0,
+            "storage_bytes": 269484032,
+            "wall_seconds": 3305
+          },
+          "expected_evidence": "Artifact-verified reference result, layered feedback and original charged cost",
+          "mechanistic_question": "Which endpoints did this attempted candidate actually connect?",
+          "name": "validate_connectivity",
+          "parameters": {
+            "profile": "verified_reference_replay"
+          },
+          "policy": "evidence_heuristic_v1",
+          "rationale": "unobserved_candidate",
+          "schema": "xtbflow-feedback-action/v1",
+          "seed": 139,
+          "sequence": 0,
+          "state_sha256": "dfe5e6ed27d04d810731e0a4554ef4d60b0990d59c629b2cd76e37c36b7d6d4e"
+        },
+        {
+          "action_id": "8cf417b341461aeeb473a9a21badc25ade7691ae584e23534905cb661d68192f",
+          "candidate_id": null,
+          "expected_cost": {
+            "cache_hits": 0,
+            "cpu_seconds": 0,
+            "energy_calls": 0,
+            "energy_force_calls": 0,
+            "event_forwards": 0,
+            "force_calls": 0,
+            "geometry_forwards": 0,
+            "gpu_seconds": 0,
+            "hessian_calls": 0,
+            "hvp_calls": 0,
+            "joint_forwards": 0,
+            "raw_proposals": 0,
+            "reference_attempts": 0,
+            "reference_primitive_calls": 0,
+            "retries": 0,
+            "storage_bytes": 0,
+            "wall_seconds": 0
+          },
+          "expected_evidence": "Retained endpoints, unresolved attempts and explicit unfinished tools",
+          "mechanistic_question": "What evidence is established?",
+          "name": "finish",
+          "parameters": {},
+          "policy": "evidence_heuristic_v1",
+          "rationale": "reference_batch_complete",
+          "schema": "xtbflow-feedback-action/v1",
+          "seed": 139,
+          "sequence": 1,
+          "state_sha256": "1e854e58986013d125954a6b313c994444d4ade9dfd7189e18eb1e0e7d5ac294"
+        }
+      ],
+      "artifacts": [
+        {
+          "bytes": 5692,
+          "path": "manifest.json",
+          "sha256": "6b9f6840c9ab875964c675a4dad90f0c95eecb6941ae3aa62d37a9d3876d7e8a"
+        },
+        {
+          "bytes": 9538,
+          "path": "state.json",
+          "sha256": "d6b02a1520f4114300e78a506f48f5c19bdbca6fa84e2fb4e84af48d881e485a"
+        },
+        {
+          "bytes": 1171,
+          "path": "step-0000/action.json",
+          "sha256": "2217dd517639d1144d671916e4db5fe645a570df228398f9ad00e8230d1450df"
+        },
+        {
+          "bytes": 5701,
+          "path": "step-0000/outcome.json",
+          "sha256": "f0c4511acded9e8dfb3cd9ecd2ca5f867df6b824a03de949b3f90f25eaaf8ced"
+        },
+        {
+          "bytes": 351,
+          "path": "step-0000/transition.json",
+          "sha256": "3f1c7cee695d19655a41cede6bf9eb9c739a0b64d72076d508add309d13ba85d"
+        },
+        {
+          "bytes": 985,
+          "path": "step-0001/action.json",
+          "sha256": "6604970e038fed55f1d5868475e918311d1a9cf5c7db4217e441c130d2cf87c5"
+        },
+        {
+          "bytes": 257,
+          "path": "step-0001/outcome.json",
+          "sha256": "daad050f6681414937b91592c6b6bd2b7f97bceb7471eea5779c4c9badd020d2"
+        },
+        {
+          "bytes": 351,
+          "path": "step-0001/transition.json",
+          "sha256": "b9f77954ae10058553d13458624553ed07eac78ecad9f1f52616da7bbc0ac72d"
+        }
+      ],
+      "configuration_sha256": "53c62ec398171d709d1df51c7c3b6303876f769e0515ecf0cd698e1e61889413",
+      "duplicate_channels": 0,
+      "episode": 0,
+      "execution_statuses": [
+        "execution_failed"
+      ],
+      "historical_attributed_reference_cost": {
+        "cache_hits": 0,
+        "cpu_seconds": 1471.143259,
+        "energy_calls": 132,
+        "energy_force_calls": 0,
+        "event_forwards": 0,
+        "force_calls": 131,
+        "geometry_forwards": 0,
+        "gpu_seconds": 1300.6843819138594,
+        "hessian_calls": 2,
+        "hvp_calls": 0,
+        "joint_forwards": 0,
+        "raw_proposals": 0,
+        "reference_attempts": 1,
+        "reference_primitive_calls": 265,
+        "retries": 0,
+        "storage_bytes": 399725,
+        "wall_seconds": 1300.6843819138594
+      },
+      "initial_candidate": {
+        "atom_count": 13,
+        "candidate_id": "c0f8c54d5d73fed95b92_anchor_b04cb969d0e8/B0/s0/p22/endpoint",
+        "candidate_sha256": "5a0b8aea92ae5c8f5cc0cbce193a2598d04b135dced80a325e6af3da914c4ead",
+        "event_family": null,
+        "generation_protocol": null,
+        "geometry_sha256": "94a3de01e93cc0504f3f64075386b5a8790df4a57a2f2800ba439b49166a4fab",
+        "planned_product_be_sha256": "a483d91acea3bb343412a2d588d18b4d7fc13c7f3c087bda813e3c2b4f1050a5",
+        "pool": {
+          "charge": 0,
+          "environment": {
+            "kind": "gas",
+            "periodic": false
+          },
+          "input_sha256": "0993c387fba18cd7761542099b1acb8146b9d78f2293f068d9ea872fe5d50fc8",
+          "multiplicity": 1,
+          "parent_id": "c0f8c54d5d73fed95b92",
+          "reactant_be_sha256": "b96ba688df16d840b10859aef42dc066e1f70b9928835adfb5e37416b78281e4"
+        },
+        "pool_sha256": "3b48c61300c682da17cd6db3c7fe3b1850f694f0ff4960544ceb7f71924144ec",
+        "protocol_sha256": "637e18f276d78daa7b9ed5155139dae6cb93943a9a1b5ad03e3516ff574e14d6"
+      },
+      "observed_event_ids": [
+        null
+      ],
+      "observed_statuses": [
+        "attempted_unresolved"
+      ],
+      "policy": "evidence_heuristic_v1",
+      "replay_identical": true,
+      "reused_evidence": 0,
+      "sampler": "joint_event_lead2",
+      "sampler_changes": [],
+      "state_sha256": "2218188fd012bb538fee8ade6b3c4084781b498baef6dea4e2b45d166fc8ffad",
+      "stop_reason": "reference_batch_complete",
+      "unique_channels": 0
+    },
+    {
+      "actions": [
+        {
+          "action_id": "1c5c4ba4e4f1a7c98fff25fff628e3c1a49b79e23063e0d4080698a85726dece",
+          "candidate_id": "e193d2b0c22148150613_anchor_0b316c25baaf/B0/s0/p43/endpoint",
+          "expected_cost": {
+            "cache_hits": 0,
+            "cpu_seconds": 26440,
+            "energy_calls": 3000,
+            "energy_force_calls": 0,
+            "event_forwards": 0,
+            "force_calls": 3000,
+            "geometry_forwards": 0,
+            "gpu_seconds": 3305,
+            "hessian_calls": 3000,
+            "hvp_calls": 0,
+            "joint_forwards": 0,
+            "raw_proposals": 0,
+            "reference_attempts": 1,
+            "reference_primitive_calls": 3000,
+            "retries": 0,
+            "storage_bytes": 269484032,
+            "wall_seconds": 3305
+          },
+          "expected_evidence": "Artifact-verified reference result, layered feedback and original charged cost",
+          "mechanistic_question": "Which endpoints did this attempted candidate actually connect?",
+          "name": "validate_connectivity",
+          "parameters": {
+            "profile": "verified_reference_replay"
+          },
+          "policy": "fixed",
+          "rationale": "unobserved_candidate",
+          "schema": "xtbflow-feedback-action/v1",
+          "seed": 139,
+          "sequence": 0,
+          "state_sha256": "0d1c539840fd8f3b4565e1990dd763d37cd319318905ae60bb839423274e64cd"
+        },
+        {
+          "action_id": "6c4423e5c87652463659d669acbddb3d32be73188bf587cee4790d3e1a7b2014",
+          "candidate_id": null,
+          "expected_cost": {
+            "cache_hits": 0,
+            "cpu_seconds": 0,
+            "energy_calls": 0,
+            "energy_force_calls": 0,
+            "event_forwards": 0,
+            "force_calls": 0,
+            "geometry_forwards": 0,
+            "gpu_seconds": 0,
+            "hessian_calls": 0,
+            "hvp_calls": 0,
+            "joint_forwards": 0,
+            "raw_proposals": 0,
+            "reference_attempts": 0,
+            "reference_primitive_calls": 0,
+            "retries": 0,
+            "storage_bytes": 0,
+            "wall_seconds": 0
+          },
+          "expected_evidence": "Retained endpoints, unresolved attempts and explicit unfinished tools",
+          "mechanistic_question": "What evidence is established?",
+          "name": "finish",
+          "parameters": {},
+          "policy": "fixed",
+          "rationale": "reference_batch_complete",
+          "schema": "xtbflow-feedback-action/v1",
+          "seed": 139,
+          "sequence": 1,
+          "state_sha256": "3118e688028947d44cf2e826c8266bf28d090e64f320ebf3be858a11d9443bf5"
+        }
+      ],
+      "artifacts": [
+        {
+          "bytes": 5329,
+          "path": "manifest.json",
+          "sha256": "b2c2b5aba882a4e2340dada99cbf0d1fa62d716dd2b0a21d0b43b563bb7e2969"
+        },
+        {
+          "bytes": 8807,
+          "path": "state.json",
+          "sha256": "5e01a4746c80a7547d952d27c61f7fa091b7dd1a3e5ea70030548333d0e61c01"
+        },
+        {
+          "bytes": 1155,
+          "path": "step-0000/action.json",
+          "sha256": "d13963173d4f6ecb01651cf869251a4efee29be036cc1f04b33a4f9363a8fecb"
+        },
+        {
+          "bytes": 5185,
+          "path": "step-0000/outcome.json",
+          "sha256": "08e4659acb135b301e3e0e900b4e9ea415ab9466cb95a393686d4361cf31f3eb"
+        },
+        {
+          "bytes": 351,
+          "path": "step-0000/transition.json",
+          "sha256": "1126031d671cee8bfb54554ee7aa369d94ebad033b6b651224cf1e4567ac74a8"
+        },
+        {
+          "bytes": 969,
+          "path": "step-0001/action.json",
+          "sha256": "ecfcf396eff5e56badfa65a02eccc482fcf3eca026bfafef086c6dcd3b2a7675"
+        },
+        {
+          "bytes": 257,
+          "path": "step-0001/outcome.json",
+          "sha256": "78b06fd1a8db8344bbd035ac73c737512e7b77c655459206320c35984fb0b45d"
+        },
+        {
+          "bytes": 351,
+          "path": "step-0001/transition.json",
+          "sha256": "3fb9f54216724e83433c82fb3b0dd8092fbde5c0db374b32c6ca912e2edc2a5b"
+        }
+      ],
+      "configuration_sha256": "3758233b63c1ee3d083df33c8c8e8348d294c1c371a4685f90c6756a838373fd",
+      "duplicate_channels": 0,
+      "episode": 1,
+      "execution_statuses": [
+        "completed"
+      ],
+      "historical_attributed_reference_cost": {
+        "cache_hits": 0,
+        "cpu_seconds": 1174.846558,
+        "energy_calls": 99,
+        "energy_force_calls": 0,
+        "event_forwards": 0,
+        "force_calls": 99,
+        "geometry_forwards": 0,
+        "gpu_seconds": 1077.8726580129005,
+        "hessian_calls": 4,
+        "hvp_calls": 0,
+        "joint_forwards": 0,
+        "raw_proposals": 0,
+        "reference_attempts": 1,
+        "reference_primitive_calls": 202,
+        "retries": 0,
+        "storage_bytes": 647513,
+        "wall_seconds": 1077.8726580129005
+      },
+      "initial_candidate": {
+        "atom_count": 9,
+        "candidate_id": "e193d2b0c22148150613_anchor_0b316c25baaf/B0/s0/p43/endpoint",
+        "candidate_sha256": "a8023d3e889edbb8bc22ff5013ba1cc15634737aabf293a4d981d1ccd2021da8",
+        "event_family": null,
+        "generation_protocol": null,
+        "geometry_sha256": "9352090d07dac3b2206ca0e41ef02e0fcbd81d581b4644124cf78fb72dae9bff",
+        "planned_product_be_sha256": "78ecdff7da6133c736192653b19e345e41ac91c5f98ec7b774207156c281d4a3",
+        "pool": {
+          "charge": 0,
+          "environment": {
+            "kind": "gas",
+            "periodic": false
+          },
+          "input_sha256": "0993c387fba18cd7761542099b1acb8146b9d78f2293f068d9ea872fe5d50fc8",
+          "multiplicity": 1,
+          "parent_id": "e193d2b0c22148150613",
+          "reactant_be_sha256": "608640249bd388341e43da89ccef7affe9e052360e4afab26a862c5fd5d93a91"
+        },
+        "pool_sha256": "c76bf3e21ec84b17f68c61678c46fea8cec3da1dbbd55cdc5992a1e41d305532",
+        "protocol_sha256": "637e18f276d78daa7b9ed5155139dae6cb93943a9a1b5ad03e3516ff574e14d6"
+      },
+      "observed_event_ids": [
+        "8382f00b0f4144f3b208275d"
+      ],
+      "observed_statuses": [
+        "valid_alternative"
+      ],
+      "policy": "fixed",
+      "replay_identical": true,
+      "reused_evidence": 0,
+      "sampler": "joint_event_lead2",
+      "sampler_changes": [],
+      "state_sha256": "bf03f8ea7abce5020c5dae15a63bd7ecac7c6f20ccbdd2b6187d794f8b916acd",
+      "stop_reason": "reference_batch_complete",
+      "unique_channels": 1
+    },
+    {
+      "actions": [
+        {
+          "action_id": "f8cf2e0c91a6727eeecdce10cd885f1dc3253e2a11c6090228720bb3d0ae1eeb",
+          "candidate_id": "e193d2b0c22148150613_anchor_0b316c25baaf/B0/s0/p43/endpoint",
+          "expected_cost": {
+            "cache_hits": 0,
+            "cpu_seconds": 26440,
+            "energy_calls": 3000,
+            "energy_force_calls": 0,
+            "event_forwards": 0,
+            "force_calls": 3000,
+            "geometry_forwards": 0,
+            "gpu_seconds": 3305,
+            "hessian_calls": 3000,
+            "hvp_calls": 0,
+            "joint_forwards": 0,
+            "raw_proposals": 0,
+            "reference_attempts": 1,
+            "reference_primitive_calls": 3000,
+            "retries": 0,
+            "storage_bytes": 269484032,
+            "wall_seconds": 3305
+          },
+          "expected_evidence": "Artifact-verified reference result, layered feedback and original charged cost",
+          "mechanistic_question": "Which endpoints did this attempted candidate actually connect?",
+          "name": "validate_connectivity",
+          "parameters": {
+            "profile": "verified_reference_replay"
+          },
+          "policy": "evidence_heuristic_v1",
+          "rationale": "unobserved_candidate",
+          "schema": "xtbflow-feedback-action/v1",
+          "seed": 139,
+          "sequence": 0,
+          "state_sha256": "ee6085e9138b04cfa1fe3ea97ad61db68043c3a576d2f0a5d7eb819a141fb518"
+        },
+        {
+          "action_id": "c9c8b0f821ecc924e01df827064430d13a2ff34be1a78c73c71acb7f8b8e3b12",
+          "candidate_id": null,
+          "expected_cost": {
+            "cache_hits": 0,
+            "cpu_seconds": 0,
+            "energy_calls": 0,
+            "energy_force_calls": 0,
+            "event_forwards": 0,
+            "force_calls": 0,
+            "geometry_forwards": 0,
+            "gpu_seconds": 0,
+            "hessian_calls": 0,
+            "hvp_calls": 0,
+            "joint_forwards": 0,
+            "raw_proposals": 0,
+            "reference_attempts": 0,
+            "reference_primitive_calls": 0,
+            "retries": 0,
+            "storage_bytes": 0,
+            "wall_seconds": 0
+          },
+          "expected_evidence": "Recorded sampler selection only; no new proposal or physical calculation",
+          "mechanistic_question": "Should the next proposal change event selection after observed endpoint evidence?",
+          "name": "select_sampling_policy",
+          "parameters": {
+            "sampler": "independent_serial"
+          },
+          "policy": "evidence_heuristic_v1",
+          "rationale": "planned_observed_event_disagreement",
+          "schema": "xtbflow-feedback-action/v1",
+          "seed": 139,
+          "sequence": 1,
+          "state_sha256": "c4bf51606f8e68bd77176936e7a8fe4738e9fab46015ef0d90eaedb270755914"
+        },
+        {
+          "action_id": "b2a0c1b179f3b46022b0772fd8ffe012b40556eef7cb8660c46a4e36eadf53cb",
+          "candidate_id": null,
+          "expected_cost": {
+            "cache_hits": 0,
+            "cpu_seconds": 0,
+            "energy_calls": 0,
+            "energy_force_calls": 0,
+            "event_forwards": 0,
+            "force_calls": 0,
+            "geometry_forwards": 0,
+            "gpu_seconds": 0,
+            "hessian_calls": 0,
+            "hvp_calls": 0,
+            "joint_forwards": 0,
+            "raw_proposals": 0,
+            "reference_attempts": 0,
+            "reference_primitive_calls": 0,
+            "retries": 0,
+            "storage_bytes": 0,
+            "wall_seconds": 0
+          },
+          "expected_evidence": "Retained endpoints, unresolved attempts and explicit unfinished tools",
+          "mechanistic_question": "What evidence is established?",
+          "name": "finish",
+          "parameters": {},
+          "policy": "evidence_heuristic_v1",
+          "rationale": "reference_batch_complete",
+          "schema": "xtbflow-feedback-action/v1",
+          "seed": 139,
+          "sequence": 2,
+          "state_sha256": "ae013ffa86f43fb24ebc7d02268e22cece43f6d338aa9e92fb1e245a217b6b04"
+        }
+      ],
+      "artifacts": [
+        {
+          "bytes": 5345,
+          "path": "manifest.json",
+          "sha256": "32d17ae6ac626d965d0befb73838f8c31c976618ec8e474741d8ed664d1f8389"
+        },
+        {
+          "bytes": 8984,
+          "path": "state.json",
+          "sha256": "b9f21b28d4f6610550fd7f2cefbc3eb3efc718e1399f3fdf835657baa25a6fdd"
+        },
+        {
+          "bytes": 1171,
+          "path": "step-0000/action.json",
+          "sha256": "06b9fcc4a92595eb7098b4dfcd2f7f0e9e3aa9e47560ebb0d6be78a910dfae5e"
+        },
+        {
+          "bytes": 5185,
+          "path": "step-0000/outcome.json",
+          "sha256": "c231d238eca5b7541ab602fcd97f95244017d09a8015cb160c18fd7f7e53ab29"
+        },
+        {
+          "bytes": 351,
+          "path": "step-0000/transition.json",
+          "sha256": "27b8190f52710a4eab437af322a1167f0081bdef62837d05e20aa60a18e9a72e"
+        },
+        {
+          "bytes": 1106,
+          "path": "step-0001/action.json",
+          "sha256": "b1719abd23c2a30b47e241af53f1135cc50c60fb59c00eb06b0af5d2b072eef9"
+        },
+        {
+          "bytes": 257,
+          "path": "step-0001/outcome.json",
+          "sha256": "804e59449c439a7223309c538e0fe24d445a1ad56e5c066dd4cde584dd7f9112"
+        },
+        {
+          "bytes": 351,
+          "path": "step-0001/transition.json",
+          "sha256": "49602d0139844428b94e9926e668b0e70e9ccc50dee3b9891efbbde4403309de"
+        },
+        {
+          "bytes": 985,
+          "path": "step-0002/action.json",
+          "sha256": "acf19616f39fc8637da467b9f946d8799354d181d5df5dc878cd668a55b237f6"
+        },
+        {
+          "bytes": 257,
+          "path": "step-0002/outcome.json",
+          "sha256": "139d037619fa7c0f92b6dc0cd8ca03444e2cac7a0bf53112ca1436ca0ac043b3"
+        },
+        {
+          "bytes": 351,
+          "path": "step-0002/transition.json",
+          "sha256": "4f5051436b089085e0079e147f0a593e4eda992ca9c318e10cbc3d5263906115"
+        }
+      ],
+      "configuration_sha256": "53c62ec398171d709d1df51c7c3b6303876f769e0515ecf0cd698e1e61889413",
+      "duplicate_channels": 0,
+      "episode": 1,
+      "execution_statuses": [
+        "completed"
+      ],
+      "historical_attributed_reference_cost": {
+        "cache_hits": 0,
+        "cpu_seconds": 1174.846558,
+        "energy_calls": 99,
+        "energy_force_calls": 0,
+        "event_forwards": 0,
+        "force_calls": 99,
+        "geometry_forwards": 0,
+        "gpu_seconds": 1077.8726580129005,
+        "hessian_calls": 4,
+        "hvp_calls": 0,
+        "joint_forwards": 0,
+        "raw_proposals": 0,
+        "reference_attempts": 1,
+        "reference_primitive_calls": 202,
+        "retries": 0,
+        "storage_bytes": 647513,
+        "wall_seconds": 1077.8726580129005
+      },
+      "initial_candidate": {
+        "atom_count": 9,
+        "candidate_id": "e193d2b0c22148150613_anchor_0b316c25baaf/B0/s0/p43/endpoint",
+        "candidate_sha256": "a8023d3e889edbb8bc22ff5013ba1cc15634737aabf293a4d981d1ccd2021da8",
+        "event_family": null,
+        "generation_protocol": null,
+        "geometry_sha256": "9352090d07dac3b2206ca0e41ef02e0fcbd81d581b4644124cf78fb72dae9bff",
+        "planned_product_be_sha256": "78ecdff7da6133c736192653b19e345e41ac91c5f98ec7b774207156c281d4a3",
+        "pool": {
+          "charge": 0,
+          "environment": {
+            "kind": "gas",
+            "periodic": false
+          },
+          "input_sha256": "0993c387fba18cd7761542099b1acb8146b9d78f2293f068d9ea872fe5d50fc8",
+          "multiplicity": 1,
+          "parent_id": "e193d2b0c22148150613",
+          "reactant_be_sha256": "608640249bd388341e43da89ccef7affe9e052360e4afab26a862c5fd5d93a91"
+        },
+        "pool_sha256": "c76bf3e21ec84b17f68c61678c46fea8cec3da1dbbd55cdc5992a1e41d305532",
+        "protocol_sha256": "637e18f276d78daa7b9ed5155139dae6cb93943a9a1b5ad03e3516ff574e14d6"
+      },
+      "observed_event_ids": [
+        "8382f00b0f4144f3b208275d"
+      ],
+      "observed_statuses": [
+        "valid_alternative"
+      ],
+      "policy": "evidence_heuristic_v1",
+      "replay_identical": true,
+      "reused_evidence": 0,
+      "sampler": "independent_serial",
+      "sampler_changes": [
+        {
+          "action_id": "c9c8b0f821ecc924e01df827064430d13a2ff34be1a78c73c71acb7f8b8e3b12",
+          "executed_generation": false,
+          "sampler": "independent_serial"
+        }
+      ],
+      "state_sha256": "a6f006c5ffa1269c84363c497b8695b33e32e4fb0131cdb49747c068f02a054e",
+      "stop_reason": "reference_batch_complete",
+      "unique_channels": 1
+    }
+  ],
+  "host": "node2",
+  "inputs": {
+    "report.json": {
+      "bytes": 8061,
+      "sha256": "0365ceceaae80a5f2bc724dc38b30ff080c17902814c6212a381c9086f5dac9b"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/raw/calls.json": {
+      "bytes": 70427,
+      "sha256": "e0d884edb3b60ebe7233a7ff40dbadc76f6775b86dd637267816255c3f115f5e"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/raw/irc/irc.log": {
+      "bytes": 45360,
+      "sha256": "4ca5ba0e7e44b471ef3d9f2ae516fba85f88221d3d2199a5ad6b84ac7f3f2e32"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/raw/irc/irc_irc.vdata_first": {
+      "bytes": 16531,
+      "sha256": "9447effd7e8a89934b0e9fb0cdef633647e075cd24d3c0ad9baa33e65eff9483"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/raw/irc/irc_irc.xyz": {
+      "bytes": 86053,
+      "sha256": "7d50f70269bd1152e5be297db9f611dba285f36130fcb6844b78e04aaaa8fb30"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/raw/partial.json": {
+      "bytes": 6024,
+      "sha256": "1e626106437b83bf44868dbe7fe1141f00265a5e1f0849b9ad6641a82197a7ea"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/raw/process.log": {
+      "bytes": 59297,
+      "sha256": "99dfb14ef8ed950e78700601b029484440739dfe6f74dd2dae94dd2a201acdbe"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/raw/ts_final.hess": {
+      "bytes": 38814,
+      "sha256": "32b43663c7e523045921e5c483384bc10bc365255b96afee1a849a5b95eb23c0"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/raw/ts_initial.hess": {
+      "bytes": 38826,
+      "sha256": "130e9782bf958875eef7291d8a77f3865545180f81ee5029f0447e06dd3c8fd2"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/raw/ts_optts.log": {
+      "bytes": 13701,
+      "sha256": "a3025f046c8115324f8b7f7b3cbeb6dea7ea9b16fb60c5a12ed9ddfb6e7adf80"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/raw/ts_optts.vdata_first": {
+      "bytes": 16540,
+      "sha256": "248d61eb06697aa1321b907753c869f6235070c80c70502dfb2c1d35d233ef3f"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/raw/ts_optts_optim.xyz": {
+      "bytes": 8152,
+      "sha256": "1e4da77a9c7b29626c16b74e299cfe394e305bd0b7dbdf2e84693c58f572ab01"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/request.json": {
+      "bytes": 12203,
+      "sha256": "bf69ada8c8d89335742be8c52857f128859969ce6420f281baaed991de358ef3"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/result.json": {
+      "bytes": 13359,
+      "sha256": "4ea84240c84da266d01d23fc0a4d0d03c0d14be4518be962e6482067cbc8b334"
+    },
+    "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001/settlement.json": {
+      "bytes": 113,
+      "sha256": "212d338d3f38296997253cdcabd14cba26e05f0e7262bb106a3554b096149284"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/backend-outcome.json": {
+      "bytes": 137757,
+      "sha256": "af432b898b9fd1bb618d1f9a503e3b0b4bd27012bd50dc414c1d68fb83eefd6c"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/calls.json": {
+      "bytes": 54263,
+      "sha256": "6ecc26422079f87ebdf6901c162506aa8bc8a953bbd73cad49fb17525dc14908"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/first/end_first_final.hess": {
+      "bytes": 18611,
+      "sha256": "9d841e2145dcb1e8ccff8764e4458a143369c86771e69910b3b46dd2b9bf3cc4"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/first/end_first_opt.log": {
+      "bytes": 7267,
+      "sha256": "2aaa2500c96d872aee0b92aeb3edc425c0a1ab52b01688c21c725a7ebd49f53a"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/first/end_first_opt_optim.xyz": {
+      "bytes": 1050,
+      "sha256": "2270aafb71f78a7cbad67c7c62f76e3ee9d9d59b3b88916978f1cfd261dc42c9"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/irc/irc.log": {
+      "bytes": 34860,
+      "sha256": "1016926a4dba66fd798e1829dbddc5f3645d658701b32407cf818c2e47157161"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/irc/irc_irc.vdata_first": {
+      "bytes": 8957,
+      "sha256": "80ecffb19e0c5d3cd595d0b293f9598cc116a5ca5c113598691e50e47036f904"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/irc/irc_irc.xyz": {
+      "bytes": 38905,
+      "sha256": "fbc4249e2bb68149ebbad9766192b7db5ee30aa1b6163f16c4da27600e47da77"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/last/end_last_final.hess": {
+      "bytes": 18601,
+      "sha256": "afc80901ba5c1abbd6a0ab9296b9241650f620d149c85efefebda790dfc1a38b"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/last/end_last_opt.log": {
+      "bytes": 7541,
+      "sha256": "25445935aa2fd6f82152007d061640b696222117cef732db13bc0fba7a0bbb57"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/last/end_last_opt_optim.xyz": {
+      "bytes": 1575,
+      "sha256": "d0e130b7ccd7ec669eeadb213d07eee02896a4ad63c57db7d260845220519616"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/partial.json": {
+      "bytes": 89853,
+      "sha256": "0f85a1cfe85315eaf8831f6aaf57574a64dade59f6264570cb8b6ab5871bc701"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/process.log": {
+      "bytes": 62532,
+      "sha256": "1722b8926cbd58cde5fd33984fb1809309f9c24ee7bba6cb580b8702d4ad8827"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/ts_final.hess": {
+      "bytes": 18601,
+      "sha256": "c046cdccfa8e85dc18d15ddbae70f5a9958b0f0f5a66ff6c98cbc12c3e8c75cc"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/ts_initial.hess": {
+      "bytes": 18607,
+      "sha256": "f67b7aacc7d154bff9d95101694ea76f8d5865f27c5188179f52eaa9ecaf081e"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/ts_optts.log": {
+      "bytes": 12628,
+      "sha256": "5e8a1b625e2070df910982251789367660c78f33c469ba4869354f7d0296119e"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/ts_optts.vdata_first": {
+      "bytes": 8966,
+      "sha256": "2afa33bbc004c28140dbd5a47c941a4edd358f26a08604583a7e0ae92a3f97f3"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/ts_optts_optim.xyz": {
+      "bytes": 5250,
+      "sha256": "63c58be1daaa98f06663926cdf448cc5eb5f7a61cae9ac5f7b6062eb0e515270"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/raw/verdict.json": {
+      "bytes": 101689,
+      "sha256": "9a4371a8956bc7fc539e26791dfd0cb606d0735dc94f584be1ad6947c4c09f34"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/request.json": {
+      "bytes": 8171,
+      "sha256": "9fdd16676c37f3af45e0055f36f69a40ad304f70d2b583a898e6a51dd57254f8"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/result.json": {
+      "bytes": 149034,
+      "sha256": "8619d03451cfe5c5e6ab2b2d3de4e041340a5f289d1d8225e51106ed27f4b5b8"
+    },
+    "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001/settlement.json": {
+      "bytes": 113,
+      "sha256": "9ec10e515cec941734aeed8a1e5ea121ea1313558da95bf8bb3dc1bd31356412"
+    },
+    "service/ledger.json": {
+      "bytes": 2766,
+      "sha256": "baab222d04e2ce8e7af04fd712fcc94e9ad5414f375cf4a13b57464574771faa"
+    }
+  },
+  "limits": {
+    "attempts": [
+      {
+        "path": "service/3444da17d789473f24c1c314111d418102e65a7c150ba642f2de8ab68c21938b/attempt-0001",
+        "request_sha256": "bf69ada8c8d89335742be8c52857f128859969ce6420f281baaed991de358ef3",
+        "result_sha256": "4ea84240c84da266d01d23fc0a4d0d03c0d14be4518be962e6482067cbc8b334"
+      },
+      {
+        "path": "service/48cbc9f9665a491712702f499717236b0f09c0f1524d3f9ffd2a9336d847a06d/attempt-0001",
+        "request_sha256": "9fdd16676c37f3af45e0055f36f69a40ad304f70d2b583a898e6a51dd57254f8",
+        "result_sha256": "8619d03451cfe5c5e6ab2b2d3de4e041340a5f289d1d8225e51106ed27f4b5b8"
+      }
+    ],
+    "gpu_seconds": 0,
+    "max_input_bytes": 16777216,
+    "max_output_bytes": 16777216,
+    "max_wall_seconds": 120,
+    "new_calculator_calls": 0,
+    "original_panel_report_sha256": "0365ceceaae80a5f2bc724dc38b30ff080c17902814c6212a381c9086f5dac9b",
+    "original_source_commit": "931d81f53a85669e137600c62b343120ff0de3d0",
+    "policies": [
+      "fixed",
+      "evidence_heuristic_v1"
+    ],
+    "schema": "xtbflow-agent-replay/v1"
+  },
+  "new_calculator_calls": 0,
+  "new_gpu_seconds": 0,
+  "original_evidence_unchanged": true,
+  "original_reference_calls_once": 467,
+  "packages": {
+    "numpy": "2.2.6",
+    "rdkit": "2024.3.3",
+    "torch": "2.10.0+cu128"
+  },
+  "policy_sha256": "d56c5673d6e2bbc0964bd8fc1e24d18513576b703f70331cae9383ff28017da0",
+  "private_report_sha256": "ff647539c66f4bd7bb86c000a8189760918515bfba5aba336270e97b3e0d69ed",
+  "publication_projection": "Fixed-pool atomic numbers and atom IDs omitted; hashes retain complete private identity. This public projection is a summary, not executable replay input.",
+  "python": "3.10.19",
+  "replay_config_sha256": "c3b5365c1f98145fec88d5ed90f911aa9a844ccefa8dc6b4d6ea128e8d522b88",
+  "schema": "xtbflow-feedback-replay-report/v1",
+  "slurm_job_id": "4103",
+  "source_branch": "codex/w139-feedback-loop-20261107",
+  "source_commit": "0f030fe7a7dcb69c3422c8494b75a06c4053abf5",
+  "started_at": "2026-11-07T15:27:58.086789+00:00",
+  "status": "replay_passed",
+  "unavailable_actions": [
+    "expand_intermediate",
+    "physical_probe",
+    "propose",
+    "reference_label",
+    "refine_TS",
+    "resample_event",
+    "resample_geometry"
+  ],
+  "unique_original_results": 2,
+  "wall_seconds": 0.2470699129626155
+}

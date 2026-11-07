@@ -558,6 +558,21 @@
       "bytes": 2049
     },
     {
+      "path": "docs/evidence/feedback_replay_20261107.json",
+      "sha256": "15a10b9252d6cd46e97e9877fa16308763eace52df8904235b118763ac807d06",
+      "bytes": 39864
+    },
+    {
+      "path": "docs/evidence/feedback_replay_20261107.md",
+      "sha256": "2dc64f9de1568a0c73e56c990300fde39dbff1b406708f74e9688658e2fbce40",
+      "bytes": 6097
+    },
+    {
+      "path": "docs/evidence/feedback_replay_20261107_artifacts.json",
+      "sha256": "55ddf42c0d25434b6fd49bd304688ce93f052cf609020348c0a3244567004d67",
+      "bytes": 7796
+    },
+    {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
       "sha256": "a8f35cecb50117422a0dd28953d079634aa780dd5336baf6ee23cfd817952d57",
       "bytes": 6712

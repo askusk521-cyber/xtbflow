@@ -1,0 +1,61 @@
+{
+  "schema": "xtbflow-evidence/live-feedback-terminal/v1",
+  "status": "completed_with_unresolved_new_candidate",
+  "host": "node2",
+  "protocol_sha256": "637e18f276d78daa7b9ed5155139dae6cb93943a9a1b5ad03e3516ff574e14d6",
+  "stages": {
+    "4101_original_reference": {
+      "source_commit": "e07ac8512fa987e0fad2e37b14c576c534a7df87",
+      "status": "pipeline_completed",
+      "process_exit_code": 0,
+      "report_sha256": "746e9089b1333ac598d01d4ac107e5321b8e790346ba2ebb98bcac811f73f36f",
+      "config_sha256": "32f4d02d900f9a4d9a356fc5d3c5ea997c44642ccbc35390aa62a40873cd4204",
+      "job_script_sha256": "f46d874cafefda259a6f920ea5c055a307e3154c1760464e7f12f589f3e55e0f",
+      "wall_seconds": 4980.771744276863,
+      "candidates": 2,
+      "charged_calculator_calls": 1106,
+      "unique_strict_certified_channels": 1,
+      "candidate_outcomes": [
+        {"candidate_id": "dft-da:R0:joint_generation:p0", "charged_calls": 468, "evidence_status": "attempted_unresolved", "result_content_sha256": "ccf7cbd7892aaf5c37474b80ec63618acd79b9ba4c33fd89bdd49c09c34d8dd1"},
+        {"candidate_id": "dft-da:R0:independent_event_then_geometry:p0", "charged_calls": 638, "evidence_status": "reference_ts_connected", "observed_event_id": "cf71962ba84a41034466344c", "result_content_sha256": "fc22caeb4421943d1d85f0c4c73efd3451ac8e93a231a881e15f112600a8bac1"}
+      ]
+    },
+    "4105_feedback_generation": {
+      "source_commit": "ae47ed37c96997e5136e278ad39d511ca0083119",
+      "status": "feedback_generation_completed_pending_certification",
+      "process_exit_code": 0,
+      "report_sha256": "be6ad07aa623df731a33d6ee7668ce8542cd0302d6793befcdcca767eb20d051",
+      "original_reference_report_sha256": "746e9089b1333ac598d01d4ac107e5321b8e790346ba2ebb98bcac811f73f36f",
+      "generation_report_sha256": "8f79efbf1b61f7d5c0962e59d0a31b19d4731e9bec81e025958bcaf7d282592a",
+      "generation_plan_sha256": "61c5d1574396a840b6d7c5dc51ec0a35fd995c14ae370983ee2ae2a2cb2f920b",
+      "handoff_sha256": "3aec00707c95e44af61fa4b87e560ba34e405a445448a698b4b24316aa7c2e3d",
+      "run_config_sha256": "3b235f2563bc876d84959538638cf763c5cf2b19f22cf6b7ff5159f95866a645",
+      "policy_sha256": "895c939cd9f1d1ef2e42a9170a47a107544642f21944fe0c944dd1a141a109cf",
+      "job_script_sha256": "0d6a4979718728b37fe04e0505cab353750d4234361f00bd51595e0ee482123d",
+      "wall_seconds": 3.9410799390170723,
+      "decision_process_cpu_seconds": 0.9664696809999997,
+      "native_candidate_count": 1,
+      "model_forward_evaluations": 50,
+      "new_calculator_calls": 0,
+      "candidate_content_sha256": "f70a0411f2f0958dfefb5af8a8528925037a93a02156c10d50d1bd8d702134e8"
+    },
+    "4106_new_candidate_reference": {
+      "source_commit": "ae47ed37c96997e5136e278ad39d511ca0083119",
+      "status": "pipeline_completed",
+      "process_exit_code": 0,
+      "report_sha256": "9b773ee98c3dcc154f6c45b2a2c98c777ef4cb15cfb0f823f6982500a755dd8a",
+      "config_sha256": "0f8bc3848d372c5ba3ccbea37afdee299b070b9bc03458af53da0999408729a3",
+      "job_script_sha256": "212aa82d6154bf8fac87c4916aae7ee175e5cd60a696c026cf81310252980615",
+      "wall_seconds": 2112.4622184361797,
+      "ledger": {"calculator": "gpu4pyscf", "calculator_calls": 526, "cpu_core_hours": 0.6603476277777778, "gpu_hours": 0.5865952605025248, "storage_gb": 0.001050267368555069, "failures": 1, "retries": 0},
+      "candidate_outcome": {"candidate_id": "dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709", "candidate_sha256": "f70a0411f2f0958dfefb5af8a8528925037a93a02156c10d50d1bd8d702134e8", "execution_status": "completed", "evidence_status": "attempted_unresolved", "raw_status": "PROTOCOL_FAILURE", "charged_calls": 526, "result_content_sha256": "bc60cd9a5a63bf9bc9d55ab660b20e9bc750f465be71fe6b894af298c9266d74", "unique_strict_certified_channels": 0}
+    }
+  },
+  "conclusion": {"real_generation_to_certification_path": true, "new_strict_channel_from_feedback_action": 0, "agent_efficiency_claim": "not_supported", "independent_confirmation": "not_started"},
+  "claim_limits": [
+    "4106 pipeline_completed means the bounded certification service settled its attempt; its candidate was unresolved and protocol-failed.",
+    "The new candidate did not add a certified channel.",
+    "This is one development input and does not establish generalization or a method advantage.",
+    "Raw geometries, logs and private n2 paths remain on n2; this projection contains hashes, counts and statuses only."
+  ]
+}

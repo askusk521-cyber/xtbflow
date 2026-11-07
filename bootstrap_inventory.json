@@ -628,6 +628,16 @@
       "bytes": 4826
     },
     {
+      "path": "docs/evidence/live_feedback_generation_reference_terminal_20261108.json",
+      "sha256": "d2eb4c9f89f7da5c5f8a091e0b0eca0652c4777aa6d85cf206987d2c9087260e",
+      "bytes": 4513
+    },
+    {
+      "path": "docs/evidence/live_feedback_generation_reference_terminal_20261108.md",
+      "sha256": "fefc50fe4cf084eaca46ce9ba82875ae83effefd551b0ba44c8e02b3a7f64d4d",
+      "bytes": 1205
+    },
+    {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
       "sha256": "cbdd9b63b5cad70fbadf0ae8060e00a0aff4e439a10864bbbd7aec87ce8b9bbd",
       "bytes": 7458

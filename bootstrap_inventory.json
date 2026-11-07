@@ -358,6 +358,11 @@
       "bytes": 556904
     },
     {
+      "path": "data/manifests/task_views_dft_da_20261107.json",
+      "sha256": "2d4a20aea9c64abce7d76753e3a38bde940d19e68a736397b8bc1270159d3aad",
+      "bytes": 352030
+    },
+    {
       "path": "data/manifests/track_b_reaction_ts.v0.1.jsonl",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
@@ -441,6 +446,11 @@
       "path": "docs/architecture/research_asset_replay.md",
       "sha256": "09619182ce0f7181c31b1679e3be624e40828537cb1727a3ba6d7abec4e998ab",
       "bytes": 6477
+    },
+    {
+      "path": "docs/architecture/task_manifest.md",
+      "sha256": "1635b754eeb8824e919585d469705e316771856720b4972a8488c306c9723a9a",
+      "bytes": 3517
     },
     {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
@@ -691,6 +701,16 @@
       "path": "docs/evidence/spice2_openff_pilot_summary_20260929.json",
       "sha256": "5b935bf54871deeb2adf20817bbea7c761e79dcd059fdfdfd8e06b90cfdaf011",
       "bytes": 9263
+    },
+    {
+      "path": "docs/evidence/task_views_20261107.json",
+      "sha256": "6e223fb939e0824fc8ed6394abf6ceb04cb2163d90198533312f8212b2040c4e",
+      "bytes": 6368
+    },
+    {
+      "path": "docs/evidence/task_views_20261107.md",
+      "sha256": "7399a3dd701a3d7e6848af370436ed0b289d5f830a01c3ec12b7fd99480eaa7e",
+      "bytes": 4960
     },
     {
       "path": "docs/evidence/track_b_manifest_audit_20260929.json",
@@ -1003,6 +1023,11 @@
       "bytes": 2694
     },
     {
+      "path": "scripts/audit_task_views.py",
+      "sha256": "6fc542e8b9371dc0a836e01821b60ffaac7979b834c71dd1e87ccc3b9ae01045",
+      "bytes": 8114
+    },
+    {
       "path": "scripts/audit_track_b_manifest.py",
       "sha256": "72a679bb61e5a6823c63a14755686195209376d9e1d457fade97566317ef9f77",
       "bytes": 3817
@@ -1221,6 +1246,11 @@
       "path": "src/xtbflow/data/splits.py",
       "sha256": "db70f17a4691a7b4fe861b89a5e06e4ef5da290a0048051b98afb5b9625f57a2",
       "bytes": 2573
+    },
+    {
+      "path": "src/xtbflow/data/task_manifest.py",
+      "sha256": "6cd1f7c1c0c148c710b9fa67f5826d703af92f775b607cfc872fdd4f6e39753c",
+      "bytes": 8136
     },
     {
       "path": "src/xtbflow/data/task_views.py",
@@ -1616,6 +1646,11 @@
       "path": "tests/test_saddle_guidance.py",
       "sha256": "80376ebff131aeae4c1c36cdaf0c66c9031863ca3f98895d97dc9f17710e5059",
       "bytes": 4324
+    },
+    {
+      "path": "tests/test_task_manifest.py",
+      "sha256": "694323aa1f272f83ce706b381142801ffeb66f4bf98013e5b0aa2d63a37ba2f0",
+      "bytes": 5352
     },
     {
       "path": "tests/test_track_b_source_audit.py",

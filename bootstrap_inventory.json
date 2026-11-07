@@ -233,6 +233,11 @@
       "bytes": 10626
     },
     {
+      "path": "configs/research/generation_bridge_20261107.json",
+      "sha256": "50d7d9c80cb0dba82e4e797e5cc2456e0ca14c21646b37d5a3dc31c3eeeac11e",
+      "bytes": 2462
+    },
+    {
       "path": "configs/resources.yaml",
       "sha256": "c2213875ddbe39017669a235b036019525c52e02378687c529075f784a63e5fd",
       "bytes": 6301
@@ -291,6 +296,11 @@
       "path": "configs/validation/certification_replay_20261107.json",
       "sha256": "7e932c5f60a8a74374029535f5087946b2d1df3f84c54b0dc07a8b4a5eecd4d3",
       "bytes": 2883
+    },
+    {
+      "path": "configs/validation/generated_candidates_20261107.json",
+      "sha256": "32f4d02d900f9a4d9a356fc5d3c5ea997c44642ccbc35390aa62a40873cd4204",
+      "bytes": 2247
     },
     {
       "path": "configs/validation/ts_v0.1.yaml",
@@ -441,6 +451,11 @@
       "path": "docs/architecture/certification_service.md",
       "sha256": "a38f528575fdf96695c2144e7b8c1056259db99bcf4baddb2925797d6fdfb066",
       "bytes": 8120
+    },
+    {
+      "path": "docs/architecture/generation_bridge.md",
+      "sha256": "0b6a45801d30f90cc8df3e83f723df48f88196b3784b15636f5a46505bba66e5",
+      "bytes": 6872
     },
     {
       "path": "docs/architecture/research_asset_replay.md",
@@ -1058,6 +1073,11 @@
       "bytes": 5243
     },
     {
+      "path": "scripts/certify_generated_candidates.py",
+      "sha256": "53edd5feaefad0c0edc06c354ebb8c46734bbc8bdd9016e5b67588803032c138",
+      "bytes": 8801
+    },
+    {
       "path": "scripts/check_portal.py",
       "sha256": "7e545c2516b71f790d9eed89604c3b6b487b0530ea73a70533ad02b9a69be10a",
       "bytes": 6215
@@ -1103,6 +1123,11 @@
       "bytes": 7086
     },
     {
+      "path": "scripts/research_generation_worker.py",
+      "sha256": "150521b22eddb5416ff1c0758dafc53e8c6ac681b8305ca29d044b6032d6f851",
+      "bytes": 10406
+    },
+    {
       "path": "scripts/run_dft_da_blind_rollout.py",
       "sha256": "bf5bc082dc2982e23397c45e002e4ab3ffa904c467ca1748ab5555b057a965cc",
       "bytes": 16945
@@ -1136,6 +1161,11 @@
       "path": "scripts/run_gfn2_qualification.py",
       "sha256": "84706cb111d799fa2ef9761fa59539ac5d8269566a398c0c0bd46a9d38e6db7a",
       "bytes": 15646
+    },
+    {
+      "path": "scripts/run_research_generation.py",
+      "sha256": "7efb5a6d09c2de475a82c46af3db9fb266443053838a485de99197ea807da38b",
+      "bytes": 14951
     },
     {
       "path": "scripts/run_spice_openff_pilot.py",
@@ -1286,6 +1316,11 @@
       "path": "src/xtbflow/governance/__init__.py",
       "sha256": "2c2f0593fa0e97b4742ea74bab369523280170ce33c10217aa50fefbfcae39de",
       "bytes": 143
+    },
+    {
+      "path": "src/xtbflow/governance/generation_bridge.py",
+      "sha256": "8a9bbc7273dea99827737d9a6d6761e58f36c558baf81885d638be9fed4195a3",
+      "bytes": 3425
     },
     {
       "path": "src/xtbflow/governance/handoff.py",
@@ -1571,6 +1606,11 @@
       "path": "tests/test_energy_forces.py",
       "sha256": "79b971518e6e2c05ecf19af765e1c7ef663db34e3761e3582ea8d67d37ac5a0f",
       "bytes": 9907
+    },
+    {
+      "path": "tests/test_generation_bridge.py",
+      "sha256": "329b0972902d1572cdea12fad57427c71a7c13999c990dee97e48f30a1d8c42c",
+      "bytes": 7342
     },
     {
       "path": "tests/test_geometry_flow.py",

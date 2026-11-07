@@ -235,7 +235,11 @@ def _worker(backend: Backend, candidate: CertificationCandidate, request: dict,
     os.sched_setaffinity(0, allowed[:cores])
     for variable in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
         os.environ[variable] = str(cores)
-    cpu_limit = math.ceil(request["max_wall_seconds"] * cores)
+    # A fresh worker spends bounded CPU on interpreter/import startup before
+    # the backend's wall clock begins. Reserve the same five-second envelope
+    # used by the parent admission check so a valid low-core fixture is not
+    # killed by RLIMIT_CPU before its first durable primitive charge.
+    cpu_limit = math.ceil((request["max_wall_seconds"] + 5) * cores)
     resource.setrlimit(resource.RLIMIT_CPU, (cpu_limit, cpu_limit + 1))
     size_limit = request["max_raw_bytes"]
     resource.setrlimit(resource.RLIMIT_FSIZE, (size_limit, size_limit))

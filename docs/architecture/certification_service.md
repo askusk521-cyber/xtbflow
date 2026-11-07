@@ -76,6 +76,10 @@ runs the backend with bounded CPU affinity, CPU/file limits and captured logs;
 the parent terminates it on wall timeout. Raw output size is checked every 0.1 s
 and on completion. This is a monitored storage cap, **not** a filesystem quota;
 transient overshoot remains possible and is recorded as a failed attempt.
+The storage monitor reads each entry once with `lstat` and tolerates a vanished
+temporary entry during atomic journal replacement. It excludes symlinks and
+propagates other filesystem errors. This fixes the monitoring race observed in
+job 4096; its consumed resources and incomplete chain remain retained evidence.
 Production jobs additionally require a finite Slurm allocation. Only this service
 may write its ledger; unrelated writers do not share its process lock.
 
@@ -116,6 +120,13 @@ stage: 2 GPU-hours, 16 CPU-core-hours, 6000 primitives, 1 GiB, one job, zero ext
 retries, at most 3300 seconds per candidate and 120 minutes of Slurm allocation.
 No training allowance is created. Source commit and protocol/config/input hashes
 must be recorded before execution, with exact commands in the dated evidence.
+
+`--config configs/validation/certification_replay_retry_20261107.json` selects
+the separately bounded software-fix replay of only the incomplete job-4096 case.
+It retains the original numerical tolerances and source verdict, carries the
+previous attempt identity/cost, and allows one hour, 3000 primitives, eight
+CPU-core-hours and 0.5 GiB, with no automatic retry. It must run in a new clean
+checkout/output directory. The already successful first case is not recomputed.
 
 The runner reconstructs only whitelisted generated input fields, performs the new
 chain, then compares TS energies/frequencies/aligned geometries, endpoint energies

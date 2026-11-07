@@ -15,6 +15,7 @@ import multiprocessing
 import os
 from pathlib import Path
 import resource
+import stat
 import tempfile
 import time
 from typing import Any, Protocol
@@ -212,7 +213,18 @@ def _artifact_index(work: Path) -> list[dict]:
 
 
 def _directory_bytes(folder: Path) -> int:
-    return sum(p.stat().st_size for p in folder.rglob("*") if p.is_file() and not p.is_symlink())
+    total = 0
+    for path in folder.rglob("*"):
+        # Atomic journal replacement can remove a temporary file between the
+        # directory listing and lstat. A vanished entry occupies no space now.
+        # Use one metadata read and do not follow symlinks or hide other errors.
+        try:
+            info = path.lstat()
+        except FileNotFoundError:
+            continue
+        if stat.S_ISREG(info.st_mode):
+            total += info.st_size
+    return total
 
 
 def _worker(backend: Backend, candidate: CertificationCandidate, request: dict,

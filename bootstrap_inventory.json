@@ -298,6 +298,11 @@
       "bytes": 2883
     },
     {
+      "path": "configs/validation/certification_replay_retry_20261107.json",
+      "sha256": "2688bfeb7295990c42e233bcd023c3a7ea04be6212022691b684adae9fa44490",
+      "bytes": 3226
+    },
+    {
       "path": "configs/validation/generated_candidates_20261107.json",
       "sha256": "32f4d02d900f9a4d9a356fc5d3c5ea997c44642ccbc35390aa62a40873cd4204",
       "bytes": 2247
@@ -449,8 +454,8 @@
     },
     {
       "path": "docs/architecture/certification_service.md",
-      "sha256": "a38f528575fdf96695c2144e7b8c1056259db99bcf4baddb2925797d6fdfb066",
-      "bytes": 8120
+      "sha256": "a3d56f269988c4da8f41cf9dd935958760899abee3a40432efdd2cb8273b65d9",
+      "bytes": 8909
     },
     {
       "path": "docs/architecture/generation_bridge.md",
@@ -1114,8 +1119,8 @@
     },
     {
       "path": "scripts/replay_certification_panel.py",
-      "sha256": "1bd2c574ca89f3e19affae3a40df84b57b60160f4b04c208797e0dad4804e549",
-      "bytes": 9915
+      "sha256": "ac2d3b10bb1c4959ec5c134633b07d233d4e7364ad3f4395b96e38ea8f230e95",
+      "bytes": 10060
     },
     {
       "path": "scripts/replay_research_o2.py",
@@ -1494,8 +1499,8 @@
     },
     {
       "path": "src/xtbflow/validation/certification.py",
-      "sha256": "33344d222dd788bc536dc3de58d705d973f463fd6ccd9039759a56ea77cf6381",
-      "bytes": 28055
+      "sha256": "f177c278e7611a2b0ce650fedf0ba1fc0c9cc28ba10cc9fedea33381a5e97145",
+      "bytes": 28445
     },
     {
       "path": "src/xtbflow/validation/connectivity.py",
@@ -1564,8 +1569,8 @@
     },
     {
       "path": "tests/test_certification_service.py",
-      "sha256": "ccb50693b698ecaf81517f676050a83b74861b8507b120359a917d0c769f7ef1",
-      "bytes": 11915
+      "sha256": "018dab264b7bfe021ed98d001c6c56a4b641d34fdedc903ccfdbc9072753b321",
+      "bytes": 13000
     },
     {
       "path": "tests/test_checkpoint.py",

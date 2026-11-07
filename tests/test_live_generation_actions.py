@@ -173,6 +173,27 @@ def test_missing_journal_is_an_explicit_conservative_bound_not_free_work(tmp_pat
     assert result["counter_basis"] == "conservative_unresolved_forward_envelope"
 
 
+def test_verified_preflight_failure_is_distinct_from_model_execution(tmp_path, monkeypatch):
+    engine = service(tmp_path)
+
+    def preflight(folder, cfg, conditioned):
+        g = folder / "generation"
+        g.mkdir()
+        ledger = RunLedger(stage())
+        ledger.append(LedgerEvent(run_id="preflight", phase=ledger.budget.phase, calculator="fixture", protocol_id="fixture",
+            calculator_build_hash="a"*64, system_id="q", input_hash="a"*64, operation="other", status="failure",
+            calculator_calls=0, system_evaluations=0), persist_path=g / "ledger.json")
+        write_json(g / "report.json", dict(status="not_started_error", worker_requested=False,
+            settlement_status="settled", config_sha256=file_hash(folder / "config.json")))
+        raise RuntimeError("fixture input preflight failed before worker invocation")
+
+    monkeypatch.setattr(engine, "_execute", preflight)
+    result = engine.run(action(), query())
+    assert result["status"] == "not_started_error" and result["calls"]["forward_evaluations"] == 0
+    assert result["counter_basis"] == "verified_worker_not_requested"
+    assert result["cost"]["gpu_seconds"] > 0  # Allocated action time still costs resources.
+
+
 @pytest.mark.parametrize("change", ["artifact", "query", "action"])
 def test_cached_generation_rejects_changed_evidence_input_or_action(tmp_path, change):
     engine = service(tmp_path)

@@ -122,6 +122,18 @@ class GenerationActions:
     def _record(self, folder: Path, request: dict, status: str, wall: float, cpu: float, basis: str) -> dict:
         generation, cfg = folder / "generation", request["config"]
         journal_path = generation / "raw/calls.json"
+        try:
+            inner_report = json.loads((generation / "report.json").read_text())
+        except (OSError, ValueError):
+            inner_report = {}
+        try:
+            known_not_started = (inner_report.get("status") == "not_started_error" and inner_report.get("worker_requested") is False
+                and inner_report.get("settlement_status") == "settled" and inner_report.get("config_sha256") == file_hash(folder / "config.json")
+                and RunLedger.load(generation / "ledger.json").summary()["totals"]["system_evaluations"] == 0)
+        except (OSError, ValueError, KeyError):
+            known_not_started = False
+        if known_not_started:
+            status = "not_started_error"
         counter_basis = "durable_forward_journal"
         try:
             journal = json.loads(journal_path.read_text())
@@ -139,6 +151,9 @@ class GenerationActions:
                 kernel_invocations=None, by_role={r: cfg["steps_per_branch"] for r in roles}, unfinished_calls=None)
             if status == "generation_completed":
                 status = "accounting_unresolved"
+            if known_not_started:
+                counter_basis = "verified_worker_not_requested"
+                calls = dict(forward_evaluations=0, kernel_invocations=0, by_role={}, unfinished_calls=0)
         candidates, report_hash, plan_hash = [], None, None
         if status == "generation_completed":
             report = json.loads((generation / "report.json").read_text())
@@ -170,7 +185,7 @@ class GenerationActions:
             report_hash = file_hash(generation / "report.json")
         artifacts = artifact_index(folder)
         cost = dict.fromkeys(COST_AXES, 0)
-        cost.update(raw_proposals=(1 if counter_basis != "durable_forward_journal" else
+        cost.update(raw_proposals=(1 if counter_basis == "conservative_unresolved_forward_envelope" else
                     len({(r["query_id"], r["method"], r["proposal"]) for r in journal["calls"]})),
                     wall_seconds=wall, cpu_seconds=cpu, gpu_seconds=wall,
                     storage_bytes=sum(r["bytes"] for r in artifacts))
@@ -180,6 +195,7 @@ class GenerationActions:
             calls=calls, candidates=candidates, artifacts=artifacts,
             generation_report_sha256=report_hash, certification_plan_sha256=plan_hash,
             generation_directory="generation", generation_config="config.json")
+        record["inner_report_status"] = inner_report.get("status")
         event_id = record["action_id"]
         record["ledger_event"] = asdict(LedgerEvent(run_id=event_id, phase=self.budget.phase, calculator="trained_generator",
             protocol_id="xtbflow-generation-action/v1", calculator_build_hash=identity(self.identity),

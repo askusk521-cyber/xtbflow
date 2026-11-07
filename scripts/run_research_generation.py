@@ -137,7 +137,7 @@ def main() -> int:
                   started_at=datetime.now(timezone.utc).isoformat(), python=platform.python_version(),
                   packages={p: importlib.metadata.version(p) for p in ("torch", "numpy", "rdkit")},
                   budget=cfg["generation"], claim_limits=cfg["claim_limits"], new_calculator_calls=0,
-                  training_steps=0, candidates=[], call_summary={"forward_evaluations": 0})
+                  training_steps=0, worker_requested=False, candidates=[], call_summary={"forward_evaluations": 0})
     write_json(args.out / "report.json", report)
     raw = args.out / "raw"
     raw.mkdir()
@@ -183,6 +183,8 @@ def main() -> int:
                    "--research-source", str(args.research_source.resolve()), "--model-root", str(args.model_root.resolve()),
                    "--packet", str(raw / "worker-packet.json"), "--out", str(raw)]
         with (raw / "worker.log").open("wb") as log:
+            report["worker_requested"] = True
+            write_json(args.out / "report.json", report)
             completed = subprocess.run(command, env=env, cwd=args.out, stdout=log, stderr=subprocess.STDOUT,
                                        timeout=cfg["generation"]["max_wall_seconds"], check=False)
         journal = json.loads((raw / "calls.json").read_text())
@@ -220,7 +222,7 @@ def main() -> int:
     except subprocess.TimeoutExpired:
         report.update(status="execution_timeout", failure_type="worker_wall_limit")
     except Exception as exc:
-        report.update(status="execution_failed", failure_type=type(exc).__name__)
+        report.update(status="execution_failed" if report["worker_requested"] else "not_started_error", failure_type=type(exc).__name__)
         print(f"{type(exc).__name__}: {exc}", file=sys.stderr)
     accounting_resolved = True
     if (raw / "calls.json").exists():

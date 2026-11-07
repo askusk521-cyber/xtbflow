@@ -499,8 +499,8 @@
     },
     {
       "path": "docs/architecture/feedback_agent.md",
-      "sha256": "0f716b0dfe9ca99b6e144617cd144ea48638e41ffeaceb4cf5a46ef34d3969ec",
-      "bytes": 12961
+      "sha256": "692e786ee9fd18debd5eca64db69477ed5559aa05cdffb9da0b670fbf0ca9543",
+      "bytes": 13115
     },
     {
       "path": "docs/architecture/generation_bridge.md",
@@ -1259,8 +1259,8 @@
     },
     {
       "path": "scripts/run_research_generation.py",
-      "sha256": "20a0a84044c5d49e576452cf606ec4e272536cc75cbb12b8152e85d4745efb86",
-      "bytes": 17085
+      "sha256": "28493145260e7540e687c623a9139e1a5ff23a9e6fc9d03e3062457742b51fc8",
+      "bytes": 17267
     },
     {
       "path": "scripts/run_spice_openff_pilot.py",
@@ -1544,8 +1544,8 @@
     },
     {
       "path": "src/xtbflow/runtime/generation_actions.py",
-      "sha256": "54998bad77275d437ff66294665eb42b484e57458fea7a96172128c3edee646d",
-      "bytes": 17851
+      "sha256": "540942412d42aef67601b8ec8494bb11f4a591652b8817fbf2f91b73d6e6f89f",
+      "bytes": 18860
     },
     {
       "path": "src/xtbflow/runtime/ledger.py",
@@ -1774,8 +1774,8 @@
     },
     {
       "path": "tests/test_live_generation_actions.py",
-      "sha256": "ffde70c00b989247b9297d3340b4f912b0a57216004ede0242c9999776b60208",
-      "bytes": 12812
+      "sha256": "5b671e6c8ce1d409196e06076e5d5307ac7dfd7873a8618ca5300cc0302b4516",
+      "bytes": 14031
     },
     {
       "path": "tests/test_origin_seed_readiness.py",

@@ -143,6 +143,8 @@ durable model calls stay charged and time uses a labeled conservative bound.
 Missing/corrupt journals receive a labeled forward-envelope upper bound with
 unknown kernel count, rather than free work or invented measured calls.
 Report-writing and settlement failures have separate markers.
+A verified settled preflight failure before the worker was requested is
+`not_started_error`, with zero model calls but its actual allocated time charged.
 The service identity includes PyTorch/NumPy versions and installed package RECORD
 hashes. These pin distribution builds rather than attest every installed binary.
 The top-level runner's explicit `--resume` reuses the same clean source, config,

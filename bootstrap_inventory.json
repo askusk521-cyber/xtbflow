@@ -1654,8 +1654,8 @@
     },
     {
       "path": "src/xtbflow/validation/certification.py",
-      "sha256": "f177c278e7611a2b0ce650fedf0ba1fc0c9cc28ba10cc9fedea33381a5e97145",
-      "bytes": 28445
+      "sha256": "6e0da984b4a4a3d288c7995e2fa362793c4c18ce0469d7ea2b5601862b765b60",
+      "bytes": 28751
     },
     {
       "path": "src/xtbflow/validation/connectivity.py",

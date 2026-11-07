@@ -583,6 +583,16 @@
       "bytes": 2049
     },
     {
+      "path": "docs/evidence/dual_clock_software_n2_20261108.json",
+      "sha256": "9eb4b8579e4bb3441c32bbbda09b4793d6865eb6c3811bd7fdc5fafd35433af8",
+      "bytes": 1860
+    },
+    {
+      "path": "docs/evidence/dual_clock_software_n2_20261108.md",
+      "sha256": "33ef94232b6fa0b0b013e6b6a5b79391997865a29f861708f477143aa0c9962d",
+      "bytes": 938
+    },
+    {
       "path": "docs/evidence/feedback_replay_20261107.json",
       "sha256": "15a10b9252d6cd46e97e9877fa16308763eace52df8904235b118763ac807d06",
       "bytes": 39864

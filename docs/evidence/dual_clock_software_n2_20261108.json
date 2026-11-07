@@ -1,0 +1,47 @@
+{
+  "schema": "xtbflow-evidence/dual-clock-software/v1",
+  "stage": "software_validation",
+  "status": "completed",
+  "host": "node2",
+  "source_commit": "c16577b1a21be14f8e4bfbeaca828ce2779290a5",
+  "source_branch": "codex/w133-dual-clock-20261108",
+  "work_root": "~/xtbflow-runs/w133-dual-clock-20261108/source",
+  "environment": {
+    "conda": "xtbflow",
+    "python": "3.10.19",
+    "pytorch": "2.10.0+cu128",
+    "cuda": "not used",
+    "gpu": "not used",
+    "calculator_calls": 0
+  },
+  "configuration": {
+    "path": "configs/models/dual_clock_runtime_v0.1.json",
+    "sha256": "06e95997dce4a35ef475eeb33e85461ec8f1faa38ac436113d7693e319c94ca6",
+    "status": "software_prototype_untrained"
+  },
+  "commands": [
+    "unset PYTHONPATH; PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q tests/test_dual_clock.py",
+    "unset PYTHONPATH; PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q tests/test_joint_flow.py tests/test_dual_clock.py",
+    "unset PYTHONPATH; PYTHONPATH=src:vendor/mechai_reusable python scripts/validate_bootstrap.py"
+  ],
+  "results": {
+    "dual_clock_tests_passed": 5,
+    "joint_plus_dual_clock_tests_passed": 17,
+    "bootstrap_inventory_files_verified": 387,
+    "warnings": [],
+    "test_input": "synthetic tensors"
+  },
+  "resources": {
+    "slurm_job": null,
+    "wall_seconds": "not separately recorded for read-only software checks",
+    "gpu_seconds": 0,
+    "calculator_seconds": 0,
+    "new_output_bytes": "not separately metered"
+  },
+  "claim_limits": [
+    "This validates software contracts only; it does not validate chemistry, training, or generalization.",
+    "No checkpoint was trained or evaluated.",
+    "Synchronous reduction, local gating and conservation are tested on synthetic tensors only.",
+    "A matched-budget physical comparison remains required before scientific adoption."
+  ]
+}

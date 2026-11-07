@@ -13,6 +13,13 @@ strict channel count is zero. Its measured cost was 2112.462 seconds wall,
 0.6603476 CPU-core-hours, 0.5865953 GPU-hours and 526 calculator calls. The
 failure and all consumed calls remain in the ledger.
 
+The structured classification is `certification_unresolved`, with
+`failure_stage` and `failure_reason` retained as `unknown` because the public
+report does not localize the failure further. This is not a chemical negative:
+`chemical_negative` is false and `strict_channel_increment` is zero. A
+diagnostic retry is allowed only as a new attempt under an independent budget;
+the original attempt is preserved and excluded from same-panel tuning.
+
 This is the first real generation-to-certification attempt from the feedback
 Agent, including a negative result. It does not show an Agent efficiency gain,
 an additional certified channel, or independent confirmation. The machine

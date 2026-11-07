@@ -629,13 +629,13 @@
     },
     {
       "path": "docs/evidence/live_feedback_generation_reference_terminal_20261108.json",
-      "sha256": "d2eb4c9f89f7da5c5f8a091e0b0eca0652c4777aa6d85cf206987d2c9087260e",
-      "bytes": 4513
+      "sha256": "f3cc2274aa5b3e1d47a8bb0beb4c32f04dbf99948f5b4f4cb6455b773aba8ff0",
+      "bytes": 4805
     },
     {
       "path": "docs/evidence/live_feedback_generation_reference_terminal_20261108.md",
-      "sha256": "fefc50fe4cf084eaca46ce9ba82875ae83effefd551b0ba44c8e02b3a7f64d4d",
-      "bytes": 1205
+      "sha256": "1f28f51037a5685396538ac6eab3674c2036ad238bd118ff8896493a615059d5",
+      "bytes": 1650
     },
     {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",

@@ -288,6 +288,11 @@
       "bytes": 2838
     },
     {
+      "path": "configs/validation/certification_replay_20261107.json",
+      "sha256": "7e932c5f60a8a74374029535f5087946b2d1df3f84c54b0dc07a8b4a5eecd4d3",
+      "bytes": 2883
+    },
+    {
       "path": "configs/validation/ts_v0.1.yaml",
       "sha256": "8599350fceb794e375719a918731d85f76d22e01c5e64446bd071cbf7ef5086b",
       "bytes": 434
@@ -379,8 +384,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "6152638555e60f6ffdf05834e44590b0b6f0a2a19ad5c326a6b3fccd918f2c30",
-      "bytes": 3728
+      "sha256": "3a3982043a6537ca7f2fc6ec0152681b18ea03091d4b63b7f91045e6a26d54b3",
+      "bytes": 4828
     },
     {
       "path": "docs/HANDOFF_FREEZE.md",
@@ -428,6 +433,11 @@
       "bytes": 5963
     },
     {
+      "path": "docs/architecture/certification_service.md",
+      "sha256": "a38f528575fdf96695c2144e7b8c1056259db99bcf4baddb2925797d6fdfb066",
+      "bytes": 8120
+    },
+    {
       "path": "docs/architecture/research_asset_replay.md",
       "sha256": "09619182ce0f7181c31b1679e3be624e40828537cb1727a3ba6d7abec4e998ab",
       "bytes": 6477
@@ -444,8 +454,8 @@
     },
     {
       "path": "docs/data_contract.md",
-      "sha256": "9964999089df7e67b9d5c0af99dcf5bd426974bca5128bee2623c928473d42a9",
-      "bytes": 4036
+      "sha256": "f66b5a57541e22b744060198e46e2645edb86c8586f3fd083b6b17d4e358aaef",
+      "bytes": 4935
     },
     {
       "path": "docs/evidence/cp2k_calibration_smoke.json",
@@ -546,6 +556,21 @@
       "path": "docs/evidence/reaction_qm_coordinate_mapping_provenance_20261002.json",
       "sha256": "094cf902dc6adf7016d994a89b0b12c3e0456c3588b99e08fc92f3826c4880cb",
       "bytes": 3702
+    },
+    {
+      "path": "docs/evidence/reference_certification_20261107.json",
+      "sha256": "0365ceceaae80a5f2bc724dc38b30ff080c17902814c6212a381c9086f5dac9b",
+      "bytes": 8061
+    },
+    {
+      "path": "docs/evidence/reference_certification_20261107.md",
+      "sha256": "5c351881b755e828154bfbec6b93f1d484d38650b8c9945edf580b2856d72c44",
+      "bytes": 5266
+    },
+    {
+      "path": "docs/evidence/reference_certification_20261107_artifacts.json",
+      "sha256": "42582325ec2c38419a4471b117785775ec03699ae9d903332e1837ce115ddf70",
+      "bytes": 2638
     },
     {
       "path": "docs/evidence/research_asset_replay_20261107.json",
@@ -1058,6 +1083,11 @@
       "bytes": 17349
     },
     {
+      "path": "scripts/replay_certification_panel.py",
+      "sha256": "1bd2c574ca89f3e19affae3a40df84b57b60160f4b04c208797e0dad4804e549",
+      "bytes": 9915
+    },
+    {
       "path": "scripts/replay_research_o2.py",
       "sha256": "f1d9f7de98a713582c64d41b0794c8afabd706d91307c07d05fd82d18c161ec9",
       "bytes": 7086
@@ -1413,6 +1443,11 @@
       "bytes": 711
     },
     {
+      "path": "src/xtbflow/validation/certification.py",
+      "sha256": "33344d222dd788bc536dc3de58d705d973f463fd6ccd9039759a56ea77cf6381",
+      "bytes": 28055
+    },
+    {
       "path": "src/xtbflow/validation/connectivity.py",
       "sha256": "5413f4dc2fd2166e91cbbf8d25072a45b643760ee5bb04d5b7641cdced5d9ee6",
       "bytes": 2201
@@ -1421,6 +1456,16 @@
       "path": "src/xtbflow/validation/modes.py",
       "sha256": "b518b9517311fca403eb9a3a2e2d86625a71388a86c99a6aedbc1287ef2f3426",
       "bytes": 4017
+    },
+    {
+      "path": "src/xtbflow/validation/reference_backend.py",
+      "sha256": "a4d2ec271f39ba501f1be5bc34bd180bc1d22a10bffdfbedda5872cd7eb15ccf",
+      "bytes": 3161
+    },
+    {
+      "path": "src/xtbflow/validation/reference_protocol.py",
+      "sha256": "e69903868cf380d808762c09fadb743b577f0812e5ec249cc0172af6a7f6f956",
+      "bytes": 17798
     },
     {
       "path": "src/xtbflow/validation/ts_search.py",
@@ -1466,6 +1511,11 @@
       "path": "tests/test_calculator_contract.py",
       "sha256": "a8ea52f51e54fdd830800c48f208a2db10888273435a8dec464e4df0f0e563b3",
       "bytes": 13336
+    },
+    {
+      "path": "tests/test_certification_service.py",
+      "sha256": "ccb50693b698ecaf81517f676050a83b74861b8507b120359a917d0c769f7ef1",
+      "bytes": 11915
     },
     {
       "path": "tests/test_checkpoint.py",

@@ -1,0 +1,19 @@
+{
+  "schema": "xtbflow-evidence/dual-clock-software/v1",
+  "stage": "software_validation",
+  "status": "completed",
+  "host": "node2",
+  "source_commit": "d8a44da79aa3004eb8b035a3d8283507ea5546e3",
+  "source_branch": "codex/w133-dual-clock-20261108",
+  "work_root": "~/xtbflow-runs/w133-dual-clock-20261108-final2",
+  "environment": {"conda": "xtbflow", "python": "3.10.19", "pytorch": "2.10.0+cu128", "cuda": "not used", "gpu": "not used", "calculator_calls": 0},
+  "configuration": {"path": "configs/models/dual_clock_runtime_v0.1.json", "sha256": "06e95997dce4a35ef475eeb33e85461ec8f1faa38ac436113d7693e319c94ca6", "status": "software_prototype_untrained"},
+  "commands": [
+    "unset PYTHONPATH; PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q",
+    "unset PYTHONPATH; PYTHONPATH=src:vendor/mechai_reusable python -m unittest discover -s tests/reusable -p 'test_*.py'",
+    "unset PYTHONPATH; PYTHONPATH=src:vendor/mechai_reusable python scripts/validate_bootstrap.py"
+  ],
+  "results": {"pytest_passed": 369, "pytest_subtests_passed": 68, "reusable_unittest_passed": 56, "bootstrap_inventory_files_verified": 389, "warnings": ["existing tensor-to-scalar warning in tests/test_energy_forces.py"], "test_input": "synthetic/software fixtures"},
+  "resources": {"slurm_job": null, "gpu_seconds": 0, "calculator_seconds": 0, "new_output_bytes": "not separately metered"},
+  "claim_limits": ["Software contracts only; no chemistry, training, or generalization claim.", "No checkpoint was trained or evaluated.", "A matched-budget physical comparison remains required before scientific adoption."]
+}

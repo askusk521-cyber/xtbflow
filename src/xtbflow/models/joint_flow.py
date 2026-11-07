@@ -251,6 +251,7 @@ class JointEventGeometryFlow(nn.Module):
         *,
         geometry_to_event_strength: float,
         conservation_projection: bool,
+        pair_gate: Tensor | None = None,
     ) -> tuple[Tensor, Tensor]:
         event_matrix = unpack_be(event_state, self.n_atoms)
         sender = hidden_nodes[:, :, None, :].expand(-1, -1, self.n_atoms, -1)
@@ -275,6 +276,8 @@ class JointEventGeometryFlow(nn.Module):
         radial = torch.exp(-((distance[..., None] - centers) / width).square())
         geometry_pair = self.geometry_to_event(radial).squeeze(-1)
         geometry_pair = torch.where(off_diagonal, geometry_pair, torch.zeros_like(geometry_pair))
+        if pair_gate is not None:
+            geometry_pair = geometry_pair * pair_gate
 
         base_packed = pack_be(base_pair)
         geometry_packed = pack_be(geometry_pair) * geometry_to_event_strength
@@ -295,6 +298,7 @@ class JointEventGeometryFlow(nn.Module):
         atom_mask: Tensor,
         *,
         event_to_geometry_strength: float,
+        pair_gate: Tensor | None = None,
     ) -> tuple[Tensor, Tensor]:
         event_matrix = unpack_be(event_state, self.n_atoms)
         valid_pairs, diagonal, _ = self._pair_masks(atom_mask)
@@ -304,11 +308,15 @@ class JointEventGeometryFlow(nn.Module):
         )
         pair_context = self.event_to_node(event_pair_input)
         pair_context = torch.where(valid_pairs[..., None], pair_context, torch.zeros_like(pair_context))
+        if pair_gate is not None:
+            pair_context = pair_context * pair_gate[..., None]
         counts = valid_pairs.sum(dim=2, keepdim=True).clamp_min(1).to(dtype=event_matrix.dtype)
         event_context = pair_context.sum(dim=2) / counts
         applied_context = event_context * event_to_geometry_strength
         geometry_nodes = conditioned_nodes + applied_context
         pair_features = torch.where(valid_pairs, event_matrix, torch.zeros_like(event_matrix))
+        if pair_gate is not None:
+            pair_features = pair_features * pair_gate
         pair_features = pair_features * event_to_geometry_strength
         geometry_velocity = self.geometry(
             coordinates,

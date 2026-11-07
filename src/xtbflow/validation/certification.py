@@ -235,7 +235,11 @@ def _worker(backend: Backend, candidate: CertificationCandidate, request: dict,
     os.sched_setaffinity(0, allowed[:cores])
     for variable in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
         os.environ[variable] = str(cores)
-    cpu_limit = math.ceil(request["max_wall_seconds"] * cores)
+    # A fresh worker spends bounded CPU on interpreter/import startup before
+    # the backend's wall clock begins. Reserve the same five-second envelope
+    # used by the parent admission check so a valid low-core fixture is not
+    # killed by RLIMIT_CPU before its first durable primitive charge.
+    cpu_limit = math.ceil((request["max_wall_seconds"] + 5) * cores)
     resource.setrlimit(resource.RLIMIT_CPU, (cpu_limit, cpu_limit + 1))
     size_limit = request["max_raw_bytes"]
     resource.setrlimit(resource.RLIMIT_FSIZE, (size_limit, size_limit))
@@ -434,10 +438,24 @@ class CertificationService:
 
     def _execute(self, backend: Backend, candidate: CertificationCandidate,
                  request: dict, raw_dir: Path) -> tuple[dict, str]:
+        # ``spawn`` imports the backend/test module before entering ``_worker``.
+        # Set bounded BLAS/OpenMP thread counts in the parent for that startup
+        # interval too; setting them only inside the child is too late for a
+        # low-core worker whose import can otherwise exhaust RLIMIT_CPU.
+        thread_env = {name: os.environ.get(name) for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS")}
+        for name in thread_env:
+            os.environ[name] = str(request["cpu_cores"])
         process = multiprocessing.get_context("spawn").Process(
             target=_worker, args=(backend, candidate, request, self.ledger_path, raw_dir))
         started = time.monotonic()
-        process.start()
+        try:
+            process.start()
+        finally:
+            for name, value in thread_env.items():
+                if value is None:
+                    os.environ.pop(name, None)
+                else:
+                    os.environ[name] = value
         stopped = None
         try:
             while process.is_alive():

@@ -228,6 +228,11 @@
       "bytes": 4396
     },
     {
+      "path": "configs/research/assets_20261107.json",
+      "sha256": "40b685778303ca06e4dd6be8c886277c09e0498eb01eeddf066ab93d4c6a183c",
+      "bytes": 10626
+    },
+    {
       "path": "configs/resources.yaml",
       "sha256": "c2213875ddbe39017669a235b036019525c52e02378687c529075f784a63e5fd",
       "bytes": 6301
@@ -388,6 +393,11 @@
       "bytes": 6609
     },
     {
+      "path": "docs/PROJECT_STATUS.md",
+      "sha256": "cc189a05f9588c36042ca4b8413a8ba4258bdc6c39f0398c600e121dd52bd412",
+      "bytes": 443
+    },
+    {
       "path": "docs/PROVENANCE.md",
       "sha256": "07b8e206c34433ec1ff0c22ee34d259e0a37e2784db996d38fddf304f96e8390",
       "bytes": 1983
@@ -411,6 +421,11 @@
       "path": "docs/architecture/architecture_v0.1.md",
       "sha256": "f7e7cdeb8afb97ecbb6aacf132ab217a8f750e68dfbf924daf1e48f298bdd4a1",
       "bytes": 5963
+    },
+    {
+      "path": "docs/architecture/research_asset_replay.md",
+      "sha256": "09619182ce0f7181c31b1679e3be624e40828537cb1727a3ba6d7abec4e998ab",
+      "bytes": 6477
     },
     {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
@@ -1023,6 +1038,11 @@
       "bytes": 17349
     },
     {
+      "path": "scripts/replay_research_o2.py",
+      "sha256": "f1d9f7de98a713582c64d41b0794c8afabd706d91307c07d05fd82d18c161ec9",
+      "bytes": 7086
+    },
+    {
       "path": "scripts/run_dft_da_blind_rollout.py",
       "sha256": "bf5bc082dc2982e23397c45e002e4ab3ffa904c467ca1748ab5555b057a965cc",
       "bytes": 16945
@@ -1206,6 +1226,11 @@
       "path": "src/xtbflow/governance/handoff.py",
       "sha256": "3249b112984a729439d0a40ce4bc08644fe46a20c25fc729e3ae9077953a7697",
       "bytes": 12414
+    },
+    {
+      "path": "src/xtbflow/governance/research_replay.py",
+      "sha256": "14ddb74f4dca58dc68a645c7241760852335285f176212c4e11a3e27ca3d2784",
+      "bytes": 6632
     },
     {
       "path": "src/xtbflow/legacy.py",
@@ -1516,6 +1541,11 @@
       "path": "tests/test_reaction_qm_coordinate_mapping.py",
       "sha256": "2994a7429aaa7d854d4f527e4dfd1f3e76d2bb17ecfb0934d19b22068feb9bca",
       "bytes": 889
+    },
+    {
+      "path": "tests/test_research_replay.py",
+      "sha256": "4d52619506d652884ae6fea6b36fdc03ee807de93c9a1535ac3cfe3ac27008ba",
+      "bytes": 6218
     },
     {
       "path": "tests/test_runtime_budget.py",

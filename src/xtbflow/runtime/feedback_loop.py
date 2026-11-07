@@ -22,6 +22,7 @@ ACTIONS = ("propose", "resample_event", "resample_geometry", "select_sampling_po
            "physical_probe", "reference_label", "refine_TS", "validate_connectivity",
            "expand_intermediate", "finish")
 SUPPORTED = frozenset({"select_sampling_policy", "validate_connectivity", "finish"})
+GENERATION_ACTIONS = frozenset({"propose", "resample_event", "resample_geometry"})
 SAMPLERS = {
     "joint_event_lead2": {"method": "joint_generation", "clock": "event_lead2", "steps": 50},
     "independent_serial": {"method": "independent_event_then_geometry", "clock": "serial", "steps": 50},
@@ -33,18 +34,24 @@ def zero_cost() -> dict:
 
 
 def validate_config(config: dict) -> None:
-    if set(config) != {"schema", "policy", "seed", "max_actions", "budget", "reference_envelope",
-                       "tool_profile", "initial_sampler", "samplers"}:
+    live = config.get("tool_profile") == "reference_feedback_generation"
+    fields = {"schema", "policy", "seed", "max_actions", "budget", "reference_envelope",
+              "tool_profile", "initial_sampler", "samplers"}
+    if live:
+        fields |= {"generation_budget", "generation_envelope", "generation_rounds", "prior_generation_cost"}
+    if set(config) != fields:
         raise ValueError("unexpected decision configuration fields")
-    if config["schema"] != "xtbflow-feedback-policy/v1" or config["policy"] not in {"fixed", "evidence_heuristic_v1"}:
+    if config["schema"] != ("xtbflow-feedback-policy/v2" if live else "xtbflow-feedback-policy/v1") or config["policy"] not in {"fixed", "evidence_heuristic_v1"}:
         raise ValueError("unknown decision policy")
-    if config["tool_profile"] != "verified_reference_replay" or config["samplers"] != SAMPLERS:
+    if config["tool_profile"] not in {"verified_reference_replay", "reference_feedback_generation"} or config["samplers"] != SAMPLERS:
         raise ValueError("unsupported tools or sampler catalogue")
     if type(config["seed"]) is not int or config["seed"] < 0 or type(config["max_actions"]) is not int or not 2 <= config["max_actions"] <= 128:
         raise ValueError("finite nonnegative seed and 2..128 actions required")
     if config["initial_sampler"] not in SAMPLERS:
         raise ValueError("unknown initial sampler")
-    for name in ("budget", "reference_envelope"):
+    if live and (type(config["generation_rounds"]) is not int or not 1 <= config["generation_rounds"] <= 4):
+        raise ValueError("bounded generation rounds required")
+    for name in (("budget", "reference_envelope", "generation_budget", "generation_envelope", "prior_generation_cost") if live else ("budget", "reference_envelope")):
         check_cost(config[name])
         if any(v is None for v in config[name].values()):
             raise ValueError("decision budgets cannot contain unknown costs")
@@ -83,11 +90,16 @@ def initial_state(candidates: list[dict], config: dict) -> dict:
     if len({c["pool_sha256"] for c in candidates}) != 1 or len({c["protocol_sha256"] for c in candidates}) != 1:
         raise ValueError("one episode requires one mapped atom pool and reference protocol")
     ordered = sorted(candidates, key=lambda c: identity([config["seed"], c["candidate_id"]]))
-    return dict(schema="xtbflow-feedback-state/v1", candidates=deepcopy(ordered), observations={},
+    state = dict(schema="xtbflow-feedback-state/v1", candidates=deepcopy(ordered), observations={},
                 evidence={}, channels={}, duplicate_channels=0, reused_evidence=0,
                 attributed_reference_cost=zero_cost(), remaining=deepcopy(config["budget"]),
                 sampler=config["initial_sampler"], sampler_changes=[], step=0, finished=False,
                 stop_reason=None, configuration_sha256=identity(config))
+    if config["tool_profile"] == "reference_feedback_generation":
+        state.update(schema="xtbflow-feedback-state/v2", generation=[], generation_spent=zero_cost(),
+                     generation_remaining=deepcopy(config["generation_budget"]),
+                     prior_generation_cost=deepcopy(config["prior_generation_cost"]), pending_certification=[])
+    return state
 
 
 def choose(state: dict, config: dict) -> dict:
@@ -103,6 +115,10 @@ def choose(state: dict, config: dict) -> dict:
         action["rationale"] = "action_budget_exhausted"
     elif any(v < 0 for v in state["remaining"].values()):
         action["rationale"] = "observed_reference_cost_exceeded_budget"
+    elif any(v < 0 for v in state.get("generation_remaining", {}).values()):
+        action["rationale"] = "observed_generation_cost_exceeded_budget"
+    elif state.get("generation") and state["generation"][-1]["status"] != "generation_completed":
+        action["rationale"] = "generation_failed_no_automatic_retry"
     elif config["policy"] == "evidence_heuristic_v1" and state["sampler"] != "independent_serial" and (
             state["duplicate_channels"] or any(e["feedback"]["evidence_status"] == "valid_alternative" for e in state["evidence"].values())):
         action.update(name="select_sampling_policy", parameters={"sampler": "independent_serial"},
@@ -119,6 +135,21 @@ def choose(state: dict, config: dict) -> dict:
                               parameters={"profile": config["tool_profile"]}, expected_cost=deepcopy(config["reference_envelope"]),
                               rationale="unobserved_candidate", mechanistic_question="Which endpoints did this attempted candidate actually connect?",
                               expected_evidence="Artifact-verified reference result, layered feedback and original charged cost")
+        elif config["tool_profile"] == "reference_feedback_generation":
+            if len(state["generation"]) >= config["generation_rounds"]:
+                action["rationale"] = "generation_complete_pending_independent_certification"
+            elif any(config["generation_envelope"][k] > state["generation_remaining"][k] for k in COST_AXES):
+                action["rationale"] = "insufficient_complete_generation_envelope"
+            else:
+                targets = [c for c in state["candidates"] if state["evidence"][state["observations"][c["candidate_id"]]]["feedback"]["first_order_saddle"]]
+                geometry = config["policy"] == "evidence_heuristic_v1" and targets and not state["channels"]
+                name = "resample_geometry" if geometry else ("resample_event" if config["policy"] == "evidence_heuristic_v1" else "propose")
+                action.update(name=name, candidate_id=targets[0]["candidate_id"] if geometry else None,
+                    parameters=dict(sampler=state["sampler"], sampling_seed=config["seed"] + len(state["generation"])),
+                    expected_cost=deepcopy(config["generation_envelope"]),
+                    rationale="saddle_without_connected_channel" if geometry else "explore_after_observed_batch",
+                    mechanistic_question="Can a new generated event or geometry address the observed unresolved or repeated outcome?",
+                    expected_evidence="Metered fresh model proposal and a hashed independent-certification handoff")
     action["action_id"] = identity(action)
     return action
 
@@ -188,6 +219,18 @@ def reduce_outcome(state: dict, action: dict, outcome: dict, config: dict) -> di
     after["step"] += 1
     if action["name"] == "finish":
         after.update(finished=True, stop_reason=action["rationale"])
+    elif action["name"] in GENERATION_ACTIONS:
+        generated = outcome["generation"]
+        check_cost(generated["cost"])
+        if any(v is None for v in generated["cost"].values()) or generated["action_id"] != action["action_id"]:
+            raise ValueError("generation cost or action identity is unresolved")
+        for c in generated["candidates"]:
+            if c["pool_sha256"] != state["candidates"][0]["pool_sha256"] or c["protocol_sha256"] != state["candidates"][0]["protocol_sha256"]:
+                raise ValueError("new generation changed fixed atom pool or protocol")
+            after["pending_certification"].append(c)
+        after["generation"].append(deepcopy(generated))
+        after["generation_spent"] = add_costs([state["generation_spent"], generated["cost"]])
+        after["generation_remaining"] = {k: config["generation_budget"][k] - after["generation_spent"][k] for k in COST_AXES}
     elif action["name"] == "select_sampling_policy":
         after["sampler"] = action["parameters"]["sampler"]
         after["sampler_changes"].append(dict(action_id=action["action_id"], sampler=after["sampler"], executed_generation=False))

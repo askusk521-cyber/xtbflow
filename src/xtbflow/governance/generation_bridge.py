@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict
+import math
 from typing import Any
 
 from xtbflow.validation.certification import CertificationCandidate, identity
@@ -10,6 +11,31 @@ from xtbflow.validation.certification import CertificationCandidate, identity
 QUERY_FIELDS = frozenset({"query_id", "parent_id", "atomic_numbers", "x_r", "b_r", "atom_ids",
                           "reactant_automorphisms", "charge", "multiplicity", "environment", "provenance"})
 LEGACY_FIELDS = ("query_id", "atomic_numbers", "x_r", "b_r", "charge", "multiplicity")
+
+
+def validate_generation_config(cfg: dict) -> None:
+    """An external action config cannot turn a bounded worker into an unlimited run."""
+    methods = {"joint_generation": 1, "independent_event_then_geometry": 2, "conditioned_geometry": 1}
+    if not cfg["methods"] or len(cfg["methods"]) != len(set(cfg["methods"])) or any(m not in methods for m in cfg["methods"]):
+        raise ValueError("unregistered or duplicated generation methods")
+    for name, cap in (("query_count", 8), ("proposals_per_query", 8), ("steps_per_branch", 100)):
+        if type(cfg[name]) is not int or not 1 <= cfg[name] <= cap:
+            raise ValueError("finite generation dimensions required")
+    if cfg["joint_clock"] != "event_lead2" or type(cfg["sampling_seed"]) is not int or cfg["sampling_seed"] < 0:
+        raise ValueError("unregistered clock or invalid seed")
+    g = cfg["generation"]
+    for name, cap in (("max_forward_evaluations", 10000), ("cpu_cores", 8), ("max_output_bytes", 64 * 1024**2)):
+        if type(g[name]) is not int or not 1 <= g[name] <= cap:
+            raise ValueError("finite worker resources required")
+    for name, cap in (("max_wall_seconds", 600), ("max_gpu_hours", 1), ("max_cpu_core_hours", 8), ("max_storage_gb", 1)):
+        v = g[name]
+        if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or not 0 < v <= cap:
+            raise ValueError("finite worker time/storage required")
+    needed = cfg["query_count"] * cfg["proposals_per_query"] * cfg["steps_per_branch"] * sum(methods[m] for m in cfg["methods"])
+    if needed > g["max_forward_evaluations"]:
+        raise ValueError("requested rollouts exceed forward envelope")
+    if cfg.get("candidate_namespace") and (len(cfg["candidate_namespace"]) != 64 or any(c not in "0123456789abcdef" for c in cfg["candidate_namespace"])):
+        raise ValueError("candidate namespace must be a SHA256")
 
 
 def validate_query(query: dict) -> CertificationCandidate:

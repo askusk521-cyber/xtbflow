@@ -20,8 +20,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from xtbflow.governance.generation_bridge import (  # noqa: E402
-    certification_candidate, legacy_query, validate_journal, validate_query,
+    certification_candidate, legacy_query, validate_journal, validate_query, validate_generation_config,
 )
+from research_generation_worker import bind_parent_lifetime  # noqa: E402
 from xtbflow.governance.research_replay import check_source, git  # noqa: E402
 from xtbflow.runtime import LedgerEvent, RunLedger, StageBudget  # noqa: E402
 from xtbflow.validation.certification import file_hash, identity, write_json  # noqa: E402
@@ -105,8 +106,13 @@ def prepare_queries(cache: Path, cfg: dict) -> tuple[list[dict], dict]:
 
 
 def main() -> int:
+    bind_parent_lifetime()
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--cache", type=Path, required=True)
+    inputs = parser.add_mutually_exclusive_group(required=True)
+    inputs.add_argument("--cache", type=Path)
+    inputs.add_argument("--reactants", type=Path)
+    parser.add_argument("--conditioned-events", type=Path)
+    parser.add_argument("--config", type=Path, default=ROOT / "configs/research/generation_bridge_20261107.json")
     parser.add_argument("--research-source", type=Path, required=True)
     parser.add_argument("--model-root", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
@@ -115,8 +121,9 @@ def main() -> int:
         parser.error("run through ssh n2 with a finite Slurm GPU allocation")
     if git(ROOT, "status", "--porcelain"):
         parser.error("clean committed source required")
-    config_path = ROOT / "configs/research/generation_bridge_20261107.json"
+    config_path = args.config.resolve()
     cfg = json.loads(config_path.read_text())
+    validate_generation_config(cfg)
     args.out = args.out.resolve()
     args.out.mkdir(parents=True, exist_ok=False)
     started = time.monotonic()
@@ -130,7 +137,7 @@ def main() -> int:
                   started_at=datetime.now(timezone.utc).isoformat(), python=platform.python_version(),
                   packages={p: importlib.metadata.version(p) for p in ("torch", "numpy", "rdkit")},
                   budget=cfg["generation"], claim_limits=cfg["claim_limits"], new_calculator_calls=0,
-                  training_steps=0, candidates=[], call_summary={"forward_evaluations": 0})
+                  training_steps=0, worker_requested=False, candidates=[], call_summary={"forward_evaluations": 0})
     write_json(args.out / "report.json", report)
     raw = args.out / "raw"
     raw.mkdir()
@@ -138,19 +145,46 @@ def main() -> int:
         report["research_source"] = check_source(args.research_source, asset)
         if asset["commit"] != cfg["research_commit"]:
             raise ValueError("research_commit_not_in_registry")
-        queries, report["input_audit"] = prepare_queries(args.cache, cfg)
+        if args.reactants is None:
+            queries, report["input_audit"] = prepare_queries(args.cache, cfg)
+        else:
+            if args.reactants.stat().st_size > 1024**2:
+                raise ValueError("reactant_packet_too_large")
+            queries = json.loads(args.reactants.read_text())["queries"]
+            if len(queries) != cfg["query_count"]:
+                raise ValueError("reactant_query_count_mismatch")
+            for query in queries:
+                validate_query(query)
+            report["input_audit"] = dict(selection="explicit_hashed_reactant_packet",
+                packet_sha256=file_hash(args.reactants), selected=[dict(record_id=q["query_id"], parent_id=q["parent_id"],
+                    atoms=len(q["atomic_numbers"]), input_sha256=q["provenance"]["input_sha256"]) for q in queries])
         write_json(raw / "reactants.json", {"queries": queries})
         packet = dict(config=cfg, queries=[legacy_query(q) for q in queries])
+        if "conditioned_geometry" in cfg["methods"]:
+            if args.conditioned_events is None or args.conditioned_events.stat().st_size > 1024**2:
+                raise ValueError("explicit_bounded_conditioned_events_required")
+            events = json.loads(args.conditioned_events.read_text())
+            if set(events) != {q["query_id"] for q in queries}:
+                raise ValueError("conditioned_event_query_mismatch")
+            for q in queries:
+                certification_candidate(q, dict(query_id=q["query_id"], candidate_id="condition-check", status="generated",
+                    method="conditioned_geometry", proposal=0, b_dec=events[q["query_id"]], x=q["x_r"]),
+                    generation_protocol={"role": "validate_generated_condition"})
+            packet["conditioned_events"] = events
+        elif args.conditioned_events is not None:
+            raise ValueError("unexpected_conditioned_event")
         write_json(raw / "worker-packet.json", packet)
         report["worker_packet_sha256"] = file_hash(raw / "worker-packet.json")
         report["status"] = "executing"
         write_json(args.out / "report.json", report)
         env = dict(os.environ, PYTHONPATH=str(args.research_source.resolve() / "src"),
-                   PYTHONDONTWRITEBYTECODE="1")
+                   PYTHONDONTWRITEBYTECODE="1", XTBFlow_PARENT_PID=str(os.getpid()))
         command = [sys.executable, str(ROOT / "scripts/research_generation_worker.py"),
                    "--research-source", str(args.research_source.resolve()), "--model-root", str(args.model_root.resolve()),
                    "--packet", str(raw / "worker-packet.json"), "--out", str(raw)]
         with (raw / "worker.log").open("wb") as log:
+            report["worker_requested"] = True
+            write_json(args.out / "report.json", report)
             completed = subprocess.run(command, env=env, cwd=args.out, stdout=log, stderr=subprocess.STDOUT,
                                        timeout=cfg["generation"]["max_wall_seconds"], check=False)
         journal = json.loads((raw / "calls.json").read_text())
@@ -188,7 +222,7 @@ def main() -> int:
     except subprocess.TimeoutExpired:
         report.update(status="execution_timeout", failure_type="worker_wall_limit")
     except Exception as exc:
-        report.update(status="execution_failed", failure_type=type(exc).__name__)
+        report.update(status="execution_failed" if report["worker_requested"] else "not_started_error", failure_type=type(exc).__name__)
         print(f"{type(exc).__name__}: {exc}", file=sys.stderr)
     accounting_resolved = True
     if (raw / "calls.json").exists():

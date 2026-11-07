@@ -16,7 +16,7 @@ BE hashes and raw result locators are retained along with energy (Hartree),
 gradient identity (Hartree/bohr), frequencies (cm^-1), execution status and
 layered scientific status. Absent quantities are unknown, not zero.
 
-## Finite actions and current availability
+## Finite actions in the replay profile (v1)
 
 Every action has a version, sequence, visible-state hash, policy/seed, target,
 finite parameters, mechanistic question, rationale, expected evidence, complete
@@ -91,14 +91,115 @@ srun --partition=main --nodes=1 --ntasks=1 --cpus-per-task=1 --mem=2G \
   --reference-panel "$XTBFlow_ORIGINAL_PANEL" --out "$XTBFlow_AGENT_OUTPUT"
 ```
 
-The runner bounds work to 120 seconds, 16 MiB inputs and 16 MiB outputs, one CPU,
+The replay runner bounds work to 120 seconds, 16 MiB inputs and 16 MiB outputs, one CPU,
 zero new calculator calls and zero GPU. Slurm also bounds process/setup overhead.
 The repeated-channel behavior is tested with fixtures only. W09 still needs two
 real adaptive loops: reallocating exploration after repeated physical channels,
 and acquiring information after physical disagreement then generating a changed
-proposal. Live tool adapters, full cost comparison (#140), and intermediate
-expansion (#142) remain incomplete. This PR does not complete W09.
+proposal. The reference-only v1 profile has no live tools. The v2 connection below
+adds generation actions; physical probes, reference acquisition, full cost
+comparison (#140) and intermediate expansion (#142) remain incomplete.
 
 本入口逐步读取真实认证记录，让单一决策器选择有限动作，并保留每一步可重放的依据。
 回放中的历史计算费用与这次读取文件的费用分开记录，失败调用和实际端点不会丢失。
-当前改变采样配置还不会执行新一轮生成，因此仍需接通真实重采样和补充计算，才能证明自适应探索有效。
+v1 回放只记录采样配置选择；下面的 v2 连接执行生成，仍需真实补充计算和完整对照才能证明自适应探索有效。
+
+## Live generation profile (v2)
+
+`reference_feedback_generation` uses the same `FeedbackLoop`, pure `choose`
+function, versioned action records and reducer as reference replay. It first
+verifies every completed original reference attempt, then executes a fresh
+proposal through `LiveGenerationTools` and `GenerationActions`. The query must
+have the identical mapped pool, charge/spin, environment and original reactant
+identity. Original reference results and historical costs remain immutable; the
+previous generation cost is retained separately too.
+
+The fixed policy calls `propose`. The heuristic calls `resample_event` after the
+observed batch, or `resample_geometry` when a first-order saddle was observed
+without a connected channel. This is a choice under unresolved evidence, not a
+conclusion that the proposed event is wrong. Observed alternatives or independent
+repeated channels still select the predeclared serial sampler. Event proposals
+run the selected joint or independent-serial models. Geometry resampling runs
+only the trained geometry model, conditioned on the earlier **generated** BE
+hypothesis. It receives no actual reference product, optimized TS coordinates,
+reference mode or target label. The fixed event is checked after rollout. All
+actions resample from the original reactant packet with a deterministic seed;
+generated candidate IDs include the action identity.
+
+New native proposals enter `pending_certification`, never the channel index.
+The first live increment ends with a hashed handoff to an independent reference
+stage. It does not yet execute physical-probe/reference-label/refine-TS or network
+expansion actions in the same policy loop. Both required adaptive scientific
+demonstrations and matched-budget policy comparison remain necessary.
+
+The generator service serializes actions, checks a full resource envelope and
+persists an immutable request before starting a worker. The existing forward
+journal records every model call before invocation. Results precede shared
+`RunLedger` settlement. Repeated actions verify requests, reports, raw artifacts,
+candidate identities and exact ledger events without another worker. Changed
+action hashes, inputs, configs or artifacts are rejected. Pending actions are
+reconciled before new work. Interrupted actions are not automatically retried;
+durable model calls stay charged and time uses a labeled conservative bound.
+Missing/corrupt journals receive a labeled forward-envelope upper bound with
+unknown kernel count, rather than free work or invented measured calls.
+Report-writing and settlement failures have separate markers.
+A verified settled preflight failure before the worker was requested is
+`not_started_error`, with zero model calls but its actual allocated time charged.
+The service identity includes PyTorch/NumPy versions and installed package RECORD
+hashes. These pin distribution builds rather than attest every installed binary.
+The top-level runner's explicit `--resume` reuses the same clean source, config,
+input locations and pinned scientific inputs under an entry lock; earlier reports
+are retained as snapshots. Recovery may settle an interruption but never silently
+retry its model calculation. Interrupted controller overhead remains unknown or
+separately recorded, not assigned zero.
+
+Runner and worker install Linux parent-death signals with parent-identity race
+checks. Killing the controller therefore terminates its runner and worker.
+Worker CPU affinity, file and CPU limits remain enforced; the controller monitors
+total output and wall time. Ledger `system_evaluations` means model forwards and
+`calculator_calls` is always zero; calculator tokens are not repurposed as model
+counters. Journal roles distinguish joint/event/geometry calls. Action wall/CPU
+includes runner setup. The outer report records decision-process CPU, total wall
+and retained bytes separately. Action artifact costs exclude final settlement/
+ledger metadata, which the outer retained-byte report captures. This is not a
+complete training/tuning-cost comparison.
+
+`configs/agent/live_generation_policy_20261107.json` and
+`live_generation_run_20261107.json` freeze the original generation report, plan,
+reactant packet, source and reference protocol. Once the original reference batch
+completes, its report/results are hashed before the first decision. This does not
+select candidates or thresholds from outcomes. The resolved policy fills only
+verified previous generation costs; template and resolved hashes are both saved.
+
+The pilot allows one new proposal, at most 100 model forwards for that action,
+120 worker seconds plus ten outer seconds, eight worker CPUs, 64 MiB worker
+output and a monitored 129 MiB action envelope. The stage caps are 150 forwards,
+0.2 GPU-hours, 1.6 CPU-core-hours, 0.25 GiB, one job, 12 minutes and no retry.
+Historical reference and actual new generation costs have separate finite budgets.
+The subsequent one-candidate reference stage separately permits 1 GPU-hour,
+8 CPU-core-hours, 3000 primitives, 0.5 GiB and 3300 seconds per attempt.
+
+On n2, set the source SHA, clean named checkout, original generation/reference
+paths, pinned research checkout, model root and fresh output. Within a finite
+12-minute main/gpu:pro6000:1/eight-CPU/64-GiB allocation after reference completion:
+
+```bash
+source ~/miniconda3/etc/profile.d/conda.sh
+conda activate xtbflow
+cd "$XTBFlow_AGENT_SOURCE"
+test "$(git rev-parse HEAD)" = "$XTBFlow_AGENT_COMMIT"
+export OMP_NUM_THREADS=8 OPENBLAS_NUM_THREADS=8 MKL_NUM_THREADS=8
+timeout 650 python scripts/run_feedback_generation.py \
+  --generation "$XTBFlow_ORIGINAL_GENERATION" --reference "$XTBFlow_ORIGINAL_REFERENCE" \
+  --research-source "$XTBFlow_RESEARCH_SOURCE" --model-root "$XTBFlow_MODEL_ROOT" \
+  --out "$XTBFlow_NEW_AGENT_OUTPUT"
+```
+
+The resulting `certification-handoffs.json` identifies the generation folder and
+resolved generator config. Pass them as `--generation` and `--generation-config`
+to `certify_generated_candidates.py`, with
+`--config configs/validation/agent_generated_candidates_20261107.json`. That
+separate job must activate `xtbflow-qc`, check the exact clean source, record its
+environment, and use main/gpu:pro6000:1/eight CPUs/64 GiB/60 minutes with a fresh
+output directory. The handoff is not a certificate. Failed/unresolved outcomes
+and both phases' costs must be published separately.

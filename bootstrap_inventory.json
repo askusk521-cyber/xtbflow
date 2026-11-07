@@ -588,6 +588,21 @@
       "bytes": 3702
     },
     {
+      "path": "docs/evidence/reference_monitor_retry_20261107.json",
+      "sha256": "a859a201c98c0126b6a03f1b725c87c3090ebf540cac7662356132b62d4783ad",
+      "bytes": 7544
+    },
+    {
+      "path": "docs/evidence/reference_monitor_retry_20261107.md",
+      "sha256": "4be5e8c54f8491a8066d988ec79aa31ba0c68a506ece2b4d205ee05cfa366aa0",
+      "bytes": 4666
+    },
+    {
+      "path": "docs/evidence/reference_monitor_retry_20261107_artifacts.json",
+      "sha256": "c37d99a27fd2d750666471f27bd5f7db306ce57680221b220b9b9dcefae4163e",
+      "bytes": 1999
+    },
+    {
       "path": "docs/evidence/research_asset_replay_20261107.json",
       "sha256": "a45dc66cf95b9b9569a91c6c6a6e52c6db9bacd5ae0a24a732677e3c927ee259",
       "bytes": 83946

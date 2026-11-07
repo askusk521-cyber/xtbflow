@@ -19,8 +19,8 @@
     },
     {
       "path": "AGENTS.md",
-      "sha256": "06e09f7152626e2091948a485d87180ac3dcd27d8595e0ba5bf56bac6feed813",
-      "bytes": 4621
+      "sha256": "7fcfc8cc8c22e027acbde84c0d8a9ee6047532b23bd000c70568cb1d616d7292",
+      "bytes": 14497
     },
     {
       "path": "README.md",
@@ -386,6 +386,11 @@
       "path": "docs/MECHAI_REUSE_MANIFEST.json",
       "sha256": "2b3a1f89841edac9f74545c19377391eeba815f3083d2f6a915d91b1bc01f8fb",
       "bytes": 6609
+    },
+    {
+      "path": "docs/PROJECT_STATUS.md",
+      "sha256": "cc189a05f9588c36042ca4b8413a8ba4258bdc6c39f0398c600e121dd52bd412",
+      "bytes": 443
     },
     {
       "path": "docs/PROVENANCE.md",

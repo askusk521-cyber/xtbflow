@@ -1,0 +1,52 @@
+{
+  "audited_at": "2026-11-07T15:25:06.696032+00:00",
+  "cases": [
+    {
+      "artifact_hashes_verified": true,
+      "by_primitive": {
+        "gradient": 143,
+        "hessian": 4,
+        "scf": 143
+      },
+      "by_stage": {
+        "end_first_freq": 3,
+        "end_first_opt": 4,
+        "end_last_freq": 3,
+        "end_last_opt": 4,
+        "irc": 248,
+        "ts_final_hessian": 3,
+        "ts_initial_hessian": 3,
+        "ts_optts": 22
+      },
+      "calls_file_sha256": "62fafa4cab3de9ec5a9962e83bb0787c6903410446b2d94b0149d6949da9303b",
+      "item_id": "98a2bcd101825aa9",
+      "result_file_sha256": "b7ecc9362e13b599459d1345fd44833d63770d0c9347d44ee5ed5c8173c4eb1b",
+      "settlement_file_sha256": "adeed29e5e68ba33917abc9d5ef4e5642a3f793670b52ac8e14d1f4a8938685c",
+      "unfinished_calls": 0
+    }
+  ],
+  "channel_index_sha256": "4ade891b881ea5d6e3aed2f7fa01800bc2a90fa7c4a1dabd4ff29164703cf245",
+  "host": "node2",
+  "job_script_sha256": "be95e4297f7d02af78f03d9bbed17fa111fc9979843fd7c9c7ce016110d4eec1",
+  "ledger_sha256": "7fd224573849179665b3aaf3e0cc02a1887a11ba16552aae563ef95eae0d7e1e",
+  "new_calculator_calls": 0,
+  "panel_report_sha256": "a859a201c98c0126b6a03f1b725c87c3090ebf540cac7662356132b62d4783ad",
+  "process_exit_code": 0,
+  "scheduler_before_exit_sha256": "a850389b67635d79eabeee3330d5045626b4795a34a5a32b1199613ac0b4c1c1",
+  "scheduler_final": {
+    "EndTime": "2026-11-07T23:22:19",
+    "ExitCode": "0:0",
+    "JobId": "4099",
+    "JobState": "COMPLETED",
+    "MinMemoryNode": "64G",
+    "NumCPUs": "8",
+    "RunTime": "00:24:24",
+    "StartTime": "2026-11-07T22:57:55",
+    "TimeLimit": "01:00:00"
+  },
+  "scheduler_final_sha256": "8147ec572bb77a2991f4dc50fd3639ed8c87f40f48094de18a3d23802d04e886",
+  "scheduler_log_sha256": "9e764ce3695bf4aef4e4e7fe4b0ab6b5f8ed642b9eae0415785f476a837eb6c3",
+  "schema": "xtbflow-reference-replay-artifact-audit/v1",
+  "source_commit": "e07ac8512fa987e0fad2e37b14c576c534a7df87",
+  "status": "artifact_audit_passed"
+}

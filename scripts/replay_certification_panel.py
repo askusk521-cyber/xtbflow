@@ -77,12 +77,14 @@ def main() -> int:
     parser.add_argument("--plan", type=Path, required=True)
     parser.add_argument("--archive", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--config", type=Path,
+                        default=ROOT / "configs/validation/certification_replay_20261107.json")
     args = parser.parse_args()
     if socket.gethostname() != "node2" or not os.environ.get("SLURM_JOB_ID"):
         parser.error("run through ssh n2 within a finite Slurm GPU allocation")
     if git("status", "--porcelain"):
         parser.error("source checkout must be clean")
-    config_path = ROOT / "configs/validation/certification_replay_20261107.json"
+    config_path = args.config.resolve()
     config = json.loads(config_path.read_text())
     args.out = args.out.resolve()
     args.out.mkdir(parents=True, exist_ok=False)
@@ -91,7 +93,7 @@ def main() -> int:
                   config_sha256=file_hash(config_path), input_plan_sha256=file_hash(args.plan),
                   started_at=datetime.now(timezone.utc).isoformat(), python=platform.python_version(),
                   slurm_job_id=os.environ["SLURM_JOB_ID"], stage_budget=config["stage_budget"],
-                  claim_limits=config["claim_limits"], cases=[])
+                  claim_limits=config["claim_limits"], retry_context=config.get("retry_context"), cases=[])
     write_json(args.out / "report.json", report)
     started = time.monotonic()
     try:

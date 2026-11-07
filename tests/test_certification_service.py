@@ -6,6 +6,7 @@ from dataclasses import replace
 import json
 from pathlib import Path
 import time
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
@@ -16,6 +17,39 @@ from xtbflow.validation.certification import (
     CallMeter, CertificationCandidate, CertificationService, feedback,
 )
 from xtbflow.validation import reference_protocol as numerical
+
+
+def test_storage_monitor_tolerates_atomic_journal_replacement(tmp_path):
+    stable = tmp_path / "calls.json"
+    stable.write_bytes(b"retained")
+    symlink = tmp_path / "link"
+    symlink.symlink_to(stable)
+
+    class DisappearingEntry:
+        def is_file(self):
+            return True  # Entry existed when the directory scan reached it.
+
+        def is_symlink(self):
+            return False
+
+        def stat(self):
+            raise FileNotFoundError("temporary journal was atomically replaced")
+
+        lstat = stat
+
+    folder = SimpleNamespace(rglob=lambda pattern: iter([DisappearingEntry(), stable, symlink]))
+    assert service_module._directory_bytes(folder) == len(b"retained")
+
+
+def test_storage_monitor_does_not_hide_permission_errors(tmp_path, monkeypatch):
+    (tmp_path / "calls.json").write_bytes(b"retained")
+
+    def denied(path):
+        raise PermissionError("unreadable metadata")
+
+    monkeypatch.setattr(Path, "lstat", denied)
+    with pytest.raises(PermissionError):
+        service_module._directory_bytes(tmp_path)
 
 
 def candidate(**changes):

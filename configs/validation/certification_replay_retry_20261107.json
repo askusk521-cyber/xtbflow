@@ -1,0 +1,65 @@
+{
+  "schema": "xtbflow-certification-panel/v1",
+  "purpose": "Numerical replay of the incomplete case after a storage-monitor software fix; preserve the original failed attempt and cost",
+  "source_pr": 119,
+  "source_commit": "e84e330390a519bf4ac12048b297403c09717646",
+  "input_plan_sha256": "0993c387fba18cd7761542099b1acb8146b9d78f2293f068d9ea872fe5d50fc8",
+  "cases": [
+    {
+      "item_id": "98a2bcd101825aa9",
+      "expected_evidence_status": "reference_ts_connected",
+      "archived_verdict_sha256": "7607084d5d561cb0624cedbbc268b3b48808cabbd818e960f8f94fbb93f23df4",
+      "archived_gpu_seconds": 1378
+    }
+  ],
+  "protocol_version": "xtbflow-reference-certification/1",
+  "numerical_tolerances": {
+    "ts_energy_hartree": 1e-06,
+    "endpoint_energy_hartree": 1e-05,
+    "frequencies_cm1": 1.0,
+    "aligned_ts_rmsd_angstrom": 0.001
+  },
+  "stage_budget": {
+    "phase": "W07-reference-monitor-fix-replay-20261107",
+    "max_gpu_hours": 1.0,
+    "max_cpu_core_hours": 8.0,
+    "max_system_evaluations": 1,
+    "max_calculator_calls": 3000,
+    "max_storage_gb": 0.5,
+    "max_concurrent_jobs": 1,
+    "max_retries_per_job": 0,
+    "max_wall_minutes_per_job": 60
+  },
+  "per_candidate": {
+    "max_calls": 3000,
+    "max_wall_seconds": 3300,
+    "cpu_cores": 8,
+    "max_raw_bytes": 134217728
+  },
+  "scheduler": {
+    "partition": "main",
+    "gres": "gpu:pro6000:1",
+    "cpus_per_task": 8,
+    "memory_gb": 64,
+    "wall_minutes": 60
+  },
+  "budget_rationale": "The original second attempt consumed 265 primitives and 1300.6843819138594 seconds before an atomic-file monitoring race interrupted IRC. This one-case software-fix replay reserves 3300 seconds and 3000 primitives, within one GPU-hour, eight CPU-core-hours and 0.5 GiB. Numerical methods and tolerances are unchanged; this is a new finite stage, not a discarded or free retry. The successful first case is not rerun.",
+  "claim_limits": [
+    "The case was originally selected for a known matched event, then replayed after an observed software fault; no performance or discovery-rate estimate is possible.",
+    "Only gas-phase neutral singlet CHNO is supported. No solution, CP2K, xTB, open-shell, or experimental claim.",
+    "Raw geometry and source verdicts remain on n2; public outputs contain hashes, aggregate diagnostics and event IDs.",
+    "New final-gradient checks and rejection of endpoint gray zones are versioned protocol changes, not retroactive edits to old certificates.",
+    "Storage is monitored every 0.1 seconds with per-file limits; it is not a filesystem quota and transient overshoot is possible. Overshoot blocks successful certification and must be reported."
+  ],
+  "retry_context": {
+    "previous_source_commit": "931d81f53a85669e137600c62b343120ff0de3d0",
+    "previous_job_id": "4096",
+    "previous_report_sha256": "0365ceceaae80a5f2bc724dc38b30ff080c17902814c6212a381c9086f5dac9b",
+    "previous_item_id": "98a2bcd101825aa9",
+    "previous_case_calculator_calls": 265,
+    "previous_case_wall_seconds": 1300.6843819138594,
+    "previous_case_cpu_seconds": 1471.143259,
+    "previous_panel_total_calculator_calls": 467,
+    "reason": "FileNotFoundError during concurrent atomic-journal storage monitoring"
+  }
+}

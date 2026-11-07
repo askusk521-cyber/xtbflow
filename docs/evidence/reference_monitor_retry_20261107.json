@@ -1,0 +1,204 @@
+{
+  "cases": [
+    {
+      "archived_verdict_sha256": "7607084d5d561cb0624cedbbc268b3b48808cabbd818e960f8f94fbb93f23df4",
+      "artifact_bytes": 1201998,
+      "artifact_count": 19,
+      "cache_key": "01c794544c70d589f2dd2b2544db24149df5ba240058c255161eb3a397af2f70",
+      "cache_replay": {
+        "cache_hit": true,
+        "identical_record": true,
+        "new_calculator_calls": 0,
+        "new_channel": false
+      },
+      "candidate_sha256": "5a0b8aea92ae5c8f5cc0cbce193a2598d04b135dced80a325e6af3da914c4ead",
+      "charged_calls": 290,
+      "evidence_status": "reference_ts_connected",
+      "execution_status": "completed",
+      "item_id": "98a2bcd101825aa9",
+      "numerical_comparison": {
+        "actual_event_identical": true,
+        "aligned_ts_rmsd_angstrom": 3.217054035432948e-10,
+        "max_endpoint_energy_difference_hartree": 2.282206423842581e-08,
+        "max_frequency_difference_cm1": 9.757832231116481e-08,
+        "passed": true,
+        "status": "compared",
+        "ts_energy_difference_hartree": 2.2737367544323206e-13
+      },
+      "observed_event_id": "5065259568e669c1b5f2a2f8",
+      "passed": true,
+      "planned_event_id": "5065259568e669c1b5f2a2f8",
+      "resources": {
+        "basis": "measured",
+        "cpu_seconds": 1634.645271,
+        "wall_seconds": 1462.9912424860522
+      },
+      "result_content_sha256": "10dfd760caa99f87851b953bbb266186b0218bc58d73d9596ebdb64f31120634"
+    }
+  ],
+  "claim_limits": [
+    "The case was originally selected for a known matched event, then replayed after an observed software fault; no performance or discovery-rate estimate is possible.",
+    "Only gas-phase neutral singlet CHNO is supported. No solution, CP2K, xTB, open-shell, or experimental claim.",
+    "Raw geometry and source verdicts remain on n2; public outputs contain hashes, aggregate diagnostics and event IDs.",
+    "New final-gradient checks and rejection of endpoint gray zones are versioned protocol changes, not retroactive edits to old certificates.",
+    "Storage is monitored every 0.1 seconds with per-file limits; it is not a filesystem quota and transient overshoot is possible. Overshoot blocks successful certification and must be reported."
+  ],
+  "config_sha256": "2688bfeb7295990c42e233bcd023c3a7ea04be6212022691b684adae9fa44490",
+  "gpu": {
+    "driver": 13020,
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "runtime": 12090
+  },
+  "host": "node2",
+  "input_plan_sha256": "0993c387fba18cd7761542099b1acb8146b9d78f2293f068d9ea872fe5d50fc8",
+  "ledger": {
+    "active_jobs": [],
+    "budget": {
+      "max_calculator_calls": 3000,
+      "max_concurrent_jobs": 1,
+      "max_cpu_core_hours": 8.0,
+      "max_gpu_hours": 1.0,
+      "max_retries_per_job": 0,
+      "max_storage_gb": 0.5,
+      "max_system_evaluations": 1,
+      "max_wall_minutes_per_job": 60,
+      "phase": "W07-reference-monitor-fix-replay-20261107"
+    },
+    "by_calculator": {
+      "gpu4pyscf": 1
+    },
+    "by_operation": {
+      "other": 1
+    },
+    "by_status": {
+      "success": 1
+    },
+    "ledger_id": "3a5608cf18b14460a061e2777b097ce9",
+    "phase": "W07-reference-monitor-fix-replay-20261107",
+    "schema": "xtbflow-run-ledger/v1",
+    "totals": {
+      "attempts": 1,
+      "cache_hits": 0,
+      "calculator_calls": 290,
+      "cpu_core_hours": 0.45406813083333336,
+      "failures": 0,
+      "gpu_hours": 0.4063864562461256,
+      "retries": 0,
+      "storage_gb": 0.001119447872042656,
+      "successes": 1,
+      "system_evaluations": 1
+    }
+  },
+  "probe_wall_seconds": 0.6215395459439605,
+  "protocol": {
+    "adapter_source_sha256": "a4d2ec271f39ba501f1be5bc34bd180bc1d22a10bffdfbedda5872cd7eb15ccf",
+    "device": "gpu",
+    "engine": "gpu4pyscf",
+    "evidence_scope": "gas_phase_neutral_singlet_CHNO_reference_protocol",
+    "execution_build": {
+      "driver": 13020,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+      "runtime": 12090
+    },
+    "installed_record_sha256": {
+      "cupy-cuda12x": "2975a4ba372a04a5a0a5380c01504c0e5788b79f6030cceaf3924a728e1774b9",
+      "geometric": "fb7620676807f51b34f6da5689a2e01475229072ed4f854137c86c9dfb479a4a",
+      "gpu4pyscf-cuda12x": "1fc29488f8471674b4e50a15ff2cb5a245044bd81fc468f4b237fbd8b2ba34cb",
+      "numpy": "a59db318ca8beff222112cb8713d425702f744c329d409dad511c539d889a9a6",
+      "pyscf": "c528ff36159f1d0f894bf81236b7d954914a7c3f08e99d802ad4634dc2df1f14",
+      "rdkit": "ebafa0c60b860d7fdbfd829623a19da563357b22881b87e0e4d7bfd0b0e7c0cb",
+      "scipy": "b8ea386fea9f83a6696fb52817f71582fb1174192a306225bc87ea13177b1b64"
+    },
+    "method": {
+      "basis": "6-31g*",
+      "charge": 0,
+      "conv_tol": 1e-10,
+      "density_fitting": false,
+      "dispersion": null,
+      "energy_kind": "electronic",
+      "grids_level": 5,
+      "max_cycle": 300,
+      "program": "gpu4pyscf",
+      "solvent": null,
+      "spherical": true,
+      "spin": 0,
+      "wavefunction": "RKS",
+      "xc": "wb97x"
+    },
+    "packages": {
+      "cupy-cuda12x": "14.2.0",
+      "geometric": "1.1.1",
+      "gpu4pyscf-cuda12x": "1.8.1",
+      "numpy": "2.4.6",
+      "pyscf": "2.14.0",
+      "rdkit": "2026.3.6",
+      "scipy": "1.17.1"
+    },
+    "protocol_source_sha256": "e69903868cf380d808762c09fadb743b577f0812e5ec249cc0172af6a7f6f956",
+    "thresholds": {
+      "allow_endpoint_gray_zone": false,
+      "irc": {
+        "maxiter": 300,
+        "tmax": 0.2,
+        "trust": 0.2
+      },
+      "min_retry_displacement_angstrom": 0.1,
+      "negative_frequency_cm1": -30.0,
+      "opt_maxiter": 200,
+      "tight": {
+        "convergence_dmax": 0.001,
+        "convergence_drms": 0.0006,
+        "convergence_energy": 1e-06,
+        "convergence_gmax": 0.0001,
+        "convergence_grms": 3e-05
+      },
+      "very_tight": {
+        "convergence_dmax": 0.0002,
+        "convergence_drms": 0.0001,
+        "convergence_energy": 2e-07,
+        "convergence_gmax": 3e-05,
+        "convergence_grms": 8e-06
+      }
+    },
+    "units": {
+      "coordinates": "Angstrom",
+      "energy": "Hartree",
+      "frequencies": "cm^-1",
+      "gradient": "Hartree/bohr",
+      "hessian": "Hartree/bohr^2"
+    },
+    "version": "xtbflow-reference-certification/1"
+  },
+  "protocol_sha256": "637e18f276d78daa7b9ed5155139dae6cb93943a9a1b5ad03e3516ff574e14d6",
+  "python": "3.11.17",
+  "retry_context": {
+    "previous_case_calculator_calls": 265,
+    "previous_case_cpu_seconds": 1471.143259,
+    "previous_case_wall_seconds": 1300.6843819138594,
+    "previous_item_id": "98a2bcd101825aa9",
+    "previous_job_id": "4096",
+    "previous_panel_total_calculator_calls": 467,
+    "previous_report_sha256": "0365ceceaae80a5f2bc724dc38b30ff080c17902814c6212a381c9086f5dac9b",
+    "previous_source_commit": "931d81f53a85669e137600c62b343120ff0de3d0",
+    "reason": "FileNotFoundError during concurrent atomic-journal storage monitoring"
+  },
+  "schema": "xtbflow-certification-replay/v1",
+  "slurm_job_id": "4099",
+  "source_branch": "codex/w137-monitor-race-20261107",
+  "source_commit": "e07ac8512fa987e0fad2e37b14c576c534a7df87",
+  "stage_budget": {
+    "max_calculator_calls": 3000,
+    "max_concurrent_jobs": 1,
+    "max_cpu_core_hours": 8.0,
+    "max_gpu_hours": 1.0,
+    "max_retries_per_job": 0,
+    "max_storage_gb": 0.5,
+    "max_system_evaluations": 1,
+    "max_wall_minutes_per_job": 60,
+    "phase": "W07-reference-monitor-fix-replay-20261107"
+  },
+  "started_at": "2026-11-07T14:57:55.847935+00:00",
+  "status": "replay_passed",
+  "unique_channels": 1,
+  "wall_seconds": 1463.714610466035
+}

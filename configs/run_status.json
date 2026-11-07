@@ -1,6 +1,8 @@
 {
   "repo": "askusk521-cyber/xtbflow",
   "label": "run-status",
+  "issue_number": 130,
+  "roadmap_issue": 129,
   "issue_title": "项目运行状态（自动更新）",
   "ssh_host": "n2",
   "slurm_user": "lhshen",

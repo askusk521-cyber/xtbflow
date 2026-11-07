@@ -24,8 +24,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "4c5e4e3a5f4700680f4d6303e998db08b538b975e86a075db5d15870c45cd0a2",
-      "bytes": 4571
+      "sha256": "25a8bf9748b5798a29c53521f5cb125b547bc4f29ebbe14cd21397c514131eae",
+      "bytes": 4915
     },
     {
       "path": "archive/README.md",
@@ -259,8 +259,8 @@
     },
     {
       "path": "configs/run_status.json",
-      "sha256": "afa5154e596af041dd0d8ffb9b977fbc3a6308aeb4fdcc77052d9f6ffd4ea1f7",
-      "bytes": 355
+      "sha256": "b9d4043d755ea092f48e2e31635b0c12e41315cff9201dc55522b204c20841d3",
+      "bytes": 402
     },
     {
       "path": "configs/runs/README.md",
@@ -386,6 +386,11 @@
       "path": "docs/HANDOFF_FREEZE.md",
       "sha256": "c0aecb8a7c71854c024d04612b80f8618f225fe844a73b55ac154978cbdd47f7",
       "bytes": 2014
+    },
+    {
+      "path": "docs/INNOVATION_ROADMAP.md",
+      "sha256": "b76af44802f55ac93157496db55a56fb3f7a561457d5cfa0f63fe9812d884e04",
+      "bytes": 5186
     },
     {
       "path": "docs/MECHAI_REUSE_MANIFEST.json",
@@ -1084,8 +1089,8 @@
     },
     {
       "path": "scripts/update_run_status.py",
-      "sha256": "510bcc89308652572c6b135c88382ad3efd11439d9e9bdb736e9f79d0efe940f",
-      "bytes": 14749
+      "sha256": "fbfc95e6c54d04c2e8d83f28741096bf4690c75c0f671d223aa9f274038e2105",
+      "bytes": 16128
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -1546,6 +1551,11 @@
       "path": "tests/test_research_replay.py",
       "sha256": "4d52619506d652884ae6fea6b36fdc03ee807de93c9a1535ac3cfe3ac27008ba",
       "bytes": 6218
+    },
+    {
+      "path": "tests/test_run_status_routing.py",
+      "sha256": "83561233277c0029146d6787aeb11bdd0a16422f94c51dba80d799d2fd9efcbf",
+      "bytes": 1602
     },
     {
       "path": "tests/test_runtime_budget.py",

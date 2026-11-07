@@ -156,6 +156,13 @@ def gh(*args: str, input_text: str | None = None) -> str:
 
 
 def find_issue(cfg: dict) -> dict | None:
+    if cfg.get("issue_number") is not None:
+        issue = json.loads(gh("issue", "view", str(cfg["issue_number"]), "--repo", cfg["repo"],
+                              "--json", "number,body,url,state,labels"))
+        labels = {label["name"] for label in issue["labels"]}
+        if issue["state"] != "OPEN" or cfg["label"] not in labels:
+            raise ValueError("Configured run-status issue must be open and retain its automation label")
+        return issue
     rows = json.loads(gh("issue", "list", "--repo", cfg["repo"], "--label", cfg["label"], "--state", "open",
                          "--json", "number,body,url", "--limit", "5"))
     return min(rows, key=lambda r: r["number"]) if rows else None
@@ -190,6 +197,16 @@ def render(cfg: dict, payload: dict) -> str:
              "## n2 运行状态（自动更新）", "",
              f"最近一次采集：**{payload['collected_at'].replace('T', ' ')}**（{payload['host']}）。本机定时任务"
              f"{cfg['schedule_note']} 检查一次 n2；项目主页每天重建时读取本 issue。", ""]
+    if cfg.get("roadmap_issue") is not None:
+        roadmap = f"https://github.com/{cfg['repo']}/issues/{cfg['roadmap_issue']}"
+        lines += ["### English overview", "",
+                  f"This is the automated run-status endpoint for the [active research roadmap]({roadmap}). "
+                  "Development work and acceptance criteria belong to the execution issues linked there. "
+                  "Queue and log observations are operational records, not evidence of scientific acceptance.", "",
+                  "### 中文说明", "",
+                  f"当前开发任务以[创新路线总览 #{cfg['roadmap_issue']}]({roadmap})及其执行任务为准。"
+                  "本页只自动记录作业和日志状态，计算结束并不表示科学验收通过。"
+                  "请到对应执行任务查看交付物和未完成项，自动更新会持续保留这个入口。", ""]
     if payload.get("error"):
         lines += [f"> [!WARNING]", f"> {payload['last_attempt']} 采集失败：{payload['error']}。下面是上次成功采集的结果。", ""]
     lines += ["### Slurm 队列", ""]

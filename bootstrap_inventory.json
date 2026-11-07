@@ -223,6 +223,11 @@
       "bytes": 355
     },
     {
+      "path": "configs/models/dual_clock_runtime_v0.1.json",
+      "sha256": "06e95997dce4a35ef475eeb33e85461ec8f1faa38ac436113d7693e319c94ca6",
+      "bytes": 620
+    },
+    {
       "path": "configs/models/geometry_flow_v0.1.yaml",
       "sha256": "a67c849958081a29ca7bef14a888a60a9c533e2b6ae8ab34c0530dc6dd045da2",
       "bytes": 1130
@@ -496,6 +501,11 @@
       "path": "docs/architecture/discovery_comparison.md",
       "sha256": "280ece35be27e9a14d6c64dcbf264a404b3967543952f71c9c7538c69c856d0f",
       "bytes": 8281
+    },
+    {
+      "path": "docs/architecture/dual_clock_local_coupling.md",
+      "sha256": "c72d07821697a041dbc728dfa04140c9918013cd741ca3e810d3186904039fcc",
+      "bytes": 2273
     },
     {
       "path": "docs/architecture/feedback_agent.md",
@@ -1449,8 +1459,8 @@
     },
     {
       "path": "src/xtbflow/models/__init__.py",
-      "sha256": "4512e26c68119d14907c41d24cad9aec7aa794c9d0720e3939019335080d2d97",
-      "bytes": 1532
+      "sha256": "39fe1212e24984a5ba1cca055719fa36e7c9df495b27193528bca370b4b8fef7",
+      "bytes": 1597
     },
     {
       "path": "src/xtbflow/models/conserved_be.py",
@@ -1466,6 +1476,11 @@
       "path": "src/xtbflow/models/direct_energy.py",
       "sha256": "f4e4cacccc634c085df403b8c06354560b3291221faa2a1a11403f7b2464b026",
       "bytes": 1672
+    },
+    {
+      "path": "src/xtbflow/models/dual_clock.py",
+      "sha256": "ecf2225115800f55b19531734cd9491365ee3f75e244cbd331f11fe1775ca521",
+      "bytes": 4979
     },
     {
       "path": "src/xtbflow/models/event_decoder.py",
@@ -1489,8 +1504,8 @@
     },
     {
       "path": "src/xtbflow/models/joint_flow.py",
-      "sha256": "4788edd09d253237708d17d13291c8bc57dc59b675fa81b66f5ebea977c05d9d",
-      "bytes": 22441
+      "sha256": "6a5b20699b8088216be53a0cf6e902b6902abb7b58cb9f9af1f071706dc1b41d",
+      "bytes": 22796
     },
     {
       "path": "src/xtbflow/models/reaction_direction.py",
@@ -1569,8 +1584,18 @@
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
-      "sha256": "1ee6fbf1d03391722d893b58a2318236d3431b61c1c9ddf726efc9bd961cf375",
-      "bytes": 268
+      "sha256": "99dd6659674dee515743e8984cf32647435dd95ec1b47618f7514cb25ffd4126",
+      "bytes": 434
+    },
+    {
+      "path": "src/xtbflow/sampling/clocks.py",
+      "sha256": "bbeb15a6be5a2c4110697252d2026c77fa8508d1934e4e3d6dd937c1b08f4bd6",
+      "bytes": 2035
+    },
+    {
+      "path": "src/xtbflow/sampling/dual_clock.py",
+      "sha256": "f265e57a83fa5ac7b2fc9782ec80a07aa866c5d47f238cb5d1f7ee3a77c72b12",
+      "bytes": 3733
     },
     {
       "path": "src/xtbflow/sampling/guidance.py",
@@ -1731,6 +1756,11 @@
       "path": "tests/test_discovery_accounting.py",
       "sha256": "3257b99da86f7bafd05e6edacda6724cf394be18e668cff55b41cf8550f166ef",
       "bytes": 8199
+    },
+    {
+      "path": "tests/test_dual_clock.py",
+      "sha256": "1f80efb5401831b8e5ec688d6c976df55a35b19b01269ec223ad059981fdd736",
+      "bytes": 3559
     },
     {
       "path": "tests/test_energy_forces.py",

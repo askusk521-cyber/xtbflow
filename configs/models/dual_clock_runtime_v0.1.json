@@ -1,0 +1,15 @@
+{
+  "schema": "xtbflow-dual-clock-runtime/v1",
+  "model_id": "dual-clock-local-coupling-v0.1",
+  "status": "software_prototype_untrained",
+  "event_clock": {"power": 2.0, "finish": 0.75},
+  "geometry_clock": {"power": 1.0},
+  "coupling_window": {"start": 0.2, "end": 0.8},
+  "local_gate": {"radius_angstrom": 3.0, "event_scale_electrons": 1.0},
+  "integration": {"steps": 50, "max_model_evaluations": 53},
+  "claim_limits": [
+    "normalized generation clocks are not physical time",
+    "this configuration has no trained checkpoint or chemical result",
+    "calculator_calls is zero for the software trajectory"
+  ]
+}

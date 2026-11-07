@@ -48,10 +48,11 @@
   conda activate xtbflow
   ```
 
-- 已记录的 `xtbflow` 环境基线：Python 3.10.19、PyTorch 2.10.0+cu128、NumPy
-  1.26.4、SciPy 1.15.3、RDKit 2024.03.3、ASE 3.29.0、tblite 0.7.0 和 xTB
-  分发包 22.1（导入模块版本可能显示 20.2）。每次重要作业仍须在报告中记录实际
-  `python --version`、包版本和 `git rev-parse HEAD`。
+- 历史参考基线（不是所有运行的统一环境）是 Python 3.10.19、PyTorch
+  2.10.0+cu128、NumPy 1.26.4、SciPy 1.15.3、RDKit 2024.03.3、ASE 3.29.0、
+  tblite 0.7.0 和 xTB 分发包 22.1（导入模块版本可能显示 20.2）。每次重要作业
+  必须以证据文件记录实际 `python --version`、包版本、可执行文件和
+  `git rev-parse HEAD`；不得用这组历史参考值替代实际运行环境。
 - Slurm 为 21.08.5，分区是 `main`；GPU GRES 是 `gpu:pro6000:4`。GPU 作业必须
   申请有限时长和明确 GPU 数，例如：
 
@@ -157,3 +158,41 @@ XTBFlow 的联合研究路线使用四个明确角色：J 是事件与几何联�
 下一轮默认顺序是：先完成一条真实的 reactant-only → 计量物理反馈 → 有界动作/重新提议 → V 认证 → 实际端点结算闭环；再在同一生成器、工具集合、输入面板和总预算下比较联合生成、允许回溯的强串联、末端物理处理和生成内物理反馈；随后才比较固定调度、简单启发式和反馈驱动 Agent。部分条件补全、校正势和多步网络只有在上述比较指出明确瓶颈后才进入主线。
 
 真实结果必须与软件 fixture、缓存重放和配置声明分开。任何“pipeline completed”报告仍须逐候选核对 TS、模式、双向 IRC、实际端点、重复通道和费用结算；没有这些证据时使用 `unknown`、`attempted_unresolved` 或 `pending_certification`，不得把候选或排队作业写成新化学通道。所有公开 PR 继续遵守人工合并审查规则。
+
+### 科学分类与比较边界
+
+- `PROTOCOL_FAILURE` 且 `evidence_status=attempted_unresolved` 统一归类为
+  `failure_classification=certification_unresolved`，不是化学负例。它计入
+  attempted count、失败分母和实际 calculator/CPU/GPU/wall/storage 账本，严格
+  通道增量为零；若公开证据无法定位失败阶段，`failure_stage` 和
+  `failure_reason` 必须为 `unknown`，不能把 `pipeline_completed` 写成认证成功。
+  公开结构化结果同时保留 `chemical_negative=false`、
+  `diagnostic_retry_allowed=true`、`diagnostic_retry_requires_new_attempt=true`
+  和 `excluded_from_same_panel_tuning=true`。
+- 严格通道必须同时有 TS 驻点/梯度收敛、唯一目标虚频模式、双向 IRC、端点的
+  电荷/自旋/原子映射/身份合同、实际 `observed_event`，并且证据属于同一候选和
+  同一认证协议。`planned_event` 不计数。`valid_alternative` 只有在通过相同认证
+  且实际 observed event 或端点连接关系不同才算另一条通道；去重键为
+  `parent_identity + normalized_observed_event + endpoint_connectivity +
+  stereochemical_or_state_identity`。构象、随机种子、重复尝试、重复认证和协议
+  版本变化都是 lineage 或分层证据，不得重复计数。
+- 主指标固定为固定 operational budget 内、每个独立母体系和方法臂的
+  `unique_strict_certified_channels`。预算必须以向量预先冻结：
+  `max_model_forward_evaluations`、`max_candidates`、
+  `max_calculator_primitives`、`max_gpu_hours`、`max_cpu_core_hours`、
+  `max_wall_seconds`、`max_retries`、`max_diagnostic_attempts`。失败、超时、
+  重试和未解析候选消耗的费用保留在账本；缓存重放新增成本为零，不能产生新通道。
+- `development_comparison` 只能使用预先冻结的输入、面板、方法、协议和预算，且
+  结果仍限于开发范围。`independent_confirmation` 需要新来源或新反应家族、未参与
+  训练/选择/调参的母组、冻结后盲化的方法臂和独立预算；开发结果不得升级为确认结论。
+- W08 先做 2×2：联合生成 J 与允许重启、重采样、回溯和合理调参的强串联，分别配
+  末端/无生成内 P 与生成内 P。四臂匹配输入、工具、随机设置和预算，用于估计 J
+  主效应、P 主效应及 J×P 交互。只有真实闭环后才做 W09/W10 的 fixed policy、
+  simple heuristic、feedback Agent 比较；C 的增量不能吸收 J 或 P 的收益。
+- 双时钟同时登记机制指标（反馈到达时事件是否仍可修改、intervention window、
+  冻结前有效步数、反馈后事件改变率）和主科学指标（严格认证通道、至少一条通道
+  的母体系比例、首次认证成本）。窗口扩大或事件改变只能证明时序机制，不得单独
+  宣称反应发现能力提高。
+- 诊断重试必须使用新的 `attempt_id`、独立预算并保留原始失败；不得覆盖 evidence、
+  修改同一面板的模型/阈值/策略/停止规则或重选母体系。若确认是全局协议问题，修复
+  后须对所有受影响方法臂一致重跑，并建立新的实验身份。

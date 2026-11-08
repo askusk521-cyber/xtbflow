@@ -13,6 +13,11 @@
       "bytes": 1014
     },
     {
+      "path": ".github/workflows/issue166-matched-cpu.yml",
+      "sha256": "116f5e06973566de9d28335cff6a8c7799d6c41f4090709d616881f53a36d00c",
+      "bytes": 1041
+    },
+    {
       "path": ".github/workflows/issue166-physical-cpu.yml",
       "sha256": "cd60ec723f95443c71af19afd8171c222cc49a8f7eaf4eb73f899ebe82263dbc",
       "bytes": 1034

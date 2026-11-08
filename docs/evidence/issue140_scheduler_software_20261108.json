@@ -1,0 +1,57 @@
+{
+  "schema": "xtbflow-software-evidence/v1",
+  "work_item": "#140 W10 budget strategy",
+  "status": "pass",
+  "host": "node2",
+  "source": {
+    "branch": "codex/issue140-scheduler-20261108",
+    "commit": "c17ed07d17b8b36895d570424a92389e41a1221d"
+  },
+  "environment": {
+    "conda_environment": "xtbflow",
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "pytest": "9.1.1"
+  },
+  "commands": [
+    {
+      "command": "cd /tmp/xtbflow-exec-issue140-20261108 && source ~/miniconda3/etc/profile.d/conda.sh && conda activate xtbflow && PYTHONPATH=src:vendor/mechai_reusable timeout 120s python -m pytest -q tests/test_budget_scheduler.py tests/test_runtime_budget.py",
+      "result": "17 passed",
+      "resource_cap": "120 seconds; CPU only; output /tmp/xtbflow-issue140-tests-c17ed07.log"
+    },
+    {
+      "command": "cd /tmp/xtbflow-exec-issue140-20261108 && source ~/miniconda3/etc/profile.d/conda.sh && conda activate xtbflow && PYTHONPATH=src:vendor/mechai_reusable timeout 240s python -m pytest -q",
+      "result": "273 passed, 68 subtests passed, 1 pre-existing warning",
+      "resource_cap": "240 seconds; CPU only; output /tmp/xtbflow-issue140-full-c17ed07.log"
+    },
+    {
+      "command": "cd /tmp/xtbflow-exec-issue140-20261108 && source ~/miniconda3/etc/profile.d/conda.sh && conda activate xtbflow && PYTHONPATH=src:vendor/mechai_reusable timeout 120s python -m unittest discover -s tests/reusable -p 'test_*.py'",
+      "result": "56 tests OK",
+      "resource_cap": "120 seconds; CPU only; output /tmp/xtbflow-issue140-reusable-c17ed07.log"
+    },
+    {
+      "command": "cd /tmp/xtbflow-exec-issue140-20261108 && timeout 120s python scripts/validate_bootstrap.py && git diff --check",
+      "result": "324 files PASS; diff check PASS",
+      "resource_cap": "120 seconds; no calculator or GPU calls"
+    }
+  ],
+  "artifacts": [
+    "src/xtbflow/runtime/scheduler.py",
+    "tests/test_budget_scheduler.py",
+    "docs/architecture/budget_scheduler_v0.1.md"
+  ],
+  "resource_usage": {
+    "gpu_calls": 0,
+    "calculator_calls": 0,
+    "quantum_chemistry_runs": 0
+  },
+  "claim_limits": [
+    "This evidence covers software contracts and bounded offline accounting only.",
+    "It does not establish chemistry accuracy, certified channels, efficiency, discovery, or generalization.",
+    "Actual calculator costs and outcomes must be settled by a later frozen validation protocol."
+  ],
+  "unfinished": [
+    "Live fixed-versus-heuristic comparisons under a shared scientific candidate pool remain for a later stage."
+  ]
+}

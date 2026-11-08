@@ -488,6 +488,11 @@
       "bytes": 1062
     },
     {
+      "path": "docs/evidence/issue140_scheduler_software_20261108.json",
+      "sha256": "e22caf9962551896e0a19f4821804a685476a4b176f51c5127e38e325c41b199",
+      "bytes": 2576
+    },
+    {
       "path": "docs/evidence/joint_flow_smoke_20260927.json",
       "sha256": "2a9803f4ac535aa5a9bb59225fe77ee62602734d80af448bf4b065d9a56a61ca",
       "bytes": 670

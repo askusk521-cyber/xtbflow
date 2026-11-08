@@ -1574,8 +1574,8 @@
     },
     {
       "path": "tests/test_parallel_guidance.py",
-      "sha256": "bf1f9fa28654c7e10d123e67aa8c180ed865ef66fe4cf80f5c2d51ec760f988f",
-      "bytes": 7414
+      "sha256": "049866af1670b18f93a06b8e6127bfa3df52b7bce03d236c065eecf79b2b0d85",
+      "bytes": 7448
     },
     {
       "path": "tests/test_path_status.py",

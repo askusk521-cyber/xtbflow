@@ -35,12 +35,12 @@ def snapshot(*, generation_step: int = 0, event_frozen: bool = False) -> Generat
 
 
 def output(state: GenerationSnapshot, lane: GuidanceLane, provider: str, **kwargs) -> GuidanceOutput:
+    kwargs.setdefault("estimated_cost", GuidanceCost(model_forwards=1))
+    kwargs.setdefault("measured_cost", GuidanceCost(model_forwards=1))
     return GuidanceOutput(
         lane=lane,
         provider=provider,
         input_fingerprint=state.snapshot_id,
-        estimated_cost=GuidanceCost(model_forwards=1),
-        measured_cost=GuidanceCost(model_forwards=1),
         **kwargs,
     )
 

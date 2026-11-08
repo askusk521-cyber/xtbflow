@@ -289,6 +289,29 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
     for arm in ("no_feedback", "physical_feedback"):
         arms.append(_run_arm(arm, config=config, system=system, snapshot=snapshot, backend=backend, protocol=protocol, blocked_reason=blocked_reason, output_dir=output_dir))
     certification_blocked = any(row["certification"]["status"] != "success" for row in arms)
+    deterministic = {
+        "parent_id": config["parent_id"],
+        "seed": seed,
+        "input_hash": system.input_hash,
+        "config_sha256": config_sha256,
+        "arms": [
+            {
+                "arm": row["arm"],
+                "snapshot_before": row["snapshot_before"]["snapshot_id"],
+                "snapshot_after": row["snapshot_after"]["snapshot_id"],
+                "feedback_used": row["feedback_used"],
+                "feedback_fingerprint": None if row["feedback"] is None else row["feedback"]["feedback_fingerprint"],
+                "geometry_changed": row["geometry_changed"],
+                "event_changed": row["event_changed"],
+                "provider_status": row["physical_provider_status"],
+                "certification_status": row["certification"]["status"],
+                "certification_reason": row["certification"]["reason_code"],
+                "calculator_calls": row["runtime_ledger"]["totals"]["calculator_calls"],
+            }
+            for row in arms
+        ],
+    }
+    deterministic_hash = _sha256_text(_canonical(deterministic))
     manifest = {
         "schema": SCHEMA,
         "status": "blocked_backend" if blocked_reason else ("blocked_certification" if certification_blocked else "completed"),
@@ -303,6 +326,11 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
         "seed": seed,
         "protocol": None if protocol is None else {"protocol_id": protocol.protocol_id, "identity": protocol.identity, "parameters": dict(protocol.parameters)},
         "arms": arms,
+        "replay": {
+            "deterministic_summary": deterministic,
+            "deterministic_summary_sha256": deterministic_hash,
+            "environment_variance_note": "wall/cpu timing and native build identity remain outside the deterministic summary",
+        },
         "matched_budget": dict(config["budget"]),
         "claim_levels": {
             "workflow": "software_demo",

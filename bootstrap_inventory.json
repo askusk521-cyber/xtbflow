@@ -1214,8 +1214,8 @@
     },
     {
       "path": "scripts/run_live_matched_pvo.py",
-      "sha256": "b22415dc63ac36682272e5919f1cbc4a71acc73be3ac701ab540ab9d991b6154",
-      "bytes": 17856
+      "sha256": "69d3cd3bcf74231e49399a144698e1d76cb39bb9c1ae00bf61a0ebcafca012f0",
+      "bytes": 17950
     },
     {
       "path": "scripts/run_parallel_guidance_replay.py",

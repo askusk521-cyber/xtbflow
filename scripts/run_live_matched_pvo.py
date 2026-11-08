@@ -309,6 +309,7 @@ def main() -> int:
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--parents", type=int, default=None)
+    parser.add_argument("--pool", choices=("primary", "calibration"), default="primary")
     parser.add_argument("--seeds", type=int, nargs="+", default=None)
     parser.add_argument("--arms", nargs="+", choices=ARMS, default=None)
     args = parser.parse_args()
@@ -319,7 +320,7 @@ def main() -> int:
     by_parent = {}
     for sample in loader.samples:
         by_parent.setdefault(sample.record.parent_reaction_id, sample)
-    parent_ids = list(protocol["primary_parent_ids"])
+    parent_ids = list(protocol[f"{args.pool}_parent_ids"])
     if args.parents is not None:
         parent_ids = parent_ids[: args.parents]
     seeds = args.seeds or protocol["seeds"]

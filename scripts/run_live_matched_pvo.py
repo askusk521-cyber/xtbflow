@@ -235,10 +235,14 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
             provider_wall = time.perf_counter() - start
             rows_ledger.extend([entry.to_mapping() for entry in physical_ledger.entries + policy_ledger.entries])
             outputs = tuple(run.output for run in (physical_run, policy_run) if run.output is not None)
+            if physical_run is not None:
+                calculator_calls += physical_run.charged_cost.calculator_calls
         else:
             physical_run, physical_ledger, physical_time = run_physical()
             rows_ledger.extend([entry.to_mapping() for entry in physical_ledger.entries])
             outputs = tuple(run.output for run in (physical_run,) if run.output is not None)
+            if physical_run is not None:
+                calculator_calls += physical_run.charged_cost.calculator_calls
             provider_wall += physical_time
             if arm == "serial_full":
                 merge_start = time.perf_counter()

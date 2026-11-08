@@ -36,7 +36,10 @@ GENERATION_STATUSES = (
     "report_write_failed",
     "budget_exhausted",
 )
-INITIAL_STATE_POLICIES = ("deterministic_reactant", "event_noise", "geometry_noise", "event_geometry_noise", "latent")
+# Latent initialization is intentionally absent until the model accepts a
+# latent input.  Keeping it in this tuple made an apparently valid protocol
+# fail only after a trajectory had already started.
+INITIAL_STATE_POLICIES = ("deterministic_reactant", "event_noise", "geometry_noise", "event_geometry_noise")
 
 
 @dataclass(frozen=True)
@@ -45,8 +48,8 @@ class GenerationProtocol:
 
     A seed list alone does not make a deterministic model stochastic.  When a
     parent is attempted more than once, the protocol therefore requires an
-    explicit non-deterministic initial-state or latent policy and a positive
-    candidate cap.  Training and inference code can record this object before
+    explicit non-deterministic initial-state policy and a positive candidate
+    cap.  Training and inference code can record this object before
     any candidates are generated.
     """
 
@@ -69,10 +72,10 @@ class GenerationProtocol:
             raise ValueError(f"unsupported initial_state_policy: {self.initial_state_policy}")
         if type(self.latent_dim) is not int or self.latent_dim < 0:
             raise ValueError("latent_dim must be a nonnegative integer")
-        if self.initial_state_policy == "latent" and self.latent_dim < 1:
-            raise ValueError("latent initialization requires a positive latent_dim")
+        if self.latent_dim:
+            raise ValueError("latent initialization is unsupported: latent_dim must remain zero")
         if len(self.attempt_seeds) > 1 and self.initial_state_policy == "deterministic_reactant":
-            raise ValueError("repeated attempts require stochastic initial states or a latent variable")
+            raise ValueError("repeated attempts require a supported stochastic initial state")
 
     @property
     def stochastic(self) -> bool:

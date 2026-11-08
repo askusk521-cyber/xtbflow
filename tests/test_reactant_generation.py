@@ -21,6 +21,8 @@ from xtbflow.evaluation.generation import (
     label_replacement_invariant,
     load_reactant_inputs,
     score_candidates,
+    _initial_state,
+    _model_inputs,
 )
 from xtbflow.evaluation.terminal import GenerationProtocol
 from xtbflow.models import JointFlowRuntimeConfig, total_electron_projector
@@ -192,6 +194,21 @@ def test_unresolved_label_metric_is_reported_without_becoming_zero():
     assert "event_exact_match" in paired["metrics"]
 
 
+def test_empty_method_row_retains_parent_denominator():
+    path = Path(__file__).parents[1] / "scripts" / "score_reactant_generation.py"
+    spec = importlib.util.spec_from_file_location("xtbflow_reactant_generation_scorer_empty", path)
+    assert spec is not None and spec.loader is not None
+    scorer = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = scorer
+    spec.loader.exec_module(scorer)
+    view = ReactantView.from_mapping(_row())
+    summary, scores = scorer._record_metrics(view, _labels(1.0, 1.2), (), method="learned", max_slots=2)
+    assert scores == ()
+    assert summary["status"] == "empty"
+    assert summary["event_exact_match"] is None
+    assert summary["geometry_endpoint_mse"] is None
+
+
 def test_generation_runner_keeps_failure_stage_statuses_distinct():
     path = Path(__file__).parents[1] / "scripts" / "run_reactant_generation.py"
     spec = importlib.util.spec_from_file_location("xtbflow_reactant_generation_runner", path)
@@ -237,6 +254,27 @@ def test_repeated_generation_requires_and_uses_a_stochastic_initial_state():
     assert len({candidate.fingerprint() for candidate in candidates}) == 2
 
 
+def test_event_noise_initial_state_is_conservation_preserving():
+    model = _zero_model()
+    view = ReactantView.from_mapping(_row())
+    state, coordinates, _, atom_mask, event_mask, _ = _model_inputs(
+        view, 2, dtype=torch.float32, device=torch.device("cpu")
+    )
+    noisy, _ = _initial_state(
+        state,
+        coordinates,
+        event_mask=event_mask,
+        atom_mask=atom_mask,
+        event_projector=model.event_projector,
+        policy="event_noise",
+        seed=11,
+        noise_scale=0.2,
+    )
+    residual = model.event_projector.residual(noisy - state)
+    assert torch.allclose(residual, torch.zeros_like(residual), atol=1e-6, rtol=0)
+    assert torch.isfinite(noisy).all()
+
+
 def test_geometry_slot_deduplication_ignores_event_duplicates():
     first = GeneratedCandidate(
         record_id="r0",
@@ -256,3 +294,41 @@ def test_geometry_slot_deduplication_ignores_event_duplicates():
     )
     kept = deduplicate_generated_candidates((first, duplicate_geometry), max_slots=2)
     assert kept == (first,)
+
+
+def test_event_slot_deduplication_preserves_distinct_events_at_one_geometry():
+    first = GeneratedCandidate(
+        record_id="r0",
+        control_mode="reactant_rule",
+        coordinates=((0.0, 0.0, 0.0), (1.0, 0.0, 0.0)),
+        packed_event=(1, 2, 3),
+        steps=0,
+        candidate_index=0,
+    )
+    second = GeneratedCandidate(
+        record_id="r0",
+        control_mode="reactant_rule",
+        coordinates=first.coordinates,
+        packed_event=(4, 5, 6),
+        steps=0,
+        candidate_index=1,
+    )
+    kept = deduplicate_generated_candidates(
+        (first, second), max_slots=2, mode="geometry_event"
+    )
+    assert kept == (first, second)
+
+
+def test_decode_failure_is_unresolved_for_event_exact_match():
+    view = ReactantView.from_mapping(_row())
+    labels = _labels(1.0, 1.2)
+    malformed = GeneratedCandidate(
+        record_id="r0",
+        control_mode="joint_bidirectional",
+        coordinates=((0.0, 0.0, 0.0), (1.0, 0.0, 0.0)),
+        packed_event=(1,),
+        steps=4,
+    )
+    rows = score_candidates(view, labels, (malformed,))
+    assert rows[0]["decode_status"] == "decode_failed"
+    assert rows[0]["event_exact_match"] is None

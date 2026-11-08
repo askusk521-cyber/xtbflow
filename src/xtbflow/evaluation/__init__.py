@@ -20,11 +20,11 @@ from .terminal import (
 )
 
 _GENERATION_EXPORTS = {
-    "GeneratedCandidate", "GenerationBatch", "ReactantInput", "ReactantView",
+    "GeneratedCandidate", "GenerationBatch", "RepeatedGenerationResult", "ReactantInput", "ReactantView",
     "ReferenceLabels", "candidate_fingerprint", "candidate_fingerprints",
     "centered_reactant_coordinates", "checkpoint_atom_count",
-    "deduplicate_generated_candidates", "generate_candidate", "generate_candidates",
-    "generate_repeated_candidates", "label_replacement_invariant", "load_generation_model",
+    "deduplicate_generated_candidates", "generated_candidate_key", "generate_candidate", "generate_candidates",
+    "generate_repeated_candidates", "generate_repeated_candidates_with_accounting", "label_replacement_invariant", "load_generation_model",
     "load_reactant_inputs", "reactant_packed_state", "reactant_view_from_sample",
     "reference_labels_from_sample", "score_candidates",
 }
@@ -45,6 +45,7 @@ def __getattr__(name: str):
 __all__ = [
     "GeneratedCandidate",
     "GenerationBatch",
+    "RepeatedGenerationResult",
     "ReactantInput",
     "ReactantView",
     "ReferenceLabels",
@@ -53,9 +54,11 @@ __all__ = [
     "centered_reactant_coordinates",
     "checkpoint_atom_count",
     "deduplicate_generated_candidates",
+    "generated_candidate_key",
     "generate_candidate",
     "generate_candidates",
     "generate_repeated_candidates",
+    "generate_repeated_candidates_with_accounting",
     "label_replacement_invariant",
     "load_generation_model",
     "load_reactant_inputs",

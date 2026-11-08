@@ -72,6 +72,10 @@ def test_generation_protocol_requires_a_real_stochastic_source_for_repeats():
     )
     payload = protocol.as_dict()
     assert payload["stochastic_source_declared"] is True
+    with pytest.raises(ValueError, match="latent initialization is unsupported"):
+        GenerationProtocol(candidate_cap=1, attempt_seeds=(11,), latent_dim=4).validate()
+    with pytest.raises(ValueError, match="unsupported initial_state_policy"):
+        GenerationProtocol(candidate_cap=1, attempt_seeds=(11,), initial_state_policy="latent", latent_dim=4).validate()
 
 
 def test_generation_attempt_failure_stages_are_not_collapsed():

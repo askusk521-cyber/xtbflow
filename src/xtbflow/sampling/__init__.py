@@ -42,6 +42,24 @@ from .parallel_replay import (
     REPLAY_MODES,
     write_replay_artifacts,
 )
+from .adapters import (
+    AdapterLedger,
+    AdapterLedgerEntry,
+    AdapterRun,
+    AdapterRunner,
+    AdapterStatus,
+    BudgetReservation,
+    BudgetExceeded,
+    GuidanceBudget,
+    GuidanceProvider,
+    MockPhysicalProvider,
+    MockPolicyProvider,
+    PhysicalGuidanceProvider,
+    PolicyGuidanceProvider,
+    ProviderRequest,
+    fingerprint_text,
+    validate_sha256,
+)
 
 __all__ = [
     "GuidanceSchedule", "schedule_strength", "control_euler_step", "euler_step", "serial_euler_step",
@@ -50,4 +68,8 @@ __all__ = [
     "merge_guidance", "project_masked_event_delta", "reject_target_derived_fields",
     "DeterministicSyntheticProvider", "OfflineGuidanceReplay", "ReplayArtifact", "ReplayBudget",
     "ReplayMode", "ReplayStep", "REPLAY_MODES", "write_replay_artifacts",
+    "AdapterLedger", "AdapterLedgerEntry", "AdapterRun", "AdapterRunner", "AdapterStatus",
+    "BudgetReservation", "BudgetExceeded", "GuidanceBudget", "GuidanceProvider",
+    "MockPhysicalProvider", "MockPolicyProvider", "PhysicalGuidanceProvider", "PolicyGuidanceProvider",
+    "ProviderRequest", "fingerprint_text", "validate_sha256",
 ]

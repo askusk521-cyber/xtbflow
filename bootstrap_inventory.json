@@ -433,6 +433,11 @@
       "bytes": 1365
     },
     {
+      "path": "docs/architecture/guidance_adapter_boundary_v0.1.md",
+      "sha256": "2acf473e1ec5261ae0d0fdc5c818842b161928f59560f7e9c306a050bd8ca4c0",
+      "bytes": 1429
+    },
+    {
       "path": "docs/architecture/parallel_guidance_contract_v0.1.md",
       "sha256": "0c5a5dfb5e19895d297275d053824996d8de3566fbcb5e7c2a7cde3432bf77b3",
       "bytes": 1429
@@ -938,6 +943,11 @@
       "bytes": 9504
     },
     {
+      "path": "schemas/guidance_adapter_contract.schema.json",
+      "sha256": "25100b797c7eaa6fe08a8a3d78bbc62a4cdcd3640a6422bf7223d3deefc9ed6c",
+      "bytes": 3270
+    },
+    {
       "path": "schemas/handoff_freeze.schema.json",
       "sha256": "113667ca1ba2e0797dc7e8834b4b5587e5d6aab9455ddeceed43de0e3d2c5ae6",
       "bytes": 3957
@@ -1399,8 +1409,13 @@
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
-      "sha256": "2df9e6055242f9f8fa8ec1564d249ff5ba99034dd31194268f5d8f721a27c96a",
-      "bytes": 1777
+      "sha256": "b5d6660e1d4d122a9a51fa121d12956887d3361916e79f8666030e6adbeaab78",
+      "bytes": 2495
+    },
+    {
+      "path": "src/xtbflow/sampling/adapters.py",
+      "sha256": "3a0ad856b2191558ead269f96db24ad0679c0a4e58140bf8b9876067e79c9463",
+      "bytes": 19179
     },
     {
       "path": "src/xtbflow/sampling/guidance.py",
@@ -1561,6 +1576,11 @@
       "path": "tests/test_geometry_flow.py",
       "sha256": "3a1f64a2bb77180cd7416b52d120dd14bd899881f5fb7bc812636133edbe506d",
       "bytes": 4675
+    },
+    {
+      "path": "tests/test_guidance_adapters.py",
+      "sha256": "173157079077f363bbf5661c6bfc61042635794168365786a02b32ccccf6d990",
+      "bytes": 6151
     },
     {
       "path": "tests/test_handoff_freeze.py",

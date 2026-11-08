@@ -81,7 +81,7 @@ PRs are retained as provenance; open drafts still require their own review gate.
 - [PR #162](https://github.com/askusk521-cyber/xtbflow/pull/162): docs/evidence,
   open draft, current head `63ad6be`, base #161 `fe93331`.
 - [PR #163](https://github.com/askusk521-cyber/xtbflow/pull/163): scheduler evidence,
-  open draft, current head `a9af5f6`, base `main`.
+  open draft, current head `cf743fd`, base `main`.
 - [PR #164](https://github.com/askusk521-cyber/xtbflow/pull/164): reaction-network
   contract, open draft, head `52a34dd`, base `main`.
 - [PR #165](https://github.com/askusk521-cyber/xtbflow/pull/165): campaign/input

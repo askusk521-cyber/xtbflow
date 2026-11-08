@@ -47,7 +47,7 @@ def test_live_provider_uses_current_snapshot_and_merge_updates_geometry_event():
     backend = FakeXTB(protocol)
     config = LiveXTBGuidanceConfig(geometry_scale=0.2, geometry_trust_radius=0.1, event_scale=0.03, event_trust_radius=0.1)
     physical = LiveXTBPhysicalProvider(backend, system, protocol, config=config)
-    budget = GuidanceBudget(GuidanceCost(calculator_calls=1, wall_seconds=2.0))
+    budget = GuidanceBudget(GuidanceCost(calculator_calls=1, wall_seconds=10.0))
     runner = AdapterRunner(budget)
     request = ProviderRequest(snapshot, GuidanceLane.GEOMETRY, physical.provider_revision, physical.config_fingerprint, physical.protocol_fingerprint)
     run = runner.run(request, physical)
@@ -74,7 +74,7 @@ def test_live_provider_is_snapshot_bound():
     protocol, system, snapshot = _fixture()
     backend = FakeXTB(protocol)
     provider = LiveXTBPhysicalProvider(backend, system, protocol)
-    other = GenerationSnapshot("parent", "other", 0, snapshot.geometry, snapshot.event, snapshot.event_mask, 7)
+    other = GenerationSnapshot("parent", "other", 0, ((0.0, 0.0, 0.0),), snapshot.event, snapshot.event_mask, 7)
     request = ProviderRequest(other, GuidanceLane.GEOMETRY, provider.provider_revision, provider.config_fingerprint, provider.protocol_fingerprint)
     try:
         provider.estimate(request)

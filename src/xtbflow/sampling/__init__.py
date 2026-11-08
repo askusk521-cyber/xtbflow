@@ -82,6 +82,13 @@ from .matched_integration import (
     MatchedRow,
     run_matched_comparison,
 )
+from .live_physical import (
+    LiveXTBEventProvider,
+    LiveXTBFeedback,
+    LiveXTBGuidanceConfig,
+    LiveXTBPhysicalProvider,
+    xTB_protocol_from_mapping,
+)
 
 __all__ = [
     "GuidanceSchedule", "schedule_strength", "control_euler_step", "euler_step", "serial_euler_step",
@@ -100,4 +107,6 @@ __all__ = [
     "RecordedPolicyProvider", "run_policy_ablation",
     "MATCHED_ARMS", "MatchedArm", "MatchedComparisonArtifact", "MatchedComparisonConfig",
     "MatchedRow", "run_matched_comparison",
+    "LiveXTBEventProvider", "LiveXTBFeedback", "LiveXTBGuidanceConfig",
+    "LiveXTBPhysicalProvider", "xTB_protocol_from_mapping",
 ]

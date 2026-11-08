@@ -1,0 +1,26 @@
+{
+  "claim_limit": "No TS, IRC, barrier, mechanism, chemical-accuracy, or superiority claim.",
+  "commands": [
+    "source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow; command -v xtb",
+    "source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow; python -c \"import xtb,tblite,ase,scipy\"",
+    "source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow-cp2k; command -v cp2k.psmp"
+  ],
+  "existing_validation_contract": "xtbflow.validation.ts_search.validate_ts_evidence requires explicit gradient, Hessian mode, endpoint connectivity and path_connected evidence; it does not implement a live TS/IRC searcher.",
+  "host": "node2",
+  "observed": {
+    "cp2k_psmp_in_default_xtbflow_env": false,
+    "cp2k_psmp_observed_in_xtbflow_cp2k_env": true,
+    "python_ase_module": true,
+    "python_scipy_module": true,
+    "python_tblite_module": true,
+    "python_xtb_module": true,
+    "xtb_cli_in_path": false
+  },
+  "reason_code": "CERTIFICATION_BACKEND_UNAVAILABLE",
+  "schema": "xtbflow-ts-irc-backend-probe/v1",
+  "smallest_reversible_fix": "add an independently tested TS refinement/Hessian/endpoint/bidirectional IRC adapter under the existing strict validation contract, then rerun the frozen parent/seed/budget",
+  "source_commit": "2ce92c603e6fe2850617dc2d4e9f362d8b3b814b",
+  "source_dirty": false,
+  "stage": "independent_ts_irc_backend_probe",
+  "status": "blocked"
+}

@@ -1,0 +1,820 @@
+{
+  "arms": [
+    {
+      "adapter_ledger": {
+        "entries": [
+          {
+            "charged_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 33.790093162,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.3973767659626901
+            },
+            "config_fingerprint": "d367b4a7337a1470888b9419a931e346b75ef08713ceaa5471392051e1e4ebd9",
+            "error": null,
+            "estimated_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 5.0
+            },
+            "failure_stage": null,
+            "lane": "geometry",
+            "measured_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 33.790093162,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.3973767659626901
+            },
+            "protocol_fingerprint": "30a8e5d3774c8993fd52d9633cbfbcae51c0872af7865b6afefcda5189af1364",
+            "provider_revision": "b0146a15be84833304ed7fea5c78cda13905a1ba017bd7ab0a156f58ece4d9a5",
+            "request_fingerprint": "acc4b16b66fe903acfeeff8cbfdfc9acdde249ddc435af226f0a64fa7f4d51f4",
+            "status": "accepted"
+          }
+        ],
+        "schema": "xtbflow-adapter-ledger/v1"
+      },
+      "arm": "no_feedback",
+      "certification": {
+        "claim_limit": "No TS/IRC certification is claimed until an independent stationary-point, mode, endpoint, and bidirectional path backend supplies evidence.",
+        "reason_code": "MISSING_TS_HESSIAN_IRC_EVIDENCE",
+        "record": {
+          "cache_key": "",
+          "calculator_calls": 0,
+          "candidate_hash": "",
+          "candidate_id": "mvp-water-parent-v1:no_feedback",
+          "error": "'gradient_norm'",
+          "gradient_norm": null,
+          "mode_status": "missing_evidence",
+          "observed_event": null,
+          "path_status": "not_validated",
+          "source": "live-xtb-real-feedback",
+          "status": "failure",
+          "validation_identity": ""
+        },
+        "status": "blocked"
+      },
+      "event_changed": false,
+      "feedback": {
+        "calculator_build_hash": "18afc60dc1dc07b3239b8baa6ceaf2985173fd89ae140010a57472ee00fc3126",
+        "calculator_calls": 1,
+        "cpu_seconds": 33.790093162,
+        "feedback_fingerprint": "b562841548b531055397f8632ec42aa549c3e341bbb183906ee694059d66f253",
+        "force_norm": 0.04064530698417814,
+        "forces": [
+          [
+            0.0023494152069773273,
+            0.026277316343240816,
+            5.334478721752317e-17
+          ],
+          [
+            0.005880438704134604,
+            -0.029083330353384593,
+            -6.756513069225315e-17
+          ],
+          [
+            -0.008229853911111935,
+            0.002806014010143779,
+            1.4220343474729963e-17
+          ]
+        ],
+        "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+        "protocol_id": "real-feedback-gfn2-xtb-v1",
+        "scalar_observable": -5.07037167814165,
+        "snapshot_id": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f",
+        "wall_seconds": 0.3973767659626901
+      },
+      "feedback_used": false,
+      "geometry_changed": false,
+      "merge": {
+        "decision": {
+          "applied_lanes": [],
+          "event_after": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "event_before": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "event_frozen": false,
+          "geometry_after": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.9572,
+              0.0,
+              0.0
+            ],
+            [
+              -0.239987,
+              0.927297,
+              0.0
+            ]
+          ],
+          "geometry_before": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.9572,
+              0.0,
+              0.0
+            ],
+            [
+              -0.239987,
+              0.927297,
+              0.0
+            ]
+          ],
+          "rejected": []
+        },
+        "ledger": {
+          "entries": [],
+          "schema": "xtbflow-guidance-ledger/v1"
+        }
+      },
+      "physical_provider_error": null,
+      "physical_provider_failure_stage": null,
+      "physical_provider_status": "accepted",
+      "runtime_ledger": {
+        "active_jobs": [],
+        "budget": {
+          "max_calculator_calls": 1,
+          "max_concurrent_jobs": 1,
+          "max_cpu_core_hours": 0.05,
+          "max_gpu_hours": 0.0,
+          "max_retries_per_job": 0,
+          "max_storage_gb": null,
+          "max_system_evaluations": 1,
+          "max_wall_minutes_per_job": 5.0,
+          "phase": "real_feedback_no_feedback"
+        },
+        "by_calculator": {
+          "xtb_oracle": 1
+        },
+        "by_operation": {
+          "energy_forces": 1
+        },
+        "by_status": {
+          "success": 1
+        },
+        "ledger_id": "real-feedback-no_feedback-5193abcc1e8e87e2",
+        "phase": "real_feedback_no_feedback",
+        "schema": "xtbflow-run-ledger/v1",
+        "totals": {
+          "attempts": 1,
+          "cache_hits": 0,
+          "calculator_calls": 1,
+          "cpu_core_hours": 0.009386136989444445,
+          "failures": 0,
+          "gpu_hours": 0.0,
+          "retries": 0,
+          "storage_gb": 0.0,
+          "successes": 1,
+          "system_evaluations": 1
+        }
+      },
+      "snapshot_after": {
+        "attempt_id": "mvp-water-parent-v1-seed-20261110",
+        "event": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "event_frozen": false,
+        "event_mask": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "generation_step": 1,
+        "geometry": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.9572,
+            0.0,
+            0.0
+          ],
+          [
+            -0.239987,
+            0.927297,
+            0.0
+          ]
+        ],
+        "metadata": {
+          "charge": 0,
+          "environment": {
+            "periodic": false,
+            "solvent": "none"
+          },
+          "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+          "multiplicity": 1,
+          "symbols": [
+            "O",
+            "H",
+            "H"
+          ]
+        },
+        "parent_id": "mvp-water-parent-v1",
+        "provenance": {
+          "workflow": "one-parent-one-seed-live-xtb-v1"
+        },
+        "random_seed": 20261110,
+        "snapshot_id": "928b861314a8c05cca8b4218e96bcaa7cf25686a1b2b1c3d8a8ab561ad86a81a"
+      },
+      "snapshot_before": {
+        "attempt_id": "mvp-water-parent-v1-seed-20261110",
+        "event": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "event_frozen": false,
+        "event_mask": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "generation_step": 0,
+        "geometry": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.9572,
+            0.0,
+            0.0
+          ],
+          [
+            -0.239987,
+            0.927297,
+            0.0
+          ]
+        ],
+        "metadata": {
+          "charge": 0,
+          "environment": {
+            "periodic": false,
+            "solvent": "none"
+          },
+          "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+          "multiplicity": 1,
+          "symbols": [
+            "O",
+            "H",
+            "H"
+          ]
+        },
+        "parent_id": "mvp-water-parent-v1",
+        "provenance": {
+          "workflow": "one-parent-one-seed-live-xtb-v1"
+        },
+        "random_seed": 20261110,
+        "snapshot_id": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f"
+      }
+    },
+    {
+      "adapter_ledger": {
+        "entries": [
+          {
+            "charged_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 23.606897861999997,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.2548050309997052
+            },
+            "config_fingerprint": "d367b4a7337a1470888b9419a931e346b75ef08713ceaa5471392051e1e4ebd9",
+            "error": null,
+            "estimated_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 5.0
+            },
+            "failure_stage": null,
+            "lane": "geometry",
+            "measured_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 23.606897861999997,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.2548050309997052
+            },
+            "protocol_fingerprint": "30a8e5d3774c8993fd52d9633cbfbcae51c0872af7865b6afefcda5189af1364",
+            "provider_revision": "b0146a15be84833304ed7fea5c78cda13905a1ba017bd7ab0a156f58ece4d9a5",
+            "request_fingerprint": "6117ecb05543de5e4b9a2b6d59eeb9dd024fee0b2342cc71784a8b9108fbaaf0",
+            "status": "accepted"
+          },
+          {
+            "charged_cost": {
+              "calculator_calls": 0,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.001
+            },
+            "config_fingerprint": "8cb8c43b85217e25cad8a43f71a39af5709e2f3680c28e2b36bf0f7a2ab5beb0",
+            "error": null,
+            "estimated_cost": {
+              "calculator_calls": 0,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.001
+            },
+            "failure_stage": null,
+            "lane": "event",
+            "measured_cost": {
+              "calculator_calls": 0,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.001
+            },
+            "protocol_fingerprint": "b37340d4769d00d2a61b68a9d1ee79ff574b706d72e74016f4ffee9e81c59fdf",
+            "provider_revision": "911f8ec5691bf9880c528c0c2fc90946cb1022cdcd5a83b80be1ec0b94d370ef",
+            "request_fingerprint": "469061c15350483b02e77e10f4d78e94f26cdf52d8da39d4880d33118823dbcb",
+            "status": "accepted"
+          }
+        ],
+        "schema": "xtbflow-adapter-ledger/v1"
+      },
+      "arm": "physical_feedback",
+      "certification": {
+        "claim_limit": "No TS/IRC certification is claimed until an independent stationary-point, mode, endpoint, and bidirectional path backend supplies evidence.",
+        "reason_code": "MISSING_TS_HESSIAN_IRC_EVIDENCE",
+        "record": {
+          "cache_key": "",
+          "calculator_calls": 0,
+          "candidate_hash": "",
+          "candidate_id": "mvp-water-parent-v1:physical_feedback",
+          "error": "'gradient_norm'",
+          "gradient_norm": null,
+          "mode_status": "missing_evidence",
+          "observed_event": null,
+          "path_status": "not_validated",
+          "source": "live-xtb-real-feedback",
+          "status": "failure",
+          "validation_identity": ""
+        },
+        "status": "blocked"
+      },
+      "event_changed": true,
+      "feedback": {
+        "calculator_build_hash": "18afc60dc1dc07b3239b8baa6ceaf2985173fd89ae140010a57472ee00fc3126",
+        "calculator_calls": 1,
+        "cpu_seconds": 23.606897861999997,
+        "feedback_fingerprint": "6f763104976eb2286c374dacee63723b3316f0b9d252ff3de9bbc4050f857abe",
+        "force_norm": 0.04064530698417814,
+        "forces": [
+          [
+            0.0023494152069773273,
+            0.026277316343240816,
+            5.334478721752317e-17
+          ],
+          [
+            0.005880438704134604,
+            -0.029083330353384593,
+            -6.756513069225315e-17
+          ],
+          [
+            -0.008229853911111935,
+            0.002806014010143779,
+            1.4220343474729963e-17
+          ]
+        ],
+        "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+        "protocol_id": "real-feedback-gfn2-xtb-v1",
+        "scalar_observable": -5.07037167814165,
+        "snapshot_id": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f",
+        "wall_seconds": 0.2548050309997052
+      },
+      "feedback_used": true,
+      "geometry_changed": true,
+      "merge": {
+        "decision": {
+          "applied_lanes": [
+            "geometry",
+            "event"
+          ],
+          "conservation_residual": [
+            1.0842021724855044e-19
+          ],
+          "event_after": [
+            0.0009487900714162415,
+            -0.0007328300081630543,
+            0.00041817803226143295,
+            -0.0006341380955146201
+          ],
+          "event_before": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "event_frozen": false,
+          "event_velocity": [
+            0.0009487900714162415,
+            -0.0007328300081630543,
+            0.00041817803226143295,
+            -0.0006341380955146201
+          ],
+          "geometry_after": [
+            [
+              0.0003524122810465991,
+              0.003941597451486123,
+              8.001718082628476e-18
+            ],
+            [
+              0.9580820658056203,
+              -0.004362499553007689,
+              -1.0134769603837972e-17
+            ],
+            [
+              -0.2412214780866668,
+              0.9277179021015216,
+              2.1330515212094946e-18
+            ]
+          ],
+          "geometry_before": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.9572,
+              0.0,
+              0.0
+            ],
+            [
+              -0.239987,
+              0.927297,
+              0.0
+            ]
+          ],
+          "lane_order": [
+            "geometry:live-xtb-physical-v1",
+            "event:live-xtb-event-ranking-v1"
+          ],
+          "rejected": [],
+          "snapshot_id": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f"
+        },
+        "ledger": {
+          "entries": [
+            {
+              "applied": true,
+              "charged_cost": {
+                "calculator_calls": 1,
+                "cpu_seconds": 23.606897861999997,
+                "gpu_seconds": 0.0,
+                "model_forwards": 0,
+                "wall_seconds": 0.2548050309997052
+              },
+              "estimated_cost": {
+                "calculator_calls": 1,
+                "cpu_seconds": 0.0,
+                "gpu_seconds": 0.0,
+                "model_forwards": 0,
+                "wall_seconds": 5.0
+              },
+              "failure_stage": null,
+              "generation_step": 0,
+              "input_fingerprint": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f",
+              "lane": "geometry",
+              "measured_cost": {
+                "calculator_calls": 1,
+                "cpu_seconds": 23.606897861999997,
+                "gpu_seconds": 0.0,
+                "model_forwards": 0,
+                "wall_seconds": 0.2548050309997052
+              },
+              "output_fingerprint": "0d5c605ec42af7264a123dac2ce05b98263b32acb8bda454263857703c33003b",
+              "provenance": {
+                "adapter": {
+                  "config_fingerprint": "d367b4a7337a1470888b9419a931e346b75ef08713ceaa5471392051e1e4ebd9",
+                  "protocol_fingerprint": "30a8e5d3774c8993fd52d9633cbfbcae51c0872af7865b6afefcda5189af1364",
+                  "provider_revision": "b0146a15be84833304ed7fea5c78cda13905a1ba017bd7ab0a156f58ece4d9a5",
+                  "request_fingerprint": "6117ecb05543de5e4b9a2b6d59eeb9dd024fee0b2342cc71784a8b9108fbaaf0"
+                },
+                "provider": {
+                  "calculator_build_hash": "18afc60dc1dc07b3239b8baa6ceaf2985173fd89ae140010a57472ee00fc3126",
+                  "calculator_input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+                  "calculator_protocol": "real-feedback-gfn2-xtb-v1",
+                  "feedback_fingerprint": "6f763104976eb2286c374dacee63723b3316f0b9d252ff3de9bbc4050f857abe",
+                  "observable_l2": 0.04064530698417814
+                }
+              },
+              "provider": "live-xtb-physical-v1",
+              "rejection_reason": null,
+              "snapshot_id": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f",
+              "status": "accepted",
+              "target_free": true
+            },
+            {
+              "applied": true,
+              "charged_cost": {
+                "calculator_calls": 0,
+                "cpu_seconds": 0.0,
+                "gpu_seconds": 0.0,
+                "model_forwards": 0,
+                "wall_seconds": 0.001
+              },
+              "estimated_cost": {
+                "calculator_calls": 0,
+                "cpu_seconds": 0.0,
+                "gpu_seconds": 0.0,
+                "model_forwards": 0,
+                "wall_seconds": 0.001
+              },
+              "failure_stage": null,
+              "generation_step": 0,
+              "input_fingerprint": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f",
+              "lane": "event",
+              "measured_cost": {
+                "calculator_calls": 0,
+                "cpu_seconds": 0.0,
+                "gpu_seconds": 0.0,
+                "model_forwards": 0,
+                "wall_seconds": 0.001
+              },
+              "output_fingerprint": "02a5027a81e9aaa46d53b7e8a7ba69860a59c8389c1b7b271230225363b9e4d4",
+              "provenance": {
+                "adapter": {
+                  "config_fingerprint": "8cb8c43b85217e25cad8a43f71a39af5709e2f3680c28e2b36bf0f7a2ab5beb0",
+                  "protocol_fingerprint": "b37340d4769d00d2a61b68a9d1ee79ff574b706d72e74016f4ffee9e81c59fdf",
+                  "provider_revision": "911f8ec5691bf9880c528c0c2fc90946cb1022cdcd5a83b80be1ec0b94d370ef",
+                  "request_fingerprint": "469061c15350483b02e77e10f4d78e94f26cdf52d8da39d4880d33118823dbcb"
+                },
+                "provider": {
+                  "provider_revision": "911f8ec5691bf9880c528c0c2fc90946cb1022cdcd5a83b80be1ec0b94d370ef",
+                  "ranking_fingerprint": "ffd5436c65da11de19f519797aac15226fc9afafd5f31a6de4fa560259213b35",
+                  "source_feedback_fingerprint": "6f763104976eb2286c374dacee63723b3316f0b9d252ff3de9bbc4050f857abe"
+                }
+              },
+              "provider": "live-xtb-event-ranking-v1",
+              "rejection_reason": null,
+              "snapshot_id": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f",
+              "status": "accepted",
+              "target_free": true
+            }
+          ],
+          "schema": "xtbflow-guidance-ledger/v1"
+        }
+      },
+      "physical_provider_error": null,
+      "physical_provider_failure_stage": null,
+      "physical_provider_status": "accepted",
+      "runtime_ledger": {
+        "active_jobs": [],
+        "budget": {
+          "max_calculator_calls": 1,
+          "max_concurrent_jobs": 1,
+          "max_cpu_core_hours": 0.05,
+          "max_gpu_hours": 0.0,
+          "max_retries_per_job": 0,
+          "max_storage_gb": null,
+          "max_system_evaluations": 1,
+          "max_wall_minutes_per_job": 5.0,
+          "phase": "real_feedback_physical_feedback"
+        },
+        "by_calculator": {
+          "xtb_oracle": 1
+        },
+        "by_operation": {
+          "energy_forces": 1
+        },
+        "by_status": {
+          "success": 1
+        },
+        "ledger_id": "real-feedback-physical_feedback-5193abcc1e8e87e2",
+        "phase": "real_feedback_physical_feedback",
+        "schema": "xtbflow-run-ledger/v1",
+        "totals": {
+          "attempts": 1,
+          "cache_hits": 0,
+          "calculator_calls": 1,
+          "cpu_core_hours": 0.006557471628333332,
+          "failures": 0,
+          "gpu_hours": 0.0,
+          "retries": 0,
+          "storage_gb": 0.0,
+          "successes": 1,
+          "system_evaluations": 1
+        }
+      },
+      "snapshot_after": {
+        "attempt_id": "mvp-water-parent-v1-seed-20261110",
+        "event": [
+          0.0009487900714162415,
+          -0.0007328300081630543,
+          0.00041817803226143295,
+          -0.0006341380955146201
+        ],
+        "event_frozen": false,
+        "event_mask": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "generation_step": 1,
+        "geometry": [
+          [
+            0.0003524122810465991,
+            0.003941597451486123,
+            8.001718082628476e-18
+          ],
+          [
+            0.9580820658056203,
+            -0.004362499553007689,
+            -1.0134769603837972e-17
+          ],
+          [
+            -0.2412214780866668,
+            0.9277179021015216,
+            2.1330515212094946e-18
+          ]
+        ],
+        "metadata": {
+          "charge": 0,
+          "environment": {
+            "periodic": false,
+            "solvent": "none"
+          },
+          "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+          "multiplicity": 1,
+          "symbols": [
+            "O",
+            "H",
+            "H"
+          ]
+        },
+        "parent_id": "mvp-water-parent-v1",
+        "provenance": {
+          "workflow": "one-parent-one-seed-live-xtb-v1"
+        },
+        "random_seed": 20261110,
+        "snapshot_id": "5dd97bbac05ffec47c8c0e5e8ae1dbb8247da83afc1d8c00f54aefd27ea833fd"
+      },
+      "snapshot_before": {
+        "attempt_id": "mvp-water-parent-v1-seed-20261110",
+        "event": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "event_frozen": false,
+        "event_mask": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "generation_step": 0,
+        "geometry": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.9572,
+            0.0,
+            0.0
+          ],
+          [
+            -0.239987,
+            0.927297,
+            0.0
+          ]
+        ],
+        "metadata": {
+          "charge": 0,
+          "environment": {
+            "periodic": false,
+            "solvent": "none"
+          },
+          "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+          "multiplicity": 1,
+          "symbols": [
+            "O",
+            "H",
+            "H"
+          ]
+        },
+        "parent_id": "mvp-water-parent-v1",
+        "provenance": {
+          "workflow": "one-parent-one-seed-live-xtb-v1"
+        },
+        "random_seed": 20261110,
+        "snapshot_id": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f"
+      }
+    }
+  ],
+  "artifact_packaging": {
+    "mode": "post_run_path_relocation",
+    "provenance_fields_unchanged": true,
+    "release_locator": "artifacts/real_feedback_run_20261110T020000",
+    "run_output_dir": "/tmp/xtbflow-real-feedback-run-20261110-v3"
+  },
+  "claim_levels": {
+    "calculator_feedback": "proxy_metric",
+    "ts_irc": "strict_validation_required",
+    "workflow": "software_demo"
+  },
+  "claim_limit": "Live xTB force feedback and bounded state transition are demonstrated; no chemical pathway, TS, barrier, mechanism, or superiority claim is made.",
+  "config_path": "configs/runs/real_feedback_one_parent_v0.1.json",
+  "config_sha256": "41061b110e8eacd47f3d92db88f1a3bfb3603f977cb600047d871cad4392055a",
+  "execution_host": "node2",
+  "input": {
+    "charge": 0,
+    "coordinates": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.9572,
+        0.0,
+        0.0
+      ],
+      [
+        -0.239987,
+        0.927297,
+        0.0
+      ]
+    ],
+    "environment": {
+      "periodic": false,
+      "solvent": "none"
+    },
+    "multiplicity": 1,
+    "symbols": [
+      "O",
+      "H",
+      "H"
+    ]
+  },
+  "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+  "matched_budget": {
+    "max_calculator_calls": 1,
+    "max_cpu_core_hours": 0.05,
+    "max_gpu_hours": 0.0,
+    "max_model_forwards": 1,
+    "max_wall_minutes_per_job": 5.0,
+    "max_wall_seconds": 10.0
+  },
+  "output_paths": {
+    "feedback_jsonl": "artifacts/real_feedback_run_20261110T020000/feedback.jsonl",
+    "ledger": "artifacts/real_feedback_run_20261110T020000/ledger.json",
+    "manifest": "artifacts/real_feedback_run_20261110T020000/manifest.json",
+    "summary": "artifacts/real_feedback_run_20261110T020000/summary.md"
+  },
+  "parent_id": "mvp-water-parent-v1",
+  "protocol": {
+    "identity": "30a8e5d3774c8993fd52d9633cbfbcae51c0872af7865b6afefcda5189af1364",
+    "parameters": {
+      "accuracy": 1.0,
+      "electronic_temperature": 300,
+      "max_iterations": 100,
+      "solvent": null
+    },
+    "protocol_id": "real-feedback-gfn2-xtb-v1"
+  },
+  "python": "3.10.19",
+  "schema": "xtbflow-real-feedback-loop/v1",
+  "seed": 20261110,
+  "source": {
+    "commit": "974d8ea5620d6118ccb955711ab968394a031f1f",
+    "dirty": false
+  },
+  "status": "blocked_certification"
+}

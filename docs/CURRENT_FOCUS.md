@@ -53,34 +53,42 @@ and a real closed loop.
 
 ## Active remote work
 
-All are intentionally draft/open; none is merged into `main`:
+The handoff below reflects the live PR state at the time of this commit. Merged
+PRs are retained as provenance; open drafts still require their own review gate.
 
 - [PR #151](https://github.com/askusk521-cyber/xtbflow/pull/151): dual-clock
-  software prototype, head `5544a4a`.
+  software prototype, open draft, head `5544a4a`.
 - [PR #152](https://github.com/askusk521-cyber/xtbflow/pull/152): bounded
-  feedback-generation actions, head `ae47ed3`.
+  feedback-generation actions, open draft, head `ae47ed3`.
 - [PR #153](https://github.com/askusk521-cyber/xtbflow/pull/153): narrow stable
-  scientific and environment contract, head `e94b466`.
+  scientific and environment contract, open draft, head `e94b466`.
 - [PR #154](https://github.com/askusk521-cyber/xtbflow/pull/154): terminal
-  evidence projection, head `5f5304b`.
+  evidence projection, open draft, head `5f5304b`.
 - [PR #155](https://github.com/askusk521-cyber/xtbflow/pull/155): this current
-  handoff-pointer update; its head is the commit containing this list.
+  handoff-pointer update, open draft; its head is the commit containing this list.
 - [PR #156](https://github.com/askusk521-cyber/xtbflow/pull/156): joint-flow and
-  target-free generation parent, head `7a95431`.
+  target-free generation parent, merged at `7a95431` into its custom base.
 - [PR #157](https://github.com/askusk521-cyber/xtbflow/pull/157): claim-evidence
-  integrity, head `e89b78f`.
+  integrity, merged at `fe476a4` into `main`.
 - [PR #158](https://github.com/askusk521-cyber/xtbflow/pull/158): run-status
-  retry accounting, head `35fe823`.
+  retry accounting, open draft, head `35fe823`, base `main`.
 - [PR #159](https://github.com/askusk521-cyber/xtbflow/pull/159): model/projector,
-  head `fb7a42a`, base #156 `7a95431`.
+  merged at `fb7a42a` after #156.
 - [PR #160](https://github.com/askusk521-cyber/xtbflow/pull/160): generation/scoring,
-  head `8653706`, base #159 `fb7a42a`.
+  merged at `8653706` after #159.
 - [PR #161](https://github.com/askusk521-cyber/xtbflow/pull/161): data schema/audit,
-  head `fe93331`, base #160 `8653706`.
+  merged at `fe93331` after #160.
 - [PR #162](https://github.com/askusk521-cyber/xtbflow/pull/162): docs/evidence,
-  head `e377184`, base #161 `fe93331`.
-- All listed PRs remain draft/open and unmerged.
-- This governance document is submitted separately as the research-playbook PR.
+  open draft, current head `63ad6be`, base #161 `fe93331`.
+- [PR #163](https://github.com/askusk521-cyber/xtbflow/pull/163): scheduler evidence,
+  open draft, current head `a9af5f6`, base `main`.
+- [PR #164](https://github.com/askusk521-cyber/xtbflow/pull/164): reaction-network
+  contract, open draft, head `52a34dd`, base `main`.
+- [PR #165](https://github.com/askusk521-cyber/xtbflow/pull/165): campaign/input
+  contract, open draft, head `1c55f58`, base `main`.
+
+The current release gates are the open PRs and their exact-head CI/evidence;
+merged PRs above are historical dependencies rather than pending work.
 
 ## n2 status
 

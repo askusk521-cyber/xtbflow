@@ -463,6 +463,11 @@
       "bytes": 1083
     },
     {
+      "path": "docs/architecture/policy_guidance_adapter_v0.1.md",
+      "sha256": "1f4e21d861f8aa8af51cf98bca32fa53b45d08f2ab00c775f5c9afbd8c47f179",
+      "bytes": 913
+    },
+    {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
       "sha256": "9e4b2a7d650857036e072b00107e9dc3c68738484c7f3a446b9b50d22b20971f",
       "bytes": 4884
@@ -1008,6 +1013,11 @@
       "bytes": 891
     },
     {
+      "path": "schemas/policy_guidance_adapter.schema.json",
+      "sha256": "1d16effde269fb3addb94d7469808f79c6b7b28f6b5a9e403d87e8f2d0cdff34",
+      "bytes": 885
+    },
+    {
       "path": "schemas/public_record.schema.json",
       "sha256": "43a6c76ea4229ddf42a4eda5e4dd1d3d2a4a73cfab4a6fc33aa0a648327aa298",
       "bytes": 1873
@@ -1439,8 +1449,8 @@
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
-      "sha256": "0a6b0ae03575c5eef1581134ce14db952069fe9ca86ba05747a905594331e653",
-      "bytes": 2801
+      "sha256": "f9c78cccc38cfd0b509da17f2e5f176d6d6b726aaf708151b00c9f89706622a7",
+      "bytes": 3085
     },
     {
       "path": "src/xtbflow/sampling/adapters.py",
@@ -1471,6 +1481,11 @@
       "path": "src/xtbflow/sampling/physical_adapter.py",
       "sha256": "3bd42c8ab19bda8ba6d01796d7f689d8d7b2b8ba5a97baddf87780d2fd161e16",
       "bytes": 12726
+    },
+    {
+      "path": "src/xtbflow/sampling/policy_adapter.py",
+      "sha256": "69618cf552d66d2469536e0f074added29fe04f7e812d8154e48d0e8a1514be8",
+      "bytes": 10832
     },
     {
       "path": "src/xtbflow/training/__init__.py",
@@ -1676,6 +1691,11 @@
       "path": "tests/test_physical_adapter.py",
       "sha256": "84d14adfb243a09c26886de81d7b126b11110db498a4209610dac3108fc4a229",
       "bytes": 3363
+    },
+    {
+      "path": "tests/test_policy_adapter.py",
+      "sha256": "fc068531603bad9b254ad663f9662f1631c7385258190de641aea116f394d4cb",
+      "bytes": 3830
     },
     {
       "path": "tests/test_reaction_qm_coordinate_mapping.py",

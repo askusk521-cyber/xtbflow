@@ -158,6 +158,23 @@ def test_unidirectional_control_uses_current_state_with_the_same_euler_integrato
         )
 
 
+def test_direct_control_api_rejects_steps_outside_normalized_time_domain():
+    event, coordinates, node, mask, condition = inputs()
+    flow, _ = model()
+    for mode in ("both_off", "serial_independent", JOINT_UNIDIRECTIONAL_MODE, "joint_bidirectional"):
+        with pytest.raises(ValueError, match="normalized flow domain"):
+            flow.forward_control(
+                mode,
+                event,
+                coordinates,
+                node,
+                mask,
+                tau=0.9,
+                dt=0.2,
+                condition_features=condition,
+            )
+
+
 def test_joint_loss_masks_missing_labels_and_terminal_slots_are_shared():
     torch.manual_seed(3)
     event, coordinates, node, mask, condition = inputs()

@@ -589,13 +589,23 @@
     },
     {
       "path": "docs/evidence/live_matched_pvo_calibration_20261110.json",
-      "sha256": "7499c200672012af8ccb0e6f93dc303da5937baf5deab3a7c3bea9d4b1a39b45",
-      "bytes": 325871
+      "sha256": "55f475364292db0b71ec55c64b371fb51681874de5c7263b2d1a8ab52253203c",
+      "bytes": 409321
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_calibration_ledger_20261110.jsonl",
+      "sha256": "bd496eadac33e6c0125f92dfe8742dc933c7c8b67c214d155c6e788d9675a3f1",
+      "bytes": 285702
     },
     {
       "path": "docs/evidence/live_matched_pvo_primary_20261110.json",
-      "sha256": "c889e8f911369946f46cf7e7f976d0652f1b108e6e6866d25ca3c996bb2fc5e6",
-      "bytes": 1291151
+      "sha256": "ecdd591d41fd3ef32e2d87c39815ed4fbfaeec779acb2f333bf1bbcf84eca15d",
+      "bytes": 1613597
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_primary_ledger_20261110.jsonl",
+      "sha256": "5d818f8b5be2f97691adff368cac9c1b633582f335b625e3044cafb4dd29c8cd",
+      "bytes": 1143372
     },
     {
       "path": "docs/evidence/live_matched_pvo_science_status_20261110.json",
@@ -604,8 +614,8 @@
     },
     {
       "path": "docs/evidence/live_matched_pvo_summary_20261110.json",
-      "sha256": "64f04c225adf266e33e86a9f8f701ebaaec4a1b2b2c9fe47beeb9dece7ba6b9d",
-      "bytes": 5364
+      "sha256": "e57a42f420901a061222911e65a6191849a9ea83c20f19c37f42ae47e6d4bf7e",
+      "bytes": 5829
     },
     {
       "path": "docs/evidence/matched_guidance_integration_n2_20261110.json",

@@ -84,6 +84,33 @@
     "retry_limit": 1,
     "timeout_seconds": 120
   },
+  "tool_set": [
+    "tblite-gfn2-energy-forces",
+    "live-heuristic-policy-nearest-nonbonded-pair",
+    "thread-pool-max-workers-2"
+  ],
+  "provider_identity": {
+    "physical_provider_revision": "live-tblite-physical-pvo-v1",
+    "policy_provider_revision": "live-heuristic-policy-pvo-v1",
+    "policy_config": "nearest-nonbonded-pair-policy-v1",
+    "policy_checkpoint": null
+  },
+  "policy_checkpoint": null,
+  "merge_configuration": {
+    "geometry_trust_radius": 0.2,
+    "collision_distance": 0.2,
+    "event_freeze_step": null,
+    "event_constraint": "one-feature-zero-residual-diagnostic"
+  },
+  "retry_policy": {
+    "max_retries": 1,
+    "retry_identity": "new attempt_id and retry_index for every retry",
+    "retry_results_are_not_primary_seeds": true
+  },
+  "cost_accounting": {
+    "fields": ["reserved_cost", "observed_cost", "charged_cost", "overrun"],
+    "ledger_persisted_per_row": true
+  },
   "claim_limits": [
     "No chemistry superiority or physical accuracy claim is supported because calculator qualification is incomplete.",
     "Synthetic guidance is not used; all provider calls in the PVO are real tblite calls or recorded policy decisions.",

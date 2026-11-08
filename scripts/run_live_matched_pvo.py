@@ -207,7 +207,24 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
     merge_wall = 0.0
     rows_ledger: list[dict[str, Any]] = []
     if initial_result.status != "success" or initial_result.forces is None:
-        return {"parent_id": parent_id, "seed": seed, "arm": arm, "status": "initial_calculator_failed", "calculator_calls": calculator_calls, "wall_seconds": initial_wall, "reference_event": sorted(reference)}
+        reserved_calls = int(protocol["budget_policy"]["max_calculator_calls_per_row"])
+        return {
+            "attempt_id": f"{parent_id}:seed-{seed}:arm-{arm}:retry-0",
+            "retry_index": 0,
+            "parent_id": parent_id,
+            "seed": seed,
+            "arm": arm,
+            "status": "initial_calculator_failed",
+            "calculator_calls": calculator_calls,
+            "wall_seconds": initial_wall,
+            "reference_event": sorted(reference),
+            "cost_accounting": {
+                "reserved_cost": {"calculator_calls": reserved_calls, "wall_seconds": float(protocol["budget_policy"].get("timeout_seconds", 120.0))},
+                "observed_cost": {"calculator_calls": calculator_calls, "wall_seconds": initial_wall},
+                "charged_cost": {"calculator_calls": calculator_calls, "wall_seconds": initial_wall},
+                "overrun": {"calculator_calls": max(0, calculator_calls - reserved_calls), "wall_seconds": max(0.0, initial_wall - float(protocol["budget_policy"].get("timeout_seconds", 120.0)))},
+            },
+        }
     budget = GuidanceBudget(GuidanceCost(model_forwards=2, calculator_calls=3, wall_seconds=120.0))
     physical = LivePhysicalProvider(system, adapter_factory)
     policy = LivePolicyProvider(coordinates, tuple(sample.atomic_numbers), tuple(sample.record.atoms["map_ids"]))
@@ -276,7 +293,12 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
     force_final = rms([float(value) for row in final_result.forces for value in final_result.forces for value in []]) if False else None
     if final_result.forces is not None:
         force_final = rms([float(value) for row in final_result.forces for value in row])
+    reserved_calls = int(protocol["budget_policy"]["max_calculator_calls_per_row"])
+    observed_calls = calculator_calls
+    observed_wall = initial_wall + provider_wall + merge_wall + final_wall
     return {
+        "attempt_id": f"{parent_id}:seed-{seed}:arm-{arm}:retry-0",
+        "retry_index": 0,
         "parent_id": parent_id,
         "seed": seed,
         "arm": arm,
@@ -293,6 +315,12 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
         "force_rms_final": force_final,
         "force_rms_reduction": None if force_final is None else force_initial - force_final,
         "calculator_calls": calculator_calls,
+        "cost_accounting": {
+            "reserved_cost": {"calculator_calls": reserved_calls, "wall_seconds": float(protocol["budget_policy"].get("timeout_seconds", 120.0))},
+            "observed_cost": {"calculator_calls": observed_calls, "wall_seconds": observed_wall},
+            "charged_cost": {"calculator_calls": observed_calls, "wall_seconds": observed_wall},
+            "overrun": {"calculator_calls": max(0, observed_calls - reserved_calls), "wall_seconds": max(0.0, observed_wall - float(protocol["budget_policy"].get("timeout_seconds", 120.0)))},
+        },
         "provider_wall_seconds": provider_wall,
         "queue_wait_seconds": queue_wait,
         "merge_wall_seconds": merge_wall,
@@ -312,6 +340,7 @@ def main() -> int:
     parser.add_argument("--pool", choices=("primary", "calibration"), default="primary")
     parser.add_argument("--seeds", type=int, nargs="+", default=None)
     parser.add_argument("--arms", nargs="+", choices=ARMS, default=None)
+    parser.add_argument("--ledger-output", type=Path, default=None)
     args = parser.parse_args()
     protocol = json.loads(args.protocol.read_text(encoding="utf-8"))
     if protocol.get("status") != "frozen_pre_run":
@@ -326,12 +355,24 @@ def main() -> int:
     seeds = args.seeds or protocol["seeds"]
     arms = args.arms or protocol["arms"]
     rows: list[dict[str, Any]] = []
+    ledger_path = args.ledger_output or args.output.with_suffix(".ledger.jsonl")
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
+    existing_attempts: set[str] = set()
+    if ledger_path.is_file():
+        for line in ledger_path.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                existing_attempts.add(json.loads(line)["attempt_id"])
     start = time.perf_counter()
     for parent_id in parent_ids:
         sample = by_parent[parent_id]
         for seed in seeds:
             for arm in arms:
                 rows.append(run_row(sample, parent_id, seed, arm, protocol))
+                row = rows[-1]
+                if row["attempt_id"] not in existing_attempts:
+                    with ledger_path.open("a", encoding="utf-8") as handle:
+                        handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True, allow_nan=False) + "\n")
+                    existing_attempts.add(row["attempt_id"])
     elapsed = time.perf_counter() - start
     summary = {
         "schema": "xtbflow-live-matched-pvo-result/v1",
@@ -346,6 +387,24 @@ def main() -> int:
         "elapsed_wall_seconds": elapsed,
         "rows": rows,
         "claim_limits": protocol["claim_limits"],
+        "provenance": {
+            "candidate_pool": {
+                "source_manifest": protocol["source_manifest"],
+                "source_manifest_sha256": protocol["source_manifest_sha256"],
+                "primary_parent_ids": protocol["primary_parent_ids"],
+                "calibration_parent_ids": protocol.get("calibration_parent_ids", []),
+            },
+            "arm_protocol": protocol["arms"],
+            "tool_set": protocol.get("tool_set", []),
+            "budget_policy": protocol["budget_policy"],
+            "provider_identity": protocol.get("provider_identity", {}),
+            "calculator_protocol": protocol["calculator_protocol"],
+            "merge_configuration": protocol.get("merge_configuration", {}),
+            "policy_checkpoint": protocol.get("policy_checkpoint"),
+            "ledger_path": str(ledger_path),
+            "retry_policy": protocol.get("retry_policy", {}),
+        },
+        "ledger_sha256": hashlib.sha256(ledger_path.read_bytes()).hexdigest(),
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")

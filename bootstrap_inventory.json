@@ -214,8 +214,8 @@
     },
     {
       "path": "configs/experiments/live_matched_pvo_v1.json",
-      "sha256": "8775b4f48399676ca09fbaffbbcbca310805c2c397255b22fbf7ef8554ff4e21",
-      "bytes": 3007
+      "sha256": "dc1588551c380484d4c0cd1d4b81c8565b3450b4ff24aad42bae9ddf42abc833",
+      "bytes": 3920
     },
     {
       "path": "configs/experiments/spice2_energy_learning_curve_v1.json",
@@ -1239,8 +1239,8 @@
     },
     {
       "path": "scripts/run_live_matched_pvo.py",
-      "sha256": "69d3cd3bcf74231e49399a144698e1d76cb39bb9c1ae00bf61a0ebcafca012f0",
-      "bytes": 17950
+      "sha256": "3042d12e57a351e41a8a9e53a7e66839e7ebc30480e646efeb434994c03c71bf",
+      "bytes": 21502
     },
     {
       "path": "scripts/run_parallel_guidance_replay.py",

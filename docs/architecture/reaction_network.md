@@ -58,4 +58,3 @@ The contract supports later fixed or feedback schedulers, but it deliberately
 does not choose a frontier, compare strategies, or perform quantum-chemistry
 work. Those activities need a separately frozen protocol, finite budget, and
 independent evidence record.
-

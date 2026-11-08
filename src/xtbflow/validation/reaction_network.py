@@ -475,4 +475,3 @@ class ReactionNetwork:
         except (OSError, json.JSONDecodeError) as exc:
             raise ValueError(f"invalid reaction network file: {exc}") from exc
         return cls.from_dict(payload)
-

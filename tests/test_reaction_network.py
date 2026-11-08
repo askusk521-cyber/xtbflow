@@ -128,4 +128,3 @@ def test_certified_path_returns_none_for_unconnected_node():
     network.add_node(node("r0", kind="reactant"))
     network.add_node(node("isolated"))
     assert network.certified_path("isolated") is None
-

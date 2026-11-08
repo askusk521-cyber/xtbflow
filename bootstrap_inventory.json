@@ -388,6 +388,11 @@
       "bytes": 6609
     },
     {
+      "path": "docs/PROJECT_STATUS.md",
+      "sha256": "cc189a05f9588c36042ca4b8413a8ba4258bdc6c39f0398c600e121dd52bd412",
+      "bytes": 443
+    },
+    {
       "path": "docs/PROVENANCE.md",
       "sha256": "07b8e206c34433ec1ff0c22ee34d259e0a37e2784db996d38fddf304f96e8390",
       "bytes": 1983
@@ -411,6 +416,11 @@
       "path": "docs/architecture/architecture_v0.1.md",
       "sha256": "f7e7cdeb8afb97ecbb6aacf132ab217a8f750e68dfbf924daf1e48f298bdd4a1",
       "bytes": 5963
+    },
+    {
+      "path": "docs/architecture/budget_scheduler_v0.1.md",
+      "sha256": "507ad1571fa3db76005619888789bb77cc046e5c3e1591a46650bef7f8b2f711",
+      "bytes": 2717
     },
     {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
@@ -1299,8 +1309,8 @@
     },
     {
       "path": "src/xtbflow/runtime/__init__.py",
-      "sha256": "c025dd9de553aa2395f9dff81b06961355ff8956319073bee1d8f47572fd508f",
-      "bytes": 648
+      "sha256": "6a6aba9548716e25c21ae7f20dfa05e5a20b5483926313573fa47f41d6e06820",
+      "bytes": 1135
     },
     {
       "path": "src/xtbflow/runtime/ledger.py",
@@ -1316,6 +1326,11 @@
       "path": "src/xtbflow/runtime/runner.py",
       "sha256": "d880a808cfe140cb01a76862dd2871dda1f8b89dcbafdc91d9a96d0a69fef1b0",
       "bytes": 7793
+    },
+    {
+      "path": "src/xtbflow/runtime/scheduler.py",
+      "sha256": "fcf85197c26349e08f7109176eb82f829154daa9c7f0da02f5535030c5cb0c0b",
+      "bytes": 20820
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
@@ -1416,6 +1431,11 @@
       "path": "tests/test_blind_rollout.py",
       "sha256": "5d9320021ff9d99cc413bb98e34da7ce18624e8b4fa078656347bc6a8ac4775b",
       "bytes": 4307
+    },
+    {
+      "path": "tests/test_budget_scheduler.py",
+      "sha256": "0c52782ff49d3fec99fec8bddcf821425d4533ab815563b919eabe6ab59e977f",
+      "bytes": 4806
     },
     {
       "path": "tests/test_calculator_contract.py",

@@ -68,12 +68,18 @@ All are intentionally draft/open; none is merged into `main`:
 - [PR #156](https://github.com/askusk521-cyber/xtbflow/pull/156): joint-flow and
   target-free generation parent, head `7a95431`.
 - [PR #157](https://github.com/askusk521-cyber/xtbflow/pull/157): claim-evidence
-  integrity, head `8703c0b`.
+  integrity, head `e89b78f`.
 - [PR #158](https://github.com/askusk521-cyber/xtbflow/pull/158): run-status
-  retry accounting, head `ea21530`.
-- [PR #159](https://github.com/askusk521-cyber/xtbflow/pull/159) through
-  [PR #162](https://github.com/askusk521-cyber/xtbflow/pull/162): stacked PR156
-  repair chain; all remain draft/open and unmerged.
+  retry accounting, head `35fe823`.
+- [PR #159](https://github.com/askusk521-cyber/xtbflow/pull/159): model/projector,
+  head `fb7a42a`, base #156 `7a95431`.
+- [PR #160](https://github.com/askusk521-cyber/xtbflow/pull/160): generation/scoring,
+  head `8653706`, base #159 `fb7a42a`.
+- [PR #161](https://github.com/askusk521-cyber/xtbflow/pull/161): data schema/audit,
+  head `fe93331`, base #160 `8653706`.
+- [PR #162](https://github.com/askusk521-cyber/xtbflow/pull/162): docs/evidence,
+  head `da9d36b`, base #161 `fe93331`.
+- All listed PRs remain draft/open and unmerged.
 - This governance document is submitted separately as the research-playbook PR.
 
 ## n2 status

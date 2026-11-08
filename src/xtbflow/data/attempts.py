@@ -12,7 +12,12 @@ from dataclasses import dataclass, field
 import json
 from typing import Any, Mapping
 
-from .records import canonical_hash
+from .records import (
+    TARGET_DERIVED_FIELD_EXACT,
+    TARGET_DERIVED_FIELD_PARTS,
+    canonical_hash,
+    reject_target_derived_fields,
+)
 
 
 ATTEMPT_SCHEMA = "xtbflow-independent-search-attempt/v1"
@@ -21,7 +26,21 @@ VALIDATION_SCHEMA = "xtbflow-independent-validation/v1"
 
 SEED_STATUSES = frozenset({"not_searched", "unsafe", "unsupported"})
 ATTEMPT_STATUSES = frozenset({"not_searched", "unsafe", "unsupported", "numerical_failed", "budget_exhausted", "alternative_channel", "semiempirical_connected", "reference_single_point", "reference_path"})
-FORBIDDEN_TARGET_KEYS = frozenset({"product", "ts", "ts_geometry", "reference_mode", "active_water_from_ts", "target_active_water", "sealed_test_label", "energy", "forces"})
+FORBIDDEN_TARGET_KEYS = frozenset(
+    {
+        "product",
+        "ts",
+        "ts_geometry",
+        "reference_mode",
+        "active_water_from_ts",
+        "target_active_water",
+        "sealed_test_label",
+        "energy",
+        "forces",
+    }
+    | TARGET_DERIVED_FIELD_PARTS
+    | TARGET_DERIVED_FIELD_EXACT
+)
 
 
 def _text(value: Any, name: str) -> str:
@@ -41,9 +60,7 @@ def _object(value: Any, name: str, *, forbid_targets: bool = False) -> dict[str,
         raise ValueError(f"{name} must be an object")
     result = dict(value)
     if forbid_targets:
-        forbidden = FORBIDDEN_TARGET_KEYS.intersection(result)
-        if forbidden:
-            raise ValueError(f"target-derived fields are forbidden in {name}: {sorted(forbidden)}")
+        reject_target_derived_fields(result, name=name)
     try:
         json.dumps(result, ensure_ascii=False, sort_keys=True, allow_nan=False)
     except (TypeError, ValueError) as exc:

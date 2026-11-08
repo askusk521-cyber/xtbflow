@@ -12,6 +12,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field, replace
 import hashlib
 import json
+import re
 from typing import Any, Iterable, Mapping, Sequence
 
 
@@ -28,6 +29,41 @@ FORBIDDEN_INPUT_KEYS = frozenset({
     "product", "mapped_product", "product_coordinates", "ts_geometry", "reference_ts",
     "reference_mode", "active_water_from_ts", "target_derived_solvent", "sealed_test_label",
 })
+
+# These are checked recursively for every reactant-side metadata/provenance
+# object.  The previous contracts only compared direct keys, which allowed a
+# target field to hide inside a nested mapping or to change case/separators.
+TARGET_DERIVED_FIELD_PARTS = frozenset(
+    {
+        "product",
+        "mapped_product",
+        "ts",
+        "reference",
+        "target",
+        "sealed",
+        "label",
+        "barrier",
+        "energy",
+        "forces",
+        "irc",
+        "answer",
+        "ground_truth",
+        "gold",
+    }
+)
+TARGET_DERIVED_FIELD_EXACT = frozenset(
+    {
+        "productcoordinates",
+        "productgeometry",
+        "tsgeometry",
+        "referencets",
+        "referencemode",
+        "activewaterfromts",
+        "targetactivewater",
+        "sealedtestlabel",
+        "eventlabel",
+    }
+)
 ALLOWED_INPUT_KEYS = frozenset({
     "atomic_numbers", "symbols", "elements", "reactant_coordinates", "charge", "multiplicity",
     "microstate", "stereo", "solvent_membership", "declared_intent", "temperature",
@@ -55,6 +91,45 @@ def canonical_hash(value: Any) -> str:
 
     encoded = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
     return hashlib.sha256(encoded).hexdigest()
+
+
+def _normalise_field_name(key: str) -> str:
+    """Normalize case, camel case, and separators for firewall matching."""
+
+    camel = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", key.strip())
+    return re.sub(r"[^A-Za-z0-9]+", "_", camel).strip("_").lower()
+
+
+def _is_target_derived_field(key: str) -> bool:
+    normalized = _normalise_field_name(key)
+    if not normalized:
+        return False
+    parts = set(normalized.split("_"))
+    compact = normalized.replace("_", "")
+    return bool(parts.intersection(TARGET_DERIVED_FIELD_PARTS)) or compact in TARGET_DERIVED_FIELD_EXACT
+
+
+def reject_target_derived_fields(value: Any, *, name: str) -> None:
+    """Reject target-derived keys recursively in mappings and JSON arrays.
+
+    This intentionally validates field *names* only.  Values remain opaque but
+    are traversed so a target label cannot be hidden in provenance, nested
+    records, or an array of objects.
+    """
+
+    def walk(current: Any, path: str) -> None:
+        if isinstance(current, Mapping):
+            for key, nested in current.items():
+                if not isinstance(key, str):
+                    raise ValueError(f"{name} contains a non-string field name at {path}")
+                if _is_target_derived_field(key):
+                    raise ValueError(f"target-derived field {path}.{key} is forbidden in {name}")
+                walk(nested, f"{path}.{key}")
+        elif isinstance(current, (list, tuple)):
+            for index, nested in enumerate(current):
+                walk(nested, f"{path}[{index}]")
+
+    walk(value, name)
 
 
 def _mapping(value: Any, name: str) -> dict[str, Any]:
@@ -192,6 +267,7 @@ class PublicRecord:
         if any(not isinstance(k, str) or not k.strip() or type(v) is not bool for k, v in mask.items()):
             raise ValueError("available_label_mask must map names to booleans")
         inputs = _mapping(self.input_data, "input_data")
+        reject_target_derived_fields(inputs, name="reactant input")
         forbidden = FORBIDDEN_INPUT_KEYS.intersection(inputs)
         if forbidden:
             raise ValueError(f"target-derived fields cannot enter reactant input: {sorted(forbidden)}")

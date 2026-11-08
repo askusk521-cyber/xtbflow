@@ -14,7 +14,13 @@ import math
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
-from .records import CHNOS_ELEMENTS, canonical_hash
+from .records import (
+    CHNOS_ELEMENTS,
+    TARGET_DERIVED_FIELD_EXACT,
+    TARGET_DERIVED_FIELD_PARTS,
+    canonical_hash,
+    reject_target_derived_fields,
+)
 
 
 SEED_SCHEMA = "xtbflow-independent-reactant-seed/v1"
@@ -36,6 +42,8 @@ FORBIDDEN_SEED_KEYS = frozenset(
         "barrier",
         "energy",
     }
+    | TARGET_DERIVED_FIELD_PARTS
+    | TARGET_DERIVED_FIELD_EXACT
 )
 
 
@@ -149,9 +157,7 @@ class IndependentSeed:
         object.__setattr__(self, "charge", charge)
         object.__setattr__(self, "multiplicity", multiplicity)
         metadata = _mapping(self.metadata, "metadata")
-        forbidden = FORBIDDEN_SEED_KEYS.intersection(metadata)
-        if forbidden:
-            raise ValueError(f"target-derived fields are forbidden in seed metadata: {sorted(forbidden)}")
+        reject_target_derived_fields(metadata, name="seed metadata")
         object.__setattr__(self, "metadata", metadata)
 
     @property

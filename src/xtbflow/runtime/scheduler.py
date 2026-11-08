@@ -272,10 +272,10 @@ class BudgetScheduler:
         schedule chooses any candidate that fits, then stops when none fits.
         """
 
-        if self._in_flight is not None:
-            return self._in_flight
         if self._lifecycle != "running":
             return None
+        if self._in_flight is not None:
+            return self._in_flight
         while self._pending:
             candidate = self._choose_candidate()
             if candidate is None:

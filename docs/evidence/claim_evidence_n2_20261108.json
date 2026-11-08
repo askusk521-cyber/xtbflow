@@ -1,0 +1,31 @@
+{
+  "schema": "xtbflow-evidence/claim-evidence-n2-software/v1",
+  "status": "completed",
+  "stage": "software_validation",
+  "host": "node2",
+  "source_commit": "0e002b1207c5141c8ec2c412b52cdb082db376dd",
+  "source_branch": "codex/w13-claim-evidence-20261108",
+  "work_root": "~/xtbflow-runs/w13-claim-evidence-20261108-0e002b1",
+  "environment": {
+    "conda": "xtbflow",
+    "python": "3.10.19",
+    "pytorch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "gpu_calls": 0,
+    "calculator_calls": 0
+  },
+  "commands": [
+    "timeout 600 env -u PYTHONPATH PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q tests/test_claim_evidence.py",
+    "python scripts/validate_claim_evidence.py configs/evidence/claim_evidence_manifest_v1.example.json --check-paths",
+    "python scripts/validate_bootstrap.py"
+  ],
+  "results": {
+    "claim_evidence_tests_passed": 4,
+    "bootstrap_inventory_files_verified": 328,
+    "warnings": []
+  },
+  "claim_limits": [
+    "This validates only the evidence-manifest software contract.",
+    "It does not select a W08 panel, run chemistry, or establish an independent confirmation."
+  ]
+}

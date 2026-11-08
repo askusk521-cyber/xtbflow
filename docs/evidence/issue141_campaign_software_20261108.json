@@ -5,8 +5,8 @@
   "work_package": "W11",
   "stage": "campaign_manifest_software_contract",
   "status": "pass",
-  "validated_source_commit": "a525131179349ec5b70df0c1baa11a1e9466a6a5",
-  "validated_source_subject": "feat: add W11 campaign input contract",
+  "validated_source_commit": "6cf38710c35bce29d337663d21b267688e2dc3a7",
+  "validated_source_subject": "fix: harden W11 target input firewall",
   "branch": "codex/issue141-campaign-20261108",
   "host": "node2",
   "checkout": "/tmp/xtbflow-exec-issue141-20261108",
@@ -22,9 +22,9 @@
     "campaign_fixture_sha256": "649a571780ee73511bfcea1c8be4872d8f5f518c513b8388583f7b9e1c9c5968",
     "manifest_schema_sha256": "0dee82c3485838c63dad48201a289fc0f0ff8a7dbb776f33008b87bd59e386a4",
     "architecture_doc_sha256": "d5e9130284e81b60898acbecba727599473e947fea4bf7599edcc2a3a0cfefa8",
-    "campaign_module_sha256": "e865e197a9e613cdc1d9c41c97c3f33ebe54a455b3dabbc19b6efd7c7ede8430",
+    "campaign_module_sha256": "b00be41d6a67da875da1384da5842ae8eb0787f85a974f7a9e44852b45c0b475",
     "validator_script_sha256": "4ed8eb694641587a8a35792ade64523c5af631b6bf7205f7d621244f5520fc80",
-    "focused_test_sha256": "f4e71d00b5432b64f1517f1f306be39b792b0efe6ca007a8222cfced206a1a60",
+    "focused_test_sha256": "4d125bf5e832a9d115dd05e7983434c06ab0b5e8497cc8325084a5e35d1a5234",
     "campaign_input_fingerprint": "8888f28f8f223cc85b9582a89c92e824de13f324ac3d35ea78616a9ef38fc36e"
   },
   "resource_envelope": {
@@ -40,17 +40,17 @@
     {
       "name": "focused_contract_tests",
       "command": "source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow; cd /tmp/xtbflow-exec-issue141-20261108; PYTHONPATH=.:src:vendor/mechai_reusable pytest -q tests/test_campaign_manifest.py",
-      "result": "PASS: 5 passed in 0.10s"
+      "result": "PASS: 6 passed in 0.10s"
     },
     {
       "name": "full_pytest",
       "command": "source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow; cd /tmp/xtbflow-exec-issue141-20261108; PYTHONPATH=.:src:vendor/mechai_reusable pytest -q",
-      "result": "PASS: 271 passed, 1 existing warning, 68 subtests passed in 11.02s"
+      "result": "PASS: 272 passed, 1 existing warning, 68 subtests passed in 10.89s"
     },
     {
       "name": "reusable_unittest",
       "command": "source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow; cd /tmp/xtbflow-exec-issue141-20261108; PYTHONPATH=.:src:vendor/mechai_reusable python -m unittest discover -s tests/reusable -p 'test_*.py'",
-      "result": "PASS: 56 tests OK in 0.391s"
+      "result": "PASS: 56 tests OK in 0.420s"
     },
     {
       "name": "campaign_cli",

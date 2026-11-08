@@ -1389,8 +1389,8 @@
     },
     {
       "path": "src/xtbflow/sampling/parallel_guidance.py",
-      "sha256": "9ab2a45f1e4585f8edb70c8ba9ee5eeca153fb04d70df5e9c906b8c746db9336",
-      "bytes": 30203
+      "sha256": "1c1f81203fb15c8579a42937338c5cad7ee4f0a861d11049baaa9a586d2fb12b",
+      "bytes": 30341
     },
     {
       "path": "src/xtbflow/training/__init__.py",
@@ -1574,8 +1574,8 @@
     },
     {
       "path": "tests/test_parallel_guidance.py",
-      "sha256": "ecb7f75c8bfedd86feb5dc1ee85c986190e646fdf0f9a1beab571278fa728c49",
-      "bytes": 7360
+      "sha256": "bf1f9fa28654c7e10d123e67aa8c180ed865ef66fe4cf80f5c2d51ec760f988f",
+      "bytes": 7414
     },
     {
       "path": "tests/test_path_status.py",

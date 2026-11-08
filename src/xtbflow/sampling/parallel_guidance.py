@@ -347,6 +347,8 @@ class GuidanceOutput:
         object.__setattr__(self, "ranking", ranking)
         object.__setattr__(self, "provenance", provenance)
         payload = self.to_mapping(include_output_fingerprint=False)
+        for key in ("estimated_cost", "measured_cost", "status", "failure_stage", "rejection_reason"):
+            payload.pop(key, None)
         computed = _canonical_hash(payload)
         if self.output_fingerprint and self.output_fingerprint != computed:
             raise ValueError("output_fingerprint does not match output contents")

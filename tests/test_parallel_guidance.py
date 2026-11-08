@@ -152,6 +152,7 @@ def test_failed_lane_does_not_block_valid_lane_and_duplicate_is_not_billed_twice
     duplicate = output(
         state, GuidanceLane.GEOMETRY, "physics",
         geometry_delta=((0.1, 0.0, 0.0), (0.0, 0.0, 0.0)),
+        measured_cost=GuidanceCost(model_forwards=9),
     )
     result = merge_guidance(state, (duplicate, failed, geometry), config=MergeConfig())
     assert result.snapshot.geometry != state.geometry

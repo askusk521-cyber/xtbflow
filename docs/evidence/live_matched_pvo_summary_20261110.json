@@ -1,0 +1,159 @@
+{
+  "arms": [
+    "none",
+    "physical_only",
+    "policy_only",
+    "serial_full",
+    "parallel_full",
+    "policy_off"
+  ],
+  "arms_summary": {
+    "none": {
+      "calculator_calls": 192,
+      "cost_per_positive_force_row": 4.8,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "median_force_rms_reduction": -7.589415207398531e-19,
+      "median_wall_seconds": 0.11576703493483365,
+      "model_forwards": 0,
+      "p95_wall_seconds": 0.1709206222440116,
+      "rows": 96,
+      "success_rows": 96
+    },
+    "parallel_full": {
+      "calculator_calls": 288,
+      "cost_per_positive_force_row": 3.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "median_force_rms_reduction": 0.00032132005236276207,
+      "median_wall_seconds": 0.2724745679879561,
+      "model_forwards": 96,
+      "p95_wall_seconds": 0.36100318731041625,
+      "rows": 96,
+      "success_rows": 96
+    },
+    "physical_only": {
+      "calculator_calls": 288,
+      "cost_per_positive_force_row": 3.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "median_force_rms_reduction": 0.00032132005236276,
+      "median_wall_seconds": 0.18245404795743525,
+      "model_forwards": 96,
+      "p95_wall_seconds": 0.2479475307627581,
+      "rows": 96,
+      "success_rows": 96
+    },
+    "policy_off": {
+      "calculator_calls": 192,
+      "cost_per_positive_force_row": 3.6226415094339623,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "median_force_rms_reduction": 4.336808689942018e-19,
+      "median_wall_seconds": 0.11429754155687988,
+      "model_forwards": 0,
+      "p95_wall_seconds": 0.15600336593342945,
+      "rows": 96,
+      "success_rows": 96
+    },
+    "policy_only": {
+      "calculator_calls": 192,
+      "cost_per_positive_force_row": 4.363636363636363,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "median_force_rms_reduction": 0.0,
+      "median_wall_seconds": 0.1180479588219896,
+      "model_forwards": 96,
+      "p95_wall_seconds": 0.17558927211211994,
+      "rows": 96,
+      "success_rows": 96
+    },
+    "serial_full": {
+      "calculator_calls": 288,
+      "cost_per_positive_force_row": 3.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "median_force_rms_reduction": 0.00032132005236274743,
+      "median_wall_seconds": 0.18168226955458522,
+      "model_forwards": 96,
+      "p95_wall_seconds": 0.27417587401578203,
+      "rows": 96,
+      "success_rows": 96
+    }
+  },
+  "calibration_parent_count": 8,
+  "calibration_row_count": 144,
+  "calibration_summary": {
+    "none": {
+      "calculator_calls": 48,
+      "rows": 24,
+      "success_rows": 24
+    },
+    "parallel_full": {
+      "calculator_calls": 72,
+      "rows": 24,
+      "success_rows": 24
+    },
+    "physical_only": {
+      "calculator_calls": 72,
+      "rows": 24,
+      "success_rows": 24
+    },
+    "policy_off": {
+      "calculator_calls": 48,
+      "rows": 24,
+      "success_rows": 24
+    },
+    "policy_only": {
+      "calculator_calls": 48,
+      "rows": 24,
+      "success_rows": 24
+    },
+    "serial_full": {
+      "calculator_calls": 72,
+      "rows": 24,
+      "success_rows": 24
+    }
+  },
+  "claim_limits": [
+    "No chemistry superiority or physical accuracy claim is supported because calculator qualification is incomplete.",
+    "Synthetic guidance is not used; all provider calls in the PVO are real tblite calls or recorded policy decisions.",
+    "Any threshold miss is retained as a negative or unresolved result.",
+    "The pool spans development admissions and is not an independent confirmation split; no training/model selection may use PVO results.",
+    "Calculator qualification failed strict native-ASE and independent-xTB force parity gates; physical observations are diagnostic only.",
+    "The policy is a recorded heuristic; event exact-match is an evaluation endpoint, not a chemistry claim.",
+    "The primary pool is an admitted development pool, not independent confirmation; no training/model selection used PVO results.",
+    "Parallel and serial had equal calculator call counts; observed parallel wall-time was slower, so no throughput advantage is claimed."
+  ],
+  "comparisons": {
+    "chemical_policy_only_vs_none_exact_rate": 0.0,
+    "parallel_vs_serial_wall_speedup": 0.6667861551123403,
+    "physical_vs_none_median_lift": 0.00032132005236276077,
+    "threshold_passes": {
+      "chemical": false,
+      "parallel": false,
+      "physical": true
+    }
+  },
+  "primary_parent_count": 32,
+  "primary_row_count": 576,
+  "qualification_status": "requalification_required",
+  "schema": "xtbflow-live-matched-pvo-summary/v2",
+  "seed_count": 3,
+  "source_calibration_sha256": "7499c200672012af8ccb0e6f93dc303da5937baf5deab3a7c3bea9d4b1a39b45",
+  "source_commit": "d8b06d570ea3e77fc225dd955b6eaa0ffeed9bbe",
+  "source_primary_sha256": "c889e8f911369946f46cf7e7f976d0652f1b108e6e6866d25ca3c996bb2fc5e6",
+  "status": "completed_with_qualification_limit",
+  "thresholds": {
+    "chemical_event_exact_match_lift_min": 0.05,
+    "failure_rate_noninferiority_bound": 0.05,
+    "parallel_wall_speedup_min": 1.1,
+    "physical_median_force_rms_reduction_min": 0.0001
+  }
+}

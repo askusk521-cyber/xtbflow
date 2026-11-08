@@ -583,6 +583,21 @@
       "bytes": 4826
     },
     {
+      "path": "docs/evidence/live_matched_pvo_calibration_20261110.json",
+      "sha256": "7499c200672012af8ccb0e6f93dc303da5937baf5deab3a7c3bea9d4b1a39b45",
+      "bytes": 325871
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_primary_20261110.json",
+      "sha256": "c889e8f911369946f46cf7e7f976d0652f1b108e6e6866d25ca3c996bb2fc5e6",
+      "bytes": 1291151
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_summary_20261110.json",
+      "sha256": "64f04c225adf266e33e86a9f8f701ebaaec4a1b2b2c9fe47beeb9dece7ba6b9d",
+      "bytes": 5364
+    },
+    {
       "path": "docs/evidence/matched_guidance_integration_n2_20261110.json",
       "sha256": "f451ae67e04abacca64adf3aeb652665e29c14d540bf98900015e29b0809d688",
       "bytes": 2358

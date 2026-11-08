@@ -1,0 +1,36 @@
+{
+  "claim_limits": [
+    "The example manifest is planned evidence structure only.",
+    "No scientific claim, comparison result, training run, GPU run, or chemistry result was produced.",
+    "The concrete W08 eligible panel manifest remains pending under #129."
+  ],
+  "commands": [
+    "env -u PYTHONPATH PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q",
+    "python scripts/validate_claim_evidence.py configs/evidence/claim_evidence_manifest_v1.example.json --check-paths",
+    "python scripts/render_claim_evidence.py configs/evidence/claim_evidence_manifest_v1.example.json --output-json <temporary>/summary.json --output-svg <temporary>/status.svg",
+    "python scripts/validate_bootstrap.py"
+  ],
+  "environment": {
+    "calculator_calls": 0,
+    "gpu_calls": 0,
+    "host_class": "local-development-machine",
+    "pytest": "9.1.1",
+    "python": "3.10.12",
+    "pytorch": "2.10.0+cpu"
+  },
+  "results": {
+    "bootstrap_inventory_files_verified": 328,
+    "claim_evidence_contract_tests_passed": 4,
+    "pytest_passed": 268,
+    "pytest_subtests_passed": 68,
+    "warnings": [
+      "pre-existing tensor-to-scalar warning in tests/test_energy_forces.py",
+      "2 test skips from the existing main baseline"
+    ]
+  },
+  "schema": "xtbflow-evidence/claim-evidence-contract/v1",
+  "source_branch": "codex/w13-claim-evidence-20261108",
+  "source_commit": "a3278ef22b1c6d5bc97d3ec55b66c466c834aca9",
+  "stage": "software_validation",
+  "status": "completed"
+}

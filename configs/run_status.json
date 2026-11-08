@@ -9,5 +9,7 @@
   "finished_run_days": 7,
   "heartbeat_hours": 20,
   "ssh_timeout_s": 60,
+  "ssh_retry_attempts": 2,
+  "ssh_retry_delay_s": 3,
   "schedule_note": "每天 08:00"
 }

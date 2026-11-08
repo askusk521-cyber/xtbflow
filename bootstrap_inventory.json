@@ -254,8 +254,8 @@
     },
     {
       "path": "configs/run_status.json",
-      "sha256": "afa5154e596af041dd0d8ffb9b977fbc3a6308aeb4fdcc77052d9f6ffd4ea1f7",
-      "bytes": 355
+      "sha256": "509259eccdee29aa81843af3be3b100398c379590bd61356de63a8f1afda819a",
+      "bytes": 408
     },
     {
       "path": "configs/runs/README.md",
@@ -386,6 +386,11 @@
       "path": "docs/MECHAI_REUSE_MANIFEST.json",
       "sha256": "2b3a1f89841edac9f74545c19377391eeba815f3083d2f6a915d91b1bc01f8fb",
       "bytes": 6609
+    },
+    {
+      "path": "docs/PROJECT_STATUS.md",
+      "sha256": "cc189a05f9588c36042ca4b8413a8ba4258bdc6c39f0398c600e121dd52bd412",
+      "bytes": 443
     },
     {
       "path": "docs/PROVENANCE.md",
@@ -1064,8 +1069,8 @@
     },
     {
       "path": "scripts/update_run_status.py",
-      "sha256": "510bcc89308652572c6b135c88382ad3efd11439d9e9bdb736e9f79d0efe940f",
-      "bytes": 14749
+      "sha256": "8ce13a052ce6f74bee89a0d9da1ca73324579e5b913fdee16fac21f714f43715",
+      "bytes": 16543
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -1516,6 +1521,11 @@
       "path": "tests/test_reaction_qm_coordinate_mapping.py",
       "sha256": "2994a7429aaa7d854d4f527e4dfd1f3e76d2bb17ecfb0934d19b22068feb9bca",
       "bytes": 889
+    },
+    {
+      "path": "tests/test_run_status.py",
+      "sha256": "b5b4715a7dc78764bcd6ca90ea94a40b82aca9d52c51462404dec6d7930147e9",
+      "bytes": 2265
     },
     {
       "path": "tests/test_runtime_budget.py",

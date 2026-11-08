@@ -423,6 +423,11 @@
       "bytes": 5963
     },
     {
+      "path": "docs/architecture/budget_scheduler_v0.1.md",
+      "sha256": "507ad1571fa3db76005619888789bb77cc046e5c3e1591a46650bef7f8b2f711",
+      "bytes": 2717
+    },
+    {
       "path": "docs/architecture/claim_evidence_manifest_v0.1.md",
       "sha256": "48552c903e3e23f17b278ea092a6dc1765e4ab6fa9a887f23fbae038c619cd66",
       "bytes": 1365
@@ -501,6 +506,11 @@
       "path": "docs/evidence/independent_seed_manifest_audit_20260929.json",
       "sha256": "413635c894698915405d278a662985dd3acc5a5fe223023b613024c64ca1cd2d",
       "bytes": 1062
+    },
+    {
+      "path": "docs/evidence/issue140_scheduler_software_20261108.json",
+      "sha256": "909c4bdce9e94732fed8ff789dc0956275e18ba0587a84663449455499b93a0b",
+      "bytes": 3128
     },
     {
       "path": "docs/evidence/joint_flow_smoke_20260927.json",
@@ -1339,8 +1349,8 @@
     },
     {
       "path": "src/xtbflow/runtime/__init__.py",
-      "sha256": "c025dd9de553aa2395f9dff81b06961355ff8956319073bee1d8f47572fd508f",
-      "bytes": 648
+      "sha256": "6a6aba9548716e25c21ae7f20dfa05e5a20b5483926313573fa47f41d6e06820",
+      "bytes": 1135
     },
     {
       "path": "src/xtbflow/runtime/ledger.py",
@@ -1356,6 +1366,11 @@
       "path": "src/xtbflow/runtime/runner.py",
       "sha256": "d880a808cfe140cb01a76862dd2871dda1f8b89dcbafdc91d9a96d0a69fef1b0",
       "bytes": 7793
+    },
+    {
+      "path": "src/xtbflow/runtime/scheduler.py",
+      "sha256": "455e81eb802251e6a834edbb720cacf662116947cda1fc96ea22899d267f97db",
+      "bytes": 20858
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
@@ -1456,6 +1471,11 @@
       "path": "tests/test_blind_rollout.py",
       "sha256": "5d9320021ff9d99cc413bb98e34da7ce18624e8b4fa078656347bc6a8ac4775b",
       "bytes": 4307
+    },
+    {
+      "path": "tests/test_budget_scheduler.py",
+      "sha256": "c77c71062a8ee00f1a9ca0ed4ce73c4367162e6ae7a64464359555fee48500b0",
+      "bytes": 4892
     },
     {
       "path": "tests/test_calculator_contract.py",

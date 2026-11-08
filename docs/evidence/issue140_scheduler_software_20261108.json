@@ -1,0 +1,67 @@
+{
+  "schema": "xtbflow-software-evidence/v1",
+  "work_item": "#140 W10 budget strategy",
+  "status": "pass",
+  "binding": "validated_source_with_final_evidence_head_recorded",
+  "validated_source_commit": "39d45a324f398f0aae40cd8b458367fdc6d0b151",
+  "validated_source_subject": "fix: align scheduler budget errors",
+  "evidence_generation_head": "a9af5f681b6ccebd19a911137af188640b7085e5",
+  "final_pr_head_at_recording": "671e2fdc399f4cc55d8729cd39e9f1bb63f2071f",
+  "host": "node2",
+  "source": {
+    "branch": "codex/issue140-scheduler-20261108",
+    "commit": "39d45a324f398f0aae40cd8b458367fdc6d0b151",
+    "role": "validated_source"
+  },
+  "provenance": {
+    "parent_bound_bootstrap_files": 324,
+    "final_docs_head_bootstrap_files": 325
+  },
+  "environment": {
+    "conda_environment": "xtbflow",
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "pytest": "9.1.1"
+  },
+  "commands": [
+    {
+      "command": "cd /tmp/xtbflow-exec-issue140-20261108 && source ~/miniconda3/etc/profile.d/conda.sh && conda activate xtbflow && PYTHONPATH=src:vendor/mechai_reusable timeout 120s python -m pytest -q tests/test_budget_scheduler.py tests/test_runtime_budget.py",
+      "result": "17 passed",
+      "resource_cap": "120 seconds; CPU only; output /tmp/xtbflow-issue140-tests-39d45a3.log"
+    },
+    {
+      "command": "cd /tmp/xtbflow-exec-issue140-20261108 && source ~/miniconda3/etc/profile.d/conda.sh && conda activate xtbflow && PYTHONPATH=src:vendor/mechai_reusable timeout 240s python -m pytest -q",
+      "result": "273 passed, 68 subtests passed, 1 pre-existing warning",
+      "resource_cap": "240 seconds; CPU only; output /tmp/xtbflow-issue140-full-39d45a3.log"
+    },
+    {
+      "command": "cd /tmp/xtbflow-exec-issue140-20261108 && source ~/miniconda3/etc/profile.d/conda.sh && conda activate xtbflow && PYTHONPATH=src:vendor/mechai_reusable timeout 120s python -m unittest discover -s tests/reusable -p 'test_*.py'",
+      "result": "56 tests OK",
+      "resource_cap": "120 seconds; CPU only; output /tmp/xtbflow-issue140-reusable-39d45a3.log"
+    },
+    {
+      "command": "cd /tmp/xtbflow-exec-issue140-20261108 && timeout 120s python scripts/validate_bootstrap.py && git diff --check",
+      "result": "324 files PASS at validated source; 325 files PASS at final docs head; diff check PASS",
+      "resource_cap": "120 seconds; no calculator or GPU calls"
+    }
+  ],
+  "artifacts": [
+    "src/xtbflow/runtime/scheduler.py",
+    "tests/test_budget_scheduler.py",
+    "docs/architecture/budget_scheduler_v0.1.md"
+  ],
+  "resource_usage": {
+    "gpu_calls": 0,
+    "calculator_calls": 0,
+    "quantum_chemistry_runs": 0
+  },
+  "claim_limits": [
+    "This evidence covers software contracts and bounded offline accounting only.",
+    "It does not establish chemistry accuracy, certified channels, efficiency, discovery, or generalization.",
+    "Actual calculator costs and outcomes must be settled by a later frozen validation protocol."
+  ],
+  "unfinished": [
+    "Live fixed-versus-heuristic comparisons under a shared scientific candidate pool remain for a later stage."
+  ]
+}

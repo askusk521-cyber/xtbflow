@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xtbflow.dev/schema/claim-evidence-manifest-v1.json",
+  "title": "XTBFlow claim, comparison, and evidence manifest",
+  "description": "Result-blind W13 table contract. It records claim limits and evidence references without upgrading unresolved or planned work.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "manifest_id",
+    "status",
+    "created_utc",
+    "claims",
+    "claim_limits"
+  ],
+  "properties": {
+    "schema": {"const": "xtbflow-claim-evidence-manifest/v1"},
+    "manifest_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "ready", "blocked"]},
+    "created_utc": {"type": "string", "minLength": 1},
+    "source_commit": {"type": ["string", "null"]},
+    "panel_manifest_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/claim"}
+    },
+    "claim_limits": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code_commit", "config_sha256", "model_sha256", "protocol_sha256", "data_manifest_sha256"],
+      "properties": {
+        "code_commit": {"type": ["string", "null"]},
+        "config_sha256": {"$ref": "#/$defs/hash"},
+        "model_sha256": {"$ref": "#/$defs/hash"},
+        "protocol_sha256": {"$ref": "#/$defs/hash"},
+        "data_manifest_sha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model_forwards",
+        "calculator_calls",
+        "cpu_core_hours",
+        "gpu_hours",
+        "wall_seconds",
+        "accounting_status"
+      ],
+      "properties": {
+        "model_forwards": {"type": ["integer", "null"], "minimum": 0},
+        "calculator_calls": {"type": ["integer", "null"], "minimum": 0},
+        "cpu_core_hours": {"type": ["number", "null"], "minimum": 0},
+        "gpu_hours": {"type": ["number", "null"], "minimum": 0},
+        "wall_seconds": {"type": ["number", "null"], "minimum": 0},
+        "accounting_status": {"enum": ["complete", "partial", "unknown", "not_started"]}
+      }
+    },
+    "arm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["arm_id", "method", "role"],
+      "properties": {
+        "arm_id": {"type": "string", "minLength": 1},
+        "method": {"type": "string", "minLength": 1},
+        "role": {"type": "string", "minLength": 1}
+      }
+    },
+    "input_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "split", "group_key", "parent_count", "family_holdout"],
+      "properties": {
+        "schema": {"type": "string", "minLength": 1},
+        "split": {"type": "string", "minLength": 1},
+        "group_key": {"type": "string", "minLength": 1},
+        "parent_count": {"type": ["integer", "null"], "minimum": 0},
+        "family_holdout": {"type": ["boolean", "null"]}
+      }
+    },
+    "evidence_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "path", "sha256"],
+      "properties": {
+        "kind": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim_id",
+        "claim_type",
+        "statement",
+        "evidence_level",
+        "comparison_id",
+        "primary_metric",
+        "status",
+        "arms",
+        "input_contract",
+        "source",
+        "budget",
+        "evidence_refs",
+        "claim_limit"
+      ],
+      "properties": {
+        "claim_id": {"type": "string", "minLength": 1},
+        "claim_type": {
+          "enum": ["joint_coupling", "physics_feedback", "adaptive_decision", "software_contract", "other"]
+        },
+        "statement": {"type": "string", "minLength": 1},
+        "evidence_level": {
+          "enum": ["software_available", "real_closed_loop", "development_comparison", "independent_confirmation"]
+        },
+        "comparison_id": {"type": ["string", "null"]},
+        "primary_metric": {"type": "string", "minLength": 1},
+        "status": {"enum": ["planned", "observed", "blocked", "unresolved", "not_supported"]},
+        "arms": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/arm"}},
+        "input_contract": {"$ref": "#/$defs/input_contract"},
+        "source": {"$ref": "#/$defs/source"},
+        "budget": {"$ref": "#/$defs/budget"},
+        "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/evidence_ref"}},
+        "claim_limit": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

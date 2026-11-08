@@ -588,6 +588,11 @@
       "bytes": 2164
     },
     {
+      "path": "docs/evidence/policy_guidance_adapter_n2_20261110.json",
+      "sha256": "c58c81d2631fc154730be14f91c49c38d9b1c9875ddedcce58f8bd5747f8c552",
+      "bytes": 2250
+    },
+    {
       "path": "docs/evidence/reaction_qm_coordinate_mapping_audit_20261002_full.json",
       "sha256": "102eb18c5af6c08c8140f661ce309bd61add1879f04317bca02b694a7c48ab7c",
       "bytes": 3188

@@ -175,6 +175,75 @@ def test_direct_control_api_rejects_steps_outside_normalized_time_domain():
             )
 
 
+def test_direct_control_accepts_exact_boundary_and_batched_tau_values():
+    event, coordinates, node, mask, condition = inputs()
+    flow, _ = model()
+    for mode in ("both_off", "serial_independent", JOINT_UNIDIRECTIONAL_MODE, "joint_bidirectional"):
+        output = flow.forward_control(
+            mode,
+            event,
+            coordinates,
+            node,
+            mask,
+            tau=0.8,
+            dt=0.2,
+            condition_features=condition,
+        )
+        assert output.event_velocity.shape == event.shape
+
+    batched_event = event.expand(2, -1).clone()
+    batched_coordinates = coordinates.expand(2, -1, -1).clone()
+    batched_node = node.expand(2, -1, -1).clone()
+    batched_mask = mask.expand(2, -1).clone()
+    batched_condition = condition.expand(2, -1).clone()
+    output = flow.forward_control(
+        "joint_bidirectional",
+        batched_event,
+        batched_coordinates,
+        batched_node,
+        batched_mask,
+        tau=torch.tensor([0.2, 0.8], dtype=batched_event.dtype),
+        dt=0.2,
+        condition_features=batched_condition,
+    )
+    assert output.geometry_velocity.shape == batched_coordinates.shape
+
+
+def test_direct_control_rejects_invalid_dt_scalars_and_allows_velocity_only_modes():
+    event, coordinates, node, mask, condition = inputs()
+    flow, _ = model()
+    for bad_dt in (0.0, -0.1, float("nan"), float("inf"), True):
+        with pytest.raises(ValueError):
+            flow.forward_control(
+                "joint_bidirectional",
+                event,
+                coordinates,
+                node,
+                mask,
+                tau=0.2,
+                dt=bad_dt,
+                condition_features=condition,
+            )
+    flow.forward_control(
+        "joint_bidirectional",
+        event,
+        coordinates,
+        node,
+        mask,
+        tau=0.2,
+        condition_features=condition,
+    )
+    flow.forward_control(
+        "both_off",
+        event,
+        coordinates,
+        node,
+        mask,
+        tau=0.2,
+        condition_features=condition,
+    )
+
+
 def test_joint_loss_masks_missing_labels_and_terminal_slots_are_shared():
     torch.manual_seed(3)
     event, coordinates, node, mask, condition = inputs()

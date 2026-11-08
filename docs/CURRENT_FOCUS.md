@@ -63,6 +63,17 @@ All are intentionally draft/open; none is merged into `main`:
   scientific and environment contract, head `e94b466`.
 - [PR #154](https://github.com/askusk521-cyber/xtbflow/pull/154): terminal
   evidence projection, head `5f5304b`.
+- [PR #155](https://github.com/askusk521-cyber/xtbflow/pull/155): this current
+  handoff-pointer update; its head is the commit containing this list.
+- [PR #156](https://github.com/askusk521-cyber/xtbflow/pull/156): joint-flow and
+  target-free generation parent, head `7a95431`.
+- [PR #157](https://github.com/askusk521-cyber/xtbflow/pull/157): claim-evidence
+  integrity, head `8703c0b`.
+- [PR #158](https://github.com/askusk521-cyber/xtbflow/pull/158): run-status
+  retry accounting, head `ea21530`.
+- [PR #159](https://github.com/askusk521-cyber/xtbflow/pull/159) through
+  [PR #162](https://github.com/askusk521-cyber/xtbflow/pull/162): stacked PR156
+  repair chain; all remain draft/open and unmerged.
 - This governance document is submitted separately as the research-playbook PR.
 
 ## n2 status

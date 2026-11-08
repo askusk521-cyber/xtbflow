@@ -1,0 +1,295 @@
+{
+  "arms": [
+    {
+      "adapter_ledger": {
+        "entries": [
+          {
+            "charged_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 34.212986909,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.35762478900142014
+            },
+            "config_fingerprint": "d367b4a7337a1470888b9419a931e346b75ef08713ceaa5471392051e1e4ebd9",
+            "error": null,
+            "estimated_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 5.0
+            },
+            "failure_stage": null,
+            "lane": "geometry",
+            "measured_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 34.212986909,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.35762478900142014
+            },
+            "protocol_fingerprint": "30a8e5d3774c8993fd52d9633cbfbcae51c0872af7865b6afefcda5189af1364",
+            "provider_revision": "b0146a15be84833304ed7fea5c78cda13905a1ba017bd7ab0a156f58ece4d9a5",
+            "request_fingerprint": "acc4b16b66fe903acfeeff8cbfdfc9acdde249ddc435af226f0a64fa7f4d51f4",
+            "status": "accepted"
+          }
+        ],
+        "schema": "xtbflow-adapter-ledger/v1"
+      },
+      "arm": "no_feedback",
+      "merge_ledger": {
+        "entries": [],
+        "schema": "xtbflow-guidance-ledger/v1"
+      },
+      "runtime_ledger": {
+        "active_jobs": [],
+        "budget": {
+          "max_calculator_calls": 1,
+          "max_concurrent_jobs": 1,
+          "max_cpu_core_hours": 0.05,
+          "max_gpu_hours": 0.0,
+          "max_retries_per_job": 0,
+          "max_storage_gb": null,
+          "max_system_evaluations": 1,
+          "max_wall_minutes_per_job": 5.0,
+          "phase": "real_feedback_no_feedback"
+        },
+        "by_calculator": {
+          "xtb_oracle": 1
+        },
+        "by_operation": {
+          "energy_forces": 1
+        },
+        "by_status": {
+          "success": 1
+        },
+        "ledger_id": "real-feedback-no_feedback-5193abcc1e8e87e2",
+        "phase": "real_feedback_no_feedback",
+        "schema": "xtbflow-run-ledger/v1",
+        "totals": {
+          "attempts": 1,
+          "cache_hits": 0,
+          "calculator_calls": 1,
+          "cpu_core_hours": 0.009503607474722222,
+          "failures": 0,
+          "gpu_hours": 0.0,
+          "retries": 0,
+          "storage_gb": 0.0,
+          "successes": 1,
+          "system_evaluations": 1
+        }
+      }
+    },
+    {
+      "adapter_ledger": {
+        "entries": [
+          {
+            "charged_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 5.460109936000002,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.06473219185136259
+            },
+            "config_fingerprint": "d367b4a7337a1470888b9419a931e346b75ef08713ceaa5471392051e1e4ebd9",
+            "error": null,
+            "estimated_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 5.0
+            },
+            "failure_stage": null,
+            "lane": "geometry",
+            "measured_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 5.460109936000002,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.06473219185136259
+            },
+            "protocol_fingerprint": "30a8e5d3774c8993fd52d9633cbfbcae51c0872af7865b6afefcda5189af1364",
+            "provider_revision": "b0146a15be84833304ed7fea5c78cda13905a1ba017bd7ab0a156f58ece4d9a5",
+            "request_fingerprint": "6117ecb05543de5e4b9a2b6d59eeb9dd024fee0b2342cc71784a8b9108fbaaf0",
+            "status": "accepted"
+          },
+          {
+            "charged_cost": {
+              "calculator_calls": 0,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.001
+            },
+            "config_fingerprint": "8cb8c43b85217e25cad8a43f71a39af5709e2f3680c28e2b36bf0f7a2ab5beb0",
+            "error": null,
+            "estimated_cost": {
+              "calculator_calls": 0,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.001
+            },
+            "failure_stage": null,
+            "lane": "event",
+            "measured_cost": {
+              "calculator_calls": 0,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.001
+            },
+            "protocol_fingerprint": "b37340d4769d00d2a61b68a9d1ee79ff574b706d72e74016f4ffee9e81c59fdf",
+            "provider_revision": "911f8ec5691bf9880c528c0c2fc90946cb1022cdcd5a83b80be1ec0b94d370ef",
+            "request_fingerprint": "3ab6fe6288bcc10175ab4cc72e710aa32e7d4eb0dcce5d320387184c5277ae41",
+            "status": "accepted"
+          }
+        ],
+        "schema": "xtbflow-adapter-ledger/v1"
+      },
+      "arm": "physical_feedback",
+      "merge_ledger": {
+        "entries": [
+          {
+            "applied": true,
+            "charged_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 5.460109936000002,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.06473219185136259
+            },
+            "estimated_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 5.0
+            },
+            "failure_stage": null,
+            "generation_step": 0,
+            "input_fingerprint": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f",
+            "lane": "geometry",
+            "measured_cost": {
+              "calculator_calls": 1,
+              "cpu_seconds": 5.460109936000002,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.06473219185136259
+            },
+            "output_fingerprint": "f5a8e855e63347c36af22a0fd69d60c91cb99d2bbe37ba89326252f7cfcd1b1b",
+            "provenance": {
+              "adapter": {
+                "config_fingerprint": "d367b4a7337a1470888b9419a931e346b75ef08713ceaa5471392051e1e4ebd9",
+                "protocol_fingerprint": "30a8e5d3774c8993fd52d9633cbfbcae51c0872af7865b6afefcda5189af1364",
+                "provider_revision": "b0146a15be84833304ed7fea5c78cda13905a1ba017bd7ab0a156f58ece4d9a5",
+                "request_fingerprint": "6117ecb05543de5e4b9a2b6d59eeb9dd024fee0b2342cc71784a8b9108fbaaf0"
+              },
+              "provider": {
+                "calculator_build_hash": "18afc60dc1dc07b3239b8baa6ceaf2985173fd89ae140010a57472ee00fc3126",
+                "calculator_input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+                "calculator_protocol": "real-feedback-gfn2-xtb-v1",
+                "feedback_fingerprint": "aff63d8706fdad5bf4297627228c94a7f2b145bf3144f055bcc8fcfe23b99a8c",
+                "observable_l2": 0.04064530698417814
+              }
+            },
+            "provider": "live-xtb-physical-v1",
+            "rejection_reason": null,
+            "snapshot_id": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f",
+            "status": "accepted",
+            "target_free": true
+          },
+          {
+            "applied": true,
+            "charged_cost": {
+              "calculator_calls": 0,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.001
+            },
+            "estimated_cost": {
+              "calculator_calls": 0,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.001
+            },
+            "failure_stage": null,
+            "generation_step": 0,
+            "input_fingerprint": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f",
+            "lane": "event",
+            "measured_cost": {
+              "calculator_calls": 0,
+              "cpu_seconds": 0.0,
+              "gpu_seconds": 0.0,
+              "model_forwards": 0,
+              "wall_seconds": 0.001
+            },
+            "output_fingerprint": "2c3dffaca8358b65944fd6d692369bb57dd62621dd295e9604682de16a4d475d",
+            "provenance": {
+              "adapter": {
+                "config_fingerprint": "8cb8c43b85217e25cad8a43f71a39af5709e2f3680c28e2b36bf0f7a2ab5beb0",
+                "protocol_fingerprint": "b37340d4769d00d2a61b68a9d1ee79ff574b706d72e74016f4ffee9e81c59fdf",
+                "provider_revision": "911f8ec5691bf9880c528c0c2fc90946cb1022cdcd5a83b80be1ec0b94d370ef",
+                "request_fingerprint": "3ab6fe6288bcc10175ab4cc72e710aa32e7d4eb0dcce5d320387184c5277ae41"
+              },
+              "provider": {
+                "provider_revision": "911f8ec5691bf9880c528c0c2fc90946cb1022cdcd5a83b80be1ec0b94d370ef",
+                "ranking_fingerprint": "ffd5436c65da11de19f519797aac15226fc9afafd5f31a6de4fa560259213b35",
+                "source_feedback_fingerprint": "aff63d8706fdad5bf4297627228c94a7f2b145bf3144f055bcc8fcfe23b99a8c"
+              }
+            },
+            "provider": "live-xtb-event-ranking-v1",
+            "rejection_reason": null,
+            "snapshot_id": "5193abcc1e8e87e2425ce705c41afde9ead5f3a43fd8b1106954d2fec506ed7f",
+            "status": "accepted",
+            "target_free": true
+          }
+        ],
+        "schema": "xtbflow-guidance-ledger/v1"
+      },
+      "runtime_ledger": {
+        "active_jobs": [],
+        "budget": {
+          "max_calculator_calls": 1,
+          "max_concurrent_jobs": 1,
+          "max_cpu_core_hours": 0.05,
+          "max_gpu_hours": 0.0,
+          "max_retries_per_job": 0,
+          "max_storage_gb": null,
+          "max_system_evaluations": 1,
+          "max_wall_minutes_per_job": 5.0,
+          "phase": "real_feedback_physical_feedback"
+        },
+        "by_calculator": {
+          "xtb_oracle": 1
+        },
+        "by_operation": {
+          "energy_forces": 1
+        },
+        "by_status": {
+          "success": 1
+        },
+        "ledger_id": "real-feedback-physical_feedback-5193abcc1e8e87e2",
+        "phase": "real_feedback_physical_feedback",
+        "schema": "xtbflow-run-ledger/v1",
+        "totals": {
+          "attempts": 1,
+          "cache_hits": 0,
+          "calculator_calls": 1,
+          "cpu_core_hours": 0.001516697204444445,
+          "failures": 0,
+          "gpu_hours": 0.0,
+          "retries": 0,
+          "storage_gb": 0.0,
+          "successes": 1,
+          "system_evaluations": 1
+        }
+      }
+    }
+  ],
+  "schema": "xtbflow-real-feedback-ledger/v1"
+}

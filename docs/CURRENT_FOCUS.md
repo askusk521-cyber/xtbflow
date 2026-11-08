@@ -79,7 +79,7 @@ PRs are retained as provenance; open drafts still require their own review gate.
 - [PR #161](https://github.com/askusk521-cyber/xtbflow/pull/161): data schema/audit,
   merged at `fe93331` after #160.
 - [PR #162](https://github.com/askusk521-cyber/xtbflow/pull/162): docs/evidence,
-  open draft, current head `63ad6be`, base #161 `fe93331`.
+  merged at `82e8744` into the #161 custom base; validated head was `63ad6be`.
 - [PR #163](https://github.com/askusk521-cyber/xtbflow/pull/163): scheduler evidence,
   open draft, current head `cf743fd`, base `main`.
 - [PR #164](https://github.com/askusk521-cyber/xtbflow/pull/164): reaction-network

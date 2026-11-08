@@ -518,6 +518,11 @@
       "bytes": 21013
     },
     {
+      "path": "docs/evidence/guidance_adapter_boundary_n2_20261110.json",
+      "sha256": "70e31f094b1309a7c0d7652797c5a8fa74623cf5b81f2d97c81e416ee07814e4",
+      "bytes": 2281
+    },
+    {
       "path": "docs/evidence/independent_seed_manifest_audit_20260929.json",
       "sha256": "413635c894698915405d278a662985dd3acc5a5fe223023b613024c64ca1cd2d",
       "bytes": 1062

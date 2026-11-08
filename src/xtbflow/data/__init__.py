@@ -56,6 +56,15 @@ from .origin_readiness import (
     OriginReadinessError,
     audit_origin_candidate_registry,
 )
+from .campaign import (
+    CAMPAIGN_SCHEMA,
+    CAMPAIGN_STATES,
+    CampaignManifest,
+    CampaignManifestError,
+    load_campaign_manifest,
+    validate_campaign_manifest,
+    write_campaign_manifest,
+)
 
 _TASK_VIEW_EXPORTS = (
     "EndpointGeometryInput",
@@ -101,5 +110,7 @@ __all__ = [
     "SEARCH_ATTEMPT_SCHEMA", "EVIDENCE_STATES", "SearchAttempt", "append_attempt_jsonl", "load_attempt_jsonl",
     "ORIGIN_CANDIDATE_SCHEMA", "ORIGIN_SEED_READINESS_SCHEMA",
     "OriginReadinessError", "audit_origin_candidate_registry",
+    "CAMPAIGN_SCHEMA", "CAMPAIGN_STATES", "CampaignManifest", "CampaignManifestError",
+    "load_campaign_manifest", "validate_campaign_manifest", "write_campaign_manifest",
     *_TASK_VIEW_EXPORTS,
 ]

@@ -153,6 +153,11 @@
       "bytes": 1896
     },
     {
+      "path": "configs/campaigns/w11_campaign_fixture.json",
+      "sha256": "649a571780ee73511bfcea1c8be4872d8f5f518c513b8388583f7b9e1c9c5968",
+      "bytes": 4042
+    },
+    {
       "path": "configs/data/dft_da_track_b_v1.json",
       "sha256": "ed0e8ef4899613d7d377e9d10c2d910b017c7e9866064fd0d7ccdde627b2193e",
       "bytes": 1671
@@ -388,6 +393,11 @@
       "bytes": 6609
     },
     {
+      "path": "docs/PROJECT_STATUS.md",
+      "sha256": "cc189a05f9588c36042ca4b8413a8ba4258bdc6c39f0398c600e121dd52bd412",
+      "bytes": 443
+    },
+    {
       "path": "docs/PROVENANCE.md",
       "sha256": "07b8e206c34433ec1ff0c22ee34d259e0a37e2784db996d38fddf304f96e8390",
       "bytes": 1983
@@ -411,6 +421,11 @@
       "path": "docs/architecture/architecture_v0.1.md",
       "sha256": "f7e7cdeb8afb97ecbb6aacf132ab217a8f750e68dfbf924daf1e48f298bdd4a1",
       "bytes": 5963
+    },
+    {
+      "path": "docs/architecture/w11_campaign_manifest.md",
+      "sha256": "d5e9130284e81b60898acbecba727599473e947fea4bf7599edcc2a3a0cfefa8",
+      "bytes": 3411
     },
     {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
@@ -928,6 +943,11 @@
       "bytes": 10766
     },
     {
+      "path": "schemas/w11_campaign_manifest_v1.schema.json",
+      "sha256": "0dee82c3485838c63dad48201a289fc0f0ff8a7dbb776f33008b87bd59e386a4",
+      "bytes": 7074
+    },
+    {
       "path": "schemas/workflow_b_baseline.schema.json",
       "sha256": "a6d670ff6315032a029fec704ca5e4d359c350891d4f60acf69ec11deddd4244",
       "bytes": 2079
@@ -1073,6 +1093,11 @@
       "bytes": 3503
     },
     {
+      "path": "scripts/validate_campaign_manifest.py",
+      "sha256": "4ed8eb694641587a8a35792ade64523c5af631b6bf7205f7d621244f5520fc80",
+      "bytes": 1174
+    },
+    {
       "path": "scripts/validate_handoff.py",
       "sha256": "8e7bd6eebf01423504cb8754554947f1315ede1921cc29d74ebb78c66b4eaba8",
       "bytes": 1967
@@ -1114,8 +1139,8 @@
     },
     {
       "path": "src/xtbflow/data/__init__.py",
-      "sha256": "cf416548377420e6bf1f8faa332624af1a89fb7bb05732d181380a3507a3ce17",
-      "bytes": 3571
+      "sha256": "f4cc96c74d64f704977e797ca4790ac5cb8d14b77869b432abd4d6c8a65b61ff",
+      "bytes": 3951
     },
     {
       "path": "src/xtbflow/data/attempts.py",
@@ -1126,6 +1151,11 @@
       "path": "src/xtbflow/data/cache.py",
       "sha256": "1f805c1b6498e0d4451fe340285106f2ea5d78499037548d44adf13b2084819f",
       "bytes": 2167
+    },
+    {
+      "path": "src/xtbflow/data/campaign.py",
+      "sha256": "e865e197a9e613cdc1d9c41c97c3f33ebe54a455b3dabbc19b6efd7c7ede8430",
+      "bytes": 26695
     },
     {
       "path": "src/xtbflow/data/dft_da.py",
@@ -1421,6 +1451,11 @@
       "path": "tests/test_calculator_contract.py",
       "sha256": "a8ea52f51e54fdd830800c48f208a2db10888273435a8dec464e4df0f0e563b3",
       "bytes": 13336
+    },
+    {
+      "path": "tests/test_campaign_manifest.py",
+      "sha256": "f4e71d00b5432b64f1517f1f306be39b792b0efe6ca007a8222cfced206a1a60",
+      "bytes": 7811
     },
     {
       "path": "tests/test_checkpoint.py",

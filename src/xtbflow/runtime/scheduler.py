@@ -15,6 +15,8 @@ from pathlib import Path
 import tempfile
 from typing import Any, Iterable, Mapping
 
+from .ledger import BudgetExceeded
+
 
 SCHEDULER_SCHEMA = "xtbflow-budget-scheduler/v1"
 STRATEGIES = frozenset({"fixed", "heuristic"})
@@ -153,7 +155,7 @@ class SchedulerRecord:
             raise ValueError(f"{self.status} records require a reason")
 
 
-class SchedulerBudgetExceeded(RuntimeError):
+class SchedulerBudgetExceeded(BudgetExceeded):
     """Raised when a settled action would exceed the frozen budget."""
 
 

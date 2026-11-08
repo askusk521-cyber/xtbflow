@@ -1334,8 +1334,8 @@
     },
     {
       "path": "src/xtbflow/runtime/scheduler.py",
-      "sha256": "895045c3ecbea127d93271f15d26a1f696897a2839913635840fec00cf49db4d",
-      "bytes": 20820
+      "sha256": "455e81eb802251e6a834edbb720cacf662116947cda1fc96ea22899d267f97db",
+      "bytes": 20858
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
@@ -1439,8 +1439,8 @@
     },
     {
       "path": "tests/test_budget_scheduler.py",
-      "sha256": "0c52782ff49d3fec99fec8bddcf821425d4533ab815563b919eabe6ab59e977f",
-      "bytes": 4806
+      "sha256": "c77c71062a8ee00f1a9ca0ed4ce73c4367162e6ae7a64464359555fee48500b0",
+      "bytes": 4892
     },
     {
       "path": "tests/test_calculator_contract.py",

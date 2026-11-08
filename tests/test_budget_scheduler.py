@@ -3,6 +3,7 @@ from __future__ import annotations
 import pytest
 
 from xtbflow.runtime import (
+    BudgetExceeded,
     BudgetCandidate,
     BudgetScheduler,
     SchedulerBudgetExceeded,
@@ -115,8 +116,9 @@ def test_settle_rejects_cost_overrun_without_mutating_in_flight_action():
     scheduler = BudgetScheduler([candidate("a", cost=2)], budget_units=2)
     action = scheduler.next_action()
     assert action is not None
-    with pytest.raises(SchedulerBudgetExceeded):
+    with pytest.raises(BudgetExceeded) as exc_info:
         scheduler.settle(action, "failure", 3, reason="unexpected_overrun")
+    assert isinstance(exc_info.value, SchedulerBudgetExceeded)
     assert scheduler.in_flight == action
     assert scheduler.spent_units == 0
 

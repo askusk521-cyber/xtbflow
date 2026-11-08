@@ -119,3 +119,6 @@ def test_joint_flow_smoke_records_source_identity_and_shared_control_evidence(tm
     assert report["restore_max_abs_difference"] == 0.0
     assert report["control_manifest"]["same_generation_weights_for_controls"] is True
     assert set(report["rollouts"]) == set(CONTROL_MODES)
+    assert report["gradient_clip_mode"] == "global"
+    assert len(report["gradient_diagnostics"]) == 2
+    assert report["gradient_diagnostics"][0]["diagnostics"]["schema"] == "xtbflow-joint-gradient-diagnostics/v1"

@@ -36,6 +36,7 @@ def control_euler_step(
     dt: float,
     coupling_strength: float = 1.0,
     condition_features: Tensor | None = None,
+    conservation_projection: bool = True,
 ):
     """Advance one registered shared-weight control by explicit Euler."""
 
@@ -50,6 +51,7 @@ def control_euler_step(
         dt=dt,
         coupling_strength=coupling_strength,
         condition_features=condition_features,
+        conservation_projection=conservation_projection,
     )
     return (
         event_state + float(dt) * output.event_velocity,
@@ -69,6 +71,7 @@ def euler_step(
     dt: float,
     coupling_strength: float = 1.0,
     condition_features: Tensor | None = None,
+    conservation_projection: bool = True,
 ):
     """Advance the bidirectional joint control by explicit Euler."""
 
@@ -83,6 +86,7 @@ def euler_step(
         dt=dt,
         coupling_strength=coupling_strength,
         condition_features=condition_features,
+        conservation_projection=conservation_projection,
     )
 
 
@@ -97,6 +101,7 @@ def serial_euler_step(
     dt: float,
     coupling_strength: float = 1.0,
     condition_features: Tensor | None = None,
+    conservation_projection: bool = True,
 ):
     """Advance the serial wrapper with its explicit ``dt`` argument."""
 
@@ -110,6 +115,7 @@ def serial_euler_step(
         dt=dt,
         coupling_strength=coupling_strength,
         condition_features=condition_features,
+        conservation_projection=conservation_projection,
     )
     return (
         event_state + float(dt) * output.event_velocity,

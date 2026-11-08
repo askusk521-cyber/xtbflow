@@ -1,0 +1,44 @@
+{
+  "schema": "xtbflow-evidence/code-optimization-software/v1",
+  "status": "completed",
+  "stage": "software_validation",
+  "source_commit": "2ee900d6c18f1257da833b52faa758a5aebc40e0",
+  "working_tree_dirty": true,
+  "environment": {
+    "host_class": "local-development-machine",
+    "python": "3.10.12",
+    "pytorch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "pytest": "9.1.1",
+    "calculator_calls": 0,
+    "gpu_calls": 0
+  },
+  "commands": [
+    "env -u PYTHONPATH PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q",
+    "env -u PYTHONPATH PYTHONPATH=src:vendor/mechai_reusable python -m unittest discover -s tests/reusable -p 'test_*.py'",
+    "python3 scripts/validate_joint_scale_data_matrix.py",
+    "python3 scripts/validate_bootstrap.py"
+  ],
+  "results": {
+    "pytest_passed": 256,
+    "pytest_subtests_passed": 68,
+    "reusable_unittest_passed": 56,
+    "scale_matrix_status": "PASS",
+    "scale_primary_run_count": 81,
+    "bootstrap_inventory_files_verified": 245,
+    "warnings": [
+      "pre-existing tensor-to-scalar warning in tests/test_energy_forces.py"
+    ]
+  },
+  "changes_verified": [
+    "corrected joint-flow trainable parameter counts against the actual constructor",
+    "grouped masked conservation projections on-device and shared the projection across event outputs",
+    "kept unresolved label-assisted metrics out of aggregate means while reporting coverage",
+    "removed recursive proposal record hashing"
+  ],
+  "claim_limits": [
+    "This is software evidence on CPU fixtures only.",
+    "It does not validate chemistry, training quality, GPU performance, or generalization.",
+    "The source tree remains dirty because unrelated prior work is still uncommitted."
+  ]
+}

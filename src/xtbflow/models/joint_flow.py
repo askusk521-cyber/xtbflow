@@ -280,8 +280,14 @@ class JointEventGeometryFlow(nn.Module):
         geometry_packed = pack_be(geometry_pair) * geometry_to_event_strength
         if conservation_projection:
             projector = self.event_projector
-            event_message = projector.project_masked(geometry_packed, active_event)
-            event_velocity = projector.project_masked(base_packed + geometry_packed, active_event)
+            # Project both event outputs in one grouped call.  The active mask
+            # is identical, so this shares the masked Gram pseudoinverse and
+            # avoids a second factorization at every Euler evaluation.
+            projected = projector.project_masked(
+                torch.stack((geometry_packed, base_packed + geometry_packed), dim=1),
+                active_event[:, None, :].expand(-1, 2, -1),
+            )
+            event_message, event_velocity = projected.unbind(dim=1)
         else:
             event_message = geometry_packed.masked_fill(~active_event, 0.0)
             event_velocity = (base_packed + geometry_packed).masked_fill(~active_event, 0.0)
@@ -507,6 +513,7 @@ class SerialEventGeometryFlow(nn.Module):
         dt: float,
         coupling_strength: float = 1.0,
         condition_features: Tensor | None = None,
+        conservation_projection: bool = True,
     ) -> JointFlowOutput:
         return self.joint.forward_control(
             "serial_independent",
@@ -518,4 +525,5 @@ class SerialEventGeometryFlow(nn.Module):
             dt=dt,
             coupling_strength=coupling_strength,
             condition_features=condition_features,
+            conservation_projection=conservation_projection,
         )

@@ -33,6 +33,7 @@ from .independent_seeds import (
     write_seed_manifest,
 )
 from .attempts import AttemptRecord, ProposalRecord, ValidationRecord
+from .matrix import deterministic_parent_order, nested_parent_subsets, parent_equal_mean, validate_nested_parent_subsets
 from .reaction_qm import (
     Bond,
     EVENT_RULE_VERSION,
@@ -75,6 +76,7 @@ __all__ = [
     "EFPair", "PAIR_CANONICAL_UNITS", "build_ef_pair", "failure_pair", "geometry_hash", "append_pair_cache", "load_pair_cache",
     "IndependentSeed", "SeedManifest", "build_seed_manifest", "load_seed_manifest", "write_seed_jsonl", "write_seed_manifest",
     "AttemptRecord", "ProposalRecord", "ValidationRecord",
+    "deterministic_parent_order", "nested_parent_subsets", "parent_equal_mean", "validate_nested_parent_subsets",
     "Bond", "EVENT_RULE_VERSION", "MappedGraph", "PublicSourceConfig", "REACTION_QM_SOURCE", "RGD1_SOURCE",
     "ReactionQMLoader", "ReactionQMRecord", "SourceFile", "audit_source_files", "derive_event_label", "reaction_qm_record_hash", "source_configs",
     *_TASK_VIEW_EXPORTS,

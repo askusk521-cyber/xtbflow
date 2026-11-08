@@ -14,13 +14,13 @@
     },
     {
       "path": "AGENTS.md",
-      "sha256": "3accd61b06871cca1ad383913d24e25c221132280da57e05feb1af530c0c9e83",
-      "bytes": 2420
+      "sha256": "823270ff236f53de6556c4dea7638a8d51741ae38567f01c668b64063203afaa",
+      "bytes": 3589
     },
     {
       "path": "README.md",
-      "sha256": "8b978d691f3ab255ed6041e3408b3a2f2b22a47d150fc5edecc1f5aab2d99e64",
-      "bytes": 4489
+      "sha256": "b98f1b07199a548fd50d02528dea9c21c231d4574f3dab8c925ba67edf38b6f9",
+      "bytes": 5992
     },
     {
       "path": "archive/README.md",
@@ -139,13 +139,18 @@
     },
     {
       "path": "configs/models/joint_flow_runtime_v0.1.json",
-      "sha256": "58c52fdba6a8a803a11983e54dc1de87e7dcfacb45f23cb8c43842f2bb674c00",
-      "bytes": 906
+      "sha256": "506b2ad7f1c5f1803a0bd550d413d76a91aae644fd8ebd9da5f0a9acf0ed7d57",
+      "bytes": 934
+    },
+    {
+      "path": "configs/models/joint_flow_scale_ladder_v0.1.json",
+      "sha256": "cedef16571857d15a05ab0daab3ea0e532f44c8ac30af24c1ddd337e1f8b3834",
+      "bytes": 1351
     },
     {
       "path": "configs/models/joint_flow_v0.1.yaml",
-      "sha256": "ffa643897d591946bd12c286212cd1c261424a4f7c729d901dd69c97a3a05213",
-      "bytes": 1331
+      "sha256": "e79f436f0627092371c9872d8e6e9fc4ee4a5100bffd77aef90a27b102ca521f",
+      "bytes": 1508
     },
     {
       "path": "configs/models/physical_guidance_v0.1.yaml",
@@ -174,8 +179,8 @@
     },
     {
       "path": "configs/resources.yaml",
-      "sha256": "1a81aeece792ef6d44dd71019cbb2ce86f7910ffd29b193f82bb8c1bfbc13c6a",
-      "bytes": 5989
+      "sha256": "c2213875ddbe39017669a235b036019525c52e02378687c529075f784a63e5fd",
+      "bytes": 6301
     },
     {
       "path": "configs/reusable/event_geometry_manifest_v1/endpoint_geometry.json",
@@ -196,6 +201,31 @@
       "path": "configs/rules/core_v1.yaml",
       "sha256": "a4de309daad0bab9d502028976cef7b57f91691de5895ed6d4dc1d1c764b2941",
       "bytes": 903
+    },
+    {
+      "path": "configs/runs/README.md",
+      "sha256": "7831f0d6ddc4e766db79d48eaf5a8d87bf45c68f1bbb0dad04d258e05e4b313b",
+      "bytes": 381
+    },
+    {
+      "path": "configs/runs/joint_scale_data_matrix_v0.1.json",
+      "sha256": "626a78e942a6fef42f2514fc855e5c21758544a21e138a481b1426b50d4a1cc9",
+      "bytes": 5024
+    },
+    {
+      "path": "configs/runs/research_dispatch_20261001.json",
+      "sha256": "2815c94596196810b5b759963509ea70770654fd3fda23a340b502ce0c434a76",
+      "bytes": 78887
+    },
+    {
+      "path": "configs/runs/workflow_b_baseline_ladder_v0.1.json",
+      "sha256": "0335f093b48d2a4984e85d95b5afd8bedf17a14ee0b2e872b21ea56ec6ccdd9a",
+      "bytes": 5564
+    },
+    {
+      "path": "configs/seeds/independent_pilot_v1.json",
+      "sha256": "e235cf1271be8a383f32ff97402675bcfc7b9b89c8b360809b10358757c0a432",
+      "bytes": 922
     },
     {
       "path": "configs/task.yaml",
@@ -278,6 +308,11 @@
       "bytes": 14150
     },
     {
+      "path": "docs/PROJECT_STATUS.md",
+      "sha256": "af14d195afaee84761afdc2a4f740bd8646e824532eafc6758351d2366ecd405",
+      "bytes": 5601
+    },
+    {
       "path": "docs/PROVENANCE.md",
       "sha256": "07b8e206c34433ec1ff0c22ee34d259e0a37e2784db996d38fddf304f96e8390",
       "bytes": 1983
@@ -293,19 +328,39 @@
       "bytes": 5240
     },
     {
+      "path": "docs/REPOSITORY_MANAGEMENT.md",
+      "sha256": "1bf9ce543a431c92e2a0285ad74595d44854fbfa0228e82483bcaac76e220ea5",
+      "bytes": 3180
+    },
+    {
       "path": "docs/architecture/architecture_v0.1.md",
-      "sha256": "f7e7cdeb8afb97ecbb6aacf132ab217a8f750e68dfbf924daf1e48f298bdd4a1",
-      "bytes": 5963
+      "sha256": "bb03e146a2b4d95f24b7946297f061e9d4a475ae28cbd98d3c8674ea02ed316c",
+      "bytes": 6608
+    },
+    {
+      "path": "docs/architecture/scale_and_generation_protocol_v0.1.md",
+      "sha256": "feca39fcf3b6bb342ec1700ff35f0216df866eaa0067b2deb030b4ab83cdd67c",
+      "bytes": 4809
     },
     {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
-      "sha256": "9e4b2a7d650857036e072b00107e9dc3c68738484c7f3a446b9b50d22b20971f",
-      "bytes": 4884
+      "sha256": "ca693a6fa5bf9cbba74d85622ef966c92b070a4200e40b2d3b05df6b1c932d37",
+      "bytes": 5521
+    },
+    {
+      "path": "docs/data/independent_pilot_v1.md",
+      "sha256": "8fff9628d27ae76c9ffb9528207e40d0e2bb11c09297a5884269f5789d4cfc0d",
+      "bytes": 1811
     },
     {
       "path": "docs/data_contract.md",
       "sha256": "9964999089df7e67b9d5c0af99dcf5bd426974bca5128bee2623c928473d42a9",
       "bytes": 4036
+    },
+    {
+      "path": "docs/evidence/code_optimization_software_20261108.json",
+      "sha256": "3d8cab250ba9321066c4bfa24e2fcb77ec2e042f0cc2598a7810a92bc048bd71",
+      "bytes": 1719
     },
     {
       "path": "docs/evidence/cp2k_calibration_smoke.json",
@@ -366,6 +421,11 @@
       "path": "docs/evidence/joint_flow_smoke_20260929_v3.json",
       "sha256": "41555c2528ef65c71a18e4ff7908ae3f86affa75dad52fef7ed078eacbd6d0cd",
       "bytes": 4826
+    },
+    {
+      "path": "docs/evidence/joint_scale_generation_contract_20260930.json",
+      "sha256": "404066f5d8a5c2a347505a0a76073c4c55b5c5a28bcc4578c95ac8a85bcaa577",
+      "bytes": 2272
     },
     {
       "path": "docs/evidence/reaction_qm_grouping_audit_20260930.json",
@@ -523,6 +583,11 @@
       "bytes": 4233
     },
     {
+      "path": "docs/research/execution_20261001.md",
+      "sha256": "b74553fcad41c6b3e03c7149b4bc122280d655007c18812945e9820fd7a205d2",
+      "bytes": 8581
+    },
+    {
       "path": "docs/sources.md",
       "sha256": "5a4ffa1dca178ac3b8661d69beb56ca6c53d87ec4104577e99349c3997ee85b9",
       "bytes": 3700
@@ -578,9 +643,14 @@
       "bytes": 1485
     },
     {
+      "path": "schemas/search_attempt.schema.json",
+      "sha256": "c9ace491a2a8ffd671c7fad753a6d2915e76a6b888f88b17eaec09f5bcba1f6e",
+      "bytes": 1455
+    },
+    {
       "path": "schemas/workflow_b_baseline.schema.json",
-      "sha256": "daa64eda196d0252561135355a66562b4f32d59234d12119e1a178bffaae11e6",
-      "bytes": 1169
+      "sha256": "a6d670ff6315032a029fec704ca5e4d359c350891d4f60acf69ec11deddd4244",
+      "bytes": 2079
     },
     {
       "path": "scripts/audit_reaction_qm_grouping.py",
@@ -608,6 +678,11 @@
       "bytes": 3491
     },
     {
+      "path": "scripts/build_independent_seeds.py",
+      "sha256": "9940b10cd5d01d238dd777277c9bde59defc79d583d60d03aac93075510483f1",
+      "bytes": 4027
+    },
+    {
       "path": "scripts/cp2k_calibration_smoke.py",
       "sha256": "0e13ebd3d8f571a23c496531ba5d0c8068119b0f5cbd54e2cb7d8e7585557289",
       "bytes": 7339
@@ -624,8 +699,8 @@
     },
     {
       "path": "scripts/joint_flow_smoke.py",
-      "sha256": "be9cab15cb5032dd57fa8e9be21c2d815bd0966c1675a4fe48c25314dd081207",
-      "bytes": 11435
+      "sha256": "5814a985a581507f284e6fc74e4cda4739263eabc5b42c27eca00789e35ad955",
+      "bytes": 12767
     },
     {
       "path": "scripts/prepare_spice_openff_pilot.py",
@@ -639,8 +714,8 @@
     },
     {
       "path": "scripts/run_energy_learning_curve.py",
-      "sha256": "6f0843d3d61b056de69e06c08a8b1baf73c438eef7a013341fb3ff54dcbd2d2a",
-      "bytes": 15114
+      "sha256": "7f3dbd33277d4a990db33fb8224b797917e547c7510f5165d9255b9cc16023a7",
+      "bytes": 26082
     },
     {
       "path": "scripts/run_gfn2_diagnostic.py",
@@ -658,6 +733,11 @@
       "bytes": 15646
     },
     {
+      "path": "scripts/run_independent_pilot.py",
+      "sha256": "433bb7cfd2b3a73d03c4651737f3536de7f163abdd67a82f9003c93bbb7c5d63",
+      "bytes": 5308
+    },
+    {
       "path": "scripts/run_spice_openff_pilot.py",
       "sha256": "8e2e3f10f7a103a6dcc06ca23a3fbdb8b840208fb7bc98f233da344dd013c864",
       "bytes": 6840
@@ -668,9 +748,19 @@
       "bytes": 3503
     },
     {
+      "path": "scripts/validate_joint_scale_data_matrix.py",
+      "sha256": "48b288dbd394a49978f73f5f6a0d2843ff81fce65b583f540f21ea4ead20997a",
+      "bytes": 7809
+    },
+    {
+      "path": "scripts/validate_research_dispatch.py",
+      "sha256": "926fb7eb6ccb5fedbc29b3a941d04aad2562910431cd5bc1fe0b5c9b70877ff1",
+      "bytes": 34493
+    },
+    {
       "path": "scripts/validate_workflow_b.py",
-      "sha256": "68b0b5bc11bc453e0c1212c1b1fb5d2382bef91e410457ed38f7b39e1decc0a0",
-      "bytes": 11137
+      "sha256": "6163d0d2fcb13bcc6b4383c20cd177f462d1b67e6f2a6495cda4a7491f4bc9e0",
+      "bytes": 13653
     },
     {
       "path": "src/xtbflow/__init__.py",
@@ -704,13 +794,28 @@
     },
     {
       "path": "src/xtbflow/data/__init__.py",
-      "sha256": "02779274917d41ea827b6a4a21d43624295ab04831c29e2379845d02914f8a0e",
-      "bytes": 2504
+      "sha256": "56d5c17135282f06dd52bb8c1498faf0a058b4dcd97a060221cb9bc08e00beee",
+      "bytes": 3165
+    },
+    {
+      "path": "src/xtbflow/data/attempts.py",
+      "sha256": "e42ad55c53579035f06e402931d58d7453c719eadab7193a39fecbece55d4fc9",
+      "bytes": 8541
     },
     {
       "path": "src/xtbflow/data/cache.py",
       "sha256": "1f805c1b6498e0d4451fe340285106f2ea5d78499037548d44adf13b2084819f",
       "bytes": 2167
+    },
+    {
+      "path": "src/xtbflow/data/independent_seeds.py",
+      "sha256": "58a0dfc68de80b2b3543b041ab0a85181ffdb3f1768bcf4c57ae5b1e5954e0b4",
+      "bytes": 17868
+    },
+    {
+      "path": "src/xtbflow/data/matrix.py",
+      "sha256": "1543564f1357c91551a9492cb56cdf2c7e4572f4f5e0815d59d84a4c306dea79",
+      "bytes": 3758
     },
     {
       "path": "src/xtbflow/data/pairing.py",
@@ -724,8 +829,8 @@
     },
     {
       "path": "src/xtbflow/data/reaction_qm.py",
-      "sha256": "57a4c4e8728663837e6b4bdff0a34edcac2e3fb8ef899157ddfbd10ab9b53c83",
-      "bytes": 43778
+      "sha256": "87116270317eb81ded5efa7bbffa126c619c09e5dc0c2011334ce2993058bd6d",
+      "bytes": 43998
     },
     {
       "path": "src/xtbflow/data/records.py",
@@ -744,13 +849,13 @@
     },
     {
       "path": "src/xtbflow/evaluation/__init__.py",
-      "sha256": "3ce11bcb9a4e818840099636abb2dbdf3253b377d759cee931642f9c45c63960",
-      "bytes": 199
+      "sha256": "bf0c119f6de70bb2642e3095731bb18fb938e424b8662ecbcb5da0dd27100775",
+      "bytes": 2488
     },
     {
       "path": "src/xtbflow/evaluation/terminal.py",
-      "sha256": "a2ee8b3947aa9d55b04aabe52193cfaab0f91f443dde9b68b98a07bf1d91ff3a",
-      "bytes": 1744
+      "sha256": "cdaa17666eb40f95f19b386ecca4c18cf4c2344c75f83684c60806a3a61bb9e7",
+      "bytes": 7361
     },
     {
       "path": "src/xtbflow/legacy.py",
@@ -759,13 +864,13 @@
     },
     {
       "path": "src/xtbflow/models/__init__.py",
-      "sha256": "bf6fb7c8d6ff3abe27ccd5240df05e3467064d24b2fc5217b3240faa9e80de6f",
-      "bytes": 1476
+      "sha256": "dad04fe956a298c12c2d089e4b8fc6643d1ccbdf5fae496a2d9bd81a1b709eb6",
+      "bytes": 1590
     },
     {
       "path": "src/xtbflow/models/conserved_be.py",
-      "sha256": "ff1b2db42fa6ce4be5b66c7f8bbc47aca3ad3ba67d27c222cda38494066b50e8",
-      "bytes": 6574
+      "sha256": "aad4e3fb5872820dafcd53f1dac6c861bbd9a7d7d7c085b016b9526d581cbd6f",
+      "bytes": 7793
     },
     {
       "path": "src/xtbflow/models/delta_energy.py",
@@ -794,13 +899,13 @@
     },
     {
       "path": "src/xtbflow/models/joint_config.py",
-      "sha256": "a6d240cc661d813e9dfbd99873fa15749b996296d9e3e31f2ecc695073f91402",
-      "bytes": 3561
+      "sha256": "aafa925bb10275e9df9398120bd45f7f9c34ce1f32717dbbff26621bb6ab3761",
+      "bytes": 6751
     },
     {
       "path": "src/xtbflow/models/joint_flow.py",
-      "sha256": "7e8a871bcf1042dff5b557dcff77005a1ebe5bd6cebbc2c011784a70a1a453a5",
-      "bytes": 20166
+      "sha256": "2cd4c572630d064b23f2c9d5d5a84f994e10a77ff461bf825c95d93e8e306bfd",
+      "bytes": 22870
     },
     {
       "path": "src/xtbflow/models/reaction_direction.py",
@@ -874,13 +979,13 @@
     },
     {
       "path": "src/xtbflow/sampling/integrator.py",
-      "sha256": "1566d0c21728f3e7bbc9d99eecf57a1a9988d79e0d18b6f5700730886591247a",
-      "bytes": 3165
+      "sha256": "2bb873501ef7bf2d0dcfb6a41aaa0c1ad444c78ac11b1d6054dd781fb977e605",
+      "bytes": 3462
     },
     {
       "path": "src/xtbflow/training/__init__.py",
-      "sha256": "aa6e636ad88203568a9e022a5e65f45887988a9e3061799ee21eaf968b7a0408",
-      "bytes": 933
+      "sha256": "fbca927377b8166ea6b0334c9df894a13027c64bc9d687b4b868c65180669012",
+      "bytes": 1158
     },
     {
       "path": "src/xtbflow/training/checkpoint.py",
@@ -903,14 +1008,19 @@
       "bytes": 2677
     },
     {
+      "path": "src/xtbflow/training/gradient_diagnostics.py",
+      "sha256": "95e3556255a6a19806c6512b84d859ac8dc2288d11f26eacfb95266f087df66d",
+      "bytes": 7766
+    },
+    {
       "path": "src/xtbflow/training/joint.py",
-      "sha256": "4c6c5804e4b2da78081c6e849555041c0bb72b1db1e6f19caec83d2a1c20371b",
-      "bytes": 7728
+      "sha256": "6ce8b7c15ab3a711a628d7cd0cfa44c378d785a028e78dbc6591608dcc8d0aa0",
+      "bytes": 9725
     },
     {
       "path": "src/xtbflow/validation/__init__.py",
-      "sha256": "9f26a682c6b073b5558141ba61b4eb18003e82e5d965701289c3d068f1689b8c",
-      "bytes": 573
+      "sha256": "28bde676c7adc27be4ecab057c647000e060a97fc6e7503672fcfaa0fc92959c",
+      "bytes": 711
     },
     {
       "path": "src/xtbflow/validation/connectivity.py",
@@ -919,13 +1029,13 @@
     },
     {
       "path": "src/xtbflow/validation/modes.py",
-      "sha256": "590d3542632befb16007fbe6c417c7db9afccb305f3ddc59a086c0d0666ef835",
-      "bytes": 1673
+      "sha256": "b518b9517311fca403eb9a3a2e2d86625a71388a86c99a6aedbc1287ef2f3426",
+      "bytes": 4017
     },
     {
       "path": "src/xtbflow/validation/ts_search.py",
-      "sha256": "f161bddb807d39930bbaa52f180de61289962c7a5125462424ecffb0f0740abe",
-      "bytes": 19268
+      "sha256": "85ad17e0533a64e7c003c382f3b08d27e1b8f87c2f1db47ca8bf9996a797a8d6",
+      "bytes": 21635
     },
     {
       "path": "tests/reusable/test_event_geometry.py",
@@ -969,8 +1079,8 @@
     },
     {
       "path": "tests/test_conserved_flow.py",
-      "sha256": "729a164c1de8079775d3a82a7c354c36c820b6d10468c3344486ffa2ef5e3e2e",
-      "bytes": 3069
+      "sha256": "4ebbabe329b584bd61174f9ee65f52a78dcfa2a790d5f74e755234888bc5672a",
+      "bytes": 4019
     },
     {
       "path": "tests/test_core_proposals.py",
@@ -998,14 +1108,29 @@
       "bytes": 4675
     },
     {
+      "path": "tests/test_independent_seeds.py",
+      "sha256": "1cb7b0faab565a9ba900aa01ebd3f7f7eed18f1b6f325dd8f641f1384c2a89d7",
+      "bytes": 4969
+    },
+    {
       "path": "tests/test_input_firewall.py",
       "sha256": "cafa13707746c3e9f1a7d8d35cc7ac6b34792a18e714f729cdb6cdf8694c4460",
       "bytes": 6076
     },
     {
       "path": "tests/test_joint_flow.py",
-      "sha256": "d18c71fa4bddb1f3758adf3203a631eeb1f3d1e3969f685ae48979cb20010ba3",
-      "bytes": 14172
+      "sha256": "63d0ddd953f41f232a4ad97f3bad7162619a4b745db1061460dd4f21ca962d08",
+      "bytes": 16742
+    },
+    {
+      "path": "tests/test_joint_gradient_diagnostics.py",
+      "sha256": "78269cd204bb4623ecd9c054c62e9e74af9d7af7d8da98d71ede89d0d386a0f9",
+      "bytes": 3682
+    },
+    {
+      "path": "tests/test_learning_curve_budget.py",
+      "sha256": "158dde2de0beb627dd41102f181b2f60d9c33a4f12014b596f70df698842f9a7",
+      "bytes": 3703
     },
     {
       "path": "tests/test_package.py",
@@ -1019,13 +1144,18 @@
     },
     {
       "path": "tests/test_path_status.py",
-      "sha256": "352d02626c16822ab3aba243c2ba6f7a3f2a78659e19b91c2567cffcf93b1bc3",
-      "bytes": 9407
+      "sha256": "1f7573742661b55c2ced7b493256e6b2af82dc6de0386e13d1522f011a9ed16a",
+      "bytes": 12066
     },
     {
       "path": "tests/test_reaction_qm.py",
-      "sha256": "9b51bfaac4043ab1d5d1d3367318f4fa7dd387f0c0d6394b485b1236f7a47393",
-      "bytes": 9193
+      "sha256": "f128eb8bf5e51590ae6b273f78719bfdfd3cddba9e86fbc1a473098a3a762ffc",
+      "bytes": 9897
+    },
+    {
+      "path": "tests/test_research_dispatch.py",
+      "sha256": "e42ae57644bc9f31837c6eb2d9762d95b3578ce2ea1b00b3f2b0dac13ad8e219",
+      "bytes": 4615
     },
     {
       "path": "tests/test_runtime_budget.py",
@@ -1038,9 +1168,14 @@
       "bytes": 4324
     },
     {
+      "path": "tests/test_scale_and_generation_contract.py",
+      "sha256": "f2ffecefeac1cac7f43a415041cf4c6509e87f7187a26e0787870409a6f28d17",
+      "bytes": 3557
+    },
+    {
       "path": "tests/test_workflow_b_protocol.py",
-      "sha256": "0491b26813933fd983b822f97ab0ecc3a4af06e441d04347ea035247442bae59",
-      "bytes": 4527
+      "sha256": "b021c2a6866286bf47f322553b1ffce1f7559e1fb8ddc8fcc8127812dff97b96",
+      "bytes": 5369
     },
     {
       "path": "vendor/mechai_reusable/README.md",

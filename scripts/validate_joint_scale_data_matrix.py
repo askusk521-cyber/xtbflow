@@ -34,7 +34,7 @@ def _parameter_count(dimensions: Mapping[str, Any], hidden_dim: int) -> int:
     if c:
         # condition_to_node contains c -> h and h -> n linear layers;
         # include one bias vector for each layer.
-        count += h * h + (c + 2) * h + (c + n + 2) * h + n
+        count += h * h + (c + 2) * h + (c + n + 1) * h + n
     count += 2 * h * h + 4 * h + 1
     count += (r + 2) * h + 1
     count += (n + 3) * h + n

@@ -22,7 +22,7 @@ ROOT = Path(__file__).parents[1]
 
 def test_scale_parameter_formula_matches_declared_ladder():
     runtime = JointFlowRuntimeConfig.load(ROOT / "configs/models/joint_flow_runtime_v0.1.json")
-    expected = {64: 23451, 128: 79643, 256: 290331, 512: 1104923}
+    expected = {64: 23387, 128: 79515, 256: 290075, 512: 1104411}
     assert runtime.trainable_parameter_count == expected[64]
     for width, count in expected.items():
         scaled = runtime.with_hidden_dim(width)

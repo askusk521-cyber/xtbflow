@@ -119,6 +119,7 @@ def test_proposal_attempt_validation_are_separate_and_metered():
     attempt = AttemptRecord("attempt-1", "seed-1", proposal.proposal_id, "proposal", "unsupported", "ledger", "proto", "none", 0, failure_reason="driver_not_qualified")
     validation = ValidationRecord("validation-1", attempt.attempt_id, None, "unknown", "proto", "not_validated")
     assert proposal.to_dict()["schema"].endswith("proposal/v1")
+    assert proposal.to_dict()["record_hash"] == proposal.record_hash
     assert attempt.to_dict()["calculator_calls"] == 0
     assert validation.to_dict()["observed_event"] is None
 

@@ -11,25 +11,25 @@
     {
       "scale_id": "small",
       "hidden_dim": 64,
-      "expected_trainable_parameters": 23451,
+      "expected_trainable_parameters": 23387,
       "role": "existing_reproduction_baseline"
     },
     {
       "scale_id": "bridge",
       "hidden_dim": 128,
-      "expected_trainable_parameters": 79643,
+      "expected_trainable_parameters": 79515,
       "role": "capacity_bridge"
     },
     {
       "scale_id": "medium",
       "hidden_dim": 256,
-      "expected_trainable_parameters": 290331,
+      "expected_trainable_parameters": 290075,
       "role": "primary_mid_scale"
     },
     {
       "scale_id": "large",
       "hidden_dim": 512,
-      "expected_trainable_parameters": 1104923,
+      "expected_trainable_parameters": 1104411,
       "role": "primary_large_scale"
     }
   ],

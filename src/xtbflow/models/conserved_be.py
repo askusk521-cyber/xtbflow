@@ -104,17 +104,35 @@ class ConservationProjector:
         matrix = self.constraint_matrix.to(device=vector.device, dtype=vector.dtype)
         flat_vector = vector.reshape(-1, self.n_features)
         flat_mask = feature_mask.reshape(-1, self.n_features)
-        projected_rows: list[torch.Tensor] = []
-        for row, active in zip(flat_vector, flat_mask):
-            result = torch.zeros_like(row)
-            if bool(active.any()):
-                active_matrix = matrix[:, active]
-                active_values = row[active]
-                gram_pinv = torch.linalg.pinv(active_matrix @ active_matrix.transpose(0, 1))
-                residual = active_values @ active_matrix.transpose(0, 1)
-                result[active] = active_values - residual @ gram_pinv @ active_matrix
-            projected_rows.append(result)
-        return torch.stack(projected_rows, dim=0).reshape_as(vector)
+        # Samples in one batch usually share the same active atom count.  The
+        # previous row-by-row implementation recomputed an identical
+        # pseudoinverse for every sample (and twice per joint-flow step).  Group
+        # rows by their boolean mask and factor each active constraint once;
+        # ``index_copy`` keeps the result differentiable with respect to the
+        # input values while preserving exact zero padding.
+        # ``unique`` has broader backend support for byte tensors than for
+        # boolean tensors; the conversion is local and keeps the grouping on
+        # the original device without a host-side mask round trip.
+        unique_masks, inverse = torch.unique(
+            flat_mask.to(dtype=torch.uint8), dim=0, return_inverse=True
+        )
+        projected = torch.zeros_like(flat_vector)
+        for group_index in range(unique_masks.shape[0]):
+            active = unique_masks[group_index].to(dtype=torch.bool)
+            active_indices = active.nonzero(as_tuple=False).flatten()
+            if not active_indices.numel():
+                continue
+            active_matrix = matrix[:, active]
+            gram_pinv = torch.linalg.pinv(active_matrix @ active_matrix.transpose(0, 1))
+            row_indices = torch.where(inverse == group_index)[0]
+            active_values = flat_vector.index_select(0, row_indices).index_select(1, active_indices)
+            residual = active_values @ active_matrix.transpose(0, 1)
+            projected_values = active_values - residual @ gram_pinv @ active_matrix
+            rows = torch.zeros(
+                (row_indices.numel(), self.n_features), dtype=vector.dtype, device=vector.device
+            ).index_copy(1, active_indices, projected_values)
+            projected = projected.index_copy(0, row_indices, rows)
+        return projected.reshape_as(vector)
 
     def residual(self, vector: torch.Tensor) -> torch.Tensor:
         if vector.shape[-1] != self.n_features:

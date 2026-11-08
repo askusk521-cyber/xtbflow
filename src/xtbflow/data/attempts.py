@@ -78,9 +78,11 @@ class ProposalRecord:
 
     @property
     def record_hash(self) -> str:
-        return canonical_hash(self.to_dict())
+        return canonical_hash(self._payload())
 
-    def to_dict(self) -> dict[str, Any]:
+    def _payload(self) -> dict[str, Any]:
+        """Return the hash input without the derived hash field itself."""
+
         return {
             "schema": PROPOSAL_SCHEMA,
             "proposal_id": self.proposal_id,
@@ -92,8 +94,12 @@ class ProposalRecord:
             "status": self.status,
             "generation_calls": self.generation_calls,
             "provenance": dict(self.provenance),
-            "record_hash": self.record_hash,
         }
+
+    def to_dict(self) -> dict[str, Any]:
+        payload = self._payload()
+        payload["record_hash"] = self.record_hash
+        return payload
 
 
 @dataclass(frozen=True)

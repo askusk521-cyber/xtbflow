@@ -11,6 +11,7 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
+import math
 from pathlib import Path
 import platform
 import subprocess
@@ -21,7 +22,10 @@ import torch
 from xtbflow.models import JointFlowRuntimeConfig, pack_be, total_electron_projector
 from xtbflow.sampling import control_euler_step
 from xtbflow.training import (
+    CLIP_MODES,
+    apply_gradient_clip,
     coupled_control_manifest,
+    gradient_diagnostics,
     joint_flow_loss,
     load_joint_checkpoint,
     model_state_identity,
@@ -72,9 +76,13 @@ def main() -> int:
     parser.add_argument("--training-steps", type=int, default=8)
     parser.add_argument("--sample-steps", type=int, default=4)
     parser.add_argument("--dt", type=float, default=None)
+    parser.add_argument("--clip-mode", choices=CLIP_MODES, default="global")
+    parser.add_argument("--gradient-max-norm", type=float, default=5.0)
     args = parser.parse_args()
     if args.training_steps < 1 or args.sample_steps < 1:
         raise SystemExit("training and sample steps must be positive")
+    if not math.isfinite(args.gradient_max_norm) or args.gradient_max_norm <= 0:
+        raise SystemExit("gradient-max-norm must be finite and positive")
     dt = 1.0 / args.sample_steps if args.dt is None else args.dt
     if not 0 < dt <= 1 or args.sample_steps * dt > 1 + 1e-12:
         raise SystemExit("dt must be positive and sample_steps*dt must be at most one")
@@ -101,6 +109,7 @@ def main() -> int:
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-2)
     tau_schedule = (0.2, 0.5, 0.8)
     losses: list[float] = []
+    gradient_history: list[dict[str, object]] = []
     raw_event_target = torch.tensor([[0.3, -0.2, 0.1, -0.1, 0.15, -0.05]], dtype=dtype)
     for step in range(args.training_steps):
         tau = tau_schedule[step % len(tau_schedule)]
@@ -119,16 +128,37 @@ def main() -> int:
             dt=dt,
             condition_features=condition_features,
         )
-        loss = joint_flow_loss(
+        loss_terms = joint_flow_loss(
             output,
             target_event,
             target_geometry,
             atom_mask=atom_mask,
             require_nonzero_target=True,
-        )["total"]
+        )
+        loss = loss_terms["total"]
+        gradient_report = gradient_diagnostics(
+            model,
+            loss_terms["event"],
+            loss_terms["geometry"],
+            total_loss=loss,
+            max_norm=args.gradient_max_norm,
+        )
         loss.backward()
+        clip_report = apply_gradient_clip(
+            model,
+            max_norm=args.gradient_max_norm,
+            mode=args.clip_mode,
+        )
         optimizer.step()
         losses.append(float(loss.detach()))
+        gradient_history.append(
+            {
+                "step": step,
+                "loss": float(loss.detach()),
+                "diagnostics": gradient_report,
+                "applied_clip": clip_report,
+            }
+        )
 
     model.eval()
     modes = runtime.control_modes
@@ -168,6 +198,8 @@ def main() -> int:
         metadata={
             "target": "diagnostic_nonzero_time_dependent_synthetic_velocity",
             "runtime_config_sha256": _config_sha256(args.config),
+            "gradient_clip_mode": args.clip_mode,
+            "gradient_max_norm": args.gradient_max_norm,
         },
     )
 
@@ -263,6 +295,8 @@ def main() -> int:
         "training_steps": args.training_steps,
         "sample_steps": args.sample_steps,
         "dt": dt,
+        "gradient_clip_mode": args.clip_mode,
+        "gradient_max_norm": args.gradient_max_norm,
         "tau_domain": [0.0, min(1.0, args.sample_steps * dt)],
         "runtime_config": runtime.constructor_record(),
         "runtime_config_path": str(args.config),
@@ -274,6 +308,7 @@ def main() -> int:
         "tau_schedule": list(tau_schedule),
         "initial_loss": losses[0],
         "final_loss": losses[-1],
+        "gradient_diagnostics": gradient_history,
         "checkpoint_path": str(args.checkpoint),
         "checkpoint_sha256": hashlib.sha256(args.checkpoint.read_bytes()).hexdigest(),
         "model_identity_before_save": identity_before,

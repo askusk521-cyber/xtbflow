@@ -16,12 +16,12 @@ from .reaction_direction import ReactionDirectionHead, normalize_direction, sign
 from .delta_energy import DeltaEnergyModel, EnergyForcePrediction
 from .direct_energy import DirectEnergyModel
 from .joint_flow import CONTROL_MODES, JOINT_UNIDIRECTIONAL_MODE, JointEventGeometryFlow, JointFlowOutput, SerialEventGeometryFlow
-from .joint_config import JointFlowRuntimeConfig, RUNTIME_CONFIG_SCHEMA
+from .joint_config import JointFlowRuntimeConfig, RUNTIME_CONFIG_SCHEMA, joint_flow_parameter_count
 
 __all__ = [
     "ConservationProjector", "pack_be", "packed_size", "total_electron_projector", "unpack_be",
     "upper_triangle_indices", "upper_triangle_weights", "DecodeBatch", "DecodeError",
     "DecodedEndpoint", "decode_batch", "decode_endpoint", "ConservedEventFlow",
     "EquivariantGeometryFlow", "ReactantEventGeometryFlow", "ReactionDirectionHead",
-    "normalize_direction", "sign_invariant_direction_loss", "DeltaEnergyModel", "DirectEnergyModel", "EnergyForcePrediction", "CONTROL_MODES", "JOINT_UNIDIRECTIONAL_MODE", "JointEventGeometryFlow", "JointFlowOutput", "SerialEventGeometryFlow", "JointFlowRuntimeConfig", "RUNTIME_CONFIG_SCHEMA",
+    "normalize_direction", "sign_invariant_direction_loss", "DeltaEnergyModel", "DirectEnergyModel", "EnergyForcePrediction", "CONTROL_MODES", "JOINT_UNIDIRECTIONAL_MODE", "JointEventGeometryFlow", "JointFlowOutput", "SerialEventGeometryFlow", "JointFlowRuntimeConfig", "RUNTIME_CONFIG_SCHEMA", "joint_flow_parameter_count",
 ]

@@ -320,14 +320,14 @@ class GuidanceOutput:
         geometry_delta = None if self.geometry_delta is None else _geometry(self.geometry_delta, "geometry_delta")
         direction_delta = None if self.direction_delta is None else _geometry(self.direction_delta, "direction_delta")
         event_delta = None if self.event_delta is None else _event(self.event_delta, "event_delta")
+        ranking = None if self.ranking is None else tuple((str(key), _finite_number(score, "ranking score")) for key, score in self.ranking)
         if lane is GuidanceLane.GEOMETRY and event_delta is not None:
             raise ValueError("geometry lane cannot return an event delta")
         if lane is GuidanceLane.EVENT and (geometry_delta is not None or direction_delta is not None):
             raise ValueError("event lane cannot return geometry guidance")
         if lane is GuidanceLane.BASE and ranking is not None:
             raise ValueError("base lane cannot return an event ranking")
-        if self.ranking is not None:
-            ranking = tuple((str(key), _finite_number(score, "ranking score")) for key, score in self.ranking)
+        if ranking is not None:
             if lane is not GuidanceLane.EVENT:
                 raise ValueError("only event lane may return a ranking")
         if status in {GuidanceStatus.FAILED, GuidanceStatus.BUDGET_EXHAUSTED} and not self.failure_stage:

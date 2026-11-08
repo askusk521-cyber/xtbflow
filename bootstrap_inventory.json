@@ -428,6 +428,11 @@
       "bytes": 1365
     },
     {
+      "path": "docs/architecture/parallel_guidance_contract_v0.1.md",
+      "sha256": "0c5a5dfb5e19895d297275d053824996d8de3566fbcb5e7c2a7cde3432bf77b3",
+      "bytes": 1429
+    },
+    {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
       "sha256": "9e4b2a7d650857036e072b00107e9dc3c68738484c7f3a446b9b50d22b20971f",
       "bytes": 4884
@@ -933,6 +938,11 @@
       "bytes": 2110
     },
     {
+      "path": "schemas/parallel_guidance_contract.schema.json",
+      "sha256": "aca25585e4e472747304274c7304e1277370fd68d30cb20c899a948f6748bf49",
+      "bytes": 5751
+    },
+    {
       "path": "schemas/public_record.schema.json",
       "sha256": "43a6c76ea4229ddf42a4eda5e4dd1d3d2a4a73cfab4a6fc33aa0a648327aa298",
       "bytes": 1873
@@ -1373,6 +1383,11 @@
       "bytes": 3165
     },
     {
+      "path": "src/xtbflow/sampling/parallel_guidance.py",
+      "sha256": "9ab2a45f1e4585f8edb70c8ba9ee5eeca153fb04d70df5e9c906b8c746db9336",
+      "bytes": 30203
+    },
+    {
       "path": "src/xtbflow/training/__init__.py",
       "sha256": "aa6e636ad88203568a9e022a5e65f45887988a9e3061799ee21eaf968b7a0408",
       "bytes": 933
@@ -1551,6 +1566,11 @@
       "path": "tests/test_paired_pilot.py",
       "sha256": "29a8e3bc3e2fca9da3175d54309ab4e136c0744285c6fa562df44f0888ea0dd7",
       "bytes": 2003
+    },
+    {
+      "path": "tests/test_parallel_guidance.py",
+      "sha256": "ecb7f75c8bfedd86feb5dc1ee85c986190e646fdf0f9a1beab571278fa728c49",
+      "bytes": 7360
     },
     {
       "path": "tests/test_path_status.py",

@@ -30,7 +30,7 @@
     "full_pytest": "271 passed, 1 warning, 68 subtests",
     "reusable_unittest": "56 passed"
   },
-  "source_commit": "9f65ed6a1822eb0ec57ccc33e6cac5b7f94e46cc",
+  "source_commit": "11faf2ad5810d4132f3b9dc6213b2c8b7a108aee",
   "stage": "issue-142-network-contract-software",
   "status": "pass"
 }

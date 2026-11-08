@@ -60,6 +60,13 @@ from .adapters import (
     fingerprint_text,
     validate_sha256,
 )
+from .physical_adapter import (
+    PhysicalAblationArtifact,
+    PhysicalFeedback,
+    PhysicalGuidanceConfig,
+    RecordedPhysicalProvider,
+    run_physical_ablation,
+)
 
 __all__ = [
     "GuidanceSchedule", "schedule_strength", "control_euler_step", "euler_step", "serial_euler_step",
@@ -72,4 +79,6 @@ __all__ = [
     "BudgetReservation", "BudgetExceeded", "GuidanceBudget", "GuidanceProvider",
     "MockPhysicalProvider", "MockPolicyProvider", "PhysicalGuidanceProvider", "PolicyGuidanceProvider",
     "ProviderRequest", "fingerprint_text", "validate_sha256",
+    "PhysicalAblationArtifact", "PhysicalFeedback", "PhysicalGuidanceConfig",
+    "RecordedPhysicalProvider", "run_physical_ablation",
 ]

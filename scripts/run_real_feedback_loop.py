@@ -176,7 +176,7 @@ def _run_arm(
                 config_fingerprint=event_provider.config_fingerprint,
                 protocol_fingerprint=event_provider.protocol_fingerprint,
                 feedback={"arm": arm, "source_feedback_fingerprint": feedback.feedback_fingerprint},
-                action_space={"event_update": "force_derived_bounded_delta"},
+                action_space={"bookkeeping_update": "force_derived_bounded_delta"},
             )
             event_run = adapter_runner.run(event_request, event_provider)
             if event_run.output is not None:

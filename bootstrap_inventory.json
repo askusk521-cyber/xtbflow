@@ -618,6 +618,11 @@
       "bytes": 2252
     },
     {
+      "path": "schemas/joint_scale_parent.schema.json",
+      "sha256": "3e9115fdd24ebb81f7bb3842af20e3e4bd0b359d3edf79bb54ada853f32a392b",
+      "bytes": 940
+    },
+    {
       "path": "schemas/model_contract.schema.json",
       "sha256": "f9a2ccf37a2c04c1af2a3cd0536731ec86bd56f75000275bfa6e6e10d6f71351",
       "bytes": 2110
@@ -626,6 +631,11 @@
       "path": "schemas/public_record.schema.json",
       "sha256": "43a6c76ea4229ddf42a4eda5e4dd1d3d2a4a73cfab4a6fc33aa0a648327aa298",
       "bytes": 1873
+    },
+    {
+      "path": "schemas/reactant_input.schema.json",
+      "sha256": "3666ba07120759c08302f2d02e8093303d7b43a93c314b5684f300efe2028113",
+      "bytes": 1456
     },
     {
       "path": "schemas/reaction_qm_track_b.schema.json",
@@ -703,6 +713,11 @@
       "bytes": 12767
     },
     {
+      "path": "scripts/plan_joint_scale_runs.py",
+      "sha256": "fa72a04da51a64aeeaf292846ce95291a4bbb6e1c8857833c8ed97c146b34045",
+      "bytes": 10922
+    },
+    {
       "path": "scripts/prepare_spice_openff_pilot.py",
       "sha256": "4670fce9e9cf91de9bc43036673d6c2bd288af5299c74f602242102a1b6c2a1b",
       "bytes": 16740
@@ -738,9 +753,19 @@
       "bytes": 5308
     },
     {
+      "path": "scripts/run_reactant_generation.py",
+      "sha256": "f7bd67d78f5db5be44d29272facbaaba7f80942d5a1774e0d5fb7784f3690a31",
+      "bytes": 13146
+    },
+    {
       "path": "scripts/run_spice_openff_pilot.py",
       "sha256": "8e2e3f10f7a103a6dcc06ca23a3fbdb8b840208fb7bc98f233da344dd013c864",
       "bytes": 6840
+    },
+    {
+      "path": "scripts/score_reactant_generation.py",
+      "sha256": "92951d2ee321db5d264e145154126b4a8b04fcbc2b33ea00e1d933f6186524f2",
+      "bytes": 17673
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -851,6 +876,16 @@
       "path": "src/xtbflow/evaluation/__init__.py",
       "sha256": "bf0c119f6de70bb2642e3095731bb18fb938e424b8662ecbcb5da0dd27100775",
       "bytes": 2488
+    },
+    {
+      "path": "src/xtbflow/evaluation/generation.py",
+      "sha256": "4126c6bb3d00557d9c8b86979cb6020a2a4658ad0181979cd79d88c03e98d029",
+      "bytes": 33822
+    },
+    {
+      "path": "src/xtbflow/evaluation/grouped.py",
+      "sha256": "cbe8035cb8f720f252c408909c0a97518a147e4a7b20bdad456e7fae9ea49764",
+      "bytes": 7493
     },
     {
       "path": "src/xtbflow/evaluation/terminal.py",
@@ -1108,6 +1143,11 @@
       "bytes": 4675
     },
     {
+      "path": "tests/test_grouped_metrics.py",
+      "sha256": "348b0137da8239a36418c3fba6995a635577172379fdbcdd4e6fe10fe6bb3fc7",
+      "bytes": 1899
+    },
+    {
       "path": "tests/test_independent_seeds.py",
       "sha256": "1cb7b0faab565a9ba900aa01ebd3f7f7eed18f1b6f325dd8f641f1384c2a89d7",
       "bytes": 4969
@@ -1128,6 +1168,11 @@
       "bytes": 3682
     },
     {
+      "path": "tests/test_joint_scale_planner.py",
+      "sha256": "04bcbccf12d57c9643d5fd3e15adf4b199739c073f5257cbb7bf55f4501e3962",
+      "bytes": 2398
+    },
+    {
       "path": "tests/test_learning_curve_budget.py",
       "sha256": "158dde2de0beb627dd41102f181b2f60d9c33a4f12014b596f70df698842f9a7",
       "bytes": 3703
@@ -1146,6 +1191,11 @@
       "path": "tests/test_path_status.py",
       "sha256": "1f7573742661b55c2ced7b493256e6b2af82dc6de0386e13d1522f011a9ed16a",
       "bytes": 12066
+    },
+    {
+      "path": "tests/test_reactant_generation.py",
+      "sha256": "8f1a0551934368450ea6dedf96197992bba1aaf2722a0ae31fad1e34167ad013",
+      "bytes": 9282
     },
     {
       "path": "tests/test_reaction_qm.py",

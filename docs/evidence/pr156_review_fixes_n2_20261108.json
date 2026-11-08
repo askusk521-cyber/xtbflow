@@ -2,11 +2,11 @@
   "schema": "xtbflow-evidence/pr156-review-fixes-n2/v1",
   "status": "completed",
   "stage": "validated_at_parent_commit",
-  "source_commit": "fe93331",
-  "validated_commit": "fe93331",
+  "source_commit": "fe933315e83a226b17af561846b0bbc041b6cd74",
+  "validated_commit": "fe933315e83a226b17af561846b0bbc041b6cd74",
   "working_tree_dirty": false,
   "working_tree_diff_sha256": null,
-  "stacked_fix_commits": ["7a95431", "fb7a42", "8653706", "fe93331"],
+  "stacked_fix_commits": ["7a95431fb1de90b8073068d267fc3fdb14b61f44", "fb7a42ae2c104742d1322c67fdd3c8b0119ac65b", "865370634153a97f21bd70fc5606311832155a26", "fe933315e83a226b17af561846b0bbc041b6cd74"],
   "execution_host": "node2",
   "execution_root": "~/xtbflow/xtbflow-exec-pr156-docs-fix-20261108",
   "environment": {
@@ -27,7 +27,7 @@
     "srun --partition=main --gres=gpu:pro6000:1 --nodes=1 --ntasks=1 --time=00:05:00 <projector smoke and microbenchmark>"
   ],
   "results": {
-    "pytest_passed": 271,
+    "pytest_passed": 282,
     "pytest_subtests_passed": 68,
     "reusable_unittest_passed": 56,
     "bootstrap_inventory_files_verified": 258,
@@ -58,11 +58,12 @@
     "The PR still needs a clean rebase/merge-conflict resolution and a human review before merge."
   ],
   "file_hashes": {
-    "bootstrap_inventory.json": "eb35c7befd0fbba750823a07b82d1cc42c257591918ebba1c09e7d6182ead83a",
-    "scripts/run_reactant_generation.py": "4336a9ea834aa43ad4a721b719378c70c0ee39e7918d4de5b07ec2512be6f602",
-    "scripts/score_reactant_generation.py": "65eb3b2a3f03ea6844af9dd91effbe0c251b22689f62399227fb7ec281320e0c",
-    "src/xtbflow/evaluation/generation.py": "c777b2d224491b2d9a7371e88f666e9fec9b73c211dfce8d06e3ff9b6706c381",
+    "bootstrap_inventory.json": "26f27675c7453203c307168f6ea49744638161505c7ab3a3cde7978e7b57859b",
+    "scripts/run_reactant_generation.py": "7e96c6b0794aa23b55c6798efeefdc6e0189eb316c3300b94879d8542540f758",
+    "scripts/score_reactant_generation.py": "0227bdad8e7e82ca8da12c15f030050306cbb977840cee7eeca237a260d41799",
+    "src/xtbflow/evaluation/generation.py": "5451205be7a8357f2906808c91d734c6ac43a2627fc0bfdfd6b3284c846e1e58",
     "src/xtbflow/data/records.py": "8f89d63a653b022949930c61115d72579082dcc4e6013c3e89db768d11e6d8bf",
-    "tests/test_reactant_generation.py": "c6bd86edce5058c4a1282db7b0953c2a4e62b8451c072443acdb6dfef1e6c598"
+    "tests/test_reactant_generation.py": "f89fa1ab2463c8cc441a33e1e142a92af1129ab0c1184aff07f44c570f643877",
+    "tests/test_independent_seeds.py": "587a25b1910ae1cfe42acd0fb1af69c3644e828faca80335f4f8c8616011dcea"
   }
 }

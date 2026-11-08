@@ -3,6 +3,7 @@
 from .event_flow import conservation_penalty, decode_summary, flow_matching_loss
 from .geometry_flow import endpoint_geometry_loss, masked_coordinate_loss, reactant_direction_loss, result_metadata
 from .energy import EnergyBatch, delta_batch_loss, energy_force_loss, make_run_manifest, predict_delta_batch, write_run_manifest
-from .joint import coupled_control_manifest, joint_flow_loss, load_joint_checkpoint, model_state_identity, save_joint_checkpoint
+from .joint import coupled_control_manifest, joint_flow_loss, load_joint_checkpoint, model_state_identity, save_joint_checkpoint, train_joint_step
+from .gradient_diagnostics import CLIP_MODES, apply_gradient_clip, gradient_diagnostics, parameter_groups
 
-__all__ = ["conservation_penalty", "decode_summary", "flow_matching_loss", "endpoint_geometry_loss", "masked_coordinate_loss", "reactant_direction_loss", "result_metadata", "EnergyBatch", "delta_batch_loss", "energy_force_loss", "make_run_manifest", "predict_delta_batch", "write_run_manifest", "coupled_control_manifest", "joint_flow_loss", "model_state_identity", "save_joint_checkpoint", "load_joint_checkpoint"]
+__all__ = ["conservation_penalty", "decode_summary", "flow_matching_loss", "endpoint_geometry_loss", "masked_coordinate_loss", "reactant_direction_loss", "result_metadata", "EnergyBatch", "delta_batch_loss", "energy_force_loss", "make_run_manifest", "predict_delta_batch", "write_run_manifest", "coupled_control_manifest", "joint_flow_loss", "model_state_identity", "save_joint_checkpoint", "load_joint_checkpoint", "train_joint_step", "CLIP_MODES", "apply_gradient_clip", "gradient_diagnostics", "parameter_groups"]

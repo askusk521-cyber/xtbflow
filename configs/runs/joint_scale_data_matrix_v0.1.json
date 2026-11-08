@@ -1,0 +1,131 @@
+{
+  "schema": "xtbflow-joint-scale-data-matrix/v1",
+  "protocol_id": "joint-scale-data-matrix-v0.1",
+  "status": "planning_only_scientific_execution_blocked",
+  "scientific_blocker": {
+    "reason": "No admitted sample-level event/TS manifest is available on this branch.",
+    "required_before_training": [
+      "source and coordinate identity",
+      "charge and multiplicity",
+      "parent-group and reaction-family split",
+      "overlap audit",
+      "reactant-only input firewall"
+    ],
+    "energy_force_only_data_is_insufficient": true
+  },
+  "parent_manifest_schema": "schemas/joint_scale_parent.schema.json",
+  "scale_ladder": "configs/models/joint_flow_scale_ladder_v0.1.json",
+  "primary_architectures": [
+    {
+      "architecture_id": "independent",
+      "control_mode": "both_off",
+      "description": "event and geometry fields share inputs but exchange no generated state"
+    },
+    {
+      "architecture_id": "serial",
+      "control_mode": "serial_independent",
+      "description": "event is advanced by explicit dt before geometry evaluation"
+    },
+    {
+      "architecture_id": "joint",
+      "control_mode": "joint_bidirectional",
+      "description": "current-state event and geometry fields exchange messages"
+    }
+  ],
+  "diagnostic_architectures": [
+    {
+      "architecture_id": "current_state_one_way",
+      "control_mode": "joint_unidirectional",
+      "run_at": "representative_scale_and_data_only",
+      "purpose": "isolate geometry-to-event feedback from serial timing"
+    },
+    {
+      "architecture_id": "joint_unconstrained_event",
+      "control_mode": "joint_bidirectional",
+      "conservation_projection": false,
+      "run_at": "representative_scale_and_data_only",
+      "purpose": "conservation projection ablation"
+    }
+  ],
+  "model_scales": {
+    "source": "configs/models/joint_flow_scale_ladder_v0.1.json",
+    "primary_scale_ids": ["small", "bridge", "medium"],
+    "large_extension_scale_ids": ["large"],
+    "large_extension_policy": "run after the primary 81-point matrix and only with the frozen protocol"
+  },
+  "data_scales": [
+    {
+      "data_scale_id": "small",
+      "train_parent_count": 25,
+      "role": "learning_curve_low"
+    },
+    {
+      "data_scale_id": "medium",
+      "train_parent_count": 100,
+      "role": "learning_curve_mid"
+    },
+    {
+      "data_scale_id": "large",
+      "train_parent_count": 400,
+      "role": "learning_curve_high"
+    }
+  ],
+  "nested_parent_selection": {
+    "ranking_seed": "xtbflow-joint-scale-data-v1",
+    "selection_is_result_blind": true,
+    "group_key": "parent_reaction_id",
+    "required_split_group_key": "split_group",
+    "validation_parent_target": [50, 100],
+    "test_parent_target": [100, 200],
+    "frames_are_not_independent_samples": true
+  },
+  "training": {
+    "seeds": [11, 17, 23],
+    "primary_run_count": 81,
+    "same_optimizer_exposure_across_arms": true,
+    "validation_selects_checkpoint": true,
+    "test_labels_never_select_hyperparameters": true,
+    "gradient_clip_policies": ["global", "branchwise"],
+    "gradient_clip_diagnostic_runs": "representative_joint_and_serial_at_small_scale",
+    "parameter_count_and_wall_time_recorded": true
+  },
+  "evaluation": {
+    "generator_only_is_primary": true,
+    "label_assisted_event_and_geometry_metrics_are_diagnostic_only": true,
+    "blind_input_schema": "schemas/reactant_input.schema.json",
+    "blind_runner": "scripts/run_reactant_generation.py",
+    "posthoc_scorer": "scripts/score_reactant_generation.py",
+    "blind_candidate_cap": 64,
+    "blind_repeated_attempts_require_stochastic_initial_state": true,
+    "stochastic_initial_state_policies": ["event_noise", "geometry_noise", "event_geometry_noise"],
+    "latent_policy_status": "reserved_until_a_model_latent_interface_is_implemented",
+    "deterministic_repeated_attempts_are_invalid": true,
+    "deduplication_before_slot_metrics": true,
+    "physical_refinement_is_separate_budget": true,
+    "failure_stages_are_settled_separately": true,
+    "statistical_unit": "parent_reaction_or_prespecified_family",
+    "report_training_seed_variance_and_parent_bootstrap_separately": true
+  },
+  "primary_metrics": [
+    "constructive_electron_conservation_rate",
+    "decoded_legal_event_rate",
+    "blind_valid_candidate_rate",
+    "blind_unique_geometry_slots_at_k",
+    "verified_channel_count_per_parent",
+    "calculator_calls_per_verified_channel"
+  ],
+  "decision_rules": {
+    "crossing_learning_curves_support_data_dependent_architecture_hypothesis": true,
+    "training_gain_without_validation_gain_is_not_architecture_evidence": true,
+    "clip_policy_effects_must_be_reported_before_attributing_joint_loss": true,
+    "single_seed_win_is_insufficient": true,
+    "no_joint_headline_without_joint_over_serial_on_frozen_test": true
+  },
+  "resource_budget": {
+    "gpu_count_per_job": 1,
+    "max_wall_minutes_per_job": 30,
+    "generation_calculator_calls_before_refinement": 0,
+    "new_dft_calls": 0,
+    "unbounded_submission_forbidden": true
+  }
+}

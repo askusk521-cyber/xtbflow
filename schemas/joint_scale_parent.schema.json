@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xtbflow.dev/schema/joint-scale-parent-v1.json",
+  "title": "xtbflow scale-matrix parent identity",
+  "description": "Result-blind identity row used to form nested training subsets.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "parent_reaction_id",
+    "family_id",
+    "split_group",
+    "input_fingerprint",
+    "charge",
+    "multiplicity",
+    "overlap_audit",
+    "admission"
+  ],
+  "properties": {
+    "parent_reaction_id": {"type": "string", "minLength": 1},
+    "family_id": {"type": "string", "minLength": 1},
+    "split_group": {"type": "string", "minLength": 1},
+    "input_fingerprint": {"type": "string", "minLength": 1},
+    "charge": {"type": "integer"},
+    "multiplicity": {"type": "integer", "minimum": 1},
+    "overlap_audit": {"const": "pass"},
+    "admission": {"enum": ["train", "validation", "test"]}
+  }
+}

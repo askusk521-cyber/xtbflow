@@ -36,6 +36,32 @@ def test_projector_uses_weighted_constraint_and_preserves_batch_shape():
     assert not torch.allclose(projected[0].sum(), torch.tensor(0.0))
 
 
+def test_masked_projector_reuses_masks_and_keeps_padding_zero():
+    projector = total_electron_projector(("C", "O", "H"))
+    velocity = torch.tensor(
+        [
+            [1.0, 2.0, 3.0, 4.0, 5.0, 6.0],
+            [-2.0, 1.0, 0.0, 3.0, -1.0, 4.0],
+            [0.5, -1.0, 2.0, 7.0, 8.0, -3.0],
+        ],
+        requires_grad=True,
+    )
+    masks = torch.tensor(
+        [
+            [True, True, True, False, False, False],
+            [True, True, True, False, False, False],
+            [True, True, False, False, False, False],
+        ]
+    )
+    projected = projector.project_masked(velocity, masks)
+    assert projected.shape == velocity.shape
+    assert torch.equal(projected[~masks], torch.zeros_like(projected[~masks]))
+    assert torch.allclose(projector.residual(projected), torch.zeros(3, 1), atol=1e-6)
+    projected.square().sum().backward()
+    assert velocity.grad is not None
+    assert torch.isfinite(velocity.grad).all()
+
+
 def test_constructive_flow_preserves_reactant_total_and_zero_step():
     projector = total_electron_projector(("C", "O"))
     flow = ConservedEventFlow(projector)

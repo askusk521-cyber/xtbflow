@@ -32,6 +32,103 @@ PARENT_BOOTSTRAP_KEYS = (
 )
 
 
+def _write_stage_ledger(path: Path, payload: dict) -> None:
+    """Atomically persist the shared execution ledger after every transition."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.tmp")
+    temporary.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    temporary.replace(path)
+
+
+def _mark_run_failure(
+    ledger_path: Path,
+    stage_ledger: dict,
+    run_entry: dict,
+    error: Exception | str,
+    *,
+    status: str = "failed",
+) -> None:
+    """Settle a child/report failure before control leaves the matrix loop."""
+
+    message = str(error)
+    run_entry["status"] = status
+    run_entry["error"] = message
+    run_entry["wall_seconds"] = time.perf_counter() - float(
+        stage_ledger.get("started_monotonic", time.perf_counter())
+    )
+    stage_ledger["status"] = "failed"
+    stage_ledger["error"] = message
+    _write_stage_ledger(ledger_path, stage_ledger)
+
+
+def _mark_stage_failure(
+    ledger_path: Path,
+    stage_ledger: dict,
+    error: Exception | str,
+) -> None:
+    """Settle a stage-level failure before propagating it to the caller."""
+
+    message = str(error)
+    stage_ledger["status"] = "failed"
+    stage_ledger["error"] = message
+    stage_ledger["wall_seconds"] = time.perf_counter() - float(
+        stage_ledger.get("started_monotonic", time.perf_counter())
+    )
+    _write_stage_ledger(ledger_path, stage_ledger)
+
+
+def _prepare_output_dir(path: Path) -> None:
+    """Create a run directory only when it cannot overwrite prior evidence."""
+
+    if path.exists():
+        if not path.is_dir():
+            raise RuntimeError(f"output directory is not a directory: {path}")
+        if any(path.iterdir()):
+            raise RuntimeError(
+                f"output directory is not empty; refusing to reuse prior run evidence: {path}"
+            )
+        return
+    path.mkdir(parents=True)
+
+
+def _require_new_artifact(path: Path, label: str) -> None:
+    """Reject an existing report path instead of replacing historical evidence."""
+
+    if path.exists():
+        raise RuntimeError(f"{label} already exists; choose a new path: {path}")
+
+
+def _text_output(value: object) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, bytes):
+        return value.decode(errors="replace")
+    return str(value)
+
+
+def _run_child_with_remaining_budget(
+    command: list[str],
+    *,
+    cwd: Path,
+    started: float,
+    max_seconds: float,
+) -> subprocess.CompletedProcess[str]:
+    """Run one training child with the exact remaining wall-clock budget."""
+
+    remaining = max_seconds - (time.perf_counter() - started)
+    if remaining <= 0:
+        raise TimeoutError("no execution budget remained before child launch")
+    return subprocess.run(
+        command,
+        cwd=cwd,
+        text=True,
+        capture_output=True,
+        check=False,
+        timeout=remaining,
+    )
+
+
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -148,84 +245,8 @@ def _compact_run(report: dict, path: Path) -> dict:
     }
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", type=Path, required=True)
-    parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--summary", type=Path, required=True)
-    parser.add_argument("--device", default="cuda")
-    args = parser.parse_args()
-
-    config = json.loads(args.config.read_text(encoding="utf-8"))
-    if config.get("schema") != "xtbflow-spice2-energy-learning-curve/v1":
-        parser.error("unexpected learning-curve config schema")
-    pairs = ROOT / config["pairs"]["path"]
-    manifest = ROOT / config["manifest"]["path"]
-    if _sha256(pairs) != config["pairs"]["sha256"]:
-        parser.error("pair cache hash does not match frozen config")
-    if _sha256(manifest) != config["manifest"]["sha256"]:
-        parser.error("manifest hash does not match frozen config")
-    status = subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT, text=True)
-    if status.strip():
-        parser.error("learning-curve execution requires a clean committed worktree")
-    source_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
-
-    args.output_dir.mkdir(parents=True, exist_ok=True)
-    started = time.perf_counter()
-    max_seconds = float(config["execution"]["max_single_gpu_hours"]) * 3600.0
-    run_records = []
-    reports_by_size: dict[int, list[dict]] = {}
-
-    for train_parent_count in config["train_parent_counts"]:
-        reports_by_size[train_parent_count] = []
-        for seed in config["training_seeds"]:
-            elapsed = time.perf_counter() - started
-            if elapsed >= max_seconds:
-                raise SystemExit(f"execution cap reached before size={train_parent_count}, seed={seed}")
-            report_path = args.output_dir / f"size{train_parent_count}_seed{seed}.json"
-            log_path = args.output_dir / f"size{train_parent_count}_seed{seed}.log"
-            command = [
-                sys.executable,
-                str(ROOT / "scripts" / "run_energy_baselines.py"),
-                "--pairs", str(pairs),
-                "--manifest", str(manifest),
-                "--output", str(report_path),
-                "--device", args.device,
-                "--seed", str(seed),
-                "--train-parent-count", str(train_parent_count),
-            ]
-            completed = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, check=False)
-            log_path.write_text(
-                "COMMAND: " + " ".join(command) + "\n\nSTDOUT:\n" + completed.stdout
-                + "\nSTDERR:\n" + completed.stderr,
-                encoding="utf-8",
-            )
-            if completed.returncode != 0:
-                raise SystemExit(f"learning-curve run failed: size={train_parent_count}, seed={seed}; see {log_path}")
-            report = json.loads(report_path.read_text(encoding="utf-8"))
-            if report["protocol"]["seed"] != seed or report["protocol"]["train_parent_count"] != train_parent_count:
-                raise RuntimeError("run report identity does not match requested matrix point")
-            if report["protocol"]["training_parent_rank_seed"] != config["train_parent_rank_seed"]:
-                raise RuntimeError("run report parent-ranking seed does not match frozen config")
-            frozen_training = config["training"]
-            observed_training = report["protocol"]
-            for key in ("epochs", "batch_size", "learning_rate", "force_weight", "gradient_clip"):
-                if observed_training[key] != frozen_training[key]:
-                    raise RuntimeError(f"run training protocol drifted for {key}")
-            if observed_training["validation_score_formula"] != frozen_training["validation_score"]:
-                raise RuntimeError("validation checkpoint score drifted from frozen config")
-            for learned in report["results"]:
-                model_config = learned["model_config"]
-                if model_config["hidden_dim"] != frozen_training["hidden_dim"]:
-                    raise RuntimeError("hidden_dim drifted from frozen config")
-                if model_config["radial_features"] != frozen_training["radial_features"]:
-                    raise RuntimeError("radial_features drifted from frozen config")
-                if model_config["distance_scale"] != frozen_training["distance_scale_angstrom"]:
-                    raise RuntimeError("distance_scale drifted from frozen config")
-            reports_by_size[train_parent_count].append(report)
-            run_records.append(_compact_run(report, report_path))
-            if time.perf_counter() - started > max_seconds:
-                raise SystemExit("execution cap exceeded; stopping after completed bounded run")
+def _build_final_aggregation(config: dict, reports_by_size: dict[int, list[dict]]) -> tuple[dict, dict]:
+    """Build nested parent evidence and aggregate metrics after all runs settle."""
 
     nested_parent_sets = {}
     previous: set[str] = set()
@@ -257,7 +278,8 @@ def main() -> int:
                 "validation": _aggregate_metrics(reports, "direct", "validation"),
                 "test": _aggregate_metrics(reports, "direct", "test"),
                 "test_parent_bootstrap_vs_bare": _bootstrap_improvement(
-                    reports, "direct",
+                    reports,
+                    "direct",
                     resamples=int(bootstrap_config["resamples"]),
                     seed=int(bootstrap_config["seed"]),
                 ),
@@ -266,52 +288,302 @@ def main() -> int:
                 "validation": _aggregate_metrics(reports, "delta", "validation"),
                 "test": _aggregate_metrics(reports, "delta", "test"),
                 "test_parent_bootstrap_vs_bare": _bootstrap_improvement(
-                    reports, "delta",
+                    reports,
+                    "delta",
                     resamples=int(bootstrap_config["resamples"]),
                     seed=int(bootstrap_config["seed"]),
                 ),
             },
         }
+    return nested_parent_sets, aggregate
 
-    elapsed = time.perf_counter() - started
-    summary = {
-        "schema": "xtbflow-spice2-energy-learning-curve-result/v1",
-        "status": "complete",
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--config", type=Path, required=True)
+    parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--summary", type=Path, required=True)
+    parser.add_argument("--device", default="cuda")
+    args = parser.parse_args()
+
+    config = json.loads(args.config.read_text(encoding="utf-8"))
+    if config.get("schema") != "xtbflow-spice2-energy-learning-curve/v1":
+        parser.error("unexpected learning-curve config schema")
+    pairs = ROOT / config["pairs"]["path"]
+    manifest = ROOT / config["manifest"]["path"]
+    if _sha256(pairs) != config["pairs"]["sha256"]:
+        parser.error("pair cache hash does not match frozen config")
+    if _sha256(manifest) != config["manifest"]["sha256"]:
+        parser.error("manifest hash does not match frozen config")
+    status = subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT, text=True)
+    if status.strip():
+        parser.error("learning-curve execution requires a clean committed worktree")
+    source_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+
+    # A learning-curve run is append-only evidence. Reusing an old directory
+    # would allow child reports to overwrite historical results or make an old
+    # report look like the result of this invocation.
+    _prepare_output_dir(args.output_dir)
+    _require_new_artifact(args.summary, "summary path")
+    started = time.perf_counter()
+    max_seconds = float(config["execution"]["max_single_gpu_hours"]) * 3600.0
+    if not np.isfinite(max_seconds) or max_seconds <= 0:
+        parser.error("execution max_single_gpu_hours must be finite and positive")
+    ledger_path = args.output_dir / "stage_ledger.json"
+    stage_ledger = {
+        "schema": "xtbflow-spice2-energy-learning-curve-stage/v1",
+        "status": "running",
         "source_commit": source_commit,
-        "config_path": str(args.config),
-        "config_sha256": _sha256(args.config),
-        "data_identity": {
-            "pairs": config["pairs"],
-            "manifest": config["manifest"],
-            "parent_split_counts": config["parent_split_counts"],
-            "configs_per_parent": config["configs_per_parent"],
-        },
-        "matrix": {
-            "train_parent_counts": config["train_parent_counts"],
-            "training_seeds": config["training_seeds"],
-            "learned_arms": config["learned_arms"],
-            "runs": len(run_records),
-        },
-        "nested_training_parent_sets": nested_parent_sets,
-        "aggregate": aggregate,
-        "runs": run_records,
-        "execution": {
-            "device": args.device,
-            "wall_seconds_total": elapsed,
-            "single_gpu_hours_if_one_gpu_used": elapsed / 3600.0,
-            "cap_single_gpu_hours": config["execution"]["max_single_gpu_hours"],
-            "new_semiempirical_calls": 0,
-            "new_dft_calls": 0,
-        },
-        "limits": [
-            "Validation selects checkpoints; test metrics are never used to change the frozen matrix.",
-            "The test split contains 32 configurations but only 8 independent parent molecules.",
-            "Training-seed variance and parent-bootstrap uncertainty are reported separately; seeds and configurations are not treated as independent chemical samples.",
-            "This is public E/F development evidence, not reaction-discovery, transition-state, mechanism, or experimental evidence.",
-        ],
+        "max_seconds": max_seconds,
+        "started_monotonic": time.perf_counter(),
+        "runs": [],
     }
-    args.summary.parent.mkdir(parents=True, exist_ok=True)
-    args.summary.write_text(json.dumps(summary, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
+    _write_stage_ledger(ledger_path, stage_ledger)
+    run_records = []
+    reports_by_size: dict[int, list[dict]] = {}
+
+    for train_parent_count in config["train_parent_counts"]:
+        reports_by_size[train_parent_count] = []
+        for seed in config["training_seeds"]:
+            elapsed = time.perf_counter() - started
+            if elapsed >= max_seconds:
+                stage_ledger["status"] = "failed"
+                stage_ledger["error"] = f"execution cap reached before size={train_parent_count}, seed={seed}"
+                _write_stage_ledger(ledger_path, stage_ledger)
+                raise SystemExit(f"execution cap reached before size={train_parent_count}, seed={seed}")
+            report_path = args.output_dir / f"size{train_parent_count}_seed{seed}.json"
+            log_path = args.output_dir / f"size{train_parent_count}_seed{seed}.log"
+            try:
+                _require_new_artifact(report_path, "child report path")
+                _require_new_artifact(log_path, "child log path")
+            except Exception as exc:
+                _mark_stage_failure(
+                    ledger_path,
+                    stage_ledger,
+                    f"run artifact path is not fresh: {type(exc).__name__}: {exc}",
+                )
+                raise SystemExit("learning-curve run artifact path is not fresh") from exc
+            command = [
+                sys.executable,
+                str(ROOT / "scripts" / "run_energy_baselines.py"),
+                "--pairs", str(pairs),
+                "--manifest", str(manifest),
+                "--output", str(report_path),
+                "--device", args.device,
+                "--seed", str(seed),
+                "--train-parent-count", str(train_parent_count),
+            ]
+            run_entry = {
+                "train_parent_count": train_parent_count,
+                "seed": seed,
+                "report_path": str(report_path),
+                "log_path": str(log_path),
+                "status": "running",
+                "started_elapsed_seconds": elapsed,
+            }
+            stage_ledger["runs"].append(run_entry)
+            _write_stage_ledger(ledger_path, stage_ledger)
+            remaining = max_seconds - (time.perf_counter() - started)
+            if remaining <= 0:
+                _mark_run_failure(
+                    ledger_path,
+                    stage_ledger,
+                    run_entry,
+                    "no execution budget remained before child launch",
+                    status="timeout",
+                )
+                raise SystemExit(run_entry["error"])
+            run_entry["timeout_seconds"] = remaining
+            try:
+                # The child receives the exact remaining stage budget.  This
+                # makes the declared cap a hard upper bound rather than a
+                # post-hoc observation after an unbounded subprocess.run.
+                completed = _run_child_with_remaining_budget(
+                    command, cwd=ROOT, started=started, max_seconds=max_seconds
+                )
+            except (subprocess.TimeoutExpired, TimeoutError) as exc:
+                stdout = _text_output(getattr(exc, "stdout", None))
+                stderr = _text_output(getattr(exc, "stderr", None))
+                try:
+                    log_path.write_text(
+                        "COMMAND: " + " ".join(command) + "\n\nTIMEOUT: " + str(exc)
+                        + "\n\nSTDOUT:\n" + stdout + "\nSTDERR:\n" + stderr,
+                        encoding="utf-8",
+                    )
+                except Exception as log_exc:
+                    _mark_run_failure(
+                        ledger_path,
+                        stage_ledger,
+                        run_entry,
+                        f"child timeout log persistence failed: {type(log_exc).__name__}: {log_exc}",
+                        status="timeout",
+                    )
+                    raise SystemExit(
+                        f"learning-curve timeout log persistence failed: size={train_parent_count}, seed={seed}"
+                    ) from log_exc
+                _mark_run_failure(
+                    ledger_path,
+                    stage_ledger,
+                    run_entry,
+                    f"child exceeded remaining stage budget ({remaining:.6f}s)",
+                    status="timeout",
+                )
+                raise SystemExit(
+                    f"learning-curve run timed out: size={train_parent_count}, seed={seed}; see {log_path}"
+                ) from exc
+            except Exception as exc:
+                _mark_run_failure(
+                    ledger_path,
+                    stage_ledger,
+                    run_entry,
+                    f"child startup failed: {type(exc).__name__}: {exc}",
+                )
+                raise SystemExit(
+                    f"learning-curve child startup failed: size={train_parent_count}, seed={seed}"
+                ) from exc
+            try:
+                log_path.write_text(
+                    "COMMAND: " + " ".join(command) + "\n\nSTDOUT:\n" + _text_output(completed.stdout)
+                    + "\nSTDERR:\n" + _text_output(completed.stderr),
+                    encoding="utf-8",
+                )
+            except Exception as exc:
+                _mark_run_failure(
+                    ledger_path,
+                    stage_ledger,
+                    run_entry,
+                    f"child log persistence failed: {type(exc).__name__}: {exc}",
+                )
+                raise SystemExit(
+                    f"learning-curve child log persistence failed: size={train_parent_count}, seed={seed}"
+                ) from exc
+            if completed.returncode != 0:
+                run_entry["returncode"] = completed.returncode
+                _mark_run_failure(
+                    ledger_path,
+                    stage_ledger,
+                    run_entry,
+                    f"child returned {completed.returncode}",
+                )
+                raise SystemExit(f"learning-curve run failed: size={train_parent_count}, seed={seed}; see {log_path}")
+            try:
+                report = json.loads(report_path.read_text(encoding="utf-8"))
+                if report["protocol"]["seed"] != seed or report["protocol"]["train_parent_count"] != train_parent_count:
+                    raise RuntimeError("run report identity does not match requested matrix point")
+                if report["protocol"]["training_parent_rank_seed"] != config["train_parent_rank_seed"]:
+                    raise RuntimeError("run report parent-ranking seed does not match frozen config")
+                frozen_training = config["training"]
+                observed_training = report["protocol"]
+                for key in ("epochs", "batch_size", "learning_rate", "force_weight", "gradient_clip"):
+                    if observed_training[key] != frozen_training[key]:
+                        raise RuntimeError(f"run training protocol drifted for {key}")
+                if observed_training["validation_score_formula"] != frozen_training["validation_score"]:
+                    raise RuntimeError("validation checkpoint score drifted from frozen config")
+                for learned in report["results"]:
+                    model_config = learned["model_config"]
+                    if model_config["hidden_dim"] != frozen_training["hidden_dim"]:
+                        raise RuntimeError("hidden_dim drifted from frozen config")
+                    if model_config["radial_features"] != frozen_training["radial_features"]:
+                        raise RuntimeError("radial_features drifted from frozen config")
+                    if model_config["distance_scale"] != frozen_training["distance_scale_angstrom"]:
+                        raise RuntimeError("distance_scale drifted from frozen config")
+            except Exception as exc:
+                _mark_run_failure(
+                    ledger_path,
+                    stage_ledger,
+                    run_entry,
+                    f"child report invalid: {type(exc).__name__}: {exc}",
+                )
+                raise SystemExit(
+                    f"learning-curve child report invalid: size={train_parent_count}, seed={seed}; see {log_path}"
+                ) from exc
+            try:
+                compacted = _compact_run(report, report_path)
+            except Exception as exc:
+                _mark_run_failure(
+                    ledger_path,
+                    stage_ledger,
+                    run_entry,
+                    f"result compression failed: {type(exc).__name__}: {exc}",
+                )
+                raise SystemExit(
+                    f"learning-curve result compression failed: size={train_parent_count}, seed={seed}"
+                ) from exc
+            reports_by_size[train_parent_count].append(report)
+            run_records.append(compacted)
+            run_entry["status"] = "success"
+            run_entry["returncode"] = completed.returncode
+            run_entry["wall_seconds"] = time.perf_counter() - started
+            _write_stage_ledger(ledger_path, stage_ledger)
+            if time.perf_counter() > started + max_seconds:
+                stage_ledger["status"] = "failed"
+                stage_ledger["error"] = "execution cap exceeded after completed bounded run"
+                _write_stage_ledger(ledger_path, stage_ledger)
+                raise SystemExit("execution cap exceeded; stopping after completed bounded run")
+
+    try:
+        nested_parent_sets, aggregate = _build_final_aggregation(config, reports_by_size)
+    except Exception as exc:
+        _mark_stage_failure(
+            ledger_path,
+            stage_ledger,
+            f"final aggregation failed: {type(exc).__name__}: {exc}",
+        )
+        raise SystemExit("learning-curve final aggregation failed") from exc
+
+    try:
+        elapsed = time.perf_counter() - started
+        summary = {
+            "schema": "xtbflow-spice2-energy-learning-curve-result/v1",
+            "status": "complete",
+            "source_commit": source_commit,
+            "config_path": str(args.config),
+            "config_sha256": _sha256(args.config),
+            "data_identity": {
+                "pairs": config["pairs"],
+                "manifest": config["manifest"],
+                "parent_split_counts": config["parent_split_counts"],
+                "configs_per_parent": config["configs_per_parent"],
+            },
+            "matrix": {
+                "train_parent_counts": config["train_parent_counts"],
+                "training_seeds": config["training_seeds"],
+                "learned_arms": config["learned_arms"],
+                "runs": len(run_records),
+            },
+            "nested_training_parent_sets": nested_parent_sets,
+            "aggregate": aggregate,
+            "runs": run_records,
+            "execution": {
+                "device": args.device,
+                "wall_seconds_total": elapsed,
+                "single_gpu_hours_if_one_gpu_used": elapsed / 3600.0,
+                "cap_single_gpu_hours": config["execution"]["max_single_gpu_hours"],
+                "new_semiempirical_calls": 0,
+                "new_dft_calls": 0,
+            },
+            "limits": [
+                "Validation selects checkpoints; test metrics are never used to change the frozen matrix.",
+                "The test split contains 32 configurations but only 8 independent parent molecules.",
+                "Training-seed variance and parent-bootstrap uncertainty are reported separately; seeds and configurations are not treated as independent chemical samples.",
+                "This is public E/F development evidence, not reaction-discovery, transition-state, mechanism, or experimental evidence.",
+            ],
+        }
+        args.summary.parent.mkdir(parents=True, exist_ok=True)
+        args.summary.write_text(
+            json.dumps(summary, indent=2, sort_keys=True, allow_nan=False) + "\n",
+            encoding="utf-8",
+        )
+    except Exception as exc:
+        _mark_stage_failure(
+            ledger_path,
+            stage_ledger,
+            f"final summary failed: {type(exc).__name__}: {exc}",
+        )
+        raise SystemExit("learning-curve final summary failed") from exc
+    stage_ledger["status"] = "complete"
+    stage_ledger["wall_seconds_total"] = elapsed
+    _write_stage_ledger(ledger_path, stage_ledger)
     print(json.dumps({
         "summary": str(args.summary),
         "runs": len(run_records),

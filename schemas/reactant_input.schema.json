@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xtbflow.dev/schema/reactant-input-v1.json",
+  "title": "xtbflow reactant-only generation input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "record_id",
+    "parent_reaction_id",
+    "family_id",
+    "symbols",
+    "map_ids",
+    "reactant_coordinates_angstrom",
+    "reactant_bonds",
+    "charge",
+    "multiplicity"
+  ],
+  "properties": {
+    "schema": {"const": "xtbflow-reactant-input/v1"},
+    "record_id": {"type": "string", "minLength": 1},
+    "parent_reaction_id": {"type": "string", "minLength": 1},
+    "family_id": {"type": "string", "minLength": 1},
+    "symbols": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"enum": ["C", "H", "N", "O"]}
+    },
+    "map_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "integer", "minimum": 1}
+    },
+    "reactant_coordinates_angstrom": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {"type": "number"},
+          {"type": "number"},
+          {"type": "number"}
+        ],
+        "items": false
+      }
+    },
+    "reactant_bonds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "array",
+        "items": {"type": "number", "minimum": 0}
+      }
+    },
+    "charge": {"type": "integer"},
+    "multiplicity": {"const": 1}
+  }
+}

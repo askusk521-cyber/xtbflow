@@ -1,0 +1,28 @@
+{
+  "schema": "xtbflow-independent-pilot/v1",
+  "generation_version": "independent-seeds-v1",
+  "scope": {
+    "allowed_elements": ["C", "H", "N", "O", "S"],
+    "allowed_multiplicities": [1],
+    "max_seeds_per_parent": 32,
+    "max_parents": 12,
+    "initial_parent_target": 4,
+    "environment_snapshots": ["none", "water-1", "water-3"]
+  },
+  "qualification": {
+    "status": "blocked",
+    "reason": "source-qualified reactant seed records are not present in the repository",
+    "required_evidence": ["source_identity", "charge_spin", "explicit_hydrogen", "license", "input_hash"]
+  },
+  "execution": {
+    "driver_qualified": false,
+    "allow_execute": false,
+    "calculator": "xtbloom-gfn2",
+    "protocol_id": "independent-pilot-p2a-pending",
+    "ledger_id": "shared-stage-ledger-pending",
+    "raw_candidate_cap": 64,
+    "per_candidate_calculator_call_cap": 64,
+    "batch_size": 1024
+  },
+  "parents": []
+}

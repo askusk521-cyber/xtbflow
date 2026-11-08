@@ -11,7 +11,7 @@ from typing import Any, Callable, Mapping
 from xtbflow.runtime import BudgetExceeded, BudgetTokenRequired, CalculatorCallToken
 
 from .connectivity import ConnectivityEvidence, observed_event
-from .modes import ModeEvidence, validate_mode
+from .modes import MODE_EVIDENCE_CONTRACT, ModeEvidence, validate_mode
 
 
 @dataclass(frozen=True)
@@ -25,7 +25,8 @@ class TSValidationConfig:
     max_calls: int = 32
     reference_protocol_id: str = "unqualified"
     reference_build_hash: str = "unqualified"
-    verification_config_version: str = "ts-validation-v1"
+    verification_config_version: str = "ts-validation-v2"
+    mode_evidence_contract: str = MODE_EVIDENCE_CONTRACT
 
     def __post_init__(self) -> None:
         for name in ("gradient_tolerance", "negative_mode_threshold"):
@@ -36,9 +37,11 @@ class TSValidationConfig:
             raise ValueError("max_negative_modes and max_calls must be positive integers")
         if type(self.require_connectivity) is not bool:
             raise ValueError("require_connectivity must be boolean")
-        for name in ("reference_protocol_id", "reference_build_hash", "verification_config_version"):
+        for name in ("reference_protocol_id", "reference_build_hash", "verification_config_version", "mode_evidence_contract"):
             if not isinstance(getattr(self, name), str) or not getattr(self, name).strip():
                 raise ValueError(f"{name} must be a nonempty string")
+        if self.mode_evidence_contract != MODE_EVIDENCE_CONTRACT:
+            raise ValueError(f"mode_evidence_contract must be {MODE_EVIDENCE_CONTRACT!r}")
 
     @property
     def identity(self) -> str:
@@ -116,13 +119,40 @@ def validate_ts_evidence(candidate_id: str, source: str, evidence: Mapping[str, 
     if type(calls) is not int or calls < 0:
         return _record(candidate_id, source, "failure", "not_validated", None, "call_budget", None, 0, "calculator calls must be a nonnegative integer", candidate_hash=candidate_hash, validation_identity=validation_identity, cache_key=cache_key)
     try:
-        gradient = float(evidence["gradient_norm"])
+        raw_gradient = float(evidence["gradient_norm"])
         converged = evidence["converged"]
         if type(converged) is not bool:
             raise ValueError("converged must be a boolean")
-        modes = ModeEvidence(tuple(float(value) for value in evidence["hessian_eigenvalues"]), str(evidence.get("mode_unit", "hessian_eigenvalue")))
-    except (KeyError, TypeError, ValueError) as exc:
+    except (KeyError, TypeError, ValueError, OverflowError) as exc:
         return _record(candidate_id, source, "failure", "not_validated", None, "missing_evidence", None, calls, str(exc), candidate_hash=candidate_hash, validation_identity=validation_identity, cache_key=cache_key)
+    # A non-finite gradient is evidence of a failed candidate, not a reason to
+    # abort the batch.  TSValidationRecord deliberately rejects NaN/Inf, so
+    # retain the original condition in ``error`` while storing ``None``.
+    if not math.isfinite(raw_gradient) or raw_gradient < 0:
+        return _record(
+            candidate_id,
+            source,
+            "failure",
+            "not_validated",
+            None,
+            "gradient_non_finite" if not math.isfinite(raw_gradient) else "gradient_invalid",
+            None,
+            calls,
+            f"gradient norm must be finite and nonnegative; observed {raw_gradient!r}",
+            candidate_hash=candidate_hash,
+            validation_identity=validation_identity,
+            cache_key=cache_key,
+        )
+    gradient = raw_gradient
+    try:
+        modes = ModeEvidence(
+            tuple(float(value) for value in evidence["hessian_eigenvalues"]),
+            evidence["mode_unit"],
+            coordinate_system=evidence.get("mode_coordinate_system", "cartesian"),
+            mass_weighted=evidence.get("mode_mass_weighted", False),
+        )
+    except (KeyError, TypeError, ValueError, OverflowError) as exc:
+        return _record(candidate_id, source, "failure", "not_validated", gradient, "missing_evidence", None, calls, str(exc), candidate_hash=candidate_hash, validation_identity=validation_identity, cache_key=cache_key)
     if calls < 0 or calls > config.max_calls:
         return _record(candidate_id, source, "failure", "not_validated", gradient, "call_budget", None, calls, "calculator call budget exceeded", candidate_hash=candidate_hash, validation_identity=validation_identity, cache_key=cache_key)
     if not converged:
@@ -179,7 +209,7 @@ def _cached_record(cached: Mapping[str, Any], *, candidate_id: str, candidate_ha
 def _write_checkpoint(path: Path, payload: Mapping[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f".{path.name}.tmp")
-    temporary.write_text(json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+    temporary.write_text(json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     temporary.replace(path)
 
 
@@ -299,7 +329,8 @@ def run_resumable_validation(
                     cache_key=cache_key,
                 )
                 _finish_token_record(token, candidate_id, failure, prior, target)
-                raise ValueError("searcher must return a mapping")
+                output.append(failure)
+                continue
             raw_calls = evidence.get("calculator_calls")
             if type(raw_calls) is not int:
                 failure = _record(
@@ -317,7 +348,8 @@ def run_resumable_validation(
                     cache_key=cache_key,
                 )
                 _finish_token_record(token, candidate_id, failure, prior, target)
-                raise ValueError("searcher must return an integer calculator_calls field")
+                output.append(failure)
+                continue
             if raw_calls != token.consumed_calls:
                 failure = _record(
                     candidate_id,
@@ -334,7 +366,8 @@ def run_resumable_validation(
                     cache_key=cache_key,
                 )
                 _finish_token_record(token, candidate_id, failure, prior, target)
-                raise ValueError("searcher calculator_calls does not match consumed token calls")
+                output.append(failure)
+                continue
         else:
             if reserve_calls is not None:
                 reserve_calls(candidate_id, candidate)
@@ -344,11 +377,31 @@ def run_resumable_validation(
             raw_calls = evidence.get("calculator_calls")
             if type(raw_calls) is not int:
                 raise ValueError("searcher must return an integer calculator_calls field")
-        record = validate_ts_evidence(candidate_id, str(evidence.get("source", "injected")), evidence, config, calls=raw_calls, candidate_hash=candidate_hash, validation_identity=validation_identity, cache_key=cache_key)
-        prior[candidate_id] = record.to_dict()
-        _write_checkpoint(target, prior)
+        try:
+            record = validate_ts_evidence(candidate_id, str(evidence.get("source", "injected")), evidence, config, calls=raw_calls, candidate_hash=candidate_hash, validation_identity=validation_identity, cache_key=cache_key)
+        except Exception as exc:
+            # Evidence checks are part of candidate processing.  Persist the
+            # failure and settle any reserved calls before moving to the next
+            # candidate, so one malformed result cannot terminate a batch.
+            consumed = token.consumed_calls if token is not None else raw_calls
+            record = _record(
+                candidate_id,
+                str(evidence.get("source", "injected")),
+                "failure",
+                "not_validated",
+                None,
+                "evidence_validation_exception",
+                None,
+                consumed,
+                f"{type(exc).__name__}: {exc}",
+                candidate_hash=candidate_hash,
+                validation_identity=validation_identity,
+                cache_key=cache_key,
+            )
         if token is not None:
-            token.release()
-            token.commit(recorded_calls=record.calculator_calls)
+            _finish_token_record(token, candidate_id, record, prior, target)
+        else:
+            prior[candidate_id] = record.to_dict()
+            _write_checkpoint(target, prior)
         output.append(record)
     return tuple(output)

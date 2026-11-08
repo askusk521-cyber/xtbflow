@@ -598,6 +598,11 @@
       "bytes": 1291151
     },
     {
+      "path": "docs/evidence/live_matched_pvo_science_status_20261110.json",
+      "sha256": "1c74e4b32b4cd198517d965aca497753ffa0c5958dbb82541efca08925e0caf3",
+      "bytes": 620
+    },
+    {
       "path": "docs/evidence/live_matched_pvo_summary_20261110.json",
       "sha256": "64f04c225adf266e33e86a9f8f701ebaaec4a1b2b2c9fe47beeb9dece7ba6b9d",
       "bytes": 5364

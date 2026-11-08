@@ -32,7 +32,7 @@
   "schema": "xtbflow-evidence/claim-evidence-contract/v1",
   "binding": "validated_at_parent_commit",
   "source_branch": "codex/w13-claim-evidence-20261108",
-  "source_commit": "8703c0b4883bd899dff75d835fe6a7f8f2e844ae7",
+  "source_commit": "8703c0b4883bd899dff75d835586575f2e844ae7",
   "stage": "software_validation",
   "status": "completed"
 }

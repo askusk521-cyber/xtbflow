@@ -5,7 +5,7 @@
   "host": "node2",
   "source": {
     "branch": "codex/issue140-scheduler-20261108",
-    "commit": "39d45a3c0d901179c7843dc002f904d3a9774058"
+    "commit": "39d45a324f398f0aae40cd8b458367fdc6d0b151"
   },
   "environment": {
     "conda_environment": "xtbflow",
@@ -32,7 +32,7 @@
     },
     {
       "command": "cd /tmp/xtbflow-exec-issue140-20261108 && timeout 120s python scripts/validate_bootstrap.py && git diff --check",
-      "result": "324 files PASS; diff check PASS",
+      "result": "325 files PASS; diff check PASS",
       "resource_cap": "120 seconds; no calculator or GPU calls"
     }
   ],

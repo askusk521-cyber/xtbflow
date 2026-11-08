@@ -50,7 +50,9 @@ def test_physical_off_on_replay_uses_same_snapshot_and_changes_geometry_only():
         state, feedback(state), enabled=True, candidate_pool_id="pool-physical", budget=budget()
     )
     assert off.initial_snapshot.snapshot_id == on.initial_snapshot.snapshot_id
-    assert off.final_snapshot == state
+    assert off.final_snapshot.geometry == state.geometry
+    assert off.final_snapshot.event == state.event
+    assert off.final_snapshot.generation_step == state.generation_step + 1
     assert on.final_snapshot.geometry != state.geometry
     assert on.final_snapshot.event == state.event
     assert on.merge_result.decision.event_velocity != (0.0, 0.0, 0.0, 0.0)

@@ -3,7 +3,7 @@
     "attempts": 5,
     "cache_hits": 0,
     "calculator_calls": 4,
-    "cpu_core_hours": 0.08208210219361113,
+    "cpu_core_hours": 0.08906698210444444,
     "failures": 1,
     "gpu_hours": 0.0,
     "retries": 0,
@@ -12,25 +12,8 @@
     "system_evaluations": 5
   },
   "calculator_build_hash": "18afc60dc1dc07b3239b8baa6ceaf2985173fd89ae140010a57472ee00fc3126",
-  "claim_levels": [
-    {
-      "level": "software_demo",
-      "name": "MVP execution",
-      "status": "observed"
-    },
-    {
-      "level": "proxy_metric",
-      "name": "QC acceptance metric",
-      "status": "observed"
-    },
-    {
-      "level": "strict_validation",
-      "name": "chemical interpretation",
-      "status": "not_claimed"
-    }
-  ],
   "claim_limit": "GFN2-xTB adapter smoke and proxy QC only; no transition-state, barrier, mechanism, or chemical-accuracy claim",
-  "command": "cd /tmp/xtbflow-mvp-exec-20261108 && source ~/miniconda3/etc/profile.d/conda.sh && conda activate xtbflow && PYTHONPATH=src python -m xtbflow.mvp run --config configs/mvp_fixture.yaml --backend xtb --output-dir /tmp/xtbflow-mvp-xtb-run-20261108-v4",
+  "command": "cd /tmp/xtbflow-mvp-n2-exact-20261109 && source ~/miniconda3/etc/profile.d/conda.sh && conda activate xtbflow && PYTHONPATH=src python -m xtbflow.mvp run --config configs/mvp_fixture.yaml --backend xtb --output-dir /tmp/xtbflow-mvp-exact-n2-output-20261109/xtb",
   "config_path": "configs/mvp_fixture.yaml",
   "config_sha256": "1f16915a72125c572652c3bf4b73ad3eb71d7be1e90d1c5cdc41908c876e0b92",
   "counts": {
@@ -48,14 +31,14 @@
   },
   "host": "node2",
   "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
-  "output_locator": "/tmp/xtbflow-mvp-xtb-run-20261108-v4",
+  "output_locator": "/tmp/xtbflow-mvp-exact-n2-output-20261109/xtb",
   "protocol_contract": "xtbflow.calculators.CalculatorProtocol/v1",
   "protocol_hash": "f732d1f9881c507f11fe40d102e8570ba296d4e230776bc95ee10a3ec1c6d2a1",
+  "replay_deterministic_summary_sha256": "c227164c461fdede656d29f665960464f34e483d3f14282e4b3b3a119378df02",
   "schema": "xtbflow-mvp-evidence/v1",
-  "source_commit": "2ee900d6c18f1257da833b52faa758a5aebc40e0",
-  "source_dirty": true,
-  "source_snapshot_sha256": "6e84eab099aba1a890a2f6970234041e6e74a45da93b9b992804bd32b978d448",
-  "stage": "mvp_xtb_smoke",
+  "source_commit": "08764ae16efd3bc4c9d8b25e33c4626961bdc6ee",
+  "source_dirty": false,
+  "stage": "mvp_xtb_smoke_exact_head",
   "status": "completed",
   "uncompleted": []
 }

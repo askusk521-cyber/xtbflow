@@ -1,4 +1,10 @@
 {
+  "artifact_packaging": {
+    "mode": "post_run_path_relocation",
+    "provenance_fields_unchanged": true,
+    "release_locator": "artifacts/mvp_run_20261109T015300",
+    "run_output_dir": "/tmp/xtbflow-mvp-release-20261109/artifacts/mvp_run_20261109T015300"
+  },
   "backend": "mock",
   "budget": {
     "active_jobs": [],
@@ -30,7 +36,7 @@
       "attempts": 5,
       "cache_hits": 0,
       "calculator_calls": 4,
-      "cpu_core_hours": 1.989750000000071e-07,
+      "cpu_core_hours": 2.2155944444444886e-07,
       "failures": 1,
       "gpu_hours": 0.0,
       "retries": 0,
@@ -133,8 +139,8 @@
     "mode": "serial_fixture_rule_v1"
   },
   "git": {
-    "commit": "2ee900d6c18f1257da833b52faa758a5aebc40e0",
-    "dirty": true
+    "commit": "08764ae16efd3bc4c9d8b25e33c4626961bdc6ee",
+    "dirty": false
   },
   "input": {
     "charge": 0,
@@ -175,12 +181,12 @@
   },
   "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
   "output_paths": {
-    "candidates_jsonl": "/home/lhshen/xtbflow/artifacts/mvp_run_20261108T154140Z/candidates.jsonl",
-    "input": "/home/lhshen/xtbflow/artifacts/mvp_run_20261108T154140Z/input.json",
-    "ledger": "/home/lhshen/xtbflow/artifacts/mvp_run_20261108T154140Z/ledger.json",
-    "manifest": "/home/lhshen/xtbflow/artifacts/mvp_run_20261108T154140Z/manifest.json",
-    "summary_md": "/home/lhshen/xtbflow/artifacts/mvp_run_20261108T154140Z/summary.md",
-    "summary_png": "/home/lhshen/xtbflow/artifacts/mvp_run_20261108T154140Z/summary.png"
+    "candidates_jsonl": "artifacts/mvp_run_20261109T015300/candidates.jsonl",
+    "input": "artifacts/mvp_run_20261109T015300/input.json",
+    "ledger": "artifacts/mvp_run_20261109T015300/ledger.json",
+    "manifest": "artifacts/mvp_run_20261109T015300/manifest.json",
+    "summary_md": "artifacts/mvp_run_20261109T015300/summary.md",
+    "summary_png": "artifacts/mvp_run_20261109T015300/summary.png"
   },
   "python": "3.10.12",
   "qc": {

@@ -27,13 +27,13 @@
       "cache_hit": false,
       "system_evaluations": 1,
       "calculator_calls": 1,
-      "cpu_seconds": 0.00018857900000000816,
+      "cpu_seconds": 0.0001952540000000058,
       "gpu_seconds": 0.0,
       "cpu_cores": 1,
       "storage_bytes": 0,
       "error": null,
-      "timestamp": "2026-11-08T17:26:18.252302Z",
-      "event_id": "74472ecb48894846bb0b5140fca53436"
+      "timestamp": "2026-11-08T17:53:19.997268Z",
+      "event_id": "8119833b53444e44812ad835437a0433"
     },
     {
       "run_id": "mvp-8b3313094038128b",
@@ -49,13 +49,13 @@
       "cache_hit": false,
       "system_evaluations": 1,
       "calculator_calls": 1,
-      "cpu_seconds": 0.0001685360000000108,
+      "cpu_seconds": 0.00019307500000000088,
       "gpu_seconds": 0.0,
       "cpu_cores": 1,
       "storage_bytes": 0,
       "error": null,
-      "timestamp": "2026-11-08T17:26:18.254632Z",
-      "event_id": "d01944da3e1746838305758cbef71b29"
+      "timestamp": "2026-11-08T17:53:20.002050Z",
+      "event_id": "8192385479d742fdb46b260339b348e6"
     },
     {
       "run_id": "mvp-8b3313094038128b",
@@ -71,13 +71,13 @@
       "cache_hit": false,
       "system_evaluations": 1,
       "calculator_calls": 1,
-      "cpu_seconds": 0.00015123499999999956,
+      "cpu_seconds": 0.00019160699999999642,
       "gpu_seconds": 0.0,
       "cpu_cores": 1,
       "storage_bytes": 0,
       "error": null,
-      "timestamp": "2026-11-08T17:26:18.256296Z",
-      "event_id": "6473d5a198ac4dd39c9971cacc652054"
+      "timestamp": "2026-11-08T17:53:20.004065Z",
+      "event_id": "12066c9267cc4d4b85124b905333fe8d"
     },
     {
       "run_id": "mvp-8b3313094038128b",
@@ -93,13 +93,13 @@
       "cache_hit": false,
       "system_evaluations": 1,
       "calculator_calls": 1,
-      "cpu_seconds": 0.00016781000000000434,
+      "cpu_seconds": 0.0001696790000000059,
       "gpu_seconds": 0.0,
       "cpu_cores": 1,
       "storage_bytes": 0,
       "error": null,
-      "timestamp": "2026-11-08T17:26:18.258094Z",
-      "event_id": "f607fcaa6b7241039fdfa29c76fa58af"
+      "timestamp": "2026-11-08T17:53:20.006172Z",
+      "event_id": "169163fc8f504f93b777698d5a305975"
     },
     {
       "run_id": "mvp-8b3313094038128b",
@@ -115,13 +115,13 @@
       "cache_hit": false,
       "system_evaluations": 1,
       "calculator_calls": 0,
-      "cpu_seconds": 4.0150000000002684e-05,
+      "cpu_seconds": 4.79990000000069e-05,
       "gpu_seconds": 0.0,
       "cpu_cores": 1,
       "storage_bytes": 0,
       "error": "QC_MIN_DISTANCE",
-      "timestamp": "2026-11-08T17:26:18.260025Z",
-      "event_id": "675c36e3b78c489298897fcdba906a65"
+      "timestamp": "2026-11-08T17:53:20.008006Z",
+      "event_id": "6295fd7064cb4ad1bb6c2faa0c75b45c"
     }
   ],
   "reservations": {},

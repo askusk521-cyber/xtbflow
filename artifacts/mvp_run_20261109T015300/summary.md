@@ -6,7 +6,7 @@
 - seed: `20261108`
 - input_hash: `73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce`
 - config_sha256: `1f16915a72125c572652c3bf4b73ad3eb71d7be1e90d1c5cdc41908c876e0b92`
-- git_commit: `2ee900d6c18f1257da833b52faa758a5aebc40e0`
+- git_commit: `08764ae16efd3bc4c9d8b25e33c4626961bdc6ee`
 - deterministic_summary_sha256: `a7a8f6949d6c907f3b5950b35725e614ce2fe1b7adb0db61f85a1c55cc6a4a82`
 
 ## Counts
@@ -56,7 +56,7 @@ candidates=5 accepted=3 rejected=2 failure=0
     "attempts": 5,
     "cache_hits": 0,
     "calculator_calls": 4,
-    "cpu_core_hours": 1.989750000000071e-07,
+    "cpu_core_hours": 2.2155944444444886e-07,
     "failures": 1,
     "gpu_hours": 0.0,
     "retries": 0,
@@ -73,4 +73,4 @@ candidates=5 accepted=3 rejected=2 failure=0
 - `proxy_metric`: calculator energy/force values and the configured QC acceptance counts.
 - `strict_validation`: required before any transition-state, barrier, mechanism or chemical-accuracy claim; this MVP does not make those claims.
 
-Artifacts are written under `/home/lhshen/xtbflow/artifacts/mvp_run_20261108T154140Z/summary.md`.
+Artifacts are packaged under `artifacts/mvp_run_20261109T015300/summary.md`.

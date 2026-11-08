@@ -50,22 +50,18 @@ barrier, mechanism, chemical-accuracy, or model-superiority claim.
 
 ## Verification recorded for this working tree
 
-- Local dependency-light mock run: completed with 5 candidates, 3 accepted,
-  and 2 QC rejections; the generated bundle is under
-  `artifacts/mvp_run_20261108T154140Z/`.
-- n2 smoke run: `node2`, Python 3.10.19, PyTorch 2.10.0+cu128, xTB import
-  version 20.2 (distribution 22.1), CPU backend.  The xTB path completed
-  with 4 accepted candidates and 1 QC rejection.  The evidence record is
-  [`docs/evidence/mvp_xtb_smoke_20261108.json`](docs/evidence/mvp_xtb_smoke_20261108.json).
-- MVP plus calculator/ledger regression slice: 24 tests passed on n2.  The
-  xTB result remains a bounded adapter/proxy smoke (`proxy_metric`), not a
-  chemical validation result.
-- The replay assertion and deterministic summary hash are recorded in
-  [`docs/evidence/mvp_replay_20261108.json`](docs/evidence/mvp_replay_20261108.json).
+All release evidence below was regenerated from exact commit
+`08764ae16efd3bc4c9d8b25e33c4626961bdc6ee` in clean worktrees; each evidence
+record reports `source_dirty=false`.
 
-The continuation verification on 2026-11-09 repeated the same replay test and
-the n2 xTB smoke after isolating the MVP files; dated evidence is recorded in
-[`docs/evidence/mvp_mock_software_20261109.json`](docs/evidence/mvp_mock_software_20261109.json),
-[`docs/evidence/mvp_replay_20261109.json`](docs/evidence/mvp_replay_20261109.json),
-and
-[`docs/evidence/mvp_xtb_smoke_20261109.json`](docs/evidence/mvp_xtb_smoke_20261109.json).
+- Exact-head mock run: 5 candidates, 3 accepted, and 2 QC rejections.  The
+  committed bundle is under `artifacts/mvp_run_20261109T015300/`.
+- Exact-head n2 smoke: `node2`, Python 3.10.19, PyTorch 2.10.0+cu128, xTB
+  import version 20.2 (distribution 22.1), CPU backend.  The xTB path
+  completed with 4 accepted candidates and 1 QC rejection.
+- Exact-head MVP plus calculator/ledger regression slice: 24 tests passed on
+  n2.  These remain software/proxy evidence, not chemical validation.
+- Exact-head evidence and replay records:
+  [`mvp_mock_software_exact_08764ae_20261109.json`](docs/evidence/mvp_mock_software_exact_08764ae_20261109.json),
+  [`mvp_replay_exact_08764ae_20261109.json`](docs/evidence/mvp_replay_exact_08764ae_20261109.json),
+  [`mvp_xtb_smoke_exact_08764ae_20261109.json`](docs/evidence/mvp_xtb_smoke_exact_08764ae_20261109.json).

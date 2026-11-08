@@ -2,7 +2,10 @@
   "schema": "xtbflow-evidence/run-status-retry-software/v1",
   "status": "completed",
   "stage": "software_validation",
+  "binding": "code_parent_with_final_head_recorded",
   "source_commit": "efb54134c81d676963779c7b09a57fc704780e31",
+  "evidence_commit": "ea21530463eddd289ca6b7cdfb531428cefb262b",
+  "final_pr_head_at_recording": "ea21530463eddd289ca6b7cdfb531428cefb262b",
   "source_branch": "codex/run-status-retry-20261108",
   "environment": {
     "host_class": "local-development-machine",

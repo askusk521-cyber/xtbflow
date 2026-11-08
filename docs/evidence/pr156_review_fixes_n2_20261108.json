@@ -1,12 +1,12 @@
 {
   "schema": "xtbflow-evidence/pr156-review-fixes-n2/v1",
   "status": "completed",
-  "stage": "exact_pr_head_contract_validation",
-  "source_commit": "a39c60cee0bf332593905c050156a3d70603d8b5",
-  "validated_commit": "a39c60cee0bf332593905c050156a3d70603d8b5",
+  "stage": "validated_at_parent_commit",
+  "source_commit": "0af2c41",
+  "validated_commit": "0af2c41",
   "working_tree_dirty": false,
   "working_tree_diff_sha256": null,
-  "stacked_fix_commits": ["ce6763d", "041b360", "b0c5bc2", "a39c60c"],
+  "stacked_fix_commits": ["ce6763d", "ea5ca45", "51a1ea0", "7a45a4a", "b5aeb31", "8755b5d", "0af2c41"],
   "execution_host": "node2",
   "execution_root": "~/xtbflow/xtbflow-exec-pr156-docs-fix-20261108",
   "environment": {
@@ -30,7 +30,7 @@
     "pytest_passed": 271,
     "pytest_subtests_passed": 68,
     "reusable_unittest_passed": 56,
-    "bootstrap_inventory_files_verified": 257,
+    "bootstrap_inventory_files_verified": 258,
     "scale_matrix_status": "PASS",
     "scale_primary_run_count": 81,
     "gpu_projector": {
@@ -53,12 +53,12 @@
     "model_training": false
   },
   "claim_limits": [
-    "This is exact-PR-head software and projector evidence only.",
+    "This is software and projector evidence validated at the Python-code parent commit; the final docs/CI commit is docs-only.",
     "It does not establish chemistry accuracy, training quality, or generalization.",
     "The PR still needs a clean rebase/merge-conflict resolution and a human review before merge."
   ],
   "file_hashes": {
-    "bootstrap_inventory.json": "885eb67c3338abc22ca4662b9707f5c2b58f9e79d35454d3dbd78c4419baac90",
+    "bootstrap_inventory.json": "eb35c7befd0fbba750823a07b82d1cc42c257591918ebba1c09e7d6182ead83a",
     "scripts/run_reactant_generation.py": "4336a9ea834aa43ad4a721b719378c70c0ee39e7918d4de5b07ec2512be6f602",
     "scripts/score_reactant_generation.py": "65eb3b2a3f03ea6844af9dd91effbe0c251b22689f62399227fb7ec281320e0c",
     "src/xtbflow/evaluation/generation.py": "c777b2d224491b2d9a7371e88f666e9fec9b73c211dfce8d06e3ff9b6706c381",

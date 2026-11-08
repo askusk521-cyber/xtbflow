@@ -153,6 +153,11 @@
       "bytes": 1896
     },
     {
+      "path": "configs/campaigns/w11_campaign_fixture.json",
+      "sha256": "649a571780ee73511bfcea1c8be4872d8f5f518c513b8388583f7b9e1c9c5968",
+      "bytes": 4042
+    },
+    {
       "path": "configs/data/dft_da_track_b_v1.json",
       "sha256": "ed0e8ef4899613d7d377e9d10c2d910b017c7e9866064fd0d7ccdde627b2193e",
       "bytes": 1671
@@ -428,6 +433,11 @@
       "bytes": 1365
     },
     {
+      "path": "docs/architecture/w11_campaign_manifest.md",
+      "sha256": "d5e9130284e81b60898acbecba727599473e947fea4bf7599edcc2a3a0cfefa8",
+      "bytes": 3411
+    },
+    {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
       "sha256": "9e4b2a7d650857036e072b00107e9dc3c68738484c7f3a446b9b50d22b20971f",
       "bytes": 4884
@@ -501,6 +511,11 @@
       "path": "docs/evidence/independent_seed_manifest_audit_20260929.json",
       "sha256": "413635c894698915405d278a662985dd3acc5a5fe223023b613024c64ca1cd2d",
       "bytes": 1062
+    },
+    {
+      "path": "docs/evidence/issue141_campaign_software_20261108.json",
+      "sha256": "3b2a9b5341f9eb71994362cc79fed4a9e4b57b308d8b7121e39b6c859e62fa94",
+      "bytes": 4637
     },
     {
       "path": "docs/evidence/joint_flow_smoke_20260927.json",
@@ -958,6 +973,11 @@
       "bytes": 10766
     },
     {
+      "path": "schemas/w11_campaign_manifest_v1.schema.json",
+      "sha256": "0dee82c3485838c63dad48201a289fc0f0ff8a7dbb776f33008b87bd59e386a4",
+      "bytes": 7074
+    },
+    {
       "path": "schemas/workflow_b_baseline.schema.json",
       "sha256": "a6d670ff6315032a029fec704ca5e4d359c350891d4f60acf69ec11deddd4244",
       "bytes": 2079
@@ -1108,6 +1128,11 @@
       "bytes": 3503
     },
     {
+      "path": "scripts/validate_campaign_manifest.py",
+      "sha256": "4ed8eb694641587a8a35792ade64523c5af631b6bf7205f7d621244f5520fc80",
+      "bytes": 1174
+    },
+    {
       "path": "scripts/validate_claim_evidence.py",
       "sha256": "cff409ba8f5c43dbf26d2bdb6ad96a68010fb9c87e617f39dcfbc808d05af04a",
       "bytes": 14238
@@ -1154,8 +1179,8 @@
     },
     {
       "path": "src/xtbflow/data/__init__.py",
-      "sha256": "cf416548377420e6bf1f8faa332624af1a89fb7bb05732d181380a3507a3ce17",
-      "bytes": 3571
+      "sha256": "f4cc96c74d64f704977e797ca4790ac5cb8d14b77869b432abd4d6c8a65b61ff",
+      "bytes": 3951
     },
     {
       "path": "src/xtbflow/data/attempts.py",
@@ -1166,6 +1191,11 @@
       "path": "src/xtbflow/data/cache.py",
       "sha256": "1f805c1b6498e0d4451fe340285106f2ea5d78499037548d44adf13b2084819f",
       "bytes": 2167
+    },
+    {
+      "path": "src/xtbflow/data/campaign.py",
+      "sha256": "b00be41d6a67da875da1384da5842ae8eb0787f85a974f7a9e44852b45c0b475",
+      "bytes": 29251
     },
     {
       "path": "src/xtbflow/data/dft_da.py",
@@ -1461,6 +1491,11 @@
       "path": "tests/test_calculator_contract.py",
       "sha256": "a8ea52f51e54fdd830800c48f208a2db10888273435a8dec464e4df0f0e563b3",
       "bytes": 13336
+    },
+    {
+      "path": "tests/test_campaign_manifest.py",
+      "sha256": "4d125bf5e832a9d115dd05e7983434c06ab0b5e8497cc8325084a5e35d1a5234",
+      "bytes": 8188
     },
     {
       "path": "tests/test_checkpoint.py",

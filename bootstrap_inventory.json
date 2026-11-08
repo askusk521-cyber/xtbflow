@@ -428,6 +428,11 @@
       "bytes": 1365
     },
     {
+      "path": "docs/architecture/parallel_guidance_contract_v0.1.md",
+      "sha256": "0c5a5dfb5e19895d297275d053824996d8de3566fbcb5e7c2a7cde3432bf77b3",
+      "bytes": 1429
+    },
+    {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
       "sha256": "9e4b2a7d650857036e072b00107e9dc3c68738484c7f3a446b9b50d22b20971f",
       "bytes": 4884
@@ -526,6 +531,11 @@
       "path": "docs/evidence/paired_pilot_v1_provenance.json",
       "sha256": "21160012cddad16d2a8f103179d656cbd727ef83dc0183841c30e7d37e6aab74",
       "bytes": 1467
+    },
+    {
+      "path": "docs/evidence/parallel_guidance_contract_n2_20261109.json",
+      "sha256": "659daa9c7c2aed6af40d94938dff3a24ada12d03dc8722ef44a6c33e59c05ceb",
+      "bytes": 1966
     },
     {
       "path": "docs/evidence/reaction_qm_coordinate_mapping_audit_20261002_full.json",
@@ -931,6 +941,11 @@
       "path": "schemas/model_contract.schema.json",
       "sha256": "f9a2ccf37a2c04c1af2a3cd0536731ec86bd56f75000275bfa6e6e10d6f71351",
       "bytes": 2110
+    },
+    {
+      "path": "schemas/parallel_guidance_contract.schema.json",
+      "sha256": "aca25585e4e472747304274c7304e1277370fd68d30cb20c899a948f6748bf49",
+      "bytes": 5751
     },
     {
       "path": "schemas/public_record.schema.json",
@@ -1359,8 +1374,8 @@
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
-      "sha256": "1ee6fbf1d03391722d893b58a2318236d3431b61c1c9ddf726efc9bd961cf375",
-      "bytes": 268
+      "sha256": "3f984b0b0aec1a0ea634c7160e4cda52f3687250c768761d63ee91e4471ff811",
+      "bytes": 1394
     },
     {
       "path": "src/xtbflow/sampling/guidance.py",
@@ -1371,6 +1386,11 @@
       "path": "src/xtbflow/sampling/integrator.py",
       "sha256": "1566d0c21728f3e7bbc9d99eecf57a1a9988d79e0d18b6f5700730886591247a",
       "bytes": 3165
+    },
+    {
+      "path": "src/xtbflow/sampling/parallel_guidance.py",
+      "sha256": "1c1f81203fb15c8579a42937338c5cad7ee4f0a861d11049baaa9a586d2fb12b",
+      "bytes": 30341
     },
     {
       "path": "src/xtbflow/training/__init__.py",
@@ -1551,6 +1571,11 @@
       "path": "tests/test_paired_pilot.py",
       "sha256": "29a8e3bc3e2fca9da3175d54309ab4e136c0744285c6fa562df44f0888ea0dd7",
       "bytes": 2003
+    },
+    {
+      "path": "tests/test_parallel_guidance.py",
+      "sha256": "049866af1670b18f93a06b8e6127bfa3df52b7bce03d236c065eecf79b2b0d85",
+      "bytes": 7448
     },
     {
       "path": "tests/test_path_status.py",

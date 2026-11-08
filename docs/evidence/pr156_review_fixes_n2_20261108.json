@@ -6,7 +6,12 @@
   "validated_commit": "fe933315e83a226b17af561846b0bbc041b6cd74",
   "working_tree_dirty": false,
   "working_tree_diff_sha256": null,
-  "stacked_fix_commits": ["7a95431fb1de90b8073068d267fc3fdb14b61f44", "fb7a42ae2c104742d1322c67fdd3c8b0119ac65b", "865370634153a97f21bd70fc5606311832155a26", "fe933315e83a226b17af561846b0bbc041b6cd74"],
+  "stacked_fix_commits": [
+    "7a95431fb1de90b8073068d267fc3fdb14b61f44",
+    "fb7a42ae2c104742d1322c67fdd3c8b0119ac65b",
+    "865370634153a97f21bd70fc5606311832155a26",
+    "fe933315e83a226b17af561846b0bbc041b6cd74"
+  ],
   "execution_host": "node2",
   "execution_root": "~/xtbflow/xtbflow-exec-pr156-docs-fix-20261108",
   "environment": {
@@ -35,9 +40,9 @@
     "scale_matrix_status": "PASS",
     "scale_primary_run_count": 81,
     "gpu_projector": {
-      "float32_max_residual": 2.384185791015625e-07,
+      "float32_max_residual": 2.384185791015625e-7,
       "float64_max_residual": 2.220446049250313e-16,
-      "padding_max": 0.0,
+      "padding_max": 0,
       "gradient_finite": true,
       "batch_8_speedup_vs_rowwise": 2.297831590950458,
       "batch_32_speedup_vs_rowwise": 8.896096625128143
@@ -56,7 +61,7 @@
   "claim_limits": [
     "This is software and projector evidence validated at the Python-code parent commit; the final docs/CI commit is docs-only.",
     "It does not establish chemistry accuracy, training quality, or generalization.",
-    "The PR still needs a clean rebase/merge-conflict resolution and a human review before merge."
+    "This is software and projector evidence validated at the Python-code parent commit; the final docs/CI commit is docs-only and the PR still needs human review before merge."
   ],
   "file_hashes": {
     "bootstrap_inventory.json": "26f27675c7453203c307168f6ea49744638161505c7ab3a3cde7978e7b57859b",

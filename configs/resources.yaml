@@ -7,6 +7,11 @@ authority:
   scope: xtbflow project and existing project resources
   owner_github: askusk521-cyber
   repeated_routine_approval_required: false
+  # Routine authorization does not authorize merges or bypass human review.
+  merge_approval_required: true
+  merge_approval_authority: repository_owner_or_explicitly_delegated_human
+  merge_approval_waiver: explicit_human_instruction_for_stated_scope_only
+  merge_approval_policy: docs/REPOSITORY_MANAGEMENT.md
   historical_zero_budget_permissions_superseded: true
 project:
   name: xtbflow

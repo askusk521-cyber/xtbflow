@@ -11,6 +11,7 @@ from torch import Tensor, nn
 from xtbflow.models.joint_flow import CONTROL_MODES, JointFlowOutput
 
 from .checkpoint import load_joint_checkpoint, save_joint_checkpoint
+from .gradient_diagnostics import CLIP_MODES, apply_gradient_clip, gradient_diagnostics
 
 __all__ = [
     "joint_flow_loss",
@@ -18,6 +19,7 @@ __all__ = [
     "coupled_control_manifest",
     "save_joint_checkpoint",
     "load_joint_checkpoint",
+    "train_joint_step",
 ]
 
 
@@ -82,6 +84,62 @@ def joint_flow_loss(
         "event": event,
         "geometry": geometry,
         "total": event_weight * event + geometry_weight * geometry,
+    }
+
+
+def train_joint_step(
+    model: nn.Module,
+    optimizer: torch.optim.Optimizer,
+    output: JointFlowOutput,
+    target_event_velocity: Tensor,
+    target_geometry_velocity: Tensor,
+    *,
+    event_mask: Tensor | None = None,
+    atom_mask: Tensor | None = None,
+    event_weight: float = 1.0,
+    geometry_weight: float = 1.0,
+    require_nonzero_target: bool = False,
+    clip_mode: str = "global",
+    max_norm: float = 5.0,
+) -> dict[str, object]:
+    """Run one auditable event/geometry optimization step.
+
+    The objective-specific norms are captured before backward and clipping.
+    The returned record distinguishes the global clip coefficient from the
+    branchwise control, so a geometry regression can be attributed to an
+    optimization policy before it is attributed to architectural coupling.
+    """
+
+    if clip_mode not in CLIP_MODES:
+        raise ValueError(f"clip_mode must be one of {CLIP_MODES}")
+    optimizer.zero_grad(set_to_none=True)
+    losses = joint_flow_loss(
+        output,
+        target_event_velocity,
+        target_geometry_velocity,
+        event_mask=event_mask,
+        atom_mask=atom_mask,
+        event_weight=event_weight,
+        geometry_weight=geometry_weight,
+        require_nonzero_target=require_nonzero_target,
+    )
+    diagnostics = gradient_diagnostics(
+        model,
+        losses["event"],
+        losses["geometry"],
+        total_loss=losses["total"],
+        max_norm=max_norm,
+    )
+    losses["total"].backward()
+    clip = apply_gradient_clip(model, max_norm=max_norm, mode=clip_mode)
+    optimizer.step()
+    return {
+        "schema": "xtbflow-joint-training-step/v1",
+        "losses": {name: float(value.detach().cpu()) for name, value in losses.items()},
+        "gradient_diagnostics": diagnostics,
+        "gradient_clip": clip,
+        "clip_mode": clip_mode,
+        "max_norm": float(max_norm),
     }
 
 

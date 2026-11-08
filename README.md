@@ -12,7 +12,7 @@
 
 ## 当前授权与读取顺序
 
-仓库所有者于 2026-09-25 在项目对话中指定本仓库并授权 AI 完整项目操作权限。Agent 可自主修改、提交、推送、测试、维护问题和执行有硬上限的项目计算，无需逐项重复请求许可。完整授权不等于已经取得集群连接、无限算力或科学验证结论。
+仓库所有者于 2026-09-25 在项目对话中指定本仓库并授权 AI 完整项目操作权限。Agent 可自主修改、提交、推送、测试、维护问题和执行有硬上限的项目计算，无需逐项重复请求许可；但合并操作必须遵守下述人工审批规则，日常授权不包含自行合并或绕过审批的权限。完整授权不等于已经取得集群连接、无限算力或科学验证结论。
 
 1. `AGENTS.md`：当前执行指令。
 2. `configs/resources.yaml`：当前授权、资源状态和预算政策。
@@ -21,6 +21,12 @@
 5. `archive/`：历史记录，不是现行权限或启动顺序。
 
 旧文档中“未批准”“预算为零”“只能写 starter 目录”等操作限制已由本次授权替代；科学适用范围、测试隔离和数据完整性要求仍然有效。
+
+## 仓库管理与合并审批
+
+**所有合并默认必须先经人工明确审批；唯一例外是仓库所有者或其明确委托的人类审批者清楚说明指定范围内“无需审批”。** 该规则适用于所有 PR、目标分支及合并方式，不因改动较小、仅修改文档、测试通过或 AI 自审通过而豁免。
+
+审批与明确豁免须对应具体 PR／变更范围，并在 PR 中记录；未获得批准或明确豁免时，只提交待审变更，不执行合并，也不得通过自动合并、直接推送或其他方式绕过审批。旧有“完整操作授权”“无需逐项许可”不覆盖此合并审批要求。详见 [仓库管理规则](docs/REPOSITORY_MANAGEMENT.md)。
 
 ## 第一项实际工作
 
@@ -44,24 +50,38 @@ python scripts/validate_bootstrap.py
 
 本次连接状态见 `docs/HANDOFF_STATUS.md`。GitHub 仓库授权不会自动提供 SSH、Slurm、GPU 或软件安装。
 
-## Current software status
+## Current software and research status
 
-The first packaged software slice is now available under `src/xtbflow`. It
-exposes an explicit adapter to the immutable `vendor/mechai_reusable` snapshot;
-new xtbflow algorithms will be added under `src/xtbflow` instead of modifying
-the snapshot in place. Install the package and run the complete current test
-slice with:
+The packaged software slice is available under `src/xtbflow` and exposes an
+explicit adapter to the immutable `vendor/mechai_reusable` snapshot.  New
+algorithms stay under `src/xtbflow`; the vendor snapshot is read-only.  The
+bounded Workflow B controls, runtime ledger, input firewall, calculator
+contracts, and source/grouping audits have software evidence.  The joint-flow
+fixture is still an untrained software prototype, and the paired event–TS
+manifest remains blocked until every record has mapping, electronic-state,
+license, step-pairing and overlap evidence.
+
+The repository also contains a separate SPICE2 E/F development lane with
+reconstructible grouped learning-curve evidence and a limited GFN2/tblite
+qualification scope.  Those E/F labels are not event–TS supervision.  The
+xTBloom and CP2K records document adapter/parser and bounded smoke behavior;
+production qualification and path evidence remain separate gates.  No line
+above is a claim of a trained scientific model, broad chemical accuracy, or a
+confirmed mechanism.  The module-level matrix and evidence links are kept in
+[`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md).
+
+The 2026-10 parallel work packages use one artifact-level dispatch and shared
+ledger.  Read [`docs/research/execution_20261001.md`](docs/research/execution_20261001.md)
+and [`configs/runs/research_dispatch_20261001.json`](configs/runs/research_dispatch_20261001.json)
+for the twelve owners, write scopes, status matrix, handoff fields and
+dependency gates.  A structurally valid offline dispatch deliberately reports
+`science_ready: false`; unknown or blocked artifacts cannot be promoted to a
+passed result.
+
+Install the package and run the available test slices with:
 
 ```bash
 python -m pip install -e ".[test]"
 python -m unittest discover -s tests/reusable -p "test_*.py"
-python -m pytest -q tests/test_package.py
+python -m pytest -q tests/test_package.py tests/test_research_dispatch.py
 ```
-
-The current package contains contracts, untrained compatibility prototypes, and a standard-library runtime ledger for bounded, resumable execution. The ledger records calculator/protocol identities, per-system attempts, retries, cache hits, resource units, and cumulative stage caps before work is allowed to proceed.
-
-The public-data handoff is currently an explicit quarantine manifest: source identities are recorded, but zero scientific records are admitted until per-record geometry bytes, charge/spin evidence, licenses, and reference labels are verified.
-
-It does not yet contain a trained flow model, xTBloom or CP2K calculator
-backend, a reference energy/force dataset, or a chemical validation result.
-Those remain separate issues with their own evidence and budget gates.

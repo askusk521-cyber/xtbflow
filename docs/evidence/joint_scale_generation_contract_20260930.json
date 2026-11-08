@@ -1,0 +1,51 @@
+{
+  "schema": "xtbflow-joint-scale-generation-contract/v1",
+  "created_utc": "2026-09-30T14:34:28Z",
+  "execution_host": "node2",
+  "source_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+  "source_worktree_dirty": true,
+  "environment": {
+    "python": "3.10.19",
+    "pytorch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "scheduler": "slurm-21.08.5",
+    "gpu_allocation": "none; bounded CPU contract tests and smoke only"
+  },
+  "configuration_hashes": {
+    "scale_ladder": "cedef16571857d15a05ab0daab3ea0e532f44c8ac30af24c1ddd337e1f8b3834",
+    "scale_data_matrix": "ffb523984304e80bf99cc8fd4c71c265f0267d4b16530169933a7e00ccc297b1",
+    "matrix_validator": "362d64b2b3e9ebc52c91d7809b41acba052a90536f00b2b68071c674b2d8226c",
+    "architecture_protocol": "db98a43644a1805de74ce13757057d6c63b98478a631c4e9a9b239810eb87ad8"
+  },
+  "static_checks": {
+    "matrix_validator": "pass",
+    "json_syntax": "pass",
+    "compileall": "pass",
+    "git_diff_check": "pass"
+  },
+  "n2_contract_tests": {
+    "new_gradient_and_matrix_tests": "8 passed",
+    "new_plus_workflow_protocol_tests": "12 passed",
+    "full_pytest": "224 passed, 1 warning, 68 subtests passed"
+  },
+  "gradient_smoke": {
+    "global": {
+      "clip_mode": "global",
+      "training_steps": 2,
+      "sample_steps": 2,
+      "elapsed_seconds": 0.8005475139943883,
+      "checkpoint_sha256": "cae347163e9e912b4968f004becf10bdab127a2cd8228f92755fe899dc651586"
+    },
+    "branchwise": {
+      "clip_mode": "branchwise",
+      "training_steps": 2,
+      "sample_steps": 2,
+      "elapsed_seconds": 0.7546564110089093,
+      "checkpoint_sha256": "66d19c914589dadd05b375eb8748eb2e77fe4369c7e2927f6920b85d5a3b80fc"
+    },
+    "calculator_calls": 0,
+    "scientific_supervision": "synthetic nonzero time-dependent velocity only"
+  },
+  "claim_limit": "This evidence validates configuration, parameter-count accounting, gradient diagnostics, clipping controls, and checkpoint/sample software wiring. It does not compare architectures, qualify a chemical dataset, establish blind generation quality, or support a chemistry claim.",
+  "blocked_next_stage": "Run the frozen 81-point matrix only after an admitted parent-group event/TS manifest and reactant-only blind-generation protocol are available."
+}

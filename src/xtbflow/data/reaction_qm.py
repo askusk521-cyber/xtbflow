@@ -301,12 +301,15 @@ def audit_source_files(config: PublicSourceConfig, cache_dir: str | Path) -> lis
             continue
         sha256 = _digest(path)
         md5 = _digest(path, "md5")
+        observed_size = path.stat().st_size
         status = "verified" if spec.expected_sha256 is not None and sha256 == spec.expected_sha256 else "observed_pending_sha256"
-        if spec.expected_sha256 is not None and sha256 != spec.expected_sha256:
+        if spec.declared_size_bytes is not None and observed_size != spec.declared_size_bytes:
+            status = "declared_size_mismatch"
+        elif spec.expected_sha256 is not None and sha256 != spec.expected_sha256:
             status = "hash_mismatch"
-        if spec.official_md5 is not None and md5 != spec.official_md5:
+        if status != "declared_size_mismatch" and spec.official_md5 is not None and md5 != spec.official_md5:
             status = "official_md5_mismatch"
-        row.update({"status": status, "size_bytes": path.stat().st_size, "sha256": sha256, "md5": md5})
+        row.update({"status": status, "size_bytes": observed_size, "sha256": sha256, "md5": md5})
         result.append(row)
     return result
 

@@ -1,0 +1,2296 @@
+{
+  "schema": "xtbflow-research-dispatch/v1",
+  "dispatch_id": "research-dispatch-20261001",
+  "status": "interface_contract_frozen_science_incomplete",
+  "source": {
+    "dispatch_issue": 74,
+    "coordination_issue": 75,
+    "base_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+    "review_baseline_commit": "a0c959358b988f220f66a3641c53bb9d997069da",
+    "branch": "codex/issue75-dispatch",
+    "observed_on": "2026-10-01",
+    "remote": "https://github.com/askusk521-cyber/xtbflow"
+  },
+  "verification": {
+    "mode": "offline_snapshot",
+    "remote_checked": false,
+    "snapshot_source": "gh pr view snapshots captured for coordination; this validator never contacts GitHub",
+    "pull_requests": [
+      {
+        "number": 61,
+        "state": "OPEN",
+        "head_commit": "2baa5ce9dad0b8271abec7321e8a256acebe5d5e",
+        "base_branch": "main",
+        "merge_commit": null,
+        "merged_at": null,
+        "observed_on": "2026-10-01",
+        "claim": "snapshot_only"
+      },
+      {
+        "number": 62,
+        "state": "MERGED",
+        "head_commit": "6c88173e5056b5e07aee7e657ffbb0059312ddc5",
+        "base_branch": "main",
+        "merge_commit": "abee6248daaf0c81cde2e676b0b139f4b5d26d1e",
+        "merged_at": "2026-09-29T12:48:20Z",
+        "observed_on": "2026-10-01",
+        "claim": "snapshot_only"
+      },
+      {
+        "number": 63,
+        "state": "OPEN",
+        "head_commit": "be52a939637d3a90ec05405076e3b94a08e10e44",
+        "base_branch": "main",
+        "merge_commit": null,
+        "merged_at": null,
+        "observed_on": "2026-10-01",
+        "claim": "snapshot_only"
+      },
+      {
+        "number": 66,
+        "state": "MERGED",
+        "head_commit": "32a763c962176b70b456fdb042c73c2dfd817262",
+        "base_branch": "main",
+        "merge_commit": "ec803556605465b6309f32a15a529c2f9470679a",
+        "merged_at": "2026-09-30T05:18:09Z",
+        "observed_on": "2026-10-01",
+        "claim": "snapshot_only"
+      },
+      {
+        "number": 67,
+        "state": "OPEN",
+        "head_commit": "3a5f10a3b355998bf115d01a6e7fbcaa14680f9b",
+        "base_branch": "codex/workflow-a-track-b-20260929",
+        "merge_commit": null,
+        "merged_at": null,
+        "observed_on": "2026-10-01",
+        "claim": "snapshot_only"
+      },
+      {
+        "number": 70,
+        "state": "OPEN",
+        "head_commit": "5638ace2993efa8d8d56a129cbf5bea979fd677c",
+        "base_branch": "codex/c2-reference-bridge-20260930",
+        "merge_commit": null,
+        "merged_at": null,
+        "observed_on": "2026-10-01",
+        "claim": "snapshot_only"
+      },
+      {
+        "number": 71,
+        "state": "OPEN",
+        "head_commit": "343893a8c3090bfc1bd17f73bbcf30320a6f3352",
+        "base_branch": "main",
+        "merge_commit": null,
+        "merged_at": null,
+        "observed_on": "2026-10-01",
+        "claim": "snapshot_only"
+      }
+    ]
+  },
+  "status_matrix": {
+    "stages": [
+      "interface_specified",
+      "implemented",
+      "software_tested",
+      "real_development_run",
+      "chemically_validated",
+      "confirmatory"
+    ],
+    "meaning": "Each work package carries one record per stage; observed, planned, blocked, unknown and failed are distinct states."
+  },
+  "handoff_fields": [
+    "work_package",
+    "run_id",
+    "evidence_level",
+    "code_commit",
+    "config_hash",
+    "data_hash",
+    "split_hash",
+    "input_view_hash",
+    "checkpoint_hash",
+    "physical_protocol_hash",
+    "ledger_id",
+    "output_index",
+    "status",
+    "failure_reason"
+  ],
+  "shared_budget": {
+    "ledger_id": "shared-stage-ledger",
+    "source_config": "configs/resources.yaml",
+    "max_concurrent_jobs": 1,
+    "max_retries_per_job": 1,
+    "max_wall_minutes_per_job": 120,
+    "p1_gpu_hours_total": 24,
+    "p1_cpu_core_hours": 200,
+    "p1_semiempirical_system_evaluations": 10000,
+    "new_dft_calls": 0,
+    "rule": "work packages share stage balance; no package receives a private full quota"
+  },
+  "work_packages": [
+    {
+      "work_package": "W00",
+      "issue": 75,
+      "title": "interface_contract",
+      "owner": "role:integration_contract",
+      "claim_status": "claimed_branch_codex_issue75_dispatch",
+      "write_scope": [
+        "README.md",
+        "docs/PROJECT_STATUS.md",
+        "docs/architecture/architecture_v0.1.md",
+        "docs/architecture/workflow_b_baseline_protocol.md",
+        "docs/research/execution_20261001.md",
+        "configs/runs/research_dispatch_20261001.json",
+        "scripts/validate_research_dispatch.py",
+        "tests/test_research_dispatch.py"
+      ],
+      "forbidden_scope": [],
+      "ready_now": true,
+      "blocked_execution": "real science is intentionally not run by W00",
+      "produces": [
+        "W00.dispatch_contract"
+      ],
+      "consumes": [],
+      "status_matrix": {
+        "interface_specified": {
+          "state": "observed",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://75#implementation-steps",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "Issue #75 freezes the coordination boundary."
+        },
+        "implemented": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "docs/research/execution_20261001.md",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "Implementation is delivered by this worktree; final commit is recorded at handoff."
+        },
+        "software_tested": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "tests/test_research_dispatch.py",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "Focused test evidence is produced before handoff."
+        },
+        "real_development_run": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://75#budget",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "No training or QC belongs to W00."
+        },
+        "chemically_validated": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://75#acceptance",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "Coordination contracts cannot establish chemical validity."
+        },
+        "confirmatory": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://75#budget",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "Confirmation is owned by W11 after development freeze."
+        }
+      },
+      "handoff": {
+        "required_fields": [
+          "work_package",
+          "run_id",
+          "evidence_level",
+          "code_commit",
+          "config_hash",
+          "data_hash",
+          "split_hash",
+          "input_view_hash",
+          "checkpoint_hash",
+          "physical_protocol_hash",
+          "ledger_id",
+          "output_index",
+          "status",
+          "failure_reason"
+        ],
+        "minimum_payload": {
+          "work_package": "W00",
+          "run_id": "unknown",
+          "evidence_level": "unknown",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "config_hash": "unknown",
+          "data_hash": "unknown",
+          "split_hash": "unknown",
+          "input_view_hash": "unknown",
+          "checkpoint_hash": "unknown",
+          "physical_protocol_hash": "unknown",
+          "ledger_id": "shared-stage-ledger",
+          "output_index": [
+            "W00.dispatch_contract"
+          ],
+          "status": "planned",
+          "failure_reason": "unknown"
+        },
+        "next_handoff": [
+          "W01",
+          "W02",
+          "W03",
+          "W04",
+          "W05",
+          "W06",
+          "W07",
+          "W08",
+          "W09",
+          "W10",
+          "W11"
+        ]
+      },
+      "next_handoff": [
+        "W01",
+        "W02",
+        "W03",
+        "W04",
+        "W05",
+        "W06",
+        "W07",
+        "W08",
+        "W09",
+        "W10",
+        "W11"
+      ]
+    },
+    {
+      "work_package": "W01",
+      "issue": 76,
+      "title": "paired_event_ts_data",
+      "owner": "role:track_b_data",
+      "claim_status": "unclaimed",
+      "write_scope": [
+        "src/xtbflow/data/",
+        "configs/data/paired_pilot_v1.json",
+        "docs/data/paired_pilot_v1.md",
+        "scripts/build_paired_pilot.py",
+        "tests/test_paired_pilot.py"
+      ],
+      "forbidden_scope": [
+        "src/xtbflow/models/",
+        "src/xtbflow/training/"
+      ],
+      "ready_now": true,
+      "blocked_execution": "real admission waits for source/map/electronic-state evidence",
+      "produces": [
+        "W01.paired_manifest",
+        "W01.input_view"
+      ],
+      "consumes": [
+        "W00.dispatch_contract"
+      ],
+      "status_matrix": {
+        "interface_specified": {
+          "state": "observed",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://76#定位",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W01 scope and handoff are recorded in the dispatch contract."
+        },
+        "implemented": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://76#实施",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W01 implementation is a separate work package and is not claimed on the base."
+        },
+        "software_tested": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://76#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W01 software tests are pending its owning agent."
+        },
+        "real_development_run": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://76#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W01 real run is blocked until its concrete upstream artifacts and shared budget are available."
+        },
+        "chemically_validated": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://76#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W01 interface or fixture evidence cannot establish chemistry."
+        },
+        "confirmatory": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://76#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W01 is outside the independent confirmation gate until W11."
+        }
+      },
+      "handoff": {
+        "required_fields": [
+          "work_package",
+          "run_id",
+          "evidence_level",
+          "code_commit",
+          "config_hash",
+          "data_hash",
+          "split_hash",
+          "input_view_hash",
+          "checkpoint_hash",
+          "physical_protocol_hash",
+          "ledger_id",
+          "output_index",
+          "status",
+          "failure_reason"
+        ],
+        "minimum_payload": {
+          "work_package": "W01",
+          "run_id": "unknown",
+          "evidence_level": "unknown",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "config_hash": "unknown",
+          "data_hash": "unknown",
+          "split_hash": "unknown",
+          "input_view_hash": "unknown",
+          "checkpoint_hash": "unknown",
+          "physical_protocol_hash": "unknown",
+          "ledger_id": "shared-stage-ledger",
+          "output_index": [
+            "W01.paired_manifest",
+            "W01.input_view"
+          ],
+          "status": "planned",
+          "failure_reason": "unknown"
+        },
+        "next_handoff": [
+          "W04"
+        ]
+      },
+      "next_handoff": [
+        "W04"
+      ]
+    },
+    {
+      "work_package": "W02",
+      "issue": 77,
+      "title": "model_controls",
+      "owner": "role:model_controls",
+      "claim_status": "unclaimed",
+      "write_scope": [
+        "src/xtbflow/models/",
+        "src/xtbflow/proposals/",
+        "configs/models/baseline_controls_v1.json",
+        "tests/test_baseline_factory.py"
+      ],
+      "forbidden_scope": [
+        "src/xtbflow/training/",
+        "src/xtbflow/evaluation/"
+      ],
+      "ready_now": true,
+      "blocked_execution": "real training is W04; no calculator work here",
+      "produces": [
+        "W02.baseline_factory",
+        "W02.control_manifest"
+      ],
+      "consumes": [
+        "W00.dispatch_contract"
+      ],
+      "status_matrix": {
+        "interface_specified": {
+          "state": "observed",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://77#定位",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W02 scope and handoff are recorded in the dispatch contract."
+        },
+        "implemented": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://77#实施",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W02 implementation is a separate work package and is not claimed on the base."
+        },
+        "software_tested": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://77#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W02 software tests are pending its owning agent."
+        },
+        "real_development_run": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://77#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W02 real run is blocked until its concrete upstream artifacts and shared budget are available."
+        },
+        "chemically_validated": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://77#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W02 interface or fixture evidence cannot establish chemistry."
+        },
+        "confirmatory": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://77#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W02 is outside the independent confirmation gate until W11."
+        }
+      },
+      "handoff": {
+        "required_fields": [
+          "work_package",
+          "run_id",
+          "evidence_level",
+          "code_commit",
+          "config_hash",
+          "data_hash",
+          "split_hash",
+          "input_view_hash",
+          "checkpoint_hash",
+          "physical_protocol_hash",
+          "ledger_id",
+          "output_index",
+          "status",
+          "failure_reason"
+        ],
+        "minimum_payload": {
+          "work_package": "W02",
+          "run_id": "unknown",
+          "evidence_level": "unknown",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "config_hash": "unknown",
+          "data_hash": "unknown",
+          "split_hash": "unknown",
+          "input_view_hash": "unknown",
+          "checkpoint_hash": "unknown",
+          "physical_protocol_hash": "unknown",
+          "ledger_id": "shared-stage-ledger",
+          "output_index": [
+            "W02.baseline_factory",
+            "W02.control_manifest"
+          ],
+          "status": "planned",
+          "failure_reason": "unknown"
+        },
+        "next_handoff": [
+          "W04",
+          "W07"
+        ]
+      },
+      "next_handoff": [
+        "W04",
+        "W07"
+      ]
+    },
+    {
+      "work_package": "W03",
+      "issue": 78,
+      "title": "evaluation_protocol",
+      "owner": "role:evaluation_statistics",
+      "claim_status": "unclaimed",
+      "write_scope": [
+        "src/xtbflow/evaluation/",
+        "configs/experiments/joint_metrics_v1.json",
+        "docs/validation/",
+        "scripts/evaluate_joint_benchmark.py",
+        "tests/test_joint_benchmark_metrics.py"
+      ],
+      "forbidden_scope": [
+        "src/xtbflow/models/",
+        "src/xtbflow/training/"
+      ],
+      "ready_now": true,
+      "blocked_execution": "real results are consumed only after the protocol is frozen",
+      "produces": [
+        "W03.metric_protocol"
+      ],
+      "consumes": [
+        "W00.dispatch_contract"
+      ],
+      "status_matrix": {
+        "interface_specified": {
+          "state": "observed",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://78#定位",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W03 scope and handoff are recorded in the dispatch contract."
+        },
+        "implemented": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://78#实施",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W03 implementation is a separate work package and is not claimed on the base."
+        },
+        "software_tested": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://78#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W03 software tests are pending its owning agent."
+        },
+        "real_development_run": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://78#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W03 real run is blocked until its concrete upstream artifacts and shared budget are available."
+        },
+        "chemically_validated": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://78#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W03 interface or fixture evidence cannot establish chemistry."
+        },
+        "confirmatory": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://78#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W03 is outside the independent confirmation gate until W11."
+        }
+      },
+      "handoff": {
+        "required_fields": [
+          "work_package",
+          "run_id",
+          "evidence_level",
+          "code_commit",
+          "config_hash",
+          "data_hash",
+          "split_hash",
+          "input_view_hash",
+          "checkpoint_hash",
+          "physical_protocol_hash",
+          "ledger_id",
+          "output_index",
+          "status",
+          "failure_reason"
+        ],
+        "minimum_payload": {
+          "work_package": "W03",
+          "run_id": "unknown",
+          "evidence_level": "unknown",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "config_hash": "unknown",
+          "data_hash": "unknown",
+          "split_hash": "unknown",
+          "input_view_hash": "unknown",
+          "checkpoint_hash": "unknown",
+          "physical_protocol_hash": "unknown",
+          "ledger_id": "shared-stage-ledger",
+          "output_index": [
+            "W03.metric_protocol"
+          ],
+          "status": "planned",
+          "failure_reason": "unknown"
+        },
+        "next_handoff": [
+          "W04",
+          "W07",
+          "W11"
+        ]
+      },
+      "next_handoff": [
+        "W04",
+        "W07",
+        "W11"
+      ]
+    },
+    {
+      "work_package": "W04",
+      "issue": 79,
+      "title": "s1_generator_training",
+      "owner": "role:training_experiment",
+      "claim_status": "unclaimed",
+      "write_scope": [
+        "src/xtbflow/training/joint.py",
+        "scripts/run_joint_baselines.py",
+        "configs/experiments/joint_s1_v1.json",
+        "configs/runs/joint_s1_smoke_v1.json",
+        "tests/test_joint_training_matrix.py"
+      ],
+      "forbidden_scope": [
+        "src/xtbflow/models/",
+        "src/xtbflow/data/",
+        "src/xtbflow/evaluation/"
+      ],
+      "ready_now": true,
+      "blocked_execution": "real run is blocked until W01/W02/W03 artifacts and shared balance exist",
+      "produces": [
+        "W04.s1_plan",
+        "W04.s1_results"
+      ],
+      "consumes": [
+        "W00.dispatch_contract",
+        "W01.paired_manifest",
+        "W01.input_view",
+        "W02.baseline_factory",
+        "W02.control_manifest",
+        "W03.metric_protocol"
+      ],
+      "status_matrix": {
+        "interface_specified": {
+          "state": "observed",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://79#定位",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W04 scope and handoff are recorded in the dispatch contract."
+        },
+        "implemented": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://79#实施",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W04 implementation is a separate work package and is not claimed on the base."
+        },
+        "software_tested": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://79#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W04 software tests are pending its owning agent."
+        },
+        "real_development_run": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://79#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W04 real run is blocked until its concrete upstream artifacts and shared budget are available."
+        },
+        "chemically_validated": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://79#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W04 interface or fixture evidence cannot establish chemistry."
+        },
+        "confirmatory": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://79#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W04 is outside the independent confirmation gate until W11."
+        }
+      },
+      "handoff": {
+        "required_fields": [
+          "work_package",
+          "run_id",
+          "evidence_level",
+          "code_commit",
+          "config_hash",
+          "data_hash",
+          "split_hash",
+          "input_view_hash",
+          "checkpoint_hash",
+          "physical_protocol_hash",
+          "ledger_id",
+          "output_index",
+          "status",
+          "failure_reason"
+        ],
+        "minimum_payload": {
+          "work_package": "W04",
+          "run_id": "unknown",
+          "evidence_level": "unknown",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "config_hash": "unknown",
+          "data_hash": "unknown",
+          "split_hash": "unknown",
+          "input_view_hash": "unknown",
+          "checkpoint_hash": "unknown",
+          "physical_protocol_hash": "unknown",
+          "ledger_id": "shared-stage-ledger",
+          "output_index": [
+            "W04.s1_plan",
+            "W04.s1_results"
+          ],
+          "status": "planned",
+          "failure_reason": "unknown"
+        },
+        "next_handoff": [
+          "W07",
+          "W08",
+          "W10",
+          "W11"
+        ]
+      },
+      "next_handoff": [
+        "W07",
+        "W08",
+        "W10",
+        "W11"
+      ]
+    },
+    {
+      "work_package": "W05",
+      "issue": 80,
+      "title": "delta_learning_curve",
+      "owner": "role:scalar_energy_model",
+      "claim_status": "unclaimed",
+      "write_scope": [
+        "src/xtbflow/models/delta.py",
+        "configs/experiments/delta_learning_curve_v1.json",
+        "docs/evidence/delta_learning_curve_20261001.json"
+      ],
+      "forbidden_scope": [
+        "src/xtbflow/models/",
+        "src/xtbflow/evaluation/"
+      ],
+      "ready_now": true,
+      "blocked_execution": "only eligible cached E/F rows may be used; no event-TS claim",
+      "produces": [
+        "W05.delta_protocol"
+      ],
+      "consumes": [
+        "W00.dispatch_contract"
+      ],
+      "status_matrix": {
+        "interface_specified": {
+          "state": "observed",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://80#定位",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W05 scope and handoff are recorded in the dispatch contract."
+        },
+        "implemented": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://80#实施",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W05 implementation is a separate work package and is not claimed on the base."
+        },
+        "software_tested": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://80#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W05 software tests are pending its owning agent."
+        },
+        "real_development_run": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://80#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W05 real run is blocked until its concrete upstream artifacts and shared budget are available."
+        },
+        "chemically_validated": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://80#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W05 interface or fixture evidence cannot establish chemistry."
+        },
+        "confirmatory": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://80#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W05 is outside the independent confirmation gate until W11."
+        }
+      },
+      "handoff": {
+        "required_fields": [
+          "work_package",
+          "run_id",
+          "evidence_level",
+          "code_commit",
+          "config_hash",
+          "data_hash",
+          "split_hash",
+          "input_view_hash",
+          "checkpoint_hash",
+          "physical_protocol_hash",
+          "ledger_id",
+          "output_index",
+          "status",
+          "failure_reason"
+        ],
+        "minimum_payload": {
+          "work_package": "W05",
+          "run_id": "unknown",
+          "evidence_level": "unknown",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "config_hash": "unknown",
+          "data_hash": "unknown",
+          "split_hash": "unknown",
+          "input_view_hash": "unknown",
+          "checkpoint_hash": "unknown",
+          "physical_protocol_hash": "unknown",
+          "ledger_id": "shared-stage-ledger",
+          "output_index": [
+            "W05.delta_protocol"
+          ],
+          "status": "planned",
+          "failure_reason": "unknown"
+        },
+        "next_handoff": [
+          "W07"
+        ]
+      },
+      "next_handoff": [
+        "W07"
+      ]
+    },
+    {
+      "work_package": "W06",
+      "issue": 81,
+      "title": "reference_validation",
+      "owner": "role:calculator_validation",
+      "claim_status": "unclaimed",
+      "write_scope": [
+        "src/xtbflow/validation/",
+        "src/xtbflow/runtime/",
+        "scripts/run_reference_validation.py",
+        "docs/evidence/reference_qualification_20261001.json"
+      ],
+      "forbidden_scope": [
+        "src/xtbflow/data/",
+        "src/xtbflow/evaluation/"
+      ],
+      "ready_now": true,
+      "blocked_execution": "real calls require a finite protocol and shared ledger reservation",
+      "produces": [
+        "W06.reference_qualification"
+      ],
+      "consumes": [
+        "W00.dispatch_contract",
+        "W09.seed_manifest"
+      ],
+      "status_matrix": {
+        "interface_specified": {
+          "state": "observed",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://81#定位",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W06 scope and handoff are recorded in the dispatch contract."
+        },
+        "implemented": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://81#实施",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W06 implementation is a separate work package and is not claimed on the base."
+        },
+        "software_tested": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://81#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W06 software tests are pending its owning agent."
+        },
+        "real_development_run": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://81#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W06 real run is blocked until its concrete upstream artifacts and shared budget are available."
+        },
+        "chemically_validated": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://81#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W06 interface or fixture evidence cannot establish chemistry."
+        },
+        "confirmatory": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://81#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W06 is outside the independent confirmation gate until W11."
+        }
+      },
+      "handoff": {
+        "required_fields": [
+          "work_package",
+          "run_id",
+          "evidence_level",
+          "code_commit",
+          "config_hash",
+          "data_hash",
+          "split_hash",
+          "input_view_hash",
+          "checkpoint_hash",
+          "physical_protocol_hash",
+          "ledger_id",
+          "output_index",
+          "status",
+          "failure_reason"
+        ],
+        "minimum_payload": {
+          "work_package": "W06",
+          "run_id": "unknown",
+          "evidence_level": "unknown",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "config_hash": "unknown",
+          "data_hash": "unknown",
+          "split_hash": "unknown",
+          "input_view_hash": "unknown",
+          "checkpoint_hash": "unknown",
+          "physical_protocol_hash": "unknown",
+          "ledger_id": "shared-stage-ledger",
+          "output_index": [
+            "W06.reference_qualification"
+          ],
+          "status": "planned",
+          "failure_reason": "unknown"
+        },
+        "next_handoff": [
+          "W07",
+          "W09",
+          "W11"
+        ]
+      },
+      "next_handoff": [
+        "W07",
+        "W09",
+        "W11"
+      ]
+    },
+    {
+      "work_package": "W07",
+      "issue": 82,
+      "title": "s2_guidance",
+      "owner": "role:physical_intervention",
+      "claim_status": "unclaimed",
+      "write_scope": [
+        "src/xtbflow/sampling/",
+        "configs/experiments/guidance_placement_v1.json",
+        "scripts/run_guidance_placement.py",
+        "tests/test_guidance_placement.py"
+      ],
+      "forbidden_scope": [
+        "src/xtbflow/models/",
+        "src/xtbflow/validation/"
+      ],
+      "ready_now": true,
+      "blocked_execution": "Delta arm waits for W05; bare GFN2 arm still needs W04 and W06",
+      "produces": [
+        "W07.s2_plan",
+        "W07.s2_results"
+      ],
+      "consumes": [
+        "W00.dispatch_contract",
+        "W02.baseline_factory",
+        "W03.metric_protocol",
+        "W04.s1_results",
+        "W05.delta_protocol",
+        "W06.reference_qualification"
+      ],
+      "status_matrix": {
+        "interface_specified": {
+          "state": "observed",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://82#定位",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W07 scope and handoff are recorded in the dispatch contract."
+        },
+        "implemented": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://82#实施",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W07 implementation is a separate work package and is not claimed on the base."
+        },
+        "software_tested": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://82#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W07 software tests are pending its owning agent."
+        },
+        "real_development_run": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://82#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W07 real run is blocked until its concrete upstream artifacts and shared budget are available."
+        },
+        "chemically_validated": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://82#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W07 interface or fixture evidence cannot establish chemistry."
+        },
+        "confirmatory": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://82#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W07 is outside the independent confirmation gate until W11."
+        }
+      },
+      "handoff": {
+        "required_fields": [
+          "work_package",
+          "run_id",
+          "evidence_level",
+          "code_commit",
+          "config_hash",
+          "data_hash",
+          "split_hash",
+          "input_view_hash",
+          "checkpoint_hash",
+          "physical_protocol_hash",
+          "ledger_id",
+          "output_index",
+          "status",
+          "failure_reason"
+        ],
+        "minimum_payload": {
+          "work_package": "W07",
+          "run_id": "unknown",
+          "evidence_level": "unknown",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "config_hash": "unknown",
+          "data_hash": "unknown",
+          "split_hash": "unknown",
+          "input_view_hash": "unknown",
+          "checkpoint_hash": "unknown",
+          "physical_protocol_hash": "unknown",
+          "ledger_id": "shared-stage-ledger",
+          "output_index": [
+            "W07.s2_plan",
+            "W07.s2_results"
+          ],
+          "status": "planned",
+          "failure_reason": "unknown"
+        },
+        "next_handoff": [
+          "W08",
+          "W10",
+          "W11"
+        ]
+      },
+      "next_handoff": [
+        "W08",
+        "W10",
+        "W11"
+      ]
+    },
+    {
+      "work_package": "W08",
+      "issue": 83,
+      "title": "coupling_question",
+      "owner": "role:mechanism_exploration",
+      "claim_status": "unclaimed",
+      "write_scope": [
+        "configs/experiments/coupling_questions_v1.json",
+        "docs/architecture/coupling_questions_v1.md",
+        "src/xtbflow/models/coupling_features.py",
+        "src/xtbflow/sampling/coupling_schedule.py",
+        "tests/test_coupling_features.py"
+      ],
+      "forbidden_scope": [
+        "src/xtbflow/models/joint_flow.py",
+        "src/xtbflow/training/"
+      ],
+      "ready_now": true,
+      "blocked_execution": "choose one question only after S1 failure classification",
+      "produces": [
+        "W08.coupling_selection"
+      ],
+      "consumes": [
+        "W00.dispatch_contract",
+        "W04.s1_results"
+      ],
+      "status_matrix": {
+        "interface_specified": {
+          "state": "observed",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://83#定位",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W08 scope and handoff are recorded in the dispatch contract."
+        },
+        "implemented": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://83#实施",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W08 implementation is a separate work package and is not claimed on the base."
+        },
+        "software_tested": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://83#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W08 software tests are pending its owning agent."
+        },
+        "real_development_run": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://83#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W08 real run is blocked until its concrete upstream artifacts and shared budget are available."
+        },
+        "chemically_validated": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://83#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W08 interface or fixture evidence cannot establish chemistry."
+        },
+        "confirmatory": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://83#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W08 is outside the independent confirmation gate until W11."
+        }
+      },
+      "handoff": {
+        "required_fields": [
+          "work_package",
+          "run_id",
+          "evidence_level",
+          "code_commit",
+          "config_hash",
+          "data_hash",
+          "split_hash",
+          "input_view_hash",
+          "checkpoint_hash",
+          "physical_protocol_hash",
+          "ledger_id",
+          "output_index",
+          "status",
+          "failure_reason"
+        ],
+        "minimum_payload": {
+          "work_package": "W08",
+          "run_id": "unknown",
+          "evidence_level": "unknown",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "config_hash": "unknown",
+          "data_hash": "unknown",
+          "split_hash": "unknown",
+          "input_view_hash": "unknown",
+          "checkpoint_hash": "unknown",
+          "physical_protocol_hash": "unknown",
+          "ledger_id": "shared-stage-ledger",
+          "output_index": [
+            "W08.coupling_selection"
+          ],
+          "status": "planned",
+          "failure_reason": "unknown"
+        },
+        "next_handoff": [
+          "W11"
+        ]
+      },
+      "next_handoff": [
+        "W11"
+      ]
+    },
+    {
+      "work_package": "W09",
+      "issue": 84,
+      "title": "independent_inputs",
+      "owner": "role:independent_seed_preparation",
+      "claim_status": "unclaimed",
+      "write_scope": [
+        "src/xtbflow/data/independent_seeds.py",
+        "src/xtbflow/data/attempts.py",
+        "configs/seeds/independent_pilot_v1.json",
+        "scripts/build_independent_seeds.py",
+        "scripts/run_independent_pilot.py",
+        "tests/test_independent_seeds.py"
+      ],
+      "forbidden_scope": [
+        "src/xtbflow/data/"
+      ],
+      "ready_now": true,
+      "blocked_execution": "seed preparation is ready now; path execution waits for W06",
+      "produces": [
+        "W09.seed_manifest",
+        "W09.attempt_records"
+      ],
+      "consumes": [
+        "W00.dispatch_contract",
+        "W06.reference_qualification",
+        "W10.candidate_protocol"
+      ],
+      "status_matrix": {
+        "interface_specified": {
+          "state": "observed",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://84#定位",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W09 scope and handoff are recorded in the dispatch contract."
+        },
+        "implemented": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://84#实施",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W09 implementation is a separate work package and is not claimed on the base."
+        },
+        "software_tested": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://84#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W09 software tests are pending its owning agent."
+        },
+        "real_development_run": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://84#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W09 real run is blocked until its concrete upstream artifacts and shared budget are available."
+        },
+        "chemically_validated": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://84#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W09 interface or fixture evidence cannot establish chemistry."
+        },
+        "confirmatory": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://84#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W09 is outside the independent confirmation gate until W11."
+        }
+      },
+      "handoff": {
+        "required_fields": [
+          "work_package",
+          "run_id",
+          "evidence_level",
+          "code_commit",
+          "config_hash",
+          "data_hash",
+          "split_hash",
+          "input_view_hash",
+          "checkpoint_hash",
+          "physical_protocol_hash",
+          "ledger_id",
+          "output_index",
+          "status",
+          "failure_reason"
+        ],
+        "minimum_payload": {
+          "work_package": "W09",
+          "run_id": "unknown",
+          "evidence_level": "unknown",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "config_hash": "unknown",
+          "data_hash": "unknown",
+          "split_hash": "unknown",
+          "input_view_hash": "unknown",
+          "checkpoint_hash": "unknown",
+          "physical_protocol_hash": "unknown",
+          "ledger_id": "shared-stage-ledger",
+          "output_index": [
+            "W09.seed_manifest",
+            "W09.attempt_records"
+          ],
+          "status": "planned",
+          "failure_reason": "unknown"
+        },
+        "next_handoff": [
+          "W06",
+          "W10",
+          "W11"
+        ]
+      },
+      "next_handoff": [
+        "W06",
+        "W10",
+        "W11"
+      ]
+    },
+    {
+      "work_package": "W10",
+      "issue": 85,
+      "title": "research_positioning",
+      "owner": "role:research_positioning",
+      "claim_status": "unclaimed",
+      "write_scope": [
+        "docs/research/novelty_matrix.md",
+        "docs/research/claim_evidence_matrix.md",
+        "docs/research/paper_outline.md",
+        "docs/science/",
+        "configs/science/",
+        "scripts/validate_science_protocol.py",
+        "tests/test_science_protocol.py"
+      ],
+      "forbidden_scope": [
+        "src/xtbflow/data/",
+        "docs/research/"
+      ],
+      "ready_now": true,
+      "blocked_execution": "application choice remains pending until development evidence is available",
+      "produces": [
+        "W10.origin_matrix",
+        "W10.candidate_protocol",
+        "W10.application_selection"
+      ],
+      "consumes": [
+        "W00.dispatch_contract",
+        "W04.s1_results",
+        "W07.s2_results",
+        "W09.attempt_records"
+      ],
+      "status_matrix": {
+        "interface_specified": {
+          "state": "observed",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://85#定位",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W10 scope and handoff are recorded in the dispatch contract."
+        },
+        "implemented": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://85#实施",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W10 implementation is a separate work package and is not claimed on the base."
+        },
+        "software_tested": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://85#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W10 software tests are pending its owning agent."
+        },
+        "real_development_run": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://85#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W10 real run is blocked until its concrete upstream artifacts and shared budget are available."
+        },
+        "chemically_validated": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://85#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W10 interface or fixture evidence cannot establish chemistry."
+        },
+        "confirmatory": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://85#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W10 is outside the independent confirmation gate until W11."
+        }
+      },
+      "handoff": {
+        "required_fields": [
+          "work_package",
+          "run_id",
+          "evidence_level",
+          "code_commit",
+          "config_hash",
+          "data_hash",
+          "split_hash",
+          "input_view_hash",
+          "checkpoint_hash",
+          "physical_protocol_hash",
+          "ledger_id",
+          "output_index",
+          "status",
+          "failure_reason"
+        ],
+        "minimum_payload": {
+          "work_package": "W10",
+          "run_id": "unknown",
+          "evidence_level": "unknown",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "config_hash": "unknown",
+          "data_hash": "unknown",
+          "split_hash": "unknown",
+          "input_view_hash": "unknown",
+          "checkpoint_hash": "unknown",
+          "physical_protocol_hash": "unknown",
+          "ledger_id": "shared-stage-ledger",
+          "output_index": [
+            "W10.origin_matrix",
+            "W10.candidate_protocol",
+            "W10.application_selection"
+          ],
+          "status": "planned",
+          "failure_reason": "unknown"
+        },
+        "next_handoff": [
+          "W09",
+          "W11"
+        ]
+      },
+      "next_handoff": [
+        "W09",
+        "W11"
+      ]
+    },
+    {
+      "work_package": "W11",
+      "issue": 86,
+      "title": "independent_confirmation",
+      "owner": "role:confirmation_and_decision",
+      "claim_status": "unclaimed",
+      "write_scope": [
+        "docs/research/confirmation_contract_20261001.md",
+        "scripts/validate_confirmation.py",
+        "tests/test_confirmation_contract.py",
+        "docs/evidence/confirmation_20261001.json"
+      ],
+      "forbidden_scope": [
+        "src/xtbflow/training/",
+        "src/xtbflow/validation/"
+      ],
+      "ready_now": true,
+      "blocked_execution": "confirmation is forbidden until method/application and unseen batch freeze",
+      "produces": [
+        "W11.confirmation_contract",
+        "W11.confirmation_result"
+      ],
+      "consumes": [
+        "W00.dispatch_contract",
+        "W03.metric_protocol",
+        "W04.s1_results",
+        "W06.reference_qualification",
+        "W07.s2_results",
+        "W08.coupling_selection",
+        "W09.attempt_records",
+        "W10.application_selection"
+      ],
+      "status_matrix": {
+        "interface_specified": {
+          "state": "observed",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://86#定位",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W11 scope and handoff are recorded in the dispatch contract."
+        },
+        "implemented": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://86#实施",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W11 implementation is a separate work package and is not claimed on the base."
+        },
+        "software_tested": {
+          "state": "planned",
+          "evidence_level": "interface_specified",
+          "evidence_ref": "issue://86#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W11 software tests are pending its owning agent."
+        },
+        "real_development_run": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://86#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W11 real run is blocked until its concrete upstream artifacts and shared budget are available."
+        },
+        "chemically_validated": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://86#验收",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W11 interface or fixture evidence cannot establish chemistry."
+        },
+        "confirmatory": {
+          "state": "blocked",
+          "evidence_level": "unknown",
+          "evidence_ref": "issue://86#预算",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "observed_on": "2026-10-01",
+          "reason": "W11 is outside the independent confirmation gate until W11."
+        }
+      },
+      "handoff": {
+        "required_fields": [
+          "work_package",
+          "run_id",
+          "evidence_level",
+          "code_commit",
+          "config_hash",
+          "data_hash",
+          "split_hash",
+          "input_view_hash",
+          "checkpoint_hash",
+          "physical_protocol_hash",
+          "ledger_id",
+          "output_index",
+          "status",
+          "failure_reason"
+        ],
+        "minimum_payload": {
+          "work_package": "W11",
+          "run_id": "unknown",
+          "evidence_level": "unknown",
+          "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+          "config_hash": "unknown",
+          "data_hash": "unknown",
+          "split_hash": "unknown",
+          "input_view_hash": "unknown",
+          "checkpoint_hash": "unknown",
+          "physical_protocol_hash": "unknown",
+          "ledger_id": "shared-stage-ledger",
+          "output_index": [
+            "W11.confirmation_contract",
+            "W11.confirmation_result"
+          ],
+          "status": "planned",
+          "failure_reason": "unknown"
+        },
+        "next_handoff": []
+      },
+      "next_handoff": []
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "W00.dispatch_contract",
+      "name": "dispatch_contract",
+      "schema": "xtbflow-dispatch/dispatch_contract/v1",
+      "kind": "config",
+      "path": "configs/runs/research_dispatch_20261001.json",
+      "producer": "W00",
+      "consumers": [
+        "W01",
+        "W02",
+        "W03",
+        "W04",
+        "W05",
+        "W06",
+        "W07",
+        "W08",
+        "W09",
+        "W10",
+        "W11"
+      ],
+      "status": "implemented",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "docs/research/execution_20261001.md",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "unknown: coordination contract contains no scientific result"
+    },
+    {
+      "artifact_id": "W01.paired_manifest",
+      "name": "paired_manifest_admitted",
+      "schema": "xtbflow-dispatch/paired_manifest_admitted/v1",
+      "kind": "manifest",
+      "path": "configs/data/paired_pilot_v1.json",
+      "producer": "W01",
+      "consumers": [
+        "W04"
+      ],
+      "status": "blocked",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://76#output-interface",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "blocked: admitted event-TS records are not available at this base"
+    },
+    {
+      "artifact_id": "W01.input_view",
+      "name": "paired_input_view",
+      "schema": "xtbflow-dispatch/paired_input_view/v1",
+      "kind": "doc",
+      "path": "docs/data/paired_pilot_v1.md",
+      "producer": "W01",
+      "consumers": [
+        "W04"
+      ],
+      "status": "blocked",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://76#output-interface",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "blocked: input-view implementation and source admission remain upstream"
+    },
+    {
+      "artifact_id": "W02.baseline_factory",
+      "name": "baseline_factory_software",
+      "schema": "xtbflow-dispatch/baseline_factory_software/v1",
+      "kind": "contract",
+      "path": "configs/models/baseline_controls_v1.json",
+      "producer": "W02",
+      "consumers": [
+        "W04",
+        "W07"
+      ],
+      "status": "planned",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://77#control-directory",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "planned: W02 owns implementation and CPU checks"
+    },
+    {
+      "artifact_id": "W02.control_manifest",
+      "name": "control_manifest",
+      "schema": "xtbflow-dispatch/control_manifest/v1",
+      "kind": "manifest",
+      "path": "configs/models/baseline_controls_v1.json",
+      "producer": "W02",
+      "consumers": [
+        "W04",
+        "W07"
+      ],
+      "status": "planned",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://77#control-directory",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "planned: independently trained-control identities are not frozen"
+    },
+    {
+      "artifact_id": "W03.metric_protocol",
+      "name": "metric_protocol_frozen",
+      "schema": "xtbflow-dispatch/metric_protocol_frozen/v1",
+      "kind": "config",
+      "path": "configs/experiments/joint_metrics_v1.json",
+      "producer": "W03",
+      "consumers": [
+        "W04",
+        "W07",
+        "W11"
+      ],
+      "status": "planned",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://78#cli-and-acceptance",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "planned: metric protocol awaits W03 software freeze"
+    },
+    {
+      "artifact_id": "W04.s1_plan",
+      "name": "s1_generator_plan",
+      "schema": "xtbflow-dispatch/s1_generator_plan/v1",
+      "kind": "config",
+      "path": "configs/experiments/joint_s1_v1.json",
+      "producer": "W04",
+      "consumers": [
+        "W04"
+      ],
+      "status": "planned",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://79#fixed-experiment",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "planned: runner can be prepared but real training is gated"
+    },
+    {
+      "artifact_id": "W04.s1_results",
+      "name": "s1_generator_results",
+      "schema": "xtbflow-dispatch/s1_generator_results/v1",
+      "kind": "report",
+      "path": "docs/evidence/s1_joint_generator_20261001.json",
+      "producer": "W04",
+      "consumers": [
+        "W07",
+        "W08",
+        "W10",
+        "W11"
+      ],
+      "status": "blocked",
+      "evidence_level": "unknown",
+      "evidence_ref": "issue://79#preconditions",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": false,
+      "blocked_science": true,
+      "failure_reason": "blocked: no admitted paired manifest, frozen controls or real S1 run"
+    },
+    {
+      "artifact_id": "W05.delta_protocol",
+      "name": "delta_protocol_qualified",
+      "schema": "xtbflow-dispatch/delta_protocol_qualified/v1",
+      "kind": "config",
+      "path": "configs/experiments/delta_learning_curve_v1.json",
+      "producer": "W05",
+      "consumers": [
+        "W07"
+      ],
+      "status": "planned",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://80#responsibility",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "planned: cached E/F lane is separate from event-TS qualification"
+    },
+    {
+      "artifact_id": "W06.reference_qualification",
+      "name": "reference_qualification",
+      "schema": "xtbflow-dispatch/reference_qualification/v1",
+      "kind": "report",
+      "path": "docs/evidence/reference_qualification_20261001.json",
+      "producer": "W06",
+      "consumers": [
+        "W07",
+        "W09",
+        "W11"
+      ],
+      "status": "blocked",
+      "evidence_level": "unknown",
+      "evidence_ref": "issue://81#preconditions",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": false,
+      "blocked_science": true,
+      "failure_reason": "blocked: reference protocol and eligible attempts are not frozen"
+    },
+    {
+      "artifact_id": "W07.s2_plan",
+      "name": "s2_guidance_protocol",
+      "schema": "xtbflow-dispatch/s2_guidance_protocol/v1",
+      "kind": "config",
+      "path": "configs/experiments/guidance_placement_v1.json",
+      "producer": "W07",
+      "consumers": [
+        "W07"
+      ],
+      "status": "planned",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://82#cli-contract",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "planned: placement matrix can be prepared without calculator calls"
+    },
+    {
+      "artifact_id": "W07.s2_results",
+      "name": "s2_guidance_results",
+      "schema": "xtbflow-dispatch/s2_guidance_results/v1",
+      "kind": "report",
+      "path": "docs/evidence/s2_guidance_20261001.json",
+      "producer": "W07",
+      "consumers": [
+        "W08",
+        "W10",
+        "W11"
+      ],
+      "status": "blocked",
+      "evidence_level": "unknown",
+      "evidence_ref": "issue://82#preconditions",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": false,
+      "blocked_science": true,
+      "failure_reason": "blocked: S1 generator and reference qualification are not available"
+    },
+    {
+      "artifact_id": "W08.coupling_selection",
+      "name": "coupling_question_selection",
+      "schema": "xtbflow-dispatch/coupling_question_selection/v1",
+      "kind": "report",
+      "path": "docs/research/coupling_question_selection_20261001.md",
+      "producer": "W08",
+      "consumers": [
+        "W11"
+      ],
+      "status": "planned",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://83#selection-rule",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "planned: selection reason must consume recorded S1 failures"
+    },
+    {
+      "artifact_id": "W09.seed_manifest",
+      "name": "independent_seed_manifest",
+      "schema": "xtbflow-dispatch/independent_seed_manifest/v1",
+      "kind": "manifest",
+      "path": "configs/seeds/independent_pilot_v1.json",
+      "producer": "W09",
+      "consumers": [
+        "W06",
+        "W09"
+      ],
+      "status": "planned",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://84#freeze-independent-input",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "planned: seed preparation is independent of joint training"
+    },
+    {
+      "artifact_id": "W09.attempt_records",
+      "name": "independent_attempt_records",
+      "schema": "xtbflow-dispatch/independent_attempt_records/v1",
+      "kind": "manifest",
+      "path": "docs/evidence/independent_attempts_20261001.json",
+      "producer": "W09",
+      "consumers": [
+        "W10",
+        "W11"
+      ],
+      "status": "blocked",
+      "evidence_level": "unknown",
+      "evidence_ref": "issue://84#bounded-traditional-production",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": false,
+      "blocked_science": true,
+      "failure_reason": "blocked: execution requires W06 driver qualification and shared budget"
+    },
+    {
+      "artifact_id": "W10.origin_matrix",
+      "name": "origin_and_competitor_matrix",
+      "schema": "xtbflow-dispatch/origin_and_competitor_matrix/v1",
+      "kind": "doc",
+      "path": "docs/research/novelty_matrix.md",
+      "producer": "W10",
+      "consumers": [
+        "W10",
+        "W09",
+        "W11"
+      ],
+      "status": "planned",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://85#source-matrix",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "planned: source claims remain unknown until primary-source review"
+    },
+    {
+      "artifact_id": "W10.candidate_protocol",
+      "name": "candidate_input_protocol",
+      "schema": "xtbflow-dispatch/candidate_input_protocol/v1",
+      "kind": "config",
+      "path": "configs/science/origin_candidates_v0.1.yaml",
+      "producer": "W10",
+      "consumers": [
+        "W09"
+      ],
+      "status": "planned",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://85#candidate-registration",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "planned: no candidate is selected from model scores"
+    },
+    {
+      "artifact_id": "W10.application_selection",
+      "name": "application_selection_record",
+      "schema": "xtbflow-dispatch/application_selection_record/v1",
+      "kind": "report",
+      "path": "docs/research/application_selection_record.md",
+      "producer": "W10",
+      "consumers": [
+        "W11"
+      ],
+      "status": "blocked",
+      "evidence_level": "unknown",
+      "evidence_ref": "issue://85#selection-protocol",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": false,
+      "blocked_science": true,
+      "failure_reason": "blocked: development results and candidate attempts are not available"
+    },
+    {
+      "artifact_id": "W11.confirmation_contract",
+      "name": "confirmation_contract",
+      "schema": "xtbflow-dispatch/confirmation_contract/v1",
+      "kind": "contract",
+      "path": "docs/research/confirmation_contract_20261001.md",
+      "producer": "W11",
+      "consumers": [
+        "W11"
+      ],
+      "status": "planned",
+      "evidence_level": "interface_specified",
+      "evidence_ref": "issue://86#contract-now",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": true,
+      "blocked_science": true,
+      "failure_reason": "planned: isolation contract can be reviewed before any confirmation run"
+    },
+    {
+      "artifact_id": "W11.confirmation_result",
+      "name": "confirmation_result",
+      "schema": "xtbflow-dispatch/confirmation_result/v1",
+      "kind": "report",
+      "path": "docs/evidence/confirmation_20261001.json",
+      "producer": "W11",
+      "consumers": [],
+      "status": "blocked",
+      "evidence_level": "unknown",
+      "evidence_ref": "blocked: confirmation must wait for frozen method, application and unseen batch",
+      "artifact_hash": "unknown",
+      "code_commit": "cc11455403f1d8d3a2cf7a9a3fe35fd4168cfc47",
+      "ready_software": false,
+      "blocked_science": true,
+      "failure_reason": false
+    }
+  ],
+  "dependencies": [
+    {
+      "dependency_id": "dispatch_to_w01",
+      "from_artifact": "W00.dispatch_contract",
+      "to_artifact": "W01.paired_manifest",
+      "requirement": "dispatch contract and owner scope",
+      "required_status": "implemented"
+    },
+    {
+      "dependency_id": "dispatch_to_w02",
+      "from_artifact": "W00.dispatch_contract",
+      "to_artifact": "W02.baseline_factory",
+      "requirement": "dispatch contract and owner scope",
+      "required_status": "implemented"
+    },
+    {
+      "dependency_id": "dispatch_to_w03",
+      "from_artifact": "W00.dispatch_contract",
+      "to_artifact": "W03.metric_protocol",
+      "requirement": "dispatch contract and owner scope",
+      "required_status": "implemented"
+    },
+    {
+      "dependency_id": "dispatch_to_w04",
+      "from_artifact": "W00.dispatch_contract",
+      "to_artifact": "W04.s1_plan",
+      "requirement": "dispatch contract and owner scope",
+      "required_status": "implemented"
+    },
+    {
+      "dependency_id": "paired_manifest_to_s1",
+      "from_artifact": "W01.paired_manifest",
+      "to_artifact": "W04.s1_plan",
+      "requirement": "paired_manifest.admitted",
+      "required_status": "software_tested"
+    },
+    {
+      "dependency_id": "paired_input_to_s1",
+      "from_artifact": "W01.input_view",
+      "to_artifact": "W04.s1_plan",
+      "requirement": "reactant/training/reference input firewall",
+      "required_status": "software_tested"
+    },
+    {
+      "dependency_id": "controls_to_s1",
+      "from_artifact": "W02.control_manifest",
+      "to_artifact": "W04.s1_plan",
+      "requirement": "baseline_factory.software_pass",
+      "required_status": "software_tested"
+    },
+    {
+      "dependency_id": "metrics_to_s1",
+      "from_artifact": "W03.metric_protocol",
+      "to_artifact": "W04.s1_plan",
+      "requirement": "metric_protocol.frozen",
+      "required_status": "software_tested"
+    },
+    {
+      "dependency_id": "s1_plan_to_s1_results",
+      "from_artifact": "W04.s1_plan",
+      "to_artifact": "W04.s1_results",
+      "requirement": "runner plan and frozen matrix",
+      "required_status": "implemented"
+    },
+    {
+      "dependency_id": "dispatch_to_w05",
+      "from_artifact": "W00.dispatch_contract",
+      "to_artifact": "W05.delta_protocol",
+      "requirement": "dispatch contract and cache boundary",
+      "required_status": "implemented"
+    },
+    {
+      "dependency_id": "dispatch_to_w06",
+      "from_artifact": "W00.dispatch_contract",
+      "to_artifact": "W06.reference_qualification",
+      "requirement": "dispatch contract and ledger boundary",
+      "required_status": "implemented"
+    },
+    {
+      "dependency_id": "seed_to_reference",
+      "from_artifact": "W09.seed_manifest",
+      "to_artifact": "W06.reference_qualification",
+      "requirement": "independent seed identity",
+      "required_status": "software_tested"
+    },
+    {
+      "dependency_id": "s1_to_s2",
+      "from_artifact": "W04.s1_results",
+      "to_artifact": "W07.s2_plan",
+      "requirement": "frozen generator or explicit blocked exit",
+      "required_status": "real_development_run"
+    },
+    {
+      "dependency_id": "controls_to_s2",
+      "from_artifact": "W02.baseline_factory",
+      "to_artifact": "W07.s2_plan",
+      "requirement": "generator control interface",
+      "required_status": "software_tested"
+    },
+    {
+      "dependency_id": "metrics_to_s2",
+      "from_artifact": "W03.metric_protocol",
+      "to_artifact": "W07.s2_plan",
+      "requirement": "paired metric protocol",
+      "required_status": "software_tested"
+    },
+    {
+      "dependency_id": "reference_to_s2",
+      "from_artifact": "W06.reference_qualification",
+      "to_artifact": "W07.s2_plan",
+      "requirement": "physical validation qualification",
+      "required_status": "software_tested"
+    },
+    {
+      "dependency_id": "delta_to_s2",
+      "from_artifact": "W05.delta_protocol",
+      "to_artifact": "W07.s2_plan",
+      "requirement": "Delta arm only",
+      "required_status": "software_tested"
+    },
+    {
+      "dependency_id": "s2_plan_to_s2_results",
+      "from_artifact": "W07.s2_plan",
+      "to_artifact": "W07.s2_results",
+      "requirement": "matched placement matrix",
+      "required_status": "implemented"
+    },
+    {
+      "dependency_id": "s1_to_coupling",
+      "from_artifact": "W04.s1_results",
+      "to_artifact": "W08.coupling_selection",
+      "requirement": "recorded failure classification",
+      "required_status": "real_development_run"
+    },
+    {
+      "dependency_id": "dispatch_to_seeds",
+      "from_artifact": "W00.dispatch_contract",
+      "to_artifact": "W09.seed_manifest",
+      "requirement": "dispatch contract and input firewall",
+      "required_status": "implemented"
+    },
+    {
+      "dependency_id": "candidate_protocol_to_seeds",
+      "from_artifact": "W10.candidate_protocol",
+      "to_artifact": "W09.seed_manifest",
+      "requirement": "pre-registered candidate protocol",
+      "required_status": "implemented"
+    },
+    {
+      "dependency_id": "reference_to_attempts",
+      "from_artifact": "W06.reference_qualification",
+      "to_artifact": "W09.attempt_records",
+      "requirement": "qualified driver and ledger",
+      "required_status": "software_tested"
+    },
+    {
+      "dependency_id": "seeds_to_attempts",
+      "from_artifact": "W09.seed_manifest",
+      "to_artifact": "W09.attempt_records",
+      "requirement": "frozen independent seeds",
+      "required_status": "software_tested"
+    },
+    {
+      "dependency_id": "s1_to_selection",
+      "from_artifact": "W04.s1_results",
+      "to_artifact": "W10.application_selection",
+      "requirement": "development evidence, not confirmation",
+      "required_status": "real_development_run"
+    },
+    {
+      "dependency_id": "s2_to_selection",
+      "from_artifact": "W07.s2_results",
+      "to_artifact": "W10.application_selection",
+      "requirement": "same-budget physical evidence",
+      "required_status": "real_development_run"
+    },
+    {
+      "dependency_id": "attempts_to_selection",
+      "from_artifact": "W09.attempt_records",
+      "to_artifact": "W10.application_selection",
+      "requirement": "independent competitive attempts",
+      "required_status": "real_development_run"
+    },
+    {
+      "dependency_id": "dispatch_to_confirmation_contract",
+      "from_artifact": "W00.dispatch_contract",
+      "to_artifact": "W11.confirmation_contract",
+      "requirement": "isolation and access contract",
+      "required_status": "implemented"
+    },
+    {
+      "dependency_id": "s1_to_confirmation",
+      "from_artifact": "W04.s1_results",
+      "to_artifact": "W11.confirmation_result",
+      "requirement": "frozen method choice",
+      "required_status": "real_development_run"
+    },
+    {
+      "dependency_id": "s2_to_confirmation",
+      "from_artifact": "W07.s2_results",
+      "to_artifact": "W11.confirmation_result",
+      "requirement": "frozen physical protocol",
+      "required_status": "real_development_run"
+    },
+    {
+      "dependency_id": "coupling_to_confirmation",
+      "from_artifact": "W08.coupling_selection",
+      "to_artifact": "W11.confirmation_result",
+      "requirement": "selected coupling question only",
+      "required_status": "implemented"
+    },
+    {
+      "dependency_id": "reference_to_confirmation",
+      "from_artifact": "W06.reference_qualification",
+      "to_artifact": "W11.confirmation_result",
+      "requirement": "reference qualification",
+      "required_status": "software_tested"
+    },
+    {
+      "dependency_id": "attempts_to_confirmation",
+      "from_artifact": "W09.attempt_records",
+      "to_artifact": "W11.confirmation_result",
+      "requirement": "new unseen input batch",
+      "required_status": "real_development_run"
+    },
+    {
+      "dependency_id": "selection_to_confirmation",
+      "from_artifact": "W10.application_selection",
+      "to_artifact": "W11.confirmation_result",
+      "requirement": "application choice is frozen",
+      "required_status": "real_development_run"
+    },
+    {
+      "dependency_id": "confirmation_contract_to_result",
+      "from_artifact": "W11.confirmation_contract",
+      "to_artifact": "W11.confirmation_result",
+      "requirement": "access log and freeze checks",
+      "required_status": "implemented"
+    }
+  ],
+  "claim_limits": [
+    "The dispatch records interfaces and evidence boundaries; it does not claim that all twelve packages are complete.",
+    "Unknown, blocked, failed and budget-truncated states retain their denominators and cannot be promoted to pass.",
+    "Synthetic smoke and software tests do not establish chemical validity or confirmatory generalization.",
+    "Remote PR states are dated snapshots; offline validation cannot establish their current state or mergeability."
+  ],
+  "handoff_template": {
+    "owner_agent": "record the real agent/session; never invent an account",
+    "fields": [
+      "work_package",
+      "run_id",
+      "evidence_level",
+      "code_commit",
+      "config_hash",
+      "data_hash",
+      "split_hash",
+      "input_view_hash",
+      "checkpoint_hash",
+      "physical_protocol_hash",
+      "ledger_id",
+      "output_index",
+      "status",
+      "failure_reason"
+    ],
+    "unknown_policy": "missing evidence is recorded as unknown or blocked and remains outside scientific claims"
+  }
+}

@@ -2,6 +2,17 @@
 
 This is the canonical interface specification for issues #9, #12, #13, #14 and #20. It freezes the scientific boundary and data views before model implementation. It does not claim that the architecture is trained, optimal, chemically valid, or novel by composition alone.
 
+## 2026-10 integration status
+
+The interface remains the canonical specification, while implementation and
+evidence are tracked by module in [`../PROJECT_STATUS.md`](../PROJECT_STATUS.md).
+The artifact-level ownership and dependency contract for issues #74–#86 is
+[`../../configs/runs/research_dispatch_20261001.json`](../../configs/runs/research_dispatch_20261001.json)
+with its human-readable handoff in
+[`../research/execution_20261001.md`](../research/execution_20261001.md).
+The bounded Workflow B profile has software acceptance evidence; paired event–TS
+training, physical validation and confirmation remain separate blocked stages.
+
 ## Responsibilities
 
 XTBFlow v0.1 has one proposal model and one independent physical model. The proposal model receives a fixed CHNOS atom pool, confirmed charge and singlet multiplicity, a reactant electronic bookkeeping state, an independently prepared reactant geometry, an explicit environment pool, and a finite reaction intent. It proposes conserved event candidates, geometry initial guesses, and optionally a sign-invariant reaction direction. The physical model evaluates the same geometry through `U_hat(R) = U_GFN2(R) + DeltaU_phi(R)` and returns energy and force information. A physical energy cannot depend on which event a proposal model happens to search.

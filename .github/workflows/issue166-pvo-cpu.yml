@@ -1,0 +1,34 @@
+name: Issue 166 live PVO software checks
+
+on:
+  push:
+    branches: [codex/issue166-live-pvo-20261110]
+  pull_request:
+    branches: [codex/issue166-matched-integration-20261110]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11"]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install package and test dependencies
+        run: python -m pip install --upgrade pip && python -m pip install ".[test,data]"
+      - name: Validate bootstrap inventory
+        run: python scripts/validate_bootstrap.py
+      - name: Run reusable tests
+        run: python -m unittest discover -s tests/reusable -p "test_*.py"
+      - name: Run package tests
+        run: python -m pytest -q tests --ignore=tests/reusable

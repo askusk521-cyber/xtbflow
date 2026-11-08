@@ -18,6 +18,11 @@
       "bytes": 1034
     },
     {
+      "path": ".github/workflows/issue166-policy-cpu.yml",
+      "sha256": "bf87ebdf042af6e3f076ea5c97a52c343f23ffb74b74d20912f1f4382cb78366",
+      "bytes": 1028
+    },
+    {
       "path": ".github/workflows/issue166-replay-cpu.yml",
       "sha256": "80bdc38534cd3b6493573b96624a3d371c2b3d9f47131530431203669ec96424",
       "bytes": 1013

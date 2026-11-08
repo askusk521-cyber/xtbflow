@@ -533,6 +533,11 @@
       "bytes": 1467
     },
     {
+      "path": "docs/evidence/parallel_guidance_contract_n2_20261109.json",
+      "sha256": "9c6565b589184f68c49aa2bebb83d5e7d92eaecb6405cb7cf2e14994cae0f1b6",
+      "bytes": 1966
+    },
+    {
       "path": "docs/evidence/reaction_qm_coordinate_mapping_audit_20261002_full.json",
       "sha256": "102eb18c5af6c08c8140f661ce309bd61add1879f04317bca02b694a7c48ab7c",
       "bytes": 3188

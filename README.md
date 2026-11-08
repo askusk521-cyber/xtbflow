@@ -53,3 +53,27 @@ python -m pytest -q tests --ignore=tests/reusable
 `validate_bootstrap.py` 只检查清单内文件的完整性，不运行量化计算或训练。修改清单覆盖的文件后，要运行 `python scripts/validate_bootstrap.py --refresh`，并在同一提交里更新 `bootstrap_inventory.json`。
 
 n2 运行环境见 [`docs/ENVIRONMENT_N2.md`](docs/ENVIRONMENT_N2.md)（2026-09-30 核查），之后的变化见 `docs/STATUS_ZH.md`。主机私有路径通过环境变量或被忽略的本地配置提供。不发布凭据、受限原始数据和封存的测试标签。
+
+## Runnable MVP
+
+The bounded MVP uses one fixed reactant fixture and a serial candidate path.
+From a clean checkout, run the dependency-light software demo with:
+
+```bash
+PYTHONPATH=src python -m xtbflow.mvp run --config configs/mvp_fixture.yaml
+```
+
+The command creates `artifacts/mvp_run_<timestamp>/` containing
+`manifest.json`, `candidates.jsonl`, `ledger.json`, `summary.md`, and
+`summary.png`. The default `backend=mock` is a deterministic harmonic proxy
+labelled `evidence_level=software_demo`; it is not a physical or chemical
+result. Request the existing xTB adapter explicitly with:
+
+```bash
+PYTHONPATH=src python -m xtbflow.mvp run --config configs/mvp_fixture.yaml --backend xtb
+```
+
+An unavailable native `xtb` module is reported as `status=blocked_backend`
+with `reason_code=BLOCKED_BACKEND`; it never falls back to mock. Candidate
+rows always include status, reason code, attempt, wall seconds, CPU hours and
+GPU hours. Replays expose a stable deterministic summary hash.

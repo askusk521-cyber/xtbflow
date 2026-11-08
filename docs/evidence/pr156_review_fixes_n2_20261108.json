@@ -1,0 +1,66 @@
+{
+  "schema": "xtbflow-evidence/pr156-review-fixes-n2/v1",
+  "status": "completed",
+  "stage": "exact_pr_head_contract_validation",
+  "source_commit": "52f24f4e1de86ba4653b8a61ac3806f1dfcc18a9",
+  "working_tree_dirty": true,
+  "working_tree_diff_sha256": "f2020b617f2d7d18e8ed3b40f4c9c655a353db66f55ed10276b451d07c93724c",
+  "execution_host": "node2",
+  "execution_root": "~/xtbflow/xtbflow-exec-pr156-fixes-20261108",
+  "environment": {
+    "conda": "xtbflow",
+    "python": "3.10.19",
+    "pytorch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition"
+  },
+  "commands": [
+    "python -m compileall -q src scripts tests",
+    "PYTHONPATH=src:vendor/mechai_reusable timeout 1200s python -m pytest -q",
+    "PYTHONPATH=src:vendor/mechai_reusable timeout 1200s python -m unittest discover -s tests/reusable -p 'test_*.py'",
+    "python scripts/validate_bootstrap.py --refresh",
+    "python scripts/validate_bootstrap.py",
+    "python scripts/validate_joint_scale_data_matrix.py --output /tmp/xtbflow-pr156-scale-matrix-20261108.json",
+    "git diff --check HEAD",
+    "srun --partition=main --gres=gpu:pro6000:1 --nodes=1 --ntasks=1 --time=00:05:00 <projector smoke and microbenchmark>"
+  ],
+  "results": {
+    "pytest_passed": 271,
+    "pytest_subtests_passed": 68,
+    "reusable_unittest_passed": 56,
+    "bootstrap_inventory_files_verified": 257,
+    "scale_matrix_status": "PASS",
+    "scale_primary_run_count": 81,
+    "gpu_projector": {
+      "float32_max_residual": 2.384185791015625e-07,
+      "float64_max_residual": 2.220446049250313e-16,
+      "padding_max": 0.0,
+      "gradient_finite": true,
+      "batch_8_speedup_vs_rowwise": 2.297831590950458,
+      "batch_32_speedup_vs_rowwise": 8.896096625128143
+    },
+    "warnings": [
+      "pre-existing tensor-to-scalar warning in tests/test_energy_forces.py",
+      "GPU smoke emitted the same tensor-to-scalar warning from the inline diagnostic"
+    ]
+  },
+  "resource_budget": {
+    "calculator_calls": 0,
+    "gpu_jobs": 1,
+    "gpu_walltime_limit": "00:05:00",
+    "model_training": false
+  },
+  "claim_limits": [
+    "This is exact-PR-head software and projector evidence only.",
+    "It does not establish chemistry accuracy, training quality, or generalization.",
+    "The PR still needs a clean rebase/merge-conflict resolution and a human review before merge."
+  ],
+  "file_hashes": {
+    "bootstrap_inventory.json": "885eb67c3338abc22ca4662b9707f5c2b58f9e79d35454d3dbd78c4419baac90",
+    "scripts/run_reactant_generation.py": "4336a9ea834aa43ad4a721b719378c70c0ee39e7918d4de5b07ec2512be6f602",
+    "scripts/score_reactant_generation.py": "65eb3b2a3f03ea6844af9dd91effbe0c251b22689f62399227fb7ec281320e0c",
+    "src/xtbflow/evaluation/generation.py": "c777b2d224491b2d9a7371e88f666e9fec9b73c211dfce8d06e3ff9b6706c381",
+    "src/xtbflow/data/records.py": "8f89d63a653b022949930c61115d72579082dcc4e6013c3e89db768d11e6d8bf",
+    "tests/test_reactant_generation.py": "c6bd86edce5058c4a1282db7b0953c2a4e62b8451c072443acdb6dfef1e6c598"
+  }
+}

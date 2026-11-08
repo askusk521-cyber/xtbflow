@@ -8,6 +8,11 @@
       "bytes": 1114
     },
     {
+      "path": ".github/workflows/issue166-adapter-cpu.yml",
+      "sha256": "665bd4c06c91441d6d0efdebb7d69c171c3d8ff3a1cfd78083987f70138bd58c",
+      "bytes": 1014
+    },
+    {
       "path": ".github/workflows/issue166-replay-cpu.yml",
       "sha256": "80bdc38534cd3b6493573b96624a3d371c2b3d9f47131530431203669ec96424",
       "bytes": 1013
@@ -433,6 +438,11 @@
       "bytes": 1365
     },
     {
+      "path": "docs/architecture/guidance_adapter_boundary_v0.1.md",
+      "sha256": "2acf473e1ec5261ae0d0fdc5c818842b161928f59560f7e9c306a050bd8ca4c0",
+      "bytes": 1429
+    },
+    {
       "path": "docs/architecture/parallel_guidance_contract_v0.1.md",
       "sha256": "0c5a5dfb5e19895d297275d053824996d8de3566fbcb5e7c2a7cde3432bf77b3",
       "bytes": 1429
@@ -511,6 +521,11 @@
       "path": "docs/evidence/gfn2_units_diagnostic_20260927.json",
       "sha256": "58ce3ca92d5d5733eb2d7b153f7f180a5fb25552647b4b0c25a926281b6b36e7",
       "bytes": 21013
+    },
+    {
+      "path": "docs/evidence/guidance_adapter_boundary_n2_20261110.json",
+      "sha256": "70e31f094b1309a7c0d7652797c5a8fa74623cf5b81f2d97c81e416ee07814e4",
+      "bytes": 2281
     },
     {
       "path": "docs/evidence/independent_seed_manifest_audit_20260929.json",
@@ -936,6 +951,11 @@
       "path": "schemas/event_geometry_sample_manifest_v1.schema.json",
       "sha256": "da8b62a2753e46432dcc5be1404934843708c00be30132b7c57478554ea09800",
       "bytes": 9504
+    },
+    {
+      "path": "schemas/guidance_adapter_contract.schema.json",
+      "sha256": "25100b797c7eaa6fe08a8a3d78bbc62a4cdcd3640a6422bf7223d3deefc9ed6c",
+      "bytes": 3270
     },
     {
       "path": "schemas/handoff_freeze.schema.json",
@@ -1399,8 +1419,13 @@
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
-      "sha256": "2df9e6055242f9f8fa8ec1564d249ff5ba99034dd31194268f5d8f721a27c96a",
-      "bytes": 1777
+      "sha256": "b5d6660e1d4d122a9a51fa121d12956887d3361916e79f8666030e6adbeaab78",
+      "bytes": 2495
+    },
+    {
+      "path": "src/xtbflow/sampling/adapters.py",
+      "sha256": "75d5807cda383221deda9db95acf1c1bf4145f7a1c9ef2b4bd3083c8561fa04a",
+      "bytes": 19453
     },
     {
       "path": "src/xtbflow/sampling/guidance.py",
@@ -1561,6 +1586,11 @@
       "path": "tests/test_geometry_flow.py",
       "sha256": "3a1f64a2bb77180cd7416b52d120dd14bd899881f5fb7bc812636133edbe506d",
       "bytes": 4675
+    },
+    {
+      "path": "tests/test_guidance_adapters.py",
+      "sha256": "173157079077f363bbf5661c6bfc61042635794168365786a02b32ccccf6d990",
+      "bytes": 6151
     },
     {
       "path": "tests/test_handoff_freeze.py",

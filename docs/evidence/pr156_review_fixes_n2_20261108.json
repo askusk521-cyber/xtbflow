@@ -30,7 +30,8 @@
     "pytest_passed": 282,
     "pytest_subtests_passed": 68,
     "reusable_unittest_passed": 56,
-    "bootstrap_inventory_files_verified": 258,
+    "bootstrap_inventory_files_verified": 257,
+    "final_docs_head_bootstrap_files": 258,
     "scale_matrix_status": "PASS",
     "scale_primary_run_count": 81,
     "gpu_projector": {

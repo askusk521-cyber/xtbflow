@@ -1,0 +1,51 @@
+{
+  "schema": "xtbflow-claim-evidence-manifest/v1",
+  "manifest_id": "w13-example-panel-v1",
+  "status": "draft",
+  "created_utc": "2026-11-08T00:00:00Z",
+  "source_commit": null,
+  "panel_manifest_sha256": null,
+  "claims": [
+    {
+      "claim_id": "w08-joint-over-serial-example",
+      "claim_type": "joint_coupling",
+      "statement": "Compare joint and strong serial controls on the frozen development panel.",
+      "evidence_level": "development_comparison",
+      "comparison_id": "w08-2x2-example-v1",
+      "primary_metric": "unique_strict_certified_channels_per_parent",
+      "status": "planned",
+      "arms": [
+        {"arm_id": "joint", "method": "joint_bidirectional", "role": "candidate"},
+        {"arm_id": "serial", "method": "serial_backtracking", "role": "control"}
+      ],
+      "input_contract": {
+        "schema": "xtbflow-reactant-input/v1",
+        "split": "development_comparison",
+        "group_key": "parent_reaction_id",
+        "parent_count": 5,
+        "family_holdout": true
+      },
+      "source": {
+        "code_commit": null,
+        "config_sha256": null,
+        "model_sha256": null,
+        "protocol_sha256": null,
+        "data_manifest_sha256": null
+      },
+      "budget": {
+        "model_forwards": null,
+        "calculator_calls": null,
+        "cpu_core_hours": null,
+        "gpu_hours": null,
+        "wall_seconds": null,
+        "accounting_status": "not_started"
+      },
+      "evidence_refs": [],
+      "claim_limit": "planned comparison only; no chemistry result, superiority claim, or independent confirmation"
+    }
+  ],
+  "claim_limits": [
+    "This example freezes table structure only.",
+    "The concrete eligible panel manifest and its hash remain pending."
+  ]
+}

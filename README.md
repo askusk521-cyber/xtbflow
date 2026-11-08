@@ -85,3 +85,30 @@ python -m pip install -e ".[test]"
 python -m unittest discover -s tests/reusable -p "test_*.py"
 python -m pytest -q tests/test_package.py tests/test_research_dispatch.py
 ```
+
+## Runnable MVP
+
+The bounded MVP uses one fixed reactant fixture and a serial candidate path.
+From a clean checkout, run the dependency-free software demo with:
+
+```bash
+PYTHONPATH=src python -m xtbflow.mvp run --config configs/mvp_fixture.yaml
+```
+
+The command creates `artifacts/mvp_run_<timestamp>/` containing
+`manifest.json`, `candidates.jsonl`, `ledger.json`, `summary.md`, and
+`summary.png`.  The default `backend=mock` is a deterministic harmonic proxy
+and is labelled `evidence_level=software_demo`; it is not a physical or
+chemical result.  To request the real xTB adapter explicitly, run:
+
+```bash
+PYTHONPATH=src python -m xtbflow.mvp run --config configs/mvp_fixture.yaml --backend xtb
+```
+
+If the native `xtb` module is unavailable, the xTB command writes the same
+structured artifacts with `status=blocked_backend` and does not silently fall
+back to the mock backend.  Candidate records always include status,
+`reason_code`, attempt, wall seconds, CPU hours, and GPU hours.  Replays with
+the same config, backend, and seed expose a stable
+`replay.deterministic_summary_sha256`; timing and native build identity may
+vary by environment.

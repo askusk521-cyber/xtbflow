@@ -24,13 +24,13 @@
     "wall_minutes": 5
   },
   "results": {
-    "bootstrap": "321 files match",
+    "bootstrap": "326 files match",
     "diff_check": "pass",
     "focused_network": "5 passed",
     "full_pytest": "271 passed, 1 warning, 68 subtests",
     "reusable_unittest": "56 passed"
   },
-  "source_commit": "79c6e0823d814e4ca0f04a44ed5dae6b3c731d10",
+  "source_commit": "9f65ed6a1822eb0ec57ccc33e6cac5b7f94e46cc",
   "stage": "issue-142-network-contract-software",
   "status": "pass"
 }

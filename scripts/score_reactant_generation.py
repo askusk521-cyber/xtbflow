@@ -155,6 +155,7 @@ def _record_metrics(
     labels: Any,
     candidates: tuple[GeneratedCandidate, ...],
     *,
+    event_candidates: tuple[GeneratedCandidate, ...] | None = None,
     method: str,
     max_slots: int,
 ) -> tuple[dict[str, Any], tuple[dict[str, Any], ...]]:
@@ -166,14 +167,15 @@ def _record_metrics(
     """
 
     raw_candidates = tuple(candidates)
+    raw_event_candidates = raw_candidates if event_candidates is None else tuple(event_candidates)
     geometry_candidates, geometry_duplicates, geometry_unique, geometry_cap = _deduplicate_with_stats(
         raw_candidates, max_slots=max_slots, mode="geometry"
     )
-    event_candidates, event_duplicates, event_unique, event_cap = _deduplicate_with_stats(
-        raw_candidates, max_slots=max_slots, mode="geometry_event"
+    event_slots, event_duplicates, event_unique, event_cap = _deduplicate_with_stats(
+        raw_event_candidates, max_slots=max_slots, mode="geometry_event"
     )
     geometry_scores = score_candidates(view, labels, geometry_candidates)
-    event_scores = score_candidates(view, labels, event_candidates)
+    event_scores = score_candidates(view, labels, event_slots)
     scored: list[dict[str, Any]] = []
     for scope, rows in (("geometry", geometry_scores), ("event", event_scores)):
         for row in rows:
@@ -202,9 +204,10 @@ def _record_metrics(
         "raw_candidate_count": len(raw_candidates),
         # Keep candidate_count as the event-slot count for compatibility, but
         # expose both slot populations so a report cannot hide a collapse.
-        "candidate_count": len(event_candidates),
+        "candidate_count": len(event_slots),
         "geometry_candidate_count": len(geometry_candidates),
-        "event_candidate_count": len(event_candidates),
+        "event_candidate_count": len(event_slots),
+        "raw_event_candidate_count": len(raw_event_candidates),
         "decode_accepted": len(accepted_event),
         "decode_unresolved": len(event_scores) - len(accepted_event),
         "event_exact_match": None if not event_exact_values else int(any(event_exact_values)),
@@ -416,7 +419,22 @@ def main() -> int:
             if generated_row is not None
             else ()
         )
-        learned_summary, learned_scores = _record_metrics(view, labels, candidates, method="learned", max_slots=args.candidate_cap)
+        event_candidates = (
+            tuple(
+                _candidate_from_mapping(item)
+                for item in generated_row.get("event_candidates", generated_row.get("candidates", []))
+            )
+            if generated_row is not None
+            else ()
+        )
+        learned_summary, learned_scores = _record_metrics(
+            view,
+            labels,
+            candidates,
+            event_candidates=event_candidates,
+            method="learned",
+            max_slots=args.candidate_cap,
+        )
         if generated_row is None:
             learned_summary["status"] = "missing_from_generation"
         elif not candidates:

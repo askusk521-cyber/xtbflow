@@ -11,16 +11,18 @@ from importlib import import_module
 
 from .terminal import (
     GENERATION_FAILURE_STAGES,
+    GENERATION_STATUS_FAILURE_STAGES,
     GENERATION_STATUSES,
     INITIAL_STATE_POLICIES,
     GenerationAttemptRecord,
     GenerationProtocol,
     TerminalCandidate,
     deduplicate_terminal_candidates,
+    generation_failure_stage,
 )
 
 _GENERATION_EXPORTS = {
-    "GeneratedCandidate", "GenerationBatch", "RepeatedGenerationResult", "ReactantInput", "ReactantView",
+    "GeneratedCandidate", "GenerationBatch", "GenerationStageError", "RepeatedGenerationResult", "ReactantInput", "ReactantView",
     "ReferenceLabels", "candidate_fingerprint", "candidate_fingerprints",
     "centered_reactant_coordinates", "checkpoint_atom_count",
     "deduplicate_generated_candidates", "generated_candidate_key", "generate_candidate", "generate_candidates",
@@ -45,6 +47,7 @@ def __getattr__(name: str):
 __all__ = [
     "GeneratedCandidate",
     "GenerationBatch",
+    "GenerationStageError",
     "RepeatedGenerationResult",
     "ReactantInput",
     "ReactantView",
@@ -69,7 +72,9 @@ __all__ = [
     "score_candidates",
     "summarize_by_group",
     "GENERATION_FAILURE_STAGES",
+    "GENERATION_STATUS_FAILURE_STAGES",
     "GENERATION_STATUSES",
+    "generation_failure_stage",
     "INITIAL_STATE_POLICIES",
     "GenerationAttemptRecord",
     "GenerationProtocol",

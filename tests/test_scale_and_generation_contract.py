@@ -13,7 +13,7 @@ from xtbflow.data import (
     parent_equal_mean,
     validate_nested_parent_subsets,
 )
-from xtbflow.evaluation import GenerationAttemptRecord, GenerationProtocol
+from xtbflow.evaluation import GenerationAttemptRecord, GenerationProtocol, generation_failure_stage
 from xtbflow.models import JointFlowRuntimeConfig, joint_flow_parameter_count, total_electron_projector
 
 
@@ -97,3 +97,12 @@ def test_generation_attempt_failure_stages_are_not_collapsed():
             seed=17,
             status="execution_failed",
         ).validate()
+
+
+def test_generation_runner_statuses_have_canonical_failure_stage_mapping():
+    assert generation_failure_stage("completed") is None
+    assert generation_failure_stage("decode_failed") == "event_decode"
+    assert generation_failure_stage("invalid") == "candidate_validation"
+    assert generation_failure_stage("generation_failed") == "integration"
+    with pytest.raises(ValueError, match="unsupported generation status"):
+        generation_failure_stage("unknown")

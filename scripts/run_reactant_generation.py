@@ -28,7 +28,7 @@ from xtbflow.evaluation.generation import (
     load_generation_model,
     load_reactant_inputs,
 )
-from xtbflow.evaluation.terminal import GenerationProtocol, INITIAL_STATE_POLICIES
+from xtbflow.evaluation.terminal import GenerationProtocol, INITIAL_STATE_POLICIES, generation_failure_stage
 from xtbflow.models import CONTROL_MODES
 
 
@@ -218,6 +218,7 @@ def main() -> int:
                     noise_scale=args.noise_scale,
                 )
                 generated = repeated.candidates
+                event_generated = repeated.event_candidates
                 attempted = repeated.attempted
                 accepted = repeated.unique_candidates
                 decode_accepted = repeated.decode_accepted
@@ -244,6 +245,7 @@ def main() -> int:
                     noise_scale=args.noise_scale,
                 )
                 generated = batch.candidates
+                event_generated = batch.candidates
                 attempted = batch.attempted
                 accepted = batch.accepted
                 decode_accepted = batch.accepted
@@ -272,6 +274,7 @@ def main() -> int:
                     "family_id": reactant.family_id,
                     "input_fingerprint": reactant.input_fingerprint,
                     "status": record_status,
+                    "failure_stage": generation_failure_stage(record_status),
                     "attempted": attempted,
                     "accepted": accepted,
                     "decode_accepted": decode_accepted,
@@ -282,10 +285,15 @@ def main() -> int:
                     "duplicate_event": duplicate_event,
                     "unique_candidates": accepted,
                     "event_unique_candidates": event_unique_candidates,
+                    "candidate_slot_contract": {
+                        "geometry": "candidates",
+                        "geometry_event": "event_candidates",
+                    },
                     "rejected": rejected,
                     "rejection_rate": rejected / attempted if attempted else 0.0,
                     "rejection_reasons": rejection_reasons,
                     "candidates": [candidate.to_mapping() for candidate in generated],
+                    "event_candidates": [candidate.to_mapping() for candidate in event_generated],
                 }
             )
         stage = "report_write"
@@ -311,6 +319,11 @@ def main() -> int:
             "input_schema": "xtbflow-reactant-input/v1",
             "target_fields_read": False,
             "target_label_policy": "reactant-only rows reject product/event/TS/reference fields",
+            "candidate_slot_contract": {
+                "geometry": "records[*].candidates",
+                "geometry_event": "records[*].event_candidates",
+                "raw_attempts": "records[*].attempted and accounting fields",
+            },
             "record_count": len(reactants),
             "checkpoint_atom_count": max_atoms,
             "mode": args.mode,

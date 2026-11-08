@@ -30,16 +30,41 @@ GENERATION_FAILURE_STAGES = (
 )
 GENERATION_STATUSES = (
     "completed",
+    "empty",
+    "decode_failed",
+    "invalid",
+    "generation_failed",
     "not_run",
     "execution_failed",
     "settlement_failed",
     "report_write_failed",
     "budget_exhausted",
 )
+GENERATION_STATUS_FAILURE_STAGES = {
+    "empty": "event_decode",
+    "decode_failed": "event_decode",
+    "invalid": "candidate_validation",
+    "generation_failed": "integration",
+    "not_run": "generation_preflight",
+    "execution_failed": "integration",
+    "settlement_failed": "settlement",
+    "report_write_failed": "report_write",
+    "budget_exhausted": "physical_refinement",
+}
 # Latent initialization is intentionally absent until the model accepts a
 # latent input.  Keeping it in this tuple made an apparently valid protocol
 # fail only after a trajectory had already started.
 INITIAL_STATE_POLICIES = ("deterministic_reactant", "event_noise", "geometry_noise", "event_geometry_noise")
+
+
+def generation_failure_stage(status: str) -> str | None:
+    """Map a runner status to the canonical generation failure stage."""
+
+    if status == "completed":
+        return None
+    if status not in GENERATION_STATUSES:
+        raise ValueError(f"unsupported generation status: {status}")
+    return GENERATION_STATUS_FAILURE_STAGES[status]
 
 
 @dataclass(frozen=True)

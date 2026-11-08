@@ -9,14 +9,17 @@ import numpy as np
 import pytest
 import torch
 
+from xtbflow.evaluation import generation as generation_module
 from xtbflow.evaluation.generation import (
     GeneratedCandidate,
+    GenerationBatch,
     ReactantView,
     ReferenceLabels,
     candidate_fingerprints,
     checkpoint_atom_count,
     generate_candidates,
     generate_repeated_candidates,
+    generate_repeated_candidates_with_accounting,
     deduplicate_generated_candidates,
     label_replacement_invariant,
     load_reactant_inputs,
@@ -254,6 +257,43 @@ def test_repeated_generation_requires_and_uses_a_stochastic_initial_state():
     assert len({candidate.fingerprint() for candidate in candidates}) == 2
 
 
+def test_repeated_generation_retains_event_slots_when_geometry_is_duplicate(monkeypatch):
+    model = _zero_model()
+    view = ReactantView.from_mapping(_row())
+    packed_by_seed = {11: (1, 2, 3), 17: (4, 5, 6)}
+
+    def fake_generate_candidates(*args, **kwargs):
+        seed = kwargs["attempt_seed"]
+        candidate = GeneratedCandidate(
+            record_id="r0",
+            control_mode="joint_bidirectional",
+            coordinates=((0.0, 0.0, 0.0), (1.0, 0.0, 0.0)),
+            packed_event=packed_by_seed[seed],
+            steps=4,
+        )
+        return GenerationBatch((candidate,), 1, 0, (), 4, 1)
+
+    monkeypatch.setattr(generation_module, "generate_candidates", fake_generate_candidates)
+    result = generate_repeated_candidates_with_accounting(
+        model,
+        view,
+        max_atoms=2,
+        control_mode="joint_bidirectional",
+        protocol=GenerationProtocol(
+            candidate_cap=2,
+            attempt_seeds=(11, 17),
+            initial_state_policy="geometry_noise",
+        ),
+        steps=4,
+    )
+    assert len(result.candidates) == 1
+    assert len(result.event_candidates) == 2
+    assert result.unique_candidates == 1
+    assert result.event_unique_candidates == 2
+    assert result.duplicate_geometry == 1
+    assert result.duplicate_event == 0
+
+
 def test_event_noise_initial_state_is_conservation_preserving():
     model = _zero_model()
     view = ReactantView.from_mapping(_row())
@@ -317,6 +357,44 @@ def test_event_slot_deduplication_preserves_distinct_events_at_one_geometry():
         (first, second), max_slots=2, mode="geometry_event"
     )
     assert kept == (first, second)
+
+
+def test_scorer_reads_event_candidate_slots_separately_from_geometry_slots():
+    path = Path(__file__).parents[1] / "scripts" / "score_reactant_generation.py"
+    spec = importlib.util.spec_from_file_location("xtbflow_reactant_generation_scorer_slots", path)
+    assert spec is not None and spec.loader is not None
+    scorer = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = scorer
+    spec.loader.exec_module(scorer)
+    view = ReactantView.from_mapping(_row())
+    labels = _labels(1.0, 1.2)
+    first = GeneratedCandidate(
+        record_id="r0",
+        control_mode="joint_bidirectional",
+        coordinates=((0.0, 0.0, 0.0), (1.0, 0.0, 0.0)),
+        packed_event=(1, 2, 3),
+        steps=4,
+        candidate_index=0,
+    )
+    second = GeneratedCandidate(
+        record_id="r0",
+        control_mode="joint_bidirectional",
+        coordinates=first.coordinates,
+        packed_event=(4, 5, 6),
+        steps=4,
+        candidate_index=1,
+    )
+    summary, _ = scorer._record_metrics(
+        view,
+        labels,
+        (first,),
+        event_candidates=(first, second),
+        method="learned",
+        max_slots=2,
+    )
+    assert summary["geometry_candidate_count"] == 1
+    assert summary["event_candidate_count"] == 2
+    assert summary["raw_event_candidate_count"] == 2
 
 
 def test_decode_failure_is_unresolved_for_event_exact_match():

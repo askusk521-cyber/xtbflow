@@ -1,0 +1,117 @@
+{
+  "$id": "https://xtbflow.local/schemas/reaction_network.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "XTBFlow reaction network",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "network_id", "atom_pool_id", "nodes", "edges"],
+  "properties": {
+    "schema_version": {"const": "xtbflow-reaction-network/v1"},
+    "network_id": {"type": "string", "minLength": 1},
+    "atom_pool_id": {"type": "string", "minLength": 1},
+    "nodes": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/node"}
+    },
+    "edges": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/edge"}
+    }
+  },
+  "$defs": {
+    "state": {
+      "anyOf": [
+        {"type": "integer"},
+        {"enum": ["unknown", "unavailable", "ambiguous", "missing", "unverified"]}
+      ]
+    },
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "node_id", "composition", "charge", "multiplicity", "connectivity_key",
+        "stereo_key", "conformer_key", "geometry_hash", "geometry_locator", "protocol_id",
+        "node_kind", "source_record_id", "claim_limit"
+      ],
+      "properties": {
+        "node_id": {"type": "string", "minLength": 1},
+        "composition": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {"type": "string", "minLength": 1},
+              {"type": "integer", "minimum": 1}
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "charge": {"$ref": "#/$defs/state"},
+        "multiplicity": {"$ref": "#/$defs/state"},
+        "connectivity_key": {"type": "string", "minLength": 1},
+        "stereo_key": {"type": "string", "minLength": 1},
+        "conformer_key": {"type": "string", "minLength": 1},
+        "geometry_hash": {"$ref": "#/$defs/hash"},
+        "geometry_locator": {"type": "string", "minLength": 1},
+        "protocol_id": {"type": "string", "minLength": 1},
+        "node_kind": {"enum": ["reactant", "intermediate", "product", "unknown"]},
+        "source_record_id": {"type": "string"},
+        "claim_limit": {"type": "string"}
+      }
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ledger_event_ids", "calculator_calls", "wall_seconds", "cpu_core_seconds", "gpu_seconds"],
+      "properties": {
+        "ledger_event_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "calculator_calls": {"type": "integer", "minimum": 0},
+        "wall_seconds": {"type": "number", "minimum": 0},
+        "cpu_core_seconds": {"type": "number", "minimum": 0},
+        "gpu_seconds": {"type": "number", "minimum": 0}
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "edge_id", "source_node_id", "target_node_id", "status", "proposal_id", "protocol_id",
+        "observed_event", "ts_reference", "mode_reference", "irc_reference", "endpoint_reference",
+        "cost", "failure_reason", "claim_limit"
+      ],
+      "properties": {
+        "edge_id": {"type": "string", "minLength": 1},
+        "source_node_id": {"type": "string", "minLength": 1},
+        "target_node_id": {"type": ["string", "null"], "minLength": 1},
+        "status": {"enum": ["candidate", "unresolved", "certified"]},
+        "proposal_id": {"type": "string", "minLength": 1},
+        "protocol_id": {"type": "string", "minLength": 1},
+        "observed_event": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {"type": "integer", "minimum": 0},
+              {"type": "integer", "minimum": 0},
+              {"type": "integer", "not": {"const": 0}}
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3
+          }
+        },
+        "ts_reference": {"type": ["string", "null"], "minLength": 1},
+        "mode_reference": {"type": ["string", "null"], "minLength": 1},
+        "irc_reference": {"type": ["string", "null"], "minLength": 1},
+        "endpoint_reference": {"type": ["string", "null"], "minLength": 1},
+        "cost": {"anyOf": [{"$ref": "#/$defs/cost"}, {"type": "null"}]},
+        "failure_reason": {"type": ["string", "null"]},
+        "claim_limit": {"type": "string"}
+      }
+    }
+  }
+}

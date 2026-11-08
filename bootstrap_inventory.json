@@ -388,6 +388,11 @@
       "bytes": 6609
     },
     {
+      "path": "docs/PROJECT_STATUS.md",
+      "sha256": "cc189a05f9588c36042ca4b8413a8ba4258bdc6c39f0398c600e121dd52bd412",
+      "bytes": 443
+    },
+    {
       "path": "docs/PROVENANCE.md",
       "sha256": "07b8e206c34433ec1ff0c22ee34d259e0a37e2784db996d38fddf304f96e8390",
       "bytes": 1983
@@ -1364,8 +1369,8 @@
     },
     {
       "path": "src/xtbflow/validation/__init__.py",
-      "sha256": "28bde676c7adc27be4ecab057c647000e060a97fc6e7503672fcfaa0fc92959c",
-      "bytes": 711
+      "sha256": "2f1b5c8cac1c8802abc283e347801add2cfb13fc024bd965a8833c20747fc568",
+      "bytes": 1030
     },
     {
       "path": "src/xtbflow/validation/connectivity.py",

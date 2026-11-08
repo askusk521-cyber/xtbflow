@@ -1,0 +1,75 @@
+{
+  "schema": "xtbflow-evidence/pr156-review-fixes-n2/v1",
+  "status": "completed",
+  "stage": "validated_at_parent_commit",
+  "source_commit": "fe933315e83a226b17af561846b0bbc041b6cd74",
+  "validated_commit": "fe933315e83a226b17af561846b0bbc041b6cd74",
+  "working_tree_dirty": false,
+  "working_tree_diff_sha256": null,
+  "stacked_fix_commits": [
+    "7a95431fb1de90b8073068d267fc3fdb14b61f44",
+    "fb7a42ae2c104742d1322c67fdd3c8b0119ac65b",
+    "865370634153a97f21bd70fc5606311832155a26",
+    "fe933315e83a226b17af561846b0bbc041b6cd74"
+  ],
+  "execution_host": "node2",
+  "execution_root": "~/xtbflow/xtbflow-exec-pr156-docs-fix-20261108",
+  "environment": {
+    "conda": "xtbflow",
+    "python": "3.10.19",
+    "pytorch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition"
+  },
+  "commands": [
+    "python -m compileall -q src scripts tests",
+    "PYTHONPATH=src:vendor/mechai_reusable timeout 1200s python -m pytest -q",
+    "PYTHONPATH=src:vendor/mechai_reusable timeout 1200s python -m unittest discover -s tests/reusable -p 'test_*.py'",
+    "python scripts/validate_bootstrap.py --refresh",
+    "python scripts/validate_bootstrap.py",
+    "python scripts/validate_joint_scale_data_matrix.py --output /tmp/xtbflow-pr156-scale-matrix-20261108.json",
+    "git diff --check HEAD",
+    "srun --partition=main --gres=gpu:pro6000:1 --nodes=1 --ntasks=1 --time=00:05:00 <projector smoke and microbenchmark>"
+  ],
+  "results": {
+    "pytest_passed": 282,
+    "pytest_subtests_passed": 68,
+    "reusable_unittest_passed": 56,
+    "bootstrap_inventory_files_verified": 257,
+    "final_docs_head_bootstrap_files": 258,
+    "scale_matrix_status": "PASS",
+    "scale_primary_run_count": 81,
+    "gpu_projector": {
+      "float32_max_residual": 2.384185791015625e-7,
+      "float64_max_residual": 2.220446049250313e-16,
+      "padding_max": 0,
+      "gradient_finite": true,
+      "batch_8_speedup_vs_rowwise": 2.297831590950458,
+      "batch_32_speedup_vs_rowwise": 8.896096625128143
+    },
+    "warnings": [
+      "pre-existing tensor-to-scalar warning in tests/test_energy_forces.py",
+      "GPU smoke emitted the same tensor-to-scalar warning from the inline diagnostic"
+    ]
+  },
+  "resource_budget": {
+    "calculator_calls": 0,
+    "gpu_jobs": 1,
+    "gpu_walltime_limit": "00:05:00",
+    "model_training": false
+  },
+  "claim_limits": [
+    "This is software and projector evidence validated at the Python-code parent commit; the final docs/CI commit is docs-only.",
+    "It does not establish chemistry accuracy, training quality, or generalization.",
+    "This is software and projector evidence validated at the Python-code parent commit; the final docs/CI commit is docs-only and the PR still needs human review before merge."
+  ],
+  "file_hashes": {
+    "bootstrap_inventory.json": "26f27675c7453203c307168f6ea49744638161505c7ab3a3cde7978e7b57859b",
+    "scripts/run_reactant_generation.py": "7e96c6b0794aa23b55c6798efeefdc6e0189eb316c3300b94879d8542540f758",
+    "scripts/score_reactant_generation.py": "0227bdad8e7e82ca8da12c15f030050306cbb977840cee7eeca237a260d41799",
+    "src/xtbflow/evaluation/generation.py": "5451205be7a8357f2906808c91d734c6ac43a2627fc0bfdfd6b3284c846e1e58",
+    "src/xtbflow/data/records.py": "8f89d63a653b022949930c61115d72579082dcc4e6013c3e89db768d11e6d8bf",
+    "tests/test_reactant_generation.py": "f89fa1ab2463c8cc441a33e1e142a92af1129ab0c1184aff07f44c570f643877",
+    "tests/test_independent_seeds.py": "587a25b1910ae1cfe42acd0fb1af69c3644e828faca80335f4f8c8616011dcea"
+  }
+}

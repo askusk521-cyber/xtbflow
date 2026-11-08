@@ -49,12 +49,14 @@ not evidence for or against the coupling hypothesis.
 
 The primary score is produced from reactant-side inputs and a frozen model
 without reference event, TS geometry, product, or downstream labels. A repeated
-attempt is valid only when the protocol declares an actual stochastic source:
-event noise, geometry noise, or a latent variable. Different integer seeds by
-themselves do not create different candidates for a deterministic model.
-Candidates are decoded, checked for legality, and de-duplicated before the
-unique-geometry slot metric is computed. Label-assisted event and geometry
-errors are retained for diagnosis only.
+attempt is valid only when the protocol declares an actual supported stochastic
+source: event noise or geometry noise. Latent inputs are not implemented and
+are rejected during protocol validation. Different integer seeds by themselves
+do not create different candidates for a deterministic model. Candidates are
+decoded, checked for legality, and de-duplicated by metric scope: geometry
+metrics use geometry slots, while event metrics use geometry-plus-event slots.
+Empty, failed, invalid, and duplicate attempts remain in the parent accounting;
+label-assisted event and geometry errors are retained for diagnosis only.
 
 The executable boundary is the target-free `xtbflow-reactant-input/v1` JSONL
 contract in [`schemas/reactant_input.schema.json`](../../schemas/reactant_input.schema.json).
@@ -63,8 +65,8 @@ checkpoint; `scripts/score_reactant_generation.py` is a separate post-hoc stage
 that may open reference labels. `label_replacement_invariant` checks that
 replacing reference labels leaves candidate fingerprints unchanged. A repeated
 attempt must use `GenerationProtocol` with an explicit event or geometry noise
-source; a latent policy remains reserved until the model exposes a latent
-input. Different seeds alone are not counted as samples.
+source; nonzero `latent_dim` and a `latent` policy fail before model execution.
+Different seeds alone are not counted as samples.
 `generate_repeated_candidates` records actual unique geometry slots and never
 fills an advertised cap with copies of a deterministic trajectory.
 

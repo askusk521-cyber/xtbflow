@@ -74,6 +74,14 @@ from .policy_adapter import (
     RecordedPolicyProvider,
     run_policy_ablation,
 )
+from .matched_integration import (
+    MATCHED_ARMS,
+    MatchedArm,
+    MatchedComparisonArtifact,
+    MatchedComparisonConfig,
+    MatchedRow,
+    run_matched_comparison,
+)
 
 __all__ = [
     "GuidanceSchedule", "schedule_strength", "control_euler_step", "euler_step", "serial_euler_step",
@@ -90,4 +98,6 @@ __all__ = [
     "RecordedPhysicalProvider", "run_physical_ablation",
     "PolicyAblationArtifact", "PolicyFeedback", "PolicyGuidanceConfig",
     "RecordedPolicyProvider", "run_policy_ablation",
+    "MATCHED_ARMS", "MatchedArm", "MatchedComparisonArtifact", "MatchedComparisonConfig",
+    "MatchedRow", "run_matched_comparison",
 ]

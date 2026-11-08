@@ -453,6 +453,11 @@
       "bytes": 1429
     },
     {
+      "path": "docs/architecture/matched_guidance_integration_v0.1.md",
+      "sha256": "3ec8207f37b0952410206105a5e00749f2a2c3e2b0e9feaebb0ddbb1832dca59",
+      "bytes": 930
+    },
+    {
       "path": "docs/architecture/parallel_guidance_contract_v0.1.md",
       "sha256": "0c5a5dfb5e19895d297275d053824996d8de3566fbcb5e7c2a7cde3432bf77b3",
       "bytes": 1429
@@ -1003,6 +1008,11 @@
       "bytes": 3549
     },
     {
+      "path": "schemas/matched_guidance_comparison.schema.json",
+      "sha256": "db60f222aa60e33b2d2b2f698eb4120211f5abfc6387d79d0283c0eb59421277",
+      "bytes": 848
+    },
+    {
       "path": "schemas/model_contract.schema.json",
       "sha256": "f9a2ccf37a2c04c1af2a3cd0536731ec86bd56f75000275bfa6e6e10d6f71351",
       "bytes": 2110
@@ -1459,8 +1469,8 @@
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
-      "sha256": "f9c78cccc38cfd0b509da17f2e5f176d6d6b726aaf708151b00c9f89706622a7",
-      "bytes": 3085
+      "sha256": "e34b151bf5e3c6fe2da0e81868098262d4476b207135c2b72ac8f9abbe37fcf0",
+      "bytes": 3394
     },
     {
       "path": "src/xtbflow/sampling/adapters.py",
@@ -1476,6 +1486,11 @@
       "path": "src/xtbflow/sampling/integrator.py",
       "sha256": "1566d0c21728f3e7bbc9d99eecf57a1a9988d79e0d18b6f5700730886591247a",
       "bytes": 3165
+    },
+    {
+      "path": "src/xtbflow/sampling/matched_integration.py",
+      "sha256": "2ee3685347f0e468502bdc56decd8d3856c484f4c9f828dd9f624b68af058136",
+      "bytes": 9279
     },
     {
       "path": "src/xtbflow/sampling/parallel_guidance.py",
@@ -1661,6 +1676,11 @@
       "path": "tests/test_learning_curve_budget.py",
       "sha256": "158dde2de0beb627dd41102f181b2f60d9c33a4f12014b596f70df698842f9a7",
       "bytes": 3703
+    },
+    {
+      "path": "tests/test_matched_integration.py",
+      "sha256": "1a4946e6364527e69b292164c1601bb56e1d363ebc5e26172bcfbc9fd35b94a8",
+      "bytes": 2139
     },
     {
       "path": "tests/test_origin_seed_readiness.py",

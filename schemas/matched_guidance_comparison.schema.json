@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xtbflow-guidance/matched-comparison/v1",
+  "title": "Matched guidance comparison",
+  "type": "object",
+  "required": ["schema", "config", "arms", "rows", "parent_denominator", "claim_limits", "artifact_hash"],
+  "properties": {
+    "schema": {"const": "xtbflow-matched-guidance-comparison/v1"},
+    "config": {"type": "object"},
+    "arms": {"type": "array", "items": {"enum": ["none", "serial_physical", "parallel_geometry_event", "policy_on", "policy_off"]}},
+    "rows": {"type": "array", "items": {"type": "object"}},
+    "parent_denominator": {"type": "integer", "minimum": 1},
+    "claim_limits": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "artifact_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

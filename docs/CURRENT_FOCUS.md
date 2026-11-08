@@ -78,7 +78,7 @@ All are intentionally draft/open; none is merged into `main`:
 - [PR #161](https://github.com/askusk521-cyber/xtbflow/pull/161): data schema/audit,
   head `fe93331`, base #160 `8653706`.
 - [PR #162](https://github.com/askusk521-cyber/xtbflow/pull/162): docs/evidence,
-  head `da9d36b`, base #161 `fe93331`.
+  head `e377184`, base #161 `fe93331`.
 - All listed PRs remain draft/open and unmerged.
 - This governance document is submitted separately as the research-playbook PR.
 

@@ -3,8 +3,9 @@ name: CPU tests
 on:
   push:
     branches: [main]
+  # Stacked follow-up PRs target repository branches instead of main.  Keep
+  # the pull-request trigger unfiltered so every PR head gets auditable CI.
   pull_request:
-    branches: [main]
 
 permissions:
   contents: read

@@ -1,0 +1,135 @@
+{
+  "atom_pool": [
+    {
+      "charge": 0,
+      "component_id": "substrate-1",
+      "composition": {
+        "C": 1,
+        "H": 3,
+        "N": 1
+      },
+      "explicit_hydrogens": true,
+      "input_locator": "tests/fixtures/w11/substrate-1.xyz",
+      "input_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "license_record": "test-only synthetic fixture",
+      "multiplicity": 1,
+      "role": "substrate",
+      "species_label": "synthetic substrate"
+    },
+    {
+      "charge": 0,
+      "component_id": "water-1",
+      "composition": {
+        "H": 2,
+        "O": 1
+      },
+      "explicit_hydrogens": true,
+      "input_locator": "tests/fixtures/w11/water-1.xyz",
+      "input_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "license_record": "test-only synthetic fixture",
+      "multiplicity": 1,
+      "role": "water",
+      "species_label": "synthetic water A"
+    },
+    {
+      "charge": 0,
+      "component_id": "water-2",
+      "composition": {
+        "H": 2,
+        "O": 1
+      },
+      "explicit_hydrogens": true,
+      "input_locator": "tests/fixtures/w11/water-2.xyz",
+      "input_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "license_record": "test-only synthetic fixture",
+      "multiplicity": 1,
+      "role": "water",
+      "species_label": "synthetic water B"
+    }
+  ],
+  "budget": {
+    "calculator_calls": 1,
+    "cpu_core_hours": 0.1,
+    "gpu_hours": 0,
+    "wall_seconds": 60
+  },
+  "campaign_id": "w11-fixture-screening",
+  "candidates": [
+    {
+      "candidate_id": "candidate-1",
+      "charge": 0,
+      "component_ids": [
+        "substrate-1",
+        "water-1",
+        "water-2"
+      ],
+      "family_id": "family-fixture",
+      "geometry_locator": "tests/fixtures/w11/candidate-1.xyz",
+      "geometry_sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+      "input_origin": "independent_reactant",
+      "license_record": "test-only synthetic fixture",
+      "multiplicity": 1,
+      "parent_system_id": "parent-fixture",
+      "provenance": "synthetic unit-test fixture",
+      "seed_id": "seed-1",
+      "status": "development",
+      "water_roles": {
+        "water-1": "participating",
+        "water-2": "spectator"
+      }
+    }
+  ],
+  "claim_limit": "Contract fixture only; no chemistry, training, certification or comparison claim.",
+  "comparisons": [
+    {
+      "budget_id": "fixture-budget",
+      "candidate_ids": [
+        "candidate-1"
+      ],
+      "comparison_id": "rule-fixed-fixture",
+      "input_fingerprint": "8888f28f8f223cc85b9582a89c92e824de13f324ac3d35ea78616a9ef38fc36e",
+      "physics_mode": "fixed",
+      "proposal_mode": "rule"
+    },
+    {
+      "budget_id": "fixture-budget",
+      "candidate_ids": [
+        "candidate-1"
+      ],
+      "comparison_id": "joint-fixed-fixture",
+      "input_fingerprint": "8888f28f8f223cc85b9582a89c92e824de13f324ac3d35ea78616a9ef38fc36e",
+      "physics_mode": "fixed",
+      "proposal_mode": "joint"
+    }
+  ],
+  "deduplication": {
+    "cross_strategy": true,
+    "keys": [
+      "parent_system_id",
+      "family_id",
+      "geometry_sha256"
+    ],
+    "within_parent_system": true
+  },
+  "description": "Synthetic contract fixture for W11 campaign preparation; no chemical result.",
+  "frozen_at": null,
+  "reference_protocol": {
+    "method": "unresolved fixture protocol",
+    "protocol_id": "w11-fixture-protocol-v1",
+    "protocol_sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+    "software": "unresolved",
+    "units": {
+      "coordinates": "angstrom",
+      "energy": "hartree"
+    },
+    "version": "unresolved"
+  },
+  "schema_version": "xtbflow-w11-campaign/v1",
+  "source": {
+    "license_record": "test-only synthetic fixture",
+    "locator": "tests/fixtures/w11_campaign_fixture",
+    "revision": "fixture-v1",
+    "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "status": "development_screening"
+}

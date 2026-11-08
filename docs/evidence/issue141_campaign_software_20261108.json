@@ -1,0 +1,87 @@
+{
+  "schema": "xtbflow-software-stage-evidence/v1",
+  "evidence_id": "issue141_campaign_software_20261108",
+  "issue": 141,
+  "work_package": "W11",
+  "stage": "campaign_manifest_software_contract",
+  "status": "pass",
+  "validated_source_commit": "6cf38710c35bce29d337663d21b267688e2dc3a7",
+  "validated_source_subject": "fix: harden W11 target input firewall",
+  "branch": "codex/issue141-campaign-20261108",
+  "host": "node2",
+  "checkout": "/tmp/xtbflow-exec-issue141-20261108",
+  "environment": {
+    "conda_environment": "xtbflow",
+    "python": "3.10.19",
+    "pytorch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "slurm_job": null,
+    "gpu": "none requested"
+  },
+  "source_and_artifact_hashes": {
+    "campaign_fixture_sha256": "649a571780ee73511bfcea1c8be4872d8f5f518c513b8388583f7b9e1c9c5968",
+    "manifest_schema_sha256": "0dee82c3485838c63dad48201a289fc0f0ff8a7dbb776f33008b87bd59e386a4",
+    "architecture_doc_sha256": "d5e9130284e81b60898acbecba727599473e947fea4bf7599edcc2a3a0cfefa8",
+    "campaign_module_sha256": "b00be41d6a67da875da1384da5842ae8eb0787f85a974f7a9e44852b45c0b475",
+    "validator_script_sha256": "4ed8eb694641587a8a35792ade64523c5af631b6bf7205f7d621244f5520fc80",
+    "focused_test_sha256": "4d125bf5e832a9d115dd05e7983434c06ab0b5e8497cc8325084a5e35d1a5234",
+    "campaign_input_fingerprint": "8888f28f8f223cc85b9582a89c92e824de13f324ac3d35ea78616a9ef38fc36e"
+  },
+  "resource_envelope": {
+    "max_wall_seconds": 120,
+    "calculator_calls": 0,
+    "training_steps": 0,
+    "gpu_hours": 0,
+    "qc_calls": 0,
+    "network_downloads": 0,
+    "claim": "bounded CPU software checks only; no Slurm allocation"
+  },
+  "commands": [
+    {
+      "name": "focused_contract_tests",
+      "command": "source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow; cd /tmp/xtbflow-exec-issue141-20261108; PYTHONPATH=.:src:vendor/mechai_reusable pytest -q tests/test_campaign_manifest.py",
+      "result": "PASS: 6 passed in 0.10s"
+    },
+    {
+      "name": "full_pytest",
+      "command": "source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow; cd /tmp/xtbflow-exec-issue141-20261108; PYTHONPATH=.:src:vendor/mechai_reusable pytest -q",
+      "result": "PASS: 272 passed, 1 existing warning, 68 subtests passed in 10.89s"
+    },
+    {
+      "name": "reusable_unittest",
+      "command": "source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow; cd /tmp/xtbflow-exec-issue141-20261108; PYTHONPATH=.:src:vendor/mechai_reusable python -m unittest discover -s tests/reusable -p 'test_*.py'",
+      "result": "PASS: 56 tests OK in 0.420s"
+    },
+    {
+      "name": "campaign_cli",
+      "command": "source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow; cd /tmp/xtbflow-exec-issue141-20261108; PYTHONPATH=.:src:vendor/mechai_reusable python scripts/validate_campaign_manifest.py configs/campaigns/w11_campaign_fixture.json",
+      "result": "PASS: campaign_id=w11-fixture-screening, status=development_screening, candidate_count=1, comparison_count=2, input_fingerprint=8888f28f8f223cc85b9582a89c92e824de13f324ac3d35ea78616a9ef38fc36e"
+    },
+    {
+      "name": "bootstrap_inventory_before_evidence_commit",
+      "command": "source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow; cd /tmp/xtbflow-exec-issue141-20261108; python scripts/validate_bootstrap.py",
+      "result": "PASS: 327 files match the bootstrap inventory"
+    },
+    {
+      "name": "bootstrap_inventory_with_evidence",
+      "command": "source ~/miniconda3/etc/profile.d/conda.sh; conda activate xtbflow; cd /tmp/xtbflow-exec-issue141-20261108; python scripts/validate_bootstrap.py",
+      "result": "PASS: 328 files match the bootstrap inventory after adding this evidence file"
+    },
+    {
+      "name": "diff_check",
+      "command": "cd /tmp/xtbflow-exec-issue141-20261108; git diff --check HEAD",
+      "result": "PASS: no output"
+    }
+  ],
+  "claim_limits": [
+    "This evidence covers manifest/schema/loader software contracts only.",
+    "The checked-in fixture is synthetic and does not select a real chemical system.",
+    "No training, quantum-chemistry calculation, TS/IRC certification, discovery, efficiency, accuracy or method-superiority claim is supported.",
+    "The source commit is validated separately from this later evidence-document commit."
+  ],
+  "unfinished": [
+    "Real W11 candidate screening and fixed-composition campaign selection remain open.",
+    "Independent inputs, reference protocol execution, physical certification, cost comparison and W11 confirmation remain open.",
+    "No n2 GPU or calculator job was submitted in this software stage."
+  ]
+}

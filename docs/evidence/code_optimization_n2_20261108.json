@@ -1,0 +1,39 @@
+{
+  "schema": "xtbflow-evidence/code-optimization-n2-software/v1",
+  "status": "completed",
+  "stage": "software_validation",
+  "host": "node2",
+  "source_commit": "79eb449c37bf563e762924540e2246029a482147",
+  "source_branch": "codex/code-optimization-20261108",
+  "work_root": "~/xtbflow-runs/code-optimization-20261108-79eb449",
+  "environment": {
+    "conda": "xtbflow",
+    "python": "3.10.19",
+    "pytorch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "gpu_calls": 0,
+    "calculator_calls": 0
+  },
+  "commands": [
+    "timeout 900 env -u PYTHONPATH PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q",
+    "timeout 300 env -u PYTHONPATH PYTHONPATH=src:vendor/mechai_reusable python -m unittest discover -s tests/reusable -p 'test_*.py'",
+    "python scripts/validate_bootstrap.py",
+    "python scripts/validate_joint_scale_data_matrix.py"
+  ],
+  "results": {
+    "pytest_passed": 256,
+    "pytest_subtests_passed": 68,
+    "reusable_unittest_passed": 56,
+    "bootstrap_inventory_files_verified": 256,
+    "scale_matrix_status": "PASS",
+    "scale_primary_run_count": 81,
+    "warnings": [
+      "pre-existing tensor-to-scalar warning in tests/test_energy_forces.py"
+    ]
+  },
+  "claim_limits": [
+    "This is software contract evidence on n2 CPU execution.",
+    "It does not establish chemistry accuracy, training quality, GPU performance, or generalization.",
+    "The scientific scale matrix remains blocked until an admitted event/TS manifest is available."
+  ]
+}

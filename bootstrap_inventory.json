@@ -419,8 +419,8 @@
     },
     {
       "path": "docs/architecture/reaction_network.md",
-      "sha256": "fe6fceab7a760670fc181f429bd97c8128a40801a20915ad31fd3f93b423cf44",
-      "bytes": 3104
+      "sha256": "0823f20b7c1996f238300b57436e470c6aafbc6991f4906afb72a2a3c999da28",
+      "bytes": 3103
     },
     {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
@@ -514,7 +514,7 @@
     },
     {
       "path": "docs/evidence/reaction_network_software_20261108.json",
-      "sha256": "a9ec3f8475bf8d6359090a65fa492de4244cb3d3f3561556d8bfa7a04cc757ea",
+      "sha256": "71b30d42ef4a1ab23d0863e51504c2f817f305bb963ba57857f59e196cb70623",
       "bytes": 1276
     },
     {
@@ -1399,8 +1399,8 @@
     },
     {
       "path": "src/xtbflow/validation/reaction_network.py",
-      "sha256": "868073340b466576c5b9f02e7bb80f781a5b5dfd04db2e67d3e24ae66384c868",
-      "bytes": 21273
+      "sha256": "46213d5daea2a1dd4a7dfdc4c5916eca18fe7745f9ce43a3dead7a51df56fea6",
+      "bytes": 21272
     },
     {
       "path": "src/xtbflow/validation/ts_search.py",
@@ -1539,8 +1539,8 @@
     },
     {
       "path": "tests/test_reaction_network.py",
-      "sha256": "abbf7ff057486c2ba16d67e735a0d34bb31fd9237bff056e477c6e0aa66bdf5d",
-      "bytes": 4692
+      "sha256": "dc14a9b169b68ac3df9da3e6d5b58f2ddd9f405ff46f3007e215081a5748e296",
+      "bytes": 4691
     },
     {
       "path": "tests/test_reaction_qm_coordinate_mapping.py",

@@ -210,6 +210,14 @@ def test_target_derived_fields_and_mismatched_comparison_inputs_are_rejected():
         CampaignManifest.from_dict(missing_water)
 
 
+def test_nested_case_and_separator_variants_are_rejected():
+    for key in ("Product", "referenceTS", "sealed-test-label", "productCoordinates"):
+        payload = _payload()
+        payload["candidates"][0]["metadata"] = {"nested": [{key: "hidden"}]}
+        with pytest.raises(CampaignManifestError, match="target-derived"):
+            CampaignManifest.from_dict(payload)
+
+
 def test_fixture_is_valid_json_and_has_no_target_fields():
     with open("configs/campaigns/w11_campaign_fixture.json", encoding="utf-8") as handle:
         payload = json.load(handle)

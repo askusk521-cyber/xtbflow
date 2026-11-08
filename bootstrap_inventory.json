@@ -1159,8 +1159,8 @@
     },
     {
       "path": "src/xtbflow/data/campaign.py",
-      "sha256": "e865e197a9e613cdc1d9c41c97c3f33ebe54a455b3dabbc19b6efd7c7ede8430",
-      "bytes": 26695
+      "sha256": "b00be41d6a67da875da1384da5842ae8eb0787f85a974f7a9e44852b45c0b475",
+      "bytes": 29251
     },
     {
       "path": "src/xtbflow/data/dft_da.py",
@@ -1459,8 +1459,8 @@
     },
     {
       "path": "tests/test_campaign_manifest.py",
-      "sha256": "f4e71d00b5432b64f1517f1f306be39b792b0efe6ca007a8222cfced206a1a60",
-      "bytes": 7811
+      "sha256": "4d125bf5e832a9d115dd05e7983434c06ab0b5e8497cc8325084a5e35d1a5234",
+      "bytes": 8188
     },
     {
       "path": "tests/test_checkpoint.py",

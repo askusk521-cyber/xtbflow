@@ -47,6 +47,39 @@ _FORBIDDEN_TARGET_KEYS = frozenset(
         "target",
     }
 )
+_TARGET_DERIVED_FIELD_PARTS = frozenset(
+    {
+        "product",
+        "mapped_product",
+        "ts",
+        "reference",
+        "target",
+        "sealed",
+        "label",
+        "barrier",
+        "energy",
+        "forces",
+        "irc",
+        "answer",
+        "ground_truth",
+        "gold",
+    }
+)
+_TARGET_DERIVED_FIELD_EXACT = frozenset(
+    {
+        "productcoordinates",
+        "productgeometry",
+        "tsgeometry",
+        "referencets",
+        "referencemode",
+        "observedevent",
+        "activewaterfromts",
+        "targetderivedsolvent",
+        "targetactivewater",
+        "sealedtestlabel",
+        "eventlabel",
+    }
+)
 
 
 class CampaignManifestError(ValueError):
@@ -159,12 +192,68 @@ def canonical_hash(value: Any) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
+def _normalise_field_name(key: str) -> str:
+    """Normalize case, camel case and separators for firewall matching."""
+
+    camel = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", key.strip())
+    return re.sub(r"[^A-Za-z0-9]+", "_", camel).strip("_").lower()
+
+
+def _is_target_derived_field(key: str) -> bool:
+    normalized = _normalise_field_name(key)
+    if not normalized:
+        return False
+    parts = set(normalized.split("_"))
+    compact = normalized.replace("_", "")
+    if normalized in _TARGET_DERIVED_FIELD_PARTS:
+        return True
+    # Match target-bearing compounds while keeping legitimate campaign
+    # metadata such as ``species_label`` and ``available_label_mask``.
+    target_parts = {
+        "product",
+        "mapped",
+        "ts",
+        "reference",
+        "target",
+        "sealed",
+        "barrier",
+        "energy",
+        "forces",
+        "irc",
+        "answer",
+        "gold",
+    }
+    if parts.intersection(target_parts):
+        return True
+    if "label" in parts and parts.intersection(
+        {"event", "target", "sealed", "reference", "product", "ts", "ground", "gold"}
+    ):
+        return True
+    if {"ground", "truth"}.issubset(parts):
+        return True
+    return compact in _TARGET_DERIVED_FIELD_EXACT
+
+
 def _reject_target_fields(payload: Mapping[str, Any], name: str) -> None:
-    forbidden = sorted(_FORBIDDEN_TARGET_KEYS.intersection(payload))
-    if forbidden:
-        raise CampaignManifestError(
-            f"{name} contains target-derived fields: {forbidden}"
-        )
+    """Reject target-derived keys recursively in mappings and JSON arrays."""
+
+    def walk(current: Any, path: str) -> None:
+        if isinstance(current, Mapping):
+            for key, nested in current.items():
+                if not isinstance(key, str):
+                    raise CampaignManifestError(
+                        f"{name} contains a non-string field name at {path}"
+                    )
+                if _is_target_derived_field(key):
+                    raise CampaignManifestError(
+                        f"target-derived field {path}.{key} is forbidden in {name}"
+                    )
+                walk(nested, f"{path}.{key}")
+        elif isinstance(current, (list, tuple)):
+            for index, nested in enumerate(current):
+                walk(nested, f"{path}[{index}]")
+
+    walk(payload, name)
 
 
 def _validate_source(value: Any) -> dict[str, Any]:

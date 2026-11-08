@@ -4,8 +4,8 @@
   "files": [
     {
       "path": ".github/workflows/cpu-tests.yml",
-      "sha256": "3d33109aacd6508229193e25ef47ba0a263543433247c6a4ddc5c049b158fa58",
-      "bytes": 1109
+      "sha256": "d7d48eee4f292a86c1b2468529edc92d0501d62de2e5a47abd6e70af8676fda3",
+      "bytes": 1240
     },
     {
       "path": ".gitignore",
@@ -944,8 +944,8 @@
     },
     {
       "path": "src/xtbflow/models/joint_flow.py",
-      "sha256": "2cd4c572630d064b23f2c9d5d5a84f994e10a77ff461bf825c95d93e8e306bfd",
-      "bytes": 22870
+      "sha256": "6ce65ce60dd2500c13a2db22f9c69d18134ecb636bef446a2e6b316c21f8896c",
+      "bytes": 24457
     },
     {
       "path": "src/xtbflow/models/reaction_direction.py",
@@ -1019,8 +1019,8 @@
     },
     {
       "path": "src/xtbflow/sampling/integrator.py",
-      "sha256": "2bb873501ef7bf2d0dcfb6a41aaa0c1ad444c78ac11b1d6054dd781fb977e605",
-      "bytes": 3462
+      "sha256": "459bc39ea3275a9a9c8d8f61040884bb51e5b4e96fb9d8382d24cf227143127c",
+      "bytes": 2840
     },
     {
       "path": "src/xtbflow/training/__init__.py",
@@ -1119,8 +1119,8 @@
     },
     {
       "path": "tests/test_conserved_flow.py",
-      "sha256": "4ebbabe329b584bd61174f9ee65f52a78dcfa2a790d5f74e755234888bc5672a",
-      "bytes": 4019
+      "sha256": "1b91db462ea84468952a7db3c4518a8157cb0d9c1c0474575849e175f2422e6b",
+      "bytes": 5350
     },
     {
       "path": "tests/test_core_proposals.py",
@@ -1164,8 +1164,8 @@
     },
     {
       "path": "tests/test_joint_flow.py",
-      "sha256": "63d0ddd953f41f232a4ad97f3bad7162619a4b745db1061460dd4f21ca962d08",
-      "bytes": 16742
+      "sha256": "9ee99693fb315879e127872ecf702ee4b2fbbfed14bfaa343b36e2d8bb9645a7",
+      "bytes": 19414
     },
     {
       "path": "tests/test_joint_gradient_diagnostics.py",

@@ -62,6 +62,38 @@ def test_masked_projector_reuses_masks_and_keeps_padding_zero():
     assert torch.isfinite(velocity.grad).all()
 
 
+def test_masked_projector_matches_rowwise_projection_for_edge_masks():
+    projector = total_electron_projector(("C", "O", "H"), dtype=torch.float64)
+    velocity = torch.tensor(
+        [
+            [1.0, -2.0, 3.0, 4.0, -5.0, 6.0],
+            [-2.0, 1.0, 0.0, 3.0, -1.0, 4.0],
+            [0.5, -1.0, 2.0, 7.0, 8.0, -3.0],
+        ],
+        dtype=torch.float64,
+    )
+    masks = torch.tensor(
+        [
+            [True, True, True, True, True, True],
+            [True, False, False, False, False, False],
+            [False, False, False, False, False, False],
+        ]
+    )
+    projected = projector.project_masked(velocity, masks)
+    matrix = projector.constraint_matrix.to(dtype=velocity.dtype)
+    expected = torch.zeros_like(velocity)
+    for index, mask in enumerate(masks):
+        active = mask.nonzero(as_tuple=False).flatten()
+        if active.numel():
+            active_matrix = matrix[:, active]
+            gram_pinv = torch.linalg.pinv(active_matrix @ active_matrix.T)
+            values = velocity[index, active]
+            residual = values @ active_matrix.T
+            expected[index, active] = values - residual @ gram_pinv @ active_matrix
+    torch.testing.assert_close(projected, expected, atol=1e-10, rtol=1e-10)
+    assert torch.equal(projected[~masks], torch.zeros_like(projected[~masks]))
+
+
 def test_constructive_flow_preserves_reactant_total_and_zero_step():
     projector = total_electron_projector(("C", "O"))
     flow = ConservedEventFlow(projector)

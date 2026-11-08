@@ -73,6 +73,31 @@ def _normalize_tau(
     return value
 
 
+def _validate_interval(tau_value: Tensor, dt: float) -> float:
+    """Validate one normalized Euler interval after tau has been broadcast."""
+
+    step = _finite_strength(dt, "dt", allow_zero=False)
+    if bool((tau_value + step > 1.0 + 1e-12).any()):
+        raise ValueError("tau and dt must remain within the normalized flow domain")
+    return step
+
+
+def validate_normalized_step(tau: float | Tensor, dt: float) -> float:
+    """Validate a scalar normalized-time Euler step for integrator callers."""
+
+    if isinstance(tau, Tensor):
+        if tau.numel() != 1:
+            raise ValueError("integrator requires a scalar tau")
+        tau_value = float(tau.detach().item())
+    elif isinstance(tau, (int, float)) and not isinstance(tau, bool):
+        tau_value = float(tau)
+    else:
+        raise ValueError("tau must be a finite scalar")
+    if not math.isfinite(tau_value) or not 0.0 <= tau_value <= 1.0:
+        raise ValueError("tau must be finite and in [0,1]")
+    return _validate_interval(torch.tensor([[tau_value]], dtype=torch.float64), dt)
+
+
 def _atoms_from_packed_size(features: int) -> int:
     if type(features) is not int or features < 1:
         raise ValueError("event feature count must be positive")
@@ -394,6 +419,11 @@ class JointEventGeometryFlow(nn.Module):
         if mode not in CONTROL_MODES:
             raise ValueError(f"unsupported control mode: {mode}")
         if mode == "joint_bidirectional":
+            if dt is not None:
+                _validate_interval(
+                    _normalize_tau(tau, event_state.shape[0], dtype=event_state.dtype, device=event_state.device),
+                    dt,
+                )
             return self(
                 event_state,
                 coordinates,
@@ -409,7 +439,10 @@ class JointEventGeometryFlow(nn.Module):
             # bidirectional field.  Only one message channel is disabled.
             if dt is None:
                 raise ValueError("joint_unidirectional requires an explicit positive dt")
-            _finite_strength(dt, "dt", allow_zero=False)
+            _validate_interval(
+                _normalize_tau(tau, event_state.shape[0], dtype=event_state.dtype, device=event_state.device),
+                dt,
+            )
             return self(
                 event_state,
                 coordinates,
@@ -423,6 +456,11 @@ class JointEventGeometryFlow(nn.Module):
                 conservation_projection=conservation_projection,
             )
         if mode == "both_off":
+            if dt is not None:
+                _validate_interval(
+                    _normalize_tau(tau, event_state.shape[0], dtype=event_state.dtype, device=event_state.device),
+                    dt,
+                )
             return self(
                 event_state,
                 coordinates,
@@ -434,8 +472,7 @@ class JointEventGeometryFlow(nn.Module):
                 conservation_projection=conservation_projection,
             )
 
-        step = _finite_strength(dt, "dt", allow_zero=False) if dt is not None else None
-        if step is None:
+        if dt is None:
             raise ValueError("serial_independent requires an explicit positive dt")
         strength = _finite_strength(coupling_strength, "coupling_strength")
         active_event, conditions = self._validate_inputs(
@@ -447,6 +484,7 @@ class JointEventGeometryFlow(nn.Module):
             dtype=event_state.dtype,
             device=event_state.device,
         )
+        step = _validate_interval(tau_value, dt)
         hidden_nodes, conditioned_nodes = self._conditioned_nodes(node_features, tau_value, conditions)
         event_velocity, _ = self._event_velocity(
             event_state,

@@ -44,6 +44,38 @@ def test_seed_rejects_target_fields_and_out_of_scope_elements():
         seed(symbols=("C", "O"), coordinates=((0, 0, 0), (1, 0, 0)))
 
 
+@pytest.mark.parametrize(
+    "metadata",
+    [
+        {"product": 1},
+        {"Product": 1},
+        {"nested": {"product": 1}},
+        {"nested": {"TS_GEOMETRY": 1}},
+        {"tsGeometry": 1},
+        {"ts-geometry": 1},
+        {"referenceMode": 1},
+        {"targetActiveWater": 1},
+        {"sealedTestLabel": 1},
+        {"items": [{"reference_ts": "secret"}]},
+        {"provenance": {"sealed_test_label": "secret"}},
+    ],
+)
+def test_seed_target_firewall_is_recursive_and_case_insensitive(metadata):
+    with pytest.raises(ValueError, match="target-derived"):
+        seed(metadata=metadata)
+
+
+def test_seed_firewall_preserves_reactant_side_metadata():
+    value = seed(
+        metadata={
+            "temperature": 298.15,
+            "safe_metadata": {"source": "reactant-only"},
+            "geometry_locator": "reactant.xyz#1",
+        }
+    )
+    assert value.metadata["temperature"] == 298.15
+
+
 def test_seed_requires_explicit_singlet_and_preserves_charge():
     with pytest.raises(ValueError, match="multiplicity=1"):
         seed(multiplicity=2)
@@ -122,3 +154,27 @@ def test_proposal_attempt_validation_are_separate_and_metered():
     assert proposal.to_dict()["record_hash"] == proposal.record_hash
     assert attempt.to_dict()["calculator_calls"] == 0
     assert validation.to_dict()["observed_event"] is None
+
+
+@pytest.mark.parametrize(
+    "field, value",
+    [
+        ("proposed_event", {"Product": {"ts_geometry": 1}}),
+        ("initial_geometry", {"nested": {"TS_GEOMETRY": 1}}),
+        ("provenance", {"items": [{"sealed_test_label": "secret"}]}),
+    ],
+)
+def test_proposal_target_firewall_is_recursive(field, value):
+    payload = {
+        "proposal_id": "proposal-firewall",
+        "seed_id": "seed-1",
+        "generator": "rule",
+        "raw_slot_id": 0,
+        "proposed_event": {"bond_edits": []},
+        "initial_geometry": {"coordinates": []},
+        "provenance": {},
+    }
+    payload[field] = value
+    with pytest.raises(ValueError, match="target-derived"):
+        ProposalRecord(**payload)
+

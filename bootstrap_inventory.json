@@ -8,6 +8,11 @@
       "bytes": 1114
     },
     {
+      "path": ".github/workflows/issue166-adapter-cpu.yml",
+      "sha256": "665bd4c06c91441d6d0efdebb7d69c171c3d8ff3a1cfd78083987f70138bd58c",
+      "bytes": 1014
+    },
+    {
       "path": ".github/workflows/issue166-replay-cpu.yml",
       "sha256": "80bdc38534cd3b6493573b96624a3d371c2b3d9f47131530431203669ec96424",
       "bytes": 1013

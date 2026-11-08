@@ -433,6 +433,11 @@
       "bytes": 1429
     },
     {
+      "path": "docs/architecture/parallel_guidance_replay_v0.1.md",
+      "sha256": "41055d4f8f7401eacfd6e4c8648ec771f3ca39a4a01b53da417be6d55ab66cf8",
+      "bytes": 1340
+    },
+    {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
       "sha256": "9e4b2a7d650857036e072b00107e9dc3c68738484c7f3a446b9b50d22b20971f",
       "bytes": 4884
@@ -536,6 +541,11 @@
       "path": "docs/evidence/parallel_guidance_contract_n2_20261109.json",
       "sha256": "659daa9c7c2aed6af40d94938dff3a24ada12d03dc8722ef44a6c33e59c05ceb",
       "bytes": 1966
+    },
+    {
+      "path": "docs/evidence/parallel_guidance_replay_n2_20261109.json",
+      "sha256": "e58e9f466b6e875615c96a4154486d161cfce79638ef863c7c746ddb3af3b353",
+      "bytes": 3067
     },
     {
       "path": "docs/evidence/reaction_qm_coordinate_mapping_audit_20261002_full.json",
@@ -948,6 +958,11 @@
       "bytes": 5751
     },
     {
+      "path": "schemas/parallel_guidance_replay.schema.json",
+      "sha256": "a09bcc3acfa4d13c3584c2c3b14fb769fd3ab91f5bdff14a45e244655484a7d0",
+      "bytes": 1545
+    },
+    {
       "path": "schemas/public_record.schema.json",
       "sha256": "43a6c76ea4229ddf42a4eda5e4dd1d3d2a4a73cfab4a6fc33aa0a648327aa298",
       "bytes": 1873
@@ -1106,6 +1121,11 @@
       "path": "scripts/run_gfn2_qualification.py",
       "sha256": "84706cb111d799fa2ef9761fa59539ac5d8269566a398c0c0bd46a9d38e6db7a",
       "bytes": 15646
+    },
+    {
+      "path": "scripts/run_parallel_guidance_replay.py",
+      "sha256": "00787dc6c35dc4e4c36abe339399c4c9e5b38577aafb3fede861126f188df258",
+      "bytes": 1533
     },
     {
       "path": "scripts/run_spice_openff_pilot.py",
@@ -1393,6 +1413,11 @@
       "bytes": 30341
     },
     {
+      "path": "src/xtbflow/sampling/parallel_replay.py",
+      "sha256": "cf552a0dd7a5a851c54d72f240e88cb7f2500171423caef4c52a915b5a6500fd",
+      "bytes": 13017
+    },
+    {
       "path": "src/xtbflow/training/__init__.py",
       "sha256": "aa6e636ad88203568a9e022a5e65f45887988a9e3061799ee21eaf968b7a0408",
       "bytes": 933
@@ -1576,6 +1601,11 @@
       "path": "tests/test_parallel_guidance.py",
       "sha256": "049866af1670b18f93a06b8e6127bfa3df52b7bce03d236c065eecf79b2b0d85",
       "bytes": 7448
+    },
+    {
+      "path": "tests/test_parallel_guidance_replay.py",
+      "sha256": "2b3a30309286446fb0435b86991e5e9c076ead0791ed0e93608130b7ab0c359d",
+      "bytes": 3729
     },
     {
       "path": "tests/test_path_status.py",

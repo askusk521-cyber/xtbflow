@@ -1,0 +1,68 @@
+{
+  "schema": "xtbflow-evidence/parallel-guidance-replay-n2/v1",
+  "status": "completed",
+  "binding": "validated_at_parent_commit",
+  "work_item": "#166 second-layer offline replay and ablations",
+  "validated_commit": "c4bde78567f946595c270fa1a5eea4be38791e4d",
+  "source_branch": "codex/issue166-offline-replay-20261109",
+  "execution_host": "node2",
+  "execution_root": "~/xtbflow/xtbflow-exec-issue166-replay-20261109-c4bde78",
+  "environment": {
+    "conda": "xtbflow",
+    "python": "3.10.19",
+    "pytorch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "gpu_calls": 0,
+    "calculator_calls": 0,
+    "training": false
+  },
+  "shared_inputs": {
+    "candidate_pool_id": "synthetic-candidate-pool-166-v1",
+    "random_seed": 166,
+    "budget": {
+      "model_forwards": 3,
+      "calculator_calls": 0,
+      "wall_seconds": 1.0
+    },
+    "modes": ["none", "geometry_only", "event_only", "parallel_geometry_event", "serial_baseline"]
+  },
+  "commands": [
+    "python -m compileall -q src scripts tests",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q tests/test_parallel_guidance.py tests/test_parallel_guidance_replay.py",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m unittest discover -s tests/reusable -p 'test_*.py'",
+    "python scripts/validate_bootstrap.py",
+    "git diff --check",
+    "PYTHONPATH=src python scripts/run_parallel_guidance_replay.py --output-dir /tmp/xtbflow-replay-artifacts-20261109 --seed 166"
+  ],
+  "results": {
+    "focused_pytest_passed": 12,
+    "pytest_passed": 283,
+    "pytest_subtests_passed": 68,
+    "reusable_unittest_passed": 56,
+    "bootstrap_inventory_files_verified": 334,
+    "diff_check": "pass",
+    "replay_artifacts": {
+      "parallel_guidance_none.json": "604ebe3e0c2576e4cbc2ecf924f94f261f34f9c8442544cdee01583b9f092d79",
+      "parallel_guidance_geometry_only.json": "0ee227295d7488b686a644ae5968f44771f5c89fb303f7f6c17851e54496fc21",
+      "parallel_guidance_event_only.json": "88c9b7046cb070e20d20a29b174d9c31da5c5c9e532c5ab7841fcc1e2f447695",
+      "parallel_guidance_parallel_geometry_event.json": "bd0f401159471757756600098d40a97fd7503ffc1b9590e81b9aef890d4f0958",
+      "parallel_guidance_serial_baseline.json": "94a159f78843595ecf7bd5ac54641d689b00fdbb1590fee447b41a69966e782e"
+    },
+    "parallel_state_changed_geometry": true,
+    "parallel_state_changed_event": true,
+    "parallel_calculator_calls": 0,
+    "parallel_model_forwards": 3,
+    "warnings": [
+      "one pre-existing tensor-to-scalar warning in tests/test_energy_forces.py"
+    ]
+  },
+  "claim_limits": [
+    "This validates deterministic software replay, shared ablation inputs, bounded state transitions, and cost/rejection accounting only.",
+    "Synthetic guidance is not a chemistry result and does not establish physical accuracy, performance, or generalization.",
+    "Real physical and policy adapters remain separate follow-up work."
+  ],
+  "unfinished": [
+    "Adapters for #136, #139, and #140 are not included in this replay PR."
+  ]
+}

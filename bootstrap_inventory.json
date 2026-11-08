@@ -759,8 +759,8 @@
     },
     {
       "path": "scripts/run_reactant_generation.py",
-      "sha256": "f7bd67d78f5db5be44d29272facbaaba7f80942d5a1774e0d5fb7784f3690a31",
-      "bytes": 13146
+      "sha256": "7e96c6b0794aa23b55c6798efeefdc6e0189eb316c3300b94879d8542540f758",
+      "bytes": 15821
     },
     {
       "path": "scripts/run_spice_openff_pilot.py",
@@ -769,8 +769,8 @@
     },
     {
       "path": "scripts/score_reactant_generation.py",
-      "sha256": "92951d2ee321db5d264e145154126b4a8b04fcbc2b33ea00e1d933f6186524f2",
-      "bytes": 17673
+      "sha256": "0227bdad8e7e82ca8da12c15f030050306cbb977840cee7eeca237a260d41799",
+      "bytes": 25696
     },
     {
       "path": "scripts/validate_bootstrap.py",
@@ -879,13 +879,13 @@
     },
     {
       "path": "src/xtbflow/evaluation/__init__.py",
-      "sha256": "bf0c119f6de70bb2642e3095731bb18fb938e424b8662ecbcb5da0dd27100775",
-      "bytes": 2488
+      "sha256": "aed59af34d0afa19931af73812b643e4a41b469e2bdcecd5e8dd21c173688a27",
+      "bytes": 2898
     },
     {
       "path": "src/xtbflow/evaluation/generation.py",
-      "sha256": "4126c6bb3d00557d9c8b86979cb6020a2a4658ad0181979cd79d88c03e98d029",
-      "bytes": 33822
+      "sha256": "5451205be7a8357f2906808c91d734c6ac43a2627fc0bfdfd6b3284c846e1e58",
+      "bytes": 40899
     },
     {
       "path": "src/xtbflow/evaluation/grouped.py",
@@ -894,8 +894,8 @@
     },
     {
       "path": "src/xtbflow/evaluation/terminal.py",
-      "sha256": "cdaa17666eb40f95f19b386ecca4c18cf4c2344c75f83684c60806a3a61bb9e7",
-      "bytes": 7361
+      "sha256": "c31c7c26ca5d02ce009a050fc6cc4ab574f83d209dbe94ca76f046d1c61ab721",
+      "bytes": 8311
     },
     {
       "path": "src/xtbflow/legacy.py",
@@ -1199,8 +1199,8 @@
     },
     {
       "path": "tests/test_reactant_generation.py",
-      "sha256": "8f1a0551934368450ea6dedf96197992bba1aaf2722a0ae31fad1e34167ad013",
-      "bytes": 9282
+      "sha256": "f89fa1ab2463c8cc441a33e1e142a92af1129ab0c1184aff07f44c570f643877",
+      "bytes": 15012
     },
     {
       "path": "tests/test_reaction_qm.py",
@@ -1224,8 +1224,8 @@
     },
     {
       "path": "tests/test_scale_and_generation_contract.py",
-      "sha256": "f2ffecefeac1cac7f43a415041cf4c6509e87f7187a26e0787870409a6f28d17",
-      "bytes": 3557
+      "sha256": "2b9eb970b1e58e53b8cfdd8682587c382dc1abbc892d7a0e8a605c3e41a0217c",
+      "bytes": 4426
     },
     {
       "path": "tests/test_workflow_b_protocol.py",

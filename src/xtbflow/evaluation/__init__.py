@@ -11,20 +11,22 @@ from importlib import import_module
 
 from .terminal import (
     GENERATION_FAILURE_STAGES,
+    GENERATION_STATUS_FAILURE_STAGES,
     GENERATION_STATUSES,
     INITIAL_STATE_POLICIES,
     GenerationAttemptRecord,
     GenerationProtocol,
     TerminalCandidate,
     deduplicate_terminal_candidates,
+    generation_failure_stage,
 )
 
 _GENERATION_EXPORTS = {
-    "GeneratedCandidate", "GenerationBatch", "ReactantInput", "ReactantView",
+    "GeneratedCandidate", "GenerationBatch", "GenerationStageError", "RepeatedGenerationResult", "ReactantInput", "ReactantView",
     "ReferenceLabels", "candidate_fingerprint", "candidate_fingerprints",
     "centered_reactant_coordinates", "checkpoint_atom_count",
-    "deduplicate_generated_candidates", "generate_candidate", "generate_candidates",
-    "generate_repeated_candidates", "label_replacement_invariant", "load_generation_model",
+    "deduplicate_generated_candidates", "generated_candidate_key", "generate_candidate", "generate_candidates",
+    "generate_repeated_candidates", "generate_repeated_candidates_with_accounting", "label_replacement_invariant", "load_generation_model",
     "load_reactant_inputs", "reactant_packed_state", "reactant_view_from_sample",
     "reference_labels_from_sample", "score_candidates",
 }
@@ -45,6 +47,8 @@ def __getattr__(name: str):
 __all__ = [
     "GeneratedCandidate",
     "GenerationBatch",
+    "GenerationStageError",
+    "RepeatedGenerationResult",
     "ReactantInput",
     "ReactantView",
     "ReferenceLabels",
@@ -53,9 +57,11 @@ __all__ = [
     "centered_reactant_coordinates",
     "checkpoint_atom_count",
     "deduplicate_generated_candidates",
+    "generated_candidate_key",
     "generate_candidate",
     "generate_candidates",
     "generate_repeated_candidates",
+    "generate_repeated_candidates_with_accounting",
     "label_replacement_invariant",
     "load_generation_model",
     "load_reactant_inputs",
@@ -66,7 +72,9 @@ __all__ = [
     "score_candidates",
     "summarize_by_group",
     "GENERATION_FAILURE_STAGES",
+    "GENERATION_STATUS_FAILURE_STAGES",
     "GENERATION_STATUSES",
+    "generation_failure_stage",
     "INITIAL_STATE_POLICIES",
     "GenerationAttemptRecord",
     "GenerationProtocol",

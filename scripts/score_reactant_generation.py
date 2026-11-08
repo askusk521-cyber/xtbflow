@@ -27,6 +27,7 @@ from xtbflow.evaluation.generation import (
     ReactantView,
     centered_reactant_coordinates,
     deduplicate_generated_candidates,
+    generated_candidate_key,
     reactant_packed_state,
     reactant_view_from_sample,
     reference_labels_from_sample,
@@ -135,71 +136,151 @@ def _rule_candidates(view: ReactantView, cap: int) -> tuple[GeneratedCandidate, 
     return tuple(candidates)
 
 
+def _deduplicate_with_stats(
+    candidates: tuple[GeneratedCandidate, ...],
+    *,
+    max_slots: int,
+    mode: str,
+) -> tuple[tuple[GeneratedCandidate, ...], int, int, int]:
+    """Return kept candidates and explicit duplicate/cap accounting."""
+
+    unique_keys = {generated_candidate_key(candidate, mode=mode) for candidate in candidates}
+    unique_count = len(unique_keys)
+    kept = deduplicate_generated_candidates(candidates, max_slots=max_slots, mode=mode)
+    return kept, len(candidates) - unique_count, unique_count, max(0, unique_count - max_slots)
+
+
 def _record_metrics(
     view: ReactantView,
     labels: Any,
     candidates: tuple[GeneratedCandidate, ...],
     *,
+    event_candidates: tuple[GeneratedCandidate, ...] | None = None,
     method: str,
     max_slots: int,
-) -> tuple[dict[str, Any] | None, tuple[dict[str, Any], ...]]:
-    candidates = deduplicate_generated_candidates(candidates, max_slots=max_slots)
-    scored = score_candidates(view, labels, candidates)
-    if not scored:
-        return None, scored
-    return (
-        {
-            "method": method,
-            "record_id": view.record_id,
-            "parent_reaction_id": view.parent_reaction_id,
-            "family_id": view.family_id,
-            "candidate_count": len(scored),
-            "decode_accepted": sum(row["decode_status"] == "accepted" for row in scored),
-            "decode_unresolved": sum(row["decode_status"] != "accepted" for row in scored),
-            "event_exact_match": int(any(row["event_exact_match"] for row in scored)),
-            "event_bond_mse": (
-                float(min(row["event_bond_mse"] for row in scored if row["event_bond_mse"] is not None))
-                if any(row["event_bond_mse"] is not None for row in scored)
-                else None
-            ),
-            "geometry_endpoint_mse": float(min(row["geometry_endpoint_mse"] for row in scored)),
-            "candidate_fingerprints": [row["candidate_fingerprint"] for row in scored],
-        },
-        scored,
+) -> tuple[dict[str, Any], tuple[dict[str, Any], ...]]:
+    """Score one method while retaining an evaluation row for every parent.
+
+    Geometry and event metrics have different slot contracts.  A baseline may
+    propose multiple events at one geometry, so event metrics use a
+    geometry-plus-event key while geometry metrics use a geometry key.
+    """
+
+    raw_candidates = tuple(candidates)
+    raw_event_candidates = raw_candidates if event_candidates is None else tuple(event_candidates)
+    geometry_candidates, geometry_duplicates, geometry_unique, geometry_cap = _deduplicate_with_stats(
+        raw_candidates, max_slots=max_slots, mode="geometry"
     )
+    event_slots, event_duplicates, event_unique, event_cap = _deduplicate_with_stats(
+        raw_event_candidates, max_slots=max_slots, mode="geometry_event"
+    )
+    geometry_scores = score_candidates(view, labels, geometry_candidates)
+    event_scores = score_candidates(view, labels, event_slots)
+    scored: list[dict[str, Any]] = []
+    for scope, rows in (("geometry", geometry_scores), ("event", event_scores)):
+        for row in rows:
+            annotated = dict(row)
+            annotated["metric_scope"] = scope
+            scored.append(annotated)
+
+    accepted_event = [row for row in event_scores if row["decode_status"] == "accepted"]
+    event_exact_values = [row["event_exact_match"] for row in accepted_event if row["event_exact_match"] is not None]
+    event_bond_values = [row["event_bond_mse"] for row in accepted_event if row["event_bond_mse"] is not None]
+    geometry_values = [row["geometry_endpoint_mse"] for row in geometry_scores]
+    if not raw_candidates:
+        status = "empty"
+    elif not event_scores:
+        status = "empty"
+    elif not accepted_event:
+        status = "decode_failed"
+    else:
+        status = "accepted"
+    summary = {
+        "method": method,
+        "record_id": view.record_id,
+        "parent_reaction_id": view.parent_reaction_id,
+        "family_id": view.family_id,
+        "status": status,
+        "raw_candidate_count": len(raw_candidates),
+        # Keep candidate_count as the event-slot count for compatibility, but
+        # expose both slot populations so a report cannot hide a collapse.
+        "candidate_count": len(event_slots),
+        "geometry_candidate_count": len(geometry_candidates),
+        "event_candidate_count": len(event_slots),
+        "raw_event_candidate_count": len(raw_event_candidates),
+        "decode_accepted": len(accepted_event),
+        "decode_unresolved": len(event_scores) - len(accepted_event),
+        "event_exact_match": None if not event_exact_values else int(any(event_exact_values)),
+        "event_bond_mse": None if not event_bond_values else float(min(event_bond_values)),
+        "geometry_endpoint_mse": None if not geometry_values else float(min(geometry_values)),
+        "candidate_fingerprints": sorted({row["candidate_fingerprint"] for row in scored}),
+        "deduplication": {
+            "geometry_unique_before_cap": geometry_unique,
+            "event_unique_before_cap": event_unique,
+            "geometry_duplicates_collapsed": geometry_duplicates,
+            "event_duplicates_collapsed": event_duplicates,
+            "geometry_slots_truncated": geometry_cap,
+            "event_slots_truncated": event_cap,
+        },
+    }
+    return summary, tuple(scored)
 
 
-def _metric_coverage(rows: list[dict[str, Any]]) -> dict[str, dict[str, int | bool]]:
+def _metric_coverage(rows: list[dict[str, Any]]) -> dict[str, dict[str, int | float | bool]]:
     """Report missing label-assisted metrics without converting them to zero."""
 
+    denominator = len(rows)
+    parent_ids = {row.get("parent_reaction_id") for row in rows}
     return {
         metric: {
             "observed": sum(row.get(metric) is not None for row in rows),
             "missing": sum(row.get(metric) is None for row in rows),
-            "complete": all(row.get(metric) is not None for row in rows),
+            "denominator": denominator,
+            "coverage": (sum(row.get(metric) is not None for row in rows) / denominator if denominator else 0.0),
+            "parent_observed": len({row.get("parent_reaction_id") for row in rows if row.get(metric) is not None}),
+            "parent_missing": len(parent_ids) - len({row.get("parent_reaction_id") for row in rows if row.get(metric) is not None}),
+            "parent_denominator": len(parent_ids),
+            "parent_coverage": (len({row.get("parent_reaction_id") for row in rows if row.get(metric) is not None}) / len(parent_ids) if parent_ids else 0.0),
+            "complete": bool(rows) and all(row.get(metric) is not None for row in rows),
         }
         for metric in METRICS
     }
 
 
 def _summary_for_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    """Summarize only metrics with complete observations and retain coverage."""
+    """Summarize every observed metric without dropping unresolved parents."""
 
     coverage = _metric_coverage(rows)
-    available = tuple(metric for metric in METRICS if coverage[metric]["complete"])
-    if available:
-        summary = summarize_by_group(rows, group_key="parent_reaction_id", metric_keys=available)
-    else:
-        summary = {
-            "group_key": "parent_reaction_id",
-            "record_count": len(rows),
-            "group_count": len({row["parent_reaction_id"] for row in rows}),
-            "record_weighted": {},
-            "parent_equal": {},
-            "groups": [],
-        }
+    groups: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        group_id = row["parent_reaction_id"]
+        entry = groups.setdefault(group_id, {"group_id": group_id, "record_count": 0, "metric_means": {}})
+        entry["record_count"] += 1
+    record_weighted: dict[str, float] = {}
+    parent_equal: dict[str, float] = {}
+    for metric in METRICS:
+        observed_rows = [row for row in rows if row.get(metric) is not None]
+        if not observed_rows:
+            continue
+        partial = summarize_by_group(observed_rows, group_key="parent_reaction_id", metric_keys=(metric,))
+        record_weighted[metric] = partial["record_weighted"][metric]
+        parent_equal[metric] = partial["parent_equal"][metric]
+        for group in partial["groups"]:
+            groups[group["group_id"]]["metric_means"][metric] = group["metric_means"][metric]
+    summary = {
+        "group_key": "parent_reaction_id",
+        "record_count": len(rows),
+        "group_count": len(groups),
+        "record_weighted": record_weighted,
+        "parent_equal": parent_equal,
+        "groups": [groups[group_id] for group_id in sorted(groups)],
+        "status_counts": {
+            status: sum(row.get("status") == status for row in rows)
+            for status in sorted({row.get("status", "unknown") for row in rows})
+        },
+    }
     summary["metric_coverage"] = coverage
-    summary["unavailable_metrics"] = [metric for metric in METRICS if metric not in available]
+    summary["unavailable_metrics"] = [metric for metric in METRICS if coverage[metric]["observed"] == 0]
     return summary
 
 
@@ -207,40 +288,59 @@ def _paired_summary(
     left_rows: list[dict[str, Any]], right_rows: list[dict[str, Any]], *,
     left_label: str, right_label: str, bootstrap_samples: int, seed: int,
 ) -> dict[str, Any]:
-    """Pair arms only on metrics observed in every row of both arms."""
+    """Pair arms on the fixed parent population and retain unresolved metrics."""
 
     coverage = {
         "left": _metric_coverage(left_rows),
         "right": _metric_coverage(right_rows),
     }
-    available = tuple(
-        metric
-        for metric in METRICS
-        if coverage["left"][metric]["complete"] and coverage["right"][metric]["complete"]
-    )
-    if not available:
+    left_groups = {row.get("parent_reaction_id") for row in left_rows}
+    right_groups = {row.get("parent_reaction_id") for row in right_rows}
+    if left_groups != right_groups:
         return {
             "status": "unavailable",
             "left_label": left_label,
             "right_label": right_label,
             "bootstrap_samples": bootstrap_samples,
             "bootstrap_seed": seed,
+            "fixed_parent_set": False,
+            "paired_parent_count": len(left_groups.intersection(right_groups)),
+            "fixed_parent_ids": sorted(left_groups.intersection(right_groups)),
+            "unmatched_left": sorted(left_groups - right_groups),
+            "unmatched_right": sorted(right_groups - left_groups),
             "metrics": {},
             "metric_coverage": coverage,
             "unavailable_metrics": list(METRICS),
         }
-    comparison = paired_group_comparison(
-        left_rows,
-        right_rows,
-        metric_keys=available,
-        left_label=left_label,
-        right_label=right_label,
-        bootstrap_samples=bootstrap_samples,
-        seed=seed,
-    )
-    comparison["metric_coverage"] = coverage
-    comparison["unavailable_metrics"] = [metric for metric in METRICS if metric not in available]
-    return comparison
+    metrics: dict[str, Any] = {}
+    available: list[str] = []
+    for index, metric in enumerate(METRICS):
+        if not coverage["left"][metric]["complete"] or not coverage["right"][metric]["complete"]:
+            continue
+        comparison = paired_group_comparison(
+            left_rows,
+            right_rows,
+            metric_keys=(metric,),
+            left_label=left_label,
+            right_label=right_label,
+            bootstrap_samples=bootstrap_samples,
+            seed=seed + index,
+        )
+        metrics[metric] = comparison["metrics"][metric]
+        available.append(metric)
+    return {
+        "status": "completed" if available else "unavailable",
+        "left_label": left_label,
+        "right_label": right_label,
+        "bootstrap_samples": bootstrap_samples,
+        "bootstrap_seed": seed,
+        "fixed_parent_set": True,
+        "paired_parent_count": len(left_groups),
+        "fixed_parent_ids": sorted(left_groups),
+        "metrics": metrics,
+        "metric_coverage": coverage,
+        "unavailable_metrics": [metric for metric in METRICS if metric not in available],
+    }
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -306,54 +406,84 @@ def main() -> int:
     method_rows: dict[str, list[dict[str, Any]]] = {"learned": [], "zero_change": [], "reactant_rule": []}
     raw_scores: list[dict[str, Any]] = []
     generation_accounting: list[dict[str, Any]] = []
-    for record_id, generated_row in sorted(generated_rows.items()):
+    evaluation_ids = sorted(by_id) if args.allow_partial else sorted(generated_rows)
+    for record_id in evaluation_ids:
+        generated_row = generated_rows.get(record_id)
         sample = by_id[record_id]
         view = reactant_view_from_sample(sample)
-        if generated_row.get("input_fingerprint") != view.input_fingerprint:
+        if generated_row is not None and generated_row.get("input_fingerprint") != view.input_fingerprint:
             raise SystemExit(f"input fingerprint mismatch for generated record {record_id}")
         labels = reference_labels_from_sample(sample)
-        candidates = tuple(_candidate_from_mapping(item) for item in generated_row.get("candidates", []))
-        learned_summary, learned_scores = _record_metrics(view, labels, candidates, method="learned", max_slots=args.candidate_cap)
-        if learned_summary is not None:
-            method_rows["learned"].append(learned_summary)
+        candidates = (
+            tuple(_candidate_from_mapping(item) for item in generated_row.get("candidates", []))
+            if generated_row is not None
+            else ()
+        )
+        event_candidates = (
+            tuple(
+                _candidate_from_mapping(item)
+                for item in generated_row.get("event_candidates", generated_row.get("candidates", []))
+            )
+            if generated_row is not None
+            else ()
+        )
+        learned_summary, learned_scores = _record_metrics(
+            view,
+            labels,
+            candidates,
+            event_candidates=event_candidates,
+            method="learned",
+            max_slots=args.candidate_cap,
+        )
+        if generated_row is None:
+            learned_summary["status"] = "missing_from_generation"
+        elif not candidates:
+            if int(generated_row.get("execution_failed", 0)):
+                learned_summary["status"] = "generation_failed"
+            elif int(generated_row.get("decode_failed", 0)):
+                learned_summary["status"] = "decode_failed"
+            elif int(generated_row.get("invalid", 0)):
+                learned_summary["status"] = "invalid"
+        method_rows["learned"].append(learned_summary)
         raw_scores.extend({"method": "learned", **row} for row in learned_scores)
         generation_accounting.append(
             {
                 "record_id": record_id,
                 "parent_reaction_id": view.parent_reaction_id,
-                "attempted": int(generated_row.get("attempted", 0)),
-                "accepted": int(generated_row.get("accepted", 0)),
-                "rejected": int(generated_row.get("rejected", 0)),
+                "status": "missing_from_generation" if generated_row is None else generated_row.get("status", "completed"),
+                "failure_stage": None if generated_row is None else generated_row.get("failure_stage"),
+                "attempted": int(generated_row.get("attempted", 0)) if generated_row is not None else 0,
+                "accepted": int(generated_row.get("accepted", 0)) if generated_row is not None else 0,
+                "decode_accepted": int(generated_row.get("decode_accepted", generated_row.get("accepted", 0))) if generated_row is not None else 0,
+                "decode_failed": int(generated_row.get("decode_failed", 0)) if generated_row is not None else 0,
+                "invalid": int(generated_row.get("invalid", 0)) if generated_row is not None else 0,
+                "execution_failed": int(generated_row.get("execution_failed", 0)) if generated_row is not None else 0,
+                "duplicate_geometry": int(generated_row.get("duplicate_geometry", 0)) if generated_row is not None else 0,
+                "duplicate_event": int(generated_row.get("duplicate_event", 0)) if generated_row is not None else 0,
+                "unique_candidates": int(generated_row.get("unique_candidates", generated_row.get("accepted", 0))) if generated_row is not None else 0,
+                "event_unique_candidates": int(generated_row.get("event_unique_candidates", len(event_candidates))) if generated_row is not None else 0,
+                "candidate_slot_contract": (
+                    generated_row.get(
+                        "candidate_slot_contract",
+                        {"geometry": "candidates", "geometry_event": "event_candidates"},
+                    )
+                    if generated_row is not None
+                    else {"geometry": "candidates", "geometry_event": "event_candidates"}
+                ),
+                "rejected": int(generated_row.get("rejected", 0)) if generated_row is not None else 0,
+                "rejection_reasons": list(generated_row.get("rejection_reasons", ())) if generated_row is not None else ["missing_from_generation"],
                 "candidate_cap": generated.get("candidate_cap"),
             }
         )
         zero_summary, zero_scores = _record_metrics(view, labels, (_zero_change_candidate(view),), method="zero_change", max_slots=args.candidate_cap)
-        if zero_summary is not None:
-            method_rows["zero_change"].append(zero_summary)
+        method_rows["zero_change"].append(zero_summary)
         raw_scores.extend({"method": "zero_change", **row} for row in zero_scores)
         rule_candidates = _rule_candidates(view, args.candidate_cap)
         rule_summary, rule_scores = _record_metrics(view, labels, rule_candidates, method="reactant_rule", max_slots=args.candidate_cap)
-        if rule_summary is not None:
-            method_rows["reactant_rule"].append(rule_summary)
+        method_rows["reactant_rule"].append(rule_summary)
         raw_scores.extend({"method": "reactant_rule", **row} for row in rule_scores)
 
-    summaries: dict[str, Any] = {
-        method: _summary_for_rows(rows)
-        if rows
-        else {
-            "record_count": 0,
-            "group_count": 0,
-            "record_weighted": {},
-            "parent_equal": {},
-            "groups": [],
-            "metric_coverage": {
-                metric: {"observed": 0, "missing": 0, "complete": False}
-                for metric in METRICS
-            },
-            "unavailable_metrics": list(METRICS),
-        }
-        for method, rows in method_rows.items()
-    }
+    summaries: dict[str, Any] = {method: _summary_for_rows(rows) for method, rows in method_rows.items()}
     paired = {}
     if method_rows["learned"] and method_rows["zero_change"]:
         paired["learned_minus_zero_change"] = _paired_summary(
@@ -393,7 +523,8 @@ def main() -> int:
         "coverage_complete": not missing,
         "generation_accounting": generation_accounting,
         "method_summaries": summaries,
-        "method_summary_population": "records with at least one accepted decoded candidate; generation_accounting contains all attempted records",
+        "method_summary_population": "all predeclared source records; unresolved metrics remain null and generation_accounting preserves attempt/dedup statuses",
+        "fixed_parent_population": sorted({row["parent_reaction_id"] for row in generation_accounting}),
         "paired_parent_bootstrap": paired,
         "raw_candidate_scores": raw_scores,
         "elapsed_seconds": time.monotonic() - stage_start,

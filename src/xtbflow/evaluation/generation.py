@@ -9,11 +9,11 @@ separate:
 * :func:`generate_candidates` integrates a frozen model from that view;
 * :func:`score_candidates` consumes labels only after candidates are frozen.
 
-The functions are deterministic for a fixed model, input and integration
-configuration.  Stochastic sampling is intentionally not invented here: the
-current checkpoints were trained as deterministic vector fields, so the report
-records the actual number of generated candidates instead of treating a
-``candidate_cap`` as if it had been filled.
+The deterministic policy is reproducible for a fixed model, input, and
+integration configuration. Repeated sampling is available only through the
+declared event/geometry noise policies; the report records raw attempts and
+actual unique slots instead of treating a ``candidate_cap`` as if it had been
+filled.
 """
 from __future__ import annotations
 
@@ -292,6 +292,8 @@ class GenerationBatch:
     rejection_reasons: tuple[str, ...]
     steps: int
     candidate_cap: int
+    status: str = "completed"
+    failure_stage: str | None = None
 
     @property
     def accepted(self) -> int:
@@ -300,6 +302,39 @@ class GenerationBatch:
     @property
     def rejection_rate(self) -> float:
         return self.rejected / self.attempted if self.attempted else 0.0
+
+
+class GenerationStageError(Exception):
+    """A generation failure with an explicit contract stage and status."""
+
+    def __init__(self, status: str, failure_stage: str, message: str) -> None:
+        super().__init__(message)
+        self.status = status
+        self.failure_stage = failure_stage
+
+
+@dataclass(frozen=True)
+class RepeatedGenerationResult:
+    """Raw attempt accounting plus metric-specific candidate slot outputs."""
+
+    candidates: tuple[GeneratedCandidate, ...]
+    event_candidates: tuple[GeneratedCandidate, ...]
+    attempted: int
+    decode_accepted: int
+    decode_failed: int
+    invalid: int
+    execution_failed: int
+    duplicate_geometry: int
+    duplicate_event: int
+    unique_candidates: int
+    event_unique_candidates: int
+    rejection_reasons: tuple[str, ...]
+
+    @property
+    def rejected(self) -> int:
+        """Count attempt-level rejects without folding in deduplication."""
+
+        return self.decode_failed + self.invalid + self.execution_failed
 
 
 def reactant_view_from_sample(sample: Any) -> ReactantView:
@@ -408,6 +443,7 @@ def _initial_state(
     *,
     event_mask: torch.Tensor,
     atom_mask: torch.Tensor,
+    event_projector: Any | None,
     policy: str,
     seed: int | None,
     noise_scale: float,
@@ -422,8 +458,6 @@ def _initial_state(
 
     if policy not in INITIAL_STATE_POLICIES:
         raise ValueError(f"unsupported initial_state_policy: {policy}")
-    if policy == "latent":
-        raise ValueError("latent initialization is declared but no latent model input is implemented")
     if isinstance(noise_scale, bool) or not isinstance(noise_scale, (int, float)) or not math.isfinite(float(noise_scale)) or noise_scale < 0:
         raise ValueError("noise_scale must be finite and nonnegative")
     if policy == "deterministic_reactant":
@@ -434,11 +468,18 @@ def _initial_state(
     scale = float(noise_scale)
     event = state
     geometry = coordinates
-    if policy in {"event_noise", "event_geometry_noise", "latent"}:
-        event = event + scale * event_mask.to(dtype=event.dtype) * torch.randn(
+    if policy in {"event_noise", "event_geometry_noise"}:
+        if event_projector is None:
+            raise ValueError("event noise requires a conservation projector")
+        noise = torch.randn(
             event.shape, dtype=event.dtype, device=event.device, generator=generator
         )
-    if policy in {"geometry_noise", "event_geometry_noise", "latent"}:
+        # Perturb only in the active null space.  Projecting the noise before
+        # adding it preserves the initial conservation residual and keeps all
+        # padded features exactly zero.
+        noise = event_projector.project_masked(noise, event_mask)
+        event = (event + scale * noise).masked_fill(~event_mask, 0.0)
+    if policy in {"geometry_noise", "event_geometry_noise"}:
         geometry = geometry + scale * atom_mask[..., None].to(dtype=geometry.dtype) * torch.randn(
             geometry.shape, dtype=geometry.dtype, device=geometry.device, generator=generator
         )
@@ -488,31 +529,41 @@ def generate_candidates(
     state, coordinates, node_features, atom_mask, event_mask, condition = _model_inputs(
         view, max_atoms, dtype=dtype, device=device
     )
-    state, coordinates = _initial_state(
-        state,
-        coordinates,
-        policy=initial_state_policy,
-        event_mask=event_mask,
-        atom_mask=atom_mask,
-        seed=attempt_seed,
-        noise_scale=noise_scale,
-    )
-    model.eval()
-    dt = 1.0 / steps
-    for step in range(steps):
-        state, coordinates, _ = control_euler_step(
-            model,
+    event_projector = getattr(model, "event_projector", None)
+    try:
+        state, coordinates = _initial_state(
             state,
             coordinates,
-            node_features,
-            atom_mask,
-            mode=control_mode,
-            tau=step * dt,
-            dt=dt,
-            coupling_strength=coupling_strength,
-            condition_features=condition,
-            conservation_projection=conservation_projection,
+            policy=initial_state_policy,
+            event_mask=event_mask,
+            atom_mask=atom_mask,
+            event_projector=event_projector,
+            seed=attempt_seed,
+            noise_scale=noise_scale,
         )
+    except (ValueError, TypeError) as exc:
+        raise GenerationStageError("invalid", "initialization", str(exc)) from exc
+    model.eval()
+    dt = 1.0 / steps
+    try:
+        for step in range(steps):
+            state, coordinates, _ = control_euler_step(
+                model,
+                state,
+                coordinates,
+                node_features,
+                atom_mask,
+                mode=control_mode,
+                tau=step * dt,
+                dt=dt,
+                coupling_strength=coupling_strength,
+                condition_features=condition,
+                conservation_projection=conservation_projection,
+            )
+    except RuntimeError as exc:
+        raise GenerationStageError("generation_failed", "integration", str(exc)) from exc
+    except (ValueError, TypeError) as exc:
+        raise GenerationStageError("invalid", "integration", str(exc)) from exc
     try:
         packed = _decode_generated_event(state, view, max_atoms)
     except (ValueError, RuntimeError, TypeError) as exc:
@@ -520,9 +571,11 @@ def generate_candidates(
             candidates=(),
             attempted=1,
             rejected=1,
-            rejection_reasons=(f"{type(exc).__name__}:{exc}",),
+            rejection_reasons=(f"decode_failed:{type(exc).__name__}:{exc}",),
             steps=steps,
             candidate_cap=candidate_cap,
+            status="decode_failed",
+            failure_stage="event_decode",
         )
     active_coordinates = coordinates[0, : len(view.atomic_numbers)].detach().cpu().numpy()
     candidate = GeneratedCandidate(
@@ -549,61 +602,189 @@ def generate_repeated_candidates(
     conservation_projection: bool = True,
     noise_scale: float = 0.05,
 ) -> tuple[GeneratedCandidate, ...]:
-    """Generate the declared attempts and keep actual unique geometry slots.
+    """Generate the declared attempts and return unique geometry slots."""
 
-    The protocol rejects deterministic repeated attempts before any model call.
-    Deduplication is performed on rounded coordinates, so an event duplicate
-    does not consume a unique geometry slot.
-    """
+    return generate_repeated_candidates_with_accounting(
+        model,
+        view,
+        max_atoms=max_atoms,
+        control_mode=control_mode,
+        protocol=protocol,
+        steps=steps,
+        device=device,
+        dtype=dtype,
+        coupling_strength=coupling_strength,
+        conservation_projection=conservation_projection,
+        noise_scale=noise_scale,
+    ).candidates
+
+
+def generate_repeated_candidates_with_accounting(
+    model: Any,
+    view: ReactantView,
+    *,
+    max_atoms: int,
+    control_mode: str,
+    protocol: GenerationProtocol,
+    steps: int = 16,
+    device: torch.device | str = "cpu",
+    dtype: torch.dtype = torch.float32,
+    coupling_strength: float = 1.0,
+    conservation_projection: bool = True,
+    noise_scale: float = 0.05,
+) -> RepeatedGenerationResult:
+    """Run repeated attempts while retaining decode and deduplication counts."""
 
     if not isinstance(protocol, GenerationProtocol):
         raise TypeError("protocol must be a GenerationProtocol")
     protocol.validate()
-    candidates: list[GeneratedCandidate] = []
+    if protocol.stochastic:
+        if isinstance(noise_scale, bool) or not isinstance(noise_scale, (int, float)) or not math.isfinite(float(noise_scale)) or noise_scale <= 0:
+            raise ValueError("repeated stochastic generation requires a positive noise_scale")
+    raw_candidates: list[GeneratedCandidate] = []
+    decode_accepted = 0
+    decode_failed = 0
+    invalid = 0
+    execution_failed = 0
+    rejection_reasons: list[str] = []
     for index, seed in enumerate(protocol.attempt_seeds):
-        batch = generate_candidates(
-            model,
-            view,
-            max_atoms=max_atoms,
-            control_mode=control_mode,
-            steps=steps,
-            candidate_cap=1,
-            device=device,
-            dtype=dtype,
-            coupling_strength=coupling_strength,
-            conservation_projection=conservation_projection,
-            initial_state_policy=protocol.initial_state_policy,
-            attempt_seed=seed,
-            noise_scale=noise_scale,
-        )
-        for candidate in batch.candidates:
-            candidates.append(
-                GeneratedCandidate(
-                    record_id=candidate.record_id,
-                    control_mode=candidate.control_mode,
-                    coordinates=candidate.coordinates,
-                    packed_event=candidate.packed_event,
-                    steps=candidate.steps,
-                    candidate_index=index,
-                )
+        try:
+            batch = generate_candidates(
+                model,
+                view,
+                max_atoms=max_atoms,
+                control_mode=control_mode,
+                steps=steps,
+                candidate_cap=1,
+                device=device,
+                dtype=dtype,
+                coupling_strength=coupling_strength,
+                conservation_projection=conservation_projection,
+                initial_state_policy=protocol.initial_state_policy,
+                attempt_seed=seed,
+                noise_scale=noise_scale,
             )
-    return deduplicate_generated_candidates(candidates, max_slots=protocol.candidate_cap)
+        except GenerationStageError as exc:
+            if exc.status == "generation_failed":
+                execution_failed += 1
+            else:
+                invalid += 1
+            rejection_reasons.append(f"{exc.status}:{exc.failure_stage}:{exc}")
+            continue
+        except RuntimeError as exc:
+            execution_failed += 1
+            rejection_reasons.append(f"generation_failed:integration:{type(exc).__name__}:{exc}")
+            continue
+        except (ValueError, TypeError) as exc:
+            invalid += 1
+            rejection_reasons.append(f"invalid:candidate_validation:{type(exc).__name__}:{exc}")
+            continue
+        if batch.candidates:
+            decode_accepted += len(batch.candidates)
+            for candidate in batch.candidates:
+                raw_candidates.append(
+                    GeneratedCandidate(
+                        record_id=candidate.record_id,
+                        control_mode=candidate.control_mode,
+                        coordinates=candidate.coordinates,
+                        packed_event=candidate.packed_event,
+                        steps=candidate.steps,
+                        candidate_index=index,
+                    )
+                )
+        else:
+            if batch.status == "decode_failed":
+                decode_failed += batch.rejected or 1
+            elif batch.status == "generation_failed":
+                execution_failed += batch.rejected or 1
+            else:
+                invalid += batch.rejected or 1
+            rejection_reasons.extend(
+                batch.rejection_reasons
+                or (f"{batch.status}:{batch.failure_stage or 'candidate_validation'}",)
+            )
+
+    geometry_unique = _unique_generated_candidates(raw_candidates, mode="geometry")
+    duplicate_geometry = 0
+    duplicate_event = 0
+    seen_geometry: set[str] = set()
+    seen_event: set[str] = set()
+    for candidate in raw_candidates:
+        geometry_key = generated_candidate_key(candidate, mode="geometry")
+        event_key = generated_candidate_key(candidate, mode="geometry_event")
+        if event_key in seen_event:
+            duplicate_event += 1
+        elif geometry_key in seen_geometry:
+            duplicate_geometry += 1
+        seen_geometry.add(geometry_key)
+        seen_event.add(event_key)
+    candidates = deduplicate_generated_candidates(
+        raw_candidates, max_slots=protocol.candidate_cap, mode="geometry"
+    )
+    event_candidates = deduplicate_generated_candidates(
+        raw_candidates, max_slots=protocol.candidate_cap, mode="geometry_event"
+    )
+    if duplicate_geometry:
+        rejection_reasons.append(f"duplicate_geometry:{duplicate_geometry}")
+    if duplicate_event:
+        rejection_reasons.append(f"duplicate_event:{duplicate_event}")
+    if len(geometry_unique) > protocol.candidate_cap:
+        rejection_reasons.append(f"candidate_cap:{len(geometry_unique) - protocol.candidate_cap}")
+    return RepeatedGenerationResult(
+        candidates=candidates,
+        event_candidates=event_candidates,
+        attempted=len(protocol.attempt_seeds),
+        decode_accepted=decode_accepted,
+        decode_failed=decode_failed,
+        invalid=invalid,
+        execution_failed=execution_failed,
+        duplicate_geometry=duplicate_geometry,
+        duplicate_event=duplicate_event,
+        unique_candidates=len(candidates),
+        event_unique_candidates=len(event_candidates),
+        rejection_reasons=tuple(rejection_reasons),
+    )
+
+
+def generated_candidate_key(
+    candidate: GeneratedCandidate,
+    *,
+    mode: str = "geometry",
+    tolerance: float = 1e-4,
+) -> str:
+    """Return the stable key for a geometry or geometry-plus-event slot."""
+
+    if mode not in {"geometry", "geometry_event"}:
+        raise ValueError("mode must be 'geometry' or 'geometry_event'")
+    if isinstance(tolerance, bool) or not isinstance(tolerance, (int, float)) or not math.isfinite(float(tolerance)) or tolerance <= 0:
+        raise ValueError("tolerance must be finite and positive")
+    rounded = tuple(tuple(round(float(value) / float(tolerance)) for value in row) for row in candidate.coordinates)
+    payload: dict[str, Any] = {"coordinates": rounded}
+    if mode == "geometry_event":
+        payload["packed_event"] = tuple(int(value) for value in candidate.packed_event)
+    return canonical_hash(payload)
+
+
+def _unique_generated_candidates(
+    candidates: Iterable[GeneratedCandidate], *, mode: str, tolerance: float = 1e-4
+) -> tuple[GeneratedCandidate, ...]:
+    unique: dict[str, GeneratedCandidate] = {}
+    for candidate in candidates:
+        unique.setdefault(generated_candidate_key(candidate, mode=mode, tolerance=tolerance), candidate)
+    return tuple(unique.values())
 
 
 def deduplicate_generated_candidates(
-    candidates: Iterable[GeneratedCandidate], *, max_slots: int, tolerance: float = 1e-4
+    candidates: Iterable[GeneratedCandidate],
+    *,
+    max_slots: int,
+    tolerance: float = 1e-4,
+    mode: str = "geometry",
 ) -> tuple[GeneratedCandidate, ...]:
-    """Deduplicate frozen candidates by geometry slot before top-k metrics."""
+    """Deduplicate frozen candidates by the declared geometry/event slot."""
 
     _finite_positive_int(max_slots, "max_slots")
-    if isinstance(tolerance, bool) or not isinstance(tolerance, (int, float)) or not math.isfinite(float(tolerance)) or tolerance <= 0:
-        raise ValueError("tolerance must be finite and positive")
-    unique: dict[str, GeneratedCandidate] = {}
-    for candidate in candidates:
-        rounded = tuple(tuple(round(float(value) / float(tolerance)) for value in row) for row in candidate.coordinates)
-        key = canonical_hash({"coordinates": rounded})
-        unique.setdefault(key, candidate)
-    return tuple(unique.values())[:max_slots]
+    return _unique_generated_candidates(candidates, mode=mode, tolerance=tolerance)[:max_slots]
 
 
 def _kabsch_align(reference: np.ndarray, target: np.ndarray) -> np.ndarray:
@@ -666,7 +847,7 @@ def score_candidates(
             decode_error = None
         except (ValueError, RuntimeError, TypeError) as exc:
             predicted_bonds = None
-            event_exact = False
+            event_exact = None
             decode_status = "decode_failed"
             decode_error = f"{type(exc).__name__}:{exc}"
         geometry_mse = float(np.mean((coordinates - reference_ts) ** 2))
@@ -846,13 +1027,17 @@ def label_replacement_invariant(
 __all__ = [
     "GeneratedCandidate",
     "GenerationBatch",
+    "GenerationStageError",
+    "RepeatedGenerationResult",
     "ReactantView",
     "ReferenceLabels",
     "candidate_fingerprints",
     "centered_reactant_coordinates",
     "generate_candidates",
     "generate_repeated_candidates",
+    "generate_repeated_candidates_with_accounting",
     "deduplicate_generated_candidates",
+    "generated_candidate_key",
     "label_replacement_invariant",
     "reactant_view_from_sample",
     "reactant_packed_state",

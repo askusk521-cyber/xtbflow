@@ -30,13 +30,41 @@ GENERATION_FAILURE_STAGES = (
 )
 GENERATION_STATUSES = (
     "completed",
+    "empty",
+    "decode_failed",
+    "invalid",
+    "generation_failed",
     "not_run",
     "execution_failed",
     "settlement_failed",
     "report_write_failed",
     "budget_exhausted",
 )
-INITIAL_STATE_POLICIES = ("deterministic_reactant", "event_noise", "geometry_noise", "event_geometry_noise", "latent")
+GENERATION_STATUS_FAILURE_STAGES = {
+    "empty": "event_decode",
+    "decode_failed": "event_decode",
+    "invalid": "candidate_validation",
+    "generation_failed": "integration",
+    "not_run": "generation_preflight",
+    "execution_failed": "integration",
+    "settlement_failed": "settlement",
+    "report_write_failed": "report_write",
+    "budget_exhausted": "physical_refinement",
+}
+# Latent initialization is intentionally absent until the model accepts a
+# latent input.  Keeping it in this tuple made an apparently valid protocol
+# fail only after a trajectory had already started.
+INITIAL_STATE_POLICIES = ("deterministic_reactant", "event_noise", "geometry_noise", "event_geometry_noise")
+
+
+def generation_failure_stage(status: str) -> str | None:
+    """Map a runner status to the canonical generation failure stage."""
+
+    if status == "completed":
+        return None
+    if status not in GENERATION_STATUSES:
+        raise ValueError(f"unsupported generation status: {status}")
+    return GENERATION_STATUS_FAILURE_STAGES[status]
 
 
 @dataclass(frozen=True)
@@ -45,8 +73,8 @@ class GenerationProtocol:
 
     A seed list alone does not make a deterministic model stochastic.  When a
     parent is attempted more than once, the protocol therefore requires an
-    explicit non-deterministic initial-state or latent policy and a positive
-    candidate cap.  Training and inference code can record this object before
+    explicit non-deterministic initial-state policy and a positive candidate
+    cap.  Training and inference code can record this object before
     any candidates are generated.
     """
 
@@ -69,10 +97,10 @@ class GenerationProtocol:
             raise ValueError(f"unsupported initial_state_policy: {self.initial_state_policy}")
         if type(self.latent_dim) is not int or self.latent_dim < 0:
             raise ValueError("latent_dim must be a nonnegative integer")
-        if self.initial_state_policy == "latent" and self.latent_dim < 1:
-            raise ValueError("latent initialization requires a positive latent_dim")
+        if self.latent_dim:
+            raise ValueError("latent initialization is unsupported: latent_dim must remain zero")
         if len(self.attempt_seeds) > 1 and self.initial_state_policy == "deterministic_reactant":
-            raise ValueError("repeated attempts require stochastic initial states or a latent variable")
+            raise ValueError("repeated attempts require a supported stochastic initial state")
 
     @property
     def stochastic(self) -> bool:

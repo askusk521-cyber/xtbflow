@@ -24,11 +24,11 @@ import torch
 
 from xtbflow.evaluation.generation import (
     generate_candidates,
-    generate_repeated_candidates,
+    generate_repeated_candidates_with_accounting,
     load_generation_model,
     load_reactant_inputs,
 )
-from xtbflow.evaluation.terminal import GenerationProtocol, INITIAL_STATE_POLICIES
+from xtbflow.evaluation.terminal import GenerationProtocol, INITIAL_STATE_POLICIES, generation_failure_stage
 from xtbflow.models import CONTROL_MODES
 
 
@@ -104,7 +104,12 @@ def _parser() -> argparse.ArgumentParser:
         help="comma-separated integer seeds; repeated attempts require a stochastic policy",
     )
     parser.add_argument("--noise-scale", type=float, default=0.05)
-    parser.add_argument("--latent-dim", type=int, default=0)
+    parser.add_argument(
+        "--latent-dim",
+        type=int,
+        default=0,
+        help="reserved experimental option; nonzero latent inputs are currently unsupported",
+    )
     parser.add_argument("--device", choices=("auto", "cpu", "cuda"), default="auto")
     parser.add_argument(
         "--no-conservation-projection",
@@ -139,6 +144,8 @@ def main() -> int:
             latent_dim=args.latent_dim,
         )
         protocol.validate()
+        if protocol.stochastic and args.noise_scale <= 0:
+            raise ValueError("repeated stochastic generation requires a positive noise-scale")
     except ValueError as exc:
         raise SystemExit(str(exc)) from exc
     if args.device == "cuda" and not torch.cuda.is_available():
@@ -200,7 +207,7 @@ def main() -> int:
         stage = "integration"
         for reactant in reactants:
             if protocol.stochastic:
-                generated = generate_repeated_candidates(
+                repeated = generate_repeated_candidates_with_accounting(
                     model,
                     reactant,
                     max_atoms=max_atoms,
@@ -212,10 +219,18 @@ def main() -> int:
                     dtype=torch.float32,
                     noise_scale=args.noise_scale,
                 )
-                attempted = len(protocol.attempt_seeds)
-                accepted = len(generated)
-                rejected = attempted - accepted
-                rejection_reasons: list[str] = []
+                generated = repeated.candidates
+                event_generated = repeated.event_candidates
+                attempted = repeated.attempted
+                accepted = repeated.unique_candidates
+                decode_accepted = repeated.decode_accepted
+                decode_failed = repeated.decode_failed
+                invalid = repeated.invalid
+                execution_failed = repeated.execution_failed
+                duplicate_geometry = repeated.duplicate_geometry
+                duplicate_event = repeated.duplicate_event
+                event_unique_candidates = repeated.event_unique_candidates
+                rejection_reasons = list(repeated.rejection_reasons)
             else:
                 batch = generate_candidates(
                     model,
@@ -232,22 +247,55 @@ def main() -> int:
                     noise_scale=args.noise_scale,
                 )
                 generated = batch.candidates
+                event_generated = batch.candidates
                 attempted = batch.attempted
                 accepted = batch.accepted
-                rejected = batch.rejected
+                decode_accepted = batch.accepted
+                decode_failed = batch.rejected
+                invalid = 0
+                execution_failed = 0
+                duplicate_geometry = 0
+                duplicate_event = 0
+                event_unique_candidates = accepted
                 rejection_reasons = list(batch.rejection_reasons)
+            rejected = decode_failed + invalid + execution_failed
+            if execution_failed:
+                record_status = "generation_failed"
+            elif invalid:
+                record_status = "invalid"
+            elif decode_failed:
+                record_status = "decode_failed"
+            elif not generated:
+                record_status = "empty"
+            else:
+                record_status = "completed"
             records.append(
                 {
                     "record_id": reactant.record_id,
                     "parent_reaction_id": reactant.parent_reaction_id,
                     "family_id": reactant.family_id,
                     "input_fingerprint": reactant.input_fingerprint,
+                    "status": record_status,
+                    "failure_stage": generation_failure_stage(record_status),
                     "attempted": attempted,
                     "accepted": accepted,
+                    "decode_accepted": decode_accepted,
+                    "decode_failed": decode_failed,
+                    "invalid": invalid,
+                    "execution_failed": execution_failed,
+                    "duplicate_geometry": duplicate_geometry,
+                    "duplicate_event": duplicate_event,
+                    "unique_candidates": accepted,
+                    "event_unique_candidates": event_unique_candidates,
+                    "candidate_slot_contract": {
+                        "geometry": "candidates",
+                        "geometry_event": "event_candidates",
+                    },
                     "rejected": rejected,
                     "rejection_rate": rejected / attempted if attempted else 0.0,
                     "rejection_reasons": rejection_reasons,
                     "candidates": [candidate.to_mapping() for candidate in generated],
+                    "event_candidates": [candidate.to_mapping() for candidate in event_generated],
                 }
             )
         stage = "report_write"
@@ -273,6 +321,11 @@ def main() -> int:
             "input_schema": "xtbflow-reactant-input/v1",
             "target_fields_read": False,
             "target_label_policy": "reactant-only rows reject product/event/TS/reference fields",
+            "candidate_slot_contract": {
+                "geometry": "records[*].candidates",
+                "geometry_event": "records[*].event_candidates",
+                "raw_attempts": "records[*].attempted and accounting fields",
+            },
             "record_count": len(reactants),
             "checkpoint_atom_count": max_atoms,
             "mode": args.mode,
@@ -313,7 +366,7 @@ def main() -> int:
             {
                 "status": "completed",
                 "records": len(reactants),
-                "accepted_decodes": sum(item["accepted"] for item in records),
+                "accepted_decodes": sum(item["decode_accepted"] for item in records),
                 "output": str(output),
             },
             sort_keys=True,

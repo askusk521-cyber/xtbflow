@@ -83,9 +83,9 @@ PRs are retained as provenance; open drafts still require their own review gate.
 - [PR #163](https://github.com/askusk521-cyber/xtbflow/pull/163): scheduler evidence,
   open draft, current head `cf743fd`, base `main`.
 - [PR #164](https://github.com/askusk521-cyber/xtbflow/pull/164): reaction-network
-  contract, open draft, head `52a34dd`, base `main`.
+  contract, open draft, head `305482f`, base `main`.
 - [PR #165](https://github.com/askusk521-cyber/xtbflow/pull/165): campaign/input
-  contract, open draft, head `1c55f58`, base `main`.
+  contract, open draft, head `ea0ae22`, base `main`.
 
 The current release gates are the open PRs and their exact-head CI/evidence;
 merged PRs above are historical dependencies rather than pending work.

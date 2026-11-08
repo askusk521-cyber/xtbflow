@@ -5,7 +5,8 @@
   "binding": "validated_source_with_final_evidence_head_recorded",
   "validated_source_commit": "39d45a324f398f0aae40cd8b458367fdc6d0b151",
   "validated_source_subject": "fix: align scheduler budget errors",
-  "final_evidence_head": "a9af5f681b6ccebd19a911137af188640b7085e5",
+  "evidence_generation_head": "a9af5f681b6ccebd19a911137af188640b7085e5",
+  "final_pr_head_at_recording": "671e2fdc399f4cc55d8729cd39e9f1bb63f2071f",
   "host": "node2",
   "source": {
     "branch": "codex/issue140-scheduler-20261108",

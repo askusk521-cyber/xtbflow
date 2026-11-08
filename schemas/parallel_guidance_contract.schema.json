@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xtbflow-guidance/parallel-contract/v1",
+  "title": "Parallel guidance contract",
+  "type": "object",
+  "required": ["snapshot", "outputs", "decision", "ledger"],
+  "properties": {
+    "snapshot": {"$ref": "#/$defs/snapshot"},
+    "outputs": {"type": "array", "items": {"$ref": "#/$defs/output"}},
+    "decision": {"$ref": "#/$defs/decision"},
+    "ledger": {
+      "type": "object",
+      "required": ["schema", "entries"],
+      "properties": {
+        "schema": {"const": "xtbflow-guidance-ledger/v1"},
+        "entries": {"type": "array", "items": {"$ref": "#/$defs/ledgerEntry"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "snapshot": {
+      "type": "object",
+      "required": ["parent_id", "attempt_id", "generation_step", "geometry", "event", "event_mask", "random_seed", "snapshot_id", "event_frozen"],
+      "properties": {
+        "parent_id": {"type": "string", "minLength": 1},
+        "attempt_id": {"type": "string", "minLength": 1},
+        "generation_step": {"type": "integer", "minimum": 0},
+        "geometry": {"type": "array", "minItems": 1, "items": {"type": "array", "prefixItems": [{"type": "number"}, {"type": "number"}, {"type": "number"}], "items": false}},
+        "event": {"type": "array", "minItems": 1, "items": {"type": "number"}},
+        "event_mask": {"type": "array", "minItems": 1, "items": {"type": "boolean"}},
+        "random_seed": {"type": "integer", "minimum": 0},
+        "metadata": {"type": "object"},
+        "provenance": {"type": "object"},
+        "snapshot_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "event_frozen": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "cost": {
+      "type": "object",
+      "required": ["model_forwards", "calculator_calls", "wall_seconds", "cpu_seconds", "gpu_seconds"],
+      "properties": {
+        "model_forwards": {"type": "integer", "minimum": 0},
+        "calculator_calls": {"type": "integer", "minimum": 0},
+        "wall_seconds": {"type": "number", "minimum": 0},
+        "cpu_seconds": {"type": "number", "minimum": 0},
+        "gpu_seconds": {"type": "number", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "output": {
+      "type": "object",
+      "required": ["lane", "provider", "input_fingerprint", "trust_radius", "estimated_cost", "measured_cost", "status", "target_free", "output_fingerprint"],
+      "properties": {
+        "lane": {"enum": ["base", "geometry", "event"]},
+        "provider": {"type": "string", "minLength": 1},
+        "input_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "geometry_delta": {"type": ["array", "null"]},
+        "direction_delta": {"type": ["array", "null"]},
+        "event_delta": {"type": ["array", "null"]},
+        "ranking": {"type": ["array", "null"]},
+        "trust_radius": {"type": "number", "exclusiveMinimum": 0},
+        "estimated_cost": {"$ref": "#/$defs/cost"},
+        "measured_cost": {"$ref": "#/$defs/cost"},
+        "status": {"enum": ["accepted", "invalid", "failed", "budget_exhausted", "rejected", "duplicate"]},
+        "failure_stage": {"type": ["string", "null"]},
+        "rejection_reason": {"type": ["string", "null"]},
+        "provenance": {"type": "object"},
+        "target_free": {"const": true},
+        "output_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "decision": {
+      "type": "object",
+      "required": ["snapshot_id", "lane_order", "applied_lanes", "rejected", "geometry_before", "geometry_after", "event_before", "event_after", "event_velocity", "conservation_residual", "event_frozen"],
+      "properties": {
+        "snapshot_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "lane_order": {"type": "array", "items": {"type": "string"}},
+        "applied_lanes": {"type": "array", "items": {"type": "string"}},
+        "rejected": {"type": "array", "items": {"type": "array", "prefixItems": [{"type": "string"}, {"type": "string"}], "items": false}},
+        "geometry_before": {"type": "array"},
+        "geometry_after": {"type": "array"},
+        "event_before": {"type": "array"},
+        "event_after": {"type": "array"},
+        "event_velocity": {"type": "array"},
+        "conservation_residual": {"type": "array"},
+        "event_frozen": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "ledgerEntry": {
+      "type": "object",
+      "required": ["snapshot_id", "generation_step", "lane", "provider", "input_fingerprint", "output_fingerprint", "status", "applied", "estimated_cost", "measured_cost", "charged_cost", "target_free", "provenance"],
+      "properties": {
+        "snapshot_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "generation_step": {"type": "integer", "minimum": 0},
+        "lane": {"enum": ["base", "geometry", "event"]},
+        "provider": {"type": "string"},
+        "input_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "output_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "status": {"enum": ["accepted", "invalid", "failed", "budget_exhausted", "rejected", "duplicate"]},
+        "applied": {"type": "boolean"},
+        "rejection_reason": {"type": ["string", "null"]},
+        "failure_stage": {"type": ["string", "null"]},
+        "estimated_cost": {"$ref": "#/$defs/cost"},
+        "measured_cost": {"$ref": "#/$defs/cost"},
+        "charged_cost": {"$ref": "#/$defs/cost"},
+        "target_free": {"const": true},
+        "provenance": {"type": "object"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

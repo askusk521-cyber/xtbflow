@@ -2,10 +2,11 @@
   "schema": "xtbflow-evidence/claim-evidence-n2-software/v1",
   "status": "completed",
   "stage": "software_validation",
+  "binding": "validated_at_parent_commit",
   "host": "node2",
-  "source_commit": "0e002b1207c5141c8ec2c412b52cdb082db376dd",
+  "source_commit": "8703c0b4883bd899dff75d835586575f2e844ae7",
   "source_branch": "codex/w13-claim-evidence-20261108",
-  "work_root": "~/xtbflow-runs/w13-claim-evidence-20261108-0e002b1",
+  "work_root": "~/xtbflow/xtbflow-exec-pr157-fix-20261108",
   "environment": {
     "conda": "xtbflow",
     "python": "3.10.19",
@@ -20,8 +21,10 @@
     "python scripts/validate_bootstrap.py"
   ],
   "results": {
-    "claim_evidence_tests_passed": 4,
-    "bootstrap_inventory_files_verified": 328,
+    "claim_evidence_tests_passed": 5,
+    "pytest_passed": 271,
+    "reusable_unittest_passed": 56,
+    "bootstrap_inventory_files_verified": 329,
     "warnings": []
   },
   "claim_limits": [

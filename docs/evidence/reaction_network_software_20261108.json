@@ -1,0 +1,36 @@
+{
+  "branch": "codex/issue142-network-20261108",
+  "claim_limits": [
+    "Software contract and serialization evidence only.",
+    "No training, quantum chemistry, TS/IRC certification, network discovery, or strategy comparison was performed.",
+    "The contract stores references but does not validate referenced artifacts."
+  ],
+  "commands": [
+    "PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q tests/test_reaction_network.py",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m unittest discover -s tests/reusable -p test_*.py",
+    "PYTHONPATH=src:vendor/mechai_reusable python scripts/validate_bootstrap.py",
+    "git diff --check"
+  ],
+  "environment": {
+    "numpy": "2.2.6",
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128"
+  },
+  "host": "node2",
+  "resource_budget": {
+    "calculator_calls": 0,
+    "gpu": 0,
+    "wall_minutes": 5
+  },
+  "results": {
+    "bootstrap": "326 files match",
+    "diff_check": "pass",
+    "focused_network": "5 passed",
+    "full_pytest": "271 passed, 1 warning, 68 subtests",
+    "reusable_unittest": "56 passed"
+  },
+  "source_commit": "11faf2ad5810d4132f3b9dc6213b2c8b7a108aee",
+  "stage": "issue-142-network-contract-software",
+  "status": "pass"
+}

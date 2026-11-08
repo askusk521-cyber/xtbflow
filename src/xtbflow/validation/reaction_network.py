@@ -54,7 +54,9 @@ def _hash(value: Any, name: str) -> str:
     return normalized
 
 
-def _symbols(value: Sequence[Sequence[Any]]) -> tuple[tuple[str, int], ...]:
+def _symbols(value: Sequence[Sequence[Any]] | Mapping[str, Any]) -> tuple[tuple[str, int], ...]:
+    if isinstance(value, Mapping):
+        value = tuple(value.items())
     if isinstance(value, (str, bytes)) or not isinstance(value, Sequence) or not value:
         raise ValueError("composition must be a non-empty sequence of [element, count]")
     entries: list[tuple[str, int]] = []

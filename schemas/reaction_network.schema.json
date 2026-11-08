@@ -25,6 +25,12 @@
         {"enum": ["unknown", "unavailable", "ambiguous", "missing", "unverified"]}
       ]
     },
+    "multiplicity": {
+      "anyOf": [
+        {"type": "integer", "minimum": 1},
+        {"enum": ["unknown", "unavailable", "ambiguous", "missing", "unverified"]}
+      ]
+    },
     "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "node": {
       "type": "object",
@@ -51,7 +57,7 @@
           }
         },
         "charge": {"$ref": "#/$defs/state"},
-        "multiplicity": {"$ref": "#/$defs/state"},
+        "multiplicity": {"$ref": "#/$defs/multiplicity"},
         "connectivity_key": {"type": "string", "minLength": 1},
         "stereo_key": {"type": "string", "minLength": 1},
         "conformer_key": {"type": "string", "minLength": 1},

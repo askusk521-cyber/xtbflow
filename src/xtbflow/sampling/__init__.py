@@ -32,10 +32,22 @@ from .parallel_guidance import (
     project_masked_event_delta,
     reject_target_derived_fields,
 )
+from .parallel_replay import (
+    DeterministicSyntheticProvider,
+    OfflineGuidanceReplay,
+    ReplayArtifact,
+    ReplayBudget,
+    ReplayMode,
+    ReplayStep,
+    REPLAY_MODES,
+    write_replay_artifacts,
+)
 
 __all__ = [
     "GuidanceSchedule", "schedule_strength", "control_euler_step", "euler_step", "serial_euler_step",
     "GuidanceCost", "GuidanceLane", "GuidanceLedger", "GuidanceLedgerEntry", "GuidanceOutput",
     "GuidanceStatus", "GenerationSnapshot", "MergeConfig", "MergeDecision", "MergeResult",
     "merge_guidance", "project_masked_event_delta", "reject_target_derived_fields",
+    "DeterministicSyntheticProvider", "OfflineGuidanceReplay", "ReplayArtifact", "ReplayBudget",
+    "ReplayMode", "ReplayStep", "REPLAY_MODES", "write_replay_artifacts",
 ]

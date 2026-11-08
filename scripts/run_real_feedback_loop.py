@@ -144,6 +144,8 @@ def _run_arm(
             model_forwards=int(budget_cfg["max_model_forwards"]),
             calculator_calls=int(budget_cfg["max_calculator_calls"]),
             wall_seconds=float(budget_cfg["max_wall_seconds"]),
+            cpu_seconds=float(budget_cfg.get("max_cpu_core_hours", 0.0)) * 3600.0,
+            gpu_seconds=float(budget_cfg.get("max_gpu_hours", 0.0)) * 3600.0,
         )
     )
     adapter_runner = AdapterRunner(guidance_budget)

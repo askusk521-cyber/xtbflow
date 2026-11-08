@@ -6,6 +6,8 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
+import subprocess
 from typing import Any, Mapping
 
 
@@ -55,17 +57,44 @@ def _nonnegative(value: Any, name: str, *, integer: bool = False) -> None:
         _require(isinstance(value, (int, float)) and not isinstance(value, bool) and value >= 0, f"{name} must be nonnegative or null")
 
 
-def _validate_source(value: Any, location: str) -> None:
+def _commit(value: Any, name: str) -> str | None:
+    if value is None:
+        return None
+    value = _text(value, name)
+    _require(bool(re.fullmatch(r"[0-9a-fA-F]{40}", value)), f"{name} must be a full 40-character commit SHA")
+    return value.lower()
+
+
+def _validate_source(
+    value: Any,
+    location: str,
+    *,
+    require_complete: bool = False,
+    check_reachable: bool = False,
+    root: Path | None = None,
+) -> None:
     source = _mapping(value, location)
     required = {"code_commit", "config_sha256", "model_sha256", "protocol_sha256", "data_manifest_sha256"}
     _require(set(source) == required, f"{location} must contain exactly {sorted(required)}")
-    if source["code_commit"] is not None:
-        _text(source["code_commit"], f"{location}.code_commit")
+    commit = _commit(source["code_commit"], f"{location}.code_commit")
+    if require_complete:
+        _require(commit is not None, f"{location}.code_commit is required for observed claims")
     for key in sorted(required - {"code_commit"}):
-        _hash(source[key], f"{location}.{key}")
+        digest = _hash(source[key], f"{location}.{key}")
+        if require_complete:
+            _require(digest is not None, f"{location}.{key} is required for observed claims")
+    if check_reachable and commit is not None and root is not None:
+        result = subprocess.run(
+            ["git", "cat-file", "-e", f"{commit}^{{commit}}"],
+            cwd=root,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        )
+        _require(result.returncode == 0, f"{location}.code_commit is not reachable from this repository")
 
 
-def _validate_budget(value: Any, location: str) -> str:
+def _validate_budget(value: Any, location: str, *, require_complete: bool = False) -> str:
     budget = _mapping(value, location)
     required = {"model_forwards", "calculator_calls", "cpu_core_hours", "gpu_hours", "wall_seconds", "accounting_status"}
     _require(set(budget) == required, f"{location} must contain exactly {sorted(required)}")
@@ -75,10 +104,20 @@ def _validate_budget(value: Any, location: str) -> str:
         _nonnegative(budget[key], f"{location}.{key}")
     accounting = _text(budget["accounting_status"], f"{location}.accounting_status")
     _require(accounting in ACCOUNTING_STATUSES, f"unsupported {location}.accounting_status: {accounting}")
+    if require_complete:
+        for key in ("model_forwards", "calculator_calls", "cpu_core_hours", "gpu_hours", "wall_seconds"):
+            _require(budget[key] is not None, f"{location}.{key} is required for observed claims")
     return accounting
 
 
-def _validate_refs(value: Any, location: str, *, check_paths: bool, root: Path | None) -> int:
+def _validate_refs(
+    value: Any,
+    location: str,
+    *,
+    check_paths: bool,
+    root: Path | None,
+    require_hash: bool = False,
+) -> int:
     _require(isinstance(value, list), f"{location} must be an array")
     for index, item in enumerate(value):
         ref = _mapping(item, f"{location}[{index}]")
@@ -87,14 +126,22 @@ def _validate_refs(value: Any, location: str, *, check_paths: bool, root: Path |
         path_text = _text(ref["path"], f"{location}[{index}].path")
         path = Path(path_text)
         _require(not path.is_absolute() and ".." not in path.parts, f"{location}[{index}].path must stay repository-relative")
-        _hash(ref["sha256"], f"{location}[{index}].sha256")
+        digest = _hash(ref["sha256"], f"{location}[{index}].sha256")
+        if require_hash:
+            _require(digest is not None, f"{location}[{index}].sha256 is required for observed claims")
         if check_paths:
             _require(root is not None, "repository root is required for path checks")
             target = root / path
             _require(target.is_file(), f"evidence path does not exist: {path_text}")
-            if ref["sha256"] is not None:
-                digest = hashlib.sha256(target.read_bytes()).hexdigest()
-                _require(digest == ref["sha256"].lower(), f"evidence hash mismatch: {path_text}")
+            root_resolved = root.resolve()
+            target_resolved = target.resolve()
+            _require(
+                target_resolved == root_resolved or root_resolved in target_resolved.parents,
+                f"evidence path escapes repository root: {path_text}",
+            )
+            if digest is not None:
+                observed_digest = hashlib.sha256(target.read_bytes()).hexdigest()
+                _require(observed_digest == digest.lower(), f"evidence hash mismatch: {path_text}")
     return len(value)
 
 
@@ -153,9 +200,22 @@ def _validate_claim(value: Any, index: int, *, check_paths: bool, root: Path | N
     _nonnegative(input_contract["parent_count"], f"{location}.input_contract.parent_count", integer=True)
     _require(input_contract["family_holdout"] is None or type(input_contract["family_holdout"]) is bool, f"{location}.input_contract.family_holdout must be boolean or null")
 
-    _validate_source(claim["source"], f"{location}.source")
-    accounting = _validate_budget(claim["budget"], f"{location}.budget")
-    ref_count = _validate_refs(claim["evidence_refs"], f"{location}.evidence_refs", check_paths=check_paths, root=root)
+    observed = status == "observed"
+    _validate_source(
+        claim["source"],
+        f"{location}.source",
+        require_complete=observed,
+        check_reachable=check_paths and observed,
+        root=root,
+    )
+    accounting = _validate_budget(claim["budget"], f"{location}.budget", require_complete=observed)
+    ref_count = _validate_refs(
+        claim["evidence_refs"],
+        f"{location}.evidence_refs",
+        check_paths=check_paths,
+        root=root,
+        require_hash=observed,
+    )
     _text(claim["claim_limit"], f"{location}.claim_limit")
 
     if status == "observed":

@@ -1109,8 +1109,8 @@
     },
     {
       "path": "scripts/validate_claim_evidence.py",
-      "sha256": "f32ede3bc43cecef186cdcebb5b5d844b1078a10e95a4bd91f30c383c03a75f2",
-      "bytes": 12195
+      "sha256": "cff409ba8f5c43dbf26d2bdb6ad96a68010fb9c87e617f39dcfbc808d05af04a",
+      "bytes": 14238
     },
     {
       "path": "scripts/validate_handoff.py",
@@ -1469,8 +1469,8 @@
     },
     {
       "path": "tests/test_claim_evidence.py",
-      "sha256": "703c6e6cc0f84f2c426b2c80e379b3f98f280003b06a16bbcb13ebbef12934eb",
-      "bytes": 2564
+      "sha256": "cb918f8e42d1815bc016629da5a59ef1bb12c1d3e18d30d14642f4bf885aa103",
+      "bytes": 4066
     },
     {
       "path": "tests/test_conserved_flow.py",

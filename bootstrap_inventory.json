@@ -543,6 +543,11 @@
       "bytes": 2142
     },
     {
+      "path": "docs/evidence/run_status_retry_20261108.json",
+      "sha256": "2c8fde029469a8d996f795cbea0b058daae6f0d74791b93c3bce1253efdcc61d",
+      "bytes": 1169
+    },
+    {
       "path": "docs/evidence/search_attempt_manifest_audit_20260929.json",
       "sha256": "2d3d9b01e565e3507e168906bf75ce7a342f33980501d6e2d0335106f9c4a92f",
       "bytes": 715

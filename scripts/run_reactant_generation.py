@@ -144,6 +144,8 @@ def main() -> int:
             latent_dim=args.latent_dim,
         )
         protocol.validate()
+        if protocol.stochastic and args.noise_scale <= 0:
+            raise ValueError("repeated stochastic generation requires a positive noise-scale")
     except ValueError as exc:
         raise SystemExit(str(exc)) from exc
     if args.device == "cuda" and not torch.cuda.is_available():

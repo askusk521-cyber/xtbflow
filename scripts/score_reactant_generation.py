@@ -451,6 +451,7 @@ def main() -> int:
                 "record_id": record_id,
                 "parent_reaction_id": view.parent_reaction_id,
                 "status": "missing_from_generation" if generated_row is None else generated_row.get("status", "completed"),
+                "failure_stage": None if generated_row is None else generated_row.get("failure_stage"),
                 "attempted": int(generated_row.get("attempted", 0)) if generated_row is not None else 0,
                 "accepted": int(generated_row.get("accepted", 0)) if generated_row is not None else 0,
                 "decode_accepted": int(generated_row.get("decode_accepted", generated_row.get("accepted", 0))) if generated_row is not None else 0,
@@ -460,6 +461,15 @@ def main() -> int:
                 "duplicate_geometry": int(generated_row.get("duplicate_geometry", 0)) if generated_row is not None else 0,
                 "duplicate_event": int(generated_row.get("duplicate_event", 0)) if generated_row is not None else 0,
                 "unique_candidates": int(generated_row.get("unique_candidates", generated_row.get("accepted", 0))) if generated_row is not None else 0,
+                "event_unique_candidates": int(generated_row.get("event_unique_candidates", len(event_candidates))) if generated_row is not None else 0,
+                "candidate_slot_contract": (
+                    generated_row.get(
+                        "candidate_slot_contract",
+                        {"geometry": "candidates", "geometry_event": "event_candidates"},
+                    )
+                    if generated_row is not None
+                    else {"geometry": "candidates", "geometry_event": "event_candidates"}
+                ),
                 "rejected": int(generated_row.get("rejected", 0)) if generated_row is not None else 0,
                 "rejection_reasons": list(generated_row.get("rejection_reasons", ())) if generated_row is not None else ["missing_from_generation"],
                 "candidate_cap": generated.get("candidate_cap"),

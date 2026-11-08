@@ -638,6 +638,9 @@ def generate_repeated_candidates_with_accounting(
     if not isinstance(protocol, GenerationProtocol):
         raise TypeError("protocol must be a GenerationProtocol")
     protocol.validate()
+    if protocol.stochastic:
+        if isinstance(noise_scale, bool) or not isinstance(noise_scale, (int, float)) or not math.isfinite(float(noise_scale)) or noise_scale <= 0:
+            raise ValueError("repeated stochastic generation requires a positive noise_scale")
     raw_candidates: list[GeneratedCandidate] = []
     decode_accepted = 0
     decode_failed = 0

@@ -255,6 +255,16 @@ def test_repeated_generation_requires_and_uses_a_stochastic_initial_state():
     )
     assert len(candidates) == 2
     assert len({candidate.fingerprint() for candidate in candidates}) == 2
+    with pytest.raises(ValueError, match="positive noise_scale"):
+        generate_repeated_candidates(
+            model,
+            view,
+            max_atoms=2,
+            control_mode="joint_bidirectional",
+            protocol=protocol,
+            steps=4,
+            noise_scale=0.0,
+        )
 
 
 def test_repeated_generation_retains_event_slots_when_geometry_is_duplicate(monkeypatch):

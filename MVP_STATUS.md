@@ -48,9 +48,24 @@ Claim levels are explicit: `software_demo` for the runnable workflow,
 any future chemical interpretation.  This MVP makes no transition-state,
 barrier, mechanism, chemical-accuracy, or model-superiority claim.
 
-## Verification status
+## Verification recorded for this narrow branch
 
-The exact-head mock, replay, xTB smoke and regression evidence are generated
-in the follow-up release-hardening commit after this narrow implementation
-commit. They must bind to the resulting MVP implementation commit with
-`source_dirty=false`.
+All release evidence below was regenerated from exact commit
+`981e475e3b3384196cc56756fd1831c213f7225e` in clean worktrees; each evidence
+record reports `source_dirty=false`.
+
+- Exact-head mock artifact: `artifacts/mvp_run_20261109T020000/`, with 3
+  accepted and 2 QC rejections.
+- Exact-head n2 xTB smoke: 4 accepted and 1 QC rejection on node2, Python
+  3.10.19, xTB distribution 22.1/import version 20.2.
+- Exact-head regression slice: 24 tests passed on n2.
+- Exact-head evidence:
+  [`mvp_mock_software_exact_981e475_20261109.json`](docs/evidence/mvp_mock_software_exact_981e475_20261109.json),
+  [`mvp_replay_exact_981e475_20261109.json`](docs/evidence/mvp_replay_exact_981e475_20261109.json),
+  [`mvp_xtb_smoke_exact_981e475_20261109.json`](docs/evidence/mvp_xtb_smoke_exact_981e475_20261109.json).
+- Bootstrap audit:
+  [`mvp_bootstrap_inventory_audit_20261109.json`](docs/evidence/mvp_bootstrap_inventory_audit_20261109.json).
+
+The bootstrap audit reports only two MVP-overlap files (`README.md` and
+`src/xtbflow/calculators/__init__.py`); inventory refresh is deferred to a
+separate repair commit.

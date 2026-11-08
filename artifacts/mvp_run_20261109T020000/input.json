@@ -1,0 +1,37 @@
+{
+  "charge": 0,
+  "claim_limit": "fixed reactant fixture for software MVP; no product or TS inference",
+  "coordinates_angstrom": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.9572,
+      0.0,
+      0.0
+    ],
+    [
+      -0.239987,
+      0.927297,
+      0.0
+    ]
+  ],
+  "environment": {
+    "periodic": false,
+    "solvent": "none"
+  },
+  "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+  "input_id": "mvp-water-fixture-v1",
+  "multiplicity": 1,
+  "parent_reaction_id": "mvp-fixed-demo",
+  "reaction_family_id": "mvp-fixed-demo-family",
+  "schema": "xtbflow-mvp-input/v1",
+  "symbols": [
+    "O",
+    "H",
+    "H"
+  ],
+  "target_fields_read": false
+}

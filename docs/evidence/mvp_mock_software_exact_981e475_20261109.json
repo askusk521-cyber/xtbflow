@@ -1,0 +1,41 @@
+{
+  "budget_totals": {
+    "attempts": 5,
+    "cache_hits": 0,
+    "calculator_calls": 4,
+    "cpu_core_hours": 1.2066888888888812e-07,
+    "failures": 1,
+    "gpu_hours": 0.0,
+    "retries": 0,
+    "storage_gb": 0.0,
+    "successes": 4,
+    "system_evaluations": 5
+  },
+  "calculator_build_hash": "773970bf4b36ce97b85aff7f82a947a39070c10062120f74355e231bfcaad43b",
+  "claim_limit": "software workflow and deterministic harmonic proxy only; no physical or chemical claim",
+  "command": "PYTHONPATH=src python3 -m xtbflow.mvp run --config configs/mvp_fixture.yaml --output-dir artifacts/mvp_run_20261109T020000",
+  "config_path": "configs/mvp_fixture.yaml",
+  "config_sha256": "1f16915a72125c572652c3bf4b73ad3eb71d7be1e90d1c5cdc41908c876e0b92",
+  "counts": {
+    "accepted": 3,
+    "candidate_count": 5,
+    "failure": 0,
+    "rejected": 2
+  },
+  "environment": {
+    "backend": "cpu",
+    "python": "3.10.12"
+  },
+  "host": "lhshen-Zenbook-UX3402VA-UX3402VA",
+  "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+  "output_locator": "artifacts/mvp_run_20261109T020000",
+  "protocol_contract": "xtbflow.calculators.CalculatorProtocol/v1",
+  "protocol_hash": "67d07fcea7e5db9f9f905ca3582c39211f4e0b4ab2e383476ceb4c0d9be1f516",
+  "replay_deterministic_summary_sha256": "a7a8f6949d6c907f3b5950b35725e614ce2fe1b7adb0db61f85a1c55cc6a4a82",
+  "schema": "xtbflow-mvp-evidence/v1",
+  "source_commit": "981e475e3b3384196cc56756fd1831c213f7225e",
+  "source_dirty": false,
+  "stage": "mvp_mock_software_exact_head",
+  "status": "completed",
+  "uncompleted": []
+}

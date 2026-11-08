@@ -493,6 +493,11 @@
       "bytes": 1062
     },
     {
+      "path": "docs/evidence/issue141_campaign_software_20261108.json",
+      "sha256": "79585c93d40c204f13eaaaa6037074c3b8a77752401e925cdf9237d41388e920",
+      "bytes": 4637
+    },
+    {
       "path": "docs/evidence/joint_flow_smoke_20260927.json",
       "sha256": "2a9803f4ac535aa5a9bb59225fe77ee62602734d80af448bf4b065d9a56a61ca",
       "bytes": 670

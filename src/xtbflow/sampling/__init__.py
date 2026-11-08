@@ -67,6 +67,13 @@ from .physical_adapter import (
     RecordedPhysicalProvider,
     run_physical_ablation,
 )
+from .policy_adapter import (
+    PolicyAblationArtifact,
+    PolicyFeedback,
+    PolicyGuidanceConfig,
+    RecordedPolicyProvider,
+    run_policy_ablation,
+)
 
 __all__ = [
     "GuidanceSchedule", "schedule_strength", "control_euler_step", "euler_step", "serial_euler_step",
@@ -81,4 +88,6 @@ __all__ = [
     "ProviderRequest", "fingerprint_text", "validate_sha256",
     "PhysicalAblationArtifact", "PhysicalFeedback", "PhysicalGuidanceConfig",
     "RecordedPhysicalProvider", "run_physical_ablation",
+    "PolicyAblationArtifact", "PolicyFeedback", "PolicyGuidanceConfig",
+    "RecordedPolicyProvider", "run_policy_ablation",
 ]

@@ -2,10 +2,19 @@
   "schema": "xtbflow-software-evidence/v1",
   "work_item": "#140 W10 budget strategy",
   "status": "pass",
+  "binding": "validated_source_with_final_evidence_head_recorded",
+  "validated_source_commit": "39d45a324f398f0aae40cd8b458367fdc6d0b151",
+  "validated_source_subject": "fix: align scheduler budget errors",
+  "final_evidence_head": "a9af5f681b6ccebd19a911137af188640b7085e5",
   "host": "node2",
   "source": {
     "branch": "codex/issue140-scheduler-20261108",
-    "commit": "39d45a324f398f0aae40cd8b458367fdc6d0b151"
+    "commit": "39d45a324f398f0aae40cd8b458367fdc6d0b151",
+    "role": "validated_source"
+  },
+  "provenance": {
+    "parent_bound_bootstrap_files": 324,
+    "final_docs_head_bootstrap_files": 325
   },
   "environment": {
     "conda_environment": "xtbflow",
@@ -32,7 +41,7 @@
     },
     {
       "command": "cd /tmp/xtbflow-exec-issue140-20261108 && timeout 120s python scripts/validate_bootstrap.py && git diff --check",
-      "result": "325 files PASS; diff check PASS",
+      "result": "324 files PASS at validated source; 325 files PASS at final docs head; diff check PASS",
       "resource_cap": "120 seconds; no calculator or GPU calls"
     }
   ],

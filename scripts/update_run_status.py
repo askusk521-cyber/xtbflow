@@ -37,6 +37,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -111,13 +112,61 @@ def parse_time(text: str | None) -> dt.datetime | None:
         return None
 
 
+RETRYABLE_SSH_MARKERS = (
+    "banner exchange",
+    "connection timed out",
+    "connection timeout",
+    "connection reset",
+    "connection refused",
+    "could not resolve hostname",
+    "no route to host",
+    "network is unreachable",
+)
+
+
+def retryable_ssh_error(error: BaseException) -> bool:
+    """Return whether an SSH collection failure is safe to retry."""
+
+    if isinstance(error, subprocess.TimeoutExpired):
+        return True
+    text = str(error).lower()
+    return any(marker in text for marker in RETRYABLE_SSH_MARKERS)
+
+
 # ------------------------------------------------------------------ collection
 
 def collect(cfg: dict) -> dict:
-    out = run(["ssh", "-o", "BatchMode=yes", "-o", f"ConnectTimeout={min(cfg['ssh_timeout_s'], 30)}",
-               cfg["ssh_host"], "python3", "-", cfg["slurm_user"], cfg["registry"]],
-              input_text=REMOTE, timeout=cfg["ssh_timeout_s"])
-    return json.loads(out)
+    attempts = int(cfg.get("ssh_retry_attempts", 1))
+    delay = float(cfg.get("ssh_retry_delay_s", 0))
+    if attempts < 1:
+        raise ValueError("ssh_retry_attempts must be positive")
+    if delay < 0:
+        raise ValueError("ssh_retry_delay_s must be nonnegative")
+    command = [
+        "ssh",
+        "-o", "BatchMode=yes",
+        "-o", f"ConnectTimeout={min(cfg['ssh_timeout_s'], 30)}",
+        "-o", "ServerAliveInterval=15",
+        "-o", "ServerAliveCountMax=2",
+        cfg["ssh_host"], "python3", "-", cfg["slurm_user"], cfg["registry"],
+    ]
+    failures: list[str] = []
+    for attempt in range(1, attempts + 1):
+        try:
+            out = run(command, input_text=REMOTE, timeout=cfg["ssh_timeout_s"])
+            payload = json.loads(out)
+            if not isinstance(payload, dict) or not isinstance(payload.get("queue"), list) or not isinstance(payload.get("runs"), list):
+                raise ValueError("n2 status payload must contain queue and runs arrays")
+            return payload
+        except (RuntimeError, subprocess.TimeoutExpired, json.JSONDecodeError, ValueError) as exc:
+            failures.append(f"attempt {attempt}: {type(exc).__name__}: {exc}")
+            if attempt >= attempts or not retryable_ssh_error(exc):
+                raise RuntimeError(
+                    f"n2 status collection failed after {attempt} attempt(s): {failures[-1]}"
+                ) from exc
+            if delay:
+                time.sleep(delay)
+    raise AssertionError("unreachable")
 
 
 def merge(cfg: dict, fresh: dict, previous: dict | None) -> dict:

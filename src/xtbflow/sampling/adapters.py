@@ -309,6 +309,9 @@ class AdapterRunner:
         except Exception as exc:
             return self._finish(request, provider, AdapterStatus.INVALID, None, "provider_estimate", f"{type(exc).__name__}: {exc}", GuidanceCost.zero(), GuidanceCost.zero(), GuidanceCost.zero())
 
+        reconciled = False
+        measured = GuidanceCost.zero()
+        charged = GuidanceCost.zero()
         try:
             output = provider.invoke(request)
             if not isinstance(output, GuidanceOutput):
@@ -319,6 +322,7 @@ class AdapterRunner:
                 raise ValueError("provider output input fingerprint does not match snapshot")
             measured = output.measured_cost
             charged = reservation.reconcile(measured)
+            reconciled = True
             provenance = {
                 "adapter": {
                     "request_fingerprint": request.request_fingerprint,
@@ -328,22 +332,25 @@ class AdapterRunner:
                 },
                 "provider": output.to_mapping()["provenance"],
             }
-            output = replace(output, estimated_cost=estimate, measured_cost=charged, provenance=provenance)
+            output = replace(output, estimated_cost=estimate, measured_cost=charged, provenance=provenance, output_fingerprint="")
             return self._finish(request, provider, AdapterStatus.ACCEPTED, output, None, None, estimate, measured, charged)
         except TimeoutError as exc:
-            measured = GuidanceCost.zero()
-            charged = reservation.reconcile(measured)
+            if not reconciled:
+                measured = GuidanceCost.zero()
+                charged = reservation.reconcile(measured)
             return self._finish(request, provider, AdapterStatus.TIMEOUT, None, "provider_timeout", str(exc), estimate, measured, charged)
         except BudgetExceeded as exc:
             charged = reservation.reconcile(reservation.reserved)
             return self._finish(request, provider, AdapterStatus.BUDGET_EXHAUSTED, None, "budget_reconcile", str(exc), estimate, reservation.reserved, charged)
         except ValueError as exc:
-            measured = GuidanceCost.zero()
-            charged = reservation.reconcile(measured)
+            if not reconciled:
+                measured = GuidanceCost.zero()
+                charged = reservation.reconcile(measured)
             return self._finish(request, provider, AdapterStatus.INVALID, None, "provider_output", str(exc), estimate, measured, charged)
         except Exception as exc:
-            measured = GuidanceCost.zero()
-            charged = reservation.reconcile(measured)
+            if not reconciled:
+                measured = GuidanceCost.zero()
+                charged = reservation.reconcile(measured)
             return self._finish(request, provider, AdapterStatus.FAILED, None, "provider_execution", f"{type(exc).__name__}: {exc}", estimate, measured, charged)
 
     @staticmethod

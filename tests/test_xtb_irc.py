@@ -16,6 +16,7 @@ from xtbflow.calculators import (
 )
 from xtbflow.runtime import RunLedger, StageBudget
 from xtbflow.validation.xtb_irc import XTBIRCConfig, run_xtb_irc_certification
+from xtbflow.validation.saddle_refinement import SaddleRefinementConfig, refine_saddle
 
 
 class AnalyticSaddle(CalculatorBackend):
@@ -127,3 +128,20 @@ def test_xtb_irc_budget_failure_is_structured_and_replayable(tmp_path):
     assert first.calculator_calls == second.calculator_calls == 2
     assert first.evidence["error"].startswith("BudgetExceeded:")
     assert second_ledger.summary()["totals"]["calculator_calls"] == 2
+
+
+def test_saddle_refinement_contract_accepts_stationary_analytic_saddle(tmp_path):
+    ledger, token = _token(tmp_path, 64)
+    result = refine_saddle(
+        AnalyticSaddle(),
+        _system(),
+        _system().coordinates,
+        token=token,
+        config=SaddleRefinementConfig(max_steps=2, max_calls=64),
+    )
+    token.settle(recorded_calls=token.consumed_calls, persist_path=tmp_path / "ledger.json")
+
+    assert result.status == "success"
+    assert result.reason_code == "STATIONARY_POINT_REACHED"
+    assert result.gradient_norm == 0.0
+    assert result.calculator_calls == 1

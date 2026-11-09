@@ -31,6 +31,7 @@ from xtbflow.calculators import (
 from xtbflow.runtime import BudgetExceeded, CalculatorCallToken
 
 from .connectivity import ConnectivityEvidence
+from .saddle_refinement import SaddleRefinementConfig, refine_saddle
 from .ts_search import TSValidationConfig, TSValidationRecord, validate_ts_evidence
 
 
@@ -73,6 +74,9 @@ class XTBIRCConfig:
     endpoint_maxstep_angstrom: float = 0.05
     max_calls: int = 256
     require_ase: bool = True
+    saddle_refinement_enabled: bool = False
+    saddle_refinement_max_steps: int = 2
+    saddle_refinement_trust_radius_angstrom: float = 0.03
     protocol_version: str = "xtbflow-xtb-irc-v1"
 
     def __post_init__(self) -> None:
@@ -97,6 +101,12 @@ class XTBIRCConfig:
             raise ValueError("max_calls must be a positive integer")
         if type(self.require_ase) is not bool:
             raise ValueError("require_ase must be boolean")
+        if type(self.saddle_refinement_enabled) is not bool:
+            raise ValueError("saddle_refinement_enabled must be boolean")
+        if type(self.saddle_refinement_max_steps) is not int or self.saddle_refinement_max_steps < 1:
+            raise ValueError("saddle_refinement_max_steps must be a positive integer")
+        if not math.isfinite(float(self.saddle_refinement_trust_radius_angstrom)) or self.saddle_refinement_trust_radius_angstrom <= 0:
+            raise ValueError("saddle_refinement_trust_radius_angstrom must be positive")
         if not isinstance(self.protocol_version, str) or not self.protocol_version.strip():
             raise ValueError("protocol_version must be nonempty")
 
@@ -311,6 +321,36 @@ def run_xtb_irc_certification(
     q = int(coordinates.size)
     calls_before = token.consumed_calls
     try:
+        saddle_refinement_evidence: dict[str, Any] | None = None
+        if config.saddle_refinement_enabled:
+            refinement = refine_saddle(
+                backend,
+                system,
+                coordinates,
+                token=token,
+                config=SaddleRefinementConfig(
+                    hessian_step_angstrom=config.hessian_step_angstrom,
+                    gradient_tolerance=config.gradient_tolerance,
+                    negative_mode_threshold=config.negative_mode_threshold,
+                    trust_radius_angstrom=config.saddle_refinement_trust_radius_angstrom,
+                    max_steps=config.saddle_refinement_max_steps,
+                    max_calls=config.max_calls,
+                ),
+            )
+            saddle_refinement_evidence = refinement.to_mapping()
+            coordinates = _coords(refinement.coordinates)
+            if refinement.status != "success":
+                return XTBIRCResult(
+                    "attempted_unresolved" if refinement.status != "budget_exhausted" else "budget_exhausted",
+                    f"SADDLE_REFINEMENT_{refinement.reason_code}",
+                    candidate_id,
+                    token.consumed_calls - calls_before,
+                    config.identity,
+                    None,
+                    {"saddle_refinement": saddle_refinement_evidence},
+                    "proxy_metric",
+                    "Saddle refinement did not reach a strict stationary point; no TS/IRC certification is claimed.",
+                )
         base = _evaluate(backend, system, coordinates, token)
         hessian = np.zeros((q, q), dtype=float)
         step = config.hessian_step_angstrom
@@ -372,6 +412,8 @@ def run_xtb_irc_certification(
             "path_connected": bool(path_connected),
             "protocol_version": config.protocol_version,
         }
+        if saddle_refinement_evidence is not None:
+            evidence["saddle_refinement"] = saddle_refinement_evidence
         validation_config = TSValidationConfig(
             gradient_tolerance=config.gradient_tolerance,
             negative_mode_threshold=config.negative_mode_threshold,

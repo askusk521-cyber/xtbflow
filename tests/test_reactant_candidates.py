@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 from xtbflow.calculators import MolecularSystem
 from xtbflow.sampling.reactant_candidates import build_reactant_approach
 
@@ -25,6 +27,7 @@ def test_reactant_approach_is_deterministic_and_target_free():
     assert first.metadata["input_hash"] == system.input_hash
     assert first.metadata["generator"] == "reactant-principal-axis-approach-v1"
     assert first.metadata["minimum_cross_component_distance_angstrom"] >= 0.70
+    assert "target" not in json.dumps(first.metadata, sort_keys=True).lower()
 
 
 def test_reactant_approach_rejects_non_partitioned_components():

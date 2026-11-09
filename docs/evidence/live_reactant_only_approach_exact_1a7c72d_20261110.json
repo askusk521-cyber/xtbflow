@@ -1,0 +1,138 @@
+{
+  "arms": [
+    {
+      "arm": "no_feedback",
+      "calculator_calls": 165,
+      "candidate_generator": {
+        "approach_centroid_distance_angstrom": 2.6,
+        "collision_distance_angstrom": 0.7,
+        "components": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        ],
+        "generator": "reactant-principal-axis-approach-v1",
+        "geometry_hash": "a04efec1ce6c13eb4cdb42b60427fcbcf31e39f3d6bd6b396ed9b69ece95e414",
+        "input_hash": "726656ab0c3d2878853a858c4bbc5d5df82665c584dcbd368735b22084fbc4f5",
+        "minimum_cross_component_distance_angstrom": 2.4289246194280962
+      },
+      "certification_status": "attempted_unresolved",
+      "cost": {
+        "cpu_hours": 0.0003368427747222222,
+        "cpu_seconds": 1.2126325169999999,
+        "gpu_hours": 0.0,
+        "wall_seconds": 1.3527246171142906
+      },
+      "event_changed": false,
+      "feedback_used": false,
+      "geometry_changed": false,
+      "gradient_norm_hartree_per_angstrom": 0.016391327745092905,
+      "mode_status": "not_converged",
+      "reason_code": "not_converged",
+      "validation_status": "not_converged"
+    },
+    {
+      "arm": "physical_feedback",
+      "calculator_calls": 165,
+      "candidate_generator": {
+        "approach_centroid_distance_angstrom": 2.6,
+        "collision_distance_angstrom": 0.7,
+        "components": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        ],
+        "generator": "reactant-principal-axis-approach-v1",
+        "geometry_hash": "a04efec1ce6c13eb4cdb42b60427fcbcf31e39f3d6bd6b396ed9b69ece95e414",
+        "input_hash": "726656ab0c3d2878853a858c4bbc5d5df82665c584dcbd368735b22084fbc4f5",
+        "minimum_cross_component_distance_angstrom": 2.4289246194280962
+      },
+      "certification_status": "attempted_unresolved",
+      "cost": {
+        "cpu_hours": 0.0003176439225,
+        "cpu_seconds": 1.1435165780000003,
+        "gpu_hours": 0.0,
+        "wall_seconds": 1.2928468459285796
+      },
+      "event_changed": true,
+      "feedback_used": true,
+      "geometry_changed": true,
+      "gradient_norm_hartree_per_angstrom": 0.016286847337874964,
+      "mode_status": "not_converged",
+      "reason_code": "not_converged",
+      "validation_status": "not_converged"
+    }
+  ],
+  "calculator_protocol": {
+    "identity": "30a8e5d3774c8993fd52d9633cbfbcae51c0872af7865b6afefcda5189af1364",
+    "parameters": {
+      "accuracy": 1.0,
+      "electronic_temperature": 300,
+      "max_iterations": 100,
+      "solvent": null
+    },
+    "protocol_id": "real-feedback-gfn2-xtb-v1"
+  },
+  "replay": {
+    "deterministic_summary_sha256": "1ea5030077b511ef8b013dc8c23152fa1c0855350d5859deb024e388c6858670",
+    "identical_replay": true,
+    "replayed_source_commit": "1a7c72d55e47e8a8278ed46025fa97d2b769ed3c"
+  },
+  "claim_levels": {
+    "calculator_feedback": "proxy_metric",
+    "ts_irc": "strict_validation",
+    "workflow": "software_demo"
+  },
+  "claim_limits": [
+    "The candidate geometry was generated from reactant-only components by a deterministic principal-axis and collision rule.",
+    "Both arms entered the independent xTB TS/IRC adapter and retained their charged calls, but neither reached strict stationarity.",
+    "This artifact is an unresolved software/proxy run; it is not a TS, barrier, mechanism, chemical-accuracy, or superiority claim.",
+    "The original reactant/candidate/path coordinates remain in the private n2 artifact."
+  ],
+  "config_sha256": "ad10fe307f1cf2d92f60b3f02d49d8953c6a9ea4ec4deefceccbc32f49e42ae2",
+  "execution_host": "node2",
+  "input_hash": "726656ab0c3d2878853a858c4bbc5d5df82665c584dcbd368735b22084fbc4f5",
+  "parent_id": "reactant-da-r0-approach-v1",
+  "python": "3.10.19",
+  "schema": "xtbflow-reactant-only-approach-live-evidence/v1",
+  "seed": 20261111,
+  "source": {
+    "commit": "1a7c72d55e47e8a8278ed46025fa97d2b769ed3c",
+    "dirty": false
+  },
+  "status": "blocked_certification"
+}

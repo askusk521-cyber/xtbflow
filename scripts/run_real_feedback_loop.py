@@ -24,11 +24,18 @@ from datetime import datetime, timezone
 import hashlib
 import json
 from importlib.util import find_spec
+import os
 from pathlib import Path
 import platform
 import subprocess
 import sys
+import time
 from typing import Any, Mapping
+
+# Keep calculator CPU accounting reproducible across hosts with different
+# OpenMP/BLAS defaults.  The calculator protocol remains CPU-only.
+for _variable in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ[_variable] = "1"
 
 from xtbflow.calculators import MolecularSystem, XTBOracleAdapter
 from xtbflow.runtime import LedgerEvent, RunLedger, StageBudget
@@ -39,6 +46,7 @@ from xtbflow.sampling.live_physical import (
     LiveXTBPhysicalProvider,
     xTB_protocol_from_mapping,
 )
+from xtbflow.sampling.reactant_candidates import build_reactant_approach
 from xtbflow.sampling.parallel_guidance import (
     GenerationSnapshot,
     GuidanceCost,
@@ -47,6 +55,7 @@ from xtbflow.sampling.parallel_guidance import (
     merge_guidance,
 )
 from xtbflow.validation.ts_search import TSValidationConfig, validate_ts_evidence
+from xtbflow.validation.xtb_irc import XTBIRCConfig, run_xtb_irc_certification
 
 
 SCHEMA = "xtbflow-real-feedback-loop/v1"
@@ -87,11 +96,24 @@ def _load_config(path: Path) -> tuple[dict[str, Any], str]:
 
 def _snapshot(config: Mapping[str, Any], system: MolecularSystem, seed: int) -> GenerationSnapshot:
     event_size = int(config["generation"]["event_size"])
+    generation = dict(config.get("generation", {}))
+    geometry = system.coordinates
+    candidate_metadata: dict[str, Any] = {}
+    if generation.get("geometry_rule") == "reactant-principal-axis-approach-v1":
+        result = build_reactant_approach(
+            system,
+            generation["components"],
+            target_centroid_distance_angstrom=float(generation["target_centroid_distance_angstrom"]),
+            collision_distance_angstrom=float(generation.get("collision_distance_angstrom", 0.70)),
+        )
+        geometry = result.coordinates
+        candidate_metadata = result.metadata | {"geometry_hash": result.geometry_hash}
+    candidate_system = system.with_coordinates(geometry)
     return GenerationSnapshot(
         parent_id=str(config["parent_id"]),
         attempt_id=f"{config['parent_id']}-seed-{seed}",
         generation_step=0,
-        geometry=system.coordinates,
+        geometry=geometry,
         event=tuple(0.0 for _ in range(event_size)),
         event_mask=tuple(True for _ in range(event_size)),
         random_seed=seed,
@@ -101,6 +123,8 @@ def _snapshot(config: Mapping[str, Any], system: MolecularSystem, seed: int) -> 
             "charge": system.charge,
             "multiplicity": system.multiplicity,
             "environment": dict(system.environment),
+            "candidate_geometry_hash": candidate_system.input_hash,
+            "candidate_generator": candidate_metadata,
         },
         provenance={"workflow": "one-parent-one-seed-live-xtb-v1"},
     )
@@ -241,18 +265,16 @@ def _run_arm(
         error=error,
     )
     runtime_ledger.append(runtime_event, persist_path=output_dir / f"ledger_{arm}.json")
-    certification_config = TSValidationConfig(
-        require_connectivity=True,
-        max_calls=1,
-        reference_protocol_id=protocol.protocol_id if protocol is not None else "unavailable",
-        reference_build_hash=(feedback.calculator_build_hash if feedback is not None else "unavailable"),
-    )
-    certification = validate_ts_evidence(
-        f"{snapshot.parent_id}:{arm}",
-        "live-xtb-real-feedback",
-        {},
-        certification_config,
-        calls=0,
+    certification = _run_certification(
+        arm=arm,
+        config=config,
+        system=system,
+        final_snapshot=final_snapshot,
+        backend=backend,
+        protocol=protocol,
+        output_dir=output_dir,
+        snapshot=snapshot,
+        feedback=feedback,
     )
     return {
         "arm": arm,
@@ -269,11 +291,127 @@ def _run_arm(
         "merge": merge_mapping,
         "runtime_ledger": runtime_ledger.summary(),
         "certification": {
+            **certification,
+        },
+    }
+
+
+def _run_certification(
+    *,
+    arm: str,
+    config: Mapping[str, Any],
+    system: MolecularSystem,
+    final_snapshot: GenerationSnapshot,
+    backend: Any | None,
+    protocol: Any | None,
+    output_dir: Path,
+    snapshot: GenerationSnapshot,
+    feedback: Any | None,
+) -> dict[str, Any]:
+    """Run the optional independent TS/IRC gate without changing the default fixture."""
+
+    settings = dict(config.get("certification", {}))
+    enabled = bool(settings.get("enabled", False))
+    candidate_id = f"{snapshot.parent_id}:{arm}"
+    reference_protocol = protocol.protocol_id if protocol is not None else "unavailable"
+    reference_build = feedback.calculator_build_hash if feedback is not None else "unavailable"
+    if not enabled:
+        validation_config = TSValidationConfig(
+            require_connectivity=True,
+            max_calls=1,
+            reference_protocol_id=reference_protocol,
+            reference_build_hash=reference_build,
+        )
+        record = validate_ts_evidence(candidate_id, "live-xtb-real-feedback", {}, validation_config, calls=0)
+        return {
             "status": "blocked",
             "reason_code": "MISSING_TS_HESSIAN_IRC_EVIDENCE",
-            "record": certification.to_dict(),
-            "claim_limit": "No TS/IRC certification is claimed until an independent stationary-point, mode, endpoint, and bidirectional path backend supplies evidence.",
-        },
+            "record": record.to_dict(),
+            "backend_result": None,
+            "claim_limit": "No TS/IRC certification is claimed until certification.enabled selects an independent stationary-point, mode, endpoint, and bidirectional path backend.",
+        }
+    if backend is None or protocol is None:
+        return {
+            "status": "blocked_backend",
+            "reason_code": "BLOCKED_BACKEND",
+            "record": None,
+            "backend_result": None,
+            "claim_limit": "Certification was explicitly requested but its calculator backend was unavailable; no fallback is permitted.",
+        }
+
+    implementation = str(settings.get("implementation", "xtb"))
+    max_calls = int(settings.get("max_calculator_calls", 256))
+    cert_config_values = {
+        key: value
+        for key, value in settings.items()
+        if key not in {"enabled", "implementation", "max_calculator_calls", "max_cpu_core_hours", "max_gpu_hours", "max_wall_minutes_per_job"}
+    }
+    cert_config_values["max_calls"] = max_calls
+    cert_config = XTBIRCConfig(**cert_config_values)
+    cert_backend = XTBOracleAdapter(protocol=protocol, implementation=implementation, require_budget_token=True)
+    cert_ledger = RunLedger(
+        StageBudget(
+            phase=f"real_feedback_certification_{arm}",
+            max_calculator_calls=max_calls,
+            max_cpu_core_hours=float(settings.get("max_cpu_core_hours", 2.0)),
+            max_gpu_hours=float(settings.get("max_gpu_hours", 0.0)),
+            max_wall_minutes_per_job=float(settings.get("max_wall_minutes_per_job", 30.0)),
+            max_retries_per_job=0,
+        )
+    )
+    ledger_path = output_dir / f"certification_ledger_{arm}.json"
+    token = cert_ledger.issue_calculator_token(
+        f"real-feedback-certification-{arm}",
+        max_calls,
+        metadata={"candidate_id": candidate_id, "protocol_id": protocol.protocol_id, "config_identity": cert_config.identity},
+        persist_path=ledger_path,
+    )
+    started_wall = time.perf_counter()
+    started_cpu = time.process_time()
+    result = None
+    try:
+        result = run_xtb_irc_certification(
+            cert_backend,
+            system.with_coordinates(final_snapshot.geometry),
+            token=token,
+            candidate_id=candidate_id,
+            config=cert_config,
+        )
+    except Exception as exc:
+        return {
+            "status": "execution_failed",
+            "reason_code": "CERTIFICATION_EXECUTION",
+            "record": None,
+            "backend_result": None,
+            "ledger_summary": cert_ledger.summary(),
+            "cost": {
+                "wall_seconds": time.perf_counter() - started_wall,
+                "cpu_seconds": time.process_time() - started_cpu,
+                "cpu_hours": (time.process_time() - started_cpu) / 3600.0,
+                "gpu_hours": 0.0,
+            },
+            "failure_stage": "certification",
+            "error": f"{type(exc).__name__}: {exc}",
+            "claim_limit": "Certification execution failed; consumed calls remain in the certification ledger.",
+        }
+    finally:
+        token.settle(recorded_calls=token.consumed_calls, persist_path=ledger_path)
+    _write_json(ledger_path.with_suffix(".summary.json"), cert_ledger.summary())
+    status = "success" if result.status == "success" else result.status
+    cost = {
+        "wall_seconds": time.perf_counter() - started_wall,
+        "cpu_seconds": time.process_time() - started_cpu,
+        "cpu_hours": (time.process_time() - started_cpu) / 3600.0,
+        "gpu_hours": 0.0,
+    }
+    return {
+        "status": status,
+        "reason_code": result.reason_code,
+        "record": result.validation,
+        "backend_result": result.to_mapping(),
+        "ledger_summary": cert_ledger.summary(),
+        "cost": cost,
+        "claim_limit": result.claim_limit,
     }
 
 
@@ -315,6 +453,9 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
                 "provider_status": row["physical_provider_status"],
                 "certification_status": row["certification"]["status"],
                 "certification_reason": row["certification"]["reason_code"],
+                "certification_calls": (row["certification"].get("backend_result") or {}).get("calculator_calls", 0),
+                "certification_config_identity": (row["certification"].get("backend_result") or {}).get("config_identity"),
+                "certification_validation": row["certification"].get("record"),
                 "calculator_calls": row["runtime_ledger"]["totals"]["calculator_calls"],
             }
             for row in arms
@@ -329,6 +470,7 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
         "python": sys.version.split()[0],
         "config_path": str(config_path),
         "config_sha256": config_sha256,
+        "resolved_config": config,
         "input": system.payload(),
         "input_hash": system.input_hash,
         "parent_id": config["parent_id"],
@@ -338,14 +480,16 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
         "replay": {
             "deterministic_summary": deterministic,
             "deterministic_summary_sha256": deterministic_hash,
-            "environment_variance_note": "wall/cpu timing and native build identity remain outside the deterministic summary",
+            "environment_variance_note": "Wall/CPU timing is excluded; calculator build, certification config, outcomes and calls are included.",
         },
         "matched_budget": dict(config["budget"]),
         "claim_levels": {
             "workflow": "software_demo",
             "calculator_feedback": "proxy_metric",
-            "ts_irc": "strict_validation_required",
+            "ts_irc": "proxy_metric",
         },
+        "strict_validation_status": "not_run",
+        "unique_strict_certified_channels": 0,
         "claim_limit": "Live xTB force feedback and bounded state transition are demonstrated; no chemical pathway, TS, barrier, mechanism, or superiority claim is made.",
         "output_paths": {
             "manifest": str(output_dir / "manifest.json"),
@@ -355,7 +499,7 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
         },
     }
     _write_json(output_dir / "manifest.json", manifest)
-    ledger_payload = {"schema": "xtbflow-real-feedback-ledger/v1", "arms": [{"arm": row["arm"], "runtime_ledger": row["runtime_ledger"], "adapter_ledger": row["adapter_ledger"], "merge_ledger": row["merge"]["ledger"]} for row in arms]}
+    ledger_payload = {"schema": "xtbflow-real-feedback-ledger/v1", "arms": [{"arm": row["arm"], "runtime_ledger": row["runtime_ledger"], "adapter_ledger": row["adapter_ledger"], "merge_ledger": row["merge"]["ledger"], "certification_ledger": row["certification"].get("ledger_summary"), "certification_cost": row["certification"].get("cost")} for row in arms]}
     _write_json(output_dir / "ledger.json", ledger_payload)
     with (output_dir / "feedback.jsonl").open("w", encoding="utf-8") as handle:
         for row in arms:
@@ -368,14 +512,15 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
         f"source_dirty: `{manifest['source']['dirty']}`",
         f"parent_id: `{manifest['parent_id']}` seed: `{seed}`",
         "",
-        "| arm | feedback_used | geometry_changed | event_changed | calculator_calls | certification |",
+        "| arm | feedback_used | geometry_changed | event_changed | feedback + diagnostic calls | certification |",
         "| --- | --- | --- | --- | ---: | --- |",
     ]
     for row in arms:
-        summary.append(f"| {row['arm']} | {row['feedback_used']} | {row['geometry_changed']} | {row['event_changed']} | {row['runtime_ledger']['totals']['calculator_calls']} | `{row['certification']['status']}` |")
+        diagnostic_calls = (row["certification"].get("backend_result") or {}).get("calculator_calls", 0)
+        summary.append(f"| {row['arm']} | {row['feedback_used']} | {row['geometry_changed']} | {row['event_changed']} | {row['runtime_ledger']['totals']['calculator_calls']} + {diagnostic_calls} | `{row['certification']['status']}` |")
     summary.extend([
         "",
-        "The xTB forces are current-snapshot proxy feedback. The certification gate is intentionally blocked because this run does not fabricate Hessian, endpoint, or bidirectional IRC evidence.",
+        "The xTB forces, candidate Hessians and endpoint relaxations are proxy diagnostics. Independent bidirectional IRC, endpoint Hessians/minima and mapped reactant-endpoint identity remain unverified. Strict certified channels: 0.",
     ])
     (output_dir / "summary.md").write_text("\n".join(summary) + "\n", encoding="utf-8")
     return manifest

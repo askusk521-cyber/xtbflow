@@ -1,0 +1,164 @@
+{
+  "arms": [
+    {
+      "arm": "no_feedback",
+      "calculator_calls": 314,
+      "candidate_generator": {
+        "approach_centroid_distance_angstrom": 3.4,
+        "collision_distance_angstrom": 0.7,
+        "components": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        ],
+        "generator": "reactant-principal-axis-approach-v1",
+        "geometry_hash": "37ecd80afba10be783445f919d0c76d8d8b5b60bfe7a4ded3b5a69bbd59a66ea",
+        "input_hash": "726656ab0c3d2878853a858c4bbc5d5df82665c584dcbd368735b22084fbc4f5",
+        "minimum_cross_component_distance_angstrom": 3.2146950462781905
+      },
+      "cost": {
+        "cpu_hours": 0.0005715121527777778,
+        "cpu_seconds": 2.0574418970000004,
+        "gpu_hours": 0.0,
+        "wall_seconds": 2.365856775082648
+      },
+      "event_changed": false,
+      "feedback_used": false,
+      "geometry_changed": false,
+      "observed_event": [],
+      "path_connected": true,
+      "reason_code": "CERTIFIED",
+      "status": "success",
+      "validation": {
+        "cache_key": "",
+        "calculator_calls": 314,
+        "candidate_hash": "",
+        "candidate_id": "reactant-da-r0-approach-v1:no_feedback",
+        "error": null,
+        "gradient_norm": 9.947200521850976e-05,
+        "mode_status": "mode_count_pass",
+        "observed_event": [],
+        "path_status": "validated",
+        "source": "xtbflow-xtb-irc-v1",
+        "status": "success",
+        "validation_identity": ""
+      }
+    },
+    {
+      "arm": "physical_feedback",
+      "calculator_calls": 306,
+      "candidate_generator": {
+        "approach_centroid_distance_angstrom": 3.4,
+        "collision_distance_angstrom": 0.7,
+        "components": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        ],
+        "generator": "reactant-principal-axis-approach-v1",
+        "geometry_hash": "37ecd80afba10be783445f919d0c76d8d8b5b60bfe7a4ded3b5a69bbd59a66ea",
+        "input_hash": "726656ab0c3d2878853a858c4bbc5d5df82665c584dcbd368735b22084fbc4f5",
+        "minimum_cross_component_distance_angstrom": 3.2146950462781905
+      },
+      "cost": {
+        "cpu_hours": 0.0005075357927777779,
+        "cpu_seconds": 1.8271273419999998,
+        "gpu_hours": 0.0,
+        "wall_seconds": 2.1493149120360613
+      },
+      "event_changed": true,
+      "feedback_used": true,
+      "geometry_changed": true,
+      "observed_event": [],
+      "path_connected": true,
+      "reason_code": "CERTIFIED",
+      "status": "success",
+      "validation": {
+        "cache_key": "",
+        "calculator_calls": 306,
+        "candidate_hash": "",
+        "candidate_id": "reactant-da-r0-approach-v1:physical_feedback",
+        "error": null,
+        "gradient_norm": 9.906345928581752e-05,
+        "mode_status": "mode_count_pass",
+        "observed_event": [],
+        "path_status": "validated",
+        "source": "xtbflow-xtb-irc-v1",
+        "status": "success",
+        "validation_identity": ""
+      }
+    }
+  ],
+  "claim_levels": {
+    "calculator_feedback": "proxy_metric",
+    "ts_irc": "strict_validation",
+    "workflow": "software_demo"
+  },
+  "claim_limits": [
+    "This is a fixed one-parent/one-seed software and validation fixture generated from reactant-only components.",
+    "The strict_validation label refers to the frozen xTB Hessian/path validator and does not claim blind reaction discovery, a barrier, a mechanism, chemical accuracy, generalization, or model superiority.",
+    "The observed event graph is retained as validator output; it is not interpreted as a scientific discovery claim.",
+    "Raw candidate/path coordinates remain in the private n2 artifact."
+  ],
+  "config_sha256": "ad10fe307f1cf2d92f60b3f02d49d8953c6a9ea4ec4deefceccbc32f49e42ae2",
+  "execution_host": "node2",
+  "input_hash": "726656ab0c3d2878853a858c4bbc5d5df82665c584dcbd368735b22084fbc4f5",
+  "parent_id": "reactant-da-r0-approach-v1",
+  "protocol": {
+    "identity": "30a8e5d3774c8993fd52d9633cbfbcae51c0872af7865b6afefcda5189af1364",
+    "parameters": {
+      "accuracy": 1.0,
+      "electronic_temperature": 300,
+      "max_iterations": 100,
+      "solvent": null
+    },
+    "protocol_id": "real-feedback-gfn2-xtb-v1"
+  },
+  "python": "3.10.19",
+  "replay": {
+    "deterministic_summary_sha256": "5a77357cd1c70e85d800399711c5451ec827d3eabe4e7f81b749c577572fac14",
+    "identical_replay": true,
+    "replayed_source_commit": "37e42e02585ee5c8a638aea5747cd773541def18"
+  },
+  "schema": "xtbflow-reactant-only-certified-live-evidence/v1",
+  "seed": 20261111,
+  "source": {
+    "commit": "37e42e02585ee5c8a638aea5747cd773541def18",
+    "dirty": false
+  },
+  "status": "completed"
+}

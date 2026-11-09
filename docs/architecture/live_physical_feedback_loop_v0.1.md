@@ -24,11 +24,17 @@ event freeze, and one conservation projection. Adapter and runtime ledgers
 retain estimated/measured/charged cost, provider/protocol fingerprints,
 failure stage, snapshot identity, and the changed geometry/event state.
 
-The independent TS/IRC validator is invoked after both arms. It fails closed
-with `MISSING_TS_HESSIAN_IRC_EVIDENCE` because this loop does not fabricate
-Hessian, endpoint, or bidirectional IRC evidence. The committed artifact
-therefore has `status=blocked_certification`; this is the expected honest
-boundary for the first live feedback smoke.
+The downstream diagnostic gate is opt-in through an explicit `certification`
+configuration block. With the block absent, the runner records
+`MISSING_TS_HESSIAN_IRC_EVIDENCE` and keeps the original
+`status=blocked_certification` artifact; it never silently selects a backend.
+When enabled, each arm receives its own durable budget and the shared xTB
+protocol is used for finite-difference Hessians, short Cartesian descents and
+endpoint relaxations. These are proxy diagnostics, not independent IRC or
+verified endpoint minima. The corrected policy records `attempted_unresolved`
+and counts zero strict certified channels even if local gradient/mode checks
+pass. The historic R0 `CERTIFIED` claim is withdrawn in
+[the evidence review](../CERTIFICATION_REVIEW_20261110.md).
 
 The run artifact is
 `artifacts/real_feedback_run_20261110T020000/`. Its claim levels are:

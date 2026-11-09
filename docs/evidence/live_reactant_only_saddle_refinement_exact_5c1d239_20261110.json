@@ -1,0 +1,96 @@
+{
+  "arms": [
+    {
+      "arm": "no_feedback",
+      "calculator_calls": 101,
+      "cost": {
+        "cpu_hours": 0.0002360587502777778,
+        "cpu_seconds": 0.849809748,
+        "gpu_hours": 0.0,
+        "wall_seconds": 0.9435420481022447
+      },
+      "event_changed": false,
+      "feedback_used": false,
+      "geometry_changed": false,
+      "gradient_norm": 0.0008823719661455603,
+      "negative_mode_count": 1,
+      "reason_code": "SADDLE_REFINEMENT_NO_TRUST_STEP",
+      "refinement_reason": "NO_TRUST_STEP",
+      "refinement_trace": [
+        {
+          "accepted": false,
+          "energy_hartree": -17.82279863317651,
+          "gradient_norm": 0.0008823719661455603,
+          "iteration": 0,
+          "minimum_eigenvalue": -0.0001167945942550469,
+          "negative_mode_count": 1,
+          "raw_step_norm_angstrom": 0.24905252982856524,
+          "trial_gradient_norms": [
+            0.0010463384889971177,
+            0.0009158843579216595,
+            0.0009040721994855336,
+            0.0008944594738778218
+          ]
+        }
+      ],
+      "status": "attempted_unresolved"
+    },
+    {
+      "arm": "physical_feedback",
+      "calculator_calls": 101,
+      "cost": {
+        "cpu_hours": 0.00019735355500000002,
+        "cpu_seconds": 0.7104713359999999,
+        "gpu_hours": 0.0,
+        "wall_seconds": 0.8038218710571527
+      },
+      "event_changed": true,
+      "feedback_used": true,
+      "geometry_changed": true,
+      "gradient_norm": 0.0008499447820538547,
+      "negative_mode_count": 1,
+      "reason_code": "SADDLE_REFINEMENT_NO_TRUST_STEP",
+      "refinement_reason": "NO_TRUST_STEP",
+      "refinement_trace": [
+        {
+          "accepted": false,
+          "energy_hartree": -17.82279869082689,
+          "gradient_norm": 0.0008499447820538547,
+          "iteration": 0,
+          "minimum_eigenvalue": -0.00011721326832168423,
+          "negative_mode_count": 1,
+          "raw_step_norm_angstrom": 0.24943701647713945,
+          "trial_gradient_norms": [
+            0.001036992306243603,
+            0.000881401288127567,
+            0.0008706233263367042,
+            0.0008615230143558258
+          ]
+        }
+      ],
+      "status": "attempted_unresolved"
+    }
+  ],
+  "claim_levels": {
+    "calculator_feedback": "proxy_metric",
+    "ts_irc": "strict_validation",
+    "workflow": "software_demo"
+  },
+  "claim_limits": [
+    "Saddle refinement was opt-in, bounded, and used the shared calculator token.",
+    "Both arms had one negative mode but no trust step reduced the force residual below the frozen threshold.",
+    "No TS/IRC, barrier, mechanism, chemical-accuracy, or superiority claim is made.",
+    "Raw candidate/path coordinates remain private on n2."
+  ],
+  "config_sha256": "2ccec5eaaed7d81fb94a296c54c0da43d913ef049a31ff7f4ab65b1bb2384526",
+  "execution_host": "node2",
+  "input_hash": "726656ab0c3d2878853a858c4bbc5d5df82665c584dcbd368735b22084fbc4f5",
+  "parent_id": "reactant-da-r0-approach-v1",
+  "schema": "xtbflow-reactant-only-saddle-refinement-live-evidence/v1",
+  "seed": 20261111,
+  "source": {
+    "commit": "5c1d239780d523b6b817a23617557accf7b83f5f",
+    "dirty": false
+  },
+  "status": "blocked_certification"
+}

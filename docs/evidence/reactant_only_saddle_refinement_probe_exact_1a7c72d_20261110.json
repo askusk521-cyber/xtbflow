@@ -1,0 +1,45 @@
+{
+  "schema": "xtbflow-reactant-only-saddle-refinement-probe/v1",
+  "status": "attempted_unresolved",
+  "source": {
+    "commit": "1a7c72d55e47e8a8278ed46025fa97d2b769ed3c",
+    "dirty": false
+  },
+  "execution_host": "node2",
+  "input_hash": "726656ab0c3d2878853a858c4bbc5d5df82665c584dcbd368735b22084fbc4f5",
+  "generator": "reactant-principal-axis-approach-v1",
+  "diagnostics": [
+    {
+      "approach_centroid_distance_angstrom": 2.6,
+      "geometry_hash": "a04efec1ce6c13eb4cdb42b60427fcbcf31e39f3d6bd6b396ed9b69ece95e414",
+      "minimum_cross_component_distance_angstrom": 2.4289246194280962,
+      "max_force_hartree_per_angstrom": 0.016636722197492137,
+      "negative_mode_count": 2,
+      "most_negative_eigenvalue_hartree_per_angstrom2": -0.0034605161961141838
+    },
+    {
+      "approach_centroid_distance_angstrom": 3.5,
+      "geometry_hash": "15af8e1f820cc58f503870de4ea166a4457bd1ceccaa321385ee61a4ed7529f7",
+      "minimum_cross_component_distance_angstrom": 3.313395225411276,
+      "max_force_hartree_per_angstrom": 0.001056422197367075,
+      "negative_mode_count": 1,
+      "most_negative_eigenvalue_hartree_per_angstrom2": -0.00013600010551656556
+    }
+  ],
+  "refinement_result": {
+    "status": "not_converged",
+    "reason_code": "SADDLE_REFINEMENT_NO_TRUST_STEP",
+    "gradient_tolerance_hartree_per_angstrom": 0.0001,
+    "thresholds_unchanged": true
+  },
+  "claim_levels": {
+    "workflow": "software_demo",
+    "calculator_feedback": "proxy_metric",
+    "ts_irc": "strict_validation"
+  },
+  "claim_limits": [
+    "This is a numerical refinement diagnostic on reactant-only generated geometries.",
+    "It does not claim a transition state, barrier, mechanism, or chemical accuracy.",
+    "The failed trust-step result is retained as unresolved evidence rather than a relaxed QC pass."
+  ]
+}

@@ -24,12 +24,18 @@ from datetime import datetime, timezone
 import hashlib
 import json
 from importlib.util import find_spec
+import os
 from pathlib import Path
 import platform
 import subprocess
 import sys
 import time
 from typing import Any, Mapping
+
+# Keep calculator CPU accounting reproducible across hosts with different
+# OpenMP/BLAS defaults.  The calculator protocol remains CPU-only.
+for _variable in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ[_variable] = "1"
 
 from xtbflow.calculators import MolecularSystem, XTBOracleAdapter
 from xtbflow.runtime import LedgerEvent, RunLedger, StageBudget

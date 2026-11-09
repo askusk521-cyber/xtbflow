@@ -1,0 +1,1542 @@
+{
+  "claim_limits": [
+    "This is a fixed-node CPU scheduler diagnostic for the declared workload only.",
+    "It is not a general performance, throughput, or architecture claim.",
+    "No chemistry, physical accuracy, certification, or generalization claim is made."
+  ],
+  "comparison": {
+    "parallel_over_serial_wall_ratio": 0.9482855178866468,
+    "serial_over_parallel_speedup": 1.0545347167471293
+  },
+  "modes": {
+    "parallel": {
+      "rows": [
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017616813043167329,
+          "parent_id": "ID24680",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.26816996303386986
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022237747420538392,
+          "parent_id": "ID24680",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.28176764911040664
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0001739330315412863,
+          "parent_id": "ID24680",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.26411058683879673
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021667283501029046,
+          "parent_id": "ID48714",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.2517905840650201
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020524857415056997,
+          "parent_id": "ID48714",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.230044781928882
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002776607171218691,
+          "parent_id": "ID48714",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.24686518497765064
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020095053742934693,
+          "parent_id": "ID63835",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.24184173508547246
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020259239049023108,
+          "parent_id": "ID63835",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2695054339710623
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020262995119833032,
+          "parent_id": "ID63835",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.23592364904470742
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00019581574582592712,
+          "parent_id": "ID64174",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.19962124503217638
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.000181642376394132,
+          "parent_id": "ID64174",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.18171124602667987
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00016239730110012148,
+          "parent_id": "ID64174",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.18329073092900217
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00032251849578696914,
+          "parent_id": "ID66742",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.27331195306032896
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002735296708808999,
+          "parent_id": "ID66742",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2925700929481536
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00032897720818447106,
+          "parent_id": "ID66742",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.2645035271998495
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002755420223229643,
+          "parent_id": "ID69027",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.29474998405203223
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00023334952913067742,
+          "parent_id": "ID69027",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2734964450355619
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021524291498071585,
+          "parent_id": "ID69027",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.29361620103009045
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022950362622956732,
+          "parent_id": "ID74847",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.22238666517660022
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002076921346259059,
+          "parent_id": "ID74847",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.24229517811909318
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021616242795291702,
+          "parent_id": "ID74847",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.23105815099552274
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021053077178971385,
+          "parent_id": "ID91104",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.24764513690024614
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00015786068736339817,
+          "parent_id": "ID91104",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2341723321005702
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00019419492509208883,
+          "parent_id": "ID91104",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.24601219990290701
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0001799658867727123,
+          "parent_id": "ID92517",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.23858257289975882
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002005814200557232,
+          "parent_id": "ID92517",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2589066009968519
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022912763729450827,
+          "parent_id": "ID92517",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.2596669739577919
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017616813043167312,
+          "parent_id": "ID24680",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.26583317993208766
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022237747420538462,
+          "parent_id": "ID24680",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2537381600122899
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017393303154128556,
+          "parent_id": "ID24680",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.2785611671861261
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002166728350102904,
+          "parent_id": "ID48714",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.22821632609702647
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020524857415056997,
+          "parent_id": "ID48714",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2357091000303626
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00027766071712186986,
+          "parent_id": "ID48714",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.2195473639294505
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002009505374293474,
+          "parent_id": "ID63835",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.24229275388643146
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020259239049023062,
+          "parent_id": "ID63835",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.26283205207437277
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002026299511983311,
+          "parent_id": "ID63835",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.24375044205226004
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00019581574582592699,
+          "parent_id": "ID64174",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.19037623098120093
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0001816423763941322,
+          "parent_id": "ID64174",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.17466005706228316
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00016239730110012207,
+          "parent_id": "ID64174",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.1875430098734796
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0003225184957869685,
+          "parent_id": "ID66742",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.25680593913421035
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00027352967088090015,
+          "parent_id": "ID66742",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.26785312686115503
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.000328977208184471,
+          "parent_id": "ID66742",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.27691380796022713
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002755420223229643,
+          "parent_id": "ID69027",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.28588050394319
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00023334952913067704,
+          "parent_id": "ID69027",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2784719290211797
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021524291498071544,
+          "parent_id": "ID69027",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.2746479439083487
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002295036262295681,
+          "parent_id": "ID74847",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.2330552029889077
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020769213462590628,
+          "parent_id": "ID74847",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.22685794881545007
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002161624279529175,
+          "parent_id": "ID74847",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.21955500496551394
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002105307717897144,
+          "parent_id": "ID91104",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.2272245290223509
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00015786068736339836,
+          "parent_id": "ID91104",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2295837257988751
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00019419492509208905,
+          "parent_id": "ID91104",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.22938134684227407
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017996588677271196,
+          "parent_id": "ID92517",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.2356673360336572
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020058142005572322,
+          "parent_id": "ID92517",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.23369513009674847
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.000229127637294508,
+          "parent_id": "ID92517",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.25872148713096976
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.000176168130431673,
+          "parent_id": "ID24680",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.2459580258000642
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002223774742053836,
+          "parent_id": "ID24680",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.26126333186402917
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017393303154128597,
+          "parent_id": "ID24680",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.2466561330948025
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021667283501029038,
+          "parent_id": "ID48714",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.23971426114439964
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020524857415056953,
+          "parent_id": "ID48714",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.21221109782345593
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002776607171218694,
+          "parent_id": "ID48714",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.2277164610568434
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020095053742934737,
+          "parent_id": "ID63835",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.2508099728729576
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002025923904902305,
+          "parent_id": "ID63835",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.23492297809571028
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020262995119833092,
+          "parent_id": "ID63835",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.25619164016097784
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00019581574582592677,
+          "parent_id": "ID64174",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.1834132659714669
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00018164237639413134,
+          "parent_id": "ID64174",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.17962298216298223
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00016239730110012248,
+          "parent_id": "ID64174",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.1858074760530144
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00032251849578696865,
+          "parent_id": "ID66742",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.2645303360186517
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00027352967088089966,
+          "parent_id": "ID66742",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2660428578965366
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00032897720818447096,
+          "parent_id": "ID66742",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.26535823196172714
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00027554202232296464,
+          "parent_id": "ID69027",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.25055954908020794
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00023334952913067704,
+          "parent_id": "ID69027",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2678106708917767
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002152429149807156,
+          "parent_id": "ID69027",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.2613605500664562
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022950362622956767,
+          "parent_id": "ID74847",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.2194989190902561
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020769213462590644,
+          "parent_id": "ID74847",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2277642129920423
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021616242795291748,
+          "parent_id": "ID74847",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.23970252205617726
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002105307717897143,
+          "parent_id": "ID91104",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.2130863859783858
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0001578606873633983,
+          "parent_id": "ID91104",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2221252229064703
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0001941949250920887,
+          "parent_id": "ID91104",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.24266589200124145
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017996588677271163,
+          "parent_id": "ID92517",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.24827260291203856
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020058142005572314,
+          "parent_id": "ID92517",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.2400799400638789
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022912763729450832,
+          "parent_id": "ID92517",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.23019817401655018
+        }
+      ],
+      "summary": {
+        "calculator_calls": 162,
+        "elapsed_wall_seconds": 10.173627077136189,
+        "p50_task_wall_seconds": 0.24266589200124145,
+        "p95_task_wall_seconds": 0.28176764911040664,
+        "success_tasks": 81,
+        "tasks": 81,
+        "worker_count": 2
+      }
+    },
+    "serial": {
+      "rows": [
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017616813043167264,
+          "parent_id": "ID24680",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 2.396797769004479
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022237747420538408,
+          "parent_id": "ID24680",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.11160773201845586
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017393303154128527,
+          "parent_id": "ID24680",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.11600201996043324
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021667283501029,
+          "parent_id": "ID48714",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.0779607268050313
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002052485741505695,
+          "parent_id": "ID48714",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.0807355078868568
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00027766071712186953,
+          "parent_id": "ID48714",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.08628631406463683
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020095053742934707,
+          "parent_id": "ID63835",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.11408741306513548
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002025923904902307,
+          "parent_id": "ID63835",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.1068784729577601
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020262995119833,
+          "parent_id": "ID63835",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.10537737817503512
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00019581574582592663,
+          "parent_id": "ID64174",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.05114190001040697
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00018164237639413155,
+          "parent_id": "ID64174",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.046574617037549615
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00016239730110012245,
+          "parent_id": "ID64174",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.04692164808511734
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.000322518495786969,
+          "parent_id": "ID66742",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.11787706706672907
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00027352967088089983,
+          "parent_id": "ID66742",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.11886562802828848
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0003289772081844711,
+          "parent_id": "ID66742",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.11710314289666712
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002755420223229646,
+          "parent_id": "ID69027",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.10375673114322126
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.000233349529130677,
+          "parent_id": "ID69027",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.12443951796740294
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021524291498071542,
+          "parent_id": "ID69027",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.12500336999073625
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022950362622956767,
+          "parent_id": "ID74847",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.09726446587592363
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020769213462590584,
+          "parent_id": "ID74847",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.08544810302555561
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021616242795291683,
+          "parent_id": "ID74847",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.08617540402337909
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021053077178971371,
+          "parent_id": "ID91104",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.08598902984522283
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00015786068736339844,
+          "parent_id": "ID91104",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.09578727791085839
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00019419492509208902,
+          "parent_id": "ID91104",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.08694802620448172
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017996588677271188,
+          "parent_id": "ID92517",
+          "repeat": 0,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.09652619692496955
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020058142005572368,
+          "parent_id": "ID92517",
+          "repeat": 0,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.08879080298356712
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002291276372945081,
+          "parent_id": "ID92517",
+          "repeat": 0,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.09437385690398514
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017616813043167274,
+          "parent_id": "ID24680",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.11514978692866862
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002223774742053841,
+          "parent_id": "ID24680",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.1035151609685272
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0001739330315412857,
+          "parent_id": "ID24680",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.11210494209080935
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021667283501029008,
+          "parent_id": "ID48714",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.0770947930868715
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020524857415056945,
+          "parent_id": "ID48714",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.06918776594102383
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002776607171218692,
+          "parent_id": "ID48714",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.0864992889109999
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002009505374293474,
+          "parent_id": "ID63835",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.08965517394244671
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020259239049023067,
+          "parent_id": "ID63835",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.10404150513932109
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020262995119833065,
+          "parent_id": "ID63835",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.1175271610263735
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.000195815745825926,
+          "parent_id": "ID64174",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.045432972023263574
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00018164237639413177,
+          "parent_id": "ID64174",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.04514579311944544
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0001623973011001225,
+          "parent_id": "ID64174",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.047003512969240546
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.000322518495786969,
+          "parent_id": "ID66742",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.11822245316579938
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002735296708808999,
+          "parent_id": "ID66742",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.12219428597018123
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00032897720818447063,
+          "parent_id": "ID66742",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.11825469299219549
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00027554202232296426,
+          "parent_id": "ID69027",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.12432086584158242
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.000233349529130677,
+          "parent_id": "ID69027",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.12089720205403864
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002152429149807155,
+          "parent_id": "ID69027",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.12138838297687471
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022950362622956754,
+          "parent_id": "ID74847",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.08374567003920674
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020769213462590617,
+          "parent_id": "ID74847",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.0833250570576638
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002161624279529173,
+          "parent_id": "ID74847",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.08529795194044709
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002105307717897138,
+          "parent_id": "ID91104",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.08637204486876726
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00015786068736339828,
+          "parent_id": "ID91104",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.1279796389862895
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00019419492509208905,
+          "parent_id": "ID91104",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.08472940302453935
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017996588677271177,
+          "parent_id": "ID92517",
+          "repeat": 1,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.10200400091707706
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002005814200557236,
+          "parent_id": "ID92517",
+          "repeat": 1,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.09458517911843956
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022912763729450813,
+          "parent_id": "ID92517",
+          "repeat": 1,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.10207105288282037
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017616813043167301,
+          "parent_id": "ID24680",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.12343974900431931
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022237747420538414,
+          "parent_id": "ID24680",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.11430597607977688
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017393303154128537,
+          "parent_id": "ID24680",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.11925708502531052
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021667283501029027,
+          "parent_id": "ID48714",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.08480728208087385
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020524857415056953,
+          "parent_id": "ID48714",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.08437798614613712
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00027766071712186904,
+          "parent_id": "ID48714",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.07865353510715067
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020095053742934707,
+          "parent_id": "ID63835",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.10617961385287344
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020259239049023086,
+          "parent_id": "ID63835",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.1059550498612225
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020262995119833054,
+          "parent_id": "ID63835",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.11670574499294162
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00019581574582592574,
+          "parent_id": "ID64174",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.05364989279769361
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.000181642376394132,
+          "parent_id": "ID64174",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.046399548882618546
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00016239730110012186,
+          "parent_id": "ID64174",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.04975314601324499
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0003225184957869688,
+          "parent_id": "ID66742",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.11599214398302138
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00027352967088089994,
+          "parent_id": "ID66742",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.1225585020147264
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0003289772081844711,
+          "parent_id": "ID66742",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.11840650485828519
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002755420223229646,
+          "parent_id": "ID69027",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.12259605899453163
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00023334952913067666,
+          "parent_id": "ID69027",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.126171083888039
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021524291498071574,
+          "parent_id": "ID69027",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.12161039211787283
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022950362622956738,
+          "parent_id": "ID74847",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.09031547186896205
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002076921346259064,
+          "parent_id": "ID74847",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.08371916902251542
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00021616242795291737,
+          "parent_id": "ID74847",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.1007004170678556
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0002105307717897138,
+          "parent_id": "ID91104",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.09951482503674924
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0001578606873633983,
+          "parent_id": "ID91104",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.1018056869506836
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.0001941949250920887,
+          "parent_id": "ID91104",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.08622685191221535
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00017996588677271106,
+          "parent_id": "ID92517",
+          "repeat": 2,
+          "seed": 1001,
+          "status": "success",
+          "wall_seconds": 0.09686697693541646
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00020058142005572376,
+          "parent_id": "ID92517",
+          "repeat": 2,
+          "seed": 1002,
+          "status": "success",
+          "wall_seconds": 0.09581408789381385
+        },
+        {
+          "calculator_calls": 2,
+          "geometry_displacement_angstrom": 0.00022912763729450778,
+          "parent_id": "ID92517",
+          "repeat": 2,
+          "seed": 1003,
+          "status": "success",
+          "wall_seconds": 0.1006973129697144
+        }
+      ],
+      "summary": {
+        "calculator_calls": 162,
+        "elapsed_wall_seconds": 10.728442948078737,
+        "p50_task_wall_seconds": 0.1006973129697144,
+        "p95_task_wall_seconds": 0.12443951796740294,
+        "success_tasks": 81,
+        "tasks": 81,
+        "worker_count": 1
+      }
+    }
+  },
+  "protocol": {
+    "claim_limits": [
+      "This is a fixed-node CPU scheduler diagnostic for the declared workload only.",
+      "It is not a general performance, throughput, or architecture claim.",
+      "No chemistry, physical accuracy, certification, or generalization claim is made."
+    ],
+    "parent_ids": [
+      "ID24680",
+      "ID48714",
+      "ID63835",
+      "ID64174",
+      "ID66742",
+      "ID69027",
+      "ID74847",
+      "ID91104",
+      "ID92517"
+    ],
+    "repeats": 3,
+    "schema": "xtbflow-fixed-hardware-parallel-benchmark/v1",
+    "seeds": [
+      1001,
+      1002,
+      1003
+    ],
+    "source_split": "development_test",
+    "status": "frozen_pre_run",
+    "task": {
+      "calculator": "tblite-gfn2",
+      "operation": "energy_forces_initial_plus_final",
+      "step": "standard_force_step",
+      "step_scale": 0.01,
+      "trust_radius_angstrom": 0.05
+    },
+    "workers": 2
+  },
+  "runtime": {
+    "cpu_count": 192,
+    "host": "node2",
+    "python": "3.10.19"
+  },
+  "schema": "xtbflow-fixed-hardware-parallel-benchmark-result/v1",
+  "source_commit": "4688bdead7c99f81731e01bcd76c11ad9e39b8ed",
+  "source_manifest": "data/manifests/paired_pilot_v1/manifest.jsonl",
+  "source_manifest_sha256": "6b84937d3cc75bea44faa7608d690618ce22f7ab75c51b8e25515f05a193cc90",
+  "status": "completed"
+}

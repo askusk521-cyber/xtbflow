@@ -74,6 +74,7 @@ from .policy_adapter import (
     RecordedPolicyProvider,
     run_policy_ablation,
 )
+from .event_action import EventAction, EventEdit
 from .matched_integration import (
     MATCHED_ARMS,
     MatchedArm,
@@ -98,6 +99,7 @@ __all__ = [
     "RecordedPhysicalProvider", "run_physical_ablation",
     "PolicyAblationArtifact", "PolicyFeedback", "PolicyGuidanceConfig",
     "RecordedPolicyProvider", "run_policy_ablation",
+    "EventAction", "EventEdit",
     "MATCHED_ARMS", "MatchedArm", "MatchedComparisonArtifact", "MatchedComparisonConfig",
     "MatchedRow", "run_matched_comparison",
 ]

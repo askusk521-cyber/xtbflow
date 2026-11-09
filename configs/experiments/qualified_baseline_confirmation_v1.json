@@ -1,0 +1,54 @@
+{
+  "schema": "xtbflow-qualified-baseline-confirmation/v1",
+  "status": "frozen_pre_run",
+  "source_manifest": "data/manifests/paired_pilot_v1/manifest.jsonl",
+  "source_dataset": "diels-alder-reaction-space",
+  "source_split": "development_test",
+  "parent_ids": [
+    "ID24680",
+    "ID48714",
+    "ID63835",
+    "ID64174",
+    "ID66742",
+    "ID69027",
+    "ID74847",
+    "ID91104",
+    "ID92517"
+  ],
+  "seeds": [1001, 1002, 1003],
+  "arms": ["no_op", "standard_force_step", "normalized_force_step"],
+  "calculator_protocol": {
+    "calculator": "xtb_oracle",
+    "implementation": "tblite",
+    "method": "GFN2-xTB",
+    "backend": "cpu",
+    "accuracy": 1.0,
+    "max_iterations": 250,
+    "electronic_temperature": 300.0,
+    "solvent": null,
+    "qualification_scope": "tblite_force_response_scope",
+    "qualification_status": "qualified_for_tblite_force_response"
+  },
+  "step_policy": {
+    "trust_radius_angstrom": 0.05,
+    "standard_step_scale": 0.01,
+    "adapter_normalized_step": true,
+    "collision_distance_angstrom": 0.2
+  },
+  "budget_policy": {
+    "max_calculator_calls_per_row": 3,
+    "max_total_calculator_calls": 243,
+    "timeout_seconds": 120
+  },
+  "endpoints": {
+    "physical": "force_rms_reduction_hartree_per_angstrom",
+    "geometry": "bounded_one_step_displacement",
+    "performance": "reserved_for_separate_fixed_hardware_benchmark"
+  },
+  "claim_limits": [
+    "This is an independent development-test split diagnostic, not confirmatory chemistry evidence.",
+    "The qualified scope is tblite force response plus independent xTB energy-surface finite differences; xTB analytic gradients remain diagnostic.",
+    "No physical accuracy, chemistry superiority, certification, performance improvement, or generalization claim is made.",
+    "No result may be used for training, model selection, or threshold tuning."
+  ]
+}

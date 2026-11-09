@@ -1,0 +1,39 @@
+{
+  "claim_limits": [
+    "This proves only the declared family-held-out split and denominator.",
+    "It does not prove chemical independence beyond the manifest audit or any scientific endpoint."
+  ],
+  "family_overlap_with_non_selected_records": [],
+  "manifest": "data/manifests/paired_pilot_v1/manifest.jsonl",
+  "manifest_sha256": "6b84937d3cc75bea44faa7608d690618ce22f7ab75c51b8e25515f05a193cc90",
+  "protocol": "configs/experiments/qualified_baseline_confirmation_v1.json",
+  "protocol_sha256": "fb5bbef24082cb8e0ee810af92d865de681b0c9f0a286dffa30fd5516d184a60",
+  "schema": "xtbflow-confirmation-split-audit/v1",
+  "selected_family_count": 9,
+  "selected_family_ids": [
+    "dft-da-family:167350220eb28794ec0cd0cb",
+    "dft-da-family:3c362c1de7dc51c141d27c50",
+    "dft-da-family:77af9422856bba38a9ecc334",
+    "dft-da-family:9d65054a1bd2a9b177b69d9e",
+    "dft-da-family:9d671219f77bec4ee94341eb",
+    "dft-da-family:a9cd664d9ca72253d1a8d132",
+    "dft-da-family:df48e61f76350985f732020e",
+    "dft-da-family:eb59c1f8aee5c65a9413d948",
+    "dft-da-family:ff23da786c3a8696d49cf658"
+  ],
+  "selected_parent_count": 9,
+  "selected_parent_ids": [
+    "ID24680",
+    "ID48714",
+    "ID63835",
+    "ID64174",
+    "ID66742",
+    "ID69027",
+    "ID74847",
+    "ID91104",
+    "ID92517"
+  ],
+  "selected_record_count": 45,
+  "source_commit": "4688bdead7c99f81731e01bcd76c11ad9e39b8ed",
+  "status": "pass"
+}

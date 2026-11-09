@@ -1,0 +1,21 @@
+{
+  "schema": "xtbflow-fixed-hardware-parallel-benchmark/v1",
+  "status": "frozen_pre_run",
+  "source_split": "development_test",
+  "parent_ids": ["ID24680", "ID48714", "ID63835", "ID64174", "ID66742", "ID69027", "ID74847", "ID91104", "ID92517"],
+  "seeds": [1001, 1002, 1003],
+  "repeats": 3,
+  "workers": 2,
+  "task": {
+    "calculator": "tblite-gfn2",
+    "operation": "energy_forces_initial_plus_final",
+    "step": "standard_force_step",
+    "trust_radius_angstrom": 0.05,
+    "step_scale": 0.01
+  },
+  "claim_limits": [
+    "This is a fixed-node CPU scheduler diagnostic for the declared workload only.",
+    "It is not a general performance, throughput, or architecture claim.",
+    "No chemistry, physical accuracy, certification, or generalization claim is made."
+  ]
+}

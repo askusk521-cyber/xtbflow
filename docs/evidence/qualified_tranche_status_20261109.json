@@ -1,0 +1,66 @@
+{
+  "schema": "xtbflow-qualified-pvo-next-tranche-status/v1",
+  "status": "software_and_diagnostic_steps_complete_pending_independent_review",
+  "source_commit": "4688bdead7c99f81731e01bcd76c11ad9e39b8ed",
+  "artifact_sha256": {
+    "gfn2_requalification": "fc0e5445ccc9488e257528a55ab72391a7535762287f6296807b1366127a8788",
+    "gfn2_independent_fd": "ea6b4df0509cab85ba612c4491666177bf511da5c92aff9d1376693206f28d5e",
+    "gfn2_scoped_requalification": "29c4bbe800d0541c7acd3f5faf10b415da86f6f200be4a3af356556b6ad4e197",
+    "qualified_baseline_confirmation": "5bca7424f56d3568c9c92a91300093ba22c5d20ebe7a7d0247ef927e26c641df",
+    "confirmation_split_audit": "ce7de2f220f55ec1ab2494313063eb4c2a88414a5deb0d812f3a01d7dc03ddfc",
+    "fixed_hardware_parallel_benchmark": "325ea3caead2857559047a7923df9fc7e581181784755649f8ee2185ca3ecd11"
+  },
+  "steps": {
+    "1_calculator_parity_qualification": {
+      "status": "scoped_pass",
+      "artifact": "docs/evidence/gfn2_scoped_requalification_20261109.json",
+      "strict_original_gate": "failed",
+      "scope": "tblite/native-tblite/native-ASE/finite-difference plus independent xTB energy-surface finite differences",
+      "analytic_xtb_gradient": "diagnostic_only"
+    },
+    "2_noop_standard_optimizer_baseline": {
+      "status": "completed",
+      "artifact": "docs/evidence/qualified_baseline_confirmation_20261109.json",
+      "arms": ["no_op", "standard_force_step", "normalized_force_step"],
+      "rows": 81,
+      "success_rows": 81
+    },
+    "3_complete_event_action_contract": {
+      "status": "implemented_and_focused_tested",
+      "module": "src/xtbflow/sampling/event_action.py",
+      "schema": "schemas/event_action.schema.json",
+      "focused_tests": 6
+    },
+    "4_independent_confirmation_split": {
+      "status": "pass",
+      "artifact": "docs/evidence/confirmation_split_audit_20261109.json",
+      "parents": 9,
+      "families": 9,
+      "records": 45,
+      "overlap": []
+    },
+    "5_qualified_backend_endpoint_remeasure": {
+      "status": "completed_diagnostic_only",
+      "artifact": "docs/evidence/qualified_baseline_confirmation_20261109.json",
+      "claim": "no physical accuracy or chemistry claim"
+    },
+    "6_fixed_hardware_parallel_performance": {
+      "status": "completed_negative_diagnostic",
+      "artifact": "docs/evidence/fixed_hardware_parallel_benchmark_20261109.json",
+      "tasks_per_mode": 81,
+      "repeats": 3,
+      "serial_over_parallel_speedup": 1.0545347167471293,
+      "threshold": 1.1,
+      "threshold_pass": false
+    },
+    "7_independent_review_and_main_gate": {
+      "status": "pending",
+      "main_promotion": "blocked_until_independent_review_and_claim_review"
+    }
+  },
+  "claim_limits": [
+    "This tranche is software, split, calculator-scope, and fixed-hardware diagnostic evidence.",
+    "It does not establish chemistry superiority, physical accuracy, certification, general performance, or generalization.",
+    "science_ready remains false until an independent reviewer accepts the scoped qualification, endpoint contract, and evidence provenance."
+  ]
+}

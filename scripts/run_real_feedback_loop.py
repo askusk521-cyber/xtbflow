@@ -46,6 +46,7 @@ from xtbflow.sampling.live_physical import (
     LiveXTBPhysicalProvider,
     xTB_protocol_from_mapping,
 )
+from xtbflow.sampling.reactant_candidates import build_reactant_approach
 from xtbflow.sampling.parallel_guidance import (
     GenerationSnapshot,
     GuidanceCost,
@@ -95,11 +96,24 @@ def _load_config(path: Path) -> tuple[dict[str, Any], str]:
 
 def _snapshot(config: Mapping[str, Any], system: MolecularSystem, seed: int) -> GenerationSnapshot:
     event_size = int(config["generation"]["event_size"])
+    generation = dict(config.get("generation", {}))
+    geometry = system.coordinates
+    candidate_metadata: dict[str, Any] = {}
+    if generation.get("geometry_rule") == "reactant-principal-axis-approach-v1":
+        result = build_reactant_approach(
+            system,
+            generation["components"],
+            target_centroid_distance_angstrom=float(generation["target_centroid_distance_angstrom"]),
+            collision_distance_angstrom=float(generation.get("collision_distance_angstrom", 0.70)),
+        )
+        geometry = result.coordinates
+        candidate_metadata = result.metadata | {"geometry_hash": result.geometry_hash}
+    candidate_system = system.with_coordinates(geometry)
     return GenerationSnapshot(
         parent_id=str(config["parent_id"]),
         attempt_id=f"{config['parent_id']}-seed-{seed}",
         generation_step=0,
-        geometry=system.coordinates,
+        geometry=geometry,
         event=tuple(0.0 for _ in range(event_size)),
         event_mask=tuple(True for _ in range(event_size)),
         random_seed=seed,
@@ -109,6 +123,8 @@ def _snapshot(config: Mapping[str, Any], system: MolecularSystem, seed: int) -> 
             "charge": system.charge,
             "multiplicity": system.multiplicity,
             "environment": dict(system.environment),
+            "candidate_geometry_hash": candidate_system.input_hash,
+            "candidate_generator": candidate_metadata,
         },
         provenance={"workflow": "one-parent-one-seed-live-xtb-v1"},
     )

@@ -89,6 +89,7 @@ from .live_physical import (
     LiveXTBPhysicalProvider,
     xTB_protocol_from_mapping,
 )
+from .reactant_candidates import ReactantApproachResult, build_reactant_approach
 
 __all__ = [
     "GuidanceSchedule", "schedule_strength", "control_euler_step", "euler_step", "serial_euler_step",
@@ -109,4 +110,5 @@ __all__ = [
     "MatchedRow", "run_matched_comparison",
     "LiveXTBEventProvider", "LiveXTBFeedback", "LiveXTBGuidanceConfig",
     "LiveXTBPhysicalProvider", "xTB_protocol_from_mapping",
+    "ReactantApproachResult", "build_reactant_approach",
 ]

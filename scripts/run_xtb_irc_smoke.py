@@ -141,12 +141,20 @@ def main() -> int:
         manifest.update({"status": "execution_failed", "reason_code": "RUNNER_EXECUTION", "error": f"{type(exc).__name__}: {exc}"})
         if ledger is not None:
             manifest["ledger"] = ledger.summary()
+    wall_seconds = time.perf_counter() - started_wall
+    cpu_seconds = time.process_time() - started_cpu
     manifest["cost"] = {
-        "wall_seconds": time.perf_counter() - started_wall,
-        "cpu_seconds": time.process_time() - started_cpu,
-        "cpu_hours": (time.process_time() - started_cpu) / 3600.0,
+        "wall_seconds": wall_seconds,
+        "cpu_seconds": cpu_seconds,
+        "cpu_hours": cpu_seconds / 3600.0,
         "gpu_hours": 0.0,
     }
+    if ledger is not None:
+        manifest["ledger"]["measured_cost"] = dict(manifest["cost"])
+        if cpu_seconds / 3600.0 > args.max_cpu_core_hours:
+            manifest.update({"status": "budget_exhausted", "reason_code": "CPU_BUDGET_EXCEEDED"})
+        elif wall_seconds > 30.0 * 60.0:
+            manifest.update({"status": "budget_exhausted", "reason_code": "WALL_BUDGET_EXCEEDED"})
     _write(args.output_dir / "manifest.json", manifest)
     (args.output_dir / "summary.md").write_text(
         "# xTB TS/IRC smoke\n\n"

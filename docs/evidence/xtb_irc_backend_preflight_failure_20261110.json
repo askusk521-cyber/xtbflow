@@ -1,0 +1,23 @@
+{
+  "schema": "xtbflow-xtb-irc-failure-evidence/v1",
+  "status": "execution_failed",
+  "reason_code": "RUNNER_EXECUTION",
+  "attempt": 1,
+  "failure_stage": "preflight",
+  "source_commit": "0766155",
+  "source_dirty": false,
+  "execution_host": "node2",
+  "python": "3.10.19",
+  "input_role": "missing external input path",
+  "cost": {
+    "wall_seconds": 0.0,
+    "cpu_seconds": 0.0,
+    "cpu_hours": 0.0,
+    "gpu_hours": 0.0
+  },
+  "claim_levels": {
+    "workflow": "software_demo",
+    "certification": "strict_validation"
+  },
+  "claim_limit": "This artifact proves structured fail-closed reporting only; no calculator or TS/IRC work was claimed."
+}

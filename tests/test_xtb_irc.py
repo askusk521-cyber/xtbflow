@@ -5,6 +5,9 @@ import pytest
 pytest.importorskip("ase")
 
 import math
+import json
+from dataclasses import asdict
+from hashlib import sha256
 import numpy as np
 
 from xtbflow.calculators import (
@@ -81,7 +84,7 @@ def _system() -> MolecularSystem:
     )
 
 
-def test_xtb_irc_certifies_one_negative_mode_and_two_minima(tmp_path):
+def test_one_negative_mode_and_endpoint_convergence_do_not_certify_irc(tmp_path):
     ledger, token = _token(tmp_path, 256)
     result = run_xtb_irc_certification(
         AnalyticSaddle(),
@@ -97,14 +100,55 @@ def test_xtb_irc_certifies_one_negative_mode_and_two_minima(tmp_path):
     )
     token.settle(recorded_calls=token.consumed_calls, persist_path=tmp_path / "ledger.json")
 
-    assert result.status == "success"
-    assert result.reason_code == "CERTIFIED"
+    assert result.status == "attempted_unresolved"
+    assert result.reason_code == "INCOMPLETE_IRC_CERTIFICATION"
+    assert result.claim_level == "proxy_metric"
     assert result.validation is not None
-    assert result.validation["status"] == "success"
+    assert result.validation["status"] == "failure"
+    assert result.validation["path_status"] == "not_validated"
+    assert result.validation["observed_event"] is None
+    for name in ("candidate_hash", "validation_identity", "cache_key"):
+        assert len(result.validation[name]) == 64
     assert result.evidence["negative_mode_count"] == 1
     assert len(result.evidence["endpoints"]) == 2
-    assert all(row["minimum_converged"] for row in result.evidence["endpoints"])
+    assert all(row["optimization_converged"] for row in result.evidence["endpoints"])
+    assert all(row["hessian_eigenvalues"] is None and not row["minimum_verified"] for row in result.evidence["endpoints"])
+    assert result.evidence["path_connected"] is False
+    assert result.evidence["endpoint_comparison"]["same_distance_graph"] is True
+    assert result.evidence["strict_certification"]["unique_strict_certified_channels"] == 0
     assert result.calculator_calls == ledger.summary()["totals"]["calculator_calls"]
+    json.dumps(result.to_mapping(), allow_nan=False)
+
+
+def test_different_endpoint_distance_graphs_cannot_infer_reactant_identity(tmp_path, monkeypatch):
+    from xtbflow.validation import xtb_irc
+
+    seen = []
+    graphs = (((0, 1), (1, 0)), ((0, 0), (0, 0)))
+
+    def diagnostic_graph(symbols, coordinates):
+        seen.append(coordinates.tolist())
+        return graphs[len(seen) - 1]
+
+    monkeypatch.setattr(xtb_irc, "_bond_matrix", diagnostic_graph)
+    _, token = _token(tmp_path, 256)
+    result = run_xtb_irc_certification(
+        AnalyticSaddle(), _system(), token=token,
+        candidate_id="distinct-graph-proxy",
+        config=XTBIRCConfig(hessian_step_angstrom=0.01, max_endpoint_steps=80),
+    )
+    assert seen == [row["coordinates_angstrom"] for row in result.evidence["endpoints"]]
+    assert result.evidence["endpoint_comparison"]["same_distance_graph"] is False
+    assert result.evidence["endpoint_comparison"]["reactant_end"] is None
+    assert result.evidence["connectivity"] is None
+    assert result.validation["observed_event"] is None
+    assert result.status == "attempted_unresolved"
+
+
+def test_corrected_policy_cannot_reuse_legacy_certification_cache_identity():
+    config = XTBIRCConfig(protocol_version="xtbflow-xtb-irc-v1")
+    legacy_identity = sha256(json.dumps(asdict(config), sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
+    assert config.identity != legacy_identity
 
 
 def test_xtb_irc_budget_failure_is_structured_and_replayable(tmp_path):

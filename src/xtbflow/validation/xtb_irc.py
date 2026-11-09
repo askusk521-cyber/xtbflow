@@ -1,4 +1,4 @@
-"""Bounded xTB stationary-point and bidirectional path validation.
+"""Bounded xTB Hessian and endpoint diagnostics; strict IRC remains unverified.
 
 This module is a small certification adapter, not a reaction-search model.  It
 uses the repository calculator protocol for every energy/force call, charges
@@ -8,9 +8,10 @@ negative mode into bounded endpoint minimisations.  Missing optional ASE,
 calculator failures, and exhausted budgets are returned as structured
 outcomes.  No reference TS, product, or sealed label is read by this module.
 
-The resulting path is a bounded mass-unweighted gradient-following smoke
-protocol.  A successful result is suitable for the repository's strict
-evidence validator, but it is not a mechanism, barrier, or discovery claim.
+The path is a Cartesian downhill probe followed by BFGS endpoint relaxation.
+It does not implement an independent IRC or verify endpoint Hessians.  Even
+low gradients and one negative candidate mode therefore return unresolved
+proxy evidence.  The existing API name is retained for callers.
 """
 from __future__ import annotations
 
@@ -30,9 +31,16 @@ from xtbflow.calculators import (
 )
 from xtbflow.runtime import BudgetExceeded, CalculatorCallToken
 
-from .connectivity import ConnectivityEvidence
 from .saddle_refinement import SaddleRefinementConfig, refine_saddle
-from .ts_search import TSValidationConfig, TSValidationRecord, validate_ts_evidence
+from .ts_search import TSValidationConfig, validate_ts_evidence, validation_cache_key
+
+
+CERTIFICATION_POLICY_REVISION = "xtbflow-bounded-path-proxy/v2"
+MISSING_STRICT_CHECKS = (
+    "independent_bidirectional_irc",
+    "endpoint_hessians_and_minimum_verification",
+    "mapped_reactant_endpoint_identity",
+)
 
 
 def _canonical(value: Any) -> str:
@@ -115,7 +123,7 @@ class XTBIRCConfig:
 
     @property
     def identity(self) -> str:
-        return _identity(asdict(self))
+        return _identity({"config": asdict(self), "certification_policy_revision": CERTIFICATION_POLICY_REVISION})
 
     def to_mapping(self) -> dict[str, Any]:
         return asdict(self)
@@ -193,9 +201,9 @@ _COVALENT_RADII = {
 def _bond_matrix(symbols: Sequence[str], coordinates: np.ndarray) -> tuple[tuple[int, ...], ...]:
     """Build an observed single-bond graph from endpoint distances.
 
-    This graph is intentionally an endpoint observation, never a proposed
-    product.  Multiple-bond perception is outside this bounded smoke scope;
-    an unknown element or ambiguous distance fails closed.
+    This unqualified distance graph cannot identify a chemical species or
+    supply bond orders.  It is retained only as a diagnostic of each actual
+    endpoint; it is never used to infer a reactant from candidate/TS geometry.
     """
 
     n = len(symbols)
@@ -308,13 +316,14 @@ def run_xtb_irc_certification(
         raise TypeError("xTB IRC certification requires a CalculatorCallToken")
     if not token.durable:
         raise ValueError("xTB IRC certification requires a durable calculator token")
+    calls_before = token.consumed_calls
     if config.require_ase:
         try:
             import ase  # noqa: F401
         except ImportError as exc:
             return XTBIRCResult(
                 "blocked_backend", "CERTIFICATION_BACKEND_UNAVAILABLE", candidate_id,
-                token.consumed_calls, config.identity, None,
+                token.consumed_calls - calls_before, config.identity, None,
                 {"backend_error": f"ASE endpoint backend unavailable: {exc}"},
                 "software_demo",
                 "No TS/IRC certification is claimed when the endpoint backend is unavailable.",
@@ -322,7 +331,6 @@ def run_xtb_irc_certification(
 
     coordinates = _coords(system.coordinates)
     q = int(coordinates.size)
-    calls_before = token.consumed_calls
     try:
         saddle_refinement_evidence: dict[str, Any] | None = None
         if config.saddle_refinement_enabled:
@@ -389,17 +397,14 @@ def run_xtb_irc_certification(
                 "coordinates_angstrom": endpoint.tolist(),
                 "energy_hartree": endpoint_eval.energy,
                 "gradient_norm_hartree_per_angstrom": _gradient_norm(endpoint_eval.forces),
-                "minimum_converged": endpoint_converged,
+                "optimization_converged": endpoint_converged,
+                "minimum_verified": False,
+                "hessian_eigenvalues": None,
+                "distance_graph": _bond_matrix(system.symbols, endpoint),
                 "optimizer_steps": optimizer_steps,
                 "path": frames,
             })
 
-        endpoint_ok = all(bool(row["minimum_converged"]) for row in endpoints)
-        product = min(endpoints, key=lambda row: float(row["energy_hartree"]))
-        reactant_bonds = _bond_matrix(system.symbols, coordinates)
-        product_bonds = _bond_matrix(system.symbols, _coords(product["coordinates_angstrom"]))
-        connectivity = ConnectivityEvidence(reactant_bonds, product_bonds)
-        path_connected = endpoint_ok and all(len(row["path"]) >= 2 for row in endpoints)
         evidence = {
             "gradient_norm": _gradient_norm(base.forces),
             "converged": bool(ts_converged),
@@ -410,11 +415,25 @@ def run_xtb_irc_certification(
             "negative_mode_count": int(len(negative)),
             "negative_mode": mode.tolist(),
             "ts_energy_hartree": base.energy,
+            "candidate_coordinates_angstrom": coordinates.tolist(),
             "endpoints": endpoints,
             "irc_method": "bounded_cartesian_gradient_following_v1",
-            "connectivity": connectivity,
-            "path_connected": bool(path_connected),
+            "connectivity": None,
+            "observed_event": None,
+            "path_connected": False,
+            "strict_certification": {
+                "status": "not_run",
+                "reason_code": "INCOMPLETE_IRC_CERTIFICATION",
+                "missing_checks": list(MISSING_STRICT_CHECKS),
+                "unique_strict_certified_channels": 0,
+            },
+            "endpoint_comparison": {
+                "kind": "distance_graph_proxy",
+                "same_distance_graph": endpoints[0]["distance_graph"] == endpoints[1]["distance_graph"],
+                "reactant_end": None,
+            },
             "protocol_version": config.protocol_version,
+            "certification_policy_revision": CERTIFICATION_POLICY_REVISION,
         }
         if saddle_refinement_evidence is not None:
             evidence["saddle_refinement"] = saddle_refinement_evidence
@@ -426,27 +445,34 @@ def run_xtb_irc_certification(
             max_calls=config.max_calls,
             reference_protocol_id=base.result.protocol_id,
             reference_build_hash=base.result.calculator_build_hash or "unavailable",
-            verification_config_version=config.protocol_version,
+            verification_config_version=f"{CERTIFICATION_POLICY_REVISION}:{config.identity}",
+        )
+        candidate_hash, validation_identity, cache_key = validation_cache_key(
+            candidate_id, system.payload(), validation_config
         )
         record = validate_ts_evidence(
             candidate_id,
-            "xtbflow-xtb-irc-v1",
+            CERTIFICATION_POLICY_REVISION,
             evidence,
             validation_config,
             calls=token.consumed_calls - calls_before,
+            candidate_hash=candidate_hash,
+            validation_identity=validation_identity,
+            cache_key=cache_key,
         )
-        status = "success" if record.status == "success" else "attempted_unresolved"
-        reason = "CERTIFIED" if status == "success" else (record.mode_status or "TS_VALIDATION_FAILED")
+        # Short downhill segments and converged BFGS endpoints cannot establish
+        # IRC connectivity, even if the local stationary/mode checks pass.
+        reason = "INCOMPLETE_IRC_CERTIFICATION" if record.mode_status == "mode_count_pass" else record.mode_status
         return XTBIRCResult(
-            status,
+            "attempted_unresolved",
             reason,
             candidate_id,
             token.consumed_calls - calls_before,
             config.identity,
             record.to_dict(),
             evidence,
-            "strict_validation" if status == "success" else "proxy_metric",
-            "A successful record validates this frozen xTB software protocol; it does not establish a discovered pathway, barrier, mechanism, or chemical accuracy.",
+            "proxy_metric",
+            "Candidate Hessian and endpoint relaxation diagnostics only. Independent IRC, endpoint minima, and mapped reactant identity are unverified; no strict certified channel is counted.",
         )
     except BudgetExceeded as exc:
         return XTBIRCResult(

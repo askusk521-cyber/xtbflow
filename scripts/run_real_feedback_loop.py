@@ -453,6 +453,9 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
                 "provider_status": row["physical_provider_status"],
                 "certification_status": row["certification"]["status"],
                 "certification_reason": row["certification"]["reason_code"],
+                "certification_calls": (row["certification"].get("backend_result") or {}).get("calculator_calls", 0),
+                "certification_config_identity": (row["certification"].get("backend_result") or {}).get("config_identity"),
+                "certification_validation": row["certification"].get("record"),
                 "calculator_calls": row["runtime_ledger"]["totals"]["calculator_calls"],
             }
             for row in arms
@@ -467,6 +470,7 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
         "python": sys.version.split()[0],
         "config_path": str(config_path),
         "config_sha256": config_sha256,
+        "resolved_config": config,
         "input": system.payload(),
         "input_hash": system.input_hash,
         "parent_id": config["parent_id"],
@@ -476,14 +480,16 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
         "replay": {
             "deterministic_summary": deterministic,
             "deterministic_summary_sha256": deterministic_hash,
-            "environment_variance_note": "wall/cpu timing and native build identity remain outside the deterministic summary",
+            "environment_variance_note": "Wall/CPU timing is excluded; calculator build, certification config, outcomes and calls are included.",
         },
         "matched_budget": dict(config["budget"]),
         "claim_levels": {
             "workflow": "software_demo",
             "calculator_feedback": "proxy_metric",
-            "ts_irc": "strict_validation_required",
+            "ts_irc": "proxy_metric",
         },
+        "strict_validation_status": "not_run",
+        "unique_strict_certified_channels": 0,
         "claim_limit": "Live xTB force feedback and bounded state transition are demonstrated; no chemical pathway, TS, barrier, mechanism, or superiority claim is made.",
         "output_paths": {
             "manifest": str(output_dir / "manifest.json"),
@@ -493,7 +499,7 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
         },
     }
     _write_json(output_dir / "manifest.json", manifest)
-    ledger_payload = {"schema": "xtbflow-real-feedback-ledger/v1", "arms": [{"arm": row["arm"], "runtime_ledger": row["runtime_ledger"], "adapter_ledger": row["adapter_ledger"], "merge_ledger": row["merge"]["ledger"]} for row in arms]}
+    ledger_payload = {"schema": "xtbflow-real-feedback-ledger/v1", "arms": [{"arm": row["arm"], "runtime_ledger": row["runtime_ledger"], "adapter_ledger": row["adapter_ledger"], "merge_ledger": row["merge"]["ledger"], "certification_ledger": row["certification"].get("ledger_summary"), "certification_cost": row["certification"].get("cost")} for row in arms]}
     _write_json(output_dir / "ledger.json", ledger_payload)
     with (output_dir / "feedback.jsonl").open("w", encoding="utf-8") as handle:
         for row in arms:
@@ -506,14 +512,15 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
         f"source_dirty: `{manifest['source']['dirty']}`",
         f"parent_id: `{manifest['parent_id']}` seed: `{seed}`",
         "",
-        "| arm | feedback_used | geometry_changed | event_changed | calculator_calls | certification |",
+        "| arm | feedback_used | geometry_changed | event_changed | feedback + diagnostic calls | certification |",
         "| --- | --- | --- | --- | ---: | --- |",
     ]
     for row in arms:
-        summary.append(f"| {row['arm']} | {row['feedback_used']} | {row['geometry_changed']} | {row['event_changed']} | {row['runtime_ledger']['totals']['calculator_calls']} | `{row['certification']['status']}` |")
+        diagnostic_calls = (row["certification"].get("backend_result") or {}).get("calculator_calls", 0)
+        summary.append(f"| {row['arm']} | {row['feedback_used']} | {row['geometry_changed']} | {row['event_changed']} | {row['runtime_ledger']['totals']['calculator_calls']} + {diagnostic_calls} | `{row['certification']['status']}` |")
     summary.extend([
         "",
-        "The xTB forces are current-snapshot proxy feedback. The certification gate is intentionally blocked because this run does not fabricate Hessian, endpoint, or bidirectional IRC evidence.",
+        "The xTB forces, candidate Hessians and endpoint relaxations are proxy diagnostics. Independent bidirectional IRC, endpoint Hessians/minima and mapped reactant-endpoint identity remain unverified. Strict certified channels: 0.",
     ])
     (output_dir / "summary.md").write_text("\n".join(summary) + "\n", encoding="utf-8")
     return manifest

@@ -112,8 +112,9 @@ def _run(args: argparse.Namespace) -> int:
         "protocol": {"protocol_id": protocol.protocol_id, "identity": protocol.identity, "parameters": dict(protocol.parameters)},
         "config": config.to_mapping(),
         "config_sha256": _sha256_text(_canonical(config.to_mapping())),
-        "claim_levels": {"workflow": "software_demo", "certification": "strict_validation"},
-        "claim_limit": "A successful record validates this frozen software protocol only; it is not a discovery, barrier, mechanism, or chemical-accuracy claim.",
+        "claim_levels": {"workflow": "software_demo", "certification": "proxy_metric"},
+        "strict_validation_status": "not_run",
+        "claim_limit": "Bounded Cartesian descent and endpoint relaxation do not provide independent IRC or verified endpoint minima. No strict certified channel is counted.",
     }
     ledger_path = args.output_dir / "ledger.json"
     result: XTBIRCResult | None = None
@@ -193,7 +194,8 @@ def main() -> int:
                 "cpu_hours": (time.process_time() - started_cpu) / 3600.0,
                 "gpu_hours": 0.0,
             },
-            "claim_levels": {"workflow": "software_demo", "certification": "strict_validation"},
+            "claim_levels": {"workflow": "software_demo"},
+            "strict_validation_status": "not_run",
             "claim_limit": "The runner failed before certification; no TS/IRC claim is made.",
         }
         _write(args.output_dir / "manifest.json", manifest)

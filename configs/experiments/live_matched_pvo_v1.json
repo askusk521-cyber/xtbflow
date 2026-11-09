@@ -80,7 +80,9 @@
   },
   "budget_policy": {
     "max_calculator_calls_per_row": 3,
-    "max_total_calculator_calls": 1728,
+    "primary_max_total_calculator_calls": 1440,
+    "calibration_max_total_calculator_calls": 360,
+    "global_max_total_calculator_calls": 1800,
     "retry_limit": 1,
     "timeout_seconds": 120
   },
@@ -100,7 +102,7 @@
     "geometry_trust_radius": 0.2,
     "collision_distance": 0.2,
     "event_freeze_step": null,
-    "event_constraint": "one-feature-zero-residual-diagnostic"
+    "event_constraint": "two-feature-difference-conserving-diagnostic"
   },
   "retry_policy": {
     "max_retries": 1,

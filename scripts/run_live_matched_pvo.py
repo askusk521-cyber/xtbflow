@@ -90,9 +90,10 @@ class LivePhysicalProvider:
     config_fingerprint = fingerprint_text(json.dumps(BOHR_PROTOCOL, sort_keys=True))
     protocol_fingerprint = fingerprint_text("tblite-gfn2-live-pvo-v1")
 
-    def __init__(self, system: MolecularSystem, adapter_factory):
+    def __init__(self, system: MolecularSystem, adapter_factory, call_counter):
         self.system = system
         self.adapter_factory = adapter_factory
+        self.call_counter = call_counter
         self.last_result = None
 
     def estimate(self, request: ProviderRequest) -> GuidanceCost:
@@ -100,7 +101,7 @@ class LivePhysicalProvider:
 
     def invoke(self, request: ProviderRequest) -> GuidanceOutput:
         adapter = self.adapter_factory()
-        result = adapter.evaluate(self.system, operation="energy_forces")
+        result, elapsed = self.call_counter.call(adapter, self.system)
         self.last_result = result
         if result.status != "success" or result.forces is None:
             raise RuntimeError(result.error_message or result.error_category or "physical calculator failed")
@@ -115,7 +116,7 @@ class LivePhysicalProvider:
             geometry_delta=delta,
             trust_radius=0.05,
             estimated_cost=self.estimate(request),
-            measured_cost=GuidanceCost(calculator_calls=result.calculator_calls, wall_seconds=0.0),
+            measured_cost=GuidanceCost(calculator_calls=result.calculator_calls, wall_seconds=elapsed),
             provenance={"physical": {"calculator": "tblite", "protocol": self.protocol_fingerprint}},
         )
 
@@ -126,8 +127,7 @@ class LivePolicyProvider:
     config_fingerprint = fingerprint_text("nearest-nonbonded-pair-policy-v1")
     protocol_fingerprint = fingerprint_text("recorded-policy-action-space-v1")
 
-    def __init__(self, coordinates, atomic_numbers, map_ids):
-        self.coordinates = coordinates
+    def __init__(self, atomic_numbers, map_ids):
         self.atomic_numbers = atomic_numbers
         self.map_ids = map_ids
         self.action_id = "no-action"
@@ -138,18 +138,22 @@ class LivePolicyProvider:
 
     def invoke(self, request: ProviderRequest) -> GuidanceOutput:
         candidates: list[tuple[float, int, int]] = []
-        for index in range(len(self.coordinates)):
-            for other in range(index + 1, len(self.coordinates)):
-                distance = _distance(self.coordinates[index], self.coordinates[other])
+        coordinates = request.snapshot.geometry
+        for index in range(len(coordinates)):
+            for other in range(index + 1, len(coordinates)):
+                distance = _distance(coordinates[index], coordinates[other])
                 bonded_cutoff = 1.25 * (_covalent_radius(self.atomic_numbers[index]) + _covalent_radius(self.atomic_numbers[other]))
                 if bonded_cutoff < distance < 2.2:
                     candidates.append((distance, index, other))
         candidates.sort()
         if candidates:
-            _, left, right = candidates[0]
-            a, b = sorted((self.map_ids[left], self.map_ids[right]))
-            self.action_id = f"add:{a}-{b}"
-            self.predicted_event = {("add", a, b)}
+            selected = candidates[:2]
+            actions = []
+            for _, left, right in selected:
+                a, b = sorted((self.map_ids[left], self.map_ids[right]))
+                actions.append(("add", a, b))
+            self.predicted_event = set(actions)
+            self.action_id = ";".join(f"add:{a}-{b}" for _, a, b in actions)
         else:
             self.action_id = "no-action"
             self.predicted_event = set()
@@ -157,7 +161,7 @@ class LivePolicyProvider:
             lane=self.lane,
             provider="live-heuristic-policy-pvo-v1",
             input_fingerprint=request.snapshot.snapshot_id,
-            event_delta=(0.05,),
+            event_delta=(0.05, 0.02),
             trust_radius=0.2,
             estimated_cost=self.estimate(request),
             measured_cost=self.estimate(request),
@@ -181,6 +185,20 @@ def evaluate(adapter: XTBOracleAdapter, system: MolecularSystem) -> tuple[Any, f
     return result, time.perf_counter() - start
 
 
+class CalculatorCallCounter:
+    """Row-scoped hard cap for initial, provider, and final calculator calls."""
+
+    def __init__(self, maximum: int):
+        self.maximum = int(maximum)
+        self.count = 0
+
+    def call(self, adapter: XTBOracleAdapter, system: MolecularSystem) -> tuple[Any, float]:
+        if self.count >= self.maximum:
+            raise RuntimeError("row calculator budget exhausted before invocation")
+        self.count += 1
+        return evaluate(adapter, system)
+
+
 def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[str, Any]) -> dict[str, Any]:
     coordinates = deterministic_jitter(tuple(tuple(float(v) for v in row) for row in sample.reactant_coordinates), seed, parent_id)
     system = make_system(sample, coordinates, parent_id, seed)
@@ -189,17 +207,18 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
         attempt_id=f"{parent_id}:seed-{seed}",
         generation_step=0,
         geometry=coordinates,
-        event=(0.0,),
-        event_mask=(True,),
+        event=(0.0, 0.0),
+        event_mask=(True, True),
         random_seed=seed,
         metadata={"candidate_pool_id": protocol["source_manifest_sha256"]},
         provenance={"pvo": "live-matched-v1"},
     )
     reference = reference_event(sample)
     adapter_factory = lambda: XTBOracleAdapter(protocol=calculator_protocol(), implementation="tblite")
+    call_counter = CalculatorCallCounter(int(protocol["budget_policy"]["max_calculator_calls_per_row"]))
     initial_adapter = adapter_factory()
-    initial_result, initial_wall = evaluate(initial_adapter, system)
-    calculator_calls = int(initial_result.calculator_calls)
+    initial_result, initial_wall = call_counter.call(initial_adapter, system)
+    calculator_calls = int(call_counter.count)
     final_system = system
     predicted_event: set[tuple[str, int, int]] = set()
     provider_wall = 0.0
@@ -226,8 +245,8 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
             },
         }
     budget = GuidanceBudget(GuidanceCost(model_forwards=2, calculator_calls=3, wall_seconds=120.0))
-    physical = LivePhysicalProvider(system, adapter_factory)
-    policy = LivePolicyProvider(coordinates, tuple(sample.atomic_numbers), tuple(sample.record.atoms["map_ids"]))
+    physical = LivePhysicalProvider(system, adapter_factory, call_counter)
+    policy = LivePolicyProvider(tuple(sample.atomic_numbers), tuple(sample.record.atoms["map_ids"]))
 
     def run_physical():
         runner = AdapterRunner(budget)
@@ -250,6 +269,7 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
                 physical_run, physical_ledger, physical_time = physical_future.result()
                 policy_run, policy_ledger, policy_time = policy_future.result()
             provider_wall = time.perf_counter() - start
+            queue_wait = max(0.0, provider_wall - max(physical_time, policy_time))
             rows_ledger.extend([entry.to_mapping() for entry in physical_ledger.entries + policy_ledger.entries])
             outputs = tuple(run.output for run in (physical_run, policy_run) if run.output is not None)
             if physical_run is not None:
@@ -263,7 +283,7 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
             provider_wall += physical_time
             if arm == "serial_full":
                 merge_start = time.perf_counter()
-                first_merge = merge_guidance(initial_snapshot, outputs, constraint_matrix=((1.0,),), config=MergeConfig(geometry_trust_radius=0.2, collision_distance=0.2), event_velocity_fn=lambda g,e,_: (g[0][0] + e[0],))
+                first_merge = merge_guidance(initial_snapshot, outputs, constraint_matrix=((1.0, -1.0),), config=MergeConfig(geometry_trust_radius=0.2, collision_distance=0.2), event_velocity_fn=lambda g,e,_: (g[0][0] + e[0], g[0][0] + e[1]))
                 merge_wall += time.perf_counter() - merge_start
                 policy_run, policy_ledger, policy_time = run_policy(first_merge.snapshot)
                 rows_ledger.extend([entry.to_mapping() for entry in policy_ledger.entries])
@@ -281,12 +301,12 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
         outputs = ()
 
     merge_start = time.perf_counter()
-    merged = merge_guidance(initial_snapshot, outputs, constraint_matrix=((1.0,),), config=MergeConfig(geometry_trust_radius=0.2, collision_distance=0.2), event_velocity_fn=lambda g,e,_: (g[0][0] + e[0],))
+    merged = merge_guidance(initial_snapshot, outputs, constraint_matrix=((1.0, -1.0),), config=MergeConfig(geometry_trust_radius=0.2, collision_distance=0.2), event_velocity_fn=lambda g,e,_: (g[0][0] + e[0], g[0][0] + e[1]))
     merge_wall += time.perf_counter() - merge_start
     final_system = system.with_coordinates(merged.snapshot.geometry)
     final_adapter = adapter_factory()
-    final_result, final_wall = evaluate(final_adapter, final_system)
-    calculator_calls += int(final_result.calculator_calls)
+    final_result, final_wall = call_counter.call(final_adapter, final_system)
+    calculator_calls = int(call_counter.count)
     if policy is not None and policy.predicted_event:
         predicted_event = set(policy.predicted_event)
     force_initial = rms([float(value) for row in initial_result.forces for value in row])

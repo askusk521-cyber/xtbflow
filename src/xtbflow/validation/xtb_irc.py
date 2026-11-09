@@ -77,6 +77,7 @@ class XTBIRCConfig:
     saddle_refinement_enabled: bool = False
     saddle_refinement_max_steps: int = 2
     saddle_refinement_trust_radius_angstrom: float = 0.03
+    saddle_refinement_strategy: str = "newton"
     protocol_version: str = "xtbflow-xtb-irc-v1"
 
     def __post_init__(self) -> None:
@@ -107,6 +108,8 @@ class XTBIRCConfig:
             raise ValueError("saddle_refinement_max_steps must be a positive integer")
         if not math.isfinite(float(self.saddle_refinement_trust_radius_angstrom)) or self.saddle_refinement_trust_radius_angstrom <= 0:
             raise ValueError("saddle_refinement_trust_radius_angstrom must be positive")
+        if self.saddle_refinement_strategy not in {"newton", "mode_follow"}:
+            raise ValueError("saddle_refinement_strategy must be 'newton' or 'mode_follow'")
         if not isinstance(self.protocol_version, str) or not self.protocol_version.strip():
             raise ValueError("protocol_version must be nonempty")
 
@@ -335,6 +338,7 @@ def run_xtb_irc_certification(
                     trust_radius_angstrom=config.saddle_refinement_trust_radius_angstrom,
                     max_steps=config.saddle_refinement_max_steps,
                     max_calls=config.max_calls,
+                    strategy=config.saddle_refinement_strategy,
                 ),
             )
             saddle_refinement_evidence = refinement.to_mapping()

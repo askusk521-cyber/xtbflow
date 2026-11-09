@@ -50,6 +50,7 @@ class SaddleRefinementConfig:
     max_steps: int = 2
     max_calls: int = 256
     rigid_body_tolerance: float = 1.0e-8
+    strategy: str = "newton"
 
     def __post_init__(self) -> None:
         for name in (
@@ -66,6 +67,8 @@ class SaddleRefinementConfig:
             raise ValueError("max_steps must be a positive integer")
         if type(self.max_calls) is not int or self.max_calls < 1:
             raise ValueError("max_calls must be a positive integer")
+        if self.strategy not in {"newton", "mode_follow"}:
+            raise ValueError("strategy must be 'newton' or 'mode_follow'")
 
     def to_mapping(self) -> dict[str, Any]:
         return asdict(self)
@@ -149,6 +152,43 @@ def refine_saddle(
                     tuple(tuple(float(v) for v in row) for row in current),
                     gradient, negative_count, token.consumed_calls - calls_before, tuple(trace),
                 )
+            if config.strategy == "mode_follow":
+                mode = eigenvectors[:, int(np.argmin(eigenvalues))]
+                mode /= max(float(np.linalg.norm(mode)), 1.0e-12)
+                positive_projector = projector - np.outer(mode, mode)
+                raw_step = (positive_projector @ forces.reshape(-1)).reshape(current.shape)
+                step_norm = float(np.max(np.linalg.norm(raw_step, axis=1)))
+                if step_norm > config.trust_radius_angstrom:
+                    raw_step *= config.trust_radius_angstrom / step_norm
+                accepted = False
+                trials: list[dict[str, Any]] = []
+                for fraction in (1.0, 0.5, 0.25, 0.125, 0.0625, 0.03125):
+                    trial = current + fraction * raw_step
+                    trial_energy, trial_forces, _ = _evaluate(backend, system, trial, token)
+                    trial_gradient = _max_force(trial_forces)
+                    trials.append({"fraction": fraction, "energy_hartree": trial_energy, "gradient_norm": trial_gradient})
+                    if trial_gradient < gradient:
+                        current = trial
+                        accepted = True
+                        break
+                trace.append({
+                    "iteration": iteration,
+                    "strategy": config.strategy,
+                    "energy_hartree": energy,
+                    "gradient_norm": gradient,
+                    "negative_mode_count": negative_count,
+                    "minimum_eigenvalue": float(eigenvalues[0]),
+                    "raw_step_norm_angstrom": step_norm,
+                    "accepted": accepted,
+                    "trials": trials,
+                })
+                if not accepted:
+                    return SaddleRefinementResult(
+                        "attempted_unresolved", "NO_TRUST_STEP",
+                        tuple(tuple(float(v) for v in row) for row in current),
+                        gradient, negative_count, token.consumed_calls - calls_before, tuple(trace),
+                    )
+                continue
             denominator = np.where(
                 np.abs(eigenvalues) > 5.0e-4,
                 eigenvalues,

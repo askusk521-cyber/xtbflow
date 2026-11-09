@@ -56,7 +56,16 @@ def _arm_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "event_exact_rate": exact / len(rows) if rows else 0.0,
         "geometry_changed_rate": sum(bool(row.get("geometry_changed")) for row in rows) / len(rows) if rows else 0.0,
         "event_changed_rate": sum(bool(row.get("event_changed")) for row in rows) / len(rows) if rows else 0.0,
-        "model_forwards": sum(int(entry.get("model_forwards", 0)) for row in rows for entry in row.get("adapter_ledger", [])),
+        "model_forwards": sum(
+            int(
+                entry.get("charged_cost", {}).get(
+                    "model_forwards",
+                    entry.get("measured_cost", {}).get("model_forwards", 0),
+                )
+            )
+            for row in rows
+            for entry in row.get("adapter_ledger", [])
+        ),
     }
 
 

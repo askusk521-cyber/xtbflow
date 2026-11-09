@@ -2,7 +2,7 @@
   "schema": "xtbflow-evidence/live-matched-pvo-science-status/v1",
   "source_commit": "458526682af3e1db6cdd982c063618a3e5973a0a",
   "summary_path": "docs/evidence/live_matched_pvo_summary_20261110.json",
-  "summary_sha256": "2f3a36afe7a5718b6aeb91f79667cee17534e03c679d9754342f7a4cb2cd3c80",
+  "summary_sha256": "c9f439e83c34583aa8d379c92c4b1e6ae62e67406972e889a0af2ee5aff9d57f",
   "primary_artifact_sha256": "8d169fd0c5b1caf49ca27a01fde28bbe5fa4f86b7345a0b5a966b7174fa6c049",
   "calibration_artifact_sha256": "ef74c4cc93f27db54c621b5a8f3fae1639f6d15c56044590ce31428223119cc0",
   "artifact_validator": "scripts/validate_live_pvo_artifact.py",

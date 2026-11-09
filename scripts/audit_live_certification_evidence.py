@@ -98,18 +98,75 @@ def audit(manifest_path: Path, config_path: Path, evidence_path: Path) -> dict[s
     }
 
 
+def audit_rerun(run_path: Path, replay_path: Path, config_sha: str) -> dict[str, Any]:
+    """Validate the corrected run/replay receipt and retain measured costs."""
+    run, run_sha = read_json(run_path)
+    replay, replay_sha = read_json(replay_path)
+    for item in (run, replay):
+        if item.get("source", {}).get("dirty") is not False:
+            raise ValueError("rerun source must be clean")
+        if item.get("config_sha256") != config_sha:
+            raise ValueError("rerun configuration does not match the audited bytes")
+        if item.get("status") != "blocked_certification" or item.get("unique_strict_certified_channels") != 0:
+            raise ValueError("corrected proxy run must remain blocked with zero strict channels")
+        summary = item["replay"]["deterministic_summary"]
+        encoded = json.dumps(summary, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False)
+        if hashlib.sha256(encoded.encode()).hexdigest() != item["replay"]["deterministic_summary_sha256"]:
+            raise ValueError("rerun deterministic summary hash mismatch")
+        for arm in item["arms"]:
+            cert = arm["certification"]
+            backend = cert["backend_result"]
+            if cert["status"] != "attempted_unresolved" or cert["reason_code"] != "INCOMPLETE_IRC_CERTIFICATION":
+                raise ValueError("rerun proxy evidence was not classified as unresolved")
+            if backend["evidence"]["path_connected"] or backend["claim_level"] != "proxy_metric":
+                raise ValueError("rerun still claims strict connectivity")
+            if backend["calculator_calls"] != cert["ledger_summary"]["totals"]["calculator_calls"]:
+                raise ValueError("diagnostic call count disagrees with ledger")
+    if run["source"] != replay["source"] or run["replay"]["deterministic_summary"] != replay["replay"]["deterministic_summary"]:
+        raise ValueError("rerun and replay identities or outcomes differ")
+    rows = []
+    for arm in run["arms"]:
+        cert = arm["certification"]
+        backend = cert["backend_result"]
+        rows.append({
+            "arm": arm["arm"], "status": cert["status"], "reason_code": cert["reason_code"], "attempt": 1,
+            "geometry_changed": arm["geometry_changed"], "event_changed": arm["event_changed"],
+            "feedback_calculator_calls": arm["runtime_ledger"]["totals"]["calculator_calls"],
+            "diagnostic_calculator_calls": backend["calculator_calls"],
+            "wall_seconds": cert["cost"].get("wall_seconds"), "cpu_hours": cert["cost"].get("cpu_hours"), "gpu_hours": cert["cost"].get("gpu_hours"),
+            "strict_validation_record": backend["validation"],
+            "missing_checks": backend["evidence"]["strict_certification"]["missing_checks"],
+        })
+    return {
+        "source": run["source"], "config_sha256": config_sha, "input_hash": run["input_hash"],
+        "protocol": run["protocol"], "manifest_sha256": run_sha, "replay_manifest_sha256": replay_sha,
+        "deterministic_summary_sha256": run["replay"]["deterministic_summary_sha256"],
+        "identical_replay": True, "arms": rows, "strict_certified_channels": 0,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--published-evidence", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--rerun-manifest", type=Path)
+    parser.add_argument("--replay-manifest", type=Path)
+    parser.add_argument("--regression-log", type=Path)
     args = parser.parse_args()
     if args.output.exists():
         parser.error("audit output already exists; choose a new path")
     wall, cpu = time.perf_counter(), time.process_time()
     try:
         report = audit(args.manifest, args.config, args.published_evidence)
+        if args.rerun_manifest or args.replay_manifest:
+            if not (args.rerun_manifest and args.replay_manifest):
+                raise ValueError("provide both rerun and replay manifests")
+            report["corrected_rerun"] = audit_rerun(args.rerun_manifest, args.replay_manifest, report["asset_hashes"]["configuration"])
+        if args.regression_log:
+            raw = args.regression_log.read_bytes()
+            report["regression"] = {"log_sha256": hashlib.sha256(raw).hexdigest(), "output": raw.decode("utf-8")}
         code = 1 if report["status"] == "invalidated" else 0
     except Exception as exc:
         report = {"schema": "xtbflow-live-certification-evidence-audit/v1", "status": "execution_failed", "reason_code": "AUDIT_INPUT_FAILURE", "error": f"{type(exc).__name__}: {exc}", "evidence_level": "software_demo"}

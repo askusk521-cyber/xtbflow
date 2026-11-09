@@ -4,6 +4,7 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import pytest
 
 
 spec = importlib.util.spec_from_file_location(
@@ -61,3 +62,23 @@ def test_audit_missing_inputs_emit_structured_failure(tmp_path, monkeypatch):
     assert result["reason_code"] == "AUDIT_INPUT_FAILURE"
     assert result["attempt"] == 1
     assert all(key in result for key in ("wall_seconds", "cpu_hours", "gpu_hours"))
+
+
+def test_audit_rerun_rejects_unsupported_verdict_even_in_replay(tmp_path):
+    summary = {"outcome": "attempted_unresolved"}
+    summary_hash = hashlib.sha256(json.dumps(summary, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+    cert = {
+        "status": "attempted_unresolved", "reason_code": "INCOMPLETE_IRC_CERTIFICATION",
+        "backend_result": {"claim_level": "proxy_metric", "calculator_calls": 5, "evidence": {"path_connected": False}},
+        "ledger_summary": {"totals": {"calculator_calls": 5}},
+    }
+    run = {"source": {"dirty": False}, "config_sha256": "c" * 64,
+           "status": "blocked_certification", "unique_strict_certified_channels": 0,
+           "replay": {"deterministic_summary": summary, "deterministic_summary_sha256": summary_hash},
+           "arms": [{"certification": cert}]}
+    run_path, replay_path = tmp_path / "run.json", tmp_path / "replay.json"
+    run_path.write_text(json.dumps(run))
+    cert["backend_result"]["evidence"]["path_connected"] = True
+    replay_path.write_text(json.dumps(run))
+    with pytest.raises(ValueError, match="strict connectivity"):
+        audit_module.audit_rerun(run_path, replay_path, "c" * 64)

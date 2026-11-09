@@ -28,6 +28,14 @@ jobs:
         run: python -m pip install --upgrade pip && python -m pip install ".[test,data]"
       - name: Validate bootstrap inventory
         run: python scripts/validate_bootstrap.py
+      - name: Validate persisted live PVO artifacts
+        run: >-
+          python scripts/validate_live_pvo_artifact.py
+          --protocol configs/experiments/live_matched_pvo_v1.json
+          --primary docs/evidence/live_matched_pvo_primary_20261110.json
+          --primary-ledger docs/evidence/live_matched_pvo_primary_ledger_20261110.jsonl
+          --calibration docs/evidence/live_matched_pvo_calibration_20261110.json
+          --calibration-ledger docs/evidence/live_matched_pvo_calibration_ledger_20261110.jsonl
       - name: Run reusable tests
         run: python -m unittest discover -s tests/reusable -p "test_*.py"
       - name: Run package tests

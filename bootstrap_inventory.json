@@ -29,8 +29,8 @@
     },
     {
       "path": ".github/workflows/issue166-pvo-cpu.yml",
-      "sha256": "d812dc8cb8cc9bc2587777617facb91217b6eecb3d0023c509bf821f15fe768e",
-      "bytes": 1539
+      "sha256": "3634ff590369d50f0ef126cd0732614c1afda65d8dec08c3326b07c6e383e820",
+      "bytes": 1578
     },
     {
       "path": ".github/workflows/issue166-replay-cpu.yml",

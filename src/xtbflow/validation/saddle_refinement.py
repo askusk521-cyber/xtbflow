@@ -146,7 +146,7 @@ def refine_saddle(
             projected_gradient = projector @ forces.reshape(-1)
             eigenvalues, eigenvectors = np.linalg.eigh(projected_hessian)
             negative_count = int(np.count_nonzero(eigenvalues < -config.negative_mode_threshold))
-            if negative_count != 1:
+            if negative_count == 0 or (negative_count != 1 and config.strategy != "mode_follow"):
                 return SaddleRefinementResult(
                     "attempted_unresolved", "WRONG_NEGATIVE_MODE_COUNT",
                     tuple(tuple(float(v) for v in row) for row in current),

@@ -7,6 +7,7 @@
     "No result may be used for training, model selection, or threshold tuning."
   ],
   "elapsed_wall_seconds": 9.40456425002776,
+  "evidence_generation_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "parent_count": 9,
   "protocol": {
     "arms": [
@@ -70,6 +71,7 @@
       "trust_radius_angstrom": 0.05
     }
   },
+  "protocol_sha256": "fb5bbef24082cb8e0ee810af92d865de681b0c9f0a286dffa30fd5516d184a60",
   "row_count": 81,
   "rows": [
     {
@@ -1532,8 +1534,9 @@
     }
   ],
   "schema": "xtbflow-qualified-baseline-confirmation-result/v1",
+  "script_sha256": "f974f8f809bf30c01b49b00791c1c228888dab5beeb822b942e70d88219cfbe2",
   "seed_count": 3,
-  "source_commit": "4688bdead7c99f81731e01bcd76c11ad9e39b8ed",
+  "source_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "source_manifest": "data/manifests/paired_pilot_v1/manifest.jsonl",
   "source_manifest_sha256": "6b84937d3cc75bea44faa7608d690618ce22f7ab75c51b8e25515f05a193cc90",
   "status": "completed"

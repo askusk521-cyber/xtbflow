@@ -5,6 +5,7 @@
     "It does not qualify xTB analytic gradients, open-shell states, solvent, periodic systems, CP2K, or chemical accuracy.",
     "A qualified backend does not establish a chemistry gain or physical-accuracy claim."
   ],
+  "evidence_generation_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "fixtures": [
     {
       "checks": {
@@ -144,8 +145,8 @@
   },
   "independent_fd_artifact": {
     "path": "docs/evidence/gfn2_requalification_independent_fd_20261109.json",
-    "sha256": "ea6b4df0509cab85ba612c4491666177bf511da5c92aff9d1376693206f28d5e",
-    "source_commit": "4688bdead7c99f81731e01bcd76c11ad9e39b8ed"
+    "sha256": "41bed874f7585790f6df1e0cae45d27cd6aa1cb9d6bb562f17efd403979b6e0a",
+    "source_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa"
   },
   "protocol": {
     "accuracy": 1.0,
@@ -153,6 +154,7 @@
     "max_iterations": 250,
     "solvent": null
   },
+  "protocol_sha256": "3c553dcc05111d4aba0b2c6bb34a4d077e135304dfd23f4c2e3637477ba356ab",
   "schema": "xtbflow-gfn2-scoped-requalification/v1",
   "scope": {
     "diagnostic_only": [
@@ -166,7 +168,7 @@
     ]
   },
   "script_sha256": "a6cf9ad747fd940ac7d63336d03adf82f3807c377b4dcf2fa0fbd709ce8fe02a",
-  "source_commit": "4688bdead7c99f81731e01bcd76c11ad9e39b8ed",
+  "source_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "status": "qualified_for_tblite_force_response",
   "thresholds_predeclared": {
     "adapter_native_energy_abs_hartree": 1e-12,

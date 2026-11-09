@@ -30,6 +30,8 @@ def main() -> int:
     parser.add_argument("--benchmark", type=Path, required=True)
     args = parser.parse_args()
     status = _load(args.status)
+    if status.get("science_ready") is not False:
+        raise ValueError("science_ready must remain false")
     qualification = _load(args.qualification)
     baseline = _load(args.baseline)
     split = _load(args.split)
@@ -39,10 +41,17 @@ def main() -> int:
         raise ValueError("status source_commit must be a full SHA")
     subprocess.run(["git", "cat-file", "-e", f"{source}^{{commit}}"], check=True, stdout=subprocess.DEVNULL)
     subprocess.run(["git", "merge-base", "--is-ancestor", source, "HEAD"], check=True, stdout=subprocess.DEVNULL)
+    if status.get("evidence_generation_commit") != source:
+        raise ValueError("status evidence_generation_commit must equal source_commit")
+    for name, artifact in (("qualification", qualification), ("baseline", baseline), ("split", split), ("benchmark", benchmark)):
+        if artifact.get("source_commit") != source:
+            raise ValueError(f"{name} source_commit does not match status source_commit")
     if qualification.get("status") != "qualified_for_tblite_force_response":
         raise ValueError("scoped qualification did not pass")
     if baseline.get("row_count") != 81 or baseline.get("status") != "completed":
         raise ValueError("baseline artifact row/status contract failed")
+    if int(baseline.get("calculator_calls", 0)) > int(baseline.get("protocol", {}).get("budget_policy", {}).get("max_total_calculator_calls", 0)):
+        raise ValueError("baseline calculator budget exceeded")
     if any(row.get("status") != "success" for row in baseline.get("rows", [])):
         raise ValueError("baseline contains failed rows")
     if split.get("status") != "pass" or split.get("selected_parent_count") != 9 or split.get("selected_family_count") != 9:
@@ -52,6 +61,10 @@ def main() -> int:
     for mode in ("serial", "parallel"):
         if benchmark.get("modes", {}).get(mode, {}).get("summary", {}).get("tasks") != 81:
             raise ValueError(f"benchmark {mode} task count failed")
+    expected_hashes = status.get("artifact_sha256", {})
+    for key, path in {"gfn2_scoped_requalification": args.qualification, "qualified_baseline_confirmation": args.baseline, "confirmation_split_audit": args.split, "fixed_hardware_parallel_benchmark": args.benchmark}.items():
+        if expected_hashes.get(key) != _sha(path):
+            raise ValueError(f"status artifact hash mismatch for {key}")
     summary = {
         "status": "pass",
         "source_commit": source,

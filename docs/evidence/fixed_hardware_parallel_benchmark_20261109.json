@@ -8,6 +8,7 @@
     "parallel_over_serial_wall_ratio": 0.9482855178866468,
     "serial_over_parallel_speedup": 1.0545347167471293
   },
+  "evidence_generation_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "modes": {
     "parallel": {
       "rows": [
@@ -1529,13 +1530,15 @@
     },
     "workers": 2
   },
+  "protocol_sha256": "90849e4f008fcfee7136bf8c7c0209b9d99da3588d96af8ba93fb8fbff2b0e6f",
   "runtime": {
     "cpu_count": 192,
     "host": "node2",
     "python": "3.10.19"
   },
   "schema": "xtbflow-fixed-hardware-parallel-benchmark-result/v1",
-  "source_commit": "4688bdead7c99f81731e01bcd76c11ad9e39b8ed",
+  "script_sha256": "04fa6eaea15d107590cdcee285d803fd6b3fbf45cc15c3dff3fa7664881403fd",
+  "source_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "source_manifest": "data/manifests/paired_pilot_v1/manifest.jsonl",
   "source_manifest_sha256": "6b84937d3cc75bea44faa7608d690618ce22f7ab75c51b8e25515f05a193cc90",
   "status": "completed"

@@ -12,6 +12,7 @@
     }
   },
   "calculator_calls_recorded": 37,
+  "evidence_generation_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "finite_difference_step_angstrom": 0.0001,
   "fixtures": [
     {
@@ -897,7 +898,7 @@
   "schema": "xtbflow-gfn2-qualification/v1",
   "scientific_qualification": false,
   "script_sha256": "84706cb111d799fa2ef9761fa59539ac5d8269566a398c0c0bd46a9d38e6db7a",
-  "source_commit": "4688bdead7c99f81731e01bcd76c11ad9e39b8ed",
+  "source_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "status": "qualification_failed",
   "thresholds_predeclared": {
     "adapter_native_energy_abs_hartree": 1e-12,

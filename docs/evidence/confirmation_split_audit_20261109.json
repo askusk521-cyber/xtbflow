@@ -3,12 +3,14 @@
     "This proves only the declared family-held-out split and denominator.",
     "It does not prove chemical independence beyond the manifest audit or any scientific endpoint."
   ],
+  "evidence_generation_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "family_overlap_with_non_selected_records": [],
   "manifest": "data/manifests/paired_pilot_v1/manifest.jsonl",
   "manifest_sha256": "6b84937d3cc75bea44faa7608d690618ce22f7ab75c51b8e25515f05a193cc90",
   "protocol": "configs/experiments/qualified_baseline_confirmation_v1.json",
   "protocol_sha256": "fb5bbef24082cb8e0ee810af92d865de681b0c9f0a286dffa30fd5516d184a60",
   "schema": "xtbflow-confirmation-split-audit/v1",
+  "script_sha256": "7faa6467b72af438d3a74a3d0e94ace4042872274aa8aabedd883536ed6ac640",
   "selected_family_count": 9,
   "selected_family_ids": [
     "dft-da-family:167350220eb28794ec0cd0cb",
@@ -34,6 +36,6 @@
     "ID92517"
   ],
   "selected_record_count": 45,
-  "source_commit": "4688bdead7c99f81731e01bcd76c11ad9e39b8ed",
+  "source_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "status": "pass"
 }

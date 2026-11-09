@@ -1,5 +1,6 @@
 {
   "calculator_calls_recorded": 126,
+  "evidence_generation_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "fixtures": [
     {
       "atom_count": 3,
@@ -184,7 +185,7 @@
   },
   "schema": "xtbflow-gfn2-independent-fd/v1",
   "script_sha256": "71fef4bf7f32839b8578a1281ed7e5f95a3f511fe368586932aacb40dd1f730b",
-  "source_commit": "4688bdead7c99f81731e01bcd76c11ad9e39b8ed",
+  "source_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "status": "pass",
   "step_angstrom": 0.0001,
   "thresholds_predeclared": {

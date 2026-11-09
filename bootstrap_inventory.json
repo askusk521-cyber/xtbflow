@@ -539,8 +539,8 @@
     },
     {
       "path": "docs/evidence/confirmation_split_audit_20261109.json",
-      "sha256": "ce7de2f220f55ec1ab2494313063eb4c2a88414a5deb0d812f3a01d7dc03ddfc",
-      "bytes": 1408
+      "sha256": "660549e9c96935ec4548d7197cd2fc38d950d36d99e83c8809292d543f4fe6d3",
+      "bytes": 1571
     },
     {
       "path": "docs/evidence/cp2k_calibration_smoke.json",
@@ -569,8 +569,8 @@
     },
     {
       "path": "docs/evidence/fixed_hardware_parallel_benchmark_20261109.json",
-      "sha256": "325ea3caead2857559047a7923df9fc7e581181784755649f8ee2185ca3ecd11",
-      "bytes": 47678
+      "sha256": "addaaea7103ebde1d19502c8fe26037b3801956c4d184fb2b711184435228b39",
+      "bytes": 47930
     },
     {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
@@ -589,18 +589,18 @@
     },
     {
       "path": "docs/evidence/gfn2_requalification_20261109.json",
-      "sha256": "fc0e5445ccc9488e257528a55ab72391a7535762287f6296807b1366127a8788",
-      "bytes": 25767
+      "sha256": "67244f6d1b619d762fe920bdae48cbcbaa86c023eca7cd52b0a8d734cad945b6",
+      "bytes": 25843
     },
     {
       "path": "docs/evidence/gfn2_requalification_independent_fd_20261109.json",
-      "sha256": "ea6b4df0509cab85ba612c4491666177bf511da5c92aff9d1376693206f28d5e",
-      "bytes": 6716
+      "sha256": "41bed874f7585790f6df1e0cae45d27cd6aa1cb9d6bb562f17efd403979b6e0a",
+      "bytes": 6792
     },
     {
       "path": "docs/evidence/gfn2_scoped_requalification_20261109.json",
-      "sha256": "29c4bbe800d0541c7acd3f5faf10b415da86f6f200be4a3af356556b6ad4e197",
-      "bytes": 8356
+      "sha256": "4aa9d0236203aea3389d5e4a46ee29fb2af2f91bd47204f40f424eb66c402249",
+      "bytes": 8521
     },
     {
       "path": "docs/evidence/gfn2_units_diagnostic_20260927.json",
@@ -699,13 +699,13 @@
     },
     {
       "path": "docs/evidence/qualified_baseline_confirmation_20261109.json",
-      "sha256": "5bca7424f56d3568c9c92a91300093ba22c5d20ebe7a7d0247ef927e26c641df",
-      "bytes": 61509
+      "sha256": "4638ee3ab1b33ed367e617469740c4169753d9b1cf1623cdb0902de73701a8ea",
+      "bytes": 61761
     },
     {
       "path": "docs/evidence/qualified_tranche_status_20261109.json",
-      "sha256": "18a76e72da95b900756690370c3cf4e51fe81d2e1e393845e61bb35ed912cd1a",
-      "bytes": 3098
+      "sha256": "6844e58b00e9f057d0e38e1b3509044e696f80669eef6af2aeaac74214eef73c",
+      "bytes": 3232
     },
     {
       "path": "docs/evidence/reaction_qm_coordinate_mapping_audit_20261002_full.json",
@@ -1374,8 +1374,8 @@
     },
     {
       "path": "scripts/validate_qualified_tranche_artifacts.py",
-      "sha256": "ebc8e813352334f1d5bce28c7b77c03b3449972fb2a12cb38f76b33154becd9f",
-      "bytes": 3258
+      "sha256": "be930dde37ccadb191963fe01238e7294f4acf35204efd44a9669788c2003ef1",
+      "bytes": 4401
     },
     {
       "path": "scripts/validate_workflow_b.py",

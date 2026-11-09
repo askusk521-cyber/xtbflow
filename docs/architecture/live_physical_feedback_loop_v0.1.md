@@ -24,11 +24,16 @@ event freeze, and one conservation projection. Adapter and runtime ledgers
 retain estimated/measured/charged cost, provider/protocol fingerprints,
 failure stage, snapshot identity, and the changed geometry/event state.
 
-The independent TS/IRC validator is invoked after both arms. It fails closed
-with `MISSING_TS_HESSIAN_IRC_EVIDENCE` because this loop does not fabricate
-Hessian, endpoint, or bidirectional IRC evidence. The committed artifact
-therefore has `status=blocked_certification`; this is the expected honest
-boundary for the first live feedback smoke.
+The independent TS/IRC gate is opt-in through an explicit `certification`
+configuration block. With the block absent, the runner records
+`MISSING_TS_HESSIAN_IRC_EVIDENCE` and keeps the original
+`status=blocked_certification` artifact; it never silently selects a backend.
+When enabled, each arm receives its own durable certification budget and the
+shared xTB protocol is used for finite-difference Hessian, two-direction path,
+endpoint, and validator evidence. The fixed water probe entered that gate but
+returned `attempted_unresolved / not_converged`; it did not create a TS/IRC or
+chemistry claim. A future target-free reactive fixture must pass this gate
+before strict validation is used for scientific comparison.
 
 The run artifact is
 `artifacts/real_feedback_run_20261110T020000/`. Its claim levels are:

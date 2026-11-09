@@ -286,3 +286,43 @@ def test_event_identity_uses_observed_endpoint_not_prediction(monkeypatch):
     assert result["status"] == "STRICT_EVENT_MISMATCH"
     assert result["actual_event_id"] != result["predicted_event_id"]
     assert result["product_be"] == product.tolist()
+
+
+def test_missing_proposal_is_distinct_from_no_edit_hypothesis():
+    unknown = candidate(planned_product_be=None)
+    no_edit = candidate(planned_product_be=unknown.reactant_be)
+    assert unknown.content()["planned_product_be"] is None
+    assert service_module.identity(unknown.content()) != service_module.identity(no_edit.content())
+    with pytest.raises(ValueError):
+        candidate(reactant_be=None, planned_product_be=None)
+
+
+def test_complete_reference_chain_without_proposal_does_not_claim_event_match(monkeypatch):
+    reactant = np.array([[0, 1], [1, 0]])
+    product = np.array([[1, 0], [0, 1]])
+    endpoints = iter((reactant, product))
+    monkeypatch.setattr(numerical, "perceive_be", lambda *args: next(endpoints))
+    ident = numerical.endpoint_identity([1, 1], reactant, [[0, 1], [1, 0]], None, [], [])
+    assert ident["status"] == "REFERENCE_CONNECTED_WITHOUT_PROPOSAL"
+    assert ident["predicted_event_id"] is None
+    assert ident["actual_event_id"] == numerical.canonical_event(reactant, product, np.array([[0, 1], [1, 0]]))
+    raw = evidence()
+    raw["identity"] = ident
+    observed = feedback(raw)
+    assert observed["evidence_status"] == "reference_ts_connected"
+    assert observed["planned_event_id"] is None
+    assert observed["planned_event_realized"] is None
+    raw["irc"]["status"] = "IRC_LIMIT"
+    assert feedback(raw)["evidence_status"] == "attempted_unresolved"
+
+
+def test_unproposed_same_endpoints_never_count_as_connected_channel(monkeypatch):
+    reactant = np.array([[0, 1], [1, 0]])
+    monkeypatch.setattr(numerical, "perceive_be", lambda *args: reactant.copy())
+    ident = numerical.endpoint_identity([1, 1], reactant, [[0, 1], [1, 0]], None, [], [])
+    raw = evidence()
+    raw["identity"] = ident
+    observed = feedback(raw)
+    assert observed["evidence_status"] == "same_endpoint"
+    assert observed["observed_event_id"] is None
+    assert observed["planned_event_realized"] is None

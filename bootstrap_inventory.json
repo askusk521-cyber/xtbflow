@@ -348,6 +348,11 @@
       "bytes": 2247
     },
     {
+      "path": "configs/validation/live_feedback_reference_20261110.json",
+      "sha256": "3a89632d2b711620c407cebc27dfee4d82738bf8fd71430a3b75fa83d721563e",
+      "bytes": 3132
+    },
+    {
       "path": "configs/validation/ts_v0.1.yaml",
       "sha256": "8599350fceb794e375719a918731d85f76d22e01c5e64446bd071cbf7ef5086b",
       "bytes": 434
@@ -458,6 +463,11 @@
       "bytes": 5186
     },
     {
+      "path": "docs/LIVE_REFERENCE_EXECUTION_20261110.md",
+      "sha256": "8625ef02546a942835b2071c293a9e5f58caf5d2f382eae6ef930c5109cd56b7",
+      "bytes": 11387
+    },
+    {
       "path": "docs/MECHAI_REUSE_MANIFEST.json",
       "sha256": "2b3a1f89841edac9f74545c19377391eeba815f3083d2f6a915d91b1bc01f8fb",
       "bytes": 6609
@@ -494,8 +504,8 @@
     },
     {
       "path": "docs/architecture/certification_service.md",
-      "sha256": "a3d56f269988c4da8f41cf9dd935958760899abee3a40432efdd2cb8273b65d9",
-      "bytes": 8909
+      "sha256": "969d774b0a5979abf7bf1fb6fc72533841c1c00e89483f56cd6c92690732ed37",
+      "bytes": 9981
     },
     {
       "path": "docs/architecture/discovery_comparison.md",
@@ -516,6 +526,11 @@
       "path": "docs/architecture/generation_bridge.md",
       "sha256": "78653a7538e7d5f21d9443e3201c6f871bafd7a633cc67c5f7fd3cf5f2fc6aec",
       "bytes": 7726
+    },
+    {
+      "path": "docs/architecture/live_reference_handoff.md",
+      "sha256": "2a1fa2f5c0538928d82954f3501f7eb40557e0b1ce4e5afdb893bb64234f9e00",
+      "bytes": 3788
     },
     {
       "path": "docs/architecture/research_asset_replay.md",
@@ -539,8 +554,8 @@
     },
     {
       "path": "docs/data_contract.md",
-      "sha256": "21dc2ca5124de7a966ee2725d53c71240566867d452adea3ff658b252ed23c11",
-      "bytes": 6003
+      "sha256": "07857e16ed8b20c1a96137f25871ffd3f7b0b89246f703629c0e6bf073b7f658",
+      "bytes": 6449
     },
     {
       "path": "docs/evidence/comparison_assets_replay_20261107.json",
@@ -656,6 +671,31 @@
       "path": "docs/evidence/joint_flow_smoke_20260929_v3.json",
       "sha256": "41555c2528ef65c71a18e4ff7908ae3f86affa75dad52fef7ed078eacbd6d0cd",
       "bytes": 4826
+    },
+    {
+      "path": "docs/evidence/live_reference_cache_audit_2772c7b_20261110.json",
+      "sha256": "509f34bb284a8447ccd3203a887c485496a1e163d0b59844352f0296b3d3bb38",
+      "bytes": 4610
+    },
+    {
+      "path": "docs/evidence/live_reference_cache_guards_2772c7b_20261110.json",
+      "sha256": "549bedd3eae497402ed076a698d516b8ada7e6299c099dde3402742818d849bf",
+      "bytes": 688
+    },
+    {
+      "path": "docs/evidence/live_reference_exact_2772c7b_20261110.json",
+      "sha256": "6f99278e76a0f130e0909b98afc914e73127182630f797f4038016b00c76a2e7",
+      "bytes": 10763
+    },
+    {
+      "path": "docs/evidence/live_reference_execution_receipt_2772c7b_20261110.json",
+      "sha256": "0e17ace0cd9233cb3ae35ea02990d3e5b327196ed071482bc63ee625025cbd37",
+      "bytes": 11291
+    },
+    {
+      "path": "docs/evidence/live_reference_preflight_exact_2772c7b_20261110.json",
+      "sha256": "ddd9de04298729658513ed6ae1c5cdf7926730ae1a0dba74f33eeca85a85a9ed",
+      "bytes": 3148
     },
     {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
@@ -1128,6 +1168,11 @@
       "bytes": 3107
     },
     {
+      "path": "scripts/audit_live_reference_cache.py",
+      "sha256": "c489dec0afe50ee58ed36de4654c7ba264743175d40277556b8682860c11089d",
+      "bytes": 9788
+    },
+    {
       "path": "scripts/audit_origin_seed_readiness.py",
       "sha256": "1a978fb9b33fe6fca4e8069ef81547dd9e3a69158092c03a76f8b5a4de15e5c1",
       "bytes": 2056
@@ -1184,8 +1229,8 @@
     },
     {
       "path": "scripts/certify_generated_candidates.py",
-      "sha256": "8dfb8d09818167a4e69488173e820e1e9b5191757e3478349551969fe2e846fe",
-      "bytes": 8969
+      "sha256": "043a3e5de03585338f23f0b7246cebc004b59f5f85c051943cc41cfd2b12ac1d",
+      "bytes": 10480
     },
     {
       "path": "scripts/check_portal.py",
@@ -1468,6 +1513,11 @@
       "bytes": 12414
     },
     {
+      "path": "src/xtbflow/governance/live_reference.py",
+      "sha256": "34b5929c8b48e50d4e25082099822173829e5e02b63e12296b4e7ed06283f3d3",
+      "bytes": 11079
+    },
+    {
       "path": "src/xtbflow/governance/research_replay.py",
       "sha256": "14ddb74f4dca58dc68a645c7241760852335285f176212c4e11a3e27ca3d2784",
       "bytes": 6632
@@ -1664,8 +1714,8 @@
     },
     {
       "path": "src/xtbflow/validation/certification.py",
-      "sha256": "f581526ad2b988f119cb171c0db693bccb2860b455edc708328fbad6eaeb29af",
-      "bytes": 29508
+      "sha256": "7b19ccd0b9e60ab65bd2f306c4ddc77457409b4fa776ef9f827772c2d13838c8",
+      "bytes": 29898
     },
     {
       "path": "src/xtbflow/validation/connectivity.py",
@@ -1679,13 +1729,13 @@
     },
     {
       "path": "src/xtbflow/validation/reference_backend.py",
-      "sha256": "a4d2ec271f39ba501f1be5bc34bd180bc1d22a10bffdfbedda5872cd7eb15ccf",
-      "bytes": 3161
+      "sha256": "03b8de1165399dc3ba37fc4a26939bcfc65fb0b4fca716b45e1491acdb7fcce6",
+      "bytes": 3241
     },
     {
       "path": "src/xtbflow/validation/reference_protocol.py",
-      "sha256": "e69903868cf380d808762c09fadb743b577f0812e5ec249cc0172af6a7f6f956",
-      "bytes": 17798
+      "sha256": "84765f82b41e8164d388157e947d5ddd2c5d637256a8b9beb7796f9088b39a19",
+      "bytes": 17957
     },
     {
       "path": "src/xtbflow/validation/ts_search.py",
@@ -1734,8 +1784,8 @@
     },
     {
       "path": "tests/test_certification_service.py",
-      "sha256": "018dab264b7bfe021ed98d001c6c56a4b641d34fdedc903ccfdbc9072753b321",
-      "bytes": 13000
+      "sha256": "228b034ca9549a565648c818b3173c9d276ccbb0cfe7d723820172fb356acb84",
+      "bytes": 14946
     },
     {
       "path": "tests/test_checkpoint.py",
@@ -1826,6 +1876,11 @@
       "path": "tests/test_live_generation_actions.py",
       "sha256": "5b671e6c8ce1d409196e06076e5d5307ac7dfd7873a8618ca5300cc0302b4516",
       "bytes": 14031
+    },
+    {
+      "path": "tests/test_live_reference_handoff.py",
+      "sha256": "6316033f76178163d57869ac113f0e070f20253f53713b55050d4e753cbe0590",
+      "bytes": 6802
     },
     {
       "path": "tests/test_origin_seed_readiness.py",

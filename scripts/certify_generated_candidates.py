@@ -16,6 +16,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from xtbflow.governance.generation_bridge import validate_journal  # noqa: E402
+from xtbflow.governance.live_reference import load_live_feedback  # noqa: E402
 from xtbflow.governance.research_replay import git  # noqa: E402
 from xtbflow.runtime import RunLedger, StageBudget  # noqa: E402
 from xtbflow.validation.certification import (  # noqa: E402
@@ -66,7 +67,10 @@ def load_generation(folder: Path, generation_config: Path) -> tuple[dict, list[t
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--generation", type=Path, required=True)
+    inputs = parser.add_mutually_exclusive_group(required=True)
+    inputs.add_argument("--generation", type=Path)
+    inputs.add_argument("--live-feedback", type=Path)
+    parser.add_argument("--reactant-context", type=Path)
     parser.add_argument("--generation-config", type=Path, default=ROOT / "configs/research/generation_bridge_20261107.json")
     parser.add_argument("--config", type=Path, default=ROOT / "configs/validation/generated_candidates_20261107.json")
     parser.add_argument("--out", type=Path, required=True)
@@ -80,22 +84,30 @@ def main() -> int:
     args.out = args.out.resolve()
     args.out.mkdir(parents=True, exist_ok=False)
     report = dict(schema=cfg["schema"], status="preflight", host=socket.gethostname(),
-                  source_commit=git(ROOT, "rev-parse", "HEAD"), python=platform.python_version(),
+                  source_commit=git(ROOT, "rev-parse", "HEAD"), source_dirty=False, python=platform.python_version(),
                   started_at=datetime.now(timezone.utc).isoformat(), slurm_job_id=os.environ["SLURM_JOB_ID"],
                   config_sha256=file_hash(config_path), budget=cfg["stage_budget"],
-                  claim_limits=cfg["claim_limits"], candidates=[])
+                  claim_limits=cfg["claim_limits"], candidates=[], attempt=1, reason_code=None)
     write_json(args.out / "report.json", report)
     started = time.monotonic()
     service = None
     try:
-        generation, candidates = load_generation(args.generation, args.generation_config)
+        if args.live_feedback is not None:
+            if args.reactant_context is None:
+                raise ValueError("live feedback requires an audited reactant context")
+            generation, candidates = load_live_feedback(
+                args.live_feedback, args.generation_config, args.reactant_context, cfg["live_source"]
+            )
+            report["generation"] = generation
+        else:
+            generation, candidates = load_generation(args.generation, args.generation_config)
+            report["generation"] = dict(report_sha256=file_hash(args.generation / "report.json"),
+                source_commit=generation["source_commit"], plan_sha256=generation["certification_plan_sha256"],
+                forward_evaluations=generation["call_summary"]["forward_evaluations"],
+                wall_seconds=generation["wall_seconds"], cpu_seconds=generation["cpu_seconds"],
+                candidates=generation["candidates"])
         if len(candidates) > cfg["max_candidates"]:
             raise ValueError("candidate cap exceeded")
-        report["generation"] = dict(report_sha256=file_hash(args.generation / "report.json"),
-            source_commit=generation["source_commit"], plan_sha256=generation["certification_plan_sha256"],
-            forward_evaluations=generation["call_summary"]["forward_evaluations"],
-            wall_seconds=generation["wall_seconds"], cpu_seconds=generation["cpu_seconds"],
-            candidates=generation["candidates"])
         probe = subprocess.check_output([sys.executable, "-c",
             "import cupy as c,json; r=c.cuda.runtime; p=r.getDeviceProperties(0); "
             "a=c.zeros(1); c.cuda.get_current_stream().synchronize(); "
@@ -106,6 +118,8 @@ def main() -> int:
         report["protocol_sha256"] = identity(report["protocol"])
         if report["protocol"]["version"] != cfg["protocol_version"]:
             raise ValueError("reference protocol version mismatch")
+        if args.live_feedback is not None and report["protocol"]["candidate_contract"] != cfg["candidate_contract"]:
+            raise ValueError("reference candidate contract mismatch")
         service = CertificationService(args.out / "service", StageBudget(**cfg["stage_budget"]))
         report["status"] = "executing"
         write_json(args.out / "report.json", report)
@@ -119,6 +133,11 @@ def main() -> int:
                     "evidence_status", "stationary_point", "first_order_saddle", "bidirectional_minima",
                     "planned_event_realized", "planned_event_id", "observed_event_id", "raw_status")},
                 charged_calls=record["charged_calls"], resources=record["resources"],
+                attempt=record["attempt"], status=record["execution_status"],
+                reason_code=record["feedback"]["reason"] or record["feedback"]["raw_status"],
+                wall_seconds=record["resources"]["wall_seconds"],
+                cpu_hours=record["resources"]["cpu_seconds"] / 3600.0,
+                gpu_hours=record["ledger_event"]["gpu_seconds"] / 3600.0,
                 result_content_sha256=record["content_sha256"], artifact_bytes=sum(a["bytes"] for a in record["artifacts"]),
                 cache_replay=dict(cache_hit=cached["cache_hit"], new_calculator_calls=cached["new_calculator_calls"],
                     new_channel=cached["new_channel"], identical_record=cached["record"] == record)))
@@ -128,13 +147,15 @@ def main() -> int:
             write_json(args.out / "report.json", report)
         report["status"] = "pipeline_completed" if candidates else "no_generated_candidates"
     except Exception as exc:
-        report.update(status="execution_failed", failure_type=type(exc).__name__)
+        report.update(status="execution_failed", reason_code="REFERENCE_HANDOFF_EXECUTION", failure_type=type(exc).__name__)
         print(f"{type(exc).__name__}: {exc}", file=sys.stderr)
     if service and service.ledger_path.exists():
         report["ledger"] = RunLedger.load(service.ledger_path).summary()
     channels = args.out / "service/channels.json"
     report["unique_certified_channels"] = len(json.loads(channels.read_text())) if channels.exists() else 0
     report["wall_seconds"] = time.monotonic() - started
+    report["cpu_hours"] = report.get("ledger", {}).get("totals", {}).get("cpu_core_hours")
+    report["gpu_hours"] = report.get("ledger", {}).get("totals", {}).get("gpu_hours")
     write_json(args.out / "report.json", report)
     print(json.dumps({"status": report["status"], "unique_certified_channels": report["unique_certified_channels"]}))
     return 0 if report["status"] in {"pipeline_completed", "no_generated_candidates"} else 1

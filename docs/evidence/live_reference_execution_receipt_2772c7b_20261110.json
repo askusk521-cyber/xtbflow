@@ -1,0 +1,278 @@
+{
+  "assets": [
+    {
+      "bytes": 10763,
+      "path": "reference/report.json",
+      "sha256": "6f99278e76a0f130e0909b98afc914e73127182630f797f4038016b00c76a2e7"
+    },
+    {
+      "bytes": 4610,
+      "path": "cache-audit-terminal-2772c7b.json",
+      "sha256": "509f34bb284a8447ccd3203a887c485496a1e163d0b59844352f0296b3d3bb38"
+    },
+    {
+      "bytes": 3148,
+      "path": "preflight_exact_2772c7b.json",
+      "sha256": "ddd9de04298729658513ed6ae1c5cdf7926730ae1a0dba74f33eeca85a85a9ed"
+    },
+    {
+      "bytes": 688,
+      "path": "cache-audit-guard-checks-2772c7b.json",
+      "sha256": "549bedd3eae497402ed076a698d516b8ada7e6299c099dde3402742818d849bf"
+    },
+    {
+      "bytes": 2822,
+      "path": "reference/service/ledger.json",
+      "sha256": "1ee2567a041e939c63a0ec610859e68833cab899508105db60581dd278de82e9"
+    },
+    {
+      "bytes": 2666,
+      "path": "reference-job-2772c7b.sh",
+      "sha256": "3682e54fde5ef819ed44015f19b327578b83bd7d17373e956cade1937e1ac747"
+    },
+    {
+      "bytes": 665,
+      "path": "launch_receipt_2772c7b.json",
+      "sha256": "b3da30a17e506aa5c92671892a61224ce4b98a2e55ee0b732c224f12d4b9e7e5"
+    },
+    {
+      "bytes": 71,
+      "path": "runner_exit_2772c7b.json",
+      "sha256": "92328edcfd61b52c057087a65d54ff4e4ba314cc0e5f2666502ad937fba5f779"
+    },
+    {
+      "bytes": 925,
+      "path": "scontrol-live-4223.json",
+      "sha256": "ad4e5a0ab68a159964b4b062ef3fc465ee12cd1b7f6eafe5c70726f3b43d5faf"
+    },
+    {
+      "bytes": 779,
+      "path": "scontrol-terminal-4223.json",
+      "sha256": "5b434571bd19c487549b54a21756ca198c37742d911baf33e7feeba8ad24efef"
+    },
+    {
+      "bytes": 99,
+      "path": "regression_exact_2772c7b.log",
+      "sha256": "1699a4495b85842b6653cae9cdaf0c81597469b735ce6f977aa839179006885c"
+    },
+    {
+      "bytes": 151,
+      "path": "bootstrap_exact_2772c7b.log",
+      "sha256": "bb748cdd5b5a64546fe8d15d29bd0ddca8303acc2b76e23079fd6c00552b2807"
+    }
+  ],
+  "attempt": 1,
+  "budgets": {
+    "call_units": {
+      "mixed_protocol_call_total": null,
+      "reference": "Each SCF, gradient or Hessian entry is one separately charged primitive.",
+      "upstream_diagnostics": "Prior xTB energy/force diagnostic calls; retained separately and not supplied as reference seeds.",
+      "upstream_feedback": "xTB energy_forces calls."
+    },
+    "per_candidate": {
+      "cpu_cores": 8,
+      "max_calls": 3000,
+      "max_raw_bytes": 134217728,
+      "max_wall_seconds": 3300
+    },
+    "reference_totals": {
+      "attempts": 2,
+      "cache_hits": 0,
+      "calculator_calls": 902,
+      "cpu_core_hours": 1.133278401388889,
+      "failures": 0,
+      "gpu_hours": 0.991951310654145,
+      "retries": 0,
+      "storage_gb": 0.003550673834979534,
+      "successes": 2,
+      "system_evaluations": 2
+    },
+    "stage": {
+      "max_calculator_calls": 6000,
+      "max_concurrent_jobs": 1,
+      "max_cpu_core_hours": 16.0,
+      "max_gpu_hours": 2.0,
+      "max_retries_per_job": 0,
+      "max_storage_gb": 1.0,
+      "max_system_evaluations": 2,
+      "max_wall_minutes_per_job": 120,
+      "phase": "live-feedback-independent-reference-20261110"
+    },
+    "upstream_arms": [
+      {
+        "arm": "no_feedback",
+        "event_changed": false,
+        "feedback_ledger_sha256": "7e160683a6060a58deb4dc52b60b27e6d3dbf0f7e7a6f71899e873c746077c92",
+        "feedback_totals": {
+          "attempts": 1,
+          "cache_hits": 0,
+          "calculator_calls": 1,
+          "cpu_core_hours": 4.059805000000015e-06,
+          "failures": 0,
+          "gpu_hours": 0.0,
+          "retries": 0,
+          "storage_gb": 0.0,
+          "successes": 1,
+          "system_evaluations": 1
+        },
+        "geometry_changed": false,
+        "prior_diagnostic_calls": 314,
+        "prior_diagnostic_cost": {
+          "cpu_hours": 0.0005431762472222223,
+          "cpu_seconds": 1.955432838,
+          "gpu_hours": 0.0,
+          "wall_seconds": 2.1663294520694762
+        },
+        "snapshot_id": "32d84d553e2ee0cef471a873d22a8f644fecd8f6bcf612184a076128ba7a65ee"
+      },
+      {
+        "arm": "physical_feedback",
+        "event_changed": true,
+        "feedback_ledger_sha256": "1fc41039ceff2d1e835bbf5017919ba2ea8d33265f5aa2211f3a4efdcda01516",
+        "feedback_totals": {
+          "attempts": 1,
+          "cache_hits": 0,
+          "calculator_calls": 1,
+          "cpu_core_hours": 1.5126272222222415e-06,
+          "failures": 0,
+          "gpu_hours": 0.0,
+          "retries": 0,
+          "storage_gb": 0.0,
+          "successes": 1,
+          "system_evaluations": 1
+        },
+        "geometry_changed": true,
+        "prior_diagnostic_calls": 306,
+        "prior_diagnostic_cost": {
+          "cpu_hours": 0.00048281739333333327,
+          "cpu_seconds": 1.7381409930000005,
+          "gpu_hours": 0.0,
+          "wall_seconds": 2.0050580750685185
+        },
+        "snapshot_id": "4bab227e6e6d2ee30758ed624aa070260890afb83e01afc75efd73231bb66bc7"
+      }
+    ]
+  },
+  "claim_limits": [
+    "This is a one-parent, one-seed development integration test, not an independent benchmark, method comparison or discovery-rate estimate.",
+    "The original source is a declared reactant endpoint; atom-map/graph auditing does not make it an independently prepared blind reactant.",
+    "Gas phase is the explicit modeling environment of the frozen live input, not a claim about the source geometry environment.",
+    "Guidance scores have no mapped chemical-event decoder. The planned product is null, and planned-event ID/realization remain null.",
+    "Only the unchanged independent reference chain can establish a channel; same endpoints, unresolved results, failures and exhausted budgets stay in the denominator and charged costs.",
+    "Raw coordinates, Hessians, paths and graph records remain on n2. Public reports retain hashes, outcomes, provenance, measured costs and replay checks. No TS discovery, barrier, mechanism, chemical-accuracy or model-superiority claim is made.",
+    "The reference run completed, but both outcomes are same_endpoint; zero strict reaction channels were observed.",
+    "500 versus 402 reference primitives in one parent/seed is accounting, not method superiority or a chemical failure-rate estimate.",
+    "Program success and completed calculations are distinct from reaction-channel certification. The service ledger has two successful executions and zero strict channels.",
+    "Cache/raw replay is software_demo, not an independent numerical rerun. Prior xTB diagnostics remain proxy_metric and their retracted certification claims are not restored.",
+    "sacct historical accounting is unavailable. Measured child CPU and allocated candidate GPU wall time come from the durable service ledger; a separate terminal scheduler snapshot bounds total allocation."
+  ],
+  "config_sha256": "3a89632d2b711620c407cebc27dfee4d82738bf8fd71430a3b75fa83d721563e",
+  "cpu_hours": 1.133278401388889,
+  "gpu_hours": 0.991951310654145,
+  "host": "node2",
+  "input_hash": "726656ab0c3d2878853a858c4bbc5d5df82665c584dcbd368735b22084fbc4f5",
+  "live_source": {
+    "config_sha256": "6aa438af414600d97997a7c823bda0a803a90de90d9a5a1536d4e7b5c769641f",
+    "context_sha256": "1f6685075ddd3f0bd2c1d33ade912656d0cbac2586500aea143d47210e269bea",
+    "manifest_sha256": "4f0393bbf88f3805bfb480531dbc2a43c046a5eca9e3c282fae2fbb493518de7",
+    "parent_id": "reactant-da-r0-approach-v1",
+    "seed": 20261111,
+    "source_commit": "a8e4a88069ba363f8e76f8378a58795800718648"
+  },
+  "protocol_sha256": "6dc84cd79c7223e6e05126d1211d70075f5401d9f5f9fc45c396ea77a2d25a39",
+  "reason_code": "BOTH_ARMS_SAME_REACTANT_ENDPOINTS",
+  "recorded_at": "2026-11-09T19:36:43.413287+00:00",
+  "reference_outcome": {
+    "arms": [
+      {
+        "arm": "no_feedback",
+        "candidate_sha256": "245b034cc57e149709daad7f299c026422da2d17a52e85c31139dd5ff5f42c2d",
+        "charged_calls": 500,
+        "observed_event_id": null,
+        "reason_code": "both_ends_reactant",
+        "status": "same_endpoint"
+      },
+      {
+        "arm": "physical_feedback",
+        "candidate_sha256": "5e6b03a4ff8428dc6d198da273ee15292b775709221081560a17a513199d0d63",
+        "charged_calls": 402,
+        "observed_event_id": null,
+        "reason_code": "both_ends_reactant",
+        "status": "same_endpoint"
+      }
+    ],
+    "budget_exhausted_count": 0,
+    "calculator_cost_to_first_certification": null,
+    "candidate_denominator": 2,
+    "evidence_level": "strict_validation",
+    "outcome_identity_sha256": "03cb95ce9e99423f621710a449cde07b5369ed6c2d6397e72052b38d3ee5414a",
+    "outcomes": {
+      "same_endpoint": 2
+    },
+    "parent_denominator": 1,
+    "scope": "Completed frozen protocol checks for a development fixture; both mapped endpoints are the reactant, so no strict reaction channel is counted.",
+    "time_to_first_certification": null,
+    "unique_strict_certified_channels": 0
+  },
+  "scheduler": {
+    "allocation_basis": "scontrol terminal RunTime rounded to seconds, one GPU and eight allocated CPU cores; CPU reservation is not measured CPU use.",
+    "candidate_gpu_seconds": 3571.024718354922,
+    "exit_code": "0:0",
+    "historical_accounting": {
+      "attempt": 1,
+      "cpu_hours": null,
+      "gpu_hours": null,
+      "max_rss_bytes": null,
+      "observed": "sacct: Slurm accounting storage is disabled",
+      "reason_code": "SLURM_ACCOUNTING_DISABLED",
+      "status": "blocked",
+      "wall_seconds": null,
+      "whole_job_measured_cpu_hours": null
+    },
+    "job_id": "4223",
+    "noncandidate_allocated_seconds_approx": 1.975281645078212,
+    "observed_allocated_gpu_hours": 0.9925,
+    "observed_allocated_wall_seconds": 3573,
+    "observed_reserved_cpu_core_hours": 7.94,
+    "terminal_state": "COMPLETED"
+  },
+  "schema": "xtbflow-live-reference-execution-receipt/v1",
+  "software_checks": {
+    "cache_and_raw_replay": "passed",
+    "diff_check": "passed",
+    "evidence_level": "software_demo",
+    "execution_inventory": {
+      "status": "passed",
+      "tracked_file_count": 395
+    },
+    "new_replay_calculator_calls": 0,
+    "regression": {
+      "attempt": 1,
+      "cpu_hours": null,
+      "environment": "xtbflow",
+      "gpu_hours": null,
+      "passed": 39,
+      "python": "3.10.19",
+      "reason_code": null,
+      "status": "passed",
+      "wall_seconds": 5.5
+    }
+  },
+  "source_commit": "2772c7bedb9c674144d7dab702a29178eeee699a",
+  "source_context": {
+    "context_builder_sha256": "34b5929c8b48e50d4e25082099822173829e5e02b63e12296b4e7ed06283f3d3",
+    "graph_environment": {
+      "numpy": "2.4.6",
+      "rdkit": "2026.03.6"
+    },
+    "input_origin": "declared_reactant_endpoint",
+    "reactant_graph_sha256": "f068a7d0394a0e49597450e2f57102fd78265066dfd0ea937a6c168970457e34",
+    "reactant_xyz_sha256": "f43f47f29231422ee665b90d38b3f1fd49f634d526b65a1a8a7a441df25933f7",
+    "scope": "development fixture using a declared source endpoint; not independent reactant preparation or held-out confirmation",
+    "source_adapter_sha256": "20706b33d98d306ea700b997a510a23c9792707f77cd8d561f1dd272669ca2fc",
+    "source_asset_sha256": "4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed"
+  },
+  "source_dirty": false,
+  "status": "completed_with_zero_reaction_channels",
+  "wall_seconds": 3571.9159611409996
+}

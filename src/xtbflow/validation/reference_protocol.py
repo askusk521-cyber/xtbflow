@@ -305,8 +305,11 @@ def endpoint_identity(z,b_r,perms,b_predicted,x_end1,x_end2):
     product=ends[1] if is_r[0] else ends[0]
     if np.array_equal(product,b_r):return dict(status='STRICT_EVENT_MISMATCH',reason='both_ends_reactant',
                                                actual_event_id=None,reactant_end=0 if is_r[0] else 1, endpoint_be=[b.tolist() for b in ends])
-    actual=canonical_event(b_r,product,perms);predicted=canonical_event(b_r,np.asarray(b_predicted),perms)
-    return dict(status='STRICT_JOINT_GRAPH_VALID' if actual==predicted else 'STRICT_EVENT_MISMATCH',
+    actual=canonical_event(b_r,product,perms)
+    predicted=None if b_predicted is None else canonical_event(b_r,np.asarray(b_predicted),perms)
+    status=('REFERENCE_CONNECTED_WITHOUT_PROPOSAL' if b_predicted is None
+            else 'STRICT_JOINT_GRAPH_VALID' if actual==predicted else 'STRICT_EVENT_MISMATCH')
+    return dict(status=status,
                 actual_event_id=actual,predicted_event_id=predicted,reactant_end=0 if is_r[0] else 1,
                 product_be=product.tolist(), endpoint_be=[b.tolist() for b in ends])
 
@@ -340,7 +343,7 @@ def certification_chain(z,x_raw,b_r,perms,b_predicted,method,workdir,meter):
             return finish(out,meter,t0,workdir)
         ident=endpoint_identity(z,b_r,perms,b_predicted,np.asarray(ends[0]['x']),np.asarray(ends[1]['x']))
         out['identity']=ident;out['strict_status']=ident['status']
-        out['strict_joint_graph']=None if ident['status']=='EVALUATION_UNRESOLVED' else int(ident['status']=='STRICT_JOINT_GRAPH_VALID')
+        out['strict_joint_graph']=None if b_predicted is None or ident['status']=='EVALUATION_UNRESOLVED' else int(ident['status']=='STRICT_JOINT_GRAPH_VALID')
         if 'reactant_end' in ident:
             r=ends[ident['reactant_end']]
             out['local_barrier_kcal']=(ts['energy_hartree']-r['energy_hartree'])*HARTREE_TO_KCAL

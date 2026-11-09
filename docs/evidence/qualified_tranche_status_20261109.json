@@ -71,8 +71,10 @@
       "threshold_pass": false
     },
     "7_independent_review_and_main_gate": {
-      "main_promotion": "blocked_until_independent_review_and_claim_review",
-      "status": "pending"
+      "independent_review": "independent_final_review_v3",
+      "review_conclusion": "accepted_as_custom_integration_diagnostic_tranche",
+      "main_promotion": "blocked_until_qualified_scientific_endpoints_and_main_review",
+      "status": "independent_review_accepted_main_blocked"
     }
   }
 }

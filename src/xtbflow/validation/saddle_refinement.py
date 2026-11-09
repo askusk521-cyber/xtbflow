@@ -41,6 +41,26 @@ def _max_force(forces: np.ndarray) -> float:
     return float(np.max(np.abs(forces)))
 
 
+def _finite_difference_hessian(
+    backend: CalculatorBackend,
+    system: MolecularSystem,
+    coordinates: np.ndarray,
+    token: CalculatorCallToken,
+    step: float,
+) -> np.ndarray:
+    flat = coordinates.reshape(-1)
+    hessian = np.zeros((len(flat), len(flat)), dtype=float)
+    for index in range(len(flat)):
+        plus = flat.copy()
+        minus = flat.copy()
+        plus[index] += step
+        minus[index] -= step
+        _, plus_forces, _ = _evaluate(backend, system, plus.reshape(coordinates.shape), token)
+        _, minus_forces, _ = _evaluate(backend, system, minus.reshape(coordinates.shape), token)
+        hessian[:, index] = -(plus_forces.reshape(-1) - minus_forces.reshape(-1)) / (2.0 * step)
+    return 0.5 * (hessian + hessian.T)
+
+
 @dataclass(frozen=True)
 class SaddleRefinementConfig:
     hessian_step_angstrom: float = 0.003
@@ -96,6 +116,95 @@ class SaddleRefinementResult:
         return asdict(self)
 
 
+def _refine_mode_follow(
+    backend: CalculatorBackend,
+    system: MolecularSystem,
+    coordinates: np.ndarray,
+    *,
+    token: CalculatorCallToken,
+    config: SaddleRefinementConfig,
+) -> SaddleRefinementResult:
+    """One Hessian followed by force-only descent orthogonal to its lowest mode."""
+
+    calls_before = token.consumed_calls
+    current = coordinates.copy()
+    trace: list[dict[str, Any]] = []
+    try:
+        _, forces, _ = _evaluate(backend, system, current, token)
+        rigid = _basis(current)
+        projector = np.eye(current.size) - rigid @ rigid.T
+        hessian = _finite_difference_hessian(backend, system, current, token, config.hessian_step_angstrom)
+        projected_hessian = projector @ hessian @ projector
+        eigenvalues, eigenvectors = np.linalg.eigh(projected_hessian)
+        mode = eigenvectors[:, int(np.argmin(eigenvalues))]
+        mode /= max(float(np.linalg.norm(mode)), 1.0e-12)
+        positive_projector = projector - np.outer(mode, mode)
+        initial_negative_count = int(np.count_nonzero(eigenvalues < -config.negative_mode_threshold))
+        for iteration in range(config.max_steps + 1):
+            gradient = _max_force(forces)
+            if gradient <= config.gradient_tolerance:
+                return SaddleRefinementResult(
+                    "success", "STATIONARY_POINT_REACHED",
+                    tuple(tuple(float(v) for v in row) for row in current),
+                    gradient, initial_negative_count, token.consumed_calls - calls_before, tuple(trace),
+                )
+            if iteration == config.max_steps:
+                return SaddleRefinementResult(
+                    "attempted_unresolved", "MAX_REFINEMENT_STEPS",
+                    tuple(tuple(float(v) for v in row) for row in current),
+                    gradient, initial_negative_count, token.consumed_calls - calls_before, tuple(trace),
+                )
+            raw_step = (positive_projector @ forces.reshape(-1)).reshape(current.shape)
+            step_norm = float(np.max(np.linalg.norm(raw_step, axis=1)))
+            if step_norm > config.trust_radius_angstrom:
+                raw_step *= config.trust_radius_angstrom / step_norm
+            accepted = False
+            trials: list[dict[str, Any]] = []
+            for fraction in (1.0, 0.5, 0.25, 0.125, 0.0625, 0.03125):
+                trial = current + fraction * raw_step
+                trial_energy, trial_forces, _ = _evaluate(backend, system, trial, token)
+                trial_gradient = _max_force(trial_forces)
+                trials.append({"fraction": fraction, "energy_hartree": trial_energy, "gradient_norm": trial_gradient})
+                if trial_gradient < gradient:
+                    current = trial
+                    forces = trial_forces
+                    accepted = True
+                    break
+            trace.append({
+                "iteration": iteration,
+                "strategy": config.strategy,
+                "energy_hartree": float(trial_energy if trials else 0.0),
+                "gradient_norm": gradient,
+                "negative_mode_count": initial_negative_count,
+                "minimum_eigenvalue": float(eigenvalues[0]),
+                "raw_step_norm_angstrom": step_norm,
+                "accepted": accepted,
+                "trials": trials,
+            })
+            if not accepted:
+                return SaddleRefinementResult(
+                    "attempted_unresolved", "NO_TRUST_STEP",
+                    tuple(tuple(float(v) for v in row) for row in current),
+                    gradient, initial_negative_count, token.consumed_calls - calls_before, tuple(trace),
+                )
+    except BudgetExceeded:
+        return SaddleRefinementResult(
+            "budget_exhausted", "BUDGET_EXCEEDED",
+            tuple(tuple(float(v) for v in row) for row in current),
+            _max_force(forces) if "forces" in locals() else float("inf"),
+            initial_negative_count if "initial_negative_count" in locals() else 0,
+            token.consumed_calls - calls_before, tuple(trace),
+        )
+    except Exception:
+        return SaddleRefinementResult(
+            "execution_failed", "REFINEMENT_EXECUTION",
+            tuple(tuple(float(v) for v in row) for row in current),
+            _max_force(forces) if "forces" in locals() else float("inf"),
+            initial_negative_count if "initial_negative_count" in locals() else 0,
+            token.consumed_calls - calls_before, tuple(trace),
+        )
+
+
 def refine_saddle(
     backend: CalculatorBackend,
     system: MolecularSystem,
@@ -109,6 +218,8 @@ def refine_saddle(
     if not isinstance(token, CalculatorCallToken) or not token.durable:
         raise ValueError("saddle refinement requires a durable calculator token")
     current = _coords(coordinates)
+    if config.strategy == "mode_follow":
+        return _refine_mode_follow(backend, system, current, token=token, config=config)
     calls_before = token.consumed_calls
     trace: list[dict[str, Any]] = []
     try:

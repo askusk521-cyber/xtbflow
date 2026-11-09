@@ -1,0 +1,88 @@
+{
+  "arms": [
+    {
+      "arm": "no_feedback",
+      "calculator_calls": 37,
+      "cost": {
+        "cpu_hours": 8.482741777777778e-05,
+        "cpu_seconds": 0.30537707199999997,
+        "gpu_hours": 0.0,
+        "wall_seconds": 0.33935017813928425
+      },
+      "event_changed": false,
+      "feedback_used": false,
+      "geometry_changed": false,
+      "gradient_norm_hartree_per_angstrom": 0.02908333035338466,
+      "ledger_totals": {
+        "attempts": 0,
+        "cache_hits": 0,
+        "calculator_calls": 37,
+        "cpu_core_hours": 0.0,
+        "failures": 0,
+        "gpu_hours": 0.0,
+        "retries": 0,
+        "storage_gb": 0.0,
+        "successes": 0,
+        "system_evaluations": 0
+      },
+      "path_status": "not_validated",
+      "reason_code": "not_converged",
+      "status": "attempted_unresolved",
+      "validation_status": "not_converged"
+    },
+    {
+      "arm": "physical_feedback",
+      "calculator_calls": 35,
+      "cost": {
+        "cpu_hours": 2.018734944444446e-05,
+        "cpu_seconds": 0.07267289499999996,
+        "gpu_hours": 0.0,
+        "wall_seconds": 0.10955554898828268
+      },
+      "event_changed": true,
+      "feedback_used": true,
+      "geometry_changed": true,
+      "gradient_norm_hartree_per_angstrom": 0.007912295518812784,
+      "ledger_totals": {
+        "attempts": 0,
+        "cache_hits": 0,
+        "calculator_calls": 35,
+        "cpu_core_hours": 0.0,
+        "failures": 0,
+        "gpu_hours": 0.0,
+        "retries": 0,
+        "storage_gb": 0.0,
+        "successes": 0,
+        "system_evaluations": 0
+      },
+      "path_status": "not_validated",
+      "reason_code": "not_converged",
+      "status": "attempted_unresolved",
+      "validation_status": "not_converged"
+    }
+  ],
+  "certification_protocol": "xtbflow-xtb-irc-v1",
+  "claim_levels": {
+    "calculator_feedback": "proxy_metric",
+    "ts_irc": "strict_validation",
+    "workflow": "software_demo"
+  },
+  "claim_limits": [
+    "This probe proves that the live loop can enter the independent certification adapter and retain its budget ledger.",
+    "The fixed water fixture did not converge to a strict stationary point; both arms are attempted_unresolved and no TS/IRC certificate is claimed.",
+    "No discovery, barrier, mechanism, chemical-accuracy, generalization, or model-superiority claim is made."
+  ],
+  "execution_host": "node2",
+  "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+  "parent_id": "mvp-water-parent-v1",
+  "probe_config_sha256": "0046cc25d6fd71cd502dcecf923719731a96baeddf503fe2d59770ced21969c3",
+  "python": "3.10.19",
+  "replay_note": "The candidate input, seed, protocol and certification controls are fixed; only timing is excluded from the deterministic live-loop replay identity.",
+  "schema": "xtbflow-live-feedback-ts-irc-gate-evidence/v1",
+  "seed": 20261110,
+  "source": {
+    "commit": "2a98b08affd2fa05d0e505ea24a9a4984d968862",
+    "dirty": false
+  },
+  "status": "blocked_certification"
+}

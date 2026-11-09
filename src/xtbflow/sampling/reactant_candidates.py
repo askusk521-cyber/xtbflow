@@ -130,7 +130,7 @@ def build_reactant_approach(
     metadata = {
         "generator": "reactant-principal-axis-approach-v1",
         "components": [list(component) for component in normalized],
-        "target_centroid_distance_angstrom": float(target_centroid_distance_angstrom),
+        "approach_centroid_distance_angstrom": float(target_centroid_distance_angstrom),
         "collision_distance_angstrom": float(collision_distance_angstrom),
         "minimum_cross_component_distance_angstrom": minimum,
         "input_hash": system.input_hash,

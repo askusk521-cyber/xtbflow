@@ -28,6 +28,11 @@
       "bytes": 1028
     },
     {
+      "path": ".github/workflows/issue166-pvo-cpu.yml",
+      "sha256": "3634ff590369d50f0ef126cd0732614c1afda65d8dec08c3326b07c6e383e820",
+      "bytes": 1578
+    },
+    {
       "path": ".github/workflows/issue166-replay-cpu.yml",
       "sha256": "80bdc38534cd3b6493573b96624a3d371c2b3d9f47131530431203669ec96424",
       "bytes": 1013
@@ -206,6 +211,11 @@
       "path": "configs/evidence/claim_evidence_manifest_v1.example.json",
       "sha256": "13092d0052e2283c9a02ab1bdab77b5cfee4bb4409ad8c7081ed4c64d21968c5",
       "bytes": 1740
+    },
+    {
+      "path": "configs/experiments/live_matched_pvo_v1.json",
+      "sha256": "60db57d2b5c716d23237421ca361eb3e11340a9601d2bc21858a437cc176abb0",
+      "bytes": 4034
     },
     {
       "path": "configs/experiments/spice2_energy_learning_curve_v1.json",
@@ -576,6 +586,36 @@
       "path": "docs/evidence/joint_flow_smoke_20260929_v3.json",
       "sha256": "41555c2528ef65c71a18e4ff7908ae3f86affa75dad52fef7ed078eacbd6d0cd",
       "bytes": 4826
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_calibration_20261110.json",
+      "sha256": "ef74c4cc93f27db54c621b5a8f3fae1639f6d15c56044590ce31428223119cc0",
+      "bytes": 417163
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_calibration_ledger_20261110.jsonl",
+      "sha256": "d07006a146d3bbe211c6e919d0ab8a2d936acf2c2b771f0a199bfa1c927de43e",
+      "bytes": 289845
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_primary_20261110.json",
+      "sha256": "8d169fd0c5b1caf49ca27a01fde28bbe5fa4f86b7345a0b5a966b7174fa6c049",
+      "bytes": 1643456
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_primary_ledger_20261110.jsonl",
+      "sha256": "912b773d502d8b206161099c2bd44c8f383a925f7f63e98afd1dfb10e44823d1",
+      "bytes": 1159165
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_science_status_20261110.json",
+      "sha256": "5cb8acb4419a9c16b680107d0af590c7a8d720ae15241a5f08381510304d40dc",
+      "bytes": 1108
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_summary_20261110.json",
+      "sha256": "2f3a36afe7a5718b6aeb91f79667cee17534e03c679d9754342f7a4cb2cd3c80",
+      "bytes": 8635
     },
     {
       "path": "docs/evidence/matched_guidance_integration_n2_20261110.json",
@@ -1208,6 +1248,11 @@
       "bytes": 15646
     },
     {
+      "path": "scripts/run_live_matched_pvo.py",
+      "sha256": "a1243e7a0aa329ed7f14ab6e449d6f2bd2ce414a0e2a370d2fbc5e4778ed4346",
+      "bytes": 22470
+    },
+    {
       "path": "scripts/run_parallel_guidance_replay.py",
       "sha256": "00787dc6c35dc4e4c36abe339399c4c9e5b38577aafb3fede861126f188df258",
       "bytes": 1533
@@ -1216,6 +1261,11 @@
       "path": "scripts/run_spice_openff_pilot.py",
       "sha256": "8e2e3f10f7a103a6dcc06ca23a3fbdb8b840208fb7bc98f233da344dd013c864",
       "bytes": 6840
+    },
+    {
+      "path": "scripts/summarize_live_matched_pvo.py",
+      "sha256": "02cb564b852c56b1aee31f2bb7999f6a2e2d8f99073b64bee0682a2a73d76560",
+      "bytes": 9157
     },
     {
       "path": "scripts/update_run_status.py",
@@ -1236,6 +1286,11 @@
       "path": "scripts/validate_handoff.py",
       "sha256": "8e7bd6eebf01423504cb8754554947f1315ede1921cc29d74ebb78c66b4eaba8",
       "bytes": 1967
+    },
+    {
+      "path": "scripts/validate_live_pvo_artifact.py",
+      "sha256": "f67dc13dc195f936cf6371c2be6874489a124d2201130d4aeb879d110f516ae1",
+      "bytes": 8407
     },
     {
       "path": "scripts/validate_workflow_b.py",

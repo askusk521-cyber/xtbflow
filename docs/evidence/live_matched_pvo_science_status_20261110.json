@@ -1,0 +1,23 @@
+{
+  "schema": "xtbflow-evidence/live-matched-pvo-science-status/v1",
+  "source_commit": "458526682af3e1db6cdd982c063618a3e5973a0a",
+  "summary_path": "docs/evidence/live_matched_pvo_summary_20261110.json",
+  "summary_sha256": "2f3a36afe7a5718b6aeb91f79667cee17534e03c679d9754342f7a4cb2cd3c80",
+  "primary_artifact_sha256": "8d169fd0c5b1caf49ca27a01fde28bbe5fa4f86b7345a0b5a966b7174fa6c049",
+  "calibration_artifact_sha256": "ef74c4cc93f27db54c621b5a8f3fae1639f6d15c56044590ce31428223119cc0",
+  "artifact_validator": "scripts/validate_live_pvo_artifact.py",
+  "science_ready": false,
+  "qualification_status": "requalification_required",
+  "primary_pvo_status": "completed_with_qualification_limit",
+  "thresholds": {
+    "physical": "passed_observed_diagnostic_lift_only",
+    "chemical": "failed_exact_match_lift_threshold",
+    "parallel_performance": "failed_wall_speedup_threshold"
+  },
+  "claim_limits": [
+    "No chemistry superiority claim.",
+    "No physical accuracy or certification claim.",
+    "No performance improvement claim.",
+    "No generalization or independent confirmation claim."
+  ]
+}

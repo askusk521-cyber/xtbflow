@@ -463,6 +463,11 @@
       "bytes": 5186
     },
     {
+      "path": "docs/LIVE_REFERENCE_EXECUTION_20261110.md",
+      "sha256": "87c489ec13ca648b2701e000705d297b7d8cf12311ce5868f419051f6400e2ce",
+      "bytes": 7260
+    },
+    {
       "path": "docs/MECHAI_REUSE_MANIFEST.json",
       "sha256": "2b3a1f89841edac9f74545c19377391eeba815f3083d2f6a915d91b1bc01f8fb",
       "bytes": 6609
@@ -1136,6 +1141,11 @@
       "path": "scripts/audit_independent_seeds.py",
       "sha256": "81198a65a682682f1dd005e395af76675662f0e5b0f1bd4a69e4a3934066348d",
       "bytes": 3107
+    },
+    {
+      "path": "scripts/audit_live_reference_cache.py",
+      "sha256": "c489dec0afe50ee58ed36de4654c7ba264743175d40277556b8682860c11089d",
+      "bytes": 9788
     },
     {
       "path": "scripts/audit_origin_seed_readiness.py",

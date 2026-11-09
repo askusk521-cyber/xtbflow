@@ -107,6 +107,11 @@
     },
     "protocol_id": "real-feedback-gfn2-xtb-v1"
   },
+  "replay": {
+    "deterministic_summary_sha256": "1ea5030077b511ef8b013dc8c23152fa1c0855350d5859deb024e388c6858670",
+    "identical_replay": true,
+    "replayed_source_commit": "1a7c72d55e47e8a8278ed46025fa97d2b769ed3c"
+  },
   "claim_levels": {
     "calculator_feedback": "proxy_metric",
     "ts_irc": "strict_validation",

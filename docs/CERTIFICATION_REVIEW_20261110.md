@@ -44,6 +44,41 @@ Exit 1 means the historical claim is invalidated; exit 2 means audit input or
 execution failure. The script never grants a strict certificate. Evidence and
 commands for the new exact audit are recorded separately under `docs/evidence/`.
 
+The [exact audit and rerun receipt](evidence/certification_evidence_correction_20261110_fcec27e.json)
+was produced by clean auditor source `fcec27ed9cdd6f58e7b20eb9f22c73f14d4f9b0a`.
+Corrected xTB run/replay source was
+`a8e4a88069ba363f8e76f8378a58795800718648`, also clean. Both runs used the
+unchanged raw configuration hash above. The arms retained 314/306 diagnostic
+calls plus one feedback call each. Both return `attempted_unresolved` with
+`INCOMPLETE_IRC_CERTIFICATION`. The deterministic summary, including costs in
+calls and validation identity, matched:
+`e8d7ff5ed6bc56b37205901b47596356d701e81ba00b31f8b8814d06e175e079`.
+The targeted contract/accounting regression at the auditor source passed
+68 tests. This is software evidence, not independent chemistry validation.
+
+Exact read-only audit replay on n2 (30 seconds, zero calculator calls; retained
+raw outputs required; the timestamp selects a new output and preserves history):
+
+```bash
+ssh n2 '
+  set -e
+  cd "$HOME/xtbflow/xtbflow-exec-cert-audit-fcec27e-20261110"
+  test "$(git rev-parse HEAD)" = fcec27ed9cdd6f58e7b20eb9f22c73f14d4f9b0a
+  test -z "$(git status --porcelain)"
+  source ~/miniconda3/etc/profile.d/conda.sh
+  conda activate xtbflow
+  audit_root=/tmp/xtbflow-cert-audit-a8e4a88-20261110
+  audit_output=/tmp/xtbflow-certification-review-$(date -u +%Y%m%dT%H%M%SZ).json
+  timeout 30s python scripts/audit_live_certification_evidence.py \
+    --manifest /tmp/live-loop-reactant-modefollow-37e42e0/manifest.json \
+    --config "$audit_root/frozen_config.json" \
+    --published-evidence docs/evidence/live_reactant_only_certified_exact_37e42e0_20261110.json \
+    --rerun-manifest "$audit_root/run/manifest.json" \
+    --replay-manifest "$audit_root/replay/manifest.json" \
+    --output "$audit_output"
+'
+```
+
 The corrected adapter returns `attempted_unresolved` with
 `INCOMPLETE_IRC_CERTIFICATION` after successful proxy diagnostics. It preserves
 the two actual endpoint distance graphs without assigning chemical roles,

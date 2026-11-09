@@ -104,6 +104,9 @@ class XTBIRCConfig:
     def identity(self) -> str:
         return _identity(asdict(self))
 
+    def to_mapping(self) -> dict[str, Any]:
+        return asdict(self)
+
 
 @dataclass(frozen=True)
 class XTBIRCResult:

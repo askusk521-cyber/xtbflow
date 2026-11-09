@@ -1,0 +1,80 @@
+{
+  "artifact_sha256": {
+    "confirmation_split_audit": "773af8d8e240db109e34934acea4ad5568e9c78e1f9ceb5259c5bcac90005b0d",
+    "fixed_hardware_parallel_benchmark": "c65837a40f41b3b79ffa798057f2210f272d383a51b4bc153698fabba713c852",
+    "gfn2_independent_fd": "39df671c87716752273cbdd34c3560e35698d3b28d100f0a6b2fadcad60f0f97",
+    "gfn2_requalification": "1db02572865694034b47c4dc232c480bd419c9d039bdcfe79a4308a3d9af15df",
+    "gfn2_scoped_requalification": "977e4bdfc8e7c0b1ca601721c24bd02d9022e11f058aa918a82fa710a01d0217",
+    "qualified_baseline_confirmation": "06bd3edc83381ef3a1d0c43c090f3970cce543a40184cdb2baf83f2856dbd917"
+  },
+  "benchmark_replicates_sha256": {
+    "run1": "addaaea7103ebde1d19502c8fe26037b3801956c4d184fb2b711184435228b39",
+    "run2": "c6642123c092b2da2d4ca74f6637e1a1ddc5791742a3036fd4acae5aa7c1acfe",
+    "aggregator_script": "c1ebe7e57c1cd2c0152490cdfb937db01f1741329ec6d64aefc296744e94d768"
+  },
+  "claim_limits": [
+    "This tranche is software, split, calculator-scope, and fixed-hardware diagnostic evidence.",
+    "It does not establish chemistry superiority, physical accuracy, certification, general performance, or generalization.",
+    "science_ready remains false until an independent reviewer accepts the scoped qualification, endpoint contract, and evidence provenance."
+  ],
+  "evidence_generation_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
+  "schema": "xtbflow-qualified-pvo-next-tranche-status/v1",
+  "source_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
+  "status": "software_and_diagnostic_steps_complete_pending_independent_review",
+  "science_ready": false,
+  "steps": {
+    "1_calculator_parity_qualification": {
+      "analytic_xtb_gradient": "diagnostic_only",
+      "artifact": "docs/evidence/gfn2_scoped_requalification_20261109.json",
+      "scope": "tblite/native-tblite/native-ASE/finite-difference plus independent xTB energy-surface finite differences",
+      "status": "scoped_pass",
+      "strict_original_gate": "failed"
+    },
+    "2_noop_standard_optimizer_baseline": {
+      "arms": [
+        "no_op",
+        "standard_force_step",
+        "normalized_force_step"
+      ],
+      "artifact": "docs/evidence/qualified_baseline_confirmation_20261109.json",
+      "rows": 81,
+      "status": "completed",
+      "success_rows": 81
+    },
+    "3_complete_event_action_contract": {
+      "focused_tests": 6,
+      "module": "src/xtbflow/sampling/event_action.py",
+      "schema": "schemas/event_action.schema.json",
+      "status": "implemented_and_focused_tested"
+    },
+    "4_independent_confirmation_split": {
+      "artifact": "docs/evidence/confirmation_split_audit_20261109.json",
+      "families": 9,
+      "overlap": [],
+      "parents": 9,
+      "records": 45,
+      "status": "pass"
+    },
+    "5_qualified_backend_endpoint_remeasure": {
+      "artifact": "docs/evidence/qualified_baseline_confirmation_20261109.json",
+      "claim": "no physical accuracy or chemistry claim",
+      "status": "completed_diagnostic_only"
+    },
+    "6_fixed_hardware_parallel_performance": {
+      "artifact": "docs/evidence/fixed_hardware_parallel_benchmark_20261109.json",
+      "repeats": 2,
+      "replicate_speedups": [1.0545347167471293, 1.1018227739367006],
+      "serial_over_parallel_speedup": 1.078178745341915,
+      "status": "completed_negative_diagnostic",
+      "tasks_per_mode": 81,
+      "threshold": 1.1,
+      "threshold_pass": false
+    },
+    "7_independent_review_and_main_gate": {
+      "independent_review": "independent_final_review_v3",
+      "review_conclusion": "accepted_as_custom_integration_diagnostic_tranche",
+      "main_promotion": "blocked_until_qualified_scientific_endpoints_and_main_review",
+      "status": "independent_review_accepted_main_blocked"
+    }
+  }
+}

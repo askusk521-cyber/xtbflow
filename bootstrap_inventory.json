@@ -33,6 +33,11 @@
       "bytes": 1578
     },
     {
+      "path": ".github/workflows/issue166-qualified-pvo-cpu.yml",
+      "sha256": "192ba42c6612913446d126d6bf7962785d7ab8f33a419deeb9574a3557e44fd4",
+      "bytes": 1859
+    },
+    {
       "path": ".github/workflows/issue166-replay-cpu.yml",
       "sha256": "80bdc38534cd3b6493573b96624a3d371c2b3d9f47131530431203669ec96424",
       "bytes": 1013
@@ -213,9 +218,19 @@
       "bytes": 1740
     },
     {
+      "path": "configs/experiments/fixed_hardware_parallel_benchmark_v1.json",
+      "sha256": "90849e4f008fcfee7136bf8c7c0209b9d99da3588d96af8ba93fb8fbff2b0e6f",
+      "bytes": 779
+    },
+    {
       "path": "configs/experiments/live_matched_pvo_v1.json",
       "sha256": "60db57d2b5c716d23237421ca361eb3e11340a9601d2bc21858a437cc176abb0",
       "bytes": 4034
+    },
+    {
+      "path": "configs/experiments/qualified_baseline_confirmation_v1.json",
+      "sha256": "fb5bbef24082cb8e0ee810af92d865de681b0c9f0a286dffa30fd5516d184a60",
+      "bytes": 1860
     },
     {
       "path": "configs/experiments/spice2_energy_learning_curve_v1.json",
@@ -493,6 +508,11 @@
       "bytes": 913
     },
     {
+      "path": "docs/architecture/qualified_pvo_next_tranche_v0.1.md",
+      "sha256": "b5cb84a31ad6493aad4a1cfcb64fbb5bbd0f07fc2734c5cb1893d46b7d018c2f",
+      "bytes": 1193
+    },
+    {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
       "sha256": "9e4b2a7d650857036e072b00107e9dc3c68738484c7f3a446b9b50d22b20971f",
       "bytes": 4884
@@ -516,6 +536,11 @@
       "path": "docs/evidence/claim_evidence_n2_20261108.json",
       "sha256": "a91262bb32891c05651e4efcaab8ee349419c6027ceab54ca05bde40e93ec1e8",
       "bytes": 1219
+    },
+    {
+      "path": "docs/evidence/confirmation_split_audit_20261109.json",
+      "sha256": "773af8d8e240db109e34934acea4ad5568e9c78e1f9ceb5259c5bcac90005b0d",
+      "bytes": 1408
     },
     {
       "path": "docs/evidence/cp2k_calibration_smoke.json",
@@ -543,6 +568,11 @@
       "bytes": 2049
     },
     {
+      "path": "docs/evidence/fixed_hardware_parallel_benchmark_20261109.json",
+      "sha256": "c65837a40f41b3b79ffa798057f2210f272d383a51b4bc153698fabba713c852",
+      "bytes": 1134
+    },
+    {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
       "sha256": "a8f35cecb50117422a0dd28953d079634aa780dd5336baf6ee23cfd817952d57",
       "bytes": 6712
@@ -556,6 +586,21 @@
       "path": "docs/evidence/gfn2_qualification_interpretation_20260929.json",
       "sha256": "cada02222b974c3075a66424f65eadf1017c0bf7a4d5cf4d5bf33b24f095942c",
       "bytes": 2496
+    },
+    {
+      "path": "docs/evidence/gfn2_requalification_20261109.json",
+      "sha256": "1db02572865694034b47c4dc232c480bd419c9d039bdcfe79a4308a3d9af15df",
+      "bytes": 25775
+    },
+    {
+      "path": "docs/evidence/gfn2_requalification_independent_fd_20261109.json",
+      "sha256": "39df671c87716752273cbdd34c3560e35698d3b28d100f0a6b2fadcad60f0f97",
+      "bytes": 6714
+    },
+    {
+      "path": "docs/evidence/gfn2_scoped_requalification_20261109.json",
+      "sha256": "977e4bdfc8e7c0b1ca601721c24bd02d9022e11f058aa918a82fa710a01d0217",
+      "bytes": 8392
     },
     {
       "path": "docs/evidence/gfn2_units_diagnostic_20260927.json",
@@ -651,6 +696,16 @@
       "path": "docs/evidence/policy_guidance_adapter_n2_20261110.json",
       "sha256": "c58c81d2631fc154730be14f91c49c38d9b1c9875ddedcce58f8bd5747f8c552",
       "bytes": 2250
+    },
+    {
+      "path": "docs/evidence/qualified_baseline_confirmation_20261109.json",
+      "sha256": "06bd3edc83381ef3a1d0c43c090f3970cce543a40184cdb2baf83f2856dbd917",
+      "bytes": 61518
+    },
+    {
+      "path": "docs/evidence/qualified_tranche_status_20261109.json",
+      "sha256": "849f30cbe4e2ef0f6e85ae41d595a13dfc9e39816b38e877ad582cb0efa9445b",
+      "bytes": 3776
     },
     {
       "path": "docs/evidence/reaction_qm_coordinate_mapping_audit_20261002_full.json",
@@ -1033,6 +1088,11 @@
       "bytes": 1938
     },
     {
+      "path": "schemas/event_action.schema.json",
+      "sha256": "e31891e13e31b8516a9f994fb86c461d8406c6143bde3dbdf76b8afe91a5b0a6",
+      "bytes": 813
+    },
+    {
       "path": "schemas/event_geometry_sample_manifest_v1.schema.json",
       "sha256": "da8b62a2753e46432dcc5be1404934843708c00be30132b7c57478554ea09800",
       "bytes": 9504
@@ -1116,6 +1176,11 @@
       "path": "schemas/workflow_b_baseline.schema.json",
       "sha256": "a6d670ff6315032a029fec704ca5e4d359c350891d4f60acf69ec11deddd4244",
       "bytes": 2079
+    },
+    {
+      "path": "scripts/audit_confirmation_split.py",
+      "sha256": "7faa6467b72af438d3a74a3d0e94ace4042872274aa8aabedd883536ed6ac640",
+      "bytes": 2913
     },
     {
       "path": "scripts/audit_independent_seeds.py",
@@ -1233,6 +1298,11 @@
       "bytes": 26082
     },
     {
+      "path": "scripts/run_fixed_hardware_parallel_benchmark.py",
+      "sha256": "04fa6eaea15d107590cdcee285d803fd6b3fbf45cc15c3dff3fa7664881403fd",
+      "bytes": 7652
+    },
+    {
       "path": "scripts/run_gfn2_diagnostic.py",
       "sha256": "e92991954cb0037dc3e6d40e716c79fe165c436fab29fcfa56cf4041f8a63615",
       "bytes": 15124
@@ -1248,6 +1318,11 @@
       "bytes": 15646
     },
     {
+      "path": "scripts/run_gfn2_requalification.py",
+      "sha256": "a6cf9ad747fd940ac7d63336d03adf82f3807c377b4dcf2fa0fbd709ce8fe02a",
+      "bytes": 6707
+    },
+    {
       "path": "scripts/run_live_matched_pvo.py",
       "sha256": "a1243e7a0aa329ed7f14ab6e449d6f2bd2ce414a0e2a370d2fbc5e4778ed4346",
       "bytes": 22470
@@ -1256,6 +1331,11 @@
       "path": "scripts/run_parallel_guidance_replay.py",
       "sha256": "00787dc6c35dc4e4c36abe339399c4c9e5b38577aafb3fede861126f188df258",
       "bytes": 1533
+    },
+    {
+      "path": "scripts/run_qualified_baseline_confirmation.py",
+      "sha256": "f974f8f809bf30c01b49b00791c1c228888dab5beeb822b942e70d88219cfbe2",
+      "bytes": 8287
     },
     {
       "path": "scripts/run_spice_openff_pilot.py",
@@ -1291,6 +1371,11 @@
       "path": "scripts/validate_live_pvo_artifact.py",
       "sha256": "f67dc13dc195f936cf6371c2be6874489a124d2201130d4aeb879d110f516ae1",
       "bytes": 8407
+    },
+    {
+      "path": "scripts/validate_qualified_tranche_artifacts.py",
+      "sha256": "62b5d5c7e39caecb92b6cc651240ec3664f68e70dbaf2ccf1305aa4260abf475",
+      "bytes": 5337
     },
     {
       "path": "scripts/validate_workflow_b.py",
@@ -1534,13 +1619,18 @@
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
-      "sha256": "e34b151bf5e3c6fe2da0e81868098262d4476b207135c2b72ac8f9abbe37fcf0",
-      "bytes": 3394
+      "sha256": "0ac133102883a9e746de8dfa861a58f11d142bd9dd4003a67cc53d3ab09e715f",
+      "bytes": 3475
     },
     {
       "path": "src/xtbflow/sampling/adapters.py",
       "sha256": "75d5807cda383221deda9db95acf1c1bf4145f7a1c9ef2b4bd3083c8561fa04a",
       "bytes": 19453
+    },
+    {
+      "path": "src/xtbflow/sampling/event_action.py",
+      "sha256": "2a593f134f269e54d2abaed2b8ca46ee530211edbf4baca72e89d56191247e3d",
+      "bytes": 2765
     },
     {
       "path": "src/xtbflow/sampling/guidance.py",
@@ -1574,8 +1664,8 @@
     },
     {
       "path": "src/xtbflow/sampling/policy_adapter.py",
-      "sha256": "69618cf552d66d2469536e0f074added29fe04f7e812d8154e48d0e8a1514be8",
-      "bytes": 10832
+      "sha256": "3835382795b5469d8cb2ec5f148018fc7459ed03331e8e56cb7b527d9fd5652a",
+      "bytes": 12311
     },
     {
       "path": "src/xtbflow/training/__init__.py",
@@ -1789,8 +1879,8 @@
     },
     {
       "path": "tests/test_policy_adapter.py",
-      "sha256": "fc068531603bad9b254ad663f9662f1631c7385258190de641aea116f394d4cb",
-      "bytes": 3830
+      "sha256": "2ec334800bff5af7971d1b33237f2e7387bda7c7a03bda33542fdf96fa6ced36",
+      "bytes": 5235
     },
     {
       "path": "tests/test_reaction_qm_coordinate_mapping.py",

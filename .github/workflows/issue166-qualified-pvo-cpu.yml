@@ -1,0 +1,47 @@
+name: Issue 166 qualified PVO tranche checks
+
+on:
+  push:
+    branches: [codex/issue166-qualified-pvo-20261110]
+  pull_request:
+    branches: [codex/issue166-matched-integration-20261110]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11"]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install package and test dependencies
+        run: python -m pip install --upgrade pip && python -m pip install ".[test,data]"
+      - name: Validate bootstrap inventory
+        run: python scripts/validate_bootstrap.py
+      - name: Validate qualified tranche artifacts
+        run: >-
+          python scripts/validate_qualified_tranche_artifacts.py
+          --status docs/evidence/qualified_tranche_status_20261109.json
+          --qualification docs/evidence/gfn2_scoped_requalification_20261109.json
+          --baseline docs/evidence/qualified_baseline_confirmation_20261109.json
+          --split docs/evidence/confirmation_split_audit_20261109.json
+          --benchmark docs/evidence/fixed_hardware_parallel_benchmark_20261109.json
+          --benchmark-replicate docs/evidence/fixed_hardware_parallel_benchmark_20261109_run1.json
+          --benchmark-replicate docs/evidence/fixed_hardware_parallel_benchmark_20261109_run2.json
+          --benchmark-aggregator scripts/summarize_fixed_hardware_benchmark.py
+      - name: Run reusable tests
+        run: python -m unittest discover -s tests/reusable -p "test_*.py"
+      - name: Run package tests
+        run: python -m pytest -q tests --ignore=tests/reusable

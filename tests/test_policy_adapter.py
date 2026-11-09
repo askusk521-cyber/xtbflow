@@ -12,6 +12,8 @@ from xtbflow.sampling import (
     RecordedPolicyProvider,
     ProviderRequest,
     run_policy_ablation,
+    EventAction,
+    EventEdit,
 )
 
 
@@ -95,3 +97,33 @@ def test_policy_feedback_firewall_and_snapshot_binding():
         PolicyFeedback(snapshot_id=state.snapshot_id, ledger={"nested": {"reference_ts": "hidden"}})
     with pytest.raises(ValueError, match="policy feedback snapshot"):
         run_policy_ablation(snapshot(), PolicyFeedback(snapshot_id="0" * 64), enabled=True, candidate_pool_id="pool", budget=budget())
+
+
+def test_policy_action_supports_complete_multi_edit_event():
+    state = snapshot()
+    action = EventAction(
+        edits=(EventEdit("add", 1, 2), EventEdit("delete", 3, 4)),
+        action_id="complete-event-v1",
+    )
+    policy_feedback = PolicyFeedback(
+        snapshot_id=state.snapshot_id,
+        action_id=action.action_id,
+        action_space={"allowed": ["event_action"], "packed_feature_order": ["add:1-2", "add:3-4", "delete:1-2", "delete:3-4"]},
+        event_action=action,
+        provenance={"source": "recorded-policy-contract-test"},
+    )
+    result = run_policy_ablation(state, policy_feedback, enabled=True, candidate_pool_id="pool-policy", budget=budget())
+    assert result.adapter_run is not None
+    assert result.adapter_run.status.value == "accepted"
+    assert result.final_snapshot.event != state.event
+    output = result.adapter_run.output
+    assert output is not None
+    assert output.event_delta == (0.04, 0.0, 0.0, -0.04)
+    assert output.to_mapping()["provenance"]["provider"]["policy"]["policy_action"]["fingerprint"] == action.fingerprint
+
+
+def test_event_action_rejects_duplicate_or_noncanonical_edits():
+    with pytest.raises(ValueError, match="canonicalized"):
+        EventEdit("add", 4, 3)
+    with pytest.raises(ValueError, match="duplicate"):
+        EventAction(edits=(EventEdit("add", 1, 2), EventEdit("add", 1, 2)))

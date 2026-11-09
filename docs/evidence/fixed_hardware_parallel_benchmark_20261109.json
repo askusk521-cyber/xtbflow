@@ -1,0 +1,29 @@
+{
+  "claim_limits": [
+    "This is a fixed-node CPU scheduler diagnostic for the declared workload and replicate set.",
+    "No general performance, throughput, chemistry, physical accuracy, certification, or generalization claim."
+  ],
+  "median_serial_over_parallel_speedup": 1.078178745341915,
+  "replicate_count": 2,
+  "replicate_paths": [
+    "docs/evidence/fixed_hardware_parallel_benchmark_20261109_run1.json",
+    "docs/evidence/fixed_hardware_parallel_benchmark_20261109_run2.json"
+  ],
+  "replicate_sha256": {
+    "docs/evidence/fixed_hardware_parallel_benchmark_20261109_run1.json": "addaaea7103ebde1d19502c8fe26037b3801956c4d184fb2b711184435228b39",
+    "docs/evidence/fixed_hardware_parallel_benchmark_20261109_run2.json": "c6642123c092b2da2d4ca74f6637e1a1ddc5791742a3036fd4acae5aa7c1acfe"
+  },
+  "replicate_speedups": [
+    1.0545347167471293,
+    1.1018227739367006
+  ],
+  "schema": "xtbflow-fixed-hardware-parallel-benchmark-aggregate/v1",
+  "source_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
+  "status": "completed",
+  "tasks_per_mode": [
+    81,
+    81
+  ],
+  "threshold": 1.1,
+  "threshold_pass": false
+}

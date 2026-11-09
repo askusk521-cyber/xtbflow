@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xtbflow-guidance/event-action/v1",
+  "title": "Variable-cardinality event action",
+  "type": "object",
+  "required": ["action_id", "edits", "fingerprint"],
+  "properties": {
+    "action_id": {"type": "string", "minLength": 1},
+    "fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "edits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["operation", "left_map_id", "right_map_id"],
+        "properties": {
+          "operation": {"enum": ["add", "delete"]},
+          "left_map_id": {"type": "integer", "minimum": 1},
+          "right_map_id": {"type": "integer", "minimum": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -13,6 +13,7 @@ import math
 from typing import Any, Mapping
 
 from .adapters import AdapterLedger, AdapterRun, AdapterRunner, GuidanceBudget, ProviderRequest, fingerprint_text
+from .event_action import EventAction
 from .parallel_guidance import (
     GenerationSnapshot,
     GuidanceCost,
@@ -39,6 +40,7 @@ class PolicyFeedback:
     action_id: str = "recorded-event-action"
     action_space: Mapping[str, Any] = field(default_factory=dict)
     provenance: Mapping[str, Any] = field(default_factory=dict)
+    event_action: EventAction | None = None
     feedback_fingerprint: str = ""
 
     def __post_init__(self) -> None:
@@ -46,6 +48,8 @@ class PolicyFeedback:
             raise ValueError("snapshot_id must be a SHA-256 string")
         if not isinstance(self.action_id, str) or not self.action_id.strip():
             raise ValueError("action_id must be a non-empty string")
+        if self.event_action is not None and not isinstance(self.event_action, EventAction):
+            raise ValueError("event_action must be an EventAction or None")
         values = {}
         for name, value in (("ledger", self.ledger), ("tool_feedback", self.tool_feedback), ("action_space", self.action_space), ("provenance", self.provenance)):
             if not isinstance(value, Mapping):
@@ -63,6 +67,7 @@ class PolicyFeedback:
             "action_id": self.action_id,
             "action_space": values["action_space"],
             "provenance": values["provenance"],
+            "event_action": None if self.event_action is None else self.event_action.to_mapping(),
         }
         computed = _hash(payload)
         if self.feedback_fingerprint and self.feedback_fingerprint != computed:
@@ -81,6 +86,7 @@ class PolicyFeedback:
             "action_id": self.action_id,
             "action_space": dict(self.action_space),
             "provenance": dict(self.provenance),
+            "event_action": None if self.event_action is None else self.event_action.to_mapping(),
             "feedback_fingerprint": self.feedback_fingerprint,
         }
 
@@ -132,11 +138,24 @@ class RecordedPolicyProvider:
             raise ValueError("policy feedback snapshot does not match provider request")
         self.invocations += 1
         scale = self.config.delta_scale
+        if self.feedback.event_action is not None:
+            feature_order = request.action_space.get("packed_feature_order")
+            if not isinstance(feature_order, list) or len(feature_order) != len(request.snapshot.event):
+                raise ValueError("packed_feature_order must match the packed event dimension")
+            feature_index = {str(key): index for index, key in enumerate(feature_order)}
+            event_delta_values = [0.0] * len(feature_order)
+            for edit in self.feedback.event_action.edits:
+                if edit.key not in feature_index:
+                    raise ValueError(f"event action edit {edit.key} is not representable in action space")
+                event_delta_values[feature_index[edit.key]] += scale if edit.operation == "add" else -scale
+            event_delta = tuple(event_delta_values)
+        else:
+            event_delta = (scale, -scale / 2.0, 0.0, scale / 4.0)
         return GuidanceOutput(
             lane=self.lane,
             provider="recorded-policy-v1",
             input_fingerprint=request.snapshot.snapshot_id,
-            event_delta=(scale, -scale / 2.0, 0.0, scale / 4.0),
+            event_delta=event_delta,
             trust_radius=self.config.event_trust_radius,
             estimated_cost=self.config.estimated_cost,
             measured_cost=self.config.measured_cost,
@@ -147,6 +166,7 @@ class RecordedPolicyProvider:
                     "provider_revision": self.provider_revision,
                     "config_fingerprint": self.config_fingerprint,
                     "protocol_fingerprint": self.protocol_fingerprint,
+                    "policy_action": None if self.feedback.event_action is None else self.feedback.event_action.to_mapping(),
                 }
             },
         )

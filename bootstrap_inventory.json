@@ -13,6 +13,11 @@
       "bytes": 1014
     },
     {
+      "path": ".github/workflows/issue166-matched-cpu.yml",
+      "sha256": "116f5e06973566de9d28335cff6a8c7799d6c41f4090709d616881f53a36d00c",
+      "bytes": 1041
+    },
+    {
       "path": ".github/workflows/issue166-physical-cpu.yml",
       "sha256": "cd60ec723f95443c71af19afd8171c222cc49a8f7eaf4eb73f899ebe82263dbc",
       "bytes": 1034
@@ -21,6 +26,11 @@
       "path": ".github/workflows/issue166-policy-cpu.yml",
       "sha256": "bf87ebdf042af6e3f076ea5c97a52c343f23ffb74b74d20912f1f4382cb78366",
       "bytes": 1028
+    },
+    {
+      "path": ".github/workflows/issue166-pvo-cpu.yml",
+      "sha256": "3634ff590369d50f0ef126cd0732614c1afda65d8dec08c3326b07c6e383e820",
+      "bytes": 1578
     },
     {
       "path": ".github/workflows/issue166-replay-cpu.yml",
@@ -201,6 +211,11 @@
       "path": "configs/evidence/claim_evidence_manifest_v1.example.json",
       "sha256": "13092d0052e2283c9a02ab1bdab77b5cfee4bb4409ad8c7081ed4c64d21968c5",
       "bytes": 1740
+    },
+    {
+      "path": "configs/experiments/live_matched_pvo_v1.json",
+      "sha256": "60db57d2b5c716d23237421ca361eb3e11340a9601d2bc21858a437cc176abb0",
+      "bytes": 4034
     },
     {
       "path": "configs/experiments/spice2_energy_learning_curve_v1.json",
@@ -453,6 +468,11 @@
       "bytes": 1429
     },
     {
+      "path": "docs/architecture/matched_guidance_integration_v0.1.md",
+      "sha256": "3ec8207f37b0952410206105a5e00749f2a2c3e2b0e9feaebb0ddbb1832dca59",
+      "bytes": 930
+    },
+    {
       "path": "docs/architecture/parallel_guidance_contract_v0.1.md",
       "sha256": "0c5a5dfb5e19895d297275d053824996d8de3566fbcb5e7c2a7cde3432bf77b3",
       "bytes": 1429
@@ -566,6 +586,41 @@
       "path": "docs/evidence/joint_flow_smoke_20260929_v3.json",
       "sha256": "41555c2528ef65c71a18e4ff7908ae3f86affa75dad52fef7ed078eacbd6d0cd",
       "bytes": 4826
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_calibration_20261110.json",
+      "sha256": "ef74c4cc93f27db54c621b5a8f3fae1639f6d15c56044590ce31428223119cc0",
+      "bytes": 417163
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_calibration_ledger_20261110.jsonl",
+      "sha256": "d07006a146d3bbe211c6e919d0ab8a2d936acf2c2b771f0a199bfa1c927de43e",
+      "bytes": 289845
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_primary_20261110.json",
+      "sha256": "8d169fd0c5b1caf49ca27a01fde28bbe5fa4f86b7345a0b5a966b7174fa6c049",
+      "bytes": 1643456
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_primary_ledger_20261110.jsonl",
+      "sha256": "912b773d502d8b206161099c2bd44c8f383a925f7f63e98afd1dfb10e44823d1",
+      "bytes": 1159165
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_science_status_20261110.json",
+      "sha256": "dcc7faa0ad65177773c2e061c00c6516802b0acc5ec4daf1fd57bed176099be2",
+      "bytes": 1108
+    },
+    {
+      "path": "docs/evidence/live_matched_pvo_summary_20261110.json",
+      "sha256": "c9f439e83c34583aa8d379c92c4b1e6ae62e67406972e889a0af2ee5aff9d57f",
+      "bytes": 8641
+    },
+    {
+      "path": "docs/evidence/matched_guidance_integration_n2_20261110.json",
+      "sha256": "f451ae67e04abacca64adf3aeb652665e29c14d540bf98900015e29b0809d688",
+      "bytes": 2358
     },
     {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
@@ -1003,6 +1058,11 @@
       "bytes": 3549
     },
     {
+      "path": "schemas/matched_guidance_comparison.schema.json",
+      "sha256": "db60f222aa60e33b2d2b2f698eb4120211f5abfc6387d79d0283c0eb59421277",
+      "bytes": 848
+    },
+    {
       "path": "schemas/model_contract.schema.json",
       "sha256": "f9a2ccf37a2c04c1af2a3cd0536731ec86bd56f75000275bfa6e6e10d6f71351",
       "bytes": 2110
@@ -1188,6 +1248,11 @@
       "bytes": 15646
     },
     {
+      "path": "scripts/run_live_matched_pvo.py",
+      "sha256": "a1243e7a0aa329ed7f14ab6e449d6f2bd2ce414a0e2a370d2fbc5e4778ed4346",
+      "bytes": 22470
+    },
+    {
       "path": "scripts/run_parallel_guidance_replay.py",
       "sha256": "00787dc6c35dc4e4c36abe339399c4c9e5b38577aafb3fede861126f188df258",
       "bytes": 1533
@@ -1196,6 +1261,11 @@
       "path": "scripts/run_spice_openff_pilot.py",
       "sha256": "8e2e3f10f7a103a6dcc06ca23a3fbdb8b840208fb7bc98f233da344dd013c864",
       "bytes": 6840
+    },
+    {
+      "path": "scripts/summarize_live_matched_pvo.py",
+      "sha256": "3d694d199206e790d0b0924b2a6f599410b8cd78b1844aebd6bd18302641f486",
+      "bytes": 9370
     },
     {
       "path": "scripts/update_run_status.py",
@@ -1216,6 +1286,11 @@
       "path": "scripts/validate_handoff.py",
       "sha256": "8e7bd6eebf01423504cb8754554947f1315ede1921cc29d74ebb78c66b4eaba8",
       "bytes": 1967
+    },
+    {
+      "path": "scripts/validate_live_pvo_artifact.py",
+      "sha256": "f67dc13dc195f936cf6371c2be6874489a124d2201130d4aeb879d110f516ae1",
+      "bytes": 8407
     },
     {
       "path": "scripts/validate_workflow_b.py",
@@ -1459,8 +1534,8 @@
     },
     {
       "path": "src/xtbflow/sampling/__init__.py",
-      "sha256": "f9c78cccc38cfd0b509da17f2e5f176d6d6b726aaf708151b00c9f89706622a7",
-      "bytes": 3085
+      "sha256": "e34b151bf5e3c6fe2da0e81868098262d4476b207135c2b72ac8f9abbe37fcf0",
+      "bytes": 3394
     },
     {
       "path": "src/xtbflow/sampling/adapters.py",
@@ -1476,6 +1551,11 @@
       "path": "src/xtbflow/sampling/integrator.py",
       "sha256": "1566d0c21728f3e7bbc9d99eecf57a1a9988d79e0d18b6f5700730886591247a",
       "bytes": 3165
+    },
+    {
+      "path": "src/xtbflow/sampling/matched_integration.py",
+      "sha256": "2ee3685347f0e468502bdc56decd8d3856c484f4c9f828dd9f624b68af058136",
+      "bytes": 9279
     },
     {
       "path": "src/xtbflow/sampling/parallel_guidance.py",
@@ -1661,6 +1741,11 @@
       "path": "tests/test_learning_curve_budget.py",
       "sha256": "158dde2de0beb627dd41102f181b2f60d9c33a4f12014b596f70df698842f9a7",
       "bytes": 3703
+    },
+    {
+      "path": "tests/test_matched_integration.py",
+      "sha256": "1a4946e6364527e69b292164c1601bb56e1d363ebc5e26172bcfbc9fd35b94a8",
+      "bytes": 2139
     },
     {
       "path": "tests/test_origin_seed_readiness.py",

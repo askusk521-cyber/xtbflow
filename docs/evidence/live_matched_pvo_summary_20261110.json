@@ -1,0 +1,250 @@
+{
+  "arms": [
+    "none",
+    "physical_only",
+    "policy_only",
+    "serial_full",
+    "parallel_full",
+    "policy_off"
+  ],
+  "arms_summary": {
+    "none": {
+      "calculator_calls": 192,
+      "event_changed_rate": 0.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "geometry_changed_rate": 0.0,
+      "median_force_rms_reduction": -8.673617379884035e-19,
+      "median_wall_seconds": 0.09920312697067857,
+      "model_forwards": 0,
+      "p95_wall_seconds": 4.847207173006609,
+      "rows": 96,
+      "success_rows": 96
+    },
+    "parallel_full": {
+      "calculator_calls": 288,
+      "event_changed_rate": 1.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "geometry_changed_rate": 1.0,
+      "median_force_rms_reduction": 0.00032132005236276077,
+      "median_wall_seconds": 0.23176253808196634,
+      "model_forwards": 96,
+      "p95_wall_seconds": 5.31382224051049,
+      "rows": 96,
+      "success_rows": 96
+    },
+    "physical_only": {
+      "calculator_calls": 288,
+      "event_changed_rate": 0.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "geometry_changed_rate": 1.0,
+      "median_force_rms_reduction": 0.0003213200523627623,
+      "median_wall_seconds": 0.15953981783241034,
+      "model_forwards": 0,
+      "p95_wall_seconds": 8.016655178624205,
+      "rows": 96,
+      "success_rows": 96
+    },
+    "policy_off": {
+      "calculator_calls": 192,
+      "event_changed_rate": 0.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "geometry_changed_rate": 0.0,
+      "median_force_rms_reduction": -4.336808689942018e-19,
+      "median_wall_seconds": 0.09564566926565021,
+      "model_forwards": 0,
+      "p95_wall_seconds": 3.9291773434961215,
+      "rows": 96,
+      "success_rows": 96
+    },
+    "policy_only": {
+      "calculator_calls": 192,
+      "event_changed_rate": 1.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "geometry_changed_rate": 0.0,
+      "median_force_rms_reduction": 1.1926223897340549e-18,
+      "median_wall_seconds": 0.09920256584882736,
+      "model_forwards": 96,
+      "p95_wall_seconds": 5.142610365990549,
+      "rows": 96,
+      "success_rows": 96
+    },
+    "serial_full": {
+      "calculator_calls": 288,
+      "event_changed_rate": 1.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "geometry_changed_rate": 1.0,
+      "median_force_rms_reduction": 0.0003213200523627558,
+      "median_wall_seconds": 0.15831291128415614,
+      "model_forwards": 96,
+      "p95_wall_seconds": 7.4881596025661565,
+      "rows": 96,
+      "success_rows": 96
+    }
+  },
+  "calibration_parent_count": 8,
+  "calibration_row_count": 144,
+  "calibration_summary": {
+    "none": {
+      "calculator_calls": 48,
+      "event_changed_rate": 0.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "geometry_changed_rate": 0.0,
+      "median_force_rms_reduction": -3.2526065174565133e-19,
+      "median_wall_seconds": 0.10807341278996319,
+      "model_forwards": 0,
+      "p95_wall_seconds": 0.13332016045460476,
+      "rows": 24,
+      "success_rows": 24
+    },
+    "parallel_full": {
+      "calculator_calls": 72,
+      "event_changed_rate": 1.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "geometry_changed_rate": 1.0,
+      "median_force_rms_reduction": 0.00029386864743712103,
+      "median_wall_seconds": 0.24134960491210222,
+      "model_forwards": 24,
+      "p95_wall_seconds": 0.2898627006099559,
+      "rows": 24,
+      "success_rows": 24
+    },
+    "physical_only": {
+      "calculator_calls": 72,
+      "event_changed_rate": 0.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "geometry_changed_rate": 1.0,
+      "median_force_rms_reduction": 0.00029386864743712786,
+      "median_wall_seconds": 0.18155792960897088,
+      "model_forwards": 0,
+      "p95_wall_seconds": 0.21010518538532777,
+      "rows": 24,
+      "success_rows": 24
+    },
+    "policy_off": {
+      "calculator_calls": 48,
+      "event_changed_rate": 0.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "geometry_changed_rate": 0.0,
+      "median_force_rms_reduction": -2.168404344971009e-19,
+      "median_wall_seconds": 0.10865469940472394,
+      "model_forwards": 0,
+      "p95_wall_seconds": 0.14162975330837071,
+      "rows": 24,
+      "success_rows": 24
+    },
+    "policy_only": {
+      "calculator_calls": 48,
+      "event_changed_rate": 1.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "geometry_changed_rate": 0.0,
+      "median_force_rms_reduction": 2.6020852139652106e-18,
+      "median_wall_seconds": 0.11142327508423477,
+      "model_forwards": 24,
+      "p95_wall_seconds": 0.1388296127319336,
+      "rows": 24,
+      "success_rows": 24
+    },
+    "serial_full": {
+      "calculator_calls": 72,
+      "event_changed_rate": 1.0,
+      "event_exact_matches": 0,
+      "event_exact_rate": 0.0,
+      "failure_rate": 0.0,
+      "geometry_changed_rate": 1.0,
+      "median_force_rms_reduction": 0.0002938686474372518,
+      "median_wall_seconds": 0.18573151319287717,
+      "model_forwards": 24,
+      "p95_wall_seconds": 0.22610716702183709,
+      "rows": 24,
+      "success_rows": 24
+    }
+  },
+  "claim_limits": [
+    "No chemistry superiority or physical accuracy claim is supported because calculator qualification is incomplete.",
+    "Synthetic guidance is not used; all provider calls in the PVO are real tblite calls or recorded policy decisions.",
+    "Any threshold miss is retained as a negative or unresolved result.",
+    "The pool spans development admissions and is not an independent confirmation split; no training/model selection may use PVO results.",
+    "The paired performance statistic is a diagnostic wall-time comparison under the frozen CPU protocol; it is not a general performance claim.",
+    "The chemical endpoint is an evaluation comparison against a frozen reference event and is not a chemistry-validity claim."
+  ],
+  "comparisons": {
+    "chemical_policy_only_vs_none_paired_mean_exact_lift": 0.0,
+    "parallel_vs_serial_paired_median_speedup": 0.6655900075459258,
+    "parallel_vs_serial_paired_median_speedup_bootstrap_95ci": [
+      0.636477333856244,
+      0.7040094801967208
+    ],
+    "parallel_vs_serial_paired_speedup_p95_latency_ratio": 1.1287963238740457,
+    "parallel_vs_serial_ratio_of_medians_reference": 0.6830824023344376,
+    "physical_vs_none_paired_median_force_rms_lift": 0.0003213200523627615,
+    "physical_vs_none_paired_median_force_rms_lift_bootstrap_95ci": [
+      0.0003003817295935288,
+      0.00035756698319917477
+    ],
+    "threshold_passes": {
+      "chemical": false,
+      "parallel": false,
+      "physical": true
+    }
+  },
+  "cost_accounting": {
+    "calibration_budget": 360,
+    "calibration_calculator_calls": 360,
+    "fields": [
+      "reserved_cost",
+      "observed_cost",
+      "charged_cost",
+      "overrun"
+    ],
+    "global_budget": 1800,
+    "global_calculator_calls": 1800,
+    "persistent_calibration_ledger_lines": 144,
+    "persistent_primary_ledger_lines": 576,
+    "primary_budget": 1440,
+    "primary_calculator_calls": 1440,
+    "retry_identity": "new attempt_id and retry_index for every retry"
+  },
+  "ledger_paths": {
+    "calibration": "docs/evidence/live_matched_pvo_calibration_ledger_20261110.jsonl",
+    "calibration_sha256": "d07006a146d3bbe211c6e919d0ab8a2d936acf2c2b771f0a199bfa1c927de43e",
+    "primary": "docs/evidence/live_matched_pvo_primary_ledger_20261110.jsonl",
+    "primary_sha256": "912b773d502d8b206161099c2bd44c8f383a925f7f63e98afd1dfb10e44823d1"
+  },
+  "primary_parent_count": 32,
+  "primary_row_count": 576,
+  "qualification_status": "requalification_required",
+  "schema": "xtbflow-live-matched-pvo-summary/v4",
+  "seed_count": 3,
+  "source_calibration_sha256": "ef74c4cc93f27db54c621b5a8f3fae1639f6d15c56044590ce31428223119cc0",
+  "source_commit": "458526682af3e1db6cdd982c063618a3e5973a0a",
+  "source_primary_sha256": "8d169fd0c5b1caf49ca27a01fde28bbe5fa4f86b7345a0b5a966b7174fa6c049",
+  "status": "completed_with_qualification_limit",
+  "thresholds": {
+    "chemical_event_exact_match_lift_min": 0.05,
+    "failure_rate_noninferiority_bound": 0.05,
+    "parallel_wall_speedup_min": 1.1,
+    "physical_median_force_rms_reduction_min": 0.0001
+  }
+}

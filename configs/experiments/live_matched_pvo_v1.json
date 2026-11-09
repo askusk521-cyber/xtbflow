@@ -1,0 +1,132 @@
+{
+  "schema": "xtbflow-live-matched-pvo/v1",
+  "status": "frozen_pre_run",
+  "source_manifest": "data/manifests/paired_pilot_v1/manifest.jsonl",
+  "source_manifest_sha256": "6b84937d3cc75bea44faa7608d690618ce22f7ab75c51b8e25515f05a193cc90",
+  "source_dataset": "diels-alder-reaction-space",
+  "source_revision": "figshare:29118509:v5",
+  "selection_policy": "all admitted parents sorted lexically; first 32 primary parents; next 8 calibration parents; no model training or result-based selection is allowed",
+  "calibration_parent_count": 8,
+  "primary_parent_count": 32,
+  "primary_parent_ids": [
+    "ID16303",
+    "ID20747",
+    "ID23169",
+    "ID24680",
+    "ID29179",
+    "ID297",
+    "ID29792",
+    "ID30003",
+    "ID30412",
+    "ID30469",
+    "ID31786",
+    "ID32109",
+    "ID34546",
+    "ID37595",
+    "ID4339",
+    "ID45033",
+    "ID48714",
+    "ID49144",
+    "ID54142",
+    "ID56510",
+    "ID59983",
+    "ID61924",
+    "ID63623",
+    "ID63835",
+    "ID64174",
+    "ID6626",
+    "ID66742",
+    "ID67399",
+    "ID6789",
+    "ID69027",
+    "ID7427",
+    "ID74847"
+  ],
+  "seeds": [
+    1001,
+    1002,
+    1003
+  ],
+  "arms": [
+    "none",
+    "physical_only",
+    "policy_only",
+    "serial_full",
+    "parallel_full",
+    "policy_off"
+  ],
+  "calculator_protocol": {
+    "calculator": "xtb_oracle",
+    "implementation": "tblite",
+    "method": "GFN2-xTB",
+    "backend": "cpu",
+    "accuracy": 1.0,
+    "max_iterations": 250,
+    "electronic_temperature": 300.0,
+    "solvent": null,
+    "qualification_status": "requalification_required",
+    "qualification_note": "pre-PVO qualification failed strict native-ASE and independent-xTB force parity gates; results remain software/diagnostic physical observations"
+  },
+  "primary_endpoints": {
+    "physical": "force_rms_reduction_hartree_per_angstrom_and_energy_delta_hartree",
+    "chemical": "event_exact_match_against_frozen_reference_event_for_evaluation_only",
+    "performance": "parallel_full_vs_serial_full_wall_speedup_and_p95_latency"
+  },
+  "thresholds": {
+    "physical_median_force_rms_reduction_min": 0.0001,
+    "chemical_event_exact_match_lift_min": 0.05,
+    "parallel_wall_speedup_min": 1.1,
+    "failure_rate_noninferiority_bound": 0.05
+  },
+  "budget_policy": {
+    "max_calculator_calls_per_row": 3,
+    "primary_max_total_calculator_calls": 1440,
+    "calibration_max_total_calculator_calls": 360,
+    "global_max_total_calculator_calls": 1800,
+    "retry_limit": 1,
+    "timeout_seconds": 120
+  },
+  "tool_set": [
+    "tblite-gfn2-energy-forces",
+    "live-heuristic-policy-nearest-nonbonded-pair",
+    "thread-pool-max-workers-2"
+  ],
+  "provider_identity": {
+    "physical_provider_revision": "live-tblite-physical-pvo-v1",
+    "policy_provider_revision": "live-heuristic-policy-pvo-v1",
+    "policy_config": "nearest-nonbonded-pair-policy-v1",
+    "policy_checkpoint": null
+  },
+  "policy_checkpoint": null,
+  "merge_configuration": {
+    "geometry_trust_radius": 0.2,
+    "collision_distance": 0.2,
+    "event_freeze_step": null,
+    "event_constraint": "two-feature-difference-conserving-diagnostic"
+  },
+  "retry_policy": {
+    "max_retries": 1,
+    "retry_identity": "new attempt_id and retry_index for every retry",
+    "retry_results_are_not_primary_seeds": true
+  },
+  "cost_accounting": {
+    "fields": ["reserved_cost", "observed_cost", "charged_cost", "overrun"],
+    "ledger_persisted_per_row": true
+  },
+  "claim_limits": [
+    "No chemistry superiority or physical accuracy claim is supported because calculator qualification is incomplete.",
+    "Synthetic guidance is not used; all provider calls in the PVO are real tblite calls or recorded policy decisions.",
+    "Any threshold miss is retained as a negative or unresolved result.",
+    "The pool spans development admissions and is not an independent confirmation split; no training/model selection may use PVO results."
+  ],
+  "calibration_parent_ids": [
+    "ID7781",
+    "ID78162",
+    "ID81713",
+    "ID87464",
+    "ID87741",
+    "ID91104",
+    "ID92517",
+    "ID92609"
+  ]
+}

@@ -4,7 +4,7 @@
   "reason_code": "RUNNER_EXECUTION",
   "attempt": 1,
   "failure_stage": "preflight",
-  "source_commit": "0766155",
+  "source_commit": "07661557a2747c44cafd5b11e4bee6114ad42a63",
   "source_dirty": false,
   "execution_host": "node2",
   "python": "3.10.19",

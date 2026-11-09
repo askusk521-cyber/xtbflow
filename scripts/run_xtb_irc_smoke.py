@@ -15,11 +15,17 @@ from datetime import datetime, timezone
 import hashlib
 import importlib.util
 import json
+import os
 from pathlib import Path
 import platform
 import subprocess
 import sys
 import time
+
+# Make the measured CPU budget reproducible.  Native xTB/OpenMP defaults can
+# otherwise multiply process_time by the host's full core count.
+for _variable in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ[_variable] = "1"
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -78,6 +84,7 @@ def main() -> int:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--implementation", choices=("xtb", "tblite"), default="xtb")
     parser.add_argument("--max-calculator-calls", type=int, default=256)
+    parser.add_argument("--max-cpu-core-hours", type=float, default=2.0)
     args = parser.parse_args()
     if args.output_dir.exists() and any(args.output_dir.iterdir()):
         parser.error("refusing to overwrite a nonempty output directory")
@@ -122,7 +129,7 @@ def main() -> int:
         if importlib.util.find_spec(args.implementation) is None:
             manifest.update({"status": "blocked_backend", "reason_code": "BLOCKED_BACKEND", "backend": args.implementation})
         else:
-            ledger = RunLedger(StageBudget("xtb-irc-smoke", max_calculator_calls=args.max_calculator_calls, max_cpu_core_hours=2.0, max_wall_minutes_per_job=30.0))
+            ledger = RunLedger(StageBudget("xtb-irc-smoke", max_calculator_calls=args.max_calculator_calls, max_cpu_core_hours=args.max_cpu_core_hours, max_wall_minutes_per_job=30.0))
             token = ledger.issue_calculator_token("xtb-irc-smoke", args.max_calculator_calls, metadata={"candidate_id": input_payload["candidate_id"], "protocol_id": protocol.protocol_id}, persist_path=ledger_path)
             backend = XTBOracleAdapter(protocol=protocol, implementation=args.implementation, require_budget_token=True)
             try:

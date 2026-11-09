@@ -47,6 +47,7 @@ from xtbflow.sampling.parallel_guidance import (
     merge_guidance,
 )
 from xtbflow.validation.ts_search import TSValidationConfig, validate_ts_evidence
+from xtbflow.validation.xtb_irc import XTBIRCConfig, run_xtb_irc_certification
 
 
 SCHEMA = "xtbflow-real-feedback-loop/v1"
@@ -241,18 +242,16 @@ def _run_arm(
         error=error,
     )
     runtime_ledger.append(runtime_event, persist_path=output_dir / f"ledger_{arm}.json")
-    certification_config = TSValidationConfig(
-        require_connectivity=True,
-        max_calls=1,
-        reference_protocol_id=protocol.protocol_id if protocol is not None else "unavailable",
-        reference_build_hash=(feedback.calculator_build_hash if feedback is not None else "unavailable"),
-    )
-    certification = validate_ts_evidence(
-        f"{snapshot.parent_id}:{arm}",
-        "live-xtb-real-feedback",
-        {},
-        certification_config,
-        calls=0,
+    certification = _run_certification(
+        arm=arm,
+        config=config,
+        system=system,
+        final_snapshot=final_snapshot,
+        backend=backend,
+        protocol=protocol,
+        output_dir=output_dir,
+        snapshot=snapshot,
+        feedback=feedback,
     )
     return {
         "arm": arm,
@@ -269,11 +268,96 @@ def _run_arm(
         "merge": merge_mapping,
         "runtime_ledger": runtime_ledger.summary(),
         "certification": {
+            **certification,
+        },
+    }
+
+
+def _run_certification(
+    *,
+    arm: str,
+    config: Mapping[str, Any],
+    system: MolecularSystem,
+    final_snapshot: GenerationSnapshot,
+    backend: Any | None,
+    protocol: Any | None,
+    output_dir: Path,
+    snapshot: GenerationSnapshot,
+    feedback: Any | None,
+) -> dict[str, Any]:
+    """Run the optional independent TS/IRC gate without changing the default fixture."""
+
+    settings = dict(config.get("certification", {}))
+    enabled = bool(settings.get("enabled", False))
+    candidate_id = f"{snapshot.parent_id}:{arm}"
+    reference_protocol = protocol.protocol_id if protocol is not None else "unavailable"
+    reference_build = feedback.calculator_build_hash if feedback is not None else "unavailable"
+    if not enabled:
+        validation_config = TSValidationConfig(
+            require_connectivity=True,
+            max_calls=1,
+            reference_protocol_id=reference_protocol,
+            reference_build_hash=reference_build,
+        )
+        record = validate_ts_evidence(candidate_id, "live-xtb-real-feedback", {}, validation_config, calls=0)
+        return {
             "status": "blocked",
             "reason_code": "MISSING_TS_HESSIAN_IRC_EVIDENCE",
-            "record": certification.to_dict(),
-            "claim_limit": "No TS/IRC certification is claimed until an independent stationary-point, mode, endpoint, and bidirectional path backend supplies evidence.",
-        },
+            "record": record.to_dict(),
+            "backend_result": None,
+            "claim_limit": "No TS/IRC certification is claimed until certification.enabled selects an independent stationary-point, mode, endpoint, and bidirectional path backend.",
+        }
+    if backend is None or protocol is None:
+        return {
+            "status": "blocked_backend",
+            "reason_code": "BLOCKED_BACKEND",
+            "record": None,
+            "backend_result": None,
+            "claim_limit": "Certification was explicitly requested but its calculator backend was unavailable; no fallback is permitted.",
+        }
+
+    implementation = str(settings.get("implementation", "xtb"))
+    max_calls = int(settings.get("max_calculator_calls", 256))
+    cert_config_values = {key: value for key, value in settings.items() if key not in {"enabled", "implementation", "max_calculator_calls"}}
+    cert_config_values["max_calls"] = max_calls
+    cert_config = XTBIRCConfig(**cert_config_values)
+    cert_backend = XTBOracleAdapter(protocol=protocol, implementation=implementation, require_budget_token=True)
+    cert_ledger = RunLedger(
+        StageBudget(
+            phase=f"real_feedback_certification_{arm}",
+            max_calculator_calls=max_calls,
+            max_cpu_core_hours=float(settings.get("max_cpu_core_hours", 2.0)),
+            max_gpu_hours=float(settings.get("max_gpu_hours", 0.0)),
+            max_wall_minutes_per_job=float(settings.get("max_wall_minutes_per_job", 30.0)),
+            max_retries_per_job=0,
+        )
+    )
+    ledger_path = output_dir / f"certification_ledger_{arm}.json"
+    token = cert_ledger.issue_calculator_token(
+        f"real-feedback-certification-{arm}",
+        max_calls,
+        metadata={"candidate_id": candidate_id, "protocol_id": protocol.protocol_id, "config_identity": cert_config.identity},
+        persist_path=ledger_path,
+    )
+    try:
+        result = run_xtb_irc_certification(
+            cert_backend,
+            system.with_coordinates(final_snapshot.geometry),
+            token=token,
+            candidate_id=candidate_id,
+            config=cert_config,
+        )
+    finally:
+        token.settle(recorded_calls=token.consumed_calls, persist_path=ledger_path)
+    _write_json(ledger_path.with_suffix(".summary.json"), cert_ledger.summary())
+    status = "success" if result.status == "success" else result.status
+    return {
+        "status": status,
+        "reason_code": result.reason_code,
+        "record": result.validation,
+        "backend_result": result.to_mapping(),
+        "ledger_summary": cert_ledger.summary(),
+        "claim_limit": result.claim_limit,
     }
 
 

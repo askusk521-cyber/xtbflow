@@ -28,6 +28,8 @@ def main() -> int:
     parser.add_argument("--baseline", type=Path, required=True)
     parser.add_argument("--split", type=Path, required=True)
     parser.add_argument("--benchmark", type=Path, required=True)
+    parser.add_argument("--benchmark-replicate", action="append", type=Path, default=[])
+    parser.add_argument("--benchmark-aggregator", type=Path, default=None)
     args = parser.parse_args()
     status = _load(args.status)
     if status.get("science_ready") is not False:
@@ -58,13 +60,23 @@ def main() -> int:
         raise ValueError("confirmation split audit failed")
     if benchmark.get("status") != "completed":
         raise ValueError("fixed-hardware benchmark did not complete")
-    for mode in ("serial", "parallel"):
-        if benchmark.get("modes", {}).get(mode, {}).get("summary", {}).get("tasks") != 81:
-            raise ValueError(f"benchmark {mode} task count failed")
+    if benchmark.get("schema") == "xtbflow-fixed-hardware-parallel-benchmark-aggregate/v1":
+        if benchmark.get("tasks_per_mode") != [81, 81] or benchmark.get("threshold_pass") is not False:
+            raise ValueError("benchmark aggregate task/threshold contract failed")
+    else:
+        for mode in ("serial", "parallel"):
+            if benchmark.get("modes", {}).get(mode, {}).get("summary", {}).get("tasks") != 81:
+                raise ValueError(f"benchmark {mode} task count failed")
     expected_hashes = status.get("artifact_sha256", {})
     for key, path in {"gfn2_scoped_requalification": args.qualification, "qualified_baseline_confirmation": args.baseline, "confirmation_split_audit": args.split, "fixed_hardware_parallel_benchmark": args.benchmark}.items():
         if expected_hashes.get(key) != _sha(path):
             raise ValueError(f"status artifact hash mismatch for {key}")
+    replicate_hashes = status.get("benchmark_replicates_sha256", {})
+    for label, path in zip(("run1", "run2"), args.benchmark_replicate):
+        if replicate_hashes.get(label) != _sha(path):
+            raise ValueError(f"benchmark replicate hash mismatch for {label}")
+    if args.benchmark_aggregator is not None and replicate_hashes.get("aggregator_script") != _sha(args.benchmark_aggregator):
+        raise ValueError("benchmark aggregator script hash mismatch")
     summary = {
         "status": "pass",
         "source_commit": source,

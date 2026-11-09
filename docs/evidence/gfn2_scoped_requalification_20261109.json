@@ -5,7 +5,6 @@
     "It does not qualify xTB analytic gradients, open-shell states, solvent, periodic systems, CP2K, or chemical accuracy.",
     "A qualified backend does not establish a chemistry gain or physical-accuracy claim."
   ],
-  "evidence_generation_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "fixtures": [
     {
       "checks": {
@@ -18,11 +17,11 @@
       },
       "deltas": {
         "adapter_native_energy_abs_hartree": 0.0,
-        "adapter_native_force_max_abs_hartree_per_angstrom": 0.0,
+        "adapter_native_force_max_abs_hartree_per_angstrom": 8.673617379884035e-18,
         "finite_difference_abs_hartree_per_angstrom": 5.630243259981127e-08,
         "native_ase_energy_abs_hartree": 8.617107027930615e-12,
         "native_ase_force_max_abs_hartree_per_angstrom": 1.1041524430877026e-09,
-        "xtb_analytic_force_diagnostic_max_abs_hartree_per_angstrom": 0.0007625588183718462,
+        "xtb_analytic_force_diagnostic_max_abs_hartree_per_angstrom": 0.0007625588183718466,
         "xtb_energy_abs_hartree": 2.672706500561617e-09
       },
       "fixture_id": "water_perturbed",
@@ -39,11 +38,11 @@
       },
       "deltas": {
         "adapter_native_energy_abs_hartree": 0.0,
-        "adapter_native_force_max_abs_hartree_per_angstrom": 0.0,
+        "adapter_native_force_max_abs_hartree_per_angstrom": 5.204170427930421e-17,
         "finite_difference_abs_hartree_per_angstrom": 5.14964293273773e-07,
         "native_ase_energy_abs_hartree": 6.337774749454184e-11,
         "native_ase_force_max_abs_hartree_per_angstrom": 1.1870106841893602e-09,
-        "xtb_analytic_force_diagnostic_max_abs_hartree_per_angstrom": 0.002426863688446612,
+        "xtb_analytic_force_diagnostic_max_abs_hartree_per_angstrom": 0.002426863688446613,
         "xtb_energy_abs_hartree": 3.5304887902043447e-09
       },
       "fixture_id": "ammonia_perturbed",
@@ -60,10 +59,10 @@
       },
       "deltas": {
         "adapter_native_energy_abs_hartree": 0.0,
-        "adapter_native_force_max_abs_hartree_per_angstrom": 3.469446951953614e-18,
+        "adapter_native_force_max_abs_hartree_per_angstrom": 0.0,
         "finite_difference_abs_hartree_per_angstrom": 3.891119399182172e-07,
-        "native_ase_energy_abs_hartree": 1.1077361250499962e-11,
-        "native_ase_force_max_abs_hartree_per_angstrom": 6.798463103238617e-10,
+        "native_ase_energy_abs_hartree": 1.1079137607339362e-11,
+        "native_ase_force_max_abs_hartree_per_angstrom": 6.798461763164731e-10,
         "xtb_analytic_force_diagnostic_max_abs_hartree_per_angstrom": 3.4509275726269485e-05,
         "xtb_energy_abs_hartree": 4.985434287618773e-11
       },
@@ -102,8 +101,8 @@
       },
       "deltas": {
         "adapter_native_energy_abs_hartree": 0.0,
-        "adapter_native_force_max_abs_hartree_per_angstrom": 0.0,
-        "finite_difference_abs_hartree_per_angstrom": 3.7468711010842787e-07,
+        "adapter_native_force_max_abs_hartree_per_angstrom": 3.469446951953614e-18,
+        "finite_difference_abs_hartree_per_angstrom": 3.7468711009541744e-07,
         "native_ase_energy_abs_hartree": 4.937028563745116e-11,
         "native_ase_force_max_abs_hartree_per_angstrom": 1.1296991259124312e-09,
         "xtb_analytic_force_diagnostic_max_abs_hartree_per_angstrom": 0.005483105748616962,
@@ -145,7 +144,7 @@
   },
   "independent_fd_artifact": {
     "path": "docs/evidence/gfn2_requalification_independent_fd_20261109.json",
-    "sha256": "41bed874f7585790f6df1e0cae45d27cd6aa1cb9d6bb562f17efd403979b6e0a",
+    "sha256": "39df671c87716752273cbdd34c3560e35698d3b28d100f0a6b2fadcad60f0f97",
     "source_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa"
   },
   "protocol": {
@@ -154,7 +153,6 @@
     "max_iterations": 250,
     "solvent": null
   },
-  "protocol_sha256": "3c553dcc05111d4aba0b2c6bb34a4d077e135304dfd23f4c2e3637477ba356ab",
   "schema": "xtbflow-gfn2-scoped-requalification/v1",
   "scope": {
     "diagnostic_only": [

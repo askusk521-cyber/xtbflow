@@ -38,6 +38,9 @@ jobs:
           --baseline docs/evidence/qualified_baseline_confirmation_20261109.json
           --split docs/evidence/confirmation_split_audit_20261109.json
           --benchmark docs/evidence/fixed_hardware_parallel_benchmark_20261109.json
+          --benchmark-replicate docs/evidence/fixed_hardware_parallel_benchmark_20261109_run1.json
+          --benchmark-replicate docs/evidence/fixed_hardware_parallel_benchmark_20261109_run2.json
+          --benchmark-aggregator scripts/summarize_fixed_hardware_benchmark.py
       - name: Run reusable tests
         run: python -m unittest discover -s tests/reusable -p "test_*.py"
       - name: Run package tests

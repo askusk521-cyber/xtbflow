@@ -1,11 +1,16 @@
 {
   "artifact_sha256": {
-    "confirmation_split_audit": "660549e9c96935ec4548d7197cd2fc38d950d36d99e83c8809292d543f4fe6d3",
-    "fixed_hardware_parallel_benchmark": "addaaea7103ebde1d19502c8fe26037b3801956c4d184fb2b711184435228b39",
-    "gfn2_independent_fd": "41bed874f7585790f6df1e0cae45d27cd6aa1cb9d6bb562f17efd403979b6e0a",
-    "gfn2_requalification": "67244f6d1b619d762fe920bdae48cbcbaa86c023eca7cd52b0a8d734cad945b6",
-    "gfn2_scoped_requalification": "4aa9d0236203aea3389d5e4a46ee29fb2af2f91bd47204f40f424eb66c402249",
-    "qualified_baseline_confirmation": "4638ee3ab1b33ed367e617469740c4169753d9b1cf1623cdb0902de73701a8ea"
+    "confirmation_split_audit": "773af8d8e240db109e34934acea4ad5568e9c78e1f9ceb5259c5bcac90005b0d",
+    "fixed_hardware_parallel_benchmark": "c65837a40f41b3b79ffa798057f2210f272d383a51b4bc153698fabba713c852",
+    "gfn2_independent_fd": "39df671c87716752273cbdd34c3560e35698d3b28d100f0a6b2fadcad60f0f97",
+    "gfn2_requalification": "1db02572865694034b47c4dc232c480bd419c9d039bdcfe79a4308a3d9af15df",
+    "gfn2_scoped_requalification": "977e4bdfc8e7c0b1ca601721c24bd02d9022e11f058aa918a82fa710a01d0217",
+    "qualified_baseline_confirmation": "06bd3edc83381ef3a1d0c43c090f3970cce543a40184cdb2baf83f2856dbd917"
+  },
+  "benchmark_replicates_sha256": {
+    "run1": "addaaea7103ebde1d19502c8fe26037b3801956c4d184fb2b711184435228b39",
+    "run2": "c6642123c092b2da2d4ca74f6637e1a1ddc5791742a3036fd4acae5aa7c1acfe",
+    "aggregator_script": "c1ebe7e57c1cd2c0152490cdfb937db01f1741329ec6d64aefc296744e94d768"
   },
   "claim_limits": [
     "This tranche is software, split, calculator-scope, and fixed-hardware diagnostic evidence.",
@@ -57,8 +62,9 @@
     },
     "6_fixed_hardware_parallel_performance": {
       "artifact": "docs/evidence/fixed_hardware_parallel_benchmark_20261109.json",
-      "repeats": 3,
-      "serial_over_parallel_speedup": 1.0545347167471293,
+      "repeats": 2,
+      "replicate_speedups": [1.0545347167471293, 1.1018227739367006],
+      "serial_over_parallel_speedup": 1.078178745341915,
       "status": "completed_negative_diagnostic",
       "tasks_per_mode": 81,
       "threshold": 1.1,

@@ -1,6 +1,5 @@
 {
   "calculator_calls_recorded": 126,
-  "evidence_generation_commit": "b1d19fbb5151eb3ae0959b9573e4c99ce2f77afa",
   "fixtures": [
     {
       "atom_count": 3,
@@ -12,17 +11,17 @@
       "input_hash": "408af8286419d3a80c2fff6b41162acf95c7c672a08cfdbf49a1a5b49dd754cf",
       "multiplicity": 1,
       "timings_seconds": {
-        "baseline_pair": 3.042886723065749,
-        "xtb_full_fd": 12.198859917931259
+        "baseline_pair": 4.9157411030028015,
+        "xtb_full_fd": 21.11693885596469
       },
-      "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 0.0007625588183718464,
-      "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 0.0007625472834865189,
+      "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 0.0007625588183718462,
+      "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 0.0007625472834865185,
       "xtb_analytic_worst_component": [
         0,
         2
       ],
       "xtb_fd_force_pass": true,
-      "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 2.368805489452036e-07,
+      "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 2.3688054893653e-07,
       "xtb_fd_worst_component": [
         0,
         1
@@ -38,8 +37,8 @@
       "input_hash": "17e2b64a519d2258e0bf9fe53dd7b8e246f84c57205c8ba9102272168b5dfe8a",
       "multiplicity": 1,
       "timings_seconds": {
-        "baseline_pair": 2.5616845511831343,
-        "xtb_full_fd": 15.062943450873718
+        "baseline_pair": 4.632891220971942,
+        "xtb_full_fd": 23.674520685104653
       },
       "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 0.002426863688446613,
       "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 0.0024268759052379686,
@@ -48,7 +47,7 @@
         1
       ],
       "xtb_fd_force_pass": true,
-      "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 2.320532260347008e-06,
+      "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 2.3205322603192524e-06,
       "xtb_fd_worst_component": [
         0,
         2
@@ -64,8 +63,8 @@
       "input_hash": "332cb6b026c26796fc2f141c30bc1b4c0a934f5485bf9ab9a6beae3a97f18e17",
       "multiplicity": 1,
       "timings_seconds": {
-        "baseline_pair": 2.743778012925759,
-        "xtb_full_fd": 11.302057442022488
+        "baseline_pair": 2.9591544601134956,
+        "xtb_full_fd": 12.379951890092343
       },
       "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 3.4509275726269485e-05,
       "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 3.4505157808410866e-05,
@@ -90,8 +89,8 @@
       "input_hash": "5699aa886a548d0ae50f349d7b36fe71f43932f14e7533a452da5891dc73fc6e",
       "multiplicity": 1,
       "timings_seconds": {
-        "baseline_pair": 2.853922145906836,
-        "xtb_full_fd": 12.96496438817121
+        "baseline_pair": 3.066857283934951,
+        "xtb_full_fd": 14.131930341944098
       },
       "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 0.0038295340665079397,
       "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 0.003829545268299591,
@@ -116,17 +115,17 @@
       "input_hash": "c360f667cb1122aa4b4d75a23e6dcecb63a9edc917ac7f36d37a5f829cc70d12",
       "multiplicity": 1,
       "timings_seconds": {
-        "baseline_pair": 2.5358628230169415,
-        "xtb_full_fd": 14.183701424160972
+        "baseline_pair": 2.735899287974462,
+        "xtb_full_fd": 14.733621978899464
       },
       "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 0.005483105748616948,
-      "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 0.0054831538475549335,
+      "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 0.005483153869759394,
       "xtb_analytic_worst_component": [
         0,
         1
       ],
       "xtb_fd_force_pass": true,
-      "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 8.891305955799345e-07,
+      "xtb_fd_vs_tblite_force_max_abs_hartree_per_angstrom": 8.89152800040427e-07,
       "xtb_fd_worst_component": [
         0,
         2
@@ -142,8 +141,8 @@
       "input_hash": "ca5cf9a4a2431a6f18830bd735f0bef5986f92cee10e7c0d718da1ad859bda47",
       "multiplicity": 1,
       "timings_seconds": {
-        "baseline_pair": 2.808141106972471,
-        "xtb_full_fd": 7.706827228190377
+        "baseline_pair": 2.7612622638698667,
+        "xtb_full_fd": 7.764468387933448
       },
       "xtb_analytic_vs_tblite_force_max_abs_hartree_per_angstrom": 1.3672306073408969e-07,
       "xtb_analytic_vs_xtb_fd_force_max_abs_hartree_per_angstrom": 8.339856731251483e-08,

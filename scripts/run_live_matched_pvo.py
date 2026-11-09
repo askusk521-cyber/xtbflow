@@ -213,6 +213,8 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
         metadata={"candidate_pool_id": protocol["source_manifest_sha256"]},
         provenance={"pvo": "live-matched-v1"},
     )
+    base_snapshot = initial_snapshot
+    working_snapshot = initial_snapshot
     reference = reference_event(sample)
     adapter_factory = lambda: XTBOracleAdapter(protocol=calculator_protocol(), implementation="tblite")
     call_counter = CalculatorCallCounter(int(protocol["budget_policy"]["max_calculator_calls_per_row"]))
@@ -283,13 +285,13 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
             provider_wall += physical_time
             if arm == "serial_full":
                 merge_start = time.perf_counter()
-                first_merge = merge_guidance(initial_snapshot, outputs, constraint_matrix=((1.0, -1.0),), config=MergeConfig(geometry_trust_radius=0.2, collision_distance=0.2), event_velocity_fn=lambda g,e,_: (g[0][0] + e[0], g[0][0] + e[1]))
+                first_merge = merge_guidance(working_snapshot, outputs, constraint_matrix=((1.0, -1.0),), config=MergeConfig(geometry_trust_radius=0.2, collision_distance=0.2), event_velocity_fn=lambda g,e,_: (g[0][0] + e[0], g[0][0] + e[1]))
                 merge_wall += time.perf_counter() - merge_start
-                policy_run, policy_ledger, policy_time = run_policy(first_merge.snapshot)
+                working_snapshot = first_merge.snapshot
+                policy_run, policy_ledger, policy_time = run_policy(working_snapshot)
                 rows_ledger.extend([entry.to_mapping() for entry in policy_ledger.entries])
                 provider_wall += policy_time
                 outputs = tuple(run.output for run in (policy_run,) if run.output is not None)
-                initial_snapshot = first_merge.snapshot
             elif arm == "physical_only":
                 pass
     elif arm in {"policy_only"}:
@@ -301,7 +303,7 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
         outputs = ()
 
     merge_start = time.perf_counter()
-    merged = merge_guidance(initial_snapshot, outputs, constraint_matrix=((1.0, -1.0),), config=MergeConfig(geometry_trust_radius=0.2, collision_distance=0.2), event_velocity_fn=lambda g,e,_: (g[0][0] + e[0], g[0][0] + e[1]))
+    merged = merge_guidance(working_snapshot, outputs, constraint_matrix=((1.0, -1.0),), config=MergeConfig(geometry_trust_radius=0.2, collision_distance=0.2), event_velocity_fn=lambda g,e,_: (g[0][0] + e[0], g[0][0] + e[1]))
     merge_wall += time.perf_counter() - merge_start
     final_system = system.with_coordinates(merged.snapshot.geometry)
     final_adapter = adapter_factory()
@@ -323,12 +325,12 @@ def run_row(sample: Any, parent_id: str, seed: int, arm: str, protocol: Mapping[
         "seed": seed,
         "arm": arm,
         "status": "success" if final_result.status == "success" else "final_calculator_failed",
-        "snapshot_id": initial_snapshot.snapshot_id,
+        "snapshot_id": base_snapshot.snapshot_id,
         "reference_event": sorted(reference),
         "predicted_event": sorted(predicted_event),
         "event_exact_match": predicted_event == reference,
-        "geometry_changed": merged.snapshot.geometry != initial_snapshot.geometry,
-        "event_changed": merged.snapshot.event != initial_snapshot.event,
+        "geometry_changed": merged.snapshot.geometry != base_snapshot.geometry,
+        "event_changed": merged.snapshot.event != base_snapshot.event,
         "energy_initial_hartree": initial_result.energy,
         "energy_final_hartree": final_result.energy,
         "force_rms_initial": force_initial,

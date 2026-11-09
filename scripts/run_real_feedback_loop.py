@@ -318,7 +318,11 @@ def _run_certification(
 
     implementation = str(settings.get("implementation", "xtb"))
     max_calls = int(settings.get("max_calculator_calls", 256))
-    cert_config_values = {key: value for key, value in settings.items() if key not in {"enabled", "implementation", "max_calculator_calls"}}
+    cert_config_values = {
+        key: value
+        for key, value in settings.items()
+        if key not in {"enabled", "implementation", "max_calculator_calls", "max_cpu_core_hours", "max_gpu_hours", "max_wall_minutes_per_job"}
+    }
     cert_config_values["max_calls"] = max_calls
     cert_config = XTBIRCConfig(**cert_config_values)
     cert_backend = XTBOracleAdapter(protocol=protocol, implementation=implementation, require_budget_token=True)

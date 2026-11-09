@@ -29,8 +29,8 @@
     },
     {
       "path": ".github/workflows/issue166-pvo-cpu.yml",
-      "sha256": "ee8c25f374c998bf71f284e7d0415cf2b64d841d08df74be2cf591156e748f57",
-      "bytes": 1012
+      "sha256": "d812dc8cb8cc9bc2587777617facb91217b6eecb3d0023c509bf821f15fe768e",
+      "bytes": 1539
     },
     {
       "path": ".github/workflows/issue166-replay-cpu.yml",
@@ -589,33 +589,33 @@
     },
     {
       "path": "docs/evidence/live_matched_pvo_calibration_20261110.json",
-      "sha256": "55f475364292db0b71ec55c64b371fb51681874de5c7263b2d1a8ab52253203c",
-      "bytes": 409321
+      "sha256": "ef74c4cc93f27db54c621b5a8f3fae1639f6d15c56044590ce31428223119cc0",
+      "bytes": 417163
     },
     {
       "path": "docs/evidence/live_matched_pvo_calibration_ledger_20261110.jsonl",
-      "sha256": "bd496eadac33e6c0125f92dfe8742dc933c7c8b67c214d155c6e788d9675a3f1",
-      "bytes": 285702
+      "sha256": "d07006a146d3bbe211c6e919d0ab8a2d936acf2c2b771f0a199bfa1c927de43e",
+      "bytes": 289845
     },
     {
       "path": "docs/evidence/live_matched_pvo_primary_20261110.json",
-      "sha256": "ecdd591d41fd3ef32e2d87c39815ed4fbfaeec779acb2f333bf1bbcf84eca15d",
-      "bytes": 1613597
+      "sha256": "8d169fd0c5b1caf49ca27a01fde28bbe5fa4f86b7345a0b5a966b7174fa6c049",
+      "bytes": 1643456
     },
     {
       "path": "docs/evidence/live_matched_pvo_primary_ledger_20261110.jsonl",
-      "sha256": "5d818f8b5be2f97691adff368cac9c1b633582f335b625e3044cafb4dd29c8cd",
-      "bytes": 1143372
+      "sha256": "912b773d502d8b206161099c2bd44c8f383a925f7f63e98afd1dfb10e44823d1",
+      "bytes": 1159165
     },
     {
       "path": "docs/evidence/live_matched_pvo_science_status_20261110.json",
-      "sha256": "1c74e4b32b4cd198517d965aca497753ffa0c5958dbb82541efca08925e0caf3",
-      "bytes": 620
+      "sha256": "5cb8acb4419a9c16b680107d0af590c7a8d720ae15241a5f08381510304d40dc",
+      "bytes": 1108
     },
     {
       "path": "docs/evidence/live_matched_pvo_summary_20261110.json",
-      "sha256": "e57a42f420901a061222911e65a6191849a9ea83c20f19c37f42ae47e6d4bf7e",
-      "bytes": 5829
+      "sha256": "2f3a36afe7a5718b6aeb91f79667cee17534e03c679d9754342f7a4cb2cd3c80",
+      "bytes": 8635
     },
     {
       "path": "docs/evidence/matched_guidance_integration_n2_20261110.json",
@@ -1249,8 +1249,8 @@
     },
     {
       "path": "scripts/run_live_matched_pvo.py",
-      "sha256": "02fc0b392e5bd53a36ee0489e50f8248eced73acbe8bed3413dbfaf456cca22b",
-      "bytes": 22406
+      "sha256": "a1243e7a0aa329ed7f14ab6e449d6f2bd2ce414a0e2a370d2fbc5e4778ed4346",
+      "bytes": 22470
     },
     {
       "path": "scripts/run_parallel_guidance_replay.py",
@@ -1261,6 +1261,11 @@
       "path": "scripts/run_spice_openff_pilot.py",
       "sha256": "8e2e3f10f7a103a6dcc06ca23a3fbdb8b840208fb7bc98f233da344dd013c864",
       "bytes": 6840
+    },
+    {
+      "path": "scripts/summarize_live_matched_pvo.py",
+      "sha256": "02cb564b852c56b1aee31f2bb7999f6a2e2d8f99073b64bee0682a2a73d76560",
+      "bytes": 9157
     },
     {
       "path": "scripts/update_run_status.py",
@@ -1281,6 +1286,11 @@
       "path": "scripts/validate_handoff.py",
       "sha256": "8e7bd6eebf01423504cb8754554947f1315ede1921cc29d74ebb78c66b4eaba8",
       "bytes": 1967
+    },
+    {
+      "path": "scripts/validate_live_pvo_artifact.py",
+      "sha256": "f67dc13dc195f936cf6371c2be6874489a124d2201130d4aeb879d110f516ae1",
+      "bytes": 8407
     },
     {
       "path": "scripts/validate_workflow_b.py",

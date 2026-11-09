@@ -9,12 +9,21 @@ All generator and scheduler arms must call the same service and frozen protocol.
 ## Input boundary
 
 `CertificationCandidate` requires coordinates in Angstrom, atomic numbers, stable
-atom identities, parent identity, reactant and generated product bond/electron
-(BE) matrices, reactant automorphisms, charge, multiplicity, environment and source
+atom identities, parent identity, a reactant bond/electron (BE) matrix,
+an explicit generated product matrix or `null`, reactant automorphisms, charge, multiplicity, environment and source
 provenance. BE includes diagonal nonbonding electrons and conserves the total
 valence electron inventory. Matrices, geometry and mappings share the same fixed
 atom pool. Unknown state/mapping/environment is rejected; there are no defaults.
 The initial scope is 2–64 CHNO atoms, gas phase, neutral singlet, nonperiodic.
+
+Candidate contract `mapped-candidate-optional-proposal/v2` permits an explicit
+`planned_product_be=null` when a geometry producer supplies no mapped event.
+It is distinct from a no-edit hypothesis (a matrix equal to reactant BE).
+Unknown charge, multiplicity, atom identities, reactant graph and environment
+remain errors. A complete reference chain can still report an observed channel
+from two verified endpoints, but `planned_event_id`, `planned_event_realized`
+and `strict_joint_graph` remain null when no event was proposed. Neither a
+placeholder graph nor scores without a graph decoder may fill this field.
 
 The adapter consumes no target products, reference TS, test labels, archived
 energies or reference-selected environments. A generated proposed product BE is
@@ -54,7 +63,7 @@ original starting coordinates and mapping remain in `request.json`.
 
 | Evidence status | Interpretation |
 | --- | --- |
-| `reference_ts_connected` | Full reference chain and actual event match the generated hypothesis. |
+| `reference_ts_connected` | Full chain connects the input reactant; any supplied event hypothesis matches. With no proposal, match fields remain null. |
 | `valid_alternative` | Full reference chain connects the input reactant to a different actual event. |
 | `same_endpoint` | Both verified ends return to the input reactant; no new channel. |
 | `reactant_mismatch` | Neither endpoint matches the declared input reactant. |
@@ -66,6 +75,12 @@ rewrite them from the planned event. A distinct geometry for the same parent,
 observed event and protocol is extra evidence, not a second independent channel.
 Event IDs preserve PR119's complete BE delta modulo reactant automorphisms.
 The fixed mapped atom universe remains part of the parent contract.
+
+The optional-proposal extension changes only the representation of missing
+prediction information. It does not change OptTS/IRC controls, frequencies,
+gradient thresholds, endpoint perception, automorphism equivalence or the
+parent/observed-event/protocol channel key. The contract revision is part of
+backend identity; prior candidate and protocol caches are never relabeled.
 
 ## Budget, cache and interruption semantics
 

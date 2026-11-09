@@ -59,7 +59,7 @@ def write_json(path: Path, value: Any) -> None:
 
 @dataclass(frozen=True)
 class CertificationCandidate:
-    """Mapped fixed atom pool. Planned BE is generated state, never a label."""
+    """Mapped fixed atom pool. Unknown planned BE is explicit None, not a no-edit prediction."""
 
     candidate_id: str
     parent_id: str
@@ -67,7 +67,7 @@ class CertificationCandidate:
     coordinates_angstrom: tuple[tuple[float, float, float], ...]
     atom_ids: tuple[str, ...]
     reactant_be: tuple[tuple[int, ...], ...]
-    planned_product_be: tuple[tuple[int, ...], ...]
+    planned_product_be: tuple[tuple[int, ...], ...] | None
     reactant_automorphisms: tuple[tuple[int, ...], ...]
     charge: int
     multiplicity: int
@@ -90,7 +90,10 @@ class CertificationCandidate:
                 isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) for v in row)
                 for row in self.coordinates_angstrom):
             raise ValueError("finite N x 3 Angstrom coordinates required")
-        for matrix in (self.reactant_be, self.planned_product_be):
+        if self.reactant_be is None:
+            raise ValueError("mapped reactant BE is required even without an event proposal")
+        matrices = (self.reactant_be,) if self.planned_product_be is None else (self.reactant_be, self.planned_product_be)
+        for matrix in matrices:
             if len(matrix) != n or any(len(row) != n for row in matrix):
                 raise ValueError("BE shape must match the fixed atom pool")
             if any(type(v) is not int or v < 0 for row in matrix for v in row):
@@ -99,7 +102,7 @@ class CertificationCandidate:
                 raise ValueError("BE must be symmetric")
         valence = {1: 1, 6: 4, 7: 5, 8: 6}
         electrons = sum(valence[z] for z in self.atomic_numbers)
-        if any(sum(map(sum, b)) != electrons for b in (self.reactant_be, self.planned_product_be)):
+        if any(sum(map(sum, b)) != electrons for b in matrices):
             raise ValueError("BE electron inventory must match the declared atom pool and charge")
         if not 1 <= len(self.reactant_automorphisms) <= 2048:
             raise ValueError("explicit bounded reactant automorphisms required")
@@ -180,9 +183,10 @@ def feedback(raw: dict) -> dict:
         _minimum_passes(e, len(gradient)) for e in ends)
     actual = ident.get("actual_event_id")
     matched = ident.get("status") == "STRICT_JOINT_GRAPH_VALID"
+    unproposed = ident.get("status") == "REFERENCE_CONNECTED_WITHOUT_PROPOSAL" and ident.get("predicted_event_id") is None
     same = ident.get("reason") == "both_ends_reactant"
-    if connected and ident.get("status") in {"STRICT_JOINT_GRAPH_VALID", "STRICT_EVENT_MISMATCH"} and actual and ident.get("product_be") is not None and ident.get("reactant_end") in (0, 1):
-        status = "reference_ts_connected" if matched else "valid_alternative"
+    if connected and (matched or unproposed or ident.get("status") == "STRICT_EVENT_MISMATCH") and actual and ident.get("product_be") is not None and ident.get("reactant_end") in (0, 1):
+        status = "reference_ts_connected" if matched or unproposed else "valid_alternative"
     elif connected and same:
         status = "same_endpoint"
     elif connected and ident.get("status") == "IRC_REACTANT_MISMATCH":
@@ -191,7 +195,7 @@ def feedback(raw: dict) -> dict:
         status = "attempted_unresolved"
     return dict(evidence_status=status, stationary_point=stationary,
                 first_order_saddle=saddle, bidirectional_minima=connected,
-                planned_event_realized=matched if connected and actual else None,
+                planned_event_realized=matched if connected and actual and ident.get("predicted_event_id") is not None else None,
                 planned_event_id=ident.get("predicted_event_id"), observed_event_id=actual,
                 endpoint_be=ident.get("endpoint_be"), observed_product_be=ident.get("product_be"),
                 raw_status=raw.get("strict_status"),

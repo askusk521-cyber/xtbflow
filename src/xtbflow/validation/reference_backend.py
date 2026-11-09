@@ -33,6 +33,7 @@ class ReferenceBackend:
         method = protocol.Method(charge=0, spin=0, device=self.device)
         return dict(engine="gpu4pyscf" if self.device == "gpu" else "pyscf", device=self.device,
                     version=protocol.PROTOCOL_VERSION, method=method.as_dict(), packages=versions,
+                    candidate_contract="mapped-candidate-optional-proposal/v2",
                     installed_record_sha256=builds,
                     execution_build=self.execution_build,
                     protocol_source_sha256=file_hash(Path(protocol.__file__)),

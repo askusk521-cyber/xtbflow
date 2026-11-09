@@ -464,8 +464,8 @@
     },
     {
       "path": "docs/LIVE_REFERENCE_EXECUTION_20261110.md",
-      "sha256": "87c489ec13ca648b2701e000705d297b7d8cf12311ce5868f419051f6400e2ce",
-      "bytes": 7260
+      "sha256": "8625ef02546a942835b2071c293a9e5f58caf5d2f382eae6ef930c5109cd56b7",
+      "bytes": 11387
     },
     {
       "path": "docs/MECHAI_REUSE_MANIFEST.json",
@@ -671,6 +671,31 @@
       "path": "docs/evidence/joint_flow_smoke_20260929_v3.json",
       "sha256": "41555c2528ef65c71a18e4ff7908ae3f86affa75dad52fef7ed078eacbd6d0cd",
       "bytes": 4826
+    },
+    {
+      "path": "docs/evidence/live_reference_cache_audit_2772c7b_20261110.json",
+      "sha256": "509f34bb284a8447ccd3203a887c485496a1e163d0b59844352f0296b3d3bb38",
+      "bytes": 4610
+    },
+    {
+      "path": "docs/evidence/live_reference_cache_guards_2772c7b_20261110.json",
+      "sha256": "549bedd3eae497402ed076a698d516b8ada7e6299c099dde3402742818d849bf",
+      "bytes": 688
+    },
+    {
+      "path": "docs/evidence/live_reference_exact_2772c7b_20261110.json",
+      "sha256": "6f99278e76a0f130e0909b98afc914e73127182630f797f4038016b00c76a2e7",
+      "bytes": 10763
+    },
+    {
+      "path": "docs/evidence/live_reference_execution_receipt_2772c7b_20261110.json",
+      "sha256": "0e17ace0cd9233cb3ae35ea02990d3e5b327196ed071482bc63ee625025cbd37",
+      "bytes": 11291
+    },
+    {
+      "path": "docs/evidence/live_reference_preflight_exact_2772c7b_20261110.json",
+      "sha256": "ddd9de04298729658513ed6ae1c5cdf7926730ae1a0dba74f33eeca85a85a9ed",
+      "bytes": 3148
     },
     {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",

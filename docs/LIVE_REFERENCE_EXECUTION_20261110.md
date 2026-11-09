@@ -122,16 +122,78 @@ physical replication.
 
 ## Execution outcome
 
-The fixed reference attempt is in progress. No complete-chain success or strict
-channel is claimed in this pending record. The publication commit will attach
-the program-produced terminal report and raw/ledger audit receipt, including
-every failed or unresolved candidate.
+Slurm job 4223 completed with exit `0:0` after 59 minutes 33 seconds. Both arms
+completed the frozen TS/gradient/mode checks, bidirectional IRC and two endpoint
+minimum/frequency checks. Both endpoints in each arm map to the reactant graph:
+the verdict is `same_endpoint / both_ends_reactant`, with **zero unique strict
+reaction channels**. A completed calculation is not a certified reaction channel.
+
+| Arm | Reference primitives | Candidate wall seconds | Measured CPU hours | Candidate GPU allocation hours | Verdict |
+| --- | ---: | ---: | ---: | ---: | --- |
+| no-feedback | 500 | 1934.972291 | 0.614920 | 0.537492 | `same_endpoint` |
+| physical-feedback | 402 | 1636.052427 | 0.518358 | 0.454459 | `same_endpoint` |
+
+The parent denominator is one; the candidate denominator is two. There are no
+unfinished reference primitives or exhausted budgets. Time/cost to the first
+reaction certification remain null. The difference in calls is an accounting
+observation from this one fixture, not evidence of method superiority or a
+chemical failure-rate estimate. The live physical feedback changed geometry and
+guidance scores; this did not produce a distinct certified reaction channel.
+The declared-source-endpoint input remains development data.
+
+The service ledger retains 902 reference primitives, 1.133278 measured child
+CPU-core-hours and 0.991951 candidate GPU allocation hours. The terminal
+`scontrol` snapshot records 0.9925 whole-job GPU allocation hours and 7.94 reserved
+CPU-core-hours (eight allocated cores times job wall time). CPU reservation is
+not measured CPU utilization. The difference between whole-job wall time and
+summed candidate wall time is approximately 1.98 seconds, with one-second
+scheduler precision. Earlier xTB guidance and diagnostic costs remain separately
+recorded; xTB energy/force calls are not added to reference primitives as one
+interchangeable call unit.
+
+Both original cache replays returned identical records, zero new primitives and
+zero new channels. The separate read-only audit passed for all 38 raw artifacts,
+request/result/settlement hashes, candidate identities, primitive sequences,
+reconstructed verdicts and settled resource events. Its guard checks also rejected
+an incomplete run and a receipt overwrite with structured errors. These replay
+and software checks are `software_demo`; they are not a new physical rerun.
+The complete frozen reference verdicts are `strict_validation` within this
+development protocol, with no positive reaction-channel result. Earlier xTB
+diagnostics remain `proxy_metric`; their withdrawn certification claims are not
+restored by this downstream run.
+
+Evidence, copied without rewriting the program-produced records:
+
+- [Terminal report](evidence/live_reference_exact_2772c7b_20261110.json).
+- [Raw/cache/ledger audit](evidence/live_reference_cache_audit_2772c7b_20261110.json).
+- [Execution, costs, source assets and artifact index](evidence/live_reference_execution_receipt_2772c7b_20261110.json).
+- [Exact-source environment and input preflight](evidence/live_reference_preflight_exact_2772c7b_20261110.json).
+- [Audit failure and overwrite guards](evidence/live_reference_cache_guards_2772c7b_20261110.json).
+
+The reference protocol/build SHA-256 is
+`6dc84cd79c7223e6e05126d1211d70075f5401d9f5f9fc45c396ea77a2d25a39`.
+The outcome identity is
+`03cb95ce9e99423f621710a449cde07b5369ed6c2d6397e72052b38d3ee5414a`.
+The receipt records all input/config/source/result hashes and separates the
+original execution source from the later audit-driver and publication commits.
+
+### Remaining accounting limitation
+
+`sacct` returned `Slurm accounting storage is disabled`. Historical scheduler
+accounting, whole-job measured CPU usage and maximum RSS are therefore unavailable
+and remain null. The completed `scontrol` snapshot, job start/exit receipts,
+original job script hash and measured service ledger are retained. No scheduler
+configuration was changed, and no extra quantum calculation was used to fill this
+gap. Enabling historical accounting is a separate administrator action for future
+jobs; it cannot recreate missing historical measurements.
 
 ## 中文说明
 
-这次运行把同一母反应、同一随机种子的两条反馈几何送入已有独立参考认证服务。
-输入先经过哈希、原子映射和账本核对，再使用完全相同的协议与预算；旧的 xTB 路径
-诊断结果不能替代参考认证。缺失化学产物图时保持 null，不虚构预测事件，也不把
-程序正常退出当成认证通过。原始坐标、路径和 Hessian 保留在 n2，公开材料只记录
-来源、哈希、判定、费用和重放检查；即使完整链通过，也只是这个开发样例的协议内
-结果，不支持方法优势、化学精度或独立泛化结论。
+两条固定几何都完成了 TS（过渡态）优化、频率、双向 IRC（反应路径）和端点检查，
+但两端都映射回反应物图，因此严格反应通道数为零。baseline 和物理反馈分别消耗
+500 与 402 次参考计算原语，全部费用和两个候选的分母都保留；一次样例中的费用差
+不能证明方法优势。原始坐标、路径和 Hessian（二阶导数）保留在 n2，38 个原始
+artifact、调用账本及判定已经完成只读重放检查，没有新增计算调用。缺失化学产物
+图时仍保持 null，不虚构预测事件，也不把程序正常退出写成发现了反应。Slurm 未
+启用历史资源记账，所以缺失指标明确留空；已有程序实测成本和终态调度记录仍然可查。
+这些结果限于一个开发样例的冻结协议，不支持化学精度、独立泛化或方法优势结论。

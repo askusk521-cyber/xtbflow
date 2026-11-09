@@ -28,6 +28,7 @@ from pathlib import Path
 import platform
 import subprocess
 import sys
+import time
 from typing import Any, Mapping
 
 from xtbflow.calculators import MolecularSystem, XTBOracleAdapter
@@ -343,6 +344,9 @@ def _run_certification(
         metadata={"candidate_id": candidate_id, "protocol_id": protocol.protocol_id, "config_identity": cert_config.identity},
         persist_path=ledger_path,
     )
+    started_wall = time.perf_counter()
+    started_cpu = time.process_time()
+    result = None
     try:
         result = run_xtb_irc_certification(
             cert_backend,
@@ -351,16 +355,40 @@ def _run_certification(
             candidate_id=candidate_id,
             config=cert_config,
         )
+    except Exception as exc:
+        return {
+            "status": "execution_failed",
+            "reason_code": "CERTIFICATION_EXECUTION",
+            "record": None,
+            "backend_result": None,
+            "ledger_summary": cert_ledger.summary(),
+            "cost": {
+                "wall_seconds": time.perf_counter() - started_wall,
+                "cpu_seconds": time.process_time() - started_cpu,
+                "cpu_hours": (time.process_time() - started_cpu) / 3600.0,
+                "gpu_hours": 0.0,
+            },
+            "failure_stage": "certification",
+            "error": f"{type(exc).__name__}: {exc}",
+            "claim_limit": "Certification execution failed; consumed calls remain in the certification ledger.",
+        }
     finally:
         token.settle(recorded_calls=token.consumed_calls, persist_path=ledger_path)
     _write_json(ledger_path.with_suffix(".summary.json"), cert_ledger.summary())
     status = "success" if result.status == "success" else result.status
+    cost = {
+        "wall_seconds": time.perf_counter() - started_wall,
+        "cpu_seconds": time.process_time() - started_cpu,
+        "cpu_hours": (time.process_time() - started_cpu) / 3600.0,
+        "gpu_hours": 0.0,
+    }
     return {
         "status": status,
         "reason_code": result.reason_code,
         "record": result.validation,
         "backend_result": result.to_mapping(),
         "ledger_summary": cert_ledger.summary(),
+        "cost": cost,
         "claim_limit": result.claim_limit,
     }
 

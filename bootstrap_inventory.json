@@ -243,6 +243,11 @@
       "bytes": 23509
     },
     {
+      "path": "configs/research/narrowed_claims_20261111.json",
+      "sha256": "37e4e4209c8dc4173581f4fb7e3bdccdc43d11a85ec0150a75c78d6ca0b029b9",
+      "bytes": 3850
+    },
+    {
       "path": "configs/research/narrowed_exposure_20261111.json",
       "sha256": "f36435794d4ae562ef3e9f0676be2586079930dcdceed2fee7b67342adb50e66",
       "bytes": 2928
@@ -841,6 +846,11 @@
       "path": "docs/research/NARROWED_SCOPE_20261111.md",
       "sha256": "4cae04547593e719085ebe8c9d58b4a8c32d204400689b9775219ee40e9040dd",
       "bytes": 7947
+    },
+    {
+      "path": "docs/research/NARROWED_STUDY_REPORT_20261111.md",
+      "sha256": "2efadc1f0a77e81dae79bea5e3173acd43b7063b7b0fe29caa7acd7d6b753276",
+      "bytes": 11313
     },
     {
       "path": "docs/sources.md",

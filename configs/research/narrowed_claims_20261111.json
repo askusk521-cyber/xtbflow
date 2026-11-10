@@ -1,0 +1,103 @@
+{
+  "schema": "xtbflow-narrowed-claims/v1",
+  "roadmap": 129,
+  "issues": [
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189
+  ],
+  "conclusion": "bounded_inconclusive_no_S5",
+  "claim_evidence": [
+    {
+      "claim": "proper rotation and snapshot identity repaired",
+      "level": "software",
+      "supported": true,
+      "evidence_prs": [
+        191,
+        192
+      ],
+      "limits": "No causal attribution to historical same_endpoint"
+    },
+    {
+      "claim": "started failures retain consumption and unknown time is not zero",
+      "level": "software",
+      "supported": true,
+      "evidence_prs": [
+        193
+      ],
+      "limits": "Unknown external termination halts shared budget; single-writer journal"
+    },
+    {
+      "claim": "retained standard/normalized comparison confounded by amplitude",
+      "level": "retained_development_diagnostic",
+      "supported": true,
+      "evidence": "docs/evidence/narrowed_scope_20261111/numerical_diagnostics.json",
+      "limits": "No sign-error or chemical efficacy conclusion"
+    },
+    {
+      "claim": "frozen trained geometry to continuous BE response exists on three probes",
+      "level": "calibration_numerical_diagnostic",
+      "supported": true,
+      "evidence_prs": [
+        194
+      ],
+      "limits": "Fixed nonphysical perturbations; intermediate state decoding is not final endpoint decoding"
+    },
+    {
+      "claim": "two cached trained candidates match archived chemical handoff",
+      "level": "cached_exposed_calibration",
+      "supported": true,
+      "evidence_prs": [
+        195
+      ],
+      "limits": "No new live trained physical intervention or independent success"
+    },
+    {
+      "claim": "geometry increment improves strict channels at matched actual cost",
+      "level": "scientific_efficacy",
+      "supported": false,
+      "status": "not_identified",
+      "effect_interval": null,
+      "limits": "Catalogue ranking/CI-NEB labels and local numerical response cannot substitute for a strict causal comparison"
+    },
+    {
+      "claim": "practically useful effects excluded",
+      "level": "scientific_negative",
+      "supported": false,
+      "status": "not_excluded",
+      "compatible_catalogue_delta_spearman": [
+        -0.11096316500557121,
+        0.1652490801623542
+      ]
+    },
+    {
+      "claim": "independent confirmation available",
+      "supported": false,
+      "status": "no_verified_eligible_unexposed_pool"
+    },
+    {
+      "claim": "S5 executed",
+      "supported": false,
+      "status": "not_launched_gate_not_met",
+      "new_attempts": 0,
+      "new_qc_calls": 0
+    }
+  ],
+  "asset_sha256": {
+    "configs/research/narrowed_scope_20261111.json": "d0643a2a166a81b3939a9c07516d3d75d68a60081ccaa1cd8a3170db46bcfe70",
+    "configs/research/narrowed_assets_20261111.json": "dd1eecc51dcc13c4f442dfe1d6c4ab3da344e968c588267b6d18b1d4de31da33",
+    "configs/research/narrowed_exposure_20261111.json": "f36435794d4ae562ef3e9f0676be2586079930dcdceed2fee7b67342adb50e66",
+    "configs/research/incremental_signal_audit_20261111.json": "e712ee18b7858548afc16d66171bdc0028f4938068e8fa2a96c5b93df4280904",
+    "docs/evidence/narrowed_scope_20261111/numerical_diagnostics.json": "f633009f00ded974e24835ac8a1814cc8ec7f4aee02762403044a07593a5d450",
+    "docs/evidence/narrowed_scope_20261111/numerical_failed_9a5599c.json": "a3a601406cd23138c9fd79eae1763c99daf0d63b4fa58c645cb0d8309b227069",
+    "docs/evidence/narrowed_scope_20261111/incremental_signal.json": "dc47a5d6d36e666b15128e776c1622d71c7ae0e8165f9df4546444bd7ad634bd",
+    "docs/evidence/narrowed_scope_20261111/incremental_signal.png": "dacdaac7f71c71003be716214957738e0cca3ae72753f4f79f69264a938b85a5"
+  },
+  "reference_audit_commit": "99c82f2c137eac464a5788e13cdf826273170fdc",
+  "human_merge_required": true,
+  "automatic_merge": false
+}

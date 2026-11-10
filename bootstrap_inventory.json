@@ -248,6 +248,11 @@
       "bytes": 8223
     },
     {
+      "path": "configs/research/numerical_recovery_20261111.json",
+      "sha256": "e76d126bb8fc3891c294cd0ad52c75e3bebfae9e7964f190bd22dc7fff1be7bd",
+      "bytes": 1352
+    },
+    {
       "path": "configs/resources.yaml",
       "sha256": "c2213875ddbe39017669a235b036019525c52e02378687c529075f784a63e5fd",
       "bytes": 6301
@@ -1079,8 +1084,8 @@
     },
     {
       "path": "scripts/diagnose_narrowed_numerics.py",
-      "sha256": "c45d3d15b120cc6038f3a635090c219799150da04f05c20af3e4ce9ab4d9c13c",
-      "bytes": 14467
+      "sha256": "be90b7dec344757cab9ad77f6f6f48965f763070b3c75db7c5fce9062e2078b2",
+      "bytes": 15708
     },
     {
       "path": "scripts/joint_flow_smoke.py",
@@ -1579,8 +1584,8 @@
     },
     {
       "path": "tests/test_narrowed_numerics.py",
-      "sha256": "858c8a01abf9207e2dc10eaf2735a16aa5422b7b5aae6c506093fba83238bd08",
-      "bytes": 1131
+      "sha256": "209741a7bebac811b83df4a234e3a6be31940c7934b989a702b78cd669d9a3b9",
+      "bytes": 1535
     },
     {
       "path": "tests/test_origin_seed_readiness.py",

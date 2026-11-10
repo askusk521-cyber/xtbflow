@@ -127,7 +127,7 @@ def frozen_model(args, cfg, report, start, cpu):
     query = replace(query, x_r=query.x_r.double(), b_r=query.b_r.double())
     initial = State(*(getattr(initial, k).double() for k in ('b', 'x', 't_b', 't_x')))
     model.double()
-    cap = cfg['caps']['S1_S2_frozen_diagnostic_total']
+    cap = report['caps']
     journal = dict(forwards=[], jvp_calls=0, backward_calls=0)
     report['model_work'] = journal
 
@@ -145,16 +145,30 @@ def frozen_model(args, cfg, report, start, cpu):
         save(args.out/'model_calls.json', journal)
     model.register_forward_pre_hook(before, with_kwargs=True)
     model.register_forward_hook(after)
-    baseline = rollout(model, query, initial, path='event_lead2', n_steps=50)
-    if baseline.failed.any():
-        raise ValueError('reconstruction failed')
     tb, tx = clock_grid('event_lead2', 50)
-    states = {k: State(baseline.b_trace[k], baseline.x_trace[k], tb[k:k+1], tx[k:k+1]) for k in (10, 25, 40)}
-    # Save all prespecified states before any response evaluation.
-    for k, state in states.items():
-        path = args.out/f'state_{k}.pt'
-        torch.save(dict(b=state.b, x=state.x, t_b=state.t_b, t_x=state.t_x), path)
-    report['saved_state_sha256'] = {str(k): file_hash(args.out/f'state_{k}.pt') for k in states}
+    if args.resume_states is not None:
+        recovery = json.loads((Path(__file__).resolve().parents[1]/'configs/research/numerical_recovery_20261111.json').read_text())
+        if file_hash(args.resume_states/'numerical_diagnostics.json') != recovery['prior_report_sha256']:
+            raise ValueError('recovery receipt mismatch')
+        states = {}
+        for k in (10, 25, 40):
+            path = args.resume_states/f'state_{k}.pt'
+            if file_hash(path) != recovery['saved_state_sha256'][str(k)]:
+                raise ValueError('saved state mismatch')
+            # These exact locally produced, hash-pinned files include NumPy
+            # clock arrays. No arbitrary checkpoint pickle is admitted.
+            saved = torch.load(path, map_location='cpu', weights_only=False)
+            states[k] = State(*(torch.as_tensor(saved[name], dtype=torch.float64) for name in ('b','x','t_b','t_x')))
+        report['saved_state_sha256'] = recovery['saved_state_sha256']
+        report['recovery_of'] = recovery['prior_report_sha256']
+    else:
+        baseline = rollout(model, query, initial, path='event_lead2', n_steps=50)
+        if baseline.failed.any():
+            raise ValueError('reconstruction failed')
+        states = {k: State(baseline.b_trace[k], baseline.x_trace[k], torch.as_tensor(tb[k:k+1]), torch.as_tensor(tx[k:k+1])) for k in (10,25,40)}
+        for k, state in states.items():
+            torch.save(dict(b=state.b, x=state.x, t_b=state.t_b, t_x=state.t_x), args.out/f'state_{k}.pt')
+        report['saved_state_sha256'] = {str(k): file_hash(args.out/f'state_{k}.pt') for k in states}
     report['response'] = []
     for k, state in states.items():
         d = centered(torch.sin(torch.arange(state.x.numel(), dtype=torch.float64).reshape_as(state.x)), query.atom_mask)
@@ -199,7 +213,7 @@ def frozen_model(args, cfg, report, start, cpu):
         report['response'].append(row)
     report.update(research_commit=commit, checkpoint_sha256=expected['sha256'], torch=torch.__version__,
                   dtype='float64 after float32 initial noise', new_generation_candidates=0,
-                  diagnostic_reconstruction_forwards=50,
+                  diagnostic_reconstruction_forwards=0 if args.resume_states is not None else 50,
                   forbidden_imports=sorted(set(sys.modules)&{'xtbflow.v1.data', 'xtbflow.m0.t1x_data'}))
     if report['forbidden_imports']:
         raise ValueError('forbidden label loader imported')
@@ -209,12 +223,15 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ('qualified-rows', 'research-source', 'model-root', 'packet', 'out'):
         parser.add_argument('--'+name, type=Path, required=True)
+    parser.add_argument('--resume-states', type=Path)
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=False)
     root = Path(__file__).resolve().parents[1]
     config = root/'configs/research/narrowed_scope_20261111.json'
     cfg = json.loads(config.read_text())
     cap = cfg['caps']['S1_S2_frozen_diagnostic_total']
+    if args.resume_states is not None:
+        cap = json.loads((root/'configs/research/numerical_recovery_20261111.json').read_text())['caps']
     resource.setrlimit(resource.RLIMIT_CPU, (cap['cpu_seconds'],)*2)
     resource.setrlimit(resource.RLIMIT_FSIZE, (cap['max_output_bytes'],)*2)
     start, cpu = time.monotonic(), time.process_time()

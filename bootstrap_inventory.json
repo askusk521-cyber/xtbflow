@@ -818,6 +818,11 @@
       "bytes": 4233
     },
     {
+      "path": "docs/research/GUIDANCE_ENTRY_REVIEW_20261111.md",
+      "sha256": "921a75cfe0c68f2a5e8e63a9766e6d20458207964eed0595a5ef21d09b0e23a3",
+      "bytes": 3047
+    },
+    {
       "path": "docs/research/NARROWED_SCOPE_20261111.md",
       "sha256": "4cae04547593e719085ebe8c9d58b4a8c32d204400689b9775219ee40e9040dd",
       "bytes": 7947
@@ -1083,6 +1088,11 @@
       "bytes": 5243
     },
     {
+      "path": "scripts/check_narrowed_guidance_entry.py",
+      "sha256": "9ad49316628f47ecd9e8ecfa366d7468c23019324f266cc536a55667c04a63af",
+      "bytes": 8341
+    },
+    {
       "path": "scripts/check_portal.py",
       "sha256": "7e545c2516b71f790d9eed89604c3b6b487b0530ea73a70533ad02b9a69be10a",
       "bytes": 6215
@@ -1104,8 +1114,8 @@
     },
     {
       "path": "scripts/diagnose_narrowed_numerics.py",
-      "sha256": "be90b7dec344757cab9ad77f6f6f48965f763070b3c75db7c5fce9062e2078b2",
-      "bytes": 15708
+      "sha256": "53e817f93738ca2a30291931080535b0d5f08ffc7a63234d623bd2a17fdf07d0",
+      "bytes": 15888
     },
     {
       "path": "scripts/joint_flow_smoke.py",

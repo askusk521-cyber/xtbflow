@@ -203,8 +203,10 @@ def frozen_model(args, cfg, report, start, cpu):
         first = rollout(model, query, state, path='event_lead2', n_steps=50, start=k, end=k+1)
         changed = replace(first.state, x=centered(first.state.x+.001*d, query.atom_mask))
         continued = rollout(model, query, changed, path='event_lead2', n_steps=50, start=k+1, end=k+2)
-        row['alpha_zero_bitwise'] = bool(torch.equal(zero.state.b, again.state.b) and torch.equal(zero.state.x, again.state.x))
-        row['same_step_event_unchanged'] = bool(torch.equal(first.state.b, changed.b))
+        # These are narrow controls, not acceptance of an installed guide.
+        # Real entry/call-order coverage is in check_narrowed_guidance_entry.py.
+        row['unguided_alpha_default_bitwise'] = bool(torch.equal(zero.state.b, again.state.b) and torch.equal(zero.state.x, again.state.x))
+        row['post_step_replacement_preserves_event'] = bool(torch.equal(first.state.b, changed.b))
         row['next_step_event_delta_norm'] = float(torch.linalg.vector_norm(continued.state.b-zero.state.b))
         row['next_step_geometry_delta_norm_angstrom'] = float(torch.linalg.vector_norm(continued.state.x-zero.state.x))
         for name, item in [('baseline', zero.state), ('perturbed', continued.state)]:

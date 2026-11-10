@@ -728,6 +728,21 @@
       "bytes": 44038
     },
     {
+      "path": "docs/evidence/narrowed_scope_20261111/review2/anchored_reference_audit.json",
+      "sha256": "641975aff70a012105217c5c69dac903eae94d22fb82d5c115a0a694a469b3ec",
+      "bytes": 49658
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/review2/canonical_identity.md",
+      "sha256": "7092b23a4a5b5518ebdfdf5963c118e46ba6a91ef37e43f601eae99b35af24fe",
+      "bytes": 2920
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/review2/canonical_identity_validation.json",
+      "sha256": "9af568ded65a0c352f8482d21c5078239048b7c4bf90e2990eab76f080a84e9b",
+      "bytes": 4614
+    },
+    {
       "path": "docs/evidence/narrowed_scope_20261111/s3_reference_initial_software.json",
       "sha256": "e39a3a5e3cbb21439aa2a75f566ef1336e4e3b895c8fadfa5edef2ef769b088d",
       "bytes": 2433

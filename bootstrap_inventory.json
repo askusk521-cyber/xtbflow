@@ -593,6 +593,16 @@
       "bytes": 7716
     },
     {
+      "path": "docs/evidence/narrowed_scope_20261111/s1_initial_software.json",
+      "sha256": "00a109a64ec0d2bbc283b356901b1f1eba81e081b2cca5063ceb830af8223be6",
+      "bytes": 2423
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/s1_recovery_software.json",
+      "sha256": "0d313f72fe51e9dcd17b52b02ec88fc8a581721b42fa13945b4a5a21b3aef441",
+      "bytes": 2055
+    },
+    {
       "path": "docs/evidence/narrowed_scope_20261111/s4_software.json",
       "sha256": "2bb0176da47eec8a2d5df3cfc938602c18e274f02db2b616485770ae9281b6cb",
       "bytes": 2094

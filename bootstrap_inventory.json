@@ -988,6 +988,11 @@
       "bytes": 3107
     },
     {
+      "path": "scripts/audit_narrowed_assets.py",
+      "sha256": "58668235efe52715ded9136dd8b4b91ac9ade83415426b7a00963e58cdb8b6e8",
+      "bytes": 5457
+    },
+    {
       "path": "scripts/audit_origin_seed_readiness.py",
       "sha256": "1a978fb9b33fe6fca4e8069ef81547dd9e3a69158092c03a76f8b5a4de15e5c1",
       "bytes": 2056

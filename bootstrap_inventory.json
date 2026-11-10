@@ -533,6 +533,16 @@
       "bytes": 4826
     },
     {
+      "path": "docs/evidence/narrowed_scope_20261111/availability.json",
+      "sha256": "a1873cae35432f782de136fd0bd05ef6d9283707e6fece9b8e45120d6935bc45",
+      "bytes": 6822
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/availability.md",
+      "sha256": "bd57b6249290bae1fb388998f034e26c847255a588a3e11972ea77a6db25b88d",
+      "bytes": 1929
+    },
+    {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
       "sha256": "cbdd9b63b5cad70fbadf0ae8060e00a0aff4e439a10864bbbd7aec87ce8b9bbd",
       "bytes": 7458

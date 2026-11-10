@@ -1,0 +1,49 @@
+{
+  "caps": {
+    "concurrency": 1,
+    "cpu_seconds": 60,
+    "output_bytes": 4194304,
+    "retries": 0,
+    "synthetic_forwards": 16,
+    "wall_seconds": 60
+  },
+  "checks": {
+    "applied_pushes": 1,
+    "entry": "v1.explore_rollout.recorded_rollout actual push callback and Euler update",
+    "mask_and_centering_preserved": true,
+    "next_geometry_consumed": true,
+    "next_step_event_changed": true,
+    "physical_calls": 0,
+    "push_observations": [
+      {
+        "dt_x": 0.5,
+        "step": 0
+      }
+    ],
+    "same_step_event_equal": true,
+    "synthetic_forwards": 4
+  },
+  "claim_limits": [
+    "Synthetic network and nonempty guides exercise real pinned code entries; no chemical/physical efficacy.",
+    "This adds boundary coverage; the previous 90 trained forwards and derivative evidence are unchanged."
+  ],
+  "cpu_seconds": 0.939074244,
+  "driver_sha256": "9ad49316628f47ecd9e8ecfa366d7468c23019324f266cc536a55667c04a63af",
+  "gpu_seconds": 0,
+  "host": "node2",
+  "new_qc_calls": 0,
+  "new_trained_model_forwards": 0,
+  "python": "3.10.19",
+  "research_commit": "ffca40f9dc9b8f72f67c695a7b99fa38e83794e3",
+  "schema": "xtbflow-guidance-entry-check/v1",
+  "source_commit": "fbe0ad1b4d34ed1bea675fa1150735a4e5661d35",
+  "source_file_sha256": {
+    "src/xtbflow/v1/clocks.py": "b2e5c0b2c5c80631e57015065565249ec42167c813a229136cc9b44aea2f3b44",
+    "src/xtbflow/v1/explore_rollout.py": "2519d397742c0a5a3ca021e2d4c28bc0e57aae0c369e78d1ed25e0abbe41c42b",
+    "src/xtbflow/v1/guidance.py": "fd32541a895a75c5fbbc8c224ef365b378a78d65e1aa28b7a049d7c960f0a68c",
+    "src/xtbflow/v1/sampler.py": "97c8eb5955b78fbcc4b12c8da152cd4fbac67c57df93f73eee13bf68013f83b5"
+  },
+  "status": "passed",
+  "training_steps": 0,
+  "wall_seconds": 1.0055838108528405
+}

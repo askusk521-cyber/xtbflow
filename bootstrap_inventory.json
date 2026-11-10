@@ -713,6 +713,11 @@
       "bytes": 2358
     },
     {
+      "path": "docs/evidence/narrowed_scope_20261111/s2_identity_software.json",
+      "sha256": "276efae7003d5b46dac7a7457c2e911e4979fc0a40b527ccc119f153df76f9f0",
+      "bytes": 2702
+    },
+    {
       "path": "docs/evidence/narrowed_scope_20261111/s3_accounting_initial_software.json",
       "sha256": "b85f04cec19dace194f2ba1bbc542f113fbb0e40cc3faf691525c4c63d2817b0",
       "bytes": 2712

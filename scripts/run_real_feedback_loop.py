@@ -162,6 +162,123 @@ def _run_arm(
     blocked_reason: str | None,
     output_dir: Path,
 ) -> dict[str, Any]:
+    """One immutable attempt: replay a verified result or stop without writes."""
+    if arm not in {"no_feedback", "physical_feedback"}:
+        raise ValueError("unregistered arm")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    context = _sha256_text(_canonical({
+        "arm": arm, "config": dict(config), "snapshot_id": snapshot.snapshot_id,
+        "input_hash": system.input_hash, "protocol": None if protocol is None else protocol.identity,
+        "runner_sha256": _sha256_file(Path(__file__)),
+    }))
+    files = _arm_files(output_dir, arm)
+    if files:
+        return _recover_arm(arm, output_dir, context, config)
+    # Exclusive creation is the launch lock. An interrupted attempt never
+    # becomes a fresh empty run, including when no provider journal was written.
+    try:
+        _write_new_arm_json(output_dir / f"arm_started_{arm}.json", {"context_sha256": context})
+    except FileExistsError:
+        return _recover_arm(arm, output_dir, context, config)
+    row = _run_arm_once(arm, config=config, system=system, snapshot=snapshot,
+                        backend=backend, protocol=protocol, blocked_reason=blocked_reason,
+                        output_dir=output_dir, context_sha256=context)
+    payload = {"context_sha256": context, "row": row,
+               "artifacts": {p.name: _sha256_file(p) for p in _arm_files(output_dir, arm)}}
+    _write_new_arm_json(output_dir / f"arm_result_{arm}.json", {
+        **payload, "content_sha256": _sha256_text(_canonical(payload)),
+    })
+    return row
+
+
+def _arm_files(root: Path, arm: str) -> list[Path]:
+    names = [f"{prefix}_{arm}.json" for prefix in (
+        "arm_started", "arm_candidate", "arm_certification_started", "arm_result",
+        "provider_attempts", "ledger", "settlement_failed", "certification_ledger")]
+    names.append(f"certification_ledger_{arm}.summary.json")
+    return [root / name for name in names if (root / name).exists()]
+
+
+def _write_new_arm_json(path: Path, value: Mapping[str, Any]) -> None:
+    """Immutable stage receipt; a partial write causes blocked recovery."""
+    with path.open("x", encoding="utf-8") as stream:
+        stream.write(json.dumps(value, sort_keys=True, indent=2, allow_nan=False) + "\n")
+        stream.flush()
+        os.fsync(stream.fileno())
+    directory = os.open(path.parent, os.O_RDONLY)
+    try:
+        os.fsync(directory)
+    finally:
+        os.close(directory)
+
+
+def _blocked_certification(reason: str) -> dict[str, Any]:
+    return {"status": "blocked", "reason_code": reason, "record": None,
+            "backend_result": None, "new_calculator_calls": 0}
+
+
+def _guidance_stop_reason(budget: GuidanceBudget, entries) -> str | None:
+    if any(e.backend_termination == "unknown" for e in entries):
+        return "BACKEND_TERMINATION_UNKNOWN"
+    if budget.reserved != GuidanceCost.zero() or any(e.measured_cost is None for e in entries):
+        return "COST_SETTLEMENT_INCOMPLETE"
+    if budget.halted or any(e.status.value == "budget_exhausted" for e in entries):
+        return "GUIDANCE_BUDGET_EXHAUSTED"
+    if any(e.status.value != "accepted" for e in entries):
+        return "GUIDANCE_NOT_ACCEPTED"
+    return None
+
+
+def _recover_arm(arm: str, root: Path, context: str, config: Mapping[str, Any]) -> dict[str, Any]:
+    """No provider/certifier invocation and no file writes on this path."""
+    result_path = root / f"arm_result_{arm}.json"
+    if result_path.exists():
+        try:
+            receipt = json.loads(result_path.read_text())
+            payload = {k: v for k, v in receipt.items() if k != "content_sha256"}
+            if receipt["content_sha256"] != _sha256_text(_canonical(payload)) or receipt["context_sha256"] != context:
+                raise ValueError("arm context/content mismatch")
+            expected = receipt["artifacts"]
+            actual = {p.name: _sha256_file(p) for p in _arm_files(root, arm) if p != result_path}
+            if actual != expected:
+                raise ValueError("arm artifact set or content changed")
+            return {**receipt["row"], "replayed": True, "new_guidance_cost": GuidanceCost.zero().to_mapping(),
+                    "new_certification_calls": 0}
+        except (ValueError, KeyError, TypeError, OSError):
+            reason = "ARM_RECOVERY_IDENTITY_MISMATCH"
+    else:
+        reason = "ARM_RECOVERY_INCOMPLETE"
+    preserved = {p.name: _sha256_file(p) for p in _arm_files(root, arm)}
+    journal_path, ledger_path = root / f"provider_attempts_{arm}.json", root / f"ledger_{arm}.json"
+    cumulative, ledger, prior_candidate = None, None, None
+    try:
+        if ledger_path.exists():
+            ledger = RunLedger.load(ledger_path).summary()
+        if journal_path.exists():
+            attempts = json.loads(journal_path.read_text())["attempts"].values()
+            cumulative = GuidanceCost.zero()
+            for entry in attempts:
+                cumulative = GuidanceBudget._add(cumulative, GuidanceCost(**entry["charged_cost"]))
+                if entry["status"] == "started" or entry.get("backend_termination") == "unknown":
+                    reason = "BACKEND_TERMINATION_UNKNOWN"
+        if (root / f"settlement_failed_{arm}.json").exists():
+            reason = "COST_SETTLEMENT_INCOMPLETE"
+        candidate_path = root / f"arm_candidate_{arm}.json"
+        if candidate_path.exists():
+            prior_candidate = json.loads(candidate_path.read_text())
+    except (ValueError, KeyError, TypeError, OSError):
+        reason = "ARM_RECOVERY_INCOMPLETE"
+    return {"arm": arm, "replayed": False, "certification": _blocked_certification(reason),
+            "runtime_ledger": ledger, "guidance_cumulative_cost": None if cumulative is None else cumulative.to_mapping(),
+            "preserved_candidate": prior_candidate, "preserved_artifacts": preserved,
+            "new_guidance_cost": GuidanceCost.zero().to_mapping(), "new_certification_calls": 0}
+
+
+def _run_arm_once(
+    arm: str, *, config: Mapping[str, Any], system: MolecularSystem,
+    snapshot: GenerationSnapshot, backend: Any | None, protocol: Any | None,
+    blocked_reason: str | None, output_dir: Path, context_sha256: str,
+) -> dict[str, Any]:
     budget_cfg = config["budget"]
     guidance_budget = GuidanceBudget(
         GuidanceCost(
@@ -265,6 +382,7 @@ def _run_arm(
         gpu_seconds=0.0,
         error=error,
     )
+    settlement_error = None
     try:
         runtime_ledger.append(runtime_event, persist_path=output_dir / f"ledger_{arm}.json")
     except Exception as exc:
@@ -272,19 +390,10 @@ def _run_arm(
             "status": "settlement_failed", "error_type": type(exc).__name__,
             "event": asdict(runtime_event), "adapter_ledger": adapter_runner.ledger.to_mapping(),
         })
-        raise  # Preserve work; no certification after an accounting failure.
-    certification = _run_certification(
-        arm=arm,
-        config=config,
-        system=system,
-        final_snapshot=final_snapshot,
-        backend=backend,
-        protocol=protocol,
-        output_dir=output_dir,
-        snapshot=snapshot,
-        feedback=feedback,
-    )
-    return {
+        settlement_error = type(exc).__name__
+    stop_reason = ("COST_SETTLEMENT_INCOMPLETE" if settlement_error else
+                   _guidance_stop_reason(guidance_budget, adapter_runner.ledger.entries))
+    row = {
         "arm": arm,
         "snapshot_before": snapshot.to_mapping(),
         "snapshot_after": final_snapshot.to_mapping(),
@@ -298,11 +407,20 @@ def _run_arm(
         "physical_cost_basis": None if physical_run is None else physical_run.ledger_entry.cost_basis,
         "adapter_ledger": adapter_runner.ledger.to_mapping(),
         "merge": merge_mapping,
-        "runtime_ledger": runtime_ledger.summary(),
-        "certification": {
-            **certification,
-        },
+        "runtime_ledger": None if settlement_error else runtime_ledger.summary(),
+        "unsettled_event": asdict(runtime_event) if settlement_error else None,
+        "guidance_cumulative_cost": guidance_budget.charged.to_mapping(),
+        "guidance_budget_halted": guidance_budget.halted,
+        "new_guidance_cost": guidance_budget.charged.to_mapping(),
+        "certification": _blocked_certification(stop_reason or "CERTIFICATION_PENDING"),
     }
+    _write_new_arm_json(output_dir / f"arm_candidate_{arm}.json", {"context_sha256": context_sha256, "row": row})
+    if stop_reason is None:
+        _write_new_arm_json(output_dir / f"arm_certification_started_{arm}.json", {"context_sha256": context_sha256})
+        row["certification"] = _run_certification(
+            arm=arm, config=config, system=system, final_snapshot=final_snapshot,
+            backend=backend, protocol=protocol, output_dir=output_dir, snapshot=snapshot, feedback=feedback)
+    return row
 
 
 def _run_certification(
@@ -425,6 +543,8 @@ def _run_certification(
 
 
 def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
+    if output_dir.exists() and any(output_dir.iterdir()):
+        raise FileExistsError("existing run output is immutable; inspect/replay arm receipts explicitly")
     config, raw = _load_config(config_path)
     config_sha256 = _sha256_text(raw)
     seed = int(config["seed"])
@@ -434,7 +554,10 @@ def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
     output_dir.mkdir(parents=True, exist_ok=True)
     arms = []
     for arm in ("no_feedback", "physical_feedback"):
-        arms.append(_run_arm(arm, config=config, system=system, snapshot=snapshot, backend=backend, protocol=protocol, blocked_reason=blocked_reason, output_dir=output_dir))
+        row = _run_arm(arm, config=config, system=system, snapshot=snapshot, backend=backend, protocol=protocol, blocked_reason=blocked_reason, output_dir=output_dir)
+        arms.append(row)
+        if row.get("guidance_budget_halted") or row["runtime_ledger"] is None:
+            raise RuntimeError(f"arm stopped; durable receipts retained: {row['certification']['reason_code']}")
     certification_blocked = any(row["certification"]["status"] != "success" for row in arms)
     deterministic = {
         "parent_id": config["parent_id"],

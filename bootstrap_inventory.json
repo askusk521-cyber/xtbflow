@@ -529,8 +529,8 @@
     },
     {
       "path": "docs/architecture/failed_provider_accounting_s3.md",
-      "sha256": "a824283215311c9f29ef2460686d84b7b60355dfe7872a50bed465ae0c7f2d12",
-      "bytes": 1781
+      "sha256": "8066028624574f2ac3a4d6a9fc023b833b252f6f604bab1b30d4b69693c933e3",
+      "bytes": 3486
     },
     {
       "path": "docs/architecture/guidance_adapter_boundary_v0.1.md",
@@ -1384,8 +1384,8 @@
     },
     {
       "path": "scripts/run_real_feedback_loop.py",
-      "sha256": "4dbc78e3eccdd2dd458fdb843e7d949160c9e738137d228f5358ae00a0f9c1d6",
-      "bytes": 25719
+      "sha256": "aaa3d7fd1f4342e265a0ee0b8bf188411af52a011bbf16a218d07b47400534b7",
+      "bytes": 32975
     },
     {
       "path": "scripts/run_spice_openff_pilot.py",
@@ -1896,6 +1896,11 @@
       "path": "tests/test_learning_curve_budget.py",
       "sha256": "158dde2de0beb627dd41102f181b2f60d9c33a4f12014b596f70df698842f9a7",
       "bytes": 3703
+    },
+    {
+      "path": "tests/test_live_arm_recovery.py",
+      "sha256": "1f6346bb4269cff84f666546de2d0263eea08c5beae352c76008a8039779e173",
+      "bytes": 7491
     },
     {
       "path": "tests/test_live_evidence_audit.py",

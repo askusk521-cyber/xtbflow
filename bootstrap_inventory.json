@@ -1249,8 +1249,8 @@
     },
     {
       "path": "scripts/run_live_matched_pvo.py",
-      "sha256": "a1243e7a0aa329ed7f14ab6e449d6f2bd2ce414a0e2a370d2fbc5e4778ed4346",
-      "bytes": 22470
+      "sha256": "68db2814ee07f12334ed06222e35c5474d2678770f4468070262de47bbcc9cbf",
+      "bytes": 23079
     },
     {
       "path": "scripts/run_parallel_guidance_replay.py",
@@ -1791,6 +1791,11 @@
       "path": "tests/test_policy_adapter.py",
       "sha256": "fc068531603bad9b254ad663f9662f1631c7385258190de641aea116f394d4cb",
       "bytes": 3830
+    },
+    {
+      "path": "tests/test_pvo_snapshot_identity.py",
+      "sha256": "9367bff550bcb5dab8750ed69746912b022af6b4140713f3dc6ddf7794ba32ae",
+      "bytes": 2469
     },
     {
       "path": "tests/test_reaction_qm_coordinate_mapping.py",

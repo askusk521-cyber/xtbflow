@@ -100,9 +100,15 @@ class LivePhysicalProvider:
         return GuidanceCost(calculator_calls=1, wall_seconds=10.0)
 
     def invoke(self, request: ProviderRequest) -> GuidanceOutput:
+        if len(request.snapshot.geometry) != len(self.system.symbols):
+            raise ValueError("snapshot atom count differs from frozen template")
+        current = self.system.with_coordinates(request.snapshot.geometry)
         adapter = self.adapter_factory()
-        result, elapsed = self.call_counter.call(adapter, self.system)
+        result, elapsed = self.call_counter.call(adapter, current)
         self.last_result = result
+        if (result.input_hash != current.input_hash or result.charge != current.charge
+                or result.multiplicity != current.multiplicity):
+            raise ValueError("calculator result input identity differs from current snapshot")
         if result.status != "success" or result.forces is None:
             raise RuntimeError(result.error_message or result.error_category or "physical calculator failed")
         forces = result.forces
@@ -117,7 +123,9 @@ class LivePhysicalProvider:
             trust_radius=0.05,
             estimated_cost=self.estimate(request),
             measured_cost=GuidanceCost(calculator_calls=result.calculator_calls, wall_seconds=elapsed),
-            provenance={"physical": {"calculator": "tblite", "protocol": self.protocol_fingerprint}},
+            provenance={"physical": {"calculator": "tblite", "protocol": self.protocol_fingerprint,
+                        "original_input_hash": self.system.input_hash,
+                        "calculator_input_hash": current.input_hash}},
         )
 
 

@@ -1,0 +1,119 @@
+{
+  "schema": "xtbflow-exposure/v1",
+  "scope": "all pools relevant to the reused assets; unknown is not unexposed",
+  "datasets": [
+    {
+      "pool": "T1x V1a training",
+      "use": [
+        "generator_training",
+        "barrier_head_training"
+      ],
+      "identity": "split a0225e6cb773049d94593f0d93bf6c753db125deeda3ade8899da6922835367f",
+      "independent": false
+    },
+    {
+      "pool": "T1x V1a development",
+      "parents": 62,
+      "formula_groups": 21,
+      "channels": 558,
+      "use": [
+        "tuning",
+        "geoinfo",
+        "geometry_lead",
+        "pg1",
+        "SMC",
+        "diagnostic_inspection"
+      ],
+      "independent": false
+    },
+    {
+      "pool": "T1x V1a formal",
+      "parents": 342,
+      "formula_groups": 70,
+      "use": [
+        "unblinded_formal",
+        "reanalysis",
+        "equal_NFE"
+      ],
+      "independent": false
+    },
+    {
+      "pool": "DFT-DA paired pilot",
+      "rows": 201,
+      "parents": 41,
+      "train_rows": 147,
+      "train_groups": 29,
+      "validation_rows": 9,
+      "validation_groups": 3,
+      "development_test_rows": 45,
+      "development_test_groups": 9,
+      "use": [
+        "training_on_separate_DA_line",
+        "task_views",
+        "model_integration",
+        "PVO"
+      ],
+      "historical_weight_overlap": "unknown",
+      "independent": false
+    },
+    {
+      "pool": "DFT-DA nine development-test parents",
+      "parent_ids": [
+        "ID24680",
+        "ID48714",
+        "ID63835",
+        "ID64174",
+        "ID66742",
+        "ID69027",
+        "ID74847",
+        "ID91104",
+        "ID92517"
+      ],
+      "use": [
+        "qualified_force_baseline",
+        "PVO"
+      ],
+      "independent": false,
+      "may_tune_steps": false
+    },
+    {
+      "pool": "ID63623 / dft-da:R0",
+      "use": [
+        "trained_generation_4100",
+        "reference_4101",
+        "feedback_4105",
+        "unresolved_reference_4106",
+        "rule_fixture_reference_4223",
+        "new_zero_QC_diagnostic"
+      ],
+      "independent": false
+    },
+    {
+      "pool": "historical W08 five-parent plan",
+      "status": "procedure_only_manifest_never_completed",
+      "superseded_by": "S0-S6",
+      "use": [
+        "planning"
+      ],
+      "independent": false,
+      "reason": "nine-parent pool subsequently exposed; cannot reactivate as sealed"
+    },
+    {
+      "pool": "V1b and any other proposed untouched pool",
+      "status": "no_verified_eligible_unexposed_pool",
+      "use": "unknown",
+      "independent": null,
+      "reason": "requires separate full exposure, mapping, license and cross-source overlap audit"
+    },
+    {
+      "pool": "ReactionQM/RGD1",
+      "status": "quarantine",
+      "use": [
+        "source_audits"
+      ],
+      "independent": false,
+      "reason": "not admitted by this task; no ReactionQMRecord bypass"
+    }
+  ],
+  "independent_confirmation_available": false
+}

@@ -1,0 +1,214 @@
+{
+  "schema": "xtbflow-narrowed-scope/v1",
+  "roadmap": 129,
+  "stages": [
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189
+  ],
+  "frozen_on": "2026-11-11",
+  "question": "Within the declared neutral closed-shell CHNO competing-event task, does geometry-side physical information add useful information while events remain editable, and can in-generation use improve independently connected channels over terminal treatment and strong adaptive serial at matched actual cost?",
+  "domain": "CHNO Diels-Alder reactant-endpoint development diagnostic; cross-source T1x studies are contextual evidence, not a pooled efficacy sample",
+  "task_target": "reactant-only proposal of mapped bond/electron changes and TS candidate geometry",
+  "main_outcome": "unique independently TS/mode/bidirectional-IRC/endpoint-connected channels per parent at a fixed vector budget",
+  "separate_endpoints": [
+    "catalogue_barrier_ranking",
+    "stationary_point_quality",
+    "transport_and_BE_response"
+  ],
+  "diagnostic": {
+    "parent_id": "ID63623",
+    "query_id": "dft-da:R0",
+    "sampling_seed": 0,
+    "checkpoint_seed": 0,
+    "proposal": 0,
+    "selection_rule": "Reuse smallest mapped atom pool then record ID among admitted training rows, as frozen for job 4100; no new outcome selection",
+    "role": "exposed_calibration_only",
+    "replacement_allowed": false,
+    "source_manifest_sha256": "6b84937d3cc75bea44faa7608d690618ce22f7ab75c51b8e25515f05a193cc90",
+    "reactant_packet_sha256": "19ff7955de150b9879508414d1ecac5e89b6b323ec0f23dd3d67cdf484e4cfcc",
+    "worker_packet_sha256": "3aa5566ea68752d67d777730899a8a5eaa21f108c7d06afe2751a86f38522799",
+    "input_sha256": "7ffaa060a33da76edae9870ca4be2c6a43c13865a5c71c464ba7ad244d30535c",
+    "charge": 0,
+    "multiplicity": 1,
+    "atoms": 16,
+    "coordinate_units": "angstrom",
+    "force_units": "hartree/angstrom",
+    "energy_units": "hartree",
+    "source_environment": "unknown",
+    "modeling_environment": {
+      "kind": "gas",
+      "periodic": false
+    },
+    "input_origin": "declared_reactant_endpoint",
+    "atom_mapping_evidence": "Audited mapped SMILES/XYZ correspondence; 64 reactant automorphisms; never inferred from element order"
+  },
+  "inference_visible": [
+    "query_id",
+    "atomic_numbers",
+    "mapped_atom_ids",
+    "reactant_BE",
+    "reactant_geometry",
+    "charge",
+    "multiplicity",
+    "independently_declared_environment",
+    "current_state",
+    "current_clocks",
+    "same-step legal physical observation"
+  ],
+  "forbidden": [
+    "product",
+    "reference_TS",
+    "barrier",
+    "event_label",
+    "eventual_decoded_event",
+    "future_commitment_time",
+    "sealed_labels",
+    "reference_selected_environment"
+  ],
+  "event_vocabulary": "symmetric integer bond/electron matrix decoded by frozen m0.decode_be, CHNO valence constraints; continuous state and observed endpoint event remain distinct",
+  "trained": {
+    "research_commit": "e84e330390a519bf4ac12048b297403c09717646",
+    "architecture": "ReactionFlowNet joint, EMA step 60000, scalar128/vector32/edge64, 6 layers, RBF32/reactantRBF16, r_cut10",
+    "dual_time": true,
+    "sigma_b": 1.0,
+    "sigma_x": 0.5,
+    "checkpoint_step": 60000,
+    "checkpoints": {
+      "joint": {
+        "bytes": 3901150,
+        "sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda",
+        "training_status_sha256": "db0747307a1b878d91121d4094e21a0ea774cc83df8e06652cd5bf8c40660c0e"
+      },
+      "event": {
+        "bytes": 2051220,
+        "sha256": "29ec75a0e66f1ffbb85d565591b8e4a7c31aa612175d3e3d7113e6c5a69637af",
+        "training_status_sha256": "9fd08082c92b239a418f2f5ccc233d1840b934117b7a51ff7dd7e1a10013a8f9"
+      },
+      "geometry": {
+        "bytes": 1923151,
+        "sha256": "82d98876f5ead70990d893ffb013f3cbad1a4b57ad1d102f48c447f4396118fc",
+        "training_status_sha256": "05b234ac6f5f7e0449568849ad6383b39f4c59094a31e3da085dd7f6d74c7341"
+      }
+    },
+    "training_source": "d20321facf804a7dea8341801935446c34ee5738",
+    "split_hash": "a0225e6cb773049d94593f0d93bf6c753db125deeda3ade8899da6922835367f",
+    "load_recipe": "Verify bytes/hash/status; torch.load(weights_only=True); ReactionFlowNet(**meta); load ema; eval; requires_grad_(False); input-only vocabulary shim from existing worker; no target cache import",
+    "decoder": "src/xtbflow/m0/sampler.py:decode_be",
+    "runtime_prototype_is_trained": false
+  },
+  "noise": {
+    "namespace": "w01-common-generation-20261107",
+    "group": "common",
+    "seed": 0
+  },
+  "reference": {
+    "execution_commit": "2772c7bedb9c674144d7dab702a29178eeee699a",
+    "audit_commit": "721a9f2075dcc9abba819ecb91c34e256b75c44a",
+    "protocol_sha256": "6dc84cd79c7223e6e05126d1211d70075f5401d9f5f9fc45c396ea77a2d25a39",
+    "new_execution_permitted": false
+  },
+  "strong_serial": {
+    "models": [
+      "event_s0",
+      "geometry_s0"
+    ],
+    "allowed_actions": [
+      "repropose",
+      "restart_geometry",
+      "backtrack",
+      "adaptive_budget_allocation"
+    ],
+    "same_input_and_total_cost_envelope": true,
+    "status": "not_yet_qualified_as_strong_adaptive_comparator"
+  },
+  "statistical_unit": "paired parent; family-aware uncertainty; seeds and trajectories are repeated observations",
+  "failure_denominator": "all attempted proposals, including invalid, out-of-catalogue, unresolved, timeouts and budget stops",
+  "caps": {
+    "S0": {
+      "training_steps": 0,
+      "xtb_energy_force_calls": 0,
+      "hvp_calls": 0,
+      "hessian_calls": 0,
+      "reference_primitives": 0,
+      "gpu_seconds": 0,
+      "max_input_bytes": 268435456,
+      "max_output_bytes": 16777216,
+      "retries": 0,
+      "concurrency": 1,
+      "model_forwards": 0,
+      "jvp_calls": 0,
+      "backward_calls": 0,
+      "wall_seconds": 180,
+      "cpu_seconds": 180
+    },
+    "S1_S2_frozen_diagnostic_total": {
+      "training_steps": 0,
+      "xtb_energy_force_calls": 0,
+      "hvp_calls": 0,
+      "hessian_calls": 0,
+      "reference_primitives": 0,
+      "gpu_seconds": 0,
+      "max_input_bytes": 268435456,
+      "max_output_bytes": 16777216,
+      "retries": 0,
+      "concurrency": 1,
+      "model_forwards": 192,
+      "jvp_calls": 12,
+      "backward_calls": 24,
+      "wall_seconds": 600,
+      "cpu_seconds": 600,
+      "max_saved_states": 3
+    },
+    "S3_S4_readonly_audit": {
+      "training_steps": 0,
+      "xtb_energy_force_calls": 0,
+      "hvp_calls": 0,
+      "hessian_calls": 0,
+      "reference_primitives": 0,
+      "gpu_seconds": 0,
+      "max_input_bytes": 268435456,
+      "max_output_bytes": 16777216,
+      "retries": 0,
+      "concurrency": 1,
+      "model_forwards": 0,
+      "jvp_calls": 0,
+      "backward_calls": 0,
+      "wall_seconds": 600,
+      "cpu_seconds": 600
+    }
+  },
+  "state_selection": {
+    "status": "intermediate_tensors_not_in_retained_geoinfo_rows",
+    "policy": "No substitute tensor. If reconstruction is needed, only the pinned packet/model/noise, event_lead2, 50 steps, save steps 10/25/40 before response measurement; not archived-state equivalence or new production search.",
+    "fd_scales_angstrom": [
+      0.0001,
+      0.0003,
+      0.001
+    ],
+    "perturbation": "fixed centered deterministic direction from sampling seed; diagnostic not a physical force",
+    "dtype": "float64 CPU for derivative stability; distinct from historical float32 GPU",
+    "max_parents": 1,
+    "max_seeds": 1
+  },
+  "gates": {
+    "S1": "analytic and retained-row audit ready; frozen reconstruction only after input/hash verification",
+    "S2": "fake/cached identity fixes ready; trained bridge requires decoded atom/BE map proof",
+    "S3": "fake failures and separate read-only projection ready",
+    "S4": "existing evidence audit; no new fitted probes",
+    "S5": "closed until S0-S3 hard qualification and exact-endpoint S4 signal or prespecified discriminating plan",
+    "S6": "writing/analysis only unless S5 mechanism and independent data qualified"
+  },
+  "stopping": [
+    "first cap reached",
+    "hash mismatch",
+    "nonfinite model output",
+    "illegal or untraceable input",
+    "missing raw artifact: partial evidence, no physical rerun"
+  ],
+  "independent_confirmation_available": false
+}

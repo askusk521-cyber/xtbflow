@@ -233,6 +233,21 @@
       "bytes": 4396
     },
     {
+      "path": "configs/research/narrowed_assets_20261111.json",
+      "sha256": "dd1eecc51dcc13c4f442dfe1d6c4ab3da344e968c588267b6d18b1d4de31da33",
+      "bytes": 23509
+    },
+    {
+      "path": "configs/research/narrowed_exposure_20261111.json",
+      "sha256": "f36435794d4ae562ef3e9f0676be2586079930dcdceed2fee7b67342adb50e66",
+      "bytes": 2928
+    },
+    {
+      "path": "configs/research/narrowed_scope_20261111.json",
+      "sha256": "d0643a2a166a81b3939a9c07516d3d75d68a60081ccaa1cd8a3170db46bcfe70",
+      "bytes": 8223
+    },
+    {
       "path": "configs/resources.yaml",
       "sha256": "c2213875ddbe39017669a235b036019525c52e02378687c529075f784a63e5fd",
       "bytes": 6301
@@ -761,6 +776,11 @@
       "path": "docs/model_design.md",
       "sha256": "bdf387e56ea531479b11068b397e98912004ae24c8e784fb37339106cdcb87ef",
       "bytes": 4233
+    },
+    {
+      "path": "docs/research/NARROWED_SCOPE_20261111.md",
+      "sha256": "4cae04547593e719085ebe8c9d58b4a8c32d204400689b9775219ee40e9040dd",
+      "bytes": 7947
     },
     {
       "path": "docs/sources.md",

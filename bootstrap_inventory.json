@@ -703,6 +703,16 @@
       "bytes": 3148
     },
     {
+      "path": "docs/evidence/narrowed_scope_20261111/failure_audit.json",
+      "sha256": "29fea1922f3223632d13fa19f8d67088b16274bad54ba0cf2c8af25fec952632",
+      "bytes": 48083
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/failure_audit.md",
+      "sha256": "79fb101d2b1ae1b747059215d8393885987019fc6407bbab97136fb28ae8e493",
+      "bytes": 5709
+    },
+    {
       "path": "docs/evidence/narrowed_scope_20261111/legacy_cache_audit.json",
       "sha256": "c7bacb72eb1e6b725368d478f2bc0bff6f99bb2337c4a44f6cee07a784368eba",
       "bytes": 4610
@@ -711,6 +721,16 @@
       "path": "docs/evidence/narrowed_scope_20261111/reference_audit_failed_0ef2cd7.json",
       "sha256": "9f1d318341587db44c9af91f4b8330e332cbc0f16ad03a440e4c94fcdab2fe87",
       "bytes": 44038
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/s3_reference_initial_software.json",
+      "sha256": "e39a3a5e3cbb21439aa2a75f566ef1336e4e3b895c8fadfa5edef2ef769b088d",
+      "bytes": 2433
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/s3_reference_software.json",
+      "sha256": "88614523d3daf6ac83b95f9b411792ca8b53e055ba274f07020d79870323f01a",
+      "bytes": 2056
     },
     {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",

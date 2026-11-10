@@ -493,6 +493,11 @@
       "bytes": 913
     },
     {
+      "path": "docs/architecture/pvo_snapshot_identity_s2.md",
+      "sha256": "0a8cdc329b35920b45216c4c17ce92f09a4309d057951911d9a737c1433d3795",
+      "bytes": 1724
+    },
+    {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
       "sha256": "9e4b2a7d650857036e072b00107e9dc3c68738484c7f3a446b9b50d22b20971f",
       "bytes": 4884
@@ -621,6 +626,11 @@
       "path": "docs/evidence/matched_guidance_integration_n2_20261110.json",
       "sha256": "f451ae67e04abacca64adf3aeb652665e29c14d540bf98900015e29b0809d688",
       "bytes": 2358
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/s2_pvo_software.json",
+      "sha256": "656e9bb9733b19d703cfaf50e7eb6b6f32c6243a1e784648a44a661825194b26",
+      "bytes": 2419
     },
     {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
@@ -1249,8 +1259,8 @@
     },
     {
       "path": "scripts/run_live_matched_pvo.py",
-      "sha256": "a1243e7a0aa329ed7f14ab6e449d6f2bd2ce414a0e2a370d2fbc5e4778ed4346",
-      "bytes": 22470
+      "sha256": "68db2814ee07f12334ed06222e35c5474d2678770f4468070262de47bbcc9cbf",
+      "bytes": 23079
     },
     {
       "path": "scripts/run_parallel_guidance_replay.py",
@@ -1791,6 +1801,11 @@
       "path": "tests/test_policy_adapter.py",
       "sha256": "fc068531603bad9b254ad663f9662f1631c7385258190de641aea116f394d4cb",
       "bytes": 3830
+    },
+    {
+      "path": "tests/test_pvo_snapshot_identity.py",
+      "sha256": "9367bff550bcb5dab8750ed69746912b022af6b4140713f3dc6ddf7794ba32ae",
+      "bytes": 2469
     },
     {
       "path": "tests/test_reaction_qm_coordinate_mapping.py",

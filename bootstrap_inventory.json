@@ -528,6 +528,11 @@
       "bytes": 1365
     },
     {
+      "path": "docs/architecture/failed_provider_accounting_s3.md",
+      "sha256": "a824283215311c9f29ef2460686d84b7b60355dfe7872a50bed465ae0c7f2d12",
+      "bytes": 1781
+    },
+    {
       "path": "docs/architecture/guidance_adapter_boundary_v0.1.md",
       "sha256": "2acf473e1ec5261ae0d0fdc5c818842b161928f59560f7e9c306a050bd8ca4c0",
       "bytes": 1429
@@ -1364,8 +1369,8 @@
     },
     {
       "path": "scripts/run_real_feedback_loop.py",
-      "sha256": "25c10992e969e59145696b6029bf97fbe9129ae60bed7b79a9565692f4e2a3d6",
-      "bytes": 25130
+      "sha256": "4dbc78e3eccdd2dd458fdb843e7d949160c9e738137d228f5358ae00a0f9c1d6",
+      "bytes": 25719
     },
     {
       "path": "scripts/run_spice_openff_pilot.py",
@@ -1644,8 +1649,8 @@
     },
     {
       "path": "src/xtbflow/sampling/adapters.py",
-      "sha256": "75d5807cda383221deda9db95acf1c1bf4145f7a1c9ef2b4bd3083c8561fa04a",
-      "bytes": 19453
+      "sha256": "cf9e2d60180061a4cb206a86a6374d1c0920fcaa21a7e711b28ae9602c788fdf",
+      "bytes": 22824
     },
     {
       "path": "src/xtbflow/sampling/guidance.py",
@@ -1659,8 +1664,8 @@
     },
     {
       "path": "src/xtbflow/sampling/live_physical.py",
-      "sha256": "de494860e0946cbf939efd456cf53e3b6fa41a6a26808084874fd71b7651c98a",
-      "bytes": 13815
+      "sha256": "aec10d62232bb50ec683db8c05c333e4492f5bf3865b9790c30c412b841b504e",
+      "bytes": 14853
     },
     {
       "path": "src/xtbflow/sampling/matched_integration.py",
@@ -1843,14 +1848,19 @@
       "bytes": 9907
     },
     {
+      "path": "tests/test_failed_provider_accounting.py",
+      "sha256": "4f8d637fd245762acfa2330f71cc764486e3e43be9f8742e903fe051d8fcfd1e",
+      "bytes": 6559
+    },
+    {
       "path": "tests/test_geometry_flow.py",
       "sha256": "3a1f64a2bb77180cd7416b52d120dd14bd899881f5fb7bc812636133edbe506d",
       "bytes": 4675
     },
     {
       "path": "tests/test_guidance_adapters.py",
-      "sha256": "173157079077f363bbf5661c6bfc61042635794168365786a02b32ccccf6d990",
-      "bytes": 6151
+      "sha256": "f57e9d31fe084f783af2f4394a729b920547f73edd4f4e907603ab82683de80e",
+      "bytes": 6212
     },
     {
       "path": "tests/test_handoff_freeze.py",

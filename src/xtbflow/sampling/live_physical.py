@@ -182,6 +182,14 @@ class LiveXTBPhysicalProvider:
         self.last_feedback: LiveXTBFeedback | None = None
         self.last_error: str | None = None
         self.attempted_calls = 0
+        self.last_cost = GuidanceCost.zero()
+        self.last_request_fingerprint: str | None = None
+        self.work_terminated = True
+
+    def partial_cost(self, request: ProviderRequest) -> GuidanceCost:
+        if request.request_fingerprint != self.last_request_fingerprint:
+            raise ValueError("partial cost belongs to a different request")
+        return self.last_cost
 
     def estimate(self, request: ProviderRequest) -> GuidanceCost:
         if len(request.snapshot.geometry) != len(self.molecular_template.symbols):
@@ -189,12 +197,16 @@ class LiveXTBPhysicalProvider:
         return GuidanceCost(calculator_calls=1, wall_seconds=self.config.estimated_wall_seconds)
 
     def invoke(self, request: ProviderRequest) -> GuidanceOutput:
+        system = self.molecular_template.with_coordinates(request.snapshot.geometry)
         self.attempted_calls += 1
+        self.last_request_fingerprint = request.request_fingerprint
+        self.last_cost = GuidanceCost(calculator_calls=1)
+        self.work_terminated = False
         self.last_feedback = None
         self.last_error = None
         started_wall = perf_counter()
         started_cpu = process_time()
-        system = self.molecular_template.with_coordinates(request.snapshot.geometry)
+        result = None
         try:
             result = self.backend.evaluate(system, operation="energy_forces")
             if (result.input_hash != system.input_hash
@@ -249,6 +261,15 @@ class LiveXTBPhysicalProvider:
         except Exception as exc:
             self.last_error = f"{type(exc).__name__}: {exc}"
             raise
+        finally:
+            # Native evaluate is synchronous. This records failed attempts even
+            # when no converged feedback/result could be constructed.
+            self.last_cost = GuidanceCost(
+                calculator_calls=1 if result is None else result.calculator_calls,
+                wall_seconds=perf_counter() - started_wall,
+                cpu_seconds=process_time() - started_cpu,
+            )
+            self.work_terminated = True
 
 
 class LiveXTBEventProvider:

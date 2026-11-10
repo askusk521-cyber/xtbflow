@@ -19,7 +19,7 @@ provided.
 from __future__ import annotations
 
 import argparse
-from dataclasses import replace
+from dataclasses import asdict, replace
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -172,7 +172,7 @@ def _run_arm(
             gpu_seconds=float(budget_cfg.get("max_gpu_hours", 0.0)) * 3600.0,
         )
     )
-    adapter_runner = AdapterRunner(guidance_budget)
+    adapter_runner = AdapterRunner(guidance_budget, journal_path=output_dir / f"provider_attempts_{arm}.json")
     config_obj = LiveXTBGuidanceConfig(**dict(config["guidance"]))
     provider = None
     physical_run = None
@@ -247,7 +247,8 @@ def _run_arm(
         ledger_id=f"real-feedback-{arm}-{snapshot.snapshot_id[:16]}",
     )
     result_status = "success" if feedback is not None else "failure"
-    calculator_calls = feedback.calculator_calls if feedback is not None else 0
+    physical_cost = physical_run.charged_cost if physical_run is not None else GuidanceCost.zero()
+    calculator_calls = physical_cost.calculator_calls
     error = None if feedback is not None else (blocked_reason or getattr(provider, "last_error", "physical provider did not produce feedback"))
     runtime_event = LedgerEvent(
         run_id=f"real-feedback-{snapshot.snapshot_id[:16]}",
@@ -260,11 +261,18 @@ def _run_arm(
         operation="energy_forces",
         status=result_status,
         calculator_calls=calculator_calls,
-        cpu_seconds=feedback.cpu_seconds if feedback is not None else 0.0,
+        cpu_seconds=physical_cost.cpu_seconds,
         gpu_seconds=0.0,
         error=error,
     )
-    runtime_ledger.append(runtime_event, persist_path=output_dir / f"ledger_{arm}.json")
+    try:
+        runtime_ledger.append(runtime_event, persist_path=output_dir / f"ledger_{arm}.json")
+    except Exception as exc:
+        _write_json(output_dir / f"settlement_failed_{arm}.json", {
+            "status": "settlement_failed", "error_type": type(exc).__name__,
+            "event": asdict(runtime_event), "adapter_ledger": adapter_runner.ledger.to_mapping(),
+        })
+        raise  # Preserve work; no certification after an accounting failure.
     certification = _run_certification(
         arm=arm,
         config=config,
@@ -287,6 +295,7 @@ def _run_arm(
         "physical_provider_status": None if physical_run is None else physical_run.status.value,
         "physical_provider_failure_stage": None if physical_run is None else physical_run.failure_stage,
         "physical_provider_error": None if physical_run is None else physical_run.error,
+        "physical_cost_basis": None if physical_run is None else physical_run.ledger_entry.cost_basis,
         "adapter_ledger": adapter_runner.ledger.to_mapping(),
         "merge": merge_mapping,
         "runtime_ledger": runtime_ledger.summary(),

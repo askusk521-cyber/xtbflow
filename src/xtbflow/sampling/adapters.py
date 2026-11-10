@@ -12,6 +12,9 @@ from dataclasses import dataclass, field, replace
 from enum import Enum
 import hashlib
 import json
+import os
+from pathlib import Path
+import tempfile
 import re
 from threading import RLock
 from typing import Any, Mapping, Protocol
@@ -58,6 +61,7 @@ class AdapterStatus(str, Enum):
     INVALID = "invalid"
     BUDGET_EXHAUSTED = "budget_exhausted"
     TIMEOUT = "timeout"
+    CANCELLED = "cancelled"
     FAILED = "failed"
     DUPLICATE = "duplicate"
 
@@ -156,6 +160,7 @@ class GuidanceBudget:
         self._reserved = GuidanceCost.zero()
         self._charged = GuidanceCost.zero()
         self._lock = RLock()
+        self.halted = False
 
     @property
     def reserved(self) -> GuidanceCost:
@@ -180,6 +185,8 @@ class GuidanceBudget:
 
     def reserve(self, estimate: GuidanceCost) -> BudgetReservation:
         with self._lock:
+            if self.halted:
+                raise BudgetExceeded("budget halted after overrun or unmeasured work")
             candidate = self._add(self._add(self._reserved, self._charged), estimate)
             if not self._within(candidate, self.limit):
                 raise BudgetExceeded("estimated provider cost exceeds remaining budget")
@@ -195,7 +202,7 @@ class GuidanceBudget:
             remaining_reserved = self._sub(self._reserved, reservation.reserved)
             candidate = self._add(self._add(remaining_reserved, self._charged), measured)
             if not self._within(candidate, self.limit):
-                raise BudgetExceeded("measured provider cost exceeds hard budget")
+                self.halted = True  # Actual overrun is charged in full, never clipped.
             self._reserved = remaining_reserved
             self._charged = self._add(self._charged, measured)
             object.__setattr__(reservation, "_closed", True)
@@ -243,8 +250,10 @@ class AdapterLedgerEntry:
     failure_stage: str | None
     error: str | None
     estimated_cost: GuidanceCost
-    measured_cost: GuidanceCost
+    measured_cost: GuidanceCost | None
     charged_cost: GuidanceCost
+    cost_basis: str = "measured"
+    backend_termination: str = "returned"
 
     def to_mapping(self) -> dict[str, Any]:
         return {
@@ -257,8 +266,10 @@ class AdapterLedgerEntry:
             "failure_stage": self.failure_stage,
             "error": self.error,
             "estimated_cost": self.estimated_cost.to_mapping(),
-            "measured_cost": self.measured_cost.to_mapping(),
+            "measured_cost": None if self.measured_cost is None else self.measured_cost.to_mapping(),
             "charged_cost": self.charged_cost.to_mapping(),
+            "cost_basis": self.cost_basis,
+            "backend_termination": self.backend_termination,
         }
 
 
@@ -281,7 +292,7 @@ class AdapterRun:
     failure_stage: str | None
     error: str | None
     estimated_cost: GuidanceCost
-    measured_cost: GuidanceCost
+    measured_cost: GuidanceCost | None
     charged_cost: GuidanceCost
     ledger_entry: AdapterLedgerEntry
 
@@ -289,69 +300,111 @@ class AdapterRun:
 class AdapterRunner:
     """Execute a provider only after a successful budget reservation."""
 
-    def __init__(self, budget: GuidanceBudget) -> None:
+    def __init__(self, budget: GuidanceBudget, *, journal_path: Path | None = None) -> None:
         self.budget = budget
         self.ledger = AdapterLedger()
         self._seen: set[str] = set()
+        self.journal_path = journal_path
+        self._attempts: dict[str, dict] = {}
+        if journal_path is not None and journal_path.exists():
+            if budget.charged != GuidanceCost.zero() or budget.reserved != GuidanceCost.zero():
+                raise ValueError("journal recovery requires a fresh budget")
+            self._attempts = json.loads(journal_path.read_text())["attempts"]
+            for key, row in self._attempts.items():
+                self._seen.add(key)
+                cost = GuidanceCost(**row["charged_cost"])
+                budget._charged = budget._add(budget._charged, cost)
+                if row["status"] == "started" or row.get("backend_termination") == "unknown":
+                    budget.halted = True
+            budget.halted |= not budget._within(budget.charged, budget.limit)
+
+    def _persist(self) -> None:
+        if self.journal_path is None:
+            return
+        self.journal_path.parent.mkdir(parents=True, exist_ok=True)
+        fd, name = tempfile.mkstemp(dir=self.journal_path.parent, prefix='.attempt-')
+        try:
+            with os.fdopen(fd, 'w') as stream:
+                json.dump(dict(schema='xtbflow-provider-attempts/v1', attempts=self._attempts),
+                          stream, sort_keys=True, allow_nan=False)
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.replace(name, self.journal_path)
+            directory = os.open(self.journal_path.parent, os.O_RDONLY)
+            try:
+                os.fsync(directory)
+            finally:
+                os.close(directory)
+        finally:
+            if os.path.exists(name):
+                os.unlink(name)
 
     def run(self, request: ProviderRequest, provider: GuidanceProvider) -> AdapterRun:
         self._validate_provider_identity(request, provider)
+        zero = GuidanceCost.zero()
         if request.request_fingerprint in self._seen:
-            return self._finish(request, provider, AdapterStatus.DUPLICATE, None, "duplicate_action", None, GuidanceCost.zero(), GuidanceCost.zero(), GuidanceCost.zero())
-        self._seen.add(request.request_fingerprint)
+            return self._finish(request, provider, AdapterStatus.DUPLICATE, None, "duplicate_action", None, zero, zero, zero)
         try:
             estimate = provider.estimate(request)
             if not isinstance(estimate, GuidanceCost):
                 raise ValueError("provider estimate must be GuidanceCost")
             reservation = self.budget.reserve(estimate)
         except BudgetExceeded as exc:
-            return self._finish(request, provider, AdapterStatus.BUDGET_EXHAUSTED, None, "budget_reservation", str(exc), GuidanceCost.zero(), GuidanceCost.zero(), GuidanceCost.zero())
+            return self._finish(request, provider, AdapterStatus.BUDGET_EXHAUSTED, None, "budget_reservation", str(exc), zero, zero, zero)
         except Exception as exc:
-            return self._finish(request, provider, AdapterStatus.INVALID, None, "provider_estimate", f"{type(exc).__name__}: {exc}", GuidanceCost.zero(), GuidanceCost.zero(), GuidanceCost.zero())
-
-        reconciled = False
-        measured = GuidanceCost.zero()
-        charged = GuidanceCost.zero()
+            return self._finish(request, provider, AdapterStatus.INVALID, None, "provider_estimate", f"{type(exc).__name__}: {exc}", zero, zero, zero)
+        self._seen.add(request.request_fingerprint)
+        self._attempts[request.request_fingerprint] = dict(status='started',
+            measured_cost=None, charged_cost=estimate.to_mapping(), cost_basis='reservation_pending',
+            backend_termination='unknown')
+        try:
+            self._persist()  # Cannot enter backend work before durable started record.
+        except Exception:
+            reservation.release()
+            raise
+        measured = None
+        output = None
+        status, stage, error = AdapterStatus.ACCEPTED, None, None
+        basis, termination = 'measured', 'returned'
         try:
             output = provider.invoke(request)
             if not isinstance(output, GuidanceOutput):
                 raise ValueError("provider must return GuidanceOutput")
+            measured = output.measured_cost  # Preserve even malformed-identity output cost.
             if output.lane is not request.lane:
                 raise ValueError("provider output lane does not match request lane")
             if output.input_fingerprint != request.snapshot.snapshot_id:
                 raise ValueError("provider output input fingerprint does not match snapshot")
-            measured = output.measured_cost
-            charged = reservation.reconcile(measured)
-            reconciled = True
-            provenance = {
-                "adapter": {
-                    "request_fingerprint": request.request_fingerprint,
-                    "provider_revision": request.provider_revision,
-                    "config_fingerprint": request.config_fingerprint,
-                    "protocol_fingerprint": request.protocol_fingerprint,
-                },
-                "provider": output.to_mapping()["provenance"],
-            }
-            output = replace(output, estimated_cost=estimate, measured_cost=charged, provenance=provenance, output_fingerprint="")
-            return self._finish(request, provider, AdapterStatus.ACCEPTED, output, None, None, estimate, measured, charged)
-        except TimeoutError as exc:
-            if not reconciled:
-                measured = GuidanceCost.zero()
-                charged = reservation.reconcile(measured)
-            return self._finish(request, provider, AdapterStatus.TIMEOUT, None, "provider_timeout", str(exc), estimate, measured, charged)
-        except BudgetExceeded as exc:
-            charged = reservation.reconcile(reservation.reserved)
-            return self._finish(request, provider, AdapterStatus.BUDGET_EXHAUSTED, None, "budget_reconcile", str(exc), estimate, reservation.reserved, charged)
-        except ValueError as exc:
-            if not reconciled:
-                measured = GuidanceCost.zero()
-                charged = reservation.reconcile(measured)
-            return self._finish(request, provider, AdapterStatus.INVALID, None, "provider_output", str(exc), estimate, measured, charged)
-        except Exception as exc:
-            if not reconciled:
-                measured = GuidanceCost.zero()
-                charged = reservation.reconcile(measured)
-            return self._finish(request, provider, AdapterStatus.FAILED, None, "provider_execution", f"{type(exc).__name__}: {exc}", estimate, measured, charged)
+        except BaseException as exc:
+            status = AdapterStatus.CANCELLED if isinstance(exc, (KeyboardInterrupt, SystemExit)) else AdapterStatus.TIMEOUT if isinstance(exc, TimeoutError) else AdapterStatus.INVALID if isinstance(exc, ValueError) else AdapterStatus.FAILED
+            stage = 'provider_cancelled' if status is AdapterStatus.CANCELLED else 'provider_timeout' if status is AdapterStatus.TIMEOUT else 'provider_output' if status is AdapterStatus.INVALID else 'provider_execution'
+            error = f"{type(exc).__name__}: {exc}"
+            output = None
+            if measured is None and callable(getattr(provider, 'partial_cost', None)):
+                try:
+                    partial = provider.partial_cost(request)
+                    if not isinstance(partial, GuidanceCost):
+                        raise ValueError('invalid partial cost')
+                    measured = partial
+                    basis = 'measured_partial'
+                    termination = 'returned' if getattr(provider, 'work_terminated', False) else 'unknown'
+                except Exception:
+                    measured = None
+            if measured is None:
+                basis, termination = 'conservative_reservation_not_measurement', 'unknown'
+        # Missing measurement/termination freezes shared budget for all runners.
+        # A timed-out external worker must be stopped/reconciled before resuming.
+        if measured is None or termination == 'unknown':
+            self.budget.halted = True
+        charged = reservation.reconcile(measured if measured is not None else estimate)
+        if not self.budget._within(self.budget.charged, self.budget.limit):
+            status, stage, error, output = AdapterStatus.BUDGET_EXHAUSTED, 'budget_reconcile', 'actual provider cost exceeds hard budget', None
+        if output is not None:
+            provenance = {'adapter': {'request_fingerprint': request.request_fingerprint,
+                'provider_revision': request.provider_revision, 'config_fingerprint': request.config_fingerprint,
+                'protocol_fingerprint': request.protocol_fingerprint}, 'provider': output.to_mapping()['provenance']}
+            output = replace(output, estimated_cost=estimate, measured_cost=charged, provenance=provenance, output_fingerprint='')
+        return self._finish(request, provider, status, output, stage, error, estimate, measured, charged, basis, termination)
 
     @staticmethod
     def _validate_provider_identity(request: ProviderRequest, provider: GuidanceProvider) -> None:
@@ -376,8 +429,10 @@ class AdapterRunner:
         failure_stage: str | None,
         error: str | None,
         estimated: GuidanceCost,
-        measured: GuidanceCost,
+        measured: GuidanceCost | None,
         charged: GuidanceCost,
+        cost_basis: str = "measured",
+        backend_termination: str = "returned",
     ) -> AdapterRun:
         entry = AdapterLedgerEntry(
             request_fingerprint=request.request_fingerprint,
@@ -391,7 +446,12 @@ class AdapterRunner:
             estimated_cost=estimated,
             measured_cost=measured,
             charged_cost=charged,
+            cost_basis=cost_basis,
+            backend_termination=backend_termination,
         )
+        if status is not AdapterStatus.DUPLICATE:
+            self._attempts[request.request_fingerprint] = entry.to_mapping()
+            self._persist()
         self.ledger = self.ledger.append(entry)
         return AdapterRun(status, output, request.request_fingerprint, failure_stage, error, estimated, measured, charged, entry)
 

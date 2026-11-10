@@ -126,7 +126,9 @@ def test_timeout_is_mapped_to_explicit_failure_stage_and_reconciled():
     run = AdapterRunner(budget).run(request(snapshot, GuidanceLane.GEOMETRY, provider), provider)
     assert run.status is AdapterStatus.TIMEOUT
     assert run.failure_stage == "provider_timeout"
-    assert run.charged_cost == GuidanceCost.zero()
+    assert run.charged_cost.calculator_calls == 1
+    assert run.measured_cost is None
+    assert budget.halted
     assert budget.reserved == GuidanceCost.zero()
 
 

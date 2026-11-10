@@ -703,6 +703,16 @@
       "bytes": 3148
     },
     {
+      "path": "docs/evidence/narrowed_scope_20261111/legacy_cache_audit.json",
+      "sha256": "c7bacb72eb1e6b725368d478f2bc0bff6f99bb2337c4a44f6cee07a784368eba",
+      "bytes": 4610
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/reference_audit_failed_0ef2cd7.json",
+      "sha256": "9f1d318341587db44c9af91f4b8330e332cbc0f16ad03a440e4c94fcdab2fe87",
+      "bytes": 44038
+    },
+    {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
       "sha256": "cbdd9b63b5cad70fbadf0ae8060e00a0aff4e439a10864bbbd7aec87ce8b9bbd",
       "bytes": 7458

@@ -169,6 +169,41 @@ class CallMeter:
         write_json(self.work / "partial.json", evidence)
 
 
+def stage_diagnostics(raw: dict) -> dict:
+    """Versioned read-only projection; never changes the physical verdict.
+
+    Status strings are observed protocol facts. Missing stages stay unknown;
+    a later graph summary cannot erase an earlier explicit numerical failure.
+    """
+    ts, irc, ends, graph = (raw.get('ts', {}), raw.get('irc', {}),
+                            raw.get('endpoints', []), raw.get('identity', {}))
+    stages = [dict(stage='ts', status=ts.get('status'), reason=ts.get('reason')),
+              dict(stage='irc', status=irc.get('status'), reason=irc.get('reason'))]
+    stages.extend(dict(stage=f'endpoint_{i}', status=e.get('status'), reason=e.get('reason'))
+                  for i, e in enumerate(ends))
+    stages.append(dict(stage='graph_identity', status=graph.get('status'), reason=graph.get('reason')))
+    terminal, status, reason = 'unknown', None, None
+    for row in stages:
+        if row['status'] is None:
+            continue
+        terminal, status, reason = row['stage'], row['status'], row['reason'] or row['status']
+        expected = 'TS_OPTFREQ_PASS' if terminal == 'ts' else 'IRC_COMPLETE' if terminal == 'irc' else 'MINIMUM_PASS'
+        if terminal == 'graph_identity' or status != expected:
+            break
+    if terminal == 'ts':
+        if any(term in status for term in ('MODE', 'FREQUENCY', 'SADDLE')):
+            terminal = 'ts_modes'
+        elif 'GRADIENT' in status:
+            terminal = 'ts_gradient'
+        elif 'OPT' in status and status != 'TS_OPTFREQ_PASS':
+            terminal = 'ts_optimization'
+    if raw.get('failure') and (terminal == 'unknown' or status in {'TS_OPTFREQ_PASS', 'IRC_COMPLETE', 'MINIMUM_PASS'}):
+        terminal, reason = 'execution', raw['failure']
+    return dict(projection_schema='xtbflow-stage-projection/v2', terminal_stage=terminal,
+                terminal_stage_status=status, stage_reason=reason, stages=stages,
+                execution_failure=raw.get('failure'), raw_evidence_sha256=identity(raw))
+
+
 def feedback(raw: dict) -> dict:
     """Layered observed evidence; neither predictions nor TS distances define endpoints."""
     ts, irc, ends = raw.get("ts", {}), raw.get("irc", {}), raw.get("endpoints", [])
@@ -193,13 +228,15 @@ def feedback(raw: dict) -> dict:
         status = "reactant_mismatch"
     else:
         status = "attempted_unresolved"
+    diagnostics = stage_diagnostics(raw)
     return dict(evidence_status=status, stationary_point=stationary,
                 first_order_saddle=saddle, bidirectional_minima=connected,
                 planned_event_realized=matched if connected and actual and ident.get("predicted_event_id") is not None else None,
                 planned_event_id=ident.get("predicted_event_id"), observed_event_id=actual,
                 endpoint_be=ident.get("endpoint_be"), observed_product_be=ident.get("product_be"),
                 raw_status=raw.get("strict_status"),
-                reason=ident.get("reason", raw.get("failure", ident.get("status"))))
+                reason=ident.get("reason") or raw.get("failure") or diagnostics['stage_reason'],
+                **diagnostics)
 
 
 def _minimum_passes(endpoint: dict, size: int) -> bool:

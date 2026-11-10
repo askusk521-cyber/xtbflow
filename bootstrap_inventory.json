@@ -538,6 +538,11 @@
       "bytes": 6477
     },
     {
+      "path": "docs/architecture/stage_projection_s3.md",
+      "sha256": "e6f8ce6b1477b0856d159ec04c608a14c8852df72fd33d6d0b8f487cf6969474",
+      "bytes": 1237
+    },
+    {
       "path": "docs/architecture/task_manifest.md",
       "sha256": "1635b754eeb8824e919585d469705e316771856720b4972a8488c306c9723a9a",
       "bytes": 3517
@@ -1173,6 +1178,11 @@
       "bytes": 9788
     },
     {
+      "path": "scripts/audit_narrowed_reference.py",
+      "sha256": "28df698aadd21c75349d29b73769ae09ab052512b9665b56da355f027ad0b480",
+      "bytes": 8960
+    },
+    {
       "path": "scripts/audit_origin_seed_readiness.py",
       "sha256": "1a978fb9b33fe6fca4e8069ef81547dd9e3a69158092c03a76f8b5a4de15e5c1",
       "bytes": 2056
@@ -1714,8 +1724,8 @@
     },
     {
       "path": "src/xtbflow/validation/certification.py",
-      "sha256": "7b19ccd0b9e60ab65bd2f306c4ddc77457409b4fa776ef9f827772c2d13838c8",
-      "bytes": 29898
+      "sha256": "7d7771781be45726a16a3d2dd92c97e1e5624ebab3bd756d7c35f2601b26c7f0",
+      "bytes": 31994
     },
     {
       "path": "src/xtbflow/validation/connectivity.py",
@@ -1931,6 +1941,11 @@
       "path": "tests/test_saddle_guidance.py",
       "sha256": "80376ebff131aeae4c1c36cdaf0c66c9031863ca3f98895d97dc9f17710e5059",
       "bytes": 4324
+    },
+    {
+      "path": "tests/test_stage_projection.py",
+      "sha256": "7ff30acdf263aab451d14a8882b4ca98cab5559d556132ee0fa1f9b33aaf05d4",
+      "bytes": 1865
     },
     {
       "path": "tests/test_task_manifest.py",

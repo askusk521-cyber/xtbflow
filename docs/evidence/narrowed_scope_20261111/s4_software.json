@@ -1,0 +1,65 @@
+{
+  "caps": {
+    "cpu_threads": 1,
+    "gpu_devices": 0,
+    "max_log_bytes": 16777216,
+    "wall_seconds_per_command": 600
+  },
+  "claim_limits": [
+    "Software validation only; signal audit CPU/wall has separate measured receipt."
+  ],
+  "host": "node2",
+  "logs": {
+    "bootstrap.log": {
+      "bytes": 151,
+      "sha256": "ceda8ad8775fe7f78fec529b5a7402b9fcb4350decfcfd29e489d54aaf547db5",
+      "summary": [
+        "PASS: 344 files match the bootstrap inventory.",
+        "This verifies files only; no training, quantum chemistry, remote upload or model validation is implied."
+      ]
+    },
+    "pytest.log": {
+      "bytes": 1006,
+      "sha256": "0a101cacad27b03291541389657ffb02a39e24305cf942057166865cdc9c8395",
+      "summary": [
+        "  Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)",
+        "    finite_difference_force = -float((e_plus - e_minus) / (2 * step))",
+        "",
+        "-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html",
+        "274 passed, 1 warning, 68 subtests passed in 11.35s"
+      ]
+    },
+    "signal.log": {
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a",
+      "summary": [
+        "completed"
+      ]
+    },
+    "unittest.log": {
+      "bytes": 155,
+      "sha256": "54da6d24727baa49bcf6741127b3e76c8bfc14b6588ec0d86497326669255d89",
+      "summary": [
+        "........................................................",
+        "----------------------------------------------------------------------",
+        "Ran 56 tests in 0.414s",
+        "",
+        "OK"
+      ]
+    }
+  },
+  "measured_cpu_seconds": null,
+  "new_calculator_calls": 0,
+  "packages": {
+    "matplotlib": "3.9.1",
+    "numpy": "2.2.6",
+    "pytest": "9.1.1",
+    "scipy": "1.15.3",
+    "torch": "2.10.0+cu128"
+  },
+  "python": "3.10.19",
+  "schema": "xtbflow-narrowed-software-validation/v1",
+  "source_clean": true,
+  "source_commit": "d18de80bd6f22c3649a7772ee8505a0c77f16ac2",
+  "training_steps": 0
+}

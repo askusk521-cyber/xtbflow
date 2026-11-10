@@ -543,6 +543,11 @@
       "bytes": 1929
     },
     {
+      "path": "docs/evidence/narrowed_scope_20261111/numerical_failed_9a5599c.json",
+      "sha256": "a3a601406cd23138c9fd79eae1763c99daf0d63b4fa58c645cb0d8309b227069",
+      "bytes": 7716
+    },
+    {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
       "sha256": "cbdd9b63b5cad70fbadf0ae8060e00a0aff4e439a10864bbbd7aec87ce8b9bbd",
       "bytes": 7458

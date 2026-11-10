@@ -99,5 +99,16 @@
   },
   "reference_audit_commit": "99c82f2c137eac464a5788e13cdf826273170fdc",
   "human_merge_required": true,
-  "automatic_merge": false
+  "automatic_merge": false,
+  "gate_interpretation": {
+    "S5_blockers": [
+      "No usable signal for exact declared endpoint and no separately registered discriminating pilot",
+      "Complete newly intervened trained chemical handoff not yet qualified"
+    ],
+    "S6_efficacy_confirmation_gaps": [
+      "Strong adaptive serial comparison",
+      "Verified eligible unexposed data"
+    ],
+    "note": "S6 gaps are not additional S5 calibration launch conditions; exposed development input remains allowed within the S0 diagnostic scope."
+  }
 }

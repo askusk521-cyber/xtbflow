@@ -130,12 +130,15 @@ reaction-family independence; no reaction-family extrapolation is claimed.
 
 ## Gate, recommendation and review boundary
 
-S4 supplies no qualified exact-endpoint incremental signal, validated conditional
-shuffle or new discriminating pilot. Full live trained chemical intervention,
-independently prepared/provenance-qualified inputs and a strong adaptive serial
-comparator remain open. S5 is therefore **not_launched_gate_not_met**, with zero
-new attempts/cost. S6 completion here means bounded synthesis, not independent
-confirmation or a finished efficacy paper.
+S4 supplies no qualified exact-endpoint incremental signal or registered
+discriminating pilot. Full newly intervened trained chemical handoff also remains
+unqualified. These are the S5 blockers; S5 is **not_launched_gate_not_met**, with
+zero new attempts/cost. A strong adaptive serial comparator and genuinely
+unexposed data are later S6 efficacy/confirmation requirements, not extra S5
+calibration launch conditions. The exposed reactant-endpoint input is allowed
+for the declared development diagnostic; it simply cannot establish blind
+discovery/generalization. S6 completion here means bounded synthesis, not
+independent confirmation or a finished efficacy paper.
 
 Stop promotion of the current hypothesis at this evidence boundary. A future
 continuation must first document a specific remaining causal question and a

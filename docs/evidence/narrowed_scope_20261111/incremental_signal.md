@@ -82,8 +82,11 @@ bridge is cached calibration; a newly intervened trained state has not been
 traced to a decoded final event and independent endpoints. S3's software fixes
 and old-artifact audit improve traceability, not treatment outcomes. There is
 no new exact-endpoint signal or registered discriminating causal pilot here.
-S5's input/provenance, full trained chemical chain and comparator conditions
-remain unmet. Information alone would not satisfy its causal gate anyway.
+S5 lacks an exact-endpoint usable signal or a registered discriminating plan,
+and the complete newly intervened trained chemical chain remains unqualified.
+Strong adaptive serial and genuinely unexposed confirmation data are separate
+later S6 efficacy requirements, not additional prerequisites invented for a
+one-parent S5 calibration pilot. Information alone would not establish efficacy.
 
 No strict-channel effect interval is estimable from this audit. The logical
 probability-difference bounds [-1,+1] are **not a confidence interval**. S0's

@@ -19,6 +19,11 @@ from xtbflow.governance.generation_bridge import certification_candidate, legacy
 from xtbflow.validation.certification import CertificationCandidate, feedback, identity
 
 
+HISTORICAL_REPORT_COMMIT = '5f5304bcded99f2711ce21a090392cc2d6db8973'
+HISTORICAL_REPORT_SHA256 = 'f3cc2274aa5b3e1d47a8bb0beb4c32f04dbf99948f5b4f4cb6455b773aba8ff0'
+HISTORICAL_REPORT_PATH = 'docs/evidence/narrowed_scope_20261111/anchors/live_feedback_generation_reference_terminal_20261108.json'
+
+
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -30,6 +35,28 @@ def generation_protocol(root: Path) -> dict:
     if digest(plan) != report['certification_plan_sha256']:
         raise ValueError('generation plan hash mismatch')
     return json.loads(plan.read_text())['generation_protocol']
+
+
+def historical_anchors(root: Path) -> dict[tuple[str, str], str]:
+    """Anchor to the immutable published report, not a result's own assertions."""
+    path = root / HISTORICAL_REPORT_PATH
+    if digest(path) != HISTORICAL_REPORT_SHA256:
+        raise ValueError('published terminal report byte hash mismatch')
+    stages = json.loads(path.read_text())['stages']
+    pairs = [('trained_initial', row) for row in stages['4101_original_reference']['candidate_outcomes']]
+    pairs.append(('trained_feedback', stages['4106_new_candidate_reference']['candidate_outcome']))
+    return {(label, row['candidate_id']): row['result_content_sha256'] for label, row in pairs}
+
+
+def verify_result_identity(record: dict, label: str, anchors: dict) -> dict:
+    actual = identity({k: v for k, v in record.items() if k != 'content_sha256'})
+    if record.get('content_sha256') != actual:
+        raise ValueError('result canonical content identity mismatch')
+    expected = anchors.get((label, record['candidate_id']))
+    if label in {'trained_initial', 'trained_feedback'} and (expected is None or expected != actual):
+        raise ValueError('result differs from published historical content identity')
+    return dict(result_content_sha256=actual, published_result_content_sha256=expected,
+                published_anchor_verified=None if expected is None else True)
 
 
 def geometry_summary(raw: dict) -> dict:
@@ -87,6 +114,13 @@ def main() -> int:
         report['assets'].append(dict(asset=name, bytes=path.stat().st_size, sha256=value))
         return value
     try:
+        if sorted(label for label, _ in args.service) != ['live_rule', 'trained_feedback', 'trained_initial']:
+            raise ValueError('exactly the three frozen service groups are required')
+        anchors = historical_anchors(root)
+        checked(root/HISTORICAL_REPORT_PATH, 'published_terminal_anchor', HISTORICAL_REPORT_SHA256)
+        report['historical_anchor'] = dict(commit=HISTORICAL_REPORT_COMMIT, sha256=HISTORICAL_REPORT_SHA256,
+                                          original_path='docs/evidence/live_feedback_generation_reference_terminal_20261108.json')
+        seen = set()
         requests = {}
         for label, folder in args.service:
             paths = sorted(Path(folder).glob('*/attempt-*/result.json'))
@@ -95,6 +129,11 @@ def main() -> int:
             for path in paths:
                 record_hash = checked(path, f'{label}/{path.parent.parent.name}/{path.parent.name}/result.json')
                 record = json.loads(path.read_text())
+                identity_check = verify_result_identity(record, label, anchors)
+                key = (label, record['candidate_id'])
+                if key in seen:
+                    raise ValueError('duplicate frozen candidate result')
+                seen.add(key)
                 raw = record['evidence']
                 request_path = path.parent/'request.json'
                 checked(request_path, f'{label}/{record["candidate_id"]}/request.json', record['request_sha256'])
@@ -114,7 +153,9 @@ def main() -> int:
                     original_reason=record['feedback'].get('reason'),
                     projection={k:current[k] for k in ('projection_schema','terminal_stage','terminal_stage_status','stage_reason','raw_evidence_sha256','stages')},
                     geometry=geometry_summary(raw), historical_resources=record['resources'],
-                    original_unchanged=digest(path)==record_hash))
+                    unchanged_during_audit=digest(path)==record_hash, **identity_check))
+        if not set(anchors).issubset(seen):
+            raise ValueError('missing published trained result')
         gen = args.generation_root
         for rel in ('raw/reactants.json','raw/generation.json','raw/worker-packet.json','raw/calls.json',
                     'raw/certification-plan.json','report.json'):

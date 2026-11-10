@@ -18,3 +18,20 @@ audit or test command, 256 MiB read/16 MiB new audit data, one concurrent comman
 zero retries, zero training/model generation/new calculator calls. Existing
 500/402 reference primitives and unresolved trained-attempt costs remain intact.
 Software tests use fake evidence and cannot establish chemical efficacy.
+
+## Review follow-up: published trained result identities
+
+The initial audit's `original_unchanged` meant unchanged during that read; it
+did not independently bind all three trained results to their earlier public
+identities. The new audit recomputes canonical identity with only
+`content_sha256` excluded, checks the record's own identity, then compares the
+three trained candidates to the immutable terminal report at `5f5304b`.
+The exact public report is retained byte-for-byte in `anchors/`, with its byte
+SHA-256 pinned in the auditor. Missing/duplicate/unexpected trained candidates
+fail closed. A same-verdict result whose cost or evidence changed is rejected
+even if all its internal hashes were recomputed consistently.
+
+The receipt separates `unchanged_during_audit` from
+`published_anchor_verified`; the latter is required for the three trained
+records. Rule-chain cache provenance remains the separate exact-2772c7b audit.
+No old audit, original result, scientific verdict or consumed cost is rewritten.

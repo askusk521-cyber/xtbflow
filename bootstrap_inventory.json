@@ -539,8 +539,8 @@
     },
     {
       "path": "docs/architecture/stage_projection_s3.md",
-      "sha256": "e6f8ce6b1477b0856d159ec04c608a14c8852df72fd33d6d0b8f487cf6969474",
-      "bytes": 1237
+      "sha256": "1dc882dd79039a13f98a12e167a2251f9cafc6d5375b9db49fbfecca3f54697c",
+      "bytes": 2253
     },
     {
       "path": "docs/architecture/task_manifest.md",
@@ -701,6 +701,11 @@
       "path": "docs/evidence/live_reference_preflight_exact_2772c7b_20261110.json",
       "sha256": "ddd9de04298729658513ed6ae1c5cdf7926730ae1a0dba74f33eeca85a85a9ed",
       "bytes": 3148
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/anchors/live_feedback_generation_reference_terminal_20261108.json",
+      "sha256": "f3cc2274aa5b3e1d47a8bb0beb4c32f04dbf99948f5b4f4cb6455b773aba8ff0",
+      "bytes": 4805
     },
     {
       "path": "docs/evidence/narrowed_scope_20261111/failure_audit.json",
@@ -1209,8 +1214,8 @@
     },
     {
       "path": "scripts/audit_narrowed_reference.py",
-      "sha256": "6ecfe61fda1723e93559773c7a93a0ef6675bde1963ebcd9353169d1a1bb5ccb",
-      "bytes": 9470
+      "sha256": "f89bfa1d3f3dca4a4e97ba8adf205f0abf4003f4ce73f54f96a3ea765796aad3",
+      "bytes": 12129
     },
     {
       "path": "scripts/audit_origin_seed_readiness.py",
@@ -1954,8 +1959,8 @@
     },
     {
       "path": "tests/test_reference_audit_protocol.py",
-      "sha256": "85f6fd2bd8f271e13938ad5e326d493947d93ddb53fb9180cf7f13f96bd94556",
-      "bytes": 874
+      "sha256": "80d139843cdd7ad437f2cb3bd0b56bbcec308ebca10c1bb7287a22cad15a93cb",
+      "bytes": 2409
     },
     {
       "path": "tests/test_research_replay.py",

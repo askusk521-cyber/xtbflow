@@ -493,6 +493,11 @@
       "bytes": 913
     },
     {
+      "path": "docs/architecture/pvo_snapshot_identity_s2.md",
+      "sha256": "0a8cdc329b35920b45216c4c17ce92f09a4309d057951911d9a737c1433d3795",
+      "bytes": 1724
+    },
+    {
       "path": "docs/architecture/workflow_b_baseline_protocol.md",
       "sha256": "9e4b2a7d650857036e072b00107e9dc3c68738484c7f3a446b9b50d22b20971f",
       "bytes": 4884
@@ -621,6 +626,11 @@
       "path": "docs/evidence/matched_guidance_integration_n2_20261110.json",
       "sha256": "f451ae67e04abacca64adf3aeb652665e29c14d540bf98900015e29b0809d688",
       "bytes": 2358
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/s2_pvo_software.json",
+      "sha256": "656e9bb9733b19d703cfaf50e7eb6b6f32c6243a1e784648a44a661825194b26",
+      "bytes": 2419
     },
     {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",

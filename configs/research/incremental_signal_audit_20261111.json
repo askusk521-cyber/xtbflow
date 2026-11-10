@@ -1,0 +1,33 @@
+{
+  "schema": "xtbflow-incremental-signal-audit/v1",
+  "issue": 187,
+  "task": "Retrospective reaggregation and endpoint-support audit, no new fit or trajectory",
+  "new_question": "Do corrected identity/accounting and local trained transport evidence identify strict-channel benefit that prior catalogue studies could not establish?",
+  "input_sha256": {
+    "heads": "34c49edbaba62458157b7864c6cb89e1f40c6af8f4596a72a518f4da57f85c7d",
+    "trajectories": "bb104be033abd8627eae1fb2a57338287557ecd3708ccb7b10fd8d48e073fee4"
+  },
+  "prior_evidence_commit": "e5ceb870d28d77ab1efaad4af5652ef4f4978738",
+  "caps": {
+    "wall_seconds": 600,
+    "cpu_seconds": 600,
+    "max_input_bytes": 268435456,
+    "max_output_bytes": 16777216,
+    "training_steps": 0,
+    "model_forwards": 0,
+    "xtb_calls": 0,
+    "reference_calls": 0,
+    "gpu_seconds": 0,
+    "retries": 0,
+    "concurrency": 1
+  },
+  "gate_reasons": [
+    "Retained matched-head ranking uncertainty includes both adverse and useful effects.",
+    "Catalogue CI-NEB targets and offline eventual-event conditioning do not measure strict connected-channel benefit.",
+    "S1 diagnostic directions are not physical observations; local response is not final decoded-event/endpoint improvement.",
+    "No matched frozen predictors for the selected Diels-Alder task, valid conditional shuffle, strong adaptive serial or eligible untouched confirmation pool.",
+    "Source endpoint preparation/environment and historical model overlap remain development limitations."
+  ],
+  "online_eligibility": "Disabled in this audit; future protocol may use only current mapped finite geometry/event margin/clocks and current observation reliability, never future commitment or reference targets.",
+  "decision_rule": "No S5 unless exact-endpoint useful signal or registered discriminating plan AND hard qualifications pass; current audit alone cannot waive gates."
+}

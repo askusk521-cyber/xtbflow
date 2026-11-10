@@ -233,6 +233,11 @@
       "bytes": 4396
     },
     {
+      "path": "configs/research/incremental_signal_audit_20261111.json",
+      "sha256": "e712ee18b7858548afc16d66171bdc0028f4938068e8fa2a96c5b93df4280904",
+      "bytes": 1907
+    },
+    {
       "path": "configs/research/narrowed_assets_20261111.json",
       "sha256": "dd1eecc51dcc13c4f442dfe1d6c4ab3da344e968c588267b6d18b1d4de31da33",
       "bytes": 23509
@@ -1021,6 +1026,11 @@
       "path": "scripts/audit_narrowed_assets.py",
       "sha256": "58668235efe52715ded9136dd8b4b91ac9ade83415426b7a00963e58cdb8b6e8",
       "bytes": 5457
+    },
+    {
+      "path": "scripts/audit_narrowed_signal.py",
+      "sha256": "7c90df30a64a0358701558366b7cc3a61d0756dd254084e93f3232b747bf47e1",
+      "bytes": 8892
     },
     {
       "path": "scripts/audit_origin_seed_readiness.py",

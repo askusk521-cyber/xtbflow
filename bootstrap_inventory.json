@@ -713,6 +713,16 @@
       "bytes": 2358
     },
     {
+      "path": "docs/evidence/narrowed_scope_20261111/s3_accounting_initial_software.json",
+      "sha256": "b85f04cec19dace194f2ba1bbc542f113fbb0e40cc3faf691525c4c63d2817b0",
+      "bytes": 2712
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/s3_accounting_software.json",
+      "sha256": "cf88f835e04d396fca4978d999e12b64f3b23da8fc6b0fdf785357eb3d6b89a9",
+      "bytes": 2426
+    },
+    {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
       "sha256": "cbdd9b63b5cad70fbadf0ae8060e00a0aff4e439a10864bbbd7aec87ce8b9bbd",
       "bytes": 7458

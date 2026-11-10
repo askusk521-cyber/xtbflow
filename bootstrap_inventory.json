@@ -713,6 +713,16 @@
       "bytes": 2358
     },
     {
+      "path": "docs/evidence/narrowed_scope_20261111/review2/arm_recovery.md",
+      "sha256": "05cbb163f82a7188c6991cb14b5bea42df433717d7e56681853d7faf3b769904",
+      "bytes": 3092
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/review2/arm_recovery_validation.json",
+      "sha256": "a3fa46e520e252116d37caf4658b6a1940bc215f600f67cb275824cd41ee5925",
+      "bytes": 4614
+    },
+    {
       "path": "docs/evidence/narrowed_scope_20261111/s2_identity_software.json",
       "sha256": "276efae7003d5b46dac7a7457c2e911e4979fc0a40b527ccc119f153df76f9f0",
       "bytes": 2702

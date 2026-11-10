@@ -244,8 +244,8 @@
     },
     {
       "path": "configs/research/narrowed_claims_20261111.json",
-      "sha256": "5ad082223192a4c2d33d9404ca4bf9ac294cead8ef9feebd2e983b9d7acf9dfc",
-      "bytes": 4370
+      "sha256": "937fb440299995f462c7ec8300dd39791659da496d07cbcf53f97aca030d3ab5",
+      "bytes": 6467
     },
     {
       "path": "configs/research/narrowed_exposure_20261111.json",
@@ -859,8 +859,8 @@
     },
     {
       "path": "docs/research/NARROWED_STUDY_REPORT_20261111.md",
-      "sha256": "0c6edb8ad82ca07cc769e3b6a4cbf8bc9b9bd7fd982c1f670aaf15dc1a7d77c6",
-      "bytes": 11539
+      "sha256": "739479b0faed4e68bae04ec32ac66e5731a684af000ecbbbcde26dff99bad2cc",
+      "bytes": 14912
     },
     {
       "path": "docs/sources.md",

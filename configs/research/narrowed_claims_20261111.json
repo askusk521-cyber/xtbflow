@@ -110,5 +110,46 @@
       "Verified eligible unexposed data"
     ],
     "note": "S6 gaps are not additional S5 calibration launch conditions; exposed development input remains allowed within the S0 diagnostic scope."
+  },
+  "review_followup_20261111": {
+    "scientific_decision_unchanged": true,
+    "new_trained_forwards": 0,
+    "new_qc_calls": 0,
+    "guide_entry_synthetic_forwards": 13,
+    "integrated_head_tested": false,
+    "integration_requires_human_approval": true,
+    "findings": [
+      {
+        "pr": 193,
+        "scope": "full arm replay preserves result and cumulative ledger; budget/termination/settlement stop reaches certification boundary",
+        "tested_code": "5419b365c1969245b53c031128da4213f2e64dcd",
+        "evidence_commit": "54760a818dc2e60a4847e6277fba5ce5820ebe91",
+        "status": "software_regressions_passed"
+      },
+      {
+        "pr": 194,
+        "scope": "nonempty installed guide at zero alpha and actual physical update order; earlier controls remain limited",
+        "tested_code": "fb024e039ae116b5856886e3ae9981c44d56edfb",
+        "entry_execution_code": "fbe0ad1b4d34ed1bea675fa1150735a4e5661d35",
+        "evidence_commit": "558b362e4b4389b6fa63af9ba38ebbd86d3246ea",
+        "status": "synthetic_entry_checks_passed"
+      },
+      {
+        "pr": 195,
+        "scope": "three trained canonical result identities anchored to prior immutable publication",
+        "tested_code": "71b41cb7e384d54d6f22a8069ec91d934753c328",
+        "evidence_commit": "811a25d292332ccbd503521e3eb68b34245e8c1f",
+        "anchor_commit": "5f5304bcded99f2711ce21a090392cc2d6db8973",
+        "anchor_sha256": "f3cc2274aa5b3e1d47a8bb0beb4c32f04dbf99948f5b4f4cb6455b773aba8ff0",
+        "status": "published_hashes_matched"
+      }
+    ],
+    "receipt_sha256": {
+      "arm_recovery_validation.json": "a3fa46e520e252116d37caf4658b6a1940bc215f600f67cb275824cd41ee5925",
+      "score_entry.json": "919ac07f354e71382dac1123abdaadc13ac207a3cbec4409b8138fd46fe1bbaf",
+      "physical_entry.json": "a61617eab698ab7f1811e1e8544cdcc11b85f252530b324a709f5e67ba794c6a",
+      "final_schema_validation.json": "9d52d04c5a4994f35f9e71896b52f671d2624b5099b84e5c6b710847bcacf273",
+      "anchored_reference_audit.json": "641975aff70a012105217c5c69dac903eae94d22fb82d5c115a0a694a469b3ec"
+    }
   }
 }

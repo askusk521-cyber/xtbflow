@@ -73,14 +73,22 @@ relabelled as sealed. No verified eligible unexposed pool currently exists.
    occurs on the next forward. These numerical directions are not physical
    forces, and the probed intermediate BE states do not establish a decoded
    final chemical change. No J-transpose saddle “repair” is promoted.
+   All three measured cosines are positive: this probe did not show a direction
+   reversal, and it does not demonstrate bad transport of a real physical force.
 3. **Demonstrated identity and accounting defects are repaired in draft.**
    SO(3) parity/current snapshot checks use labelled and recording-fake tests.
-   Started backend failures retain costs; unknown measurement/termination stays
-   explicit and blocks further work. None of these fixes is causally linked to
-   the old zero-channel outcomes by this study.
+   The initial adapter-level tests left outer-run recovery and certification
+   stop propagation unqualified. The review follow-up in #193 now covers those
+   boundaries: complete arm replay retains candidate and cumulative costs with
+   zero new work; incomplete/unknown/unsettled attempts stop without overwriting
+   prior files; guidance halt blocks certification. None of these fixes is
+   causally linked to the old zero-channel outcomes by this study.
 4. **Cached trained chemical handoff is verified.** Both historical trained
    candidates exactly match archived reference input, including decoded BE and
-   mapped geometry. This is exposed calibration, not a new live feedback loop.
+   mapped geometry. The #195 review follow-up additionally verifies all three
+   trained canonical result hashes against the immutable 5f5304b publication;
+   an in-audit unchanged-file check alone was insufficient. This is exposed
+   calibration, not a new live feedback loop.
 5. **The old information result remains inconclusive.** Matched G−N ΔSpearman
    is +.02714 with 95% interval [-.11096,+.16525]. The .70 xTB information time
    leaves 14.546% of valid-final trajectories uncommitted under an offline rule.
@@ -92,6 +100,38 @@ See [S1 evidence](../evidence/narrowed_scope_20261111/numerical_diagnostics.md),
 [S4 evidence and reproducible figure](../evidence/narrowed_scope_20261111/incremental_signal.md),
 [S3 raw-stage/cached bridge audit](https://github.com/askusk521-cyber/xtbflow/blob/99c82f2c137eac464a5788e13cdf826273170fdc/docs/evidence/narrowed_scope_20261111/failure_audit.md),
 and the [claim–evidence manifest](../../configs/research/narrowed_claims_20261111.json).
+
+## Review qualification added after the first draft
+
+The initial “only inventory conflicts remain” closeout was too broad. Four
+functional/acceptance gaps required these separate, zero-QC follow-ups:
+
+| Finding | New evidence | Boundary |
+| --- | --- | --- |
+| #193 repeated arm overwrote cumulative cost/lost candidate | Complete `_run_arm` replay keeps call count 1, feedback/geometry and file hashes; certification entry stays 1 | No restart of partial/legacy attempts |
+| #193 halt did not stop certification | Wall overrun, unknown started journal and failed settlement all give blocked reasons and zero certification entries | No inference about old physical outcomes |
+| #194 two controls did not exercise an installed guide/update | Actual pinned score entry with recording/failing guides; actual physical push callback/update with a recording synthetic network | Software ordering, not physical usefulness |
+| #195 current self-consistency did not bind old result identity | Three canonical results match old public hashes; same-verdict changed-cost/evidence fixtures rejected | No new chemical certificate |
+
+Exact tested code: #193 `5419b365c1969245b53c031128da4213f2e64dcd` (344
+pytest/68 subtests); #194 `fb024e039ae116b5856886e3ae9981c44d56edfb` (274/68),
+with the unchanged entry driver executed at `fbe0ad1` against e84e330/ffca40f;
+#195 `71b41cb7e384d54d6f22a8069ec91d934753c328` (390/68). Each full test
+run also passed 56 reusable tests, its exact-source bootstrap and diff checks.
+The two guide-entry checks used 13 synthetic forwards in total, zero trained
+checkpoint forwards and zero physical calls. The earlier 90 trained forwards,
+FD/JVP values and failed-run costs are unchanged. Their original alpha-zero
+and same-step booleans remain archived as limited unguided/construction controls;
+they are not silently relabelled as these stronger entry checks.
+
+New immutable receipts and exact commands:
+[arm recovery/stop](https://github.com/askusk521-cyber/xtbflow/blob/54760a818dc2e60a4847e6277fba5ce5820ebe91/docs/evidence/narrowed_scope_20261111/review2/arm_recovery.md),
+[guidance entries](https://github.com/askusk521-cyber/xtbflow/blob/558b362e4b4389b6fa63af9ba38ebbd86d3246ea/docs/evidence/narrowed_scope_20261111/review2/guidance_entry.md),
+[published identities](https://github.com/askusk521-cyber/xtbflow/blob/811a25d292332ccbd503521e3eb68b34245e8c1f/docs/evidence/narrowed_scope_20261111/review2/canonical_identity.md).
+Old receipts/raw hashes/verdicts remain preserved. These are separate branch
+qualifications, not a tested integrated head. Inventory conflict resolution and
+fresh integrated-source testing follow the human-approved integration order.
+The S4 judgment, S6 path A and S5 no-launch decision remain unchanged.
 
 ## Failures, resources and compatible effects
 

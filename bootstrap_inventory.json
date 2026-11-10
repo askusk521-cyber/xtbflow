@@ -548,6 +548,16 @@
       "bytes": 1929
     },
     {
+      "path": "docs/evidence/narrowed_scope_20261111/numerical_diagnostics.json",
+      "sha256": "f633009f00ded974e24835ac8a1814cc8ec7f4aee02762403044a07593a5d450",
+      "bytes": 10961
+    },
+    {
+      "path": "docs/evidence/narrowed_scope_20261111/numerical_diagnostics.md",
+      "sha256": "463da979a535166b3b98cb09cfab0e6b55f571033db0cedd212c9d1801937c56",
+      "bytes": 5481
+    },
+    {
       "path": "docs/evidence/narrowed_scope_20261111/numerical_failed_9a5599c.json",
       "sha256": "a3a601406cd23138c9fd79eae1763c99daf0d63b4fa58c645cb0d8309b227069",
       "bytes": 7716

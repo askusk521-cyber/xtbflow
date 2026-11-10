@@ -79,6 +79,16 @@ def test_unknown_timeout_is_not_measured_zero_and_halts_shared_budget(tmp_path):
     assert run.charged_cost.calculator_calls == 1
     assert run.ledger_entry.backend_termination == 'unknown'
     assert budget.halted
+    from xtbflow.sampling.parallel_guidance import merge_guidance
+    from xtbflow.sampling.physical_adapter import PhysicalAblationArtifact
+    from xtbflow.sampling.policy_adapter import PolicyAblationArtifact
+    from xtbflow.sampling.adapters import AdapterLedger
+    merged = merge_guidance(request.snapshot, ())
+    for cls in (PhysicalAblationArtifact, PolicyAblationArtifact):
+        artifact = cls(True, 'pool', request.snapshot, merged.snapshot, run, merged,
+                       AdapterLedger((run.ledger_entry,)), ('software only',))
+        assert artifact.to_mapping()['adapter_run']['measured_cost'] is None
+        assert artifact.to_mapping()['adapter_run']['backend_termination'] == 'unknown'
 
 
 def test_started_journal_exists_before_call_and_recovers_as_unknown(tmp_path):

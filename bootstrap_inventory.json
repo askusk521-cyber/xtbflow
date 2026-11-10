@@ -1189,8 +1189,8 @@
     },
     {
       "path": "scripts/audit_narrowed_reference.py",
-      "sha256": "28df698aadd21c75349d29b73769ae09ab052512b9665b56da355f027ad0b480",
-      "bytes": 8960
+      "sha256": "6ecfe61fda1723e93559773c7a93a0ef6675bde1963ebcd9353169d1a1bb5ccb",
+      "bytes": 9470
     },
     {
       "path": "scripts/audit_origin_seed_readiness.py",
@@ -1931,6 +1931,11 @@
       "path": "tests/test_reaction_qm_coordinate_mapping.py",
       "sha256": "2994a7429aaa7d854d4f527e4dfd1f3e76d2bb17ecfb0934d19b22068feb9bca",
       "bytes": 889
+    },
+    {
+      "path": "tests/test_reference_audit_protocol.py",
+      "sha256": "85f6fd2bd8f271e13938ad5e326d493947d93ddb53fb9180cf7f13f96bd94556",
+      "bytes": 874
     },
     {
       "path": "tests/test_research_replay.py",

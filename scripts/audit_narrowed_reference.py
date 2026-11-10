@@ -23,6 +23,15 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def generation_protocol(root: Path) -> dict:
+    """Use the archived handoff protocol, which is not the worker config."""
+    plan = root/'raw/certification-plan.json'
+    report = json.loads((root/'report.json').read_text())
+    if digest(plan) != report['certification_plan_sha256']:
+        raise ValueError('generation plan hash mismatch')
+    return json.loads(plan.read_text())['generation_protocol']
+
+
 def geometry_summary(raw: dict) -> dict:
     ts, ends, irc = raw.get('ts', {}), raw.get('endpoints', []), raw.get('irc', {})
     frequencies = ts.get('frequencies_cm1', [])
@@ -107,7 +116,8 @@ def main() -> int:
                     geometry=geometry_summary(raw), historical_resources=record['resources'],
                     original_unchanged=digest(path)==record_hash))
         gen = args.generation_root
-        for rel in ('raw/reactants.json','raw/generation.json','raw/worker-packet.json','raw/calls.json'):
+        for rel in ('raw/reactants.json','raw/generation.json','raw/worker-packet.json','raw/calls.json',
+                    'raw/certification-plan.json','report.json'):
             checked(gen/rel, 'trained_generation/'+rel)
         query = json.loads((gen/'raw/reactants.json').read_text())['queries'][0]
         outputs = json.loads((gen/'raw/generation.json').read_text())
@@ -115,8 +125,9 @@ def main() -> int:
         if legacy_query(query) != packet['queries'][0]:
             raise ValueError('inference-visible packet differs from mapped query')
         bridge = []
+        protocol = generation_protocol(gen)
         for row in outputs['candidates']:
-            candidate = certification_candidate(query,row,generation_protocol=packet['config'])
+            candidate = certification_candidate(query,row,generation_protocol=protocol)
             original = CertificationCandidate(**requests[candidate.candidate_id])
             if identity(candidate.content()) != identity(original.content()):
                 raise ValueError('cached trained handoff differs from archived reference input')

@@ -36,6 +36,10 @@ def _basis(points: np.ndarray) -> np.ndarray:
         pivot = int(np.argmax(np.abs(vectors[:, column])))
         if vectors[pivot, column] < 0:
             vectors[:, column] *= -1.0
+    # Independent eigenbases may have opposite parity even when each sign is
+    # deterministic. Both bases must be right handed before B1 P B2.T is SO(3).
+    if np.linalg.det(vectors) < 0:
+        vectors[:, -1] *= -1.0
     return vectors
 
 
@@ -128,7 +132,10 @@ def build_reactant_approach(
     _, selected, minimum = max(choices, key=lambda item: item[0])
     coordinates = tuple(tuple(float(value) for value in row) for row in selected)
     metadata = {
-        "generator": "reactant-principal-axis-approach-v1",
+        "generator": "reactant-principal-axis-approach-v2",
+        "rotation_group": "SO(3)",
+        "enumerated_placements": len(choices),
+        "seed_used_for_pose_selection": False,
         "components": [list(component) for component in normalized],
         "approach_centroid_distance_angstrom": float(target_centroid_distance_angstrom),
         "collision_distance_angstrom": float(collision_distance_angstrom),

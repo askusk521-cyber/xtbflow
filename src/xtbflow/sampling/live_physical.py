@@ -197,9 +197,16 @@ class LiveXTBPhysicalProvider:
         system = self.molecular_template.with_coordinates(request.snapshot.geometry)
         try:
             result = self.backend.evaluate(system, operation="energy_forces")
+            if (result.input_hash != system.input_hash
+                    or result.charge != system.charge
+                    or result.multiplicity != system.multiplicity
+                    or result.protocol_id != self.protocol.protocol_id):
+                raise ValueError("calculator result does not match current snapshot input/protocol")
             if result.status != "success" or result.forces is None or result.energy is None:
                 raise RuntimeError(f"xTB result status={result.status!r} lacks converged energy/forces")
             forces = _geometry(result.forces, "calculator forces")
+            if len(forces) != len(system.symbols):
+                raise ValueError("calculator forces do not match mapped atom count")
             wall_seconds = perf_counter() - started_wall
             cpu_seconds = process_time() - started_cpu
             build_hash = result.calculator_build_hash or "unavailable"

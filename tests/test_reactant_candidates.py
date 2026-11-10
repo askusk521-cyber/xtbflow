@@ -25,7 +25,7 @@ def test_reactant_approach_is_deterministic_and_target_free():
     assert first.coordinates == second.coordinates
     assert first.geometry_hash == second.geometry_hash
     assert first.metadata["input_hash"] == system.input_hash
-    assert first.metadata["generator"] == "reactant-principal-axis-approach-v1"
+    assert first.metadata["generator"] == "reactant-principal-axis-approach-v2"
     assert first.metadata["minimum_cross_component_distance_angstrom"] >= 0.70
     assert "target" not in json.dumps(first.metadata, sort_keys=True).lower()
 

@@ -237,7 +237,7 @@ def main() -> int:
     resource.setrlimit(resource.RLIMIT_CPU, (cap['cpu_seconds'],)*2)
     resource.setrlimit(resource.RLIMIT_FSIZE, (cap['max_output_bytes'],)*2)
     start, cpu = time.monotonic(), time.process_time()
-    report = dict(schema='xtbflow-narrowed-numerical/v1', host=socket.gethostname(), python=platform.python_version(),
+    report = dict(schema='xtbflow-narrowed-numerical/v2', host=socket.gethostname(), python=platform.python_version(),
                   source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root).decode().strip(),
                   config_sha256=file_hash(config), driver_sha256=file_hash(Path(__file__)), caps=cap,
                   status='executing', new_calculator_calls=0, training_steps=0, gpu_seconds=0)

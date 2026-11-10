@@ -819,8 +819,8 @@
     },
     {
       "path": "docs/research/GUIDANCE_ENTRY_REVIEW_20261111.md",
-      "sha256": "921a75cfe0c68f2a5e8e63a9766e6d20458207964eed0595a5ef21d09b0e23a3",
-      "bytes": 3047
+      "sha256": "a0ba541e122535cd650fe04d2b1fded9d15330291b1870243274df1adacf1730",
+      "bytes": 3143
     },
     {
       "path": "docs/research/NARROWED_SCOPE_20261111.md",
@@ -1114,7 +1114,7 @@
     },
     {
       "path": "scripts/diagnose_narrowed_numerics.py",
-      "sha256": "53e817f93738ca2a30291931080535b0d5f08ffc7a63234d623bd2a17fdf07d0",
+      "sha256": "360be3ca173e8d450e3addbebfd26c521327f23aa8016ddd260b25457e6cabeb",
       "bytes": 15888
     },
     {

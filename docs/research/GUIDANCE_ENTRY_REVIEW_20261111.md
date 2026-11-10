@@ -4,7 +4,8 @@ The original `alpha_zero_bitwise` compares two unguided calls, and
 `same_step_event_unchanged` follows from replacing only x. Those archived
 booleans are retained, but they did not qualify installed guidance or actual
 update ordering. New diagnostic output keys say precisely what those controls
-check. The old trained FD/JVP values and 90-forward ledger are unchanged; this
+check under the new `xtbflow-narrowed-numerical/v2` output schema; existing v1
+receipts are untouched. The old trained FD/JVP values and 90-forward ledger are unchanged; this
 follow-up does not load a trained checkpoint or rerun those derivatives.
 
 `scripts/check_narrowed_guidance_entry.py` runs two isolated, exact-source checks:

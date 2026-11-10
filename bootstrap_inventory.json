@@ -1073,6 +1073,11 @@
       "bytes": 4125
     },
     {
+      "path": "scripts/diagnose_narrowed_numerics.py",
+      "sha256": "c45d3d15b120cc6038f3a635090c219799150da04f05c20af3e4ce9ab4d9c13c",
+      "bytes": 14467
+    },
+    {
       "path": "scripts/joint_flow_smoke.py",
       "sha256": "be9cab15cb5032dd57fa8e9be21c2d815bd0966c1675a4fe48c25314dd081207",
       "bytes": 11435
@@ -1566,6 +1571,11 @@
       "path": "tests/test_learning_curve_budget.py",
       "sha256": "158dde2de0beb627dd41102f181b2f60d9c33a4f12014b596f70df698842f9a7",
       "bytes": 3703
+    },
+    {
+      "path": "tests/test_narrowed_numerics.py",
+      "sha256": "858c8a01abf9207e2dc10eaf2735a16aa5422b7b5aae6c506093fba83238bd08",
+      "bytes": 1131
     },
     {
       "path": "tests/test_origin_seed_readiness.py",

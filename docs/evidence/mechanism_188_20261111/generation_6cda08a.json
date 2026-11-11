@@ -1,0 +1,2566 @@
+{
+  "F_nonzero_updates": 2,
+  "arm_work": {
+    "C": {
+      "ef": 0,
+      "forward": 50,
+      "jvp": 0
+    },
+    "F": {
+      "ef": 11,
+      "forward": 58,
+      "jvp": 3
+    },
+    "N": {
+      "ef": 0,
+      "forward": 50,
+      "jvp": 0
+    },
+    "T": {
+      "ef": 8,
+      "forward": 0,
+      "jvp": 0
+    }
+  },
+  "candidate_plan_sha256": "543a169433e41fe3e303bb89b48f475df314b75e42d4678bd00eebe4a138ddf6",
+  "candidates": [
+    {
+      "arm": "N",
+      "candidate_id": "mechanism:e68ac904140ab507c25c4b4dcb02a9b685200eca08774940943a2ae644845839",
+      "candidate_sha256": "6b9294dd88c4462118365ba6d3847df75c22840f80e321a95d8548ff60c6e1fd",
+      "canonical_event": "4e4beffcd23e398fb8c60b25",
+      "continuous_BE_sha256": "2c358b204453d48770f1616f6054777880f851782bc87b4adb5ad0a4aa822730",
+      "geometry_sha256": "16c6a7117d09b2cb1243564d8878f1e8e813fb89ea8192feb6172c34a1f6cee3",
+      "status": "generated"
+    },
+    {
+      "arm": "T",
+      "candidate_id": "mechanism:c086c46ed9d2698304bc49f24de1c9cfd83c9e1d49bd7aa0e0110fc846429e4f",
+      "candidate_sha256": "959d107ef66c721028b0d13ac64d3487cb84eae0c905077b8a3848f5f83f578c",
+      "canonical_event": "4e4beffcd23e398fb8c60b25",
+      "continuous_BE_sha256": "2c358b204453d48770f1616f6054777880f851782bc87b4adb5ad0a4aa822730",
+      "geometry_sha256": "08c43fd4c92abc7898ce12dab36bf14ae48ebf4940573882a07491622e47627c",
+      "status": "generated"
+    },
+    {
+      "arm": "F",
+      "candidate_id": "mechanism:887280c84e10c1426a8f1a79f9bbfbc10fe9ebcfff591bf11bf0ea91e02715b5",
+      "candidate_sha256": "c2876c9d70bac91009373b87dd44c6d1346e33a8236b4e50008cad7e485f0936",
+      "canonical_event": "4e4beffcd23e398fb8c60b25",
+      "continuous_BE_sha256": "ba56c0910a2a4be8c77609ac130caf5686e05111585ffa030515ad9a153f962a",
+      "geometry_sha256": "7b24cb3519e9d486d3a6460079666b93d9ad824a925bc2a898dd2ca266db1ba4",
+      "status": "generated"
+    },
+    {
+      "arm": "C",
+      "candidate_id": "mechanism:5c309e8693da847ce2b0485cb0baafd0942c6838e7dd766ffe22402b1986a366",
+      "candidate_sha256": "967943183a6fe1bf6fab14612589c726ce42dcc1812f16cae40c7c1a6415cdd9",
+      "canonical_event": "4e4beffcd23e398fb8c60b25",
+      "continuous_BE_sha256": "2c358b204453d48770f1616f6054777880f851782bc87b4adb5ad0a4aa822730",
+      "geometry_sha256": "647082a73a4009be48d330c5a23dba52e32d66ed40642670e422ec42c7da5ded",
+      "status": "generated"
+    }
+  ],
+  "claim_limits": [
+    "One exposed parent/seed mechanism calibration only, not discovery efficacy or independent confirmation.",
+    "C is off-policy replay of F displacements with N BE trajectory, not a deployable competing method.",
+    "F and T query different geometries; no identical-information or strong-adaptive-serial claim.",
+    "Residual selection is not TS certification. No positive channel result or method advantage is implied."
+  ],
+  "config_sha256": "9e04055404eb369c83d12460767d423a8ea9abb7cb9ee0d516c17264741748c8",
+  "fake_reference_ledger": {
+    "active_jobs": [],
+    "budget": {
+      "max_calculator_calls": 4,
+      "max_concurrent_jobs": 1,
+      "max_cpu_core_hours": 0.1,
+      "max_gpu_hours": 0,
+      "max_retries_per_job": 0,
+      "max_storage_gb": 0.02,
+      "max_system_evaluations": null,
+      "max_wall_minutes_per_job": 1,
+      "phase": "mechanism-fake-handoff"
+    },
+    "by_calculator": {
+      "software_fixture": 4
+    },
+    "by_operation": {
+      "other": 4
+    },
+    "by_status": {
+      "success": 4
+    },
+    "ledger_id": "6d92f858f9c94fef9a4361271d7b692e",
+    "phase": "mechanism-fake-handoff",
+    "schema": "xtbflow-run-ledger/v1",
+    "totals": {
+      "attempts": 4,
+      "cache_hits": 0,
+      "calculator_calls": 4,
+      "cpu_core_hours": 0.001353837222222222,
+      "failures": 0,
+      "gpu_hours": 0.0,
+      "retries": 0,
+      "storage_gb": 1.5990808606147766e-06,
+      "successes": 4,
+      "system_evaluations": 4
+    }
+  },
+  "host": "node2",
+  "identities": {
+    "checkpoint_sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda",
+    "packet_sha256": "3aa5566ea68752d67d777730899a8a5eaa21f108c7d06afe2751a86f38522799",
+    "saved_state_sha256": {
+      "10": "0582b709de1145f2a1a1c3c278ce52dcd577c09f6b384117484361cc970b15fc",
+      "25": "272f994a7590e93c24f95a4df1609735221982aa75571381a0c527e96dfa3e6a",
+      "40": "3bd32cdce359052bbbee23a7f5aabe77a89205ce406dadc760fbe08bf9e6d0cc"
+    },
+    "trained_commit": "e84e330390a519bf4ac12048b297403c09717646"
+  },
+  "initial_noise_state_sha256": "ad6eaa0b605e018da574452db94fd75edb5c03b0f3295f23fcc67c9aac875917",
+  "issue": 188,
+  "job_id": "4285",
+  "new_candidate_handoff": [
+    {
+      "arm": "N",
+      "cache_hit": true,
+      "candidate_sha256": "6b9294dd88c4462118365ba6d3847df75c22840f80e321a95d8548ff60c6e1fd",
+      "new_replay_calls": 0
+    },
+    {
+      "arm": "T",
+      "cache_hit": true,
+      "candidate_sha256": "959d107ef66c721028b0d13ac64d3487cb84eae0c905077b8a3848f5f83f578c",
+      "new_replay_calls": 0
+    },
+    {
+      "arm": "F",
+      "cache_hit": true,
+      "candidate_sha256": "c2876c9d70bac91009373b87dd44c6d1346e33a8236b4e50008cad7e485f0936",
+      "new_replay_calls": 0
+    },
+    {
+      "arm": "C",
+      "cache_hit": true,
+      "candidate_sha256": "967943183a6fe1bf6fab14612589c726ce42dcc1812f16cae40c7c1a6415cdd9",
+      "new_replay_calls": 0
+    }
+  ],
+  "packages": {
+    "numpy": "2.2.6",
+    "rdkit": "2024.3.3",
+    "scipy": "1.15.3",
+    "tblite": "0.7.0",
+    "torch": "2.10.0+cu128"
+  },
+  "python": "3.10.19",
+  "raw_artifacts": [
+    {
+      "bytes": 0,
+      "name": "ef-062.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2274,
+      "name": "ef-062.request.json",
+      "sha256": "28dd683e4abcd7f33e07242c7c8aa7428a69ae5bd4485eedef618987c165b5f2"
+    },
+    {
+      "bytes": 1903,
+      "name": "ef-062.result.json",
+      "sha256": "6d4cba7129c56d0d7502717417365c27a2417ccd9c3f674e1a210634edefbf5c"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-062.result.ledger.json",
+      "sha256": "723dcd76c660df7abece567c47776e5e938dd6998ecbb30150c00c6c360bb440"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-065.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2268,
+      "name": "ef-065.request.json",
+      "sha256": "dcd0326af141f605c985a03192eb5220a2f3d2275d2f70a02e12f123fde65daa"
+    },
+    {
+      "bytes": 1905,
+      "name": "ef-065.result.json",
+      "sha256": "6714d31c2176084985fb34cd67c75d4a40855ff18103bd9eaafbbe20126ba104"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-065.result.ledger.json",
+      "sha256": "e342a5b81886e3e604ac848d47ea40c34656d09ddd611e01090809c28330db01"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-067.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2270,
+      "name": "ef-067.request.json",
+      "sha256": "2aef7bc1be3130af1491d875323812aa044419c96b8a95bcf00139d5a9857303"
+    },
+    {
+      "bytes": 1904,
+      "name": "ef-067.result.json",
+      "sha256": "90fc1db26a0c1b606ed2d68c45ff1b085d12533754f32fa27a86c562bb9efa94"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-067.result.ledger.json",
+      "sha256": "4c24512146d6461adf8be51befd860a963b9b5991b78c4b6a98ebf534847ff1d"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-069.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2270,
+      "name": "ef-069.request.json",
+      "sha256": "a2a277ed340f9487c917fe9e77d5038735a108cffdb5c686f5cb60c686996cec"
+    },
+    {
+      "bytes": 1901,
+      "name": "ef-069.result.json",
+      "sha256": "aaa2fbb58d1e51d2b2def819a68c729b28404f3442a141cfdbc1b520bcd0fce4"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-069.result.ledger.json",
+      "sha256": "aabd5feb88ac5bf3b07cab68df337e2a6353065783e1a30de07a5ad81050d64f"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-071.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2263,
+      "name": "ef-071.request.json",
+      "sha256": "348aecbaf997c2da706a313723aefa73ac950201384c7b15f9e71b18d452a00d"
+    },
+    {
+      "bytes": 1906,
+      "name": "ef-071.result.json",
+      "sha256": "0ce8a0f25a303724fcafc305b6cc84e8cb1b620dc569e9319d0a9febc7b642dc"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-071.result.ledger.json",
+      "sha256": "6b0ee96830b0ad7a758e42901f2cbf5727229f4a9d65dde9dec752cda14409ad"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-087.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2278,
+      "name": "ef-087.request.json",
+      "sha256": "325874acf6686e66a6b8255fe4e2bc6c64c0ec209ee7784f340c673620f4980f"
+    },
+    {
+      "bytes": 1935,
+      "name": "ef-087.result.json",
+      "sha256": "764fe3e0003df73526eb4d2b443d4cc8bf1628e650e56844542dcbe9ac0c04be"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-087.result.ledger.json",
+      "sha256": "448bb384a398211b6eb52ee94d1ee5e7b6bceba217a0023ac67d58501165ae2b"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-090.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2269,
+      "name": "ef-090.request.json",
+      "sha256": "45a976d7b64d58dcd95177907c1f9726eef6e12b7cdcbe0cfdfe5a6e52661c8a"
+    },
+    {
+      "bytes": 1936,
+      "name": "ef-090.result.json",
+      "sha256": "7fe9a82d0bdbaab2c33cdae1b8239fa1a5973aad24a2fa863d1ecaff7b14ecc6"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-090.result.ledger.json",
+      "sha256": "9e273a92c886ed43f5dc0d840153900490bc95c03ace1f58674387c32fd658f5"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-092.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2275,
+      "name": "ef-092.request.json",
+      "sha256": "66175021a35af7e038373da040c8116a4de414124a11f775562954b952c61b5c"
+    },
+    {
+      "bytes": 1939,
+      "name": "ef-092.result.json",
+      "sha256": "dc51f53ec87111025ac896691efcc1e9319977f3dab36a5066177e8fbe66fa09"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-092.result.ledger.json",
+      "sha256": "8bb5c46c0fa9ade6da9fdbaede43b5555fe994d3af4535767df9cfc9ec122982"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-108.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2275,
+      "name": "ef-108.request.json",
+      "sha256": "99aaeac14fe4e457a49d50ac31cf50d6b4efc464a982d24619b8aaea69e51a9b"
+    },
+    {
+      "bytes": 1951,
+      "name": "ef-108.result.json",
+      "sha256": "30f3f5396587df0c03a5c9fd536ea6320419be8ab6565c9a4381a0e3bb07b384"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-108.result.ledger.json",
+      "sha256": "50f99106c002173dbca4d5e12b0c3f1011b8b37670cc0b91591e12ac2f394806"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-111.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2270,
+      "name": "ef-111.request.json",
+      "sha256": "4b0f15aba40f6cba6d7d5e1b7274c1e04eb3f44edab5b9c2ad7b56234765ea8c"
+    },
+    {
+      "bytes": 1956,
+      "name": "ef-111.result.json",
+      "sha256": "2b2fc1632d8678b054bcba63901b859c0b281420d86fbc31ac4acc6d76eb5013"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-111.result.ledger.json",
+      "sha256": "9013f536d48dd0e0a898e57d0a341c4273186b24bb9cfb8ef6ccfc12cadf5c44"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-113.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2272,
+      "name": "ef-113.request.json",
+      "sha256": "1a44e948e43575dcf32ad0fd91b99f9d2fc451295e8f8ead450a36e5b5a04348"
+    },
+    {
+      "bytes": 1944,
+      "name": "ef-113.result.json",
+      "sha256": "290fb1c051d87f4779a9afb9729db3e36ce25927754ec2903f419bb006c0dcb8"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-113.result.ledger.json",
+      "sha256": "f8229fb8eb508712980c03a5bfe6a016e01bcffcdf447d92e7664c53f8dd8c7a"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-173.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2272,
+      "name": "ef-173.request.json",
+      "sha256": "77d7579f9f9d4e7062887545f6e8983c63c68da8c29cf77ef6e3b147d34d1c5c"
+    },
+    {
+      "bytes": 1977,
+      "name": "ef-173.result.json",
+      "sha256": "b1b80f4cef7e14229c90111469507eea3bfbbb337f1dcfaef397c5d1b5135b70"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-173.result.ledger.json",
+      "sha256": "a9127ad12859e6659fefc33f68d0b6ce6b6247d96d54fee03af084fb6edbfeb5"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-174.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2271,
+      "name": "ef-174.request.json",
+      "sha256": "c8877e36081c7bae1149191db269132dc2c3b13f6c7c944a04a3240d473e47bf"
+    },
+    {
+      "bytes": 1973,
+      "name": "ef-174.result.json",
+      "sha256": "2192a3f7408aa67b2f07f314aadc7e3f97534caf78a53df7633806e7514a79d2"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-174.result.ledger.json",
+      "sha256": "4cde75b1f59e59d4942124a554f2d52a03826388a091a72c599c682999b3a795"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-175.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2271,
+      "name": "ef-175.request.json",
+      "sha256": "c8877e36081c7bae1149191db269132dc2c3b13f6c7c944a04a3240d473e47bf"
+    },
+    {
+      "bytes": 1974,
+      "name": "ef-175.result.json",
+      "sha256": "15e09980d95696aed99a8b791d1b18ed1f562680137c41c24cce8c6d977190ac"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-175.result.ledger.json",
+      "sha256": "46d90a30aa19c856fd488fe129e80f25b80021f47ba7544faaba8a096b9deeb3"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-176.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2267,
+      "name": "ef-176.request.json",
+      "sha256": "d3a687f1e92aec8e97b751eae1f2760882a536903afa59563ab44c092a0a2b1f"
+    },
+    {
+      "bytes": 1970,
+      "name": "ef-176.result.json",
+      "sha256": "3ae681a7a9ee21abaa3e419bbbbb75b4fb4c69068c822c0c4b45765109f3ce8e"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-176.result.ledger.json",
+      "sha256": "f22d91952208f2e8c8be689697d1ff99d42c22176d93557ea5669ec098a0e1ea"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-177.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2267,
+      "name": "ef-177.request.json",
+      "sha256": "43ef46ef320fec99668ce0ea8512be03097f88c23954c62fad635e08f124ac99"
+    },
+    {
+      "bytes": 1987,
+      "name": "ef-177.result.json",
+      "sha256": "dac59e9bfd61bf5cd628d60470258491d737a69302f123f884bef246e823705b"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-177.result.ledger.json",
+      "sha256": "068ff354665a8e62ac4a016fc772821304d95a91871a4fb18905724d850c67b0"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-178.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2267,
+      "name": "ef-178.request.json",
+      "sha256": "43ef46ef320fec99668ce0ea8512be03097f88c23954c62fad635e08f124ac99"
+    },
+    {
+      "bytes": 1988,
+      "name": "ef-178.result.json",
+      "sha256": "8abb5cba594dfa4f3ca294008376fe17649b1f47a36a2a863b2a597acb5d2741"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-178.result.ledger.json",
+      "sha256": "dea52d0f53189ec05806a3b697c5faa78950076ba30c9e097341e5997b702519"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-179.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2272,
+      "name": "ef-179.request.json",
+      "sha256": "7a9ded017a9edd84bf8fd6ceff8def275bcc9dc6897098ae9260af34f9b04e97"
+    },
+    {
+      "bytes": 1978,
+      "name": "ef-179.result.json",
+      "sha256": "71f4bfaf03e422d3d51b424e69ffbdc72b7bfbbb652ec358d7d640a3d93b883b"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-179.result.ledger.json",
+      "sha256": "5a2c6962467f4a9168b9ab3c7bd28da8be2ed31c210e9470ac7cd924e4e7fd41"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-180.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2267,
+      "name": "ef-180.request.json",
+      "sha256": "f3e08092defdcb91aadc2421492db9f2a083afabf600935d55bc1071782ee7e9"
+    },
+    {
+      "bytes": 1974,
+      "name": "ef-180.result.json",
+      "sha256": "6e0f0a96b2e79bb465b453da51f1eaa2a917c82c468ee542af4b50ec248da26c"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-180.result.ledger.json",
+      "sha256": "bbcea13ee8db6043898144ceb3fa8db73d85c7402cfae655df9bfa8b35f6934d"
+    },
+    {
+      "bytes": 450325,
+      "name": "four-arm-tensors.pt",
+      "sha256": "05256792979a532cccd8e1167620aa51317b897e41f48c4c320bb84fca5ca67a"
+    },
+    {
+      "bytes": 21625,
+      "name": "generation-freeze.json",
+      "sha256": "61acdd94eed02a0e9ae7714ffa76f79c82cc99fd30015c9211a7b37b96477017"
+    },
+    {
+      "bytes": 121305,
+      "name": "plan.json",
+      "sha256": "543a169433e41fe3e303bb89b48f475df314b75e42d4678bd00eebe4a138ddf6"
+    },
+    {
+      "bytes": 88047,
+      "name": "work.json",
+      "sha256": "b9f19c533702324c96eb812c648359ddb650f77a23487ef18306719537823b0f"
+    }
+  ],
+  "raw_trajectory_sha256": "05256792979a532cccd8e1167620aa51317b897e41f48c4c320bb84fca5ca67a",
+  "reference_gate": "eligible",
+  "schema": "xtbflow-mechanism-generation/v1",
+  "settlement": "settled",
+  "slots": {
+    "F": [
+      {
+        "actual_displacement": {
+          "l2_angstrom": 0.0,
+          "max_atom_angstrom": 0.0,
+          "rms_atom_angstrom": 0.0
+        },
+        "actual_push_l2_angstrom": 0.0,
+        "alpha_cap": 0.1,
+        "baseline_phi": 6.255553718666358,
+        "baseline_status": "completed",
+        "derivative": {
+          "endpoint_cosine": 0.033230929619973246,
+          "endpoint_gain": 0.4025794995953091,
+          "endpoint_projection": 0.013378091017495765,
+          "endpoint_response_resolved": true,
+          "event_response_norm": 0.47472301818445367,
+          "numerical_floor": 5.658865320083968e-09,
+          "qualification": "finite/invariant AD plus each trial linearization; FD implementation qualified in #198",
+          "qualified": true
+        },
+        "dt_x": 0.00839999999999999,
+        "lambdas": [
+          1.0,
+          0.5,
+          0.25
+        ],
+        "next_t_x": 0.0484,
+        "nominal_displacement": {
+          "l2_angstrom": 0.0033599999999999967,
+          "max_atom_angstrom": 0.0020735721378248913,
+          "rms_atom_angstrom": 0.0008399999999999993
+        },
+        "observation_status": "completed",
+        "old_t_x": 0.04000000000000001,
+        "reason": "no_trial_satisfies_registered_rule",
+        "selected_lambda": null,
+        "status": "no_push",
+        "step": 10,
+        "trials": [
+          {
+            "accepted": false,
+            "checks": {
+              "displacement": true,
+              "linearization": true,
+              "positive_projection": true,
+              "residual": false
+            },
+            "displacement": {
+              "l2_angstrom": 0.0033599999999999967,
+              "max_atom_angstrom": 0.0020735721378248913,
+              "rms_atom_angstrom": 0.0008399999999999993
+            },
+            "endpoint_displacement": {
+              "l2_angstrom": 0.0013549727694978989,
+              "max_atom_angstrom": 0.0004652954645388396,
+              "rms_atom_angstrom": 0.00033874319237447466
+            },
+            "endpoint_gain": 0.4032657052077084,
+            "endpoint_projection": 0.0006751096285077044,
+            "lambda_value": 1.0,
+            "linearization_relative_error": 0.003344996476318862,
+            "model_status": "completed",
+            "next_event_velocity_delta_l2": 0.0015965047086169864,
+            "phi": 6.256833542516393,
+            "physical_status": "completed"
+          },
+          {
+            "accepted": false,
+            "checks": {
+              "displacement": true,
+              "linearization": true,
+              "positive_projection": true,
+              "residual": false
+            },
+            "displacement": {
+              "l2_angstrom": 0.0016799999999999983,
+              "max_atom_angstrom": 0.0010367860689124457,
+              "rms_atom_angstrom": 0.00041999999999999964
+            },
+            "endpoint_displacement": {
+              "l2_angstrom": 0.000676910318153165,
+              "max_atom_angstrom": 0.00023271171895113935,
+              "rms_atom_angstrom": 0.00016922757953829126
+            },
+            "endpoint_gain": 0.4029228084245034,
+            "endpoint_projection": 0.00033655342075168996,
+            "lambda_value": 0.5,
+            "linearization_relative_error": 0.0016730296392718428,
+            "model_status": "completed",
+            "next_event_velocity_delta_l2": 0.0007978944048451128,
+            "phi": 6.256181964859355,
+            "physical_status": "completed"
+          },
+          {
+            "accepted": false,
+            "checks": {
+              "displacement": true,
+              "linearization": true,
+              "positive_projection": true,
+              "residual": false
+            },
+            "displacement": {
+              "l2_angstrom": 0.0008399999999999992,
+              "max_atom_angstrom": 0.0005183930344562228,
+              "rms_atom_angstrom": 0.00020999999999999982
+            },
+            "endpoint_displacement": {
+              "l2_angstrom": 0.0003383110117727089,
+              "max_atom_angstrom": 0.00011637165565449162,
+              "rms_atom_angstrom": 8.457775294317722e-05
+            },
+            "endpoint_gain": 0.4027512044913205,
+            "endpoint_projection": 0.00016802779743202756,
+            "lambda_value": 0.25,
+            "linearization_relative_error": 0.000836643172925998,
+            "model_status": "completed",
+            "next_event_velocity_delta_l2": 0.0003988573792769873,
+            "phi": 6.255864913912015,
+            "physical_status": "completed"
+          }
+        ]
+      },
+      {
+        "accepted_phi": 3.1722343674888265,
+        "actual_displacement": {
+          "l2_angstrom": 0.008160000000000013,
+          "max_atom_angstrom": 0.005557701314773326,
+          "rms_atom_angstrom": 0.002040000000000003
+        },
+        "actual_push_l2_angstrom": 0.008159999999999968,
+        "alpha_cap": 0.1,
+        "baseline_phi": 3.2209097814247527,
+        "baseline_status": "completed",
+        "derivative": {
+          "endpoint_cosine": 0.17613773047598788,
+          "endpoint_gain": 0.8432021359397499,
+          "endpoint_projection": 0.14851971055693297,
+          "endpoint_response_resolved": true,
+          "event_response_norm": 2.8872726197196554,
+          "numerical_floor": 5.661151790007545e-09,
+          "qualification": "finite/invariant AD plus each trial linearization; FD implementation qualified in #198",
+          "qualified": true
+        },
+        "dt_x": 0.02040000000000003,
+        "lambdas": [
+          1.0,
+          0.5,
+          0.25
+        ],
+        "next_t_x": 0.27040000000000003,
+        "nominal_displacement": {
+          "l2_angstrom": 0.008160000000000013,
+          "max_atom_angstrom": 0.005557701314773326,
+          "rms_atom_angstrom": 0.002040000000000003
+        },
+        "observation_status": "completed",
+        "old_t_x": 0.25,
+        "reason": "first_acceptable_trial",
+        "selected_lambda": 1.0,
+        "status": "accepted",
+        "step": 25,
+        "trials": [
+          {
+            "accepted": true,
+            "checks": {
+              "displacement": true,
+              "linearization": true,
+              "positive_projection": true,
+              "residual": true
+            },
+            "displacement": {
+              "l2_angstrom": 0.008160000000000013,
+              "max_atom_angstrom": 0.005557701314773326,
+              "rms_atom_angstrom": 0.002040000000000003
+            },
+            "endpoint_displacement": {
+              "l2_angstrom": 0.006846793234745677,
+              "max_atom_angstrom": 0.0028169457369587444,
+              "rms_atom_angstrom": 0.0017116983086864193
+            },
+            "endpoint_gain": 0.8390677983756945,
+            "endpoint_projection": 0.012890464229112133,
+            "lambda_value": 1.0,
+            "linearization_relative_error": 0.009952887558796268,
+            "model_status": "completed",
+            "next_event_velocity_delta_l2": 0.023529416113096075,
+            "phi": 3.1722343674888265,
+            "physical_status": "completed"
+          }
+        ]
+      },
+      {
+        "accepted_phi": 0.447600924216134,
+        "actual_displacement": {
+          "l2_angstrom": 0.012959999999999906,
+          "max_atom_angstrom": 0.007760894020545738,
+          "rms_atom_angstrom": 0.0032399999999999764
+        },
+        "actual_push_l2_angstrom": 0.012959999999999822,
+        "alpha_cap": 0.1,
+        "baseline_phi": 0.45916053176964494,
+        "baseline_status": "completed",
+        "derivative": {
+          "endpoint_cosine": 0.40289744949692713,
+          "endpoint_gain": 0.36753674249671153,
+          "endpoint_projection": 0.14807961614833395,
+          "endpoint_response_resolved": true,
+          "event_response_norm": 0.8500223220365415,
+          "numerical_floor": 6.319574491167194e-09,
+          "qualification": "finite/invariant AD plus each trial linearization; FD implementation qualified in #198",
+          "qualified": true
+        },
+        "dt_x": 0.03239999999999976,
+        "lambdas": [
+          1.0,
+          0.5,
+          0.25
+        ],
+        "next_t_x": 0.6723999999999999,
+        "nominal_displacement": {
+          "l2_angstrom": 0.012959999999999906,
+          "max_atom_angstrom": 0.007760894020545738,
+          "rms_atom_angstrom": 0.0032399999999999764
+        },
+        "observation_status": "completed",
+        "old_t_x": 0.6400000000000001,
+        "reason": "first_acceptable_trial",
+        "selected_lambda": 1.0,
+        "status": "accepted",
+        "step": 40,
+        "trials": [
+          {
+            "accepted": true,
+            "checks": {
+              "displacement": true,
+              "linearization": true,
+              "positive_projection": true,
+              "residual": true
+            },
+            "displacement": {
+              "l2_angstrom": 0.012959999999999906,
+              "max_atom_angstrom": 0.007760894020545738,
+              "rms_atom_angstrom": 0.0032399999999999764
+            },
+            "endpoint_displacement": {
+              "l2_angstrom": 0.0047549235861744235,
+              "max_atom_angstrom": 0.003238452028490934,
+              "rms_atom_angstrom": 0.0011887308965436059
+            },
+            "endpoint_gain": 0.3668922520196341,
+            "endpoint_projection": 0.008919012051498539,
+            "lambda_value": 1.0,
+            "linearization_relative_error": 0.006833490935700746,
+            "model_status": "completed",
+            "next_event_velocity_delta_l2": 0.011149380787986274,
+            "phi": 0.447600924216134,
+            "physical_status": "completed"
+          }
+        ]
+      }
+    ],
+    "T": [
+      {
+        "accepted_phi": 0.003264655308839509,
+        "actual_displacement": {
+          "l2_angstrom": 0.003359999999999997,
+          "max_atom_angstrom": 0.00163542879294541,
+          "rms_atom_angstrom": 0.0008399999999999993
+        },
+        "alpha_cap": 0.1,
+        "baseline_phi": 0.003579571694295789,
+        "baseline_status": "completed",
+        "lambdas": [
+          1.0,
+          0.5,
+          0.25
+        ],
+        "nominal_displacement": {
+          "l2_angstrom": 0.003359999999999997,
+          "max_atom_angstrom": 0.00163542879294541,
+          "rms_atom_angstrom": 0.0008399999999999993
+        },
+        "observation_status": "completed",
+        "reason": "first_acceptable_trial",
+        "selected_lambda": 1.0,
+        "status": "accepted",
+        "step": 10,
+        "trials": [
+          {
+            "accepted": true,
+            "checks": {
+              "displacement": true,
+              "linearization": true,
+              "positive_projection": true,
+              "residual": true
+            },
+            "displacement": {
+              "l2_angstrom": 0.003359999999999997,
+              "max_atom_angstrom": 0.00163542879294541,
+              "rms_atom_angstrom": 0.0008399999999999993
+            },
+            "endpoint_displacement": {
+              "l2_angstrom": 0.003359999999999978,
+              "max_atom_angstrom": 0.0016354287929453684,
+              "rms_atom_angstrom": 0.0008399999999999946
+            },
+            "endpoint_gain": 0.9999999999999943,
+            "endpoint_projection": 0.0011371815348472198,
+            "lambda_value": 1.0,
+            "linearization_relative_error": 1.5035395583270154e-13,
+            "model_status": "completed",
+            "next_event_velocity_delta_l2": 0.0,
+            "phi": 0.003264655308839509,
+            "physical_status": "completed"
+          }
+        ]
+      },
+      {
+        "accepted_phi": 0.0029184792457579087,
+        "actual_displacement": {
+          "l2_angstrom": 0.004080000000000006,
+          "max_atom_angstrom": 0.0019665177148035233,
+          "rms_atom_angstrom": 0.0010200000000000016
+        },
+        "alpha_cap": 0.1,
+        "baseline_phi": 0.003264655308839509,
+        "baseline_status": "completed",
+        "lambdas": [
+          1.0,
+          0.5,
+          0.25
+        ],
+        "nominal_displacement": {
+          "l2_angstrom": 0.008160000000000013,
+          "max_atom_angstrom": 0.003933035429607047,
+          "rms_atom_angstrom": 0.002040000000000003
+        },
+        "observation_status": "completed",
+        "reason": "first_acceptable_trial",
+        "selected_lambda": 0.5,
+        "status": "accepted",
+        "step": 25,
+        "trials": [
+          {
+            "accepted": false,
+            "checks": {
+              "displacement": false,
+              "linearization": true,
+              "positive_projection": true,
+              "residual": true
+            },
+            "displacement": {
+              "l2_angstrom": 0.008160000000000013,
+              "max_atom_angstrom": 0.003933035429607047,
+              "rms_atom_angstrom": 0.002040000000000003
+            },
+            "endpoint_displacement": {
+              "l2_angstrom": 0.008160000000000065,
+              "max_atom_angstrom": 0.003933035429607109,
+              "rms_atom_angstrom": 0.002040000000000016
+            },
+            "endpoint_gain": 1.0000000000000064,
+            "endpoint_projection": 0.0026374474480134304,
+            "lambda_value": 1.0,
+            "linearization_relative_error": 4.94591685776896e-14,
+            "model_status": "completed",
+            "next_event_velocity_delta_l2": 0.0,
+            "phi": 0.002604419786636076,
+            "physical_status": "completed"
+          },
+          {
+            "accepted": true,
+            "checks": {
+              "displacement": true,
+              "linearization": true,
+              "positive_projection": true,
+              "residual": true
+            },
+            "displacement": {
+              "l2_angstrom": 0.004080000000000006,
+              "max_atom_angstrom": 0.0019665177148035233,
+              "rms_atom_angstrom": 0.0010200000000000016
+            },
+            "endpoint_displacement": {
+              "l2_angstrom": 0.004079999999999977,
+              "max_atom_angstrom": 0.0019665177148034518,
+              "rms_atom_angstrom": 0.0010199999999999942
+            },
+            "endpoint_gain": 0.9999999999999928,
+            "endpoint_projection": 0.0013187237240066974,
+            "lambda_value": 0.5,
+            "linearization_relative_error": 1.0592813966489696e-13,
+            "model_status": "completed",
+            "next_event_velocity_delta_l2": 0.0,
+            "phi": 0.0029184792457579087,
+            "physical_status": "completed"
+          }
+        ]
+      },
+      {
+        "accepted_phi": 0.0024424955315117194,
+        "actual_displacement": {
+          "l2_angstrom": 0.006479999999999952,
+          "max_atom_angstrom": 0.003082256111061413,
+          "rms_atom_angstrom": 0.001619999999999988
+        },
+        "alpha_cap": 0.1,
+        "baseline_phi": 0.0029184792457579087,
+        "baseline_status": "completed",
+        "lambdas": [
+          1.0,
+          0.5,
+          0.25
+        ],
+        "nominal_displacement": {
+          "l2_angstrom": 0.012959999999999904,
+          "max_atom_angstrom": 0.006164512222122826,
+          "rms_atom_angstrom": 0.003239999999999976
+        },
+        "observation_status": "completed",
+        "reason": "first_acceptable_trial",
+        "selected_lambda": 0.5,
+        "status": "accepted",
+        "step": 40,
+        "trials": [
+          {
+            "accepted": false,
+            "checks": {
+              "displacement": false,
+              "linearization": true,
+              "positive_projection": true,
+              "residual": true
+            },
+            "displacement": {
+              "l2_angstrom": 0.012959999999999904,
+              "max_atom_angstrom": 0.006164512222122826,
+              "rms_atom_angstrom": 0.003239999999999976
+            },
+            "endpoint_displacement": {
+              "l2_angstrom": 0.012959999999999992,
+              "max_atom_angstrom": 0.006164512222122926,
+              "rms_atom_angstrom": 0.0032399999999999985
+            },
+            "endpoint_gain": 1.0000000000000069,
+            "endpoint_projection": 0.003960575488221037,
+            "lambda_value": 1.0,
+            "linearization_relative_error": 3.380074590983092e-14,
+            "model_status": "completed",
+            "next_event_velocity_delta_l2": 0.0,
+            "phi": 0.0020385819778036395,
+            "physical_status": "completed"
+          },
+          {
+            "accepted": true,
+            "checks": {
+              "displacement": true,
+              "linearization": true,
+              "positive_projection": true,
+              "residual": true
+            },
+            "displacement": {
+              "l2_angstrom": 0.006479999999999952,
+              "max_atom_angstrom": 0.003082256111061413,
+              "rms_atom_angstrom": 0.001619999999999988
+            },
+            "endpoint_displacement": {
+              "l2_angstrom": 0.006479999999999895,
+              "max_atom_angstrom": 0.0030822561110613596,
+              "rms_atom_angstrom": 0.0016199999999999735
+            },
+            "endpoint_gain": 0.9999999999999911,
+            "endpoint_projection": 0.0019802877441104875,
+            "lambda_value": 0.5,
+            "linearization_relative_error": 7.223190378884795e-14,
+            "model_status": "completed",
+            "next_event_velocity_delta_l2": 0.0,
+            "phi": 0.0024424955315117194,
+            "physical_status": "completed"
+          }
+        ]
+      }
+    ]
+  },
+  "source_commit": "6cda08a1af3eb5513c9f44327b7591cdf5a0f384",
+  "status": "generation_completed",
+  "termination": "confirmed",
+  "work": {
+    "attempts": [
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.1509490399621427,
+        "elapsed_start": 0.13619424309581518,
+        "kind": "forward",
+        "sequence": 1,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.16117086517624557,
+        "elapsed_start": 0.15365429199300706,
+        "kind": "forward",
+        "sequence": 2,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.17117546312510967,
+        "elapsed_start": 0.16368283610790968,
+        "kind": "forward",
+        "sequence": 3,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.18111717607825994,
+        "elapsed_start": 0.17373511497862637,
+        "kind": "forward",
+        "sequence": 4,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.19110438716597855,
+        "elapsed_start": 0.18363569607026875,
+        "kind": "forward",
+        "sequence": 5,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.2010068711824715,
+        "elapsed_start": 0.19368389016017318,
+        "kind": "forward",
+        "sequence": 6,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.21100071305409074,
+        "elapsed_start": 0.20353649905882776,
+        "kind": "forward",
+        "sequence": 7,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.22095240117050707,
+        "elapsed_start": 0.21360339014790952,
+        "kind": "forward",
+        "sequence": 8,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.23091229214332998,
+        "elapsed_start": 0.22346687596291304,
+        "kind": "forward",
+        "sequence": 9,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.24064377811737359,
+        "elapsed_start": 0.23321243398822844,
+        "kind": "forward",
+        "sequence": 10,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.250487013021484,
+        "elapsed_start": 0.24289114098064601,
+        "kind": "forward",
+        "sequence": 11,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.2603361769579351,
+        "elapsed_start": 0.25278370012529194,
+        "kind": "forward",
+        "sequence": 12,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.27000871510244906,
+        "elapsed_start": 0.26264244806952775,
+        "kind": "forward",
+        "sequence": 13,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.27973057702183723,
+        "elapsed_start": 0.2722813051659614,
+        "kind": "forward",
+        "sequence": 14,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.2894269509706646,
+        "elapsed_start": 0.28199559613130987,
+        "kind": "forward",
+        "sequence": 15,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.29924541898071766,
+        "elapsed_start": 0.2917575591709465,
+        "kind": "forward",
+        "sequence": 16,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.3089742010924965,
+        "elapsed_start": 0.3015978990588337,
+        "kind": "forward",
+        "sequence": 17,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.3188745721708983,
+        "elapsed_start": 0.3113924809731543,
+        "kind": "forward",
+        "sequence": 18,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.3287486641202122,
+        "elapsed_start": 0.3212190510239452,
+        "kind": "forward",
+        "sequence": 19,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.33886429900303483,
+        "elapsed_start": 0.3312645200639963,
+        "kind": "forward",
+        "sequence": 20,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.3489122011233121,
+        "elapsed_start": 0.3413187530823052,
+        "kind": "forward",
+        "sequence": 21,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.35893712006509304,
+        "elapsed_start": 0.35131532815285027,
+        "kind": "forward",
+        "sequence": 22,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.36923353699967265,
+        "elapsed_start": 0.3615456260740757,
+        "kind": "forward",
+        "sequence": 23,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.37929680314846337,
+        "elapsed_start": 0.37162119010463357,
+        "kind": "forward",
+        "sequence": 24,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.3894208800047636,
+        "elapsed_start": 0.38175955996848643,
+        "kind": "forward",
+        "sequence": 25,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.39951099711470306,
+        "elapsed_start": 0.39191160909831524,
+        "kind": "forward",
+        "sequence": 26,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.4097541640512645,
+        "elapsed_start": 0.40200578211806715,
+        "kind": "forward",
+        "sequence": 27,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.4198303990997374,
+        "elapsed_start": 0.4122656041290611,
+        "kind": "forward",
+        "sequence": 28,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.42996524297632277,
+        "elapsed_start": 0.42232317104935646,
+        "kind": "forward",
+        "sequence": 29,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.44003279600292444,
+        "elapsed_start": 0.43245837511494756,
+        "kind": "forward",
+        "sequence": 30,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.45033235708251595,
+        "elapsed_start": 0.44258057000115514,
+        "kind": "forward",
+        "sequence": 31,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.46052696113474667,
+        "elapsed_start": 0.45285086799412966,
+        "kind": "forward",
+        "sequence": 32,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.4709578810725361,
+        "elapsed_start": 0.4630948160775006,
+        "kind": "forward",
+        "sequence": 33,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.4811681180726737,
+        "elapsed_start": 0.4734728760086,
+        "kind": "forward",
+        "sequence": 34,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.4914904839824885,
+        "elapsed_start": 0.4837262181099504,
+        "kind": "forward",
+        "sequence": 35,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.5016684520523995,
+        "elapsed_start": 0.4940068209543824,
+        "kind": "forward",
+        "sequence": 36,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.5118292551487684,
+        "elapsed_start": 0.5042123510502279,
+        "kind": "forward",
+        "sequence": 37,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.5220542249735445,
+        "elapsed_start": 0.5143580511212349,
+        "kind": "forward",
+        "sequence": 38,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.532619547098875,
+        "elapsed_start": 0.5247395359911025,
+        "kind": "forward",
+        "sequence": 39,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.542879318119958,
+        "elapsed_start": 0.5351549331098795,
+        "kind": "forward",
+        "sequence": 40,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.5532548441551626,
+        "elapsed_start": 0.5454467129893601,
+        "kind": "forward",
+        "sequence": 41,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.5636710021644831,
+        "elapsed_start": 0.5558388940989971,
+        "kind": "forward",
+        "sequence": 42,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.5741412900388241,
+        "elapsed_start": 0.5662882211618125,
+        "kind": "forward",
+        "sequence": 43,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.5844849681016058,
+        "elapsed_start": 0.5767447990365326,
+        "kind": "forward",
+        "sequence": 44,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.5948376799933612,
+        "elapsed_start": 0.5871032290160656,
+        "kind": "forward",
+        "sequence": 45,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.6051292400807142,
+        "elapsed_start": 0.5974688499700278,
+        "kind": "forward",
+        "sequence": 46,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.6155118059832603,
+        "elapsed_start": 0.6077405100222677,
+        "kind": "forward",
+        "sequence": 47,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.6258930109906942,
+        "elapsed_start": 0.6181384001392871,
+        "kind": "forward",
+        "sequence": 48,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.6362607651390135,
+        "elapsed_start": 0.628535688156262,
+        "kind": "forward",
+        "sequence": 49,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.6466673980467021,
+        "elapsed_start": 0.6388930671382695,
+        "kind": "forward",
+        "sequence": 50,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.6573561360128224,
+        "elapsed_start": 0.6494482541456819,
+        "kind": "forward",
+        "sequence": 51,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.6677085470873863,
+        "elapsed_start": 0.6599535450804979,
+        "kind": "forward",
+        "sequence": 52,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.6780858959537,
+        "elapsed_start": 0.6703288711141795,
+        "kind": "forward",
+        "sequence": 53,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.6886135609820485,
+        "elapsed_start": 0.6807080921716988,
+        "kind": "forward",
+        "sequence": 54,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.6992269051261246,
+        "elapsed_start": 0.6914146170020103,
+        "kind": "forward",
+        "sequence": 55,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.7096614299807698,
+        "elapsed_start": 0.7018503630533814,
+        "kind": "forward",
+        "sequence": 56,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.7201742720790207,
+        "elapsed_start": 0.7123348030727357,
+        "kind": "forward",
+        "sequence": 57,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.7306760980281979,
+        "elapsed_start": 0.722843148978427,
+        "kind": "forward",
+        "sequence": 58,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.7413485110737383,
+        "elapsed_start": 0.7333885610569268,
+        "kind": "forward",
+        "sequence": 59,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.7518334221094847,
+        "elapsed_start": 0.7440202829893678,
+        "kind": "forward",
+        "sequence": 60,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.7623542870860547,
+        "elapsed_start": 0.754523711046204,
+        "kind": "forward",
+        "sequence": 61,
+        "status": "completed"
+      },
+      {
+        "context": "F:k10:old_endpoint",
+        "elapsed_end": 2.0357617679983377,
+        "elapsed_start": 0.7650291630998254,
+        "kind": "ef",
+        "result_sha256": "6d4cba7129c56d0d7502717417365c27a2417ccd9c3f674e1a210634edefbf5c",
+        "sequence": 62,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "F:k10:G",
+        "elapsed_end": 2.4063911421690136,
+        "elapsed_start": 2.040398667100817,
+        "kind": "jvp",
+        "sequence": 63,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 2.055574018973857,
+        "elapsed_start": 2.042980442987755,
+        "kind": "forward",
+        "sequence": 64,
+        "status": "completed"
+      },
+      {
+        "context": "F:k10:unperturbed_next_endpoint",
+        "elapsed_end": 3.6816685921512544,
+        "elapsed_start": 2.411201511975378,
+        "kind": "ef",
+        "result_sha256": "6714d31c2176084985fb34cd67c75d4a40855ff18103bd9eaafbbe20126ba104",
+        "sequence": 65,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.6954356741625816,
+        "elapsed_start": 3.686381916049868,
+        "kind": "forward",
+        "sequence": 66,
+        "status": "completed"
+      },
+      {
+        "context": "F:k10:lambda=1.0",
+        "elapsed_end": 4.96921753603965,
+        "elapsed_start": 3.698702000081539,
+        "kind": "ef",
+        "result_sha256": "90fc1db26a0c1b606ed2d68c45ff1b085d12533754f32fa27a86c562bb9efa94",
+        "sequence": 67,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.983082756167278,
+        "elapsed_start": 4.974144991952926,
+        "kind": "forward",
+        "sequence": 68,
+        "status": "completed"
+      },
+      {
+        "context": "F:k10:lambda=0.5",
+        "elapsed_end": 6.25692595099099,
+        "elapsed_start": 4.9864159929566085,
+        "kind": "ef",
+        "result_sha256": "aaa2fbb58d1e51d2b2def819a68c729b28404f3442a141cfdbc1b520bcd0fce4",
+        "sequence": 69,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 6.271193998167291,
+        "elapsed_start": 6.262120240135118,
+        "kind": "forward",
+        "sequence": 70,
+        "status": "completed"
+      },
+      {
+        "context": "F:k10:lambda=0.25",
+        "elapsed_end": 7.545601787045598,
+        "elapsed_start": 6.274685814976692,
+        "kind": "ef",
+        "result_sha256": "0ce8a0f25a303724fcafc305b6cc84e8cb1b620dc569e9319d0a9febc7b642dc",
+        "sequence": 71,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.5599847480189055,
+        "elapsed_start": 7.550845029996708,
+        "kind": "forward",
+        "sequence": 72,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.572232204955071,
+        "elapsed_start": 7.56374567002058,
+        "kind": "forward",
+        "sequence": 73,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.5844118390232325,
+        "elapsed_start": 7.575962810078636,
+        "kind": "forward",
+        "sequence": 74,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.596660998184234,
+        "elapsed_start": 7.588213351089507,
+        "kind": "forward",
+        "sequence": 75,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.608847973169759,
+        "elapsed_start": 7.600343401078135,
+        "kind": "forward",
+        "sequence": 76,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.62100167805329,
+        "elapsed_start": 7.6125848880037665,
+        "kind": "forward",
+        "sequence": 77,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.633233722066507,
+        "elapsed_start": 7.62475101207383,
+        "kind": "forward",
+        "sequence": 78,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.645187626127154,
+        "elapsed_start": 7.6367655580397695,
+        "kind": "forward",
+        "sequence": 79,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.65711928717792,
+        "elapsed_start": 7.648603657959029,
+        "kind": "forward",
+        "sequence": 80,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.669098259182647,
+        "elapsed_start": 7.660541559103876,
+        "kind": "forward",
+        "sequence": 81,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.680978473043069,
+        "elapsed_start": 7.672532228985801,
+        "kind": "forward",
+        "sequence": 82,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.693046379135922,
+        "elapsed_start": 7.684543089009821,
+        "kind": "forward",
+        "sequence": 83,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.704969277139753,
+        "elapsed_start": 7.696512066060677,
+        "kind": "forward",
+        "sequence": 84,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.7170639431569725,
+        "elapsed_start": 7.708444247953594,
+        "kind": "forward",
+        "sequence": 85,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 7.7289872211404145,
+        "elapsed_start": 7.720491713145748,
+        "kind": "forward",
+        "sequence": 86,
+        "status": "completed"
+      },
+      {
+        "context": "F:k25:old_endpoint",
+        "elapsed_end": 9.004020038992167,
+        "elapsed_start": 7.7325102251488715,
+        "kind": "ef",
+        "result_sha256": "764fe3e0003df73526eb4d2b443d4cc8bf1628e650e56844542dcbe9ac0c04be",
+        "sequence": 87,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "F:k25:G",
+        "elapsed_end": 9.047511450015008,
+        "elapsed_start": 9.0095303140115,
+        "kind": "jvp",
+        "sequence": 88,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 9.023157739080489,
+        "elapsed_start": 9.012965264962986,
+        "kind": "forward",
+        "sequence": 89,
+        "status": "completed"
+      },
+      {
+        "context": "F:k25:unperturbed_next_endpoint",
+        "elapsed_end": 10.323123492999002,
+        "elapsed_start": 9.052067738957703,
+        "kind": "ef",
+        "result_sha256": "7fe9a82d0bdbaab2c33cdae1b8239fa1a5973aad24a2fa863d1ecaff7b14ecc6",
+        "sequence": 90,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 10.338207361055538,
+        "elapsed_start": 10.328768972074613,
+        "kind": "forward",
+        "sequence": 91,
+        "status": "completed"
+      },
+      {
+        "context": "F:k25:lambda=1.0",
+        "elapsed_end": 11.613827598979697,
+        "elapsed_start": 10.342247503111139,
+        "kind": "ef",
+        "result_sha256": "dc51f53ec87111025ac896691efcc1e9319977f3dab36a5066177e8fbe66fa09",
+        "sequence": 92,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.630516593111679,
+        "elapsed_start": 11.620996501063928,
+        "kind": "forward",
+        "sequence": 93,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.643402302172035,
+        "elapsed_start": 11.634505158057436,
+        "kind": "forward",
+        "sequence": 94,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.656094760168344,
+        "elapsed_start": 11.647275613155216,
+        "kind": "forward",
+        "sequence": 95,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.668923262972385,
+        "elapsed_start": 11.660026889992878,
+        "kind": "forward",
+        "sequence": 96,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.681624424178153,
+        "elapsed_start": 11.67283517215401,
+        "kind": "forward",
+        "sequence": 97,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.694476803066209,
+        "elapsed_start": 11.685700529953465,
+        "kind": "forward",
+        "sequence": 98,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.70732279215008,
+        "elapsed_start": 11.698476794175804,
+        "kind": "forward",
+        "sequence": 99,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.72013047314249,
+        "elapsed_start": 11.711246127961203,
+        "kind": "forward",
+        "sequence": 100,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.732951635029167,
+        "elapsed_start": 11.72414231300354,
+        "kind": "forward",
+        "sequence": 101,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.745875620981678,
+        "elapsed_start": 11.737067430978641,
+        "kind": "forward",
+        "sequence": 102,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.758707097964361,
+        "elapsed_start": 11.7498359431047,
+        "kind": "forward",
+        "sequence": 103,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.771608080016449,
+        "elapsed_start": 11.762648322153836,
+        "kind": "forward",
+        "sequence": 104,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.78457238804549,
+        "elapsed_start": 11.775594050996006,
+        "kind": "forward",
+        "sequence": 105,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.797533550066873,
+        "elapsed_start": 11.788666831096634,
+        "kind": "forward",
+        "sequence": 106,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 11.810484958114102,
+        "elapsed_start": 11.801555565092713,
+        "kind": "forward",
+        "sequence": 107,
+        "status": "completed"
+      },
+      {
+        "context": "F:k40:old_endpoint",
+        "elapsed_end": 13.086669215001166,
+        "elapsed_start": 11.814495875965804,
+        "kind": "ef",
+        "result_sha256": "30f3f5396587df0c03a5c9fd536ea6320419be8ab6565c9a4381a0e3bb07b384",
+        "sequence": 108,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "F:k40:G",
+        "elapsed_end": 13.132157940184698,
+        "elapsed_start": 13.092903511133045,
+        "kind": "jvp",
+        "sequence": 109,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 13.107226514955983,
+        "elapsed_start": 13.096805916167796,
+        "kind": "forward",
+        "sequence": 110,
+        "status": "completed"
+      },
+      {
+        "context": "F:k40:unperturbed_next_endpoint",
+        "elapsed_end": 14.408525974024087,
+        "elapsed_start": 13.137062824098393,
+        "kind": "ef",
+        "result_sha256": "2b2fc1632d8678b054bcba63901b859c0b281420d86fbc31ac4acc6d76eb5013",
+        "sequence": 111,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 14.424363838974386,
+        "elapsed_start": 14.414543153019622,
+        "kind": "forward",
+        "sequence": 112,
+        "status": "completed"
+      },
+      {
+        "context": "F:k40:lambda=1.0",
+        "elapsed_end": 15.70039353496395,
+        "elapsed_start": 14.428828871110454,
+        "kind": "ef",
+        "result_sha256": "290fb1c051d87f4779a9afb9729db3e36ce25927754ec2903f419bb006c0dcb8",
+        "sequence": 113,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.716535988962278,
+        "elapsed_start": 15.706626650178805,
+        "kind": "forward",
+        "sequence": 114,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.73044199612923,
+        "elapsed_start": 15.72124083316885,
+        "kind": "forward",
+        "sequence": 115,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.746668707113713,
+        "elapsed_start": 15.73519752616994,
+        "kind": "forward",
+        "sequence": 116,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.761539075989276,
+        "elapsed_start": 15.752125072060153,
+        "kind": "forward",
+        "sequence": 117,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.7754317719955,
+        "elapsed_start": 15.766243148129433,
+        "kind": "forward",
+        "sequence": 118,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.789486543042585,
+        "elapsed_start": 15.780274083139375,
+        "kind": "forward",
+        "sequence": 119,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.8030985170044,
+        "elapsed_start": 15.793904174119234,
+        "kind": "forward",
+        "sequence": 120,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.816723871044815,
+        "elapsed_start": 15.807503990130499,
+        "kind": "forward",
+        "sequence": 121,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.83050740417093,
+        "elapsed_start": 15.821182915009558,
+        "kind": "forward",
+        "sequence": 122,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.844445208087564,
+        "elapsed_start": 15.835148611105978,
+        "kind": "forward",
+        "sequence": 123,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.858124684076756,
+        "elapsed_start": 15.848919114097953,
+        "kind": "forward",
+        "sequence": 124,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.87186332908459,
+        "elapsed_start": 15.862677498953417,
+        "kind": "forward",
+        "sequence": 125,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.885556996101514,
+        "elapsed_start": 15.876335051143542,
+        "kind": "forward",
+        "sequence": 126,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.899296462070197,
+        "elapsed_start": 15.890069590182975,
+        "kind": "forward",
+        "sequence": 127,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.913169699022546,
+        "elapsed_start": 15.903822356136516,
+        "kind": "forward",
+        "sequence": 128,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.926922986051068,
+        "elapsed_start": 15.91762973414734,
+        "kind": "forward",
+        "sequence": 129,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.940826078178361,
+        "elapsed_start": 15.931430562166497,
+        "kind": "forward",
+        "sequence": 130,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.954558594152331,
+        "elapsed_start": 15.945377090014517,
+        "kind": "forward",
+        "sequence": 131,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.968300943961367,
+        "elapsed_start": 15.95904963510111,
+        "kind": "forward",
+        "sequence": 132,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.98212976497598,
+        "elapsed_start": 15.972876974148676,
+        "kind": "forward",
+        "sequence": 133,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 15.996029522037134,
+        "elapsed_start": 15.986756009981036,
+        "kind": "forward",
+        "sequence": 134,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.01003281516023,
+        "elapsed_start": 16.000600073020905,
+        "kind": "forward",
+        "sequence": 135,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.024045643163845,
+        "elapsed_start": 16.014700883068144,
+        "kind": "forward",
+        "sequence": 136,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.037922005169094,
+        "elapsed_start": 16.028630606131628,
+        "kind": "forward",
+        "sequence": 137,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.05164531711489,
+        "elapsed_start": 16.042410073103383,
+        "kind": "forward",
+        "sequence": 138,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.0656183459796,
+        "elapsed_start": 16.05628302996047,
+        "kind": "forward",
+        "sequence": 139,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.079527687979862,
+        "elapsed_start": 16.07021367410198,
+        "kind": "forward",
+        "sequence": 140,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.093475388130173,
+        "elapsed_start": 16.08409874001518,
+        "kind": "forward",
+        "sequence": 141,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.107368496013805,
+        "elapsed_start": 16.098028372973204,
+        "kind": "forward",
+        "sequence": 142,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.121269535040483,
+        "elapsed_start": 16.11198765016161,
+        "kind": "forward",
+        "sequence": 143,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.135148592060432,
+        "elapsed_start": 16.125818795058876,
+        "kind": "forward",
+        "sequence": 144,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.149099527159706,
+        "elapsed_start": 16.139734246069565,
+        "kind": "forward",
+        "sequence": 145,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.1630711031612,
+        "elapsed_start": 16.153722457122058,
+        "kind": "forward",
+        "sequence": 146,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.177076880121604,
+        "elapsed_start": 16.167706672102213,
+        "kind": "forward",
+        "sequence": 147,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.191060284152627,
+        "elapsed_start": 16.18169745709747,
+        "kind": "forward",
+        "sequence": 148,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.20520488009788,
+        "elapsed_start": 16.195737686008215,
+        "kind": "forward",
+        "sequence": 149,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.219142124056816,
+        "elapsed_start": 16.209811696084216,
+        "kind": "forward",
+        "sequence": 150,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.23314773198217,
+        "elapsed_start": 16.223735260078683,
+        "kind": "forward",
+        "sequence": 151,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.247109923046082,
+        "elapsed_start": 16.23780806805007,
+        "kind": "forward",
+        "sequence": 152,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.261245656060055,
+        "elapsed_start": 16.25181028014049,
+        "kind": "forward",
+        "sequence": 153,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.275444134138525,
+        "elapsed_start": 16.26601904304698,
+        "kind": "forward",
+        "sequence": 154,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.289505474967882,
+        "elapsed_start": 16.280116198118776,
+        "kind": "forward",
+        "sequence": 155,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.30355189414695,
+        "elapsed_start": 16.294097709003836,
+        "kind": "forward",
+        "sequence": 156,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.317534717032686,
+        "elapsed_start": 16.308068063110113,
+        "kind": "forward",
+        "sequence": 157,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.331604711012915,
+        "elapsed_start": 16.322199088986963,
+        "kind": "forward",
+        "sequence": 158,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.345615185098723,
+        "elapsed_start": 16.336186930071563,
+        "kind": "forward",
+        "sequence": 159,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.359756116056815,
+        "elapsed_start": 16.350319598102942,
+        "kind": "forward",
+        "sequence": 160,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.373658468015492,
+        "elapsed_start": 16.364284083014354,
+        "kind": "forward",
+        "sequence": 161,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.387608611024916,
+        "elapsed_start": 16.378179405117407,
+        "kind": "forward",
+        "sequence": 162,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.401684483978897,
+        "elapsed_start": 16.39222716516815,
+        "kind": "forward",
+        "sequence": 163,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.415826256154105,
+        "elapsed_start": 16.406361787114292,
+        "kind": "forward",
+        "sequence": 164,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.429897973081097,
+        "elapsed_start": 16.42044623196125,
+        "kind": "forward",
+        "sequence": 165,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.444173727184534,
+        "elapsed_start": 16.434562406037003,
+        "kind": "forward",
+        "sequence": 166,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.458238704130054,
+        "elapsed_start": 16.448821735102683,
+        "kind": "forward",
+        "sequence": 167,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.472403060179204,
+        "elapsed_start": 16.462809215066954,
+        "kind": "forward",
+        "sequence": 168,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.48652837704867,
+        "elapsed_start": 16.47702566999942,
+        "kind": "forward",
+        "sequence": 169,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.500975639093667,
+        "elapsed_start": 16.49130132305436,
+        "kind": "forward",
+        "sequence": 170,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.515186966164038,
+        "elapsed_start": 16.50567433401011,
+        "kind": "forward",
+        "sequence": 171,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 16.52934049605392,
+        "elapsed_start": 16.519835035083815,
+        "kind": "forward",
+        "sequence": 172,
+        "status": "completed"
+      },
+      {
+        "context": "T:k10:baseline",
+        "elapsed_end": 17.80670718406327,
+        "elapsed_start": 16.53407455398701,
+        "kind": "ef",
+        "result_sha256": "b1b80f4cef7e14229c90111469507eea3bfbbb337f1dcfaef397c5d1b5135b70",
+        "sequence": 173,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "T:k10:lambda=1.0",
+        "elapsed_end": 19.1361052300781,
+        "elapsed_start": 17.81414762698114,
+        "kind": "ef",
+        "result_sha256": "2192a3f7408aa67b2f07f314aadc7e3f97534caf78a53df7633806e7514a79d2",
+        "sequence": 174,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "T:k25:baseline",
+        "elapsed_end": 20.46549880108796,
+        "elapsed_start": 19.14282186399214,
+        "kind": "ef",
+        "result_sha256": "15e09980d95696aed99a8b791d1b18ed1f562680137c41c24cce8c6d977190ac",
+        "sequence": 175,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "T:k25:lambda=1.0",
+        "elapsed_end": 21.75644777715206,
+        "elapsed_start": 20.47915287106298,
+        "kind": "ef",
+        "result_sha256": "3ae681a7a9ee21abaa3e419bbbbb75b4fb4c69068c822c0c4b45765109f3ce8e",
+        "sequence": 176,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "T:k25:lambda=0.5",
+        "elapsed_end": 23.035757990088314,
+        "elapsed_start": 21.763496271101758,
+        "kind": "ef",
+        "result_sha256": "dac59e9bfd61bf5cd628d60470258491d737a69302f123f884bef246e823705b",
+        "sequence": 177,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "T:k40:baseline",
+        "elapsed_end": 24.365678356029093,
+        "elapsed_start": 23.04287769109942,
+        "kind": "ef",
+        "result_sha256": "8abb5cba594dfa4f3ca294008376fe17649b1f47a36a2a863b2a597acb5d2741",
+        "sequence": 178,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "T:k40:lambda=1.0",
+        "elapsed_end": 25.657213230151683,
+        "elapsed_start": 24.37951002502814,
+        "kind": "ef",
+        "result_sha256": "71f4bfaf03e422d3d51b424e69ffbdc72b7bfbbb652ec358d7d640a3d93b883b",
+        "sequence": 179,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "T:k40:lambda=0.5",
+        "elapsed_end": 26.937132491962984,
+        "elapsed_start": 25.664637150010094,
+        "kind": "ef",
+        "result_sha256": "6e0f0a96b2e79bb465b453da51f1eaa2a917c82c468ee542af4b50ec248da26c",
+        "sequence": 180,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      }
+    ],
+    "counts": {
+      "ef": 19,
+      "forward": 158,
+      "jvp": 3
+    },
+    "gpu_seconds": 0,
+    "process_cpu_including_children_seconds": 30.616046358000002,
+    "reference_primitives": 0,
+    "reverse_completed": 6,
+    "reverse_reserved": 6,
+    "training_steps": 0,
+    "unresolved_started": 0,
+    "wall_seconds": 32.12556727300398
+  },
+  "work_sha256": "b9f19c533702324c96eb812c648359ddb650f77a23487ef18306719537823b0f"
+}

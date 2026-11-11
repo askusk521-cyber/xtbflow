@@ -1,0 +1,53 @@
+{
+  "schema": "xtbflow-integration-software-validation/v1",
+  "source_commit": "cedc5c405dc21e413a7a4e9d869036d501e369ed",
+  "host": "node2",
+  "python": "3.10.19",
+  "packages": {
+    "torch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "rdkit": "2024.3.3",
+    "ase": "3.29.0",
+    "tblite": "0.7.0",
+    "xtb": "22.1",
+    "pytest": "9.1.1"
+  },
+  "job_id": "4282",
+  "caps": {
+    "wall_seconds": 600,
+    "cpu_cores": 1,
+    "memory_gib": 8,
+    "storage_mib": 128,
+    "gpu": 0
+  },
+  "scientific_work": {
+    "trained_forwards": 0,
+    "energy_force": 0,
+    "reference_primitives": 0,
+    "training": 0
+  },
+  "checks": [
+    {
+      "name": "focused",
+      "returncode": 0,
+      "wall_seconds": 4.314456986961886,
+      "cpu_seconds": 4.138562,
+      "log_sha256": "d70d62661f91c94435bbe6064cfb2618337fa732927b6f75b151cad472700495",
+      "log_bytes": 99
+    },
+    {
+      "name": "pytest",
+      "returncode": 1,
+      "wall_seconds": 21.184526320081204,
+      "cpu_seconds": 17.372216,
+      "log_sha256": "d076acb07a756cf106769b619162b4aeda124d55180be0d983e0409792699f54",
+      "log_bytes": 5197
+    }
+  ],
+  "status": "failed",
+  "wall_seconds": 25.506364630069584,
+  "claim_limits": [
+    "Software fixtures only; no chemistry or trained-model efficacy claim."
+  ]
+}

@@ -1,0 +1,905 @@
+{
+  "caps": {
+    "concurrency": 1,
+    "cpu_seconds": 300,
+    "ef": 3,
+    "forward": 45,
+    "gpu_seconds": 0,
+    "jvp": 6,
+    "memory_gib": 8,
+    "output_bytes": 33554432,
+    "retries": 0,
+    "reverse": 12,
+    "threads": 1,
+    "wall_seconds": 300
+  },
+  "claim_limits": [
+    "Exposed ID63623 seed 0 calibration only; no method superiority or independent confirmation.",
+    "Local conditional endpoint derivative, not entire remaining rollout.",
+    "Event-derived reflected direction is not a verified negative Hessian mode.",
+    "No final decoded chemical event, candidate, or certification in this stage."
+  ],
+  "config_sha256": "6db96ff30fa90fe44e32f22682e4fbeafd0de0042c7a388023137f3a692d9b6b",
+  "host": "node2",
+  "identities": {
+    "checkpoint_sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda",
+    "packet_sha256": "3aa5566ea68752d67d777730899a8a5eaa21f108c7d06afe2751a86f38522799",
+    "saved_state_sha256": {
+      "10": "0582b709de1145f2a1a1c3c278ce52dcd577c09f6b384117484361cc970b15fc",
+      "25": "272f994a7590e93c24f95a4df1609735221982aa75571381a0c527e96dfa3e6a",
+      "40": "3bd32cdce359052bbbee23a7f5aabe77a89205ce406dadc760fbe08bf9e6d0cc"
+    },
+    "trained_commit": "e84e330390a519bf4ac12048b297403c09717646"
+  },
+  "issue": 198,
+  "job_id": "4275",
+  "packages": {
+    "numpy": "2.2.6",
+    "rdkit": "2024.3.3",
+    "scipy": "1.15.3",
+    "tblite": "0.7.0",
+    "torch": "2.10.0+cu128"
+  },
+  "python": "3.10.19",
+  "raw_artifacts": [
+    {
+      "bytes": 0,
+      "name": "ef-002.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2271,
+      "name": "ef-002.request.json",
+      "sha256": "ea479a1e2eb10a3e8d2af68f801e9dc586a3b8627b1795c62482f94157925a07"
+    },
+    {
+      "bytes": 1902,
+      "name": "ef-002.result.json",
+      "sha256": "cfea778987632bbaad260cc5dce330b1ed8a0ee8eb0b10f0ba086e705950f7c7"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-002.result.ledger.json",
+      "sha256": "ff5bc438668f7302bf68bbe6a4105f8bb97b8384c69b1d25b1f897b47b3b133a"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-020.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2272,
+      "name": "ef-020.request.json",
+      "sha256": "b4c103af92c8fe24212cab11cf07a887611fb839bf23b770c6e746c16b3bc013"
+    },
+    {
+      "bytes": 1930,
+      "name": "ef-020.result.json",
+      "sha256": "785ad1d85ad853dec9fc328ec4e4deb64654227c27533cf73271076fbe403f82"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-020.result.ledger.json",
+      "sha256": "9e4828544d49cb1a0f3cd232f90e68426e5e36384f826fdb949d0c99dc9faad5"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-038.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2273,
+      "name": "ef-038.request.json",
+      "sha256": "ca0f8619e912ef9512b3f4a1626565813df09ea18cb8760491bf7866aae22b7b"
+    },
+    {
+      "bytes": 1954,
+      "name": "ef-038.result.json",
+      "sha256": "0880b338b3da1167744ab36d4290c94446a8b750b86e37015c7c0253913c4e88"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-038.result.ledger.json",
+      "sha256": "300b1b90d17678d78446955f7d482dbbd2d44b07e25039c2f0a0a0d5b098a859"
+    },
+    {
+      "bytes": 147864,
+      "name": "k10-cache.pt",
+      "sha256": "121dd306941dd98fd3095b18624bbd6e2950d54319ea35f61afd9f0970d3ca23"
+    },
+    {
+      "bytes": 147864,
+      "name": "k25-cache.pt",
+      "sha256": "94f490e38649f255cd016567235f44f3bcbad1cc3f81f41daa35be367ffa52e0"
+    },
+    {
+      "bytes": 147864,
+      "name": "k40-cache.pt",
+      "sha256": "c904ba9097c7991d0de581cd682e5c319a4c3e520f16edb45633162fb058e16b"
+    },
+    {
+      "bytes": 19254,
+      "name": "work.json",
+      "sha256": "7570234a19fcf9be73eea6de97d3b0fe54ee3f79cacf32bca19b7a360545a0b9"
+    }
+  ],
+  "schema": "xtbflow-real-direction-diagnostic/v1",
+  "source_commit": "76028d54fb5da4a16200fa67ceaf061a0d27befd",
+  "states": [
+    {
+      "cache_sha256": "121dd306941dd98fd3095b18624bbd6e2950d54319ea35f61afd9f0970d3ca23",
+      "directions": {
+        "F": {
+          "direction_norm_hartree_per_angstrom": 14.930225206389306,
+          "endpoint_cosine": -0.02073315034897976,
+          "endpoint_gain": 0.34826355836874995,
+          "endpoint_projection": -0.0072206007167299815,
+          "endpoint_response_resolved": true,
+          "event_electron_sum": 2.7755575615628914e-17,
+          "event_response_resolved": true,
+          "event_symmetry_error": 0.0,
+          "event_velocity_response_norm": 0.45922003464580025,
+          "fd": [
+            {
+              "endpoint_absolute_error": 2.4512054772042056e-09,
+              "endpoint_relative_error": 7.0383633840001415e-09,
+              "epsilon_l2_angstrom": 0.0001,
+              "event_absolute_error": 2.5238604353602524e-09,
+              "event_relative_error": 5.495971963215682e-09,
+              "qualified": true
+            },
+            {
+              "endpoint_absolute_error": 2.197922653942527e-08,
+              "endpoint_relative_error": 6.311089980925633e-08,
+              "epsilon_l2_angstrom": 0.0003,
+              "event_absolute_error": 2.2672077087614584e-08,
+              "event_relative_error": 4.937083615069565e-08,
+              "qualified": true
+            },
+            {
+              "endpoint_absolute_error": 2.4418940588262297e-07,
+              "endpoint_relative_error": 7.011626683721795e-07,
+              "epsilon_l2_angstrom": 0.001,
+              "event_absolute_error": 2.5190061392051414e-07,
+              "event_relative_error": 5.485401221982985e-07,
+              "qualified": true
+            }
+          ],
+          "l2_unit_rms": 0.25,
+          "numerical_floor_absolute": 5.658865320129445e-09,
+          "qualified": true,
+          "status": "qualified"
+        },
+        "G": {
+          "direction_norm_hartree_per_angstrom": 14.930225206389306,
+          "endpoint_cosine": 0.033230929545345414,
+          "endpoint_gain": 0.40257949956862876,
+          "endpoint_projection": 0.013378090986565516,
+          "endpoint_response_resolved": true,
+          "event_electron_sum": 1.6653345369377348e-16,
+          "event_response_resolved": true,
+          "event_symmetry_error": 0.0,
+          "event_velocity_response_norm": 0.47472301818981955,
+          "fd": [
+            {
+              "endpoint_absolute_error": 3.4605744480093977e-09,
+              "endpoint_relative_error": 8.596002657158315e-09,
+              "epsilon_l2_angstrom": 0.0001,
+              "event_absolute_error": 4.080177992888886e-09,
+              "event_relative_error": 8.594860237548906e-09,
+              "qualified": true
+            },
+            {
+              "endpoint_absolute_error": 3.1152619054836214e-08,
+              "endpoint_relative_error": 7.738252714859255e-08,
+              "epsilon_l2_angstrom": 0.0003,
+              "event_absolute_error": 3.6870610825061966e-08,
+              "event_relative_error": 7.766762809533523e-08,
+              "qualified": true
+            },
+            {
+              "endpoint_absolute_error": 3.4612886212459467e-07,
+              "endpoint_relative_error": 8.597776650213884e-07,
+              "epsilon_l2_angstrom": 0.001,
+              "event_absolute_error": 4.097080618742469e-07,
+              "event_relative_error": 8.63046547514205e-07,
+              "qualified": true
+            }
+          ],
+          "l2_unit_rms": 0.24999999999999997,
+          "numerical_floor_absolute": 5.658865320129445e-09,
+          "qualified": true,
+          "status": "qualified"
+        }
+      },
+      "dt_x": 0.00839999999999999,
+      "energy_hartree": -12.736835120606202,
+      "event_direction_valid": true,
+      "force_norm": 14.930225206389306,
+      "min_distance_angstrom": 0.5411644904944167,
+      "next_t_b": 0.22,
+      "next_t_x": 0.0484,
+      "old_t_b": 0.2,
+      "old_t_x": 0.04000000000000001,
+      "old_to_next_endpoint_drift": {
+        "l2_angstrom": 0.22892845728642627,
+        "max_atom_angstrom": 0.10083998785399607,
+        "rms_atom_angstrom": 0.05723211432160657
+      },
+      "physical_status": "completed",
+      "reflected_norm": 14.930225206389306,
+      "status": "measured",
+      "step": 10
+    },
+    {
+      "cache_sha256": "94f490e38649f255cd016567235f44f3bcbad1cc3f81f41daa35be367ffa52e0",
+      "directions": {
+        "F": {
+          "direction_norm_hartree_per_angstrom": 10.883508714194694,
+          "endpoint_cosine": 0.013379056480683741,
+          "endpoint_gain": 0.7561772106619299,
+          "endpoint_projection": 0.010116937610851848,
+          "endpoint_response_resolved": true,
+          "event_electron_sum": 2.220446049250313e-16,
+          "event_response_resolved": true,
+          "event_symmetry_error": 0.0,
+          "event_velocity_response_norm": 1.9303594495036294,
+          "fd": [
+            {
+              "endpoint_absolute_error": 9.943052880564945e-09,
+              "endpoint_relative_error": 1.3149104125818814e-08,
+              "epsilon_l2_angstrom": 0.0001,
+              "event_absolute_error": 4.7048242417198954e-08,
+              "event_relative_error": 2.437278840958708e-08,
+              "qualified": true
+            },
+            {
+              "endpoint_absolute_error": 8.928115239694602e-08,
+              "endpoint_relative_error": 1.1806908637036622e-07,
+              "epsilon_l2_angstrom": 0.0003,
+              "event_absolute_error": 4.2330940309492307e-07,
+              "event_relative_error": 2.1929045556969838e-07,
+              "qualified": true
+            },
+            {
+              "endpoint_absolute_error": 9.920090725711154e-07,
+              "endpoint_relative_error": 1.3118738023098408e-06,
+              "epsilon_l2_angstrom": 0.001,
+              "event_absolute_error": 4.703415224095149e-06,
+              "event_relative_error": 2.4365489159568596e-06,
+              "qualified": true
+            }
+          ],
+          "l2_unit_rms": 0.25,
+          "numerical_floor_absolute": 5.661151792156984e-09,
+          "qualified": true,
+          "status": "qualified"
+        },
+        "G": {
+          "direction_norm_hartree_per_angstrom": 10.883508714194692,
+          "endpoint_cosine": 0.17613773459805304,
+          "endpoint_gain": 0.843202140554362,
+          "endpoint_projection": 0.14851971484547444,
+          "endpoint_response_resolved": true,
+          "event_electron_sum": 6.661338147750939e-16,
+          "event_response_resolved": true,
+          "event_symmetry_error": 0.0,
+          "event_velocity_response_norm": 2.8872726386876484,
+          "fd": [
+            {
+              "endpoint_absolute_error": 9.677718269128766e-09,
+              "endpoint_relative_error": 1.147734072729721e-08,
+              "epsilon_l2_angstrom": 0.0001,
+              "event_absolute_error": 4.897292134797222e-08,
+              "event_relative_error": 1.696165463966433e-08,
+              "qualified": true
+            },
+            {
+              "endpoint_absolute_error": 8.70449828758256e-08,
+              "endpoint_relative_error": 1.0323145387012183e-07,
+              "epsilon_l2_angstrom": 0.0003,
+              "event_absolute_error": 4.408955984671341e-07,
+              "event_relative_error": 1.5270314017436689e-07,
+              "qualified": true
+            },
+            {
+              "endpoint_absolute_error": 9.671372262052373e-07,
+              "endpoint_relative_error": 1.1469814646929078e-06,
+              "epsilon_l2_angstrom": 0.001,
+              "event_absolute_error": 4.8989438825580655e-06,
+              "event_relative_error": 1.696737542868408e-06,
+              "qualified": true
+            }
+          ],
+          "l2_unit_rms": 0.24999999999999997,
+          "numerical_floor_absolute": 5.661151792156984e-09,
+          "qualified": true,
+          "status": "qualified"
+        }
+      },
+      "dt_x": 0.02040000000000003,
+      "energy_hartree": -16.015567171238782,
+      "event_direction_valid": true,
+      "force_norm": 10.883508714194694,
+      "min_distance_angstrom": 0.7701041023490528,
+      "next_t_b": 0.52,
+      "next_t_x": 0.27040000000000003,
+      "old_t_b": 0.5,
+      "old_t_x": 0.25,
+      "old_to_next_endpoint_drift": {
+        "l2_angstrom": 0.17152202791648455,
+        "max_atom_angstrom": 0.08993574470848072,
+        "rms_atom_angstrom": 0.04288050697912114
+      },
+      "physical_status": "completed",
+      "reflected_norm": 10.883508714194692,
+      "status": "measured",
+      "step": 25
+    },
+    {
+      "cache_sha256": "c904ba9097c7991d0de581cd682e5c319a4c3e520f16edb45633162fb058e16b",
+      "directions": {
+        "F": {
+          "direction_norm_hartree_per_angstrom": 4.6007072794955715,
+          "endpoint_cosine": 0.39458642389462456,
+          "endpoint_gain": 0.35985319417944145,
+          "endpoint_projection": 0.14199318501832373,
+          "endpoint_response_resolved": true,
+          "event_electron_sum": 5.551115123125783e-17,
+          "event_response_resolved": true,
+          "event_symmetry_error": 0.0,
+          "event_velocity_response_norm": 0.832683549064941,
+          "fd": [
+            {
+              "endpoint_absolute_error": 4.45116066790642e-09,
+              "endpoint_relative_error": 1.2369379346642233e-08,
+              "epsilon_l2_angstrom": 0.0001,
+              "event_absolute_error": 1.1755194204927047e-08,
+              "event_relative_error": 1.4117240839124899e-08,
+              "qualified": true
+            },
+            {
+              "endpoint_absolute_error": 4.0038900056828857e-08,
+              "endpoint_relative_error": 1.1126453983027142e-07,
+              "epsilon_l2_angstrom": 0.0003,
+              "event_absolute_error": 1.0593723155797838e-07,
+              "event_relative_error": 1.2722387956017652e-07,
+              "qualified": true
+            },
+            {
+              "endpoint_absolute_error": 4.4488308807422034e-07,
+              "endpoint_relative_error": 1.2362905075461928e-06,
+              "epsilon_l2_angstrom": 0.001,
+              "event_absolute_error": 1.1770358466966521e-06,
+              "event_relative_error": 1.4135452153683116e-06,
+              "qualified": true
+            }
+          ],
+          "l2_unit_rms": 0.25,
+          "numerical_floor_absolute": 6.315366664290413e-09,
+          "qualified": true,
+          "status": "qualified"
+        },
+        "G": {
+          "direction_norm_hartree_per_angstrom": 4.6007072794955715,
+          "endpoint_cosine": 0.40263959841291624,
+          "endpoint_gain": 0.366696241694215,
+          "endpoint_projection": 0.1476464274952844,
+          "endpoint_response_resolved": true,
+          "event_electron_sum": -5.551115123125783e-17,
+          "event_response_resolved": true,
+          "event_symmetry_error": 0.0,
+          "event_velocity_response_norm": 0.8389825181587103,
+          "fd": [
+            {
+              "endpoint_absolute_error": 4.455333526322188e-09,
+              "endpoint_relative_error": 1.2149929614052206e-08,
+              "epsilon_l2_angstrom": 0.0001,
+              "event_absolute_error": 1.1919140074775745e-08,
+              "event_relative_error": 1.4206660826419034e-08,
+              "qualified": true
+            },
+            {
+              "endpoint_absolute_error": 4.009922082402861e-08,
+              "endpoint_relative_error": 1.0935269104139612e-07,
+              "epsilon_l2_angstrom": 0.0003,
+              "event_absolute_error": 1.0727447135192085e-07,
+              "event_relative_error": 1.2786258239009904e-07,
+              "qualified": true
+            },
+            {
+              "endpoint_absolute_error": 4.4554953761135236e-07,
+              "endpoint_relative_error": 1.215037098697326e-06,
+              "epsilon_l2_angstrom": 0.001,
+              "event_absolute_error": 1.191940833339571e-06,
+              "event_relative_error": 1.420698056921958e-06,
+              "qualified": true
+            }
+          ],
+          "l2_unit_rms": 0.25,
+          "numerical_floor_absolute": 6.315366664290413e-09,
+          "qualified": true,
+          "status": "qualified"
+        }
+      },
+      "dt_x": 0.03239999999999976,
+      "energy_hartree": -16.886120516433586,
+      "event_direction_valid": true,
+      "force_norm": 4.6007072794955715,
+      "min_distance_angstrom": 0.949251993923765,
+      "next_t_b": 0.82,
+      "next_t_x": 0.6723999999999999,
+      "old_t_b": 0.8,
+      "old_t_x": 0.6400000000000001,
+      "old_to_next_endpoint_drift": {
+        "l2_angstrom": 0.13114225843553248,
+        "max_atom_angstrom": 0.06862813630648643,
+        "rms_atom_angstrom": 0.03278556460888312
+      },
+      "physical_status": "completed",
+      "reflected_norm": 4.6007072794955715,
+      "status": "measured",
+      "step": 40
+    }
+  ],
+  "status": "completed",
+  "work": {
+    "attempts": [
+      {
+        "context": "trained_joint",
+        "elapsed_end": 0.09775413293391466,
+        "elapsed_start": 0.08844984811730683,
+        "kind": "forward",
+        "sequence": 1,
+        "status": "completed"
+      },
+      {
+        "context": "k10:old_endpoint",
+        "elapsed_end": 1.3696749310474843,
+        "elapsed_start": 0.10025580204091966,
+        "kind": "ef",
+        "result_sha256": "cfea778987632bbaad260cc5dce330b1ed8a0ee8eb0b10f0ba086e705950f7c7",
+        "sequence": 2,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "k10:F",
+        "elapsed_end": 1.7478918770793825,
+        "elapsed_start": 1.374116067076102,
+        "kind": "jvp",
+        "sequence": 3,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.3881266270764172,
+        "elapsed_start": 1.3762796008959413,
+        "kind": "forward",
+        "sequence": 4,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.759883105987683,
+        "elapsed_start": 1.7517524620052427,
+        "kind": "forward",
+        "sequence": 5,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.7702395119704306,
+        "elapsed_start": 1.7625536660198122,
+        "kind": "forward",
+        "sequence": 6,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.7807761959265918,
+        "elapsed_start": 1.7730380999855697,
+        "kind": "forward",
+        "sequence": 7,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.7912110830657184,
+        "elapsed_start": 1.783550106920302,
+        "kind": "forward",
+        "sequence": 8,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.8016254380345345,
+        "elapsed_start": 1.7940442450344563,
+        "kind": "forward",
+        "sequence": 9,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.8119449960067868,
+        "elapsed_start": 1.804295897949487,
+        "kind": "forward",
+        "sequence": 10,
+        "status": "completed"
+      },
+      {
+        "context": "k10:G",
+        "elapsed_end": 1.8494711320381612,
+        "elapsed_start": 1.8148864670656621,
+        "kind": "jvp",
+        "sequence": 11,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.8258220099378377,
+        "elapsed_start": 1.817147851921618,
+        "kind": "forward",
+        "sequence": 12,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.860363527899608,
+        "elapsed_start": 1.8520648030098528,
+        "kind": "forward",
+        "sequence": 13,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.8709874479100108,
+        "elapsed_start": 1.8629246789496392,
+        "kind": "forward",
+        "sequence": 14,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.8813534690998495,
+        "elapsed_start": 1.8734897479880601,
+        "kind": "forward",
+        "sequence": 15,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.89154287497513,
+        "elapsed_start": 1.8837847579270601,
+        "kind": "forward",
+        "sequence": 16,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.9017983139492571,
+        "elapsed_start": 1.8940897530410439,
+        "kind": "forward",
+        "sequence": 17,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.9121162090450525,
+        "elapsed_start": 1.9043761100620031,
+        "kind": "forward",
+        "sequence": 18,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.9259363340679556,
+        "elapsed_start": 1.9181260359473526,
+        "kind": "forward",
+        "sequence": 19,
+        "status": "completed"
+      },
+      {
+        "context": "k25:old_endpoint",
+        "elapsed_end": 3.1986826739739627,
+        "elapsed_start": 1.9285584790632129,
+        "kind": "ef",
+        "result_sha256": "785ad1d85ad853dec9fc328ec4e4deb64654227c27533cf73271076fbe403f82",
+        "sequence": 20,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "k25:F",
+        "elapsed_end": 3.2378142869565636,
+        "elapsed_start": 3.2034509361255914,
+        "kind": "jvp",
+        "sequence": 21,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.2153338270727545,
+        "elapsed_start": 3.205979786114767,
+        "kind": "forward",
+        "sequence": 22,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.249463655985892,
+        "elapsed_start": 3.2409634590148926,
+        "kind": "forward",
+        "sequence": 23,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.2605986180715263,
+        "elapsed_start": 3.2525142659433186,
+        "kind": "forward",
+        "sequence": 24,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.2716929870657623,
+        "elapsed_start": 3.2636808559764177,
+        "kind": "forward",
+        "sequence": 25,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.282524148002267,
+        "elapsed_start": 3.2746812000405043,
+        "kind": "forward",
+        "sequence": 26,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.293516458943486,
+        "elapsed_start": 3.28560264990665,
+        "kind": "forward",
+        "sequence": 27,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.30418723099865,
+        "elapsed_start": 3.296322148060426,
+        "kind": "forward",
+        "sequence": 28,
+        "status": "completed"
+      },
+      {
+        "context": "k25:G",
+        "elapsed_end": 3.3421081169508398,
+        "elapsed_start": 3.307043839013204,
+        "kind": "jvp",
+        "sequence": 29,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.3190308320336044,
+        "elapsed_start": 3.3095301440916955,
+        "kind": "forward",
+        "sequence": 30,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.3534276850987226,
+        "elapsed_start": 3.344994311919436,
+        "kind": "forward",
+        "sequence": 31,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.3643372980877757,
+        "elapsed_start": 3.356171929044649,
+        "kind": "forward",
+        "sequence": 32,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.3753273950424045,
+        "elapsed_start": 3.3672724480275065,
+        "kind": "forward",
+        "sequence": 33,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.3860530820675194,
+        "elapsed_start": 3.3780976498965174,
+        "kind": "forward",
+        "sequence": 34,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.396777938120067,
+        "elapsed_start": 3.3888707801233977,
+        "kind": "forward",
+        "sequence": 35,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.4075454210396856,
+        "elapsed_start": 3.399660727009177,
+        "kind": "forward",
+        "sequence": 36,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 3.42202955391258,
+        "elapsed_start": 3.4140064970124513,
+        "kind": "forward",
+        "sequence": 37,
+        "status": "completed"
+      },
+      {
+        "context": "k40:old_endpoint",
+        "elapsed_end": 4.695280424086377,
+        "elapsed_start": 3.4248857020866126,
+        "kind": "ef",
+        "result_sha256": "0880b338b3da1167744ab36d4290c94446a8b750b86e37015c7c0253913c4e88",
+        "sequence": 38,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "k40:F",
+        "elapsed_end": 4.767040143022314,
+        "elapsed_start": 4.702530381968245,
+        "kind": "jvp",
+        "sequence": 39,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.726526620099321,
+        "elapsed_start": 4.706800712039694,
+        "kind": "forward",
+        "sequence": 40,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.78256581001915,
+        "elapsed_start": 4.7705772060435265,
+        "kind": "forward",
+        "sequence": 41,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.794449171051383,
+        "elapsed_start": 4.786016629077494,
+        "kind": "forward",
+        "sequence": 42,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.805882934946567,
+        "elapsed_start": 4.797606125008315,
+        "kind": "forward",
+        "sequence": 43,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.817045429022983,
+        "elapsed_start": 4.808890617918223,
+        "kind": "forward",
+        "sequence": 44,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.828402363928035,
+        "elapsed_start": 4.820173226995394,
+        "kind": "forward",
+        "sequence": 45,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.839673015056178,
+        "elapsed_start": 4.831431159051135,
+        "kind": "forward",
+        "sequence": 46,
+        "status": "completed"
+      },
+      {
+        "context": "k40:G",
+        "elapsed_end": 4.877470406936482,
+        "elapsed_start": 4.842973011080176,
+        "kind": "jvp",
+        "sequence": 47,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.854963418096304,
+        "elapsed_start": 4.845802647061646,
+        "kind": "forward",
+        "sequence": 48,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.889439400983974,
+        "elapsed_start": 4.880706904921681,
+        "kind": "forward",
+        "sequence": 49,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.901136323111132,
+        "elapsed_start": 4.892601954052225,
+        "kind": "forward",
+        "sequence": 50,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.912601126125082,
+        "elapsed_start": 4.9042677481193095,
+        "kind": "forward",
+        "sequence": 51,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.9239621469751,
+        "elapsed_start": 4.915688891895115,
+        "kind": "forward",
+        "sequence": 52,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.935296327108517,
+        "elapsed_start": 4.9270590480882674,
+        "kind": "forward",
+        "sequence": 53,
+        "status": "completed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.9466695070732385,
+        "elapsed_start": 4.938390383031219,
+        "kind": "forward",
+        "sequence": 54,
+        "status": "completed"
+      }
+    ],
+    "counts": {
+      "ef": 3,
+      "forward": 45,
+      "jvp": 6
+    },
+    "gpu_seconds": 0,
+    "process_cpu_including_children_seconds": 4.637265084,
+    "reference_primitives": 0,
+    "reverse_completed": 12,
+    "reverse_reserved": 12,
+    "training_steps": 0,
+    "unresolved_started": 0,
+    "wall_seconds": 4.953304402064532
+  },
+  "work_sha256": "7570234a19fcf9be73eea6de97d3b0fe54ee3f79cacf32bca19b7a360545a0b9"
+}

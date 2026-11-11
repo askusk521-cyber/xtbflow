@@ -1,0 +1,12 @@
+{
+  "schema": "xtbflow-software-failure/v1",
+  "source_commit": "70cbaa8dfc251f59ac9b73206eaecff5cca2d059",
+  "workflow_run": 42979439074,
+  "python_versions": [
+    "3.10",
+    "3.11"
+  ],
+  "status": "failed",
+  "reason": "Fixture config was inferred relative to installed package, where repository config is absent. Fixed by explicit config argument in c7e8b0b.",
+  "scientific_calls": 0
+}

@@ -70,3 +70,15 @@ ssh n2 'hostname; cd ~/xtbflow/xtbflow; git rev-parse HEAD; git rev-parse origin
 
 每个真实阶段仍需另建带日期或运行 ID 的证据文件，写明执行主机、源码 SHA、配置／
 协议哈希、来源资产哈希、环境版本、资源消耗、状态和 claim limits。
+
+
+## 2026-11-11 integration observation
+
+Issue #197 exact code c7e8b0bf49b7c2d09c170f5e81e232470933d948 ran in node2
+`xtbflow`: Python 3.10.19, PyTorch 2.10.0+cu128, NumPy **2.2.6**, SciPy 1.15.3,
+RDKit 2024.3.3, ASE 3.29.0, tblite 0.7.0, xTB distribution 22.1, pytest 9.1.1.
+This observation supersedes the old NumPy 1.26.4 baseline for this run only.
+Full software validation (419 pytest tests/68 subtests, 56 reusable tests)
+and fake/cached integration pass. Receipt:
+`docs/evidence/integration_197_20261111/software_c7e8b0b.json`.
+No trained-checkpoint forwards or quantum chemistry were executed by this stage.

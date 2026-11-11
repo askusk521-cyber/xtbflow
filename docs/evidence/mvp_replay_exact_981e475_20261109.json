@@ -1,0 +1,20 @@
+{
+  "backend": "mock",
+  "claim_limit": "replay contract only; no chemical claim",
+  "command": "PYTHONPATH=src:vendor/mechai_reusable pytest -q tests/test_mvp.py::test_mvp_replays_qc_failure_and_candidate_order",
+  "config_path": "configs/mvp_fixture.yaml",
+  "config_sha256": "1f16915a72125c572652c3bf4b73ad3eb71d7be1e90d1c5cdc41908c876e0b92",
+  "deterministic_summary_sha256": "a7a8f6949d6c907f3b5950b35725e614ce2fe1b7adb0db61f85a1c55cc6a4a82",
+  "input_hash": "73d70fdc975b9d449666182c98adeac2669656f7ca63ff29f5c816463b7275ce",
+  "regression_command": "PYTHONPATH=src:vendor/mechai_reusable pytest -q tests/test_mvp.py tests/test_calculator_contract.py tests/test_runtime_budget.py",
+  "regression_result": "24 passed",
+  "replayed_candidate_index": 4,
+  "replayed_failure_reason": "QC_MIN_DISTANCE",
+  "result": "pass",
+  "schema": "xtbflow-mvp-replay-evidence/v1",
+  "seed": 20261108,
+  "source_commit": "981e475e3b3384196cc56756fd1831c213f7225e",
+  "source_dirty": false,
+  "stage": "mvp_failure_replay_exact_head",
+  "status": "completed"
+}

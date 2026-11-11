@@ -23,9 +23,19 @@
       "bytes": 4621
     },
     {
+      "path": "MVP_RELEASE_PR.md",
+      "sha256": "6def77fdf4e7933472a2b2001eb3e2724c1b55d04eb76ecd330668b8e9216af2",
+      "bytes": 2749
+    },
+    {
+      "path": "MVP_STATUS.md",
+      "sha256": "fbc0bd86975f46da64eea31eb87aee85b14f684fc58b18f8201c636c266226bd",
+      "bytes": 3694
+    },
+    {
       "path": "README.md",
-      "sha256": "4c5e4e3a5f4700680f4d6303e998db08b538b975e86a075db5d15870c45cd0a2",
-      "bytes": 4571
+      "sha256": "fb00348c06d92314326bdcc7a60ebaa7f1f71a670816724abc81a4c266dd595c",
+      "bytes": 5559
     },
     {
       "path": "archive/README.md",
@@ -133,6 +143,36 @@
       "bytes": 2350
     },
     {
+      "path": "artifacts/mvp_run_20261109T020000/candidates.jsonl",
+      "sha256": "91c6405bf5c489810738c00cbdb7bad8582fe6a909baebf315e7738b7c771aac",
+      "bytes": 8094
+    },
+    {
+      "path": "artifacts/mvp_run_20261109T020000/input.json",
+      "sha256": "8da79f2e900621c7cd8034778f8535f13a467687f55b16510eabb4cbde5313f1",
+      "bytes": 703
+    },
+    {
+      "path": "artifacts/mvp_run_20261109T020000/ledger.json",
+      "sha256": "e7ceb17eed6e38f446975e13f7733bbf3db16984a54f896ed8cbaeef749c8dea",
+      "bytes": 4584
+    },
+    {
+      "path": "artifacts/mvp_run_20261109T020000/manifest.json",
+      "sha256": "af75e92b8177034e62ba87473d8a9152a1b06882c56fcb9fc334739d759926d9",
+      "bytes": 7284
+    },
+    {
+      "path": "artifacts/mvp_run_20261109T020000/summary.md",
+      "sha256": "74805a7add20e06be1bb5bdac93a17ec730187ba87fbc1637aa356994035d3a0",
+      "bytes": 2258
+    },
+    {
+      "path": "artifacts/mvp_run_20261109T020000/summary.png",
+      "sha256": "958d093b8db2814a7f60a73a74776cf79278116353e0eb5cc50789e47803af92",
+      "bytes": 2338
+    },
+    {
       "path": "configs/calculators/cp2k/environment.yml",
       "sha256": "c75d298ff3320631533591f44e292e77692ad544fa4fb4fa00b2f60de0f0a650",
       "bytes": 181
@@ -221,6 +261,11 @@
       "path": "configs/models/xtbflow_v0.1.yaml",
       "sha256": "ad8353098ea13bc018a037cb1065ed44405568e79b4d2517be1e71f12ff7071d",
       "bytes": 5312
+    },
+    {
+      "path": "configs/mvp_fixture.yaml",
+      "sha256": "1f16915a72125c572652c3bf4b73ad3eb71d7be1e90d1c5cdc41908c876e0b92",
+      "bytes": 2281
     },
     {
       "path": "configs/public_data_manifest.yaml",
@@ -516,6 +561,26 @@
       "path": "docs/evidence/joint_flow_smoke_20260929_v3.json",
       "sha256": "41555c2528ef65c71a18e4ff7908ae3f86affa75dad52fef7ed078eacbd6d0cd",
       "bytes": 4826
+    },
+    {
+      "path": "docs/evidence/mvp_bootstrap_inventory_audit_20261109.json",
+      "sha256": "c08bb142e1b30721d84d566f6be63dbb136ffc2fdb4d5f5334d0eb60b81821ae",
+      "bytes": 720
+    },
+    {
+      "path": "docs/evidence/mvp_mock_software_exact_981e475_20261109.json",
+      "sha256": "49200b10c5b5a2ad7daaec1b54b5c4decc20b369febce472227a162de6580fa7",
+      "bytes": 1582
+    },
+    {
+      "path": "docs/evidence/mvp_replay_exact_981e475_20261109.json",
+      "sha256": "9be8d505075a26281c7af64ae4789b8973f6bc7c6a81f64bb5c7181abe8b6dea",
+      "bytes": 1049
+    },
+    {
+      "path": "docs/evidence/mvp_xtb_smoke_exact_981e475_20261109.json",
+      "sha256": "2bca0888b7fc9c532f155ab8aec92c4a36f25918e40089e0149caa2a6267079a",
+      "bytes": 1813
     },
     {
       "path": "docs/evidence/origin_seed_readiness_audit_20260929.json",
@@ -933,6 +998,16 @@
       "bytes": 2110
     },
     {
+      "path": "schemas/mvp_candidate.schema.json",
+      "sha256": "0c1dd4aa3a557e7ea897d7a7c7d1d776ad2873e68af3b387e38c7fdc734d21d8",
+      "bytes": 2079
+    },
+    {
+      "path": "schemas/mvp_input.schema.json",
+      "sha256": "592eed4b04c5e37d62a39331f54169e45fc50c483ac7918cd9c809722b3ad54f",
+      "bytes": 1255
+    },
+    {
       "path": "schemas/public_record.schema.json",
       "sha256": "43a6c76ea4229ddf42a4eda5e4dd1d3d2a4a73cfab4a6fc33aa0a648327aa298",
       "bytes": 1873
@@ -1129,8 +1204,8 @@
     },
     {
       "path": "src/xtbflow/calculators/__init__.py",
-      "sha256": "edc331626e0c59435a39769049d330ff037355a28c341d19dc29cbdc39709590",
-      "bytes": 1054
+      "sha256": "efe2e45d91d30c56c4392ee48ca526053b677a3df87358cda84d67098ad4c02a",
+      "bytes": 1809
     },
     {
       "path": "src/xtbflow/calculators/base.py",
@@ -1141,6 +1216,11 @@
       "path": "src/xtbflow/calculators/cp2k.py",
       "sha256": "5c96e28d9995f4c1d7a18c6eaa96d305b4cd49c3de419a82558c51e2bacd1b97",
       "bytes": 23793
+    },
+    {
+      "path": "src/xtbflow/calculators/mock.py",
+      "sha256": "773970bf4b36ce97b85aff7f82a947a39070c10062120f74355e231bfcaad43b",
+      "bytes": 4853
     },
     {
       "path": "src/xtbflow/calculators/xtb_oracle.py",
@@ -1301,6 +1381,11 @@
       "path": "src/xtbflow/models/reaction_direction.py",
       "sha256": "cee63ed6f1edc68e90fcf8ae3d9c592a8cd577d644dd759f964d59f388f852a7",
       "bytes": 3090
+    },
+    {
+      "path": "src/xtbflow/mvp.py",
+      "sha256": "3fb4f28a3f0fc78ecf1029a3824ef99f36f5998bdb1fbe565ac8253c67513388",
+      "bytes": 41108
     },
     {
       "path": "src/xtbflow/physics/__init__.py",
@@ -1531,6 +1616,11 @@
       "path": "tests/test_learning_curve_budget.py",
       "sha256": "158dde2de0beb627dd41102f181b2f60d9c33a4f12014b596f70df698842f9a7",
       "bytes": 3703
+    },
+    {
+      "path": "tests/test_mvp.py",
+      "sha256": "01214b9086f4edb9018a0b50326ead00546d468ff0b27965cee2f5d0d49b9894",
+      "bytes": 3207
     },
     {
       "path": "tests/test_origin_seed_readiness.py",

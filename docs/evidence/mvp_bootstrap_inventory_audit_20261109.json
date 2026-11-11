@@ -1,0 +1,20 @@
+{
+  "base_or_prior_drift": [],
+  "claim_limit": "inventory audit only; no scientific or calculator claim",
+  "command": "python3 scripts/validate_bootstrap.py",
+  "decision": "do_not_refresh_in_mvp_implementation_pr",
+  "failure_count": 2,
+  "failures": [
+    "README.md",
+    "src/xtbflow/calculators/__init__.py"
+  ],
+  "mvp_commit_overlap": [
+    "README.md",
+    "src/xtbflow/calculators/__init__.py"
+  ],
+  "reason": "the narrow MVP branch introduces only README and calculator-init inventory overlap; inventory refresh is deferred to a separate repair commit",
+  "schema": "xtbflow-bootstrap-audit/v1",
+  "source_commit": "981e475e3b3384196cc56756fd1831c213f7225e",
+  "source_dirty": false,
+  "status": "failed"
+}

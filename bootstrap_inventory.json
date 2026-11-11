@@ -863,9 +863,29 @@
       "bytes": 2358
     },
     {
+      "path": "docs/evidence/mechanism_188_20261111/generation_6cda08a.json",
+      "sha256": "7c97ef48ad7136f6f1a3d1edb841109e6b48f9559e0b9dddfa4bf558e20ed4d4",
+      "bytes": 79095
+    },
+    {
       "path": "docs/evidence/mechanism_188_20261111/reference_preflight.json",
       "sha256": "fc5f9e862f473b4265179cfb339313df04df53067ce3c4e8146907d99d7ca8bd",
       "bytes": 3229
+    },
+    {
+      "path": "docs/evidence/mechanism_188_20261111/software_6cda08a.json",
+      "sha256": "8a703d2934925c7461d89c25427ab8b1daa70dfdd193e7348042e3445621aeeb",
+      "bytes": 2582
+    },
+    {
+      "path": "docs/evidence/mechanism_188_20261111/software_failed_7aecfc1.json",
+      "sha256": "f6df652fb120a201f385eac0d3bc11872bed445c1bcad7c631369b0bf6418def",
+      "bytes": 1305
+    },
+    {
+      "path": "docs/evidence/mechanism_188_20261111/software_failed_cedc5c4.json",
+      "sha256": "0f7c6f55928c579d7d6c178ff7031ac95dcca938fb9ee6fe3a842b80d892cb04",
+      "bytes": 1306
     },
     {
       "path": "docs/evidence/mvp_bootstrap_inventory_audit_20261109.json",
@@ -1616,6 +1636,11 @@
       "path": "scripts/audit_live_reference_cache.py",
       "sha256": "c489dec0afe50ee58ed36de4654c7ba264743175d40277556b8682860c11089d",
       "bytes": 9788
+    },
+    {
+      "path": "scripts/audit_mechanism_trajectory.py",
+      "sha256": "f832cb79ab3ea0d5475fb0a52138f1affcdbf8262c7b71267c86e7fcc2d78f0c",
+      "bytes": 3326
     },
     {
       "path": "scripts/audit_narrowed_assets.py",

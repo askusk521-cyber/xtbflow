@@ -39,7 +39,12 @@ def run(args):
         backend=ReferenceBackend(device='gpu',execution_build=json.loads(probe))
         if identity(backend.identity)!=cfg['reference']['identity_sha256']:raise ValueError('reference_build_protocol_mismatch')
         report['protocol_sha256']=identity(backend.identity)
-        service=CertificationService(args.out/'service',StageBudget(**cfg['reference']['stage_budget']))
+        guidance_bytes=sum(p.stat().st_size for p in args.generation.rglob('*') if p.is_file())
+        budget=dict(cfg['reference']['stage_budget'])
+        budget['max_storage_gb']=min(budget['max_storage_gb'],
+            (cfg['global_caps']['storage_bytes']-guidance_bytes-1024**2)/1024**3)
+        report['effective_reference_budget']=budget
+        service=CertificationService(args.out/'service',StageBudget(**budget))
         by_arm=dict(candidates)
         for row in report['arms']:
             arm=row['arm']

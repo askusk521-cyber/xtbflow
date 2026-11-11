@@ -29,7 +29,7 @@ def residual(force, mask):
 
 def bounded_backtrack(model, query, injection: Injection, reflected, derivative: dict,
                       qualification: dict, physical: Callable, *, context: str,
-                      audit: dict | None = None) -> tuple[object,dict]:
+                      audit: dict | None = None, endpoint_function: Callable | None = None) -> tuple[object,dict]:
     """Freeze direction, event, clocks and base; return a state with selected push or no push.
 
     physical(Y, label) returns a settled finite E/F receipt or an explicit
@@ -63,7 +63,8 @@ def bounded_backtrack(model, query, injection: Injection, reflected, derivative:
         report['trials'].append(row)
         with torch.no_grad():
             trial_state=apply_update(injection,query,delta)
-            y,vb,_=model_values(model,query,trial_state)
+            y,vb,_=(model_values(model,query,trial_state) if endpoint_function is None
+                    else endpoint_function(trial_state))
         row.update(model_status='completed',physical_status='started',next_event_velocity_delta_l2=float((vb-vb0).norm()))
         receipt=physical(y,context+f':lambda={scale}')
         row['physical_status']=receipt['status']

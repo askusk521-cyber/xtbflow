@@ -309,8 +309,8 @@
     },
     {
       "path": "configs/research/mechanism_188_20261111.json",
-      "sha256": "4744bbb8dc3861b9789eace7448e1ea8b5d3b11849055a9cd6b13664e97e3e1d",
-      "bytes": 2516
+      "sha256": "9e04055404eb369c83d12460767d423a8ea9abb7cb9ee0d516c17264741748c8",
+      "bytes": 5749
     },
     {
       "path": "configs/research/narrowed_assets_20261111.json",
@@ -618,6 +618,11 @@
       "bytes": 930
     },
     {
+      "path": "docs/architecture/mechanism_188_20261111.md",
+      "sha256": "30c86fe7fcb60dd60f36d84dc1bd1f6290f6b98e9b249cd0c55c2b718d795869",
+      "bytes": 4939
+    },
+    {
       "path": "docs/architecture/parallel_guidance_contract_v0.1.md",
       "sha256": "0c5a5dfb5e19895d297275d053824996d8de3566fbcb5e7c2a7cde3432bf77b3",
       "bytes": 1429
@@ -856,6 +861,11 @@
       "path": "docs/evidence/matched_guidance_integration_n2_20261110.json",
       "sha256": "f451ae67e04abacca64adf3aeb652665e29c14d540bf98900015e29b0809d688",
       "bytes": 2358
+    },
+    {
+      "path": "docs/evidence/mechanism_188_20261111/reference_preflight.json",
+      "sha256": "fc5f9e862f473b4265179cfb339313df04df53067ce3c4e8146907d99d7ca8bd",
+      "bytes": 3229
     },
     {
       "path": "docs/evidence/mvp_bootstrap_inventory_audit_20261109.json",
@@ -1783,6 +1793,16 @@
       "bytes": 15646
     },
     {
+      "path": "scripts/run_mechanism_pilot.py",
+      "sha256": "323276901c45bf08ee938cea8fd7f6f071b54dca8edf64810551e5e8835c51f6",
+      "bytes": 9928
+    },
+    {
+      "path": "scripts/run_mechanism_reference.py",
+      "sha256": "8a873866786c223811e726127098031d1027c66d96a5036c900fe55e92e77002",
+      "bytes": 6562
+    },
+    {
       "path": "scripts/run_parallel_guidance_replay.py",
       "sha256": "00787dc6c35dc4e4c36abe339399c4c9e5b38577aafb3fede861126f188df258",
       "bytes": 1533
@@ -1973,6 +1993,11 @@
       "bytes": 11079
     },
     {
+      "path": "src/xtbflow/governance/mechanism_handoff.py",
+      "sha256": "7074a17a423c663fd2bf41e5eb8604497e25c203cff7cb931cf8ce3a992ff3cf",
+      "bytes": 2329
+    },
+    {
       "path": "src/xtbflow/governance/research_replay.py",
       "sha256": "14ddb74f4dca58dc68a645c7241760852335285f176212c4e11a3e27ca3d2784",
       "bytes": 6632
@@ -2104,8 +2129,8 @@
     },
     {
       "path": "src/xtbflow/sampling/amplitude_backtracking.py",
-      "sha256": "31b6174bedca0caa9216beb64e1414b0e701d3e9bf7fa8a153c65762bc24b7cf",
-      "bytes": 4737
+      "sha256": "13d4310b67b39924cda5bdf0e835481e1244f80f715f91e92ec24ef90c7c090d",
+      "bytes": 4867
     },
     {
       "path": "src/xtbflow/sampling/guidance.py",
@@ -2136,6 +2161,11 @@
       "path": "src/xtbflow/sampling/matched_integration.py",
       "sha256": "2ee3685347f0e468502bdc56decd8d3856c484f4c9f828dd9f624b68af058136",
       "bytes": 9279
+    },
+    {
+      "path": "src/xtbflow/sampling/mechanism_four_arms.py",
+      "sha256": "884325f2e555a45d36a3030366b4c1db42cfca00a706a724d7ed4442004d1d8e",
+      "bytes": 6851
     },
     {
       "path": "src/xtbflow/sampling/parallel_guidance.py",
@@ -2411,6 +2441,16 @@
       "path": "tests/test_matched_integration.py",
       "sha256": "1a4946e6364527e69b292164c1601bb56e1d363ebc5e26172bcfbc9fd35b94a8",
       "bytes": 2139
+    },
+    {
+      "path": "tests/test_mechanism_four_arms.py",
+      "sha256": "6c37d607a2fa69b22219b8d8b539cbd15924796e55692fd9d4f1f92e7701c7ea",
+      "bytes": 2452
+    },
+    {
+      "path": "tests/test_mechanism_handoff.py",
+      "sha256": "71abc2d7385a969bc98c3acb5913dac20eb1ece5024458d44ae6a5ea8b101ab3",
+      "bytes": 3369
     },
     {
       "path": "tests/test_mvp.py",

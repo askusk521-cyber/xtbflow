@@ -54,8 +54,87 @@
     "C": 0
   },
   "reference": {
-    "identity": null,
-    "identity_sha256": null,
+    "identity": {
+      "engine": "gpu4pyscf",
+      "device": "gpu",
+      "version": "xtbflow-reference-certification/1",
+      "method": {
+        "program": "gpu4pyscf",
+        "xc": "wb97x",
+        "basis": "6-31g*",
+        "spherical": true,
+        "charge": 0,
+        "spin": 0,
+        "wavefunction": "RKS",
+        "grids_level": 5,
+        "conv_tol": 1e-10,
+        "max_cycle": 300,
+        "density_fitting": false,
+        "dispersion": null,
+        "solvent": null,
+        "energy_kind": "electronic"
+      },
+      "packages": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1",
+        "rdkit": "2026.3.6",
+        "gpu4pyscf-cuda12x": "1.8.1",
+        "cupy-cuda12x": "14.2.0"
+      },
+      "candidate_contract": "mapped-candidate-optional-proposal/v2",
+      "installed_record_sha256": {
+        "numpy": "a59db318ca8beff222112cb8713d425702f744c329d409dad511c539d889a9a6",
+        "scipy": "b8ea386fea9f83a6696fb52817f71582fb1174192a306225bc87ea13177b1b64",
+        "pyscf": "c528ff36159f1d0f894bf81236b7d954914a7c3f08e99d802ad4634dc2df1f14",
+        "geometric": "fb7620676807f51b34f6da5689a2e01475229072ed4f854137c86c9dfb479a4a",
+        "rdkit": "ebafa0c60b860d7fdbfd829623a19da563357b22881b87e0e4d7bfd0b0e7c0cb",
+        "gpu4pyscf-cuda12x": "1fc29488f8471674b4e50a15ff2cb5a245044bd81fc468f4b237fbd8b2ba34cb",
+        "cupy-cuda12x": "2975a4ba372a04a5a0a5380c01504c0e5788b79f6030cceaf3924a728e1774b9"
+      },
+      "execution_build": {
+        "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+        "driver": 13020,
+        "runtime": 12090
+      },
+      "protocol_source_sha256": "84765f82b41e8164d388157e947d5ddd2c5d637256a8b9beb7796f9088b39a19",
+      "adapter_source_sha256": "03b8de1165399dc3ba37fc4a26939bcfc65fb0b4fca716b45e1491acdb7fcce6",
+      "thresholds": {
+        "tight": {
+          "convergence_energy": 1e-06,
+          "convergence_grms": 3e-05,
+          "convergence_gmax": 0.0001,
+          "convergence_drms": 0.0006,
+          "convergence_dmax": 0.001
+        },
+        "very_tight": {
+          "convergence_energy": 2e-07,
+          "convergence_grms": 8e-06,
+          "convergence_gmax": 3e-05,
+          "convergence_drms": 0.0001,
+          "convergence_dmax": 0.0002
+        },
+        "irc": {
+          "maxiter": 300,
+          "trust": 0.2,
+          "tmax": 0.2
+        },
+        "negative_frequency_cm1": -30.0,
+        "allow_endpoint_gray_zone": false,
+        "opt_maxiter": 200,
+        "min_retry_displacement_angstrom": 0.1
+      },
+      "units": {
+        "coordinates": "Angstrom",
+        "energy": "Hartree",
+        "gradient": "Hartree/bohr",
+        "hessian": "Hartree/bohr^2",
+        "frequencies": "cm^-1"
+      },
+      "evidence_scope": "gas_phase_neutral_singlet_CHNO_reference_protocol"
+    },
+    "identity_sha256": "6dc84cd79c7223e6e05126d1211d70075f5401d9f5f9fc45c396ea77a2d25a39",
     "stage_budget": {
       "phase": "mechanism188-reference",
       "max_calculator_calls": 3200,
@@ -88,5 +167,10 @@
     "C is off-policy replay of F displacements with N BE trajectory, not a deployable competing method.",
     "F and T query different geometries; no identical-information or strong-adaptive-serial claim.",
     "Residual selection is not TS certification. No positive channel result or method advantage is implied."
-  ]
+  ],
+  "merged_amplitude_commit": "61269f2241cb182a010763291f349a0258c111f9",
+  "decoder_integrated_files": {
+    "src/xtbflow/models/event_decoder.py": "38c0713d3ebc29e9355b9230ed37c773bb9751b9f49c56575cf31eae2c0be717",
+    "src/xtbflow/models/conserved_be.py": "ff1b2db42fa6ce4be5b66c7f8bbc47aca3ad3ba67d27c222cda38494066b50e8"
+  }
 }

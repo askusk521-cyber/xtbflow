@@ -328,6 +328,11 @@
       "bytes": 1352
     },
     {
+      "path": "configs/research/physical_direction_198_20261111.json",
+      "sha256": "6db96ff30fa90fe44e32f22682e4fbeafd0de0042c7a388023137f3a692d9b6b",
+      "bytes": 3211
+    },
+    {
       "path": "configs/resources.yaml",
       "sha256": "27a81d4cdecfb85a8129a5bf4fc14818be4acc5b6e918fe97a2f6a1a84fcc4bc",
       "bytes": 6685
@@ -606,6 +611,11 @@
       "path": "docs/architecture/parallel_guidance_replay_v0.1.md",
       "sha256": "41055d4f8f7401eacfd6e4c8648ec771f3ca39a4a01b53da417be6d55ab66cf8",
       "bytes": 1340
+    },
+    {
+      "path": "docs/architecture/physical_direction_198_20261111.md",
+      "sha256": "c0fa4eced39a85e03705de23510da76f8dbcad2ac0c85ce32c66089127e38ed8",
+      "bytes": 3330
     },
     {
       "path": "docs/architecture/physical_guidance_adapter_v0.1.md",
@@ -1016,6 +1026,21 @@
       "path": "docs/evidence/parallel_guidance_replay_n2_20261109.json",
       "sha256": "e58e9f466b6e875615c96a4154486d161cfce79638ef863c7c746ddb3af3b353",
       "bytes": 3067
+    },
+    {
+      "path": "docs/evidence/physical_direction_198_20261111/results.md",
+      "sha256": "adc97a36642e4f832752ff4a3c7f71b763b7871dd059feadf561d19178c10635",
+      "bytes": 2697
+    },
+    {
+      "path": "docs/evidence/physical_direction_198_20261111/results_76028d5.json",
+      "sha256": "7390ba51e8325432ac85a4342cc426e49202b7e2fc2548fb61f810b217a0436f",
+      "bytes": 29709
+    },
+    {
+      "path": "docs/evidence/physical_direction_198_20261111/software_76028d5.json",
+      "sha256": "adc00ac0ebccce81e422c2bb4690be7bc657bb053597f85cd71775990bec562a",
+      "bytes": 2566
     },
     {
       "path": "docs/evidence/physical_guidance_adapter_n2_20261110.json",
@@ -1658,6 +1683,11 @@
       "bytes": 15888
     },
     {
+      "path": "scripts/diagnose_physical_direction.py",
+      "sha256": "191bc0a7053c6978c1bd1369d8f0d18f04e2cbcb97dcdd45fe45b7fcec97ea6b",
+      "bytes": 10086
+    },
+    {
       "path": "scripts/joint_flow_smoke.py",
       "sha256": "be9cab15cb5032dd57fa8e9be21c2d815bd0966c1675a4fe48c25314dd081207",
       "bytes": 11435
@@ -2083,6 +2113,11 @@
       "bytes": 12940
     },
     {
+      "path": "src/xtbflow/sampling/physical_diagnostic.py",
+      "sha256": "11361a0d5a7e55fe1c47ffe9fefaef454d75800326b82b813a281be00c00c2e6",
+      "bytes": 11253
+    },
+    {
       "path": "src/xtbflow/sampling/policy_adapter.py",
       "sha256": "2475515e2905ae047bb5a55d28e04937bd3fe8aa0d9b50364f60adce0a238db0",
       "bytes": 11046
@@ -2381,6 +2416,11 @@
       "path": "tests/test_physical_adapter.py",
       "sha256": "84d14adfb243a09c26886de81d7b126b11110db498a4209610dac3108fc4a229",
       "bytes": 3363
+    },
+    {
+      "path": "tests/test_physical_direction.py",
+      "sha256": "3c79d9394b9e7c0b1742d0c8ea77680566591e78ea27b7589047ca29695a6cdf",
+      "bytes": 3033
     },
     {
       "path": "tests/test_policy_adapter.py",

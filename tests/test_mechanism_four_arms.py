@@ -17,7 +17,7 @@ class Coupled(torch.nn.Module):
 
 @pytest.mark.parametrize('zero_force',[False,True])
 def test_four_arm_real_entry_counts_replay_and_terminal_nonzero_clock_doses(tmp_path,zero_force):
-    q,_,initial=fixture_query();q=replace(q,x_r=q.x_r*.05);initial=replace(initial,x=initial.x*.05)
+    q,_,initial=fixture_query();q.x_r=q.x_r*.05;initial=replace(initial,x=initial.x*.05)
     meter=StageMeter(tmp_path,dict(forward=162,ef=27,jvp=3,reverse=6,wall_seconds=300,cpu_seconds=300,output_bytes=8*1024**2))
     net=Coupled();meter.install_model(net);calls=[]
     def physical(arm,y,label):

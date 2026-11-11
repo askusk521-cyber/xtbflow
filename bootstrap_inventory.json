@@ -328,6 +328,11 @@
       "bytes": 1352
     },
     {
+      "path": "configs/research/physical_direction_198_20261111.json",
+      "sha256": "e6a6ff08b936bfb0a07904f5a1a97c5c268c21b0ce694c37bb2585af045dcf55",
+      "bytes": 3083
+    },
+    {
       "path": "configs/resources.yaml",
       "sha256": "27a81d4cdecfb85a8129a5bf4fc14818be4acc5b6e918fe97a2f6a1a84fcc4bc",
       "bytes": 6685
@@ -606,6 +611,11 @@
       "path": "docs/architecture/parallel_guidance_replay_v0.1.md",
       "sha256": "41055d4f8f7401eacfd6e4c8648ec771f3ca39a4a01b53da417be6d55ab66cf8",
       "bytes": 1340
+    },
+    {
+      "path": "docs/architecture/physical_direction_198_20261111.md",
+      "sha256": "c0fa4eced39a85e03705de23510da76f8dbcad2ac0c85ce32c66089127e38ed8",
+      "bytes": 3330
     },
     {
       "path": "docs/architecture/physical_guidance_adapter_v0.1.md",
@@ -1648,6 +1658,11 @@
       "bytes": 15888
     },
     {
+      "path": "scripts/diagnose_physical_direction.py",
+      "sha256": "2d070084b693b83caf7de33c6b4f11987fbee2aca2bacd571a223f0389f8ca40",
+      "bytes": 9955
+    },
+    {
       "path": "scripts/joint_flow_smoke.py",
       "sha256": "be9cab15cb5032dd57fa8e9be21c2d815bd0966c1675a4fe48c25314dd081207",
       "bytes": 11435
@@ -2073,6 +2088,11 @@
       "bytes": 12940
     },
     {
+      "path": "src/xtbflow/sampling/physical_diagnostic.py",
+      "sha256": "decdf2f566352b903eedf9556a7b5bedabd6b66e9c2cc45cf82ce97c0a566908",
+      "bytes": 11025
+    },
+    {
       "path": "src/xtbflow/sampling/policy_adapter.py",
       "sha256": "2475515e2905ae047bb5a55d28e04937bd3fe8aa0d9b50364f60adce0a238db0",
       "bytes": 11046
@@ -2371,6 +2391,11 @@
       "path": "tests/test_physical_adapter.py",
       "sha256": "84d14adfb243a09c26886de81d7b126b11110db498a4209610dac3108fc4a229",
       "bytes": 3363
+    },
+    {
+      "path": "tests/test_physical_direction.py",
+      "sha256": "3c79d9394b9e7c0b1742d0c8ea77680566591e78ea27b7589047ca29695a6cdf",
+      "bytes": 3033
     },
     {
       "path": "tests/test_policy_adapter.py",

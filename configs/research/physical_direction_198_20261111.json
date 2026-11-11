@@ -1,0 +1,72 @@
+{
+  "schema": "xtbflow-physical-direction-stage/v1",
+  "issue": 198,
+  "derived_s0_sha256": "d0643a2a166a81b3939a9c07516d3d75d68a60081ccaa1cd8a3170db46bcfe70",
+  "owner_authorization": "https://github.com/askusk521-cyber/xtbflow/issues/129#issuecomment-6789105000",
+  "new_energy_force_execution_permitted": true,
+  "new_reference_execution_permitted": false,
+  "states": [
+    10,
+    25,
+    40
+  ],
+  "dtype": "float64 CPU retained states; no reconstruction",
+  "fd_scales_l2_angstrom": [
+    0.0001,
+    0.0003,
+    0.001
+  ],
+  "minimum_distinct_distance_angstrom": 1e-06,
+  "trained_files": {
+    "src/xtbflow/m0/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/xtbflow/m0/model.py": "3e41529a9e0c65bb69a9526db1a443685bd45156588558c87276dbd6529d13a8",
+    "src/xtbflow/m0/backbone.py": "433d77e2f45301d82f7ad961898c34f28d4f32005efe23af0bdf15beaa58ab34",
+    "src/xtbflow/m0/flow.py": "48b7054b5cb9d4c3b0c2711bc496c0ae005b40a42fccdb183291f541b403ac34",
+    "src/xtbflow/m0/numerics.py": "5d68dd3d45ca42a5e09a84e9d64b4c31e109e9640e3089d4434cd3f48bbc2a8b",
+    "src/xtbflow/m0/sampler.py": "d01f69766f6d4d5930f25e9bf6b7f8949957e0c38eb0150a7614530037af6874",
+    "src/xtbflow/v1/__init__.py": "c8923ae4676beb7ab8b9803917c813fd3f3e4c9409bb9facff951f36562ffed3",
+    "src/xtbflow/v1/interfaces.py": "eee219bb7e004f68e4052d9ef4fc7f159c147a22069a146eed800f728b39d498",
+    "src/xtbflow/v1/clocks.py": "1b2e48df971d68033c671b395fb8bffb64aaf85deb4e904818432a4482e9fea1",
+    "src/xtbflow/v1/guidance.py": "fd32541a895a75c5fbbc8c224ef365b378a78d65e1aa28b7a049d7c960f0a68c",
+    "src/xtbflow/v1/sampler.py": "97c8eb5955b78fbcc4b12c8da152cd4fbac67c57df93f73eee13bf68013f83b5",
+    "src/xtbflow/v1/rng.py": "fd62de3a211a71d9cded4ab31b37069de7a93646811cf77bf0110c9324cf3ccc"
+  },
+  "calculator": {
+    "implementation": "tblite",
+    "version": "0.7.0",
+    "build_sha256": "95271f20fda7a35ff03f9635537b7e1cdcfa90ef0fd2a4805dcb5a0e64d0e07a",
+    "adapter_sha256": "dc223169709870f61b657e359419958b26931e9c8d562af8d6093f9c3c512189",
+    "qualification": "docs/evidence/gfn2_qualification_interpretation_20260929.json",
+    "protocol": {
+      "protocol_id": "tblite-gfn2-physical-direction-20261111",
+      "calculator": "xtb_oracle",
+      "method": "GFN2-xTB",
+      "parameters": {
+        "accuracy": 1.0,
+        "max_iterations": 250,
+        "electronic_temperature": 300.0,
+        "solvent": null
+      }
+    }
+  },
+  "caps": {
+    "forward": 45,
+    "ef": 3,
+    "jvp": 6,
+    "reverse": 12,
+    "wall_seconds": 300,
+    "cpu_seconds": 300,
+    "output_bytes": 33554432,
+    "memory_gib": 8,
+    "threads": 1,
+    "gpu_seconds": 0,
+    "concurrency": 1,
+    "retries": 0
+  },
+  "claim_limits": [
+    "Exposed ID63623 seed 0 calibration only; no method superiority or independent confirmation.",
+    "Local conditional endpoint derivative, not entire remaining rollout.",
+    "Event-derived reflected direction is not a verified negative Hessian mode.",
+    "No final decoded chemical event, candidate, or certification in this stage."
+  ]
+}

@@ -2444,8 +2444,8 @@
     },
     {
       "path": "tests/test_mechanism_four_arms.py",
-      "sha256": "77031b5a767382225b975b751561527499c8f421ecdf8196bf7c8ecb789b7f0b",
-      "bytes": 2441
+      "sha256": "2a7672e57d958615eac397e6b721112a49a30ea766399687d1b3c7214229ae90",
+      "bytes": 2723
     },
     {
       "path": "tests/test_mechanism_handoff.py",

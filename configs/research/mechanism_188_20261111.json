@@ -1,0 +1,92 @@
+{
+  "schema": "xtbflow-four-arm-mechanism/v1",
+  "issue": 188,
+  "registered_issue": "https://github.com/askusk521-cyber/xtbflow/issues/188",
+  "owner_authorization": "https://github.com/askusk521-cyber/xtbflow/issues/129#issuecomment-6789105000",
+  "amplitude_report_sha256": "d96bf40bf216fb3d4b4b867709956c3723ddac07c9e278775c1d36a80c534b3a",
+  "physical_report_sha256": "7390ba51e8325432ac85a4342cc426e49202b7e2fc2548fb61f810b217a0436f",
+  "new_guidance_execution_permitted": true,
+  "new_reference_execution_permitted": true,
+  "parent": "ID63623",
+  "query_id": "dft-da:R0",
+  "seed": 0,
+  "proposal": 0,
+  "clock": "event_lead2",
+  "steps": 50,
+  "pulses": [
+    10,
+    25,
+    40
+  ],
+  "arms": [
+    "N",
+    "T",
+    "F",
+    "C"
+  ],
+  "primary_contrast": [
+    "F",
+    "C"
+  ],
+  "secondary_contrast": [
+    "F",
+    "T"
+  ],
+  "precision": "float64 CPU following common historical float32 initial noise",
+  "guidance_caps": {
+    "forward": 162,
+    "ef": 27,
+    "jvp": 3,
+    "reverse": 6,
+    "wall_seconds": 1800,
+    "cpu_seconds": 1800,
+    "output_bytes": 67108864,
+    "memory_gib": 8,
+    "threads": 1,
+    "gpu_seconds": 0,
+    "concurrency": 1,
+    "retries": 0
+  },
+  "arm_ef_caps": {
+    "N": 0,
+    "T": 12,
+    "F": 15,
+    "C": 0
+  },
+  "reference": {
+    "identity": null,
+    "identity_sha256": null,
+    "stage_budget": {
+      "phase": "mechanism188-reference",
+      "max_calculator_calls": 3200,
+      "max_gpu_hours": 4,
+      "max_cpu_core_hours": 32,
+      "max_system_evaluations": 4,
+      "max_storage_gb": 1,
+      "max_concurrent_jobs": 1,
+      "max_retries_per_job": 0,
+      "max_wall_minutes_per_job": 55
+    },
+    "per_candidate": {
+      "max_calls": 800,
+      "max_wall_seconds": 3300,
+      "cpu_cores": 8,
+      "max_raw_bytes": 134217728
+    },
+    "preflight_gpu_seconds_cap": 60,
+    "job_wall_seconds": 13260,
+    "memory_gib": 64
+  },
+  "global_caps": {
+    "active_wall_seconds": 15120,
+    "storage_bytes": 1073741824,
+    "gpu_allocated_seconds": 14400,
+    "cpu_allocated_core_seconds": 115200
+  },
+  "claim_limits": [
+    "One exposed parent/seed mechanism calibration only, not discovery efficacy or independent confirmation.",
+    "C is off-policy replay of F displacements with N BE trajectory, not a deployable competing method.",
+    "F and T query different geometries; no identical-information or strong-adaptive-serial claim.",
+    "Residual selection is not TS certification. No positive channel result or method advantage is implied."
+  ]
+}

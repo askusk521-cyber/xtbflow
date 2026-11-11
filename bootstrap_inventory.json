@@ -308,6 +308,11 @@
       "bytes": 34515
     },
     {
+      "path": "configs/research/mechanism_188_20261111.json",
+      "sha256": "4744bbb8dc3861b9789eace7448e1ea8b5d3b11849055a9cd6b13664e97e3e1d",
+      "bytes": 2516
+    },
+    {
       "path": "configs/research/narrowed_assets_20261111.json",
       "sha256": "dd1eecc51dcc13c4f442dfe1d6c4ab3da344e968c588267b6d18b1d4de31da33",
       "bytes": 23509

@@ -1669,8 +1669,8 @@
     },
     {
       "path": "scripts/diagnose_physical_direction.py",
-      "sha256": "2d070084b693b83caf7de33c6b4f11987fbee2aca2bacd571a223f0389f8ca40",
-      "bytes": 9955
+      "sha256": "191bc0a7053c6978c1bd1369d8f0d18f04e2cbcb97dcdd45fe45b7fcec97ea6b",
+      "bytes": 10086
     },
     {
       "path": "scripts/joint_flow_smoke.py",
@@ -2099,8 +2099,8 @@
     },
     {
       "path": "src/xtbflow/sampling/physical_diagnostic.py",
-      "sha256": "decdf2f566352b903eedf9556a7b5bedabd6b66e9c2cc45cf82ce97c0a566908",
-      "bytes": 11025
+      "sha256": "1878fe2522d61ed4b78cbabccf56a1b0a6fe3f3aa3034f189a6b1acb5e2f277e",
+      "bytes": 11147
     },
     {
       "path": "src/xtbflow/sampling/policy_adapter.py",

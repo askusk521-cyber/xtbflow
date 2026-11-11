@@ -73,12 +73,15 @@ class StageMeter:
             self.begin('forward', 'trained_joint')
         def after(module, args, output):
             row = next(r for r in reversed(self.rows) if r['kind']=='forward' and r['status']=='started')
+            if output is None:
+                self.end(row, 'execution_failed')
+                return
             if not all(torch.isfinite(v).all() for v in output.values()):
                 self.end(row, 'failed_nonfinite')
                 raise ValueError('nonfinite_model_output')
             self.end(row)
         model.register_forward_pre_hook(before, with_kwargs=True)
-        model.register_forward_hook(after)
+        model.register_forward_hook(after, always_call=True)
 
 
 def rms_atom(value, mask):

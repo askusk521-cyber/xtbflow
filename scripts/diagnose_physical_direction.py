@@ -89,7 +89,7 @@ def run(args):
                 source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root).decode().strip(),
                 config_sha256=file_hash(config),python=platform.python_version(),
                 packages={p:importlib.metadata.version(p) for p in ['torch','numpy','scipy','tblite','rdkit']},
-                caps=cfg['caps'],job_id=os.environ.get('SLURM_JOB_ID'),states=[dict(step=k,status='not_run',directions={}) for k in cfg['states']],
+                caps=cfg['caps'],job_id=os.environ.get('SLURM_JOB_ID'),states=[dict(step=k,status='not_run',directions={n:dict(status='not_run') for n in ('F','G')}) for k in cfg['states']],
                 status='running',claim_limits=cfg['claim_limits'])
     try:
         if subprocess.check_output(['git','status','--porcelain'],cwd=root).strip():
@@ -141,7 +141,8 @@ def run(args):
             write_json(args.out/'report.json',report)
         report['status']='completed'
     except Exception as exc:
-        report.update(status='failed_or_blocked',failure_type=type(exc).__name__,failure=str(exc))
+        report.update(status='failed_or_blocked',failure_type=type(exc).__name__,
+                      failure=str(exc) if not isinstance(exc,OSError) else 'asset_or_report_io_failure')
         for row in report['states']:
             if row['status'] in ('started','not_run'):
                 row['reason']='stage_stopped:'+type(exc).__name__

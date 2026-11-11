@@ -1,0 +1,44 @@
+{
+  "schema": "xtbflow-amplitude-backtracking-stage/v1",
+  "issue": 199,
+  "diagnostic_report_sha256": "7390ba51e8325432ac85a4342cc426e49202b7e2fc2548fb61f810b217a0436f",
+  "diagnostic_source_commit": "76028d54fb5da4a16200fa67ceaf061a0d27befd",
+  "owner_authorization": "https://github.com/askusk521-cyber/xtbflow/issues/129#issuecomment-6789105000",
+  "new_energy_force_execution_permitted": true,
+  "new_reference_execution_permitted": false,
+  "algorithm": {
+    "alpha_cap_angstrom_per_geometry_clock": 0.1,
+    "lambdas": [
+      1,
+      0.5,
+      0.25
+    ],
+    "force_l2_floor_hartree_per_angstrom": 1e-10,
+    "residual_ratio": 0.99,
+    "linearization_relative_error_max": 0.1,
+    "endpoint_rms_cap": "rms_atom(delta0)",
+    "projection": "strictly_positive",
+    "direction": "same centered reflected field and unchanged predicted-DeltaBE u",
+    "fixed_baseline": "lambda=1 trial shared once; no duplicated queries"
+  },
+  "caps": {
+    "forward": 9,
+    "ef": 12,
+    "jvp": 0,
+    "reverse": 0,
+    "wall_seconds": 900,
+    "cpu_seconds": 900,
+    "output_bytes": 67108864,
+    "memory_gib": 8,
+    "threads": 1,
+    "gpu_seconds": 0,
+    "concurrency": 1,
+    "retries": 0
+  },
+  "claim_limits": [
+    "Three-state exposed calibration only; selecting lower residual is not an unbiased efficacy estimate.",
+    "Stationary residual can decrease at a minimum or wrong saddle; not a TS or connected channel certificate.",
+    "No change to model, clock, directions, force-magnitude policy, atom pool or input.",
+    "No usable nonzero update means no #188 launch; no universal conclusion about parallel guidance."
+  ]
+}

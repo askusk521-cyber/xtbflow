@@ -1,0 +1,93 @@
+{
+  "schema": "xtbflow-integration-software-validation/v1",
+  "source_commit": "aa01c85580e1b5fcdfb80915c1f97b8ee9970a33",
+  "host": "node2",
+  "python": "3.10.19",
+  "packages": {
+    "torch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "rdkit": "2024.3.3",
+    "ase": "3.29.0",
+    "tblite": "0.7.0",
+    "xtb": "22.1",
+    "pytest": "9.1.1"
+  },
+  "job_id": "4268",
+  "caps": {
+    "wall_seconds": 600,
+    "cpu_cores": 1,
+    "memory_gib": 8,
+    "storage_mib": 128,
+    "gpu": 0
+  },
+  "scientific_work": {
+    "trained_forwards": 0,
+    "energy_force": 0,
+    "reference_primitives": 0,
+    "training": 0
+  },
+  "checks": [
+    {
+      "name": "focused",
+      "returncode": 0,
+      "wall_seconds": 4.398029761854559,
+      "cpu_seconds": 4.2171899999999996,
+      "log_sha256": "756d87650ddd80e93ae62d1767e4d4ea5ffe18fb75441731f9c12e249869b34e",
+      "log_bytes": 99
+    },
+    {
+      "name": "pytest",
+      "returncode": 0,
+      "wall_seconds": 20.897637352114543,
+      "cpu_seconds": 17.172409000000002,
+      "log_sha256": "6d4f99ca7acbb1b508cd9d1911530410efe21f961d4570eeea4ace8cad567d5f",
+      "log_bytes": 1164
+    },
+    {
+      "name": "reusable",
+      "returncode": 0,
+      "wall_seconds": 1.6313883089460433,
+      "cpu_seconds": 1.6199290000000035,
+      "log_sha256": "a42fff768b2640a9a8a3d871553358cf251101707b2df14c382a3a8e43c1a2cd",
+      "log_bytes": 155
+    },
+    {
+      "name": "bootstrap",
+      "returncode": 0,
+      "wall_seconds": 0.063969103153795,
+      "cpu_seconds": 0.0634540000000019,
+      "log_sha256": "20eba8308493fafadfc08cbbfa604af20d9348fd0b26d94d3985b7e4db7f6b5f",
+      "log_bytes": 151
+    },
+    {
+      "name": "diff",
+      "returncode": 0,
+      "wall_seconds": 0.012212101835757494,
+      "cpu_seconds": 0.011792000000001579,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log_bytes": 0
+    },
+    {
+      "name": "fake",
+      "returncode": 0,
+      "wall_seconds": 2.501469214912504,
+      "cpu_seconds": 2.4553680000000018,
+      "log_sha256": "0e14abea254cff5c177c9fac4bd935ca2b2b9345693bc40e475f8dfa18fcc150",
+      "log_bytes": 53
+    },
+    {
+      "name": "cached",
+      "returncode": 0,
+      "wall_seconds": 1.2330430750735104,
+      "cpu_seconds": 1.2171079999999979,
+      "log_sha256": "a3d75e26d16a7b14231d0ffc1e790381601414eef1dd0f2cb03171dce089d133",
+      "log_bytes": 54
+    }
+  ],
+  "status": "passed",
+  "wall_seconds": 30.74585291510448,
+  "claim_limits": [
+    "Software fixtures only; no chemistry or trained-model efficacy claim."
+  ]
+}

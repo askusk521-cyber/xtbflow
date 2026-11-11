@@ -579,8 +579,8 @@
     },
     {
       "path": "docs/architecture/integrated_guidance_20261111.md",
-      "sha256": "cf5321c642bf12ab7e4e6a3cdd9edebb2c452bf35bd3ccf45e919c2c180795e3",
-      "bytes": 3602
+      "sha256": "d5d1afc428cb29081bca590d8e41ce52ec6c5639b581d851a2a75af437eab23a",
+      "bytes": 5039
     },
     {
       "path": "docs/architecture/live_physical_feedback_loop_v0.1.md",
@@ -716,6 +716,16 @@
       "path": "docs/evidence/independent_seed_manifest_audit_20260929.json",
       "sha256": "413635c894698915405d278a662985dd3acc5a5fe223023b613024c64ca1cd2d",
       "bytes": 1062
+    },
+    {
+      "path": "docs/evidence/integration_197_20261111/first_validation_failed_0749f1a.json",
+      "sha256": "2cdab9802070392f60c852879e1e8c6b2d52bc70245913c2b72fa8c96837d29c",
+      "bytes": 785
+    },
+    {
+      "path": "docs/evidence/integration_197_20261111/software_aa01c85.json",
+      "sha256": "e9d0d485555606efa43e64376a5a2a43f680668fa771ddbd533189b5776b15a4",
+      "bytes": 2593
     },
     {
       "path": "docs/evidence/joint_flow_smoke_20260927.json",

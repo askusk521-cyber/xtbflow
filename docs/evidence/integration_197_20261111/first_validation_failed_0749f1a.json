@@ -1,0 +1,24 @@
+{
+  "schema": "xtbflow-software-failure/v1",
+  "host": "node2",
+  "source_commit": "0749f1a",
+  "status": "failed",
+  "pytest": {
+    "passed": 418,
+    "failed": 1,
+    "subtests_passed": 68,
+    "wall_seconds_reported_by_pytest": 17.81
+  },
+  "reason": "Synthetic reference backend was defined in an unimportable dynamic module; spawn rejected it before any reference primitive. Moved to importable package fixture and corrected its primitive-kind tag.",
+  "log_sha256": "6172c8c5dd57d2fa6f5303dde8dea52f29eb79f6994152a2184944ee66e7aea6",
+  "log_bytes": 2084,
+  "process_cpu_seconds": null,
+  "scientific_work": {
+    "trained_forwards": 0,
+    "energy_force": 0,
+    "reference_primitives": 0
+  },
+  "claim_limits": [
+    "Software fixture failure only; no chemistry result."
+  ]
+}

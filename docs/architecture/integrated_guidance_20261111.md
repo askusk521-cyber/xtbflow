@@ -59,3 +59,25 @@ standing policy. Legacy uncommitted work is preserved in the original worktree.
 Software validation and CI receipts are recorded separately after exact-source
 execution. No numerical, chemical or method-advantage claim follows from this
 integration. #198 remains gated on merged tested source and retained identities.
+
+## Exact-source validation
+
+On node2, source `aa01c85580e1b5fcdfb80915c1f97b8ee9970a33` passed 42 focused
+tests, full pytest (419 tests, 68 subtests), 56 reusable tests, inventory (495
+files), diff check and executable fake/cached entry. The first fake entry used
+one synthetic reference primitive; cache replay used zero additional calls.
+The immutable receipt is `docs/evidence/integration_197_20261111/software_aa01c85.json`.
+The earlier 418-pass/1-failure run is separately preserved and never relabelled.
+No new scientific calculation or trained checkpoint forward occurred.
+
+Reproduce in a fresh branch-named clean n2 worktree at the SHA above. Activate
+`~/miniconda3/etc/profile.d/conda.sh` and `conda activate xtbflow`; use
+`CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+PYTHONPATH=src:vendor/mechai_reusable`. Reserve `srun --partition=main --nodes=1
+--ntasks=1 --cpus-per-task=1 --mem=8G --time=00:10:00`, wrap the validation in
+`timeout 598`, and retain logs in a new output directory (128 MiB cap). Run
+`python -m pytest -q`, `python -m unittest discover -s tests/reusable -p
+'test_*.py'`, `python scripts/validate_bootstrap.py`, `git diff --check
+028d2aaed2c4bfbed173dc8f6b06106b3686f700 HEAD`, and the two fixture commands above.
+The receipt records actual per-command process/child CPU, wall, source, versions,
+Slurm job and log hashes. Allocated limits are distinct from measurements.

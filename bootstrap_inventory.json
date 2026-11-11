@@ -329,8 +329,8 @@
     },
     {
       "path": "configs/research/physical_direction_198_20261111.json",
-      "sha256": "e6a6ff08b936bfb0a07904f5a1a97c5c268c21b0ce694c37bb2585af045dcf55",
-      "bytes": 3083
+      "sha256": "6db96ff30fa90fe44e32f22682e4fbeafd0de0042c7a388023137f3a692d9b6b",
+      "bytes": 3211
     },
     {
       "path": "configs/resources.yaml",

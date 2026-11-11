@@ -68,5 +68,7 @@
     "Local conditional endpoint derivative, not entire remaining rollout.",
     "Event-derived reflected direction is not a verified negative Hessian mode.",
     "No final decoded chemical event, candidate, or certification in this stage."
-  ]
+  ],
+  "integrated_common_commit": "baa50bc0531985f92121690ee297c7c934eeca9f",
+  "zero_direction_floor_hartree_per_angstrom": 1e-10
 }

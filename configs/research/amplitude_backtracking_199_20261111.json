@@ -40,5 +40,6 @@
     "Stationary residual can decrease at a minimum or wrong saddle; not a TS or connected channel certificate.",
     "No change to model, clock, directions, force-magnitude policy, atom pool or input.",
     "No usable nonzero update means no #188 launch; no universal conclusion about parallel guidance."
-  ]
+  ],
+  "merged_diagnostic_commit": "35b305f01f4ee041d8e5ed2223483942a0acea82"
 }

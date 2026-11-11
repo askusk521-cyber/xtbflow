@@ -46,6 +46,7 @@ def run(args):
         report['effective_reference_budget']=budget
         service=CertificationService(args.out/'service',StageBudget(**budget))
         by_arm=dict(candidates)
+        report['status']='executing'
         for row in report['arms']:
             arm=row['arm']
             if arm not in by_arm:

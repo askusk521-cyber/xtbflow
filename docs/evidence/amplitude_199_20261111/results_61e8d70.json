@@ -1,0 +1,697 @@
+{
+  "caps": {
+    "concurrency": 1,
+    "cpu_seconds": 900,
+    "ef": 12,
+    "forward": 9,
+    "gpu_seconds": 0,
+    "jvp": 0,
+    "memory_gib": 8,
+    "output_bytes": 67108864,
+    "retries": 0,
+    "reverse": 0,
+    "threads": 1,
+    "wall_seconds": 900
+  },
+  "claim_limits": [
+    "Three-state exposed calibration only; selecting lower residual is not an unbiased efficacy estimate.",
+    "Stationary residual can decrease at a minimum or wrong saddle; not a TS or connected channel certificate.",
+    "No change to model, clock, directions, force-magnitude policy, atom pool or input.",
+    "No usable nonzero update means no #188 launch; no universal conclusion about parallel guidance."
+  ],
+  "config_sha256": "3eb6d2a082878357661158b065cbb2c8724260b89b85115b2c055ca5e55620b9",
+  "diagnostic_report_sha256": "7390ba51e8325432ac85a4342cc426e49202b7e2fc2548fb61f810b217a0436f",
+  "host": "node2",
+  "identities": {
+    "checkpoint_sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda",
+    "packet_sha256": "3aa5566ea68752d67d777730899a8a5eaa21f108c7d06afe2751a86f38522799",
+    "saved_state_sha256": {
+      "10": "0582b709de1145f2a1a1c3c278ce52dcd577c09f6b384117484361cc970b15fc",
+      "25": "272f994a7590e93c24f95a4df1609735221982aa75571381a0c527e96dfa3e6a",
+      "40": "3bd32cdce359052bbbee23a7f5aabe77a89205ce406dadc760fbe08bf9e6d0cc"
+    },
+    "trained_commit": "e84e330390a519bf4ac12048b297403c09717646"
+  },
+  "issue": 199,
+  "job_id": "4278",
+  "packages": {
+    "numpy": "2.2.6",
+    "rdkit": "2024.3.3",
+    "scipy": "1.15.3",
+    "tblite": "0.7.0",
+    "torch": "2.10.0+cu128"
+  },
+  "python": "3.10.19",
+  "qualified_nonzero_updates": 2,
+  "raw_artifacts": [
+    {
+      "bytes": 0,
+      "name": "ef-001.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2272,
+      "name": "ef-001.request.json",
+      "sha256": "8b8c8fd002347cd4353e78ae224cfaa102c7e8898d8afb49ef8db908ac4279a0"
+    },
+    {
+      "bytes": 1906,
+      "name": "ef-001.result.json",
+      "sha256": "0a1ec15fa79e6e578a5a90737c19b6dbb5c6844e91a853a33cbcc59a5d0ce74f"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-001.result.ledger.json",
+      "sha256": "6ffe3bbaa43b9430b6328fda160c4dfeb368285210b841a9bf7e96d9a7e7df9d"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-003.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2269,
+      "name": "ef-003.request.json",
+      "sha256": "c9f0117c3f45c804e00a0c3e48cd5e508be81b9ea7c8dc1cb1a3042059ac9dd4"
+    },
+    {
+      "bytes": 1902,
+      "name": "ef-003.result.json",
+      "sha256": "ddf772d746cfeb196340c32fbb7ea2e6082b2defd6cda90c54812aa08f240bf1"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-003.result.ledger.json",
+      "sha256": "5bc4673a7745dff749623ef2f09fbc0b0dacced38046c1b9ffbf02a37548af61"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-005.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2271,
+      "name": "ef-005.request.json",
+      "sha256": "ce8e519f6f9c6f1f1f3157f7b42f20d54b2889d5cdde0ca88c3a9d5862c11136"
+    },
+    {
+      "bytes": 1902,
+      "name": "ef-005.result.json",
+      "sha256": "45e1824a8b467affac834367ffdd6cb03da4668b4dcf893a9abc48e43c0695cb"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-005.result.ledger.json",
+      "sha256": "c437f88eb087ea1ebc5bbff9dd08576a5c2fcad569a2fbc16c17fd2641957e56"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-007.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2267,
+      "name": "ef-007.request.json",
+      "sha256": "94eca77d56197cb4b3ca51cc5c17a77615598878552eff8ae08f76736f9c8012"
+    },
+    {
+      "bytes": 1902,
+      "name": "ef-007.result.json",
+      "sha256": "8fa8ff39cdb8794f123f00bed663d210344a3ac243a74b7f12d3818c41622b34"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-007.result.ledger.json",
+      "sha256": "d2c23530bb078d4692a05e1a7bd490f7d5d58bb3cc941098e49d418875c94240"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-008.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2273,
+      "name": "ef-008.request.json",
+      "sha256": "06d70defcc6106ca247bc4eed876dd6782953f0972818e6853c4801d72e39fa2"
+    },
+    {
+      "bytes": 1937,
+      "name": "ef-008.result.json",
+      "sha256": "bc1266ac9b02eb0a13c4b5787b87f018052ea16434821d72bbbdcbed730fc07c"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-008.result.ledger.json",
+      "sha256": "1ee9ad90965acb371694644e1991f08a90ebbf964feb466f672cc81f14375b6c"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-010.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2273,
+      "name": "ef-010.request.json",
+      "sha256": "09a7a685fde9798ed5f40fc2ac9b1eae16f6d31d3b221b4d09fbdbdfd85bc381"
+    },
+    {
+      "bytes": 1938,
+      "name": "ef-010.result.json",
+      "sha256": "58299588b27bc51f69b4a62c96a184c3cfdb66d40352aa3d3a341b6c98941a9c"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-010.result.ledger.json",
+      "sha256": "c71488b72aeb6254a560c392b4082c1adf0cdddc8426082051c57936ac3fc38f"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-011.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2273,
+      "name": "ef-011.request.json",
+      "sha256": "9c6086e5326db5a41d1f314b42c7eb019f0ffa7bc2073a8d4f2aeb102b0709a9"
+    },
+    {
+      "bytes": 1959,
+      "name": "ef-011.result.json",
+      "sha256": "ae3c56f8ddd8a30daa15d7cc28ba8491561679b29d211bd4dec9266e120e3d50"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-011.result.ledger.json",
+      "sha256": "3244fcfd888e93aad427f306b7dd3d9134d1580c79b1042eb75a1a7326acdfdd"
+    },
+    {
+      "bytes": 0,
+      "name": "ef-013.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2274,
+      "name": "ef-013.request.json",
+      "sha256": "2875077c426526fb5b8b8c8a5775dc459b0c55d2140146e7063ac1a43c49857f"
+    },
+    {
+      "bytes": 1962,
+      "name": "ef-013.result.json",
+      "sha256": "973b3eaadc1200c921fc39d2adb2a709a635579ce8589566fbec2b77200760e6"
+    },
+    {
+      "bytes": 591,
+      "name": "ef-013.result.ledger.json",
+      "sha256": "c9afe77971969e35dcf852b5a6004ce13c1abda4b204eedd9cec99f2e106d33b"
+    },
+    {
+      "bytes": 4815,
+      "name": "k10-selected.pt",
+      "sha256": "000788d43ffb6396d4f0bbea751f69a943138b82ae14066229f89d9ef4d4416f"
+    },
+    {
+      "bytes": 4815,
+      "name": "k25-selected.pt",
+      "sha256": "b8b06a9dcdb2c94e28123584c9dacfd7e2a660085a1113f843bbccbd1996d13e"
+    },
+    {
+      "bytes": 4815,
+      "name": "k40-selected.pt",
+      "sha256": "1e1b733977311806e40b8a54fa5ae8ae5ff7c71284e85d55a5cb21ab83e14df3"
+    },
+    {
+      "bytes": 24158,
+      "name": "work.json",
+      "sha256": "916f7113f6c0d34dfddf52a66970eed2d794ed2168c7c0271682652db7ab8def"
+    }
+  ],
+  "s5_gate": "eligible",
+  "schema": "xtbflow-amplitude-backtracking-result/v1",
+  "source_commit": "61e8d709dba213fe4c0d32daa7cc8431879e906c",
+  "states": [
+    {
+      "actual_displacement": {
+        "l2_angstrom": 0.0,
+        "max_atom_angstrom": 0.0,
+        "rms_atom_angstrom": 0.0
+      },
+      "alpha_cap": 0.1,
+      "baseline_phi": 6.25555371924133,
+      "baseline_status": "completed",
+      "fixed_amplitude_baseline": {
+        "accepted": false,
+        "checks": {
+          "displacement": true,
+          "linearization": true,
+          "positive_projection": true,
+          "residual": false
+        },
+        "displacement": {
+          "l2_angstrom": 0.0033599999999999967,
+          "max_atom_angstrom": 0.002073572137923705,
+          "rms_atom_angstrom": 0.0008399999999999992
+        },
+        "endpoint_displacement": {
+          "l2_angstrom": 0.0013549727694098454,
+          "max_atom_angstrom": 0.0004652954645511349,
+          "rms_atom_angstrom": 0.0003387431923524614
+        },
+        "endpoint_gain": 0.403265705181502,
+        "endpoint_projection": 0.0006751096270141688,
+        "lambda_value": 1.0,
+        "linearization_relative_error": 0.003344996477564479,
+        "model_status": "completed",
+        "next_event_velocity_delta_l2": 0.0015965047086326303,
+        "phi": 6.256833543095564,
+        "physical_status": "completed"
+      },
+      "lambdas": [
+        1.0,
+        0.5,
+        0.25
+      ],
+      "new_work": {
+        "ef": 4,
+        "forward": 3,
+        "jvp": 0
+      },
+      "nominal_displacement": {
+        "l2_angstrom": 0.0033599999999999967,
+        "max_atom_angstrom": 0.002073572137923705,
+        "rms_atom_angstrom": 0.0008399999999999992
+      },
+      "reason": "no_trial_satisfies_registered_rule",
+      "selected_lambda": null,
+      "selected_state_sha256": "000788d43ffb6396d4f0bbea751f69a943138b82ae14066229f89d9ef4d4416f",
+      "source_cache_sha256": "121dd306941dd98fd3095b18624bbd6e2950d54319ea35f61afd9f0970d3ca23",
+      "status": "no_push",
+      "step": 10,
+      "trials": [
+        {
+          "accepted": false,
+          "checks": {
+            "displacement": true,
+            "linearization": true,
+            "positive_projection": true,
+            "residual": false
+          },
+          "displacement": {
+            "l2_angstrom": 0.0033599999999999967,
+            "max_atom_angstrom": 0.002073572137923705,
+            "rms_atom_angstrom": 0.0008399999999999992
+          },
+          "endpoint_displacement": {
+            "l2_angstrom": 0.0013549727694098454,
+            "max_atom_angstrom": 0.0004652954645511349,
+            "rms_atom_angstrom": 0.0003387431923524614
+          },
+          "endpoint_gain": 0.403265705181502,
+          "endpoint_projection": 0.0006751096270141688,
+          "lambda_value": 1.0,
+          "linearization_relative_error": 0.003344996477564479,
+          "model_status": "completed",
+          "next_event_velocity_delta_l2": 0.0015965047086326303,
+          "phi": 6.256833543095564,
+          "physical_status": "completed"
+        },
+        {
+          "accepted": false,
+          "checks": {
+            "displacement": true,
+            "linearization": true,
+            "positive_projection": true,
+            "residual": false
+          },
+          "displacement": {
+            "l2_angstrom": 0.0016799999999999983,
+            "max_atom_angstrom": 0.0010367860689618525,
+            "rms_atom_angstrom": 0.0004199999999999996
+          },
+          "endpoint_displacement": {
+            "l2_angstrom": 0.0006769103181081418,
+            "max_atom_angstrom": 0.00023271171895636816,
+            "rms_atom_angstrom": 0.00016922757952703545
+          },
+          "endpoint_gain": 0.40292280839770384,
+          "endpoint_projection": 0.0003365534199991884,
+          "lambda_value": 0.5,
+          "linearization_relative_error": 0.0016730296410445804,
+          "model_status": "completed",
+          "next_event_velocity_delta_l2": 0.0007978944048484426,
+          "phi": 6.256181965436423,
+          "physical_status": "completed"
+        },
+        {
+          "accepted": false,
+          "checks": {
+            "displacement": true,
+            "linearization": true,
+            "positive_projection": true,
+            "residual": false
+          },
+          "displacement": {
+            "l2_angstrom": 0.0008399999999999992,
+            "max_atom_angstrom": 0.0005183930344809263,
+            "rms_atom_angstrom": 0.0002099999999999998
+          },
+          "endpoint_displacement": {
+            "l2_angstrom": 0.0003383110117509488,
+            "max_atom_angstrom": 0.00011637165565952682,
+            "rms_atom_angstrom": 8.45777529377372e-05
+          },
+          "endpoint_gain": 0.4027512044654156,
+          "endpoint_projection": 0.0001680277970548773,
+          "lambda_value": 0.25,
+          "linearization_relative_error": 0.0008366431708857435,
+          "model_status": "completed",
+          "next_event_velocity_delta_l2": 0.00039885737928068804,
+          "phi": 6.255864914488076,
+          "physical_status": "completed"
+        }
+      ]
+    },
+    {
+      "accepted_phi": 3.1722343911158224,
+      "actual_displacement": {
+        "l2_angstrom": 0.008160000000000011,
+        "max_atom_angstrom": 0.005557701280006594,
+        "rms_atom_angstrom": 0.0020400000000000027
+      },
+      "alpha_cap": 0.1,
+      "baseline_phi": 3.2209098058293675,
+      "baseline_status": "completed",
+      "fixed_amplitude_baseline": {
+        "accepted": true,
+        "checks": {
+          "displacement": true,
+          "linearization": true,
+          "positive_projection": true,
+          "residual": true
+        },
+        "displacement": {
+          "l2_angstrom": 0.008160000000000011,
+          "max_atom_angstrom": 0.005557701280006594,
+          "rms_atom_angstrom": 0.0020400000000000027
+        },
+        "endpoint_displacement": {
+          "l2_angstrom": 0.006846793272866374,
+          "max_atom_angstrom": 0.002816945739144801,
+          "rms_atom_angstrom": 0.0017116983182165935
+        },
+        "endpoint_gain": 0.8390678030473486,
+        "endpoint_projection": 0.01289046465243955,
+        "lambda_value": 1.0,
+        "linearization_relative_error": 0.009952887395653552,
+        "model_status": "completed",
+        "next_event_velocity_delta_l2": 0.023529416269730808,
+        "phi": 3.1722343911158224,
+        "physical_status": "completed"
+      },
+      "lambdas": [
+        1.0,
+        0.5,
+        0.25
+      ],
+      "new_work": {
+        "ef": 2,
+        "forward": 1,
+        "jvp": 0
+      },
+      "nominal_displacement": {
+        "l2_angstrom": 0.008160000000000011,
+        "max_atom_angstrom": 0.005557701280006594,
+        "rms_atom_angstrom": 0.0020400000000000027
+      },
+      "reason": "first_acceptable_trial",
+      "selected_lambda": 1.0,
+      "selected_state_sha256": "b8b06a9dcdb2c94e28123584c9dacfd7e2a660085a1113f843bbccbd1996d13e",
+      "source_cache_sha256": "94f490e38649f255cd016567235f44f3bcbad1cc3f81f41daa35be367ffa52e0",
+      "status": "accepted",
+      "step": 25,
+      "trials": [
+        {
+          "accepted": true,
+          "checks": {
+            "displacement": true,
+            "linearization": true,
+            "positive_projection": true,
+            "residual": true
+          },
+          "displacement": {
+            "l2_angstrom": 0.008160000000000011,
+            "max_atom_angstrom": 0.005557701280006594,
+            "rms_atom_angstrom": 0.0020400000000000027
+          },
+          "endpoint_displacement": {
+            "l2_angstrom": 0.006846793272866374,
+            "max_atom_angstrom": 0.002816945739144801,
+            "rms_atom_angstrom": 0.0017116983182165935
+          },
+          "endpoint_gain": 0.8390678030473486,
+          "endpoint_projection": 0.01289046465243955,
+          "lambda_value": 1.0,
+          "linearization_relative_error": 0.009952887395653552,
+          "model_status": "completed",
+          "next_event_velocity_delta_l2": 0.023529416269730808,
+          "phi": 3.1722343911158224,
+          "physical_status": "completed"
+        }
+      ]
+    },
+    {
+      "accepted_phi": 0.4403994924454709,
+      "actual_displacement": {
+        "l2_angstrom": 0.012959999999999906,
+        "max_atom_angstrom": 0.007740089596718294,
+        "rms_atom_angstrom": 0.003239999999999977
+      },
+      "alpha_cap": 0.1,
+      "baseline_phi": 0.45171058732770103,
+      "baseline_status": "completed",
+      "fixed_amplitude_baseline": {
+        "accepted": true,
+        "checks": {
+          "displacement": true,
+          "linearization": true,
+          "positive_projection": true,
+          "residual": true
+        },
+        "displacement": {
+          "l2_angstrom": 0.012959999999999906,
+          "max_atom_angstrom": 0.007740089596718294,
+          "rms_atom_angstrom": 0.003239999999999977
+        },
+        "endpoint_displacement": {
+          "l2_angstrom": 0.004743812022500837,
+          "max_atom_angstrom": 0.0032311923673808357,
+          "rms_atom_angstrom": 0.001185953005625209
+        },
+        "endpoint_gain": 0.36603487827938824,
+        "endpoint_projection": 0.008825557898217604,
+        "lambda_value": 1.0,
+        "linearization_relative_error": 0.006818372925313711,
+        "model_status": "completed",
+        "next_event_velocity_delta_l2": 0.011004296993261527,
+        "phi": 0.4403994924454709,
+        "physical_status": "completed"
+      },
+      "lambdas": [
+        1.0,
+        0.5,
+        0.25
+      ],
+      "new_work": {
+        "ef": 2,
+        "forward": 1,
+        "jvp": 0
+      },
+      "nominal_displacement": {
+        "l2_angstrom": 0.012959999999999906,
+        "max_atom_angstrom": 0.007740089596718294,
+        "rms_atom_angstrom": 0.003239999999999977
+      },
+      "reason": "first_acceptable_trial",
+      "selected_lambda": 1.0,
+      "selected_state_sha256": "1e1b733977311806e40b8a54fa5ae8ae5ff7c71284e85d55a5cb21ab83e14df3",
+      "source_cache_sha256": "c904ba9097c7991d0de581cd682e5c319a4c3e520f16edb45633162fb058e16b",
+      "status": "accepted",
+      "step": 40,
+      "trials": [
+        {
+          "accepted": true,
+          "checks": {
+            "displacement": true,
+            "linearization": true,
+            "positive_projection": true,
+            "residual": true
+          },
+          "displacement": {
+            "l2_angstrom": 0.012959999999999906,
+            "max_atom_angstrom": 0.007740089596718294,
+            "rms_atom_angstrom": 0.003239999999999977
+          },
+          "endpoint_displacement": {
+            "l2_angstrom": 0.004743812022500837,
+            "max_atom_angstrom": 0.0032311923673808357,
+            "rms_atom_angstrom": 0.001185953005625209
+          },
+          "endpoint_gain": 0.36603487827938824,
+          "endpoint_projection": 0.008825557898217604,
+          "lambda_value": 1.0,
+          "linearization_relative_error": 0.006818372925313711,
+          "model_status": "completed",
+          "next_event_velocity_delta_l2": 0.011004296993261527,
+          "phi": 0.4403994924454709,
+          "physical_status": "completed"
+        }
+      ]
+    }
+  ],
+  "status": "completed",
+  "work": {
+    "attempts": [
+      {
+        "context": "k10:unperturbed_next_endpoint",
+        "elapsed_end": 1.3555145559366792,
+        "elapsed_start": 0.08513416210189462,
+        "kind": "ef",
+        "result_sha256": "0a1ec15fa79e6e578a5a90737c19b6dbb5c6844e91a853a33cbcc59a5d0ce74f",
+        "sequence": 1,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 1.3682849800679833,
+        "elapsed_start": 1.359579708892852,
+        "kind": "forward",
+        "sequence": 2,
+        "status": "completed"
+      },
+      {
+        "context": "k10:lambda=1.0",
+        "elapsed_end": 2.6407639500685036,
+        "elapsed_start": 1.370836925925687,
+        "kind": "ef",
+        "result_sha256": "ddf772d746cfeb196340c32fbb7ea2e6082b2defd6cda90c54812aa08f240bf1",
+        "sequence": 3,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 2.663159569958225,
+        "elapsed_start": 2.6465223180130124,
+        "kind": "forward",
+        "sequence": 4,
+        "status": "completed"
+      },
+      {
+        "context": "k10:lambda=0.5",
+        "elapsed_end": 3.9393094319384545,
+        "elapsed_start": 2.6672658568713814,
+        "kind": "ef",
+        "result_sha256": "45e1824a8b467affac834367ffdd6cb03da4668b4dcf893a9abc48e43c0695cb",
+        "sequence": 5,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 4.005714369006455,
+        "elapsed_start": 3.9910913249477744,
+        "kind": "forward",
+        "sequence": 6,
+        "status": "completed"
+      },
+      {
+        "context": "k10:lambda=0.25",
+        "elapsed_end": 5.280897761927918,
+        "elapsed_start": 4.0096568840090185,
+        "kind": "ef",
+        "result_sha256": "8fa8ff39cdb8794f123f00bed663d210344a3ac243a74b7f12d3818c41622b34",
+        "sequence": 7,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "k25:unperturbed_next_endpoint",
+        "elapsed_end": 6.561155528994277,
+        "elapsed_start": 5.290674149990082,
+        "kind": "ef",
+        "result_sha256": "bc1266ac9b02eb0a13c4b5787b87f018052ea16434821d72bbbdcbed730fc07c",
+        "sequence": 8,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 6.58578205993399,
+        "elapsed_start": 6.567924922099337,
+        "kind": "forward",
+        "sequence": 9,
+        "status": "completed"
+      },
+      {
+        "context": "k25:lambda=1.0",
+        "elapsed_end": 7.863441223977134,
+        "elapsed_start": 6.59088675188832,
+        "kind": "ef",
+        "result_sha256": "58299588b27bc51f69b4a62c96a184c3cfdb66d40352aa3d3a341b6c98941a9c",
+        "sequence": 10,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "k40:unperturbed_next_endpoint",
+        "elapsed_end": 9.143608313985169,
+        "elapsed_start": 7.873230732046068,
+        "kind": "ef",
+        "result_sha256": "ae3c56f8ddd8a30daa15d7cc28ba8491561679b29d211bd4dec9266e120e3d50",
+        "sequence": 11,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      },
+      {
+        "context": "trained_joint",
+        "elapsed_end": 9.157254844903946,
+        "elapsed_start": 9.148494919994846,
+        "kind": "forward",
+        "sequence": 12,
+        "status": "completed"
+      },
+      {
+        "context": "k40:lambda=1.0",
+        "elapsed_end": 10.43145426409319,
+        "elapsed_start": 9.16075766296126,
+        "kind": "ef",
+        "result_sha256": "973b3eaadc1200c921fc39d2adb2a709a635579ce8589566fbec2b77200760e6",
+        "sequence": 13,
+        "settlement": "settled",
+        "status": "completed",
+        "termination": "confirmed"
+      }
+    ],
+    "counts": {
+      "ef": 8,
+      "forward": 5,
+      "jvp": 0
+    },
+    "gpu_seconds": 0,
+    "process_cpu_including_children_seconds": 10.081023613,
+    "reference_primitives": 0,
+    "reverse_completed": 0,
+    "reverse_reserved": 0,
+    "training_steps": 0,
+    "unresolved_started": 0,
+    "wall_seconds": 10.44196938793175
+  },
+  "work_sha256": "916f7113f6c0d34dfddf52a66970eed2d794ed2168c7c0271682652db7ab8def"
+}

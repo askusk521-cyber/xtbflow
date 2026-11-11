@@ -278,6 +278,11 @@
       "bytes": 4396
     },
     {
+      "path": "configs/research/amplitude_backtracking_199_20261111.json",
+      "sha256": "3eb6d2a082878357661158b065cbb2c8724260b89b85115b2c055ca5e55620b9",
+      "bytes": 1709
+    },
+    {
       "path": "configs/research/assets_20261107.json",
       "sha256": "40b685778303ca06e4dd6be8c886277c09e0498eb01eeddf066ab93d4c6a183c",
       "bytes": 10626
@@ -548,6 +553,11 @@
       "bytes": 11012
     },
     {
+      "path": "docs/architecture/amplitude_backtracking_199_20261111.md",
+      "sha256": "58cd41e445ac47eb0ea7848291e5343366ed28a7b322a84fca9a7fee0f41f977",
+      "bytes": 2370
+    },
+    {
       "path": "docs/architecture/architecture_v0.1.md",
       "sha256": "f7e7cdeb8afb97ecbb6aacf132ab217a8f750e68dfbf924daf1e48f298bdd4a1",
       "bytes": 5963
@@ -656,6 +666,21 @@
       "path": "docs/data_contract.md",
       "sha256": "c12991332a533e522109d576e2041c834aa4d56566011840a50a4a4723ef2679",
       "bytes": 5381
+    },
+    {
+      "path": "docs/evidence/amplitude_199_20261111/results.md",
+      "sha256": "298144e624f8ab27da83a06ae64758509bfbe92616bca85ad4f005c2179a1874",
+      "bytes": 2772
+    },
+    {
+      "path": "docs/evidence/amplitude_199_20261111/results_61e8d70.json",
+      "sha256": "d96bf40bf216fb3d4b4b867709956c3723ddac07c9e278775c1d36a80c534b3a",
+      "bytes": 23004
+    },
+    {
+      "path": "docs/evidence/amplitude_199_20261111/software_61e8d70.json",
+      "sha256": "6344889768bbade8a1041bf75b1471bb47f9fb1fa1c98e85dd49d26cbbc4fa07",
+      "bytes": 2586
     },
     {
       "path": "docs/evidence/certification_evidence_correction_20261110_fcec27e.json",
@@ -1693,6 +1718,11 @@
       "bytes": 11435
     },
     {
+      "path": "scripts/optimize_guidance_amplitude.py",
+      "sha256": "efcec709fc6fa1bb33682ee8d0ade34f9d4d0f5a9b73f7ce041cde585c56f5d3",
+      "bytes": 6503
+    },
+    {
       "path": "scripts/portal_hooks.py",
       "sha256": "9be7852267216a1e14f8c07bf6173110ee514db812f37f620d8de64e1b266fd4",
       "bytes": 28579
@@ -2068,6 +2098,11 @@
       "bytes": 22824
     },
     {
+      "path": "src/xtbflow/sampling/amplitude_backtracking.py",
+      "sha256": "31b6174bedca0caa9216beb64e1414b0e701d3e9bf7fa8a153c65762bc24b7cf",
+      "bytes": 4737
+    },
+    {
       "path": "src/xtbflow/sampling/guidance.py",
       "sha256": "c7e5c4ea65de4ca89508904352bbbbbe44627e372d1168a88134334c3a222207",
       "bytes": 1273
@@ -2226,6 +2261,11 @@
       "path": "tests/reusable/test_sample_manifest.py",
       "sha256": "418a63ea5eab662bdd5dfa8cf56a30714dcb080bd0e432ca61d0ea5ab2fed6e4",
       "bytes": 4529
+    },
+    {
+      "path": "tests/test_amplitude_backtracking.py",
+      "sha256": "40b3ef029eacc56605dba62f8d9a8b58b97d00879edc89bfe8ba19f636dc1d57",
+      "bytes": 4289
     },
     {
       "path": "tests/test_architecture_contract.py",

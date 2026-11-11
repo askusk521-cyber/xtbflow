@@ -1638,6 +1638,11 @@
       "bytes": 9788
     },
     {
+      "path": "scripts/audit_mechanism_reference.py",
+      "sha256": "2c1cfb2ebd442098bf514285f97b3d6d190a0a28b4a2d188889698ce24c46857",
+      "bytes": 5445
+    },
+    {
       "path": "scripts/audit_mechanism_trajectory.py",
       "sha256": "f832cb79ab3ea0d5475fb0a52138f1affcdbf8262c7b71267c86e7fcc2d78f0c",
       "bytes": 3326

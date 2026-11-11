@@ -1,0 +1,14 @@
+{
+  "schema": "xtbflow-integrated-guidance-entry/v1",
+  "issue": 197,
+  "evidence_level": "software_demo",
+  "units": {"geometry": "angstrom", "energy": "hartree", "force": "hartree/angstrom", "clock": "dimensionless"},
+  "electronic_state": {"charge": 0, "multiplicity": 1, "environment": {"kind": "gas", "periodic": false}},
+  "entry": "xtbflow.sampling.integrated_guidance",
+  "trained_dependency": "e84e330390a519bf4ac12048b297403c09717646",
+  "trained_file_pins": "configs/research/narrowed_assets_20261111.json",
+  "old_pvo_entry_supported": false,
+  "software_budget": {"phase": "integrated-fixture", "max_calculator_calls": 2, "max_gpu_hours": 0, "max_cpu_core_hours": 0.02, "max_storage_gb": 0.01, "max_wall_minutes_per_job": 1, "max_concurrent_jobs": 1, "max_retries_per_job": 0},
+  "scientific_caps": {"trained_forwards": 0, "energy_force": 0, "reference_primitives": 0, "training": 0},
+  "claim_limits": ["Synthetic BE and synthetic reference service only; not a trained chemical decoder qualification or chemistry result.", "Historical cache verification uses pinned old auditors, never this service to refresh old records."]
+}

@@ -1,0 +1,293 @@
+{
+  "schema": "xtbflow-research-assets/v1",
+  "observed_on": "2026-11-07",
+  "main_commit": "d1aee8f7e18bfa30fd53308064f55b2a34fa42b7",
+  "assets": [
+    {
+      "pr": 111,
+      "head": "explore/geometry-lead-clock",
+      "commit": "9cc15e03672264fddda0804bb8c2cb4eb31da8f0",
+      "work_packages": [
+        133,
+        136
+      ],
+      "status": "research_branch_unmerged",
+      "evidence_level": "exploratory",
+      "compatibility": "Independent clocks and trajectory diagnostics; research v1 API, not main JointEventGeometryFlow.",
+      "files": [
+        {
+          "path": "scripts/explore_geometry_information.py",
+          "sha256": "cdb8cc0604d68069bc40b05141dcd948458b680dcdb0c8fb20800f13f7f23dac",
+          "bytes": 28624
+        },
+        {
+          "path": "configs/explore/geometry_lead.json",
+          "sha256": "a0a96057c34f5dc5c711b7dd3d373dfebb32c738af82d5bab35f150aaef58215",
+          "bytes": 2788
+        },
+        {
+          "path": "docs/evidence/explore_geolead/REPORT_ZH.md",
+          "sha256": "63ea588d6e8c4b8b7677e5b743bab9eb8c9a7bc5a6ffe2a718bea0fa3610c98d",
+          "bytes": 6600
+        },
+        {
+          "path": "docs/evidence/explore_geolead/geolead_results.json",
+          "sha256": "4a4543ba26138fdf5a323b5c91e42e9e454bb5b80757c5f5498a47c678970458",
+          "bytes": 34231
+        },
+        {
+          "path": "docs/evidence/explore_geolead/SHA256SUMS",
+          "sha256": "aeeddc84fd8fb77e5bf0ff4599443780cd13cedb2857be4d2760b8ca5a51bb80",
+          "bytes": 965
+        },
+        {
+          "path": "docs/evidence/explore_geolead/manifest_sync.json",
+          "sha256": "ae9c8490de16cd43ee67a8d218f928f131b9bc87d0b129c4147bd6b7ff003ca1",
+          "bytes": 1227
+        },
+        {
+          "path": "src/xtbflow/v1/clocks.py",
+          "sha256": "5841933debf3af6e81f2883de33e34d5d4fcf38240c47fae8a9641d0bde3b509",
+          "bytes": 923
+        },
+        {
+          "path": "src/xtbflow/v1/sampler.py",
+          "sha256": "97c8eb5955b78fbcc4b12c8da152cd4fbac67c57df93f73eee13bf68013f83b5",
+          "bytes": 6009
+        }
+      ],
+      "raw_availability": "requires_n2_audit",
+      "model_assets": [
+        {
+          "seed": 0,
+          "locator": "runs:v1a-20261007/generators/joint_s0/ckpt_60000.pt",
+          "sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda",
+          "availability": "not_yet_rehashed"
+        },
+        {
+          "seed": 1,
+          "locator": "runs:v1a-20261007/generators/joint_s1/ckpt_60000.pt",
+          "sha256": "65f321d775e20007903e16b284ca27c8b215cbc5b3610f349595f95771e9ec72",
+          "availability": "not_yet_rehashed"
+        },
+        {
+          "seed": 2,
+          "locator": "runs:v1a-20261007/generators/joint_s2/ckpt_60000.pt",
+          "sha256": "50bc3796220083f5ca1cf3208f40fee8e58065c23c4ce61d19511a1367b8679e",
+          "availability": "not_yet_rehashed"
+        }
+      ]
+    },
+    {
+      "pr": 113,
+      "head": "review/enum-baseline",
+      "commit": "3db499ca1ae956dc572ee87439fe654b0192d8f3",
+      "work_packages": [
+        138
+      ],
+      "status": "research_branch_unmerged",
+      "evidence_level": "exploratory",
+      "compatibility": "Enumeration comparison on archived candidate streams; candidate-count axis is not complete cost.",
+      "files": [
+        {
+          "path": "scripts/review_enum_analyze.py",
+          "sha256": "a2451ebcd7b74568999dfefbad958d64e0dfabd887a0b3994ac775488c8e142e",
+          "bytes": 5154
+        },
+        {
+          "path": "configs/review/enum_baseline.json",
+          "sha256": "e7d1d437ffea461a85dcc41e4cd1161c9b3ba19094b3f2a1933dffa63b4e5ce9",
+          "bytes": 2049
+        },
+        {
+          "path": "docs/evidence/review_enum/REPORT_ZH.md",
+          "sha256": "2bdbcd2aed025fffad15ed98245f5e1b7c6a179c0faf908c8e4591b13a8833ff",
+          "bytes": 4280
+        },
+        {
+          "path": "docs/evidence/review_enum/results.json",
+          "sha256": "ea2237f229c718069abef225cd0c76c068357c653b6829b3275b74603d8be0b4",
+          "bytes": 472527
+        },
+        {
+          "path": "docs/evidence/review_enum/SHA256SUMS",
+          "sha256": "ceab88eee7b4e630940111372b3b8e67740182f5a08444d30732e38dfa45d488",
+          "bytes": 645
+        },
+        {
+          "path": "docs/evidence/review_enum/manifest.json",
+          "sha256": "88750d8c0ee6ebb7f10deb47c4ee047b423e165a3958016d519b8a216a9a0347",
+          "bytes": 254612
+        },
+        {
+          "path": "docs/evidence/review_enum/SHA256SUMS.remote",
+          "sha256": "ee3ffe496db2af03b998011c206fa72bb294315fc9196cbef60038ebc87926f4",
+          "bytes": 196383
+        }
+      ],
+      "raw_availability": "requires_n2_audit"
+    },
+    {
+      "pr": 114,
+      "head": "review/oracle-benchmark",
+      "commit": "98720d8e358904f72b76df0a40b81e969769cabd",
+      "work_packages": [
+        135,
+        136
+      ],
+      "status": "research_branch_unmerged",
+      "evidence_level": "exploratory",
+      "compatibility": "Candidate energy ranking only; AIMNet overlap remains unresolved; not certification.",
+      "files": [
+        {
+          "path": "configs/review/oracle_benchmark.json",
+          "sha256": "0f3984201b52a5f8e4e843950fc1f1fda40ea16d6116e0d4727e7b28b6a0c027",
+          "bytes": 1832
+        },
+        {
+          "path": "docs/evidence/review_oracle/REPORT_ZH.md",
+          "sha256": "0b62c38e2445d844b4d495c6d29761c4e54168f4ae34f643454eea0fa322a79a",
+          "bytes": 3595
+        },
+        {
+          "path": "docs/evidence/review_oracle/results.json",
+          "sha256": "8c121c32f1ce8ea6756a456d0dd1afbb1e36c999ff7ce844f827c96a41cd4684",
+          "bytes": 199270
+        },
+        {
+          "path": "docs/evidence/review_oracle/SHA256SUMS",
+          "sha256": "ada713933327516f6ab2423f2ac8d88fb5b4f1c20b4868c243defd8209062bc7",
+          "bytes": 652
+        },
+        {
+          "path": "docs/evidence/review_oracle/manifest.json",
+          "sha256": "6e7e24516a82caae08fe71ec1833a481ff2e4913699f0944abb506f2f46991b8",
+          "bytes": 1278
+        },
+        {
+          "path": "docs/evidence/review_oracle/SHA256SUMS.remote",
+          "sha256": "1d44d2b611a4f65042b47ca095613cce262361359efdb382e1cc1893c1a7de90",
+          "bytes": 1540
+        }
+      ],
+      "raw_availability": "requires_n2_audit"
+    },
+    {
+      "pr": 119,
+      "head": "review/open-world-o2",
+      "commit": "e84e330390a519bf4ac12048b297403c09717646",
+      "work_packages": [
+        131,
+        132,
+        137,
+        139,
+        142
+      ],
+      "status": "research_branch_unmerged",
+      "evidence_level": "exploratory",
+      "compatibility": "Replay existing DFT records; hard shared-ledger adapter and alternate-channel API remain to integrate.",
+      "files": [
+        {
+          "path": "scripts/review_open_world_o2_analyze.py",
+          "sha256": "ef7cc1c989f63bfb46c593e24e009119b6888552451fe928cb2b24de286cce07",
+          "bytes": 14904
+        },
+        {
+          "path": "src/xtbflow/v1/qc_protocol.py",
+          "sha256": "84824b2aabb92d8a29919d410afc60782b822978134cfa14668f09f3a2500371",
+          "bytes": 16576
+        },
+        {
+          "path": "configs/review/open_world_o2.json",
+          "sha256": "379eae313b4c335aa381c2c24a2633c02638a69b887eed3626023d66e08a44fc",
+          "bytes": 3654
+        },
+        {
+          "path": "configs/review/open_world_o2_analysis.json",
+          "sha256": "66d4d15615b4870ab62188ddf8b0fcaf99597a2a9ffb1d625f6924758b8c4cb9",
+          "bytes": 3231
+        },
+        {
+          "path": "docs/evidence/review_open_world_o2/REPORT_ZH.md",
+          "sha256": "48fe734a832d572513a6aaed58e00a4201b60cd28c765dc5acaa0743d4884d16",
+          "bytes": 11427
+        },
+        {
+          "path": "docs/evidence/review_open_world_o2/results.json",
+          "sha256": "eb99b097a8161c3a1ed93287eccaf979a6407fecbb962d0610e7b5d2be0f0043",
+          "bytes": 49381
+        },
+        {
+          "path": "docs/evidence/review_open_world_o2/SHA256SUMS",
+          "sha256": "5ce35c37df0e956b82a99d533c22c7102faf7e24da7d9bf9f4907a7c48f69d31",
+          "bytes": 663
+        },
+        {
+          "path": "docs/evidence/review_open_world_o2/manifest.json",
+          "sha256": "3615abe0fa4409e90da85d25c03b894dee7f2272a41e649ea490f03062153b19",
+          "bytes": 32936
+        },
+        {
+          "path": "docs/evidence/review_open_world_o2/SHA256SUMS.remote",
+          "sha256": "9539f41d8beb03a7a0407b30e12556005c18fe6c6d4cae22d634e5b5ae9cced6",
+          "bytes": 24433
+        }
+      ],
+      "raw_availability": "requires_n2_audit"
+    },
+    {
+      "pr": 120,
+      "head": "explore/enum-thermo",
+      "commit": "b6db3df15eefd85a64eed329674a48d3ecba301e",
+      "work_packages": [
+        138
+      ],
+      "status": "research_branch_unmerged",
+      "evidence_level": "exploratory",
+      "compatibility": "Frozen thermodynamic filter; incomplete full-cost comparison; exploratory screen data.",
+      "files": [
+        {
+          "path": "configs/explore/enum_thermo.json",
+          "sha256": "b3abf1e0d3d47b6885134dbd2d90291b445c581841b8ed5534d261ecc9de79cd",
+          "bytes": 3669
+        },
+        {
+          "path": "docs/evidence/explore_enum_thermo/REPORT_ZH.md",
+          "sha256": "b09fd539c20cc45594b053fab8c79adebe509b5ee0f8a6906d00b6159f26945a",
+          "bytes": 3619
+        },
+        {
+          "path": "docs/evidence/explore_enum_thermo/results.json",
+          "sha256": "7d4a3372791b4b4f727e305f4331fa6f91cd790e24c255e38e06cbe5002c03b3",
+          "bytes": 171810
+        },
+        {
+          "path": "docs/evidence/explore_enum_thermo/SHA256SUMS",
+          "sha256": "8d8ffae75e2a30972523435ce83ec83c376dedea54e9d16cafad6e6417e850ee",
+          "bytes": 1413
+        },
+        {
+          "path": "docs/evidence/explore_enum_thermo/manifest.json",
+          "sha256": "b7d07efc41dad1a7af7fe47fa251e1b0c9edc075b2bc2a2d94600b1838448144",
+          "bytes": 626
+        }
+      ],
+      "raw_availability": "requires_n2_audit"
+    }
+  ],
+  "replay": {
+    "asset_pr": 119,
+    "manifest": "docs/evidence/review_open_world_o2/manifest.json",
+    "expected_result": "docs/evidence/review_open_world_o2/results.json",
+    "script": "scripts/review_open_world_o2_analyze.py",
+    "run_relative": "followup-20261009",
+    "parents_relative": "v1a-20261007/data/parent_catalog.json",
+    "budget": {
+      "wall_seconds": 600,
+      "max_input_bytes": 2147483648,
+      "new_calculator_calls": 0,
+      "new_gpu_seconds": 0,
+      "max_output_bytes": 67108864
+    }
+  }
+}

@@ -1,0 +1,1282 @@
+{
+  "assets": [
+    {
+      "asset": "live_rule/b425f65c99fa79bf492e7a8201a464eb5589b52535b58d8b7ee584780e01dd88/attempt-0001/result.json",
+      "bytes": 407013,
+      "sha256": "aa17093bf852e12943405611326b7c212a850c8021e77713cd81ec59ca23ce1f"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/request.json",
+      "bytes": 23100,
+      "sha256": "1185a4c260b21c5976f3af1e1c13603dea912abf30e11c0f7628fc1580dc180e"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/backend-outcome.json",
+      "bytes": 391968,
+      "sha256": "309fd46e1e00ff810894307d48859c99c9cffc96172abbb7759fe3d5d9ee5b3d"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/calls.json",
+      "bytes": 107757,
+      "sha256": "4ea1ce3488155ad0d169a00a8fccaf843609d6c7cde76295b690b8ee50f4a4fe"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/first/end_first_final.hess",
+      "bytes": 58752,
+      "sha256": "60c29fe599ee75fa1dfe5830652de4bf5e934a52c75ce2a550f86124d748c5fb"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/first/end_first_opt.log",
+      "bytes": 7894,
+      "sha256": "f9c96d1c49ce568062ce7d2bd512d640eb6c6897c15bcf9a3277def798a17a73"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/first/end_first_opt_optim.xyz",
+      "bytes": 1806,
+      "sha256": "cabcc448abcc3d9e4707fc5d48353719b37a1957040f09d3fbc420ab5769d961"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/irc/irc.log",
+      "bytes": 58141,
+      "sha256": "cee19e0f103cdd571be702ad10247960ff4d567390002216c4b28e27793f75ed"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/irc/irc_irc.vdata_first",
+      "bytes": 24098,
+      "sha256": "54adc00e21fb9eecd2f8c8339bcb91653dee66be62d49fc4678b180fbd359aab"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/irc/irc_irc.xyz",
+      "bytes": 131966,
+      "sha256": "28921e2ec700c9f358833070d3f0580aca3a8768de74ddccb41ee9b371b619bd"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/last/end_last_final.hess",
+      "bytes": 58768,
+      "sha256": "3fd50138e8ac78fc7845f8d76fd9b0c21d125fd0b943cb422e821436e341b811"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/last/end_last_opt.log",
+      "bytes": 7893,
+      "sha256": "29346a38433c12f27d3e03f422ea3658e09ea8cfdadf9f783bd6d1b6598824de"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/last/end_last_opt_optim.xyz",
+      "bytes": 1806,
+      "sha256": "d88c302503fb1fbf1ffd66916e5bbc615a06652a0869e686c1b591a94d60fd2d"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/partial.json",
+      "bytes": 287331,
+      "sha256": "62660f810ab807676da973c0ca8db4f7a3c7c8c8a9edf24e39d907c80cf0c56c"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/process.log",
+      "bytes": 98324,
+      "sha256": "59c50cb5e6915b97d297699a784b37cd9b95138673a812ad8c2be8d2a7271d3b"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/ts_final.hess",
+      "bytes": 58762,
+      "sha256": "416634defef7a5ce00ba3346f9d6abf96feb76a432b19a44d65423e7bc3c1a31"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/ts_initial.hess",
+      "bytes": 58720,
+      "sha256": "d66ced74238f01f4ce8e4044768be806264e9548360995421ab59a953f9d08e3"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/ts_optts.log",
+      "bytes": 24160,
+      "sha256": "9c3fdee14584a1809b2cecb022cb681b999243b046638baa63a649b7263da6e5"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/ts_optts.vdata_first",
+      "bytes": 24135,
+      "sha256": "4f017a44d4c15b8d1e0b6ba5089615639b954c8d5ee3a40797ac1a15817a96ad"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/ts_optts_optim.xyz",
+      "bytes": 31630,
+      "sha256": "38fceb4ef8d1c027da4d9170de23181b066637b949b09e000ab8a97167cd3f55"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:physical_feedback/raw/verdict.json",
+      "bytes": 287815,
+      "sha256": "e164ca72a34cd063ee77f3acbf22da88329bb1ad0067f5b1208a1cee086f30e0"
+    },
+    {
+      "asset": "live_rule/c47a57dac7d0bca50984f2f23fd35975bfd9844b20784d3ccc2ae99e16d1a171/attempt-0001/result.json",
+      "bytes": 515137,
+      "sha256": "ec6a072e22a79616d5302e428f63670cacb3a834f7a119d7559e72a7deb43cd3"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/request.json",
+      "bytes": 23102,
+      "sha256": "6d13f7b210de9d25f2cf2b16cb1eeec3bc74a45195066ecdaf8aa9a74401ab27"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/backend-outcome.json",
+      "bytes": 500113,
+      "sha256": "4bd7f8b4764561481421b184a72013b644b18b337100f12c9df2665ff03227ae"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/calls.json",
+      "bytes": 133570,
+      "sha256": "b55275013b775edc6a0f701a45d8720203baf139b992d857954e01f5bb2e5e50"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/first/end_first_final.hess",
+      "bytes": 58760,
+      "sha256": "7d50d42de4c7b76d4bf3f3e9e11f2e838dc3df493d9bf083d344269daad87bc6"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/first/end_first_opt.log",
+      "bytes": 7896,
+      "sha256": "6d671fee5912a05aa9e8eb201f82217e06abf1a8e6db0263d31f4f061f1603ac"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/first/end_first_opt_optim.xyz",
+      "bytes": 1806,
+      "sha256": "e251cd063fa44d4a6c855e6602bff1759ee604cf3caa44929a09cb315f256aba"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/irc/irc.log",
+      "bytes": 73230,
+      "sha256": "0e8adf960a9d150d92673e404977f031a2660915fa8f7f4cfff375ddeb09b974"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/irc/irc_irc.vdata_first",
+      "bytes": 24098,
+      "sha256": "6201c595c5e6818612312a73d82cabb82a470b4638b5feb66d9ef39e185a5a63"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/irc/irc_irc.xyz",
+      "bytes": 173563,
+      "sha256": "31a54556422db4e2309e6acf64d8b5139a53c2f7e4ba6386aafedde99595c63d"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/last/end_last_final.hess",
+      "bytes": 58774,
+      "sha256": "6fc8d4ccf07a4fa1998a39aec86d31be49dff69e365b84a4e594ee6fcd877cf3"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/last/end_last_opt.log",
+      "bytes": 7895,
+      "sha256": "aa8f94b8b94a062e9b20b83d9e83bd549ae1ecbac1f4b01105d818231a17bad3"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/last/end_last_opt_optim.xyz",
+      "bytes": 1806,
+      "sha256": "2ba3d01b1d10b6667c0b3a65bb802f9fd81392352224e45b59a0282edb32b72a"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/partial.json",
+      "bytes": 371188,
+      "sha256": "e408303798b18ecccf1bee5fb9bc23358f0286e829e2f35ba1467df0157c355b"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/process.log",
+      "bytes": 113417,
+      "sha256": "ed22636233b9c503dbfceefa80338a7e59954a9eb432d12ebd23db783554bb6c"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/ts_final.hess",
+      "bytes": 58762,
+      "sha256": "3f84edbabf067bdc55e060fd93e1f981afd6e58bdbf828881238805b70f71c61"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/ts_initial.hess",
+      "bytes": 58720,
+      "sha256": "16038fc12fb58616b0d1bb4ed5a48bd6aa5522f5b1365c2e24a92b79f621c93e"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/ts_optts.log",
+      "bytes": 24160,
+      "sha256": "d011cd2da848b6e741f40e3f877760670812dc2c6261335ab700ea6371237ed5"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/ts_optts.vdata_first",
+      "bytes": 24135,
+      "sha256": "66849aa45310d01afe8a0e975ce8fa09e3e8741d17dbb543bb6e6ce4cb5e65c4"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/ts_optts_optim.xyz",
+      "bytes": 31630,
+      "sha256": "91394604fd51047bf0f6fc89bc8d898cead9fa133aaea0bb0f8aff6e8ac28ff3"
+    },
+    {
+      "asset": "live_rule/reactant-da-r0-approach-v1:no_feedback/raw/verdict.json",
+      "bytes": 367258,
+      "sha256": "36a87176eb4d7855ae592f2f1e6abbd383013883be56a0fecf0d396aacc24067"
+    },
+    {
+      "asset": "trained_initial/c08e7fb75b848063ab10583999cca64e80ef3a3aa7a66878158d9fc221d03169/attempt-0001/result.json",
+      "bytes": 244083,
+      "sha256": "1fe78dbe90a512d97adf0d631423eceeda358648f99d6984da2ab497e890adbd"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/request.json",
+      "bytes": 25459,
+      "sha256": "7c7c1374ec6d5e460021a1033969bc757c0be5250cfe6b21edc495ec280a1fd3"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/backend-outcome.json",
+      "bytes": 236450,
+      "sha256": "f7f81ffe67dce4991354632839bcecaaaceb4e1df68c8cfe43353314917f0755"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/calls.json",
+      "bytes": 127676,
+      "sha256": "7dba8f42527f543d53d6b1f821eb2c91d993d7132325072f57a63eeef63f91ce"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/first/end_first_final.hess",
+      "bytes": 58738,
+      "sha256": "9def392598aea3de02ae0e9e51e940173f8f1f5774bea088670e2c875361e564"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/first/end_first_opt.log",
+      "bytes": 7714,
+      "sha256": "184f8a2ab60380ae4a5d669c796518594ac810322d6cb514e7622b02ed13f7fd"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/first/end_first_opt_optim.xyz",
+      "bytes": 1806,
+      "sha256": "eb0513a08378bb6afb9b167520426ec03eca55a86b173d171297ba3a5619188e"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/irc/irc.log",
+      "bytes": 32329,
+      "sha256": "8311aeb7534cbcca0fd1b53190f41f734939eb9d49f078a60c4297c568fd88b3"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/irc/irc_irc.vdata_first",
+      "bytes": 24099,
+      "sha256": "63bac88025e5a07fb2c00271f00bbc28d9ca13d3bb10538cfd405e107d69d9ef"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/irc/irc_irc.xyz",
+      "bytes": 59645,
+      "sha256": "7c667b2037ee04715aaf4462b3c8e6de44d16bf49f25ea5798cb76582ff85a97"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/last/end_last_final.hess",
+      "bytes": 58762,
+      "sha256": "13caf9bb6811308c576af886aeee77c48445ef19313d10de8329cb625a0974a6"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/last/end_last_opt.log",
+      "bytes": 7821,
+      "sha256": "2969fd59042ae3b088eb140b4369a859e5027f16daecff10337bf820afd86c1c"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/last/end_last_opt_optim.xyz",
+      "bytes": 1806,
+      "sha256": "7ca18e543a73bc07154553e89ec7e1b2cf983ced078dab6ff6465c6817d4b05d"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/partial.json",
+      "bytes": 141147,
+      "sha256": "61024e0497138047665987d679eab6ab5a1f0e273c4587112f1b1dcfe957d363"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/process.log",
+      "bytes": 122330,
+      "sha256": "05e944f8ad3fe0eafd9954a8bce71f3417dcb82b467254ad60fbb3c83ad3a013"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/ts_final.hess",
+      "bytes": 58770,
+      "sha256": "e4cc0ed868dfb44ba243eba0ae2e57ec0cc0e33dd75409b7d1c3419e302d3004"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/ts_initial.hess",
+      "bytes": 58770,
+      "sha256": "cde5fb38cd2da8de21451d7bd8d1f369c86056f44288d4a962c47ab841386939"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/ts_optts.log",
+      "bytes": 74230,
+      "sha256": "63fd31b710abd82f6175956a4efed86d8aa63782d5297318fab374155a054e4a"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/ts_optts.vdata_first",
+      "bytes": 24153,
+      "sha256": "0f50e9f68c7a86d92f66b5bf0d1e5579b7af43a9bb1e1115c173a49dd14f5375"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/ts_optts_optim.xyz",
+      "bytes": 139260,
+      "sha256": "8635549c30659c6fa981076d5c387706287700deb3306a1eb595d2f29086a274"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:joint_generation:p0/raw/verdict.json",
+      "bytes": 177236,
+      "sha256": "679565dcd0cdbadbc1e1576b49e4bc706ccd2da8e298954e4bd352b20ef5fb9b"
+    },
+    {
+      "asset": "trained_initial/f9a2abf3ddf554ad763161ead8675596101dc1b0f5bf94e066b8d9db06cfd211/attempt-0001/result.json",
+      "bytes": 585404,
+      "sha256": "80ca7f16d9214c448c59ffe993db54b483a439a5b3b44011107bb82aa510f42c"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/request.json",
+      "bytes": 25488,
+      "sha256": "4b2f013538399907f958f7d0cd7a0458453efd13fe6763055e2d0087cae2f652"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/backend-outcome.json",
+      "bytes": 567253,
+      "sha256": "9d49a431298e0d472f6917160a715e5ea143456e5bd80aa7e1cf1e9edecf2fb2"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/calls.json",
+      "bytes": 170916,
+      "sha256": "53b5e5300f74ccce952b24ff8810adc3460de3ab76519518190ec4fc643cf920"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/first/end_first_final.hess",
+      "bytes": 58758,
+      "sha256": "32c1e2809a7bdf8788672fd940c2e7517811e6092dff5e494e0f19ccc71d6113"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/first/end_first_opt.log",
+      "bytes": 14935,
+      "sha256": "f952d2b436efc1813d713e93131e16c017cea91c4435dc62998a36657f1b8249"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/first/end_first_opt_optim.xyz",
+      "bytes": 22590,
+      "sha256": "6125ddea38d203846a34df9e204ea7bcd1dac8b9cf2d17b8aed7a7ae3fb5ad21"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/irc/irc.log",
+      "bytes": 88997,
+      "sha256": "adb645fff8295b9a82ce0d2b09916b312ecd29f8d992842576ee5462338ddf8f"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/irc/irc_irc.vdata_first",
+      "bytes": 24099,
+      "sha256": "720edc0ec02cc2a5b279853488a4dc5c24935c826ba61b649a00cd6fd2259574"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/irc/irc_irc.xyz",
+      "bytes": 191722,
+      "sha256": "5587c87d4384d7cb8f06e532c05cd5d3836fe48473879b5ee48add4e11f9f888"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/last/end_last_final.hess",
+      "bytes": 58754,
+      "sha256": "607289b770112a1971b76162d101fe17708db4128c760c0ca6b942f6bbbcaf45"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/last/end_last_opt.log",
+      "bytes": 8177,
+      "sha256": "a90f9930f79d5893f5d251776f81b12e0429f6758cdf52bb28a179e17c7b66fb"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/last/end_last_opt_optim.xyz",
+      "bytes": 1806,
+      "sha256": "655a4c9556c505f6a2035d15f31a0d0f4608e3f6a84d569b9e78dd86ed713d99"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/partial.json",
+      "bytes": 407325,
+      "sha256": "d3f1739b2890e1a36a0a7888ca73005a6a739fa761b8db35503383d0ff75084b"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/process.log",
+      "bytes": 136718,
+      "sha256": "cf8aa3f9d70a19cd5fcf91be13cff01649e3c41eb35384e8d8c152b085fd5bd9"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/ts_final.hess",
+      "bytes": 58714,
+      "sha256": "a0fa8715a52191d837ff767f2584d906e9292ce2109597a21056593eb6bb8e25"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/ts_initial.hess",
+      "bytes": 58721,
+      "sha256": "89fc32d875098bca98adc2c1893cf944f5033c83d3abfd90a3a16cf57c39388b"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/ts_optts.log",
+      "bytes": 24373,
+      "sha256": "a3448274e8e55dd5d5bbefeff1f7448961f7a9f6c39b0349afff7978ff9508ab"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/ts_optts.vdata_first",
+      "bytes": 24175,
+      "sha256": "db3e899dd96fda3727e854a9ebc162df031f0a4984d572162f02dbe1166a6f1e"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/ts_optts_optim.xyz",
+      "bytes": 33438,
+      "sha256": "932fd8eb5689d000f8ee4c2ab3fb9b68b9606359ad48fe3ee39351a8db5724fa"
+    },
+    {
+      "asset": "trained_initial/dft-da:R0:independent_event_then_geometry:p0/raw/verdict.json",
+      "bytes": 416590,
+      "sha256": "586ce429c4171c60951b5285b31b6defe04d6f15d1f71871c4af80d8d45b65cc"
+    },
+    {
+      "asset": "trained_feedback/6a1759f814248ca623da7fb6aecfeb2efbb0a08b0f9d186a0568cb377c18fd7e/attempt-0001/result.json",
+      "bytes": 115885,
+      "sha256": "1ad94db0dd4a9e287c5b9cb447b0c8c63c782966984e2331d0146c6cd2f81f7a"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/request.json",
+      "bytes": 25509,
+      "sha256": "f307d67b34c76303a1ae304c6b164916985c3976a4acd16912f4be9b38fecb1f"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/backend-outcome.json",
+      "bytes": 108839,
+      "sha256": "f4e3305b2c8f36e1dcb8b9f7aaddb7efad792581b06101189693cf032e661ffe"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/calls.json",
+      "bytes": 146356,
+      "sha256": "4e5db9c70f568fa15ce6e657106ed2a79e2898ef97c3b7c50350aa0691d683df"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/partial.json",
+      "bytes": 13975,
+      "sha256": "db936f893b2dbaeb5586352aede4efcb7c887ff38a971d77cb3fec90de2d617b"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/process.log",
+      "bytes": 128811,
+      "sha256": "a68b5e959b29cad7369e5cc499dd3447a9eb6b8dd4dff61f7502faef9b3dc7ec"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/retry/ts_retry_final.hess",
+      "bytes": 58780,
+      "sha256": "e831800a72045346cb4208cb9a506a206f1db24ebae93e21bf7097c6a57272ef"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/retry/ts_retry_initial.hess",
+      "bytes": 58786,
+      "sha256": "5699ca76ade6e67390569b4479f054de830cebd0443db0b0f42ccec7f133e9f3"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/retry/ts_retry_optts.log",
+      "bytes": 44484,
+      "sha256": "7137c54069dd6b76a7a30ddad8cf741304b77b0147bb1438b3f2bd69f66ab038"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/retry/ts_retry_optts.vdata_first",
+      "bytes": 24113,
+      "sha256": "929d32678a3bac7ec82162e503ed10c6944d20eb7cae22cb423ff66b7d5fff1d"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/retry/ts_retry_optts_optim.xyz",
+      "bytes": 73214,
+      "sha256": "ba65d7a12d51631dcb281a6efe2ccee5afdd66cc3e57844575741a62edbe92f0"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/ts_final.hess",
+      "bytes": 58786,
+      "sha256": "3faefdb13a672b17435e28ff308d06222ba80b4e64835b6963082091e5f76abe"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/ts_initial.hess",
+      "bytes": 58746,
+      "sha256": "5544af0a95ad5edd68314e69292b1e9813d84333359022aca3d1bd5d2858d52b"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/ts_optts.log",
+      "bytes": 84091,
+      "sha256": "1286c7c0f34d102ccb68c4153a37b9ce27c04b344b3b30aa6dc7c390ac3a7b8f"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/ts_optts.vdata_first",
+      "bytes": 24152,
+      "sha256": "ecc9fbf17474bd4b9b542ce3b50f3298c9b0b4f680517d4906f493ae57876373"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/ts_optts_optim.xyz",
+      "bytes": 159170,
+      "sha256": "deec29f0e5e9034b5a3f1318f2c640b64e2e8574d03e3c00bae7782738a2acc8"
+    },
+    {
+      "asset": "trained_feedback/dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709/raw/verdict.json",
+      "bytes": 85413,
+      "sha256": "eb268b911df99242923925be8c2a87cab29afffedaa46fcd9fd2cf41bcca683c"
+    },
+    {
+      "asset": "trained_generation/raw/reactants.json",
+      "bytes": 22110,
+      "sha256": "19ff7955de150b9879508414d1ecac5e89b6b323ec0f23dd3d67cdf484e4cfcc"
+    },
+    {
+      "asset": "trained_generation/raw/generation.json",
+      "bytes": 13752,
+      "sha256": "99e097f2a12c4330d3ab8d4e680e8f1bef8aa4a9f14e68663b4bd7f1055fe0f9"
+    },
+    {
+      "asset": "trained_generation/raw/worker-packet.json",
+      "bytes": 8337,
+      "sha256": "3aa5566ea68752d67d777730899a8a5eaa21f108c7d06afe2751a86f38522799"
+    },
+    {
+      "asset": "trained_generation/raw/calls.json",
+      "bytes": 37451,
+      "sha256": "1fdeec9febf81eefeb561d678aad3745c6cfea8cc28f4491e22f52336bef30ed"
+    },
+    {
+      "asset": "trained_generation/raw/certification-plan.json",
+      "bytes": 62917,
+      "sha256": "baf51f5fbc4961fb3f80aa71363edc8ec35fe45d535dd483e629031d80264dd6"
+    },
+    {
+      "asset": "trained_generation/report.json",
+      "bytes": 7375,
+      "sha256": "482ae6c426d71b1218cb104f7530b1d6c2755ddc8bf2bd309a58f6a8783acaa6"
+    }
+  ],
+  "bytes_read": 10863148,
+  "caps": {
+    "concurrency": 1,
+    "cpu_seconds": 600,
+    "input_bytes": 268435456,
+    "output_bytes": 16777216,
+    "retries": 0,
+    "wall_seconds": 600
+  },
+  "claim_limits": [
+    "Read-only projection and known exposed calibration replay, not new certification.",
+    "Original result/hash/cost/verdict is retained; stage reasons are v2 derived fields.",
+    "No method advantage from primitive-count differences or one known positive control."
+  ],
+  "cpu_seconds": 0.082265616,
+  "driver_sha256": "6ecfe61fda1723e93559773c7a93a0ef6675bde1963ebcd9353169d1a1bb5ccb",
+  "gpu_seconds": 0,
+  "host": "node2",
+  "new_calculator_calls": 0,
+  "new_model_forwards": 0,
+  "numpy": "2.2.6",
+  "python": "3.10.19",
+  "records": [
+    {
+      "candidate_id": "reactant-da-r0-approach-v1:physical_feedback",
+      "execution_status": "completed",
+      "geometry": {
+        "endpoint_change_interpretation": "Distances/mode participation only; no torsion or chemical mechanism inferred.",
+        "endpoint_pair_distance_change_max_angstrom": 1.854629450205243,
+        "endpoint_pair_distance_change_rms_angstrom": 0.8591466640801333,
+        "endpoint_statuses": [
+          "MINIMUM_PASS",
+          "MINIMUM_PASS"
+        ],
+        "irc_frames": 146,
+        "irc_status": "IRC_COMPLETE",
+        "mode_atom_amplitude": [
+          0.08765056206517795,
+          0.03712973988889051,
+          0.04818645639389761,
+          0.056727929219510045,
+          0.03723073528860107,
+          0.160369154198588,
+          0.14171166657046488,
+          0.13899350066085206,
+          0.18892111164157813,
+          0.09156304389456892,
+          0.05111874080839292,
+          0.0440528818603674,
+          0.35323650081672486,
+          0.44807923532360766,
+          0.44425687788689733,
+          0.3610022535655659
+        ],
+        "mode_convention": "Cartesian displacement; unit mass-weighted norm; sign arbitrary",
+        "proper_aligned_endpoint_rmsd_angstrom": 0.9270262704335581,
+        "ts_frequencies_cm1": [
+          -71.67139945706761,
+          29.93355278904793,
+          39.30531993046841,
+          55.44675707501967,
+          66.4353594118502,
+          92.31977929124014,
+          175.0986966688867,
+          283.257503701331,
+          469.30436847016085,
+          629.6653823357263,
+          767.2489154381266,
+          836.0489226602847,
+          905.0972776934005,
+          963.6327120670107,
+          965.7143945203901,
+          984.7966099271567,
+          987.3467447643362,
+          1032.5351111427947,
+          1049.3743286704978,
+          1071.9085381426275,
+          1085.783554933019,
+          1115.5648758052278,
+          1251.1083445797353,
+          1327.9648425429286,
+          1359.500497595174,
+          1405.255160010234,
+          1458.1966093447181,
+          1490.5683369040237,
+          1496.211135525555,
+          1755.2944548037592,
+          1756.5150042150065,
+          1760.2723268094637,
+          3184.245047649287,
+          3186.8214912236444,
+          3191.8189544105458,
+          3199.385374829551,
+          3206.876429048611,
+          3208.840544844086,
+          3266.079954988211,
+          3283.313004717888,
+          3284.787962975524,
+          3288.1332403201823
+        ],
+        "ts_status": "TS_OPTFREQ_PASS"
+      },
+      "historical_charged_calls": 402,
+      "historical_resources": {
+        "basis": "measured",
+        "cpu_seconds": 1866.0893650000003,
+        "wall_seconds": 1636.0524272751063
+      },
+      "label": "live_rule",
+      "original_evidence_status": "same_endpoint",
+      "original_reason": "both_ends_reactant",
+      "original_result_sha256": "aa17093bf852e12943405611326b7c212a850c8021e77713cd81ec59ca23ce1f",
+      "original_unchanged": true,
+      "projection": {
+        "projection_schema": "xtbflow-stage-projection/v2",
+        "raw_evidence_sha256": "cf2d5129528cfc1f214a928e4b941aeaa7c3475ae3a83294992428049567e75c",
+        "stage_reason": "both_ends_reactant",
+        "stages": [
+          {
+            "reason": null,
+            "stage": "ts",
+            "status": "TS_OPTFREQ_PASS"
+          },
+          {
+            "reason": null,
+            "stage": "irc",
+            "status": "IRC_COMPLETE"
+          },
+          {
+            "reason": null,
+            "stage": "endpoint_0",
+            "status": "MINIMUM_PASS"
+          },
+          {
+            "reason": null,
+            "stage": "endpoint_1",
+            "status": "MINIMUM_PASS"
+          },
+          {
+            "reason": "both_ends_reactant",
+            "stage": "graph_identity",
+            "status": "STRICT_EVENT_MISMATCH"
+          }
+        ],
+        "terminal_stage": "graph_identity",
+        "terminal_stage_status": "STRICT_EVENT_MISMATCH"
+      }
+    },
+    {
+      "candidate_id": "reactant-da-r0-approach-v1:no_feedback",
+      "execution_status": "completed",
+      "geometry": {
+        "endpoint_change_interpretation": "Distances/mode participation only; no torsion or chemical mechanism inferred.",
+        "endpoint_pair_distance_change_max_angstrom": 1.8560335336548053,
+        "endpoint_pair_distance_change_rms_angstrom": 0.8592119482191327,
+        "endpoint_statuses": [
+          "MINIMUM_PASS",
+          "MINIMUM_PASS"
+        ],
+        "irc_frames": 192,
+        "irc_status": "IRC_COMPLETE",
+        "mode_atom_amplitude": [
+          0.08766166972040002,
+          0.037151121738464986,
+          0.04820163289161525,
+          0.05675259625754027,
+          0.03726408190398924,
+          0.16041310646986984,
+          0.1417457129583917,
+          0.13905680990818398,
+          0.18897515961219621,
+          0.09156333569595451,
+          0.051152364984553736,
+          0.04404524766399223,
+          0.35313410648934257,
+          0.448044183458327,
+          0.44424826435209663,
+          0.36089309892159055
+        ],
+        "mode_convention": "Cartesian displacement; unit mass-weighted norm; sign arbitrary",
+        "proper_aligned_endpoint_rmsd_angstrom": 0.9270278127709081,
+        "ts_frequencies_cm1": [
+          -71.65406313383382,
+          29.967167008480686,
+          39.324894671085445,
+          55.46293128277327,
+          66.4322335147986,
+          92.32953523310809,
+          175.09756616769596,
+          283.25839240200384,
+          469.30436626455486,
+          629.664725432857,
+          767.247914188656,
+          836.0504726429995,
+          905.0974837035964,
+          963.6311154142157,
+          965.7142256439282,
+          984.7974991813056,
+          987.347623754623,
+          1032.5352235706755,
+          1049.3742314829585,
+          1071.9095534272474,
+          1085.7839845470705,
+          1115.5650324714966,
+          1251.1090087961811,
+          1327.9649816561694,
+          1359.5007884105914,
+          1405.2561058937576,
+          1458.1970230118359,
+          1490.5685285642853,
+          1496.2120987820508,
+          1755.295024313217,
+          1756.5148806151713,
+          1760.2724842681066,
+          3184.246515351032,
+          3186.8217846943758,
+          3191.8192738669673,
+          3199.3859360448305,
+          3206.8765290246743,
+          3208.84073400053,
+          3266.080101666546,
+          3283.313371590391,
+          3284.7882257076853,
+          3288.1331795417996
+        ],
+        "ts_status": "TS_OPTFREQ_PASS"
+      },
+      "historical_charged_calls": 500,
+      "historical_resources": {
+        "basis": "measured",
+        "cpu_seconds": 2213.71288,
+        "wall_seconds": 1934.9722910798155
+      },
+      "label": "live_rule",
+      "original_evidence_status": "same_endpoint",
+      "original_reason": "both_ends_reactant",
+      "original_result_sha256": "ec6a072e22a79616d5302e428f63670cacb3a834f7a119d7559e72a7deb43cd3",
+      "original_unchanged": true,
+      "projection": {
+        "projection_schema": "xtbflow-stage-projection/v2",
+        "raw_evidence_sha256": "42b3e7c94b7abb7a1436f40c1498c8b41f508c7ec11da08874f4b68112407bdc",
+        "stage_reason": "both_ends_reactant",
+        "stages": [
+          {
+            "reason": null,
+            "stage": "ts",
+            "status": "TS_OPTFREQ_PASS"
+          },
+          {
+            "reason": null,
+            "stage": "irc",
+            "status": "IRC_COMPLETE"
+          },
+          {
+            "reason": null,
+            "stage": "endpoint_0",
+            "status": "MINIMUM_PASS"
+          },
+          {
+            "reason": null,
+            "stage": "endpoint_1",
+            "status": "MINIMUM_PASS"
+          },
+          {
+            "reason": "both_ends_reactant",
+            "stage": "graph_identity",
+            "status": "STRICT_EVENT_MISMATCH"
+          }
+        ],
+        "terminal_stage": "graph_identity",
+        "terminal_stage_status": "STRICT_EVENT_MISMATCH"
+      }
+    },
+    {
+      "candidate_id": "dft-da:R0:joint_generation:p0",
+      "execution_status": "completed",
+      "geometry": {
+        "endpoint_change_interpretation": "Distances/mode participation only; no torsion or chemical mechanism inferred.",
+        "endpoint_pair_distance_change_max_angstrom": 1.864029011347289,
+        "endpoint_pair_distance_change_rms_angstrom": 0.5113661299407029,
+        "endpoint_statuses": [
+          "MINIMUM_PASS",
+          "MINIMUM_PASS"
+        ],
+        "irc_frames": 66,
+        "irc_status": "IRC_COMPLETE",
+        "mode_atom_amplitude": [
+          0.006192913596088377,
+          0.01987391577265502,
+          0.11320386208681534,
+          0.014008593082364018,
+          0.014886565672749864,
+          0.004167243152255649,
+          0.6532342912391444,
+          0.02843714503362309,
+          0.02003872265018615,
+          0.016526407162837813,
+          0.00507077887573317,
+          0.0037286207137023812,
+          0.0021434046246508786,
+          0.006479553201787608,
+          0.6345714621870453,
+          0.014971311192472815
+        ],
+        "mode_convention": "Cartesian displacement; unit mass-weighted norm; sign arbitrary",
+        "proper_aligned_endpoint_rmsd_angstrom": 0.5992999318813946,
+        "ts_frequencies_cm1": [
+          -570.8933880184042,
+          88.73513643934471,
+          97.99560659527866,
+          186.68516939211995,
+          241.4397884784342,
+          299.59769435525305,
+          381.3683561996361,
+          422.60830422581375,
+          446.86991656487066,
+          517.7759542367809,
+          637.6608319198037,
+          700.1193363393274,
+          815.4853288800427,
+          822.4728350066459,
+          924.2199122810626,
+          939.4043638315648,
+          962.606284044032,
+          969.4109938431022,
+          986.9641423763669,
+          1018.2438138399823,
+          1049.1249228812078,
+          1070.878572710529,
+          1142.1520877274966,
+          1223.035942905799,
+          1253.8562971525591,
+          1324.8977694861696,
+          1340.6310124843994,
+          1368.7248144205744,
+          1459.117924970995,
+          1473.8074359722536,
+          1487.2415044150468,
+          1681.220738517622,
+          1780.2129059767217,
+          3008.083539334343,
+          3066.672124232033,
+          3189.833197082925,
+          3193.3409915763145,
+          3204.903481794864,
+          3212.5303031967546,
+          3280.1112300087552,
+          3286.6260867275337,
+          3659.262065957024
+        ],
+        "ts_status": "TS_OPTFREQ_PASS"
+      },
+      "historical_charged_calls": 468,
+      "historical_resources": {
+        "basis": "measured",
+        "cpu_seconds": 2806.4300879999996,
+        "wall_seconds": 2482.026303794002
+      },
+      "label": "trained_initial",
+      "original_evidence_status": "attempted_unresolved",
+      "original_reason": "endpoint_bond_perception",
+      "original_result_sha256": "1fe78dbe90a512d97adf0d631423eceeda358648f99d6984da2ab497e890adbd",
+      "original_unchanged": true,
+      "projection": {
+        "projection_schema": "xtbflow-stage-projection/v2",
+        "raw_evidence_sha256": "37e4c40315b35126553ec6bd1397b30e7b86b6ddfd1230be5ab622e487dbca63",
+        "stage_reason": "endpoint_bond_perception",
+        "stages": [
+          {
+            "reason": null,
+            "stage": "ts",
+            "status": "TS_OPTFREQ_PASS"
+          },
+          {
+            "reason": null,
+            "stage": "irc",
+            "status": "IRC_COMPLETE"
+          },
+          {
+            "reason": null,
+            "stage": "endpoint_0",
+            "status": "MINIMUM_PASS"
+          },
+          {
+            "reason": null,
+            "stage": "endpoint_1",
+            "status": "MINIMUM_PASS"
+          },
+          {
+            "reason": "endpoint_bond_perception",
+            "stage": "graph_identity",
+            "status": "EVALUATION_UNRESOLVED"
+          }
+        ],
+        "terminal_stage": "graph_identity",
+        "terminal_stage_status": "EVALUATION_UNRESOLVED"
+      }
+    },
+    {
+      "candidate_id": "dft-da:R0:independent_event_then_geometry:p0",
+      "execution_status": "completed",
+      "geometry": {
+        "endpoint_change_interpretation": "Distances/mode participation only; no torsion or chemical mechanism inferred.",
+        "endpoint_pair_distance_change_max_angstrom": 2.438787897114332,
+        "endpoint_pair_distance_change_rms_angstrom": 0.9683869568817169,
+        "endpoint_statuses": [
+          "MINIMUM_PASS",
+          "MINIMUM_PASS"
+        ],
+        "irc_frames": 212,
+        "irc_status": "IRC_COMPLETE",
+        "mode_atom_amplitude": [
+          0.13602180693145852,
+          0.032110094994914865,
+          0.03208676762765547,
+          0.13606718382283364,
+          0.0707590193952224,
+          0.09851314317244393,
+          0.04761397059657869,
+          0.04754611560420278,
+          0.0986764703383408,
+          0.07074617460095248,
+          0.1414476824514483,
+          0.14145841333843642,
+          0.0626382686282499,
+          0.06246955635146482,
+          0.06229051109784274,
+          0.06251805854975626
+        ],
+        "mode_convention": "Cartesian displacement; unit mass-weighted norm; sign arbitrary",
+        "proper_aligned_endpoint_rmsd_angstrom": 1.0067308712340801,
+        "ts_frequencies_cm1": [
+          -658.2983539219248,
+          143.74720006769545,
+          224.13433696765316,
+          293.3441243599977,
+          395.2494164226293,
+          417.89898093579865,
+          501.48517419500735,
+          590.3093320991983,
+          642.6894968953222,
+          707.675258913047,
+          801.1658712968964,
+          814.7030773717241,
+          859.0990193249752,
+          951.3603921207027,
+          965.7619146724779,
+          996.8356578275932,
+          1013.3041539612408,
+          1022.506951924337,
+          1036.1378911470126,
+          1036.683938631128,
+          1120.321720897964,
+          1125.3922316760984,
+          1262.4784499038035,
+          1280.214359321824,
+          1293.4913595763726,
+          1344.5877635015943,
+          1457.397504473075,
+          1494.9704034066667,
+          1523.9629540280287,
+          1586.4346740913866,
+          1652.7637286126671,
+          1653.6100146157053,
+          3192.9570798115865,
+          3196.0497127684594,
+          3198.0386708937617,
+          3206.7119287540095,
+          3210.6444712510624,
+          3220.993386147323,
+          3279.312839406589,
+          3283.0492570292818,
+          3285.7467384934876,
+          3300.6341082150143
+        ],
+        "ts_status": "TS_OPTFREQ_PASS"
+      },
+      "historical_charged_calls": 638,
+      "historical_resources": {
+        "basis": "measured",
+        "cpu_seconds": 2888.329028,
+        "wall_seconds": 2497.949826654047
+      },
+      "label": "trained_initial",
+      "original_evidence_status": "reference_ts_connected",
+      "original_reason": "STRICT_JOINT_GRAPH_VALID",
+      "original_result_sha256": "80ca7f16d9214c448c59ffe993db54b483a439a5b3b44011107bb82aa510f42c",
+      "original_unchanged": true,
+      "projection": {
+        "projection_schema": "xtbflow-stage-projection/v2",
+        "raw_evidence_sha256": "477ff75363f6f5e185ccd7d06518f36476448ba3bf08aeb6c4b0331cc3b60a44",
+        "stage_reason": "STRICT_JOINT_GRAPH_VALID",
+        "stages": [
+          {
+            "reason": null,
+            "stage": "ts",
+            "status": "TS_OPTFREQ_PASS"
+          },
+          {
+            "reason": null,
+            "stage": "irc",
+            "status": "IRC_COMPLETE"
+          },
+          {
+            "reason": null,
+            "stage": "endpoint_0",
+            "status": "MINIMUM_PASS"
+          },
+          {
+            "reason": null,
+            "stage": "endpoint_1",
+            "status": "MINIMUM_PASS"
+          },
+          {
+            "reason": null,
+            "stage": "graph_identity",
+            "status": "STRICT_JOINT_GRAPH_VALID"
+          }
+        ],
+        "terminal_stage": "graph_identity",
+        "terminal_stage_status": "STRICT_JOINT_GRAPH_VALID"
+      }
+    },
+    {
+      "candidate_id": "dft-da:R0:joint_generation:p0:f905a35ba83c54aeb2e2516935b394386e77a3e46f5ac20f6530b860d344e709",
+      "execution_status": "completed",
+      "geometry": {
+        "endpoint_change_interpretation": "Distances/mode participation only; no torsion or chemical mechanism inferred.",
+        "endpoint_statuses": [],
+        "irc_frames": null,
+        "irc_status": null,
+        "mode_atom_amplitude": [
+          0.02068065978220455,
+          0.01352021660324293,
+          0.00895070571801648,
+          0.018412726616059524,
+          0.032305780880467316,
+          0.014501262452393953,
+          0.015355571668066597,
+          0.02198416592847806,
+          0.015613678460351818,
+          0.03396299886234939,
+          0.09960051515073122,
+          0.08072042017259833,
+          0.5618646427563068,
+          0.26130932905505333,
+          0.24765679923947448,
+          0.579024610219341
+        ],
+        "mode_convention": "Cartesian displacement; unit mass-weighted norm; sign arbitrary",
+        "ts_frequencies_cm1": [
+          -19.363841523889917,
+          -14.272863716756193,
+          -10.824680757675829,
+          15.44301887591043,
+          21.48533151011074,
+          29.707886564280024,
+          172.15886228820986,
+          282.30172380562476,
+          475.3915982060244,
+          627.7980354417847,
+          769.7061813875787,
+          837.6794126311046,
+          904.4577918992072,
+          970.2585031602862,
+          971.1241991454864,
+          993.5436251863932,
+          994.8914676159353,
+          1036.2509374769913,
+          1052.8427317890582,
+          1079.3140476471433,
+          1084.985054553492,
+          1116.4953037257794,
+          1252.790420286782,
+          1328.657090027417,
+          1360.8985651502703,
+          1406.2948014617111,
+          1459.2626054355042,
+          1491.637896603689,
+          1496.7075502809053,
+          1756.4871439731774,
+          1757.003912938785,
+          1761.6748113279432,
+          3184.6515954329966,
+          3187.390147740289,
+          3192.948458728311,
+          3200.4569866865095,
+          3207.3456144038146,
+          3209.539082272253,
+          3267.843449341988,
+          3284.959786471483,
+          3286.3126253711066,
+          3289.39476139436
+        ],
+        "ts_status": "FREQUENCY_GRAY_AT_CAP"
+      },
+      "historical_charged_calls": 526,
+      "historical_resources": {
+        "basis": "measured",
+        "cpu_seconds": 2377.25146,
+        "wall_seconds": 2111.742937809089
+      },
+      "label": "trained_feedback",
+      "original_evidence_status": "attempted_unresolved",
+      "original_reason": null,
+      "original_result_sha256": "1ad94db0dd4a9e287c5b9cb447b0c8c63c782966984e2331d0146c6cd2f81f7a",
+      "original_unchanged": true,
+      "projection": {
+        "projection_schema": "xtbflow-stage-projection/v2",
+        "raw_evidence_sha256": "693ec1c6c1b60dbe0e898eb8659dc2bee8600db4dbfb597078dcb2ea3aeeda41",
+        "stage_reason": "FREQUENCY_GRAY_AT_CAP",
+        "stages": [
+          {
+            "reason": null,
+            "stage": "ts",
+            "status": "FREQUENCY_GRAY_AT_CAP"
+          },
+          {
+            "reason": null,
+            "stage": "irc",
+            "status": null
+          },
+          {
+            "reason": null,
+            "stage": "graph_identity",
+            "status": null
+          }
+        ],
+        "terminal_stage": "ts_modes",
+        "terminal_stage_status": "FREQUENCY_GRAY_AT_CAP"
+      }
+    }
+  ],
+  "schema": "xtbflow-narrowed-reference-audit/v1",
+  "source_commit": "e2d670313c0f530c4c141b96e24f2848496e5263",
+  "status": "verified",
+  "trained_bridge": {
+    "candidates": [
+      {
+        "atom_ids_sha256": "0d17b13364cbb1d0fc3638d20ef3d5eee900ff5aa55258a6c8eb1bc528f105f1",
+        "atoms": 16,
+        "candidate_content_sha256": "f474ae50c4c2cdd8474d6d92bd2ad9b7f789a15bce4afbca281b00905ffb40dd",
+        "candidate_id": "dft-da:R0:joint_generation:p0",
+        "decoded_BE_sha256": "34c739feb743f21e2a45bfefe0e4c36af21ff56cb3f4134eaefc477d8e22e02f",
+        "exact_cached_reference_input": true,
+        "geometry_sha256": "b637319f4cf368ecc2f6096d59b7d2bd9c84ac3ca0a3fdcab971cadf178bac2e",
+        "historical_forwards": 50,
+        "method": "joint_generation"
+      },
+      {
+        "atom_ids_sha256": "0d17b13364cbb1d0fc3638d20ef3d5eee900ff5aa55258a6c8eb1bc528f105f1",
+        "atoms": 16,
+        "candidate_content_sha256": "edaaa7e118d33b45da917a84c1a461e7a9c8045b9099d0e8587ccd23cf1a84b2",
+        "candidate_id": "dft-da:R0:independent_event_then_geometry:p0",
+        "decoded_BE_sha256": "681b5d703de2dcbdf01a1e830abd370833ac26b6a06d15e161dad78e8a5e8cdf",
+        "exact_cached_reference_input": true,
+        "geometry_sha256": "0d0609ef35417e924d45fb5271df3dccf1f08f9c67a33f0c24a2b036b6d535e4",
+        "historical_forwards": 100,
+        "method": "independent_event_then_geometry"
+      }
+    ],
+    "forward_journal": {
+      "by_role": {
+        "event": 50,
+        "geometry": 50,
+        "joint": 50
+      },
+      "forward_evaluations": 150,
+      "kernel_invocations": 150,
+      "unfinished_calls": 0
+    },
+    "models": {
+      "event": {
+        "checkpoint_sha256": "29ec75a0e66f1ffbb85d565591b8e4a7c31aa612175d3e3d7113e6c5a69637af",
+        "dual_time": false,
+        "model_cfg": {
+          "edge_dim": 64,
+          "n_layers": 6,
+          "n_rbf": 32,
+          "n_rbf_reactant": 16,
+          "r_cut": 10.0,
+          "scalar_dim": 92,
+          "vector_dim": 23
+        },
+        "role": "event",
+        "seed": 0,
+        "sigma_b": 1.0,
+        "sigma_x": 0.5,
+        "split_hash": "a0225e6cb773049d94593f0d93bf6c753db125deeda3ade8899da6922835367f",
+        "training_status_sha256": "9fd08082c92b239a418f2f5ccc233d1840b934117b7a51ff7dd7e1a10013a8f9"
+      },
+      "geometry": {
+        "checkpoint_sha256": "82d98876f5ead70990d893ffb013f3cbad1a4b57ad1d102f48c447f4396118fc",
+        "dual_time": false,
+        "model_cfg": {
+          "edge_dim": 64,
+          "n_layers": 6,
+          "n_rbf": 32,
+          "n_rbf_reactant": 16,
+          "r_cut": 10.0,
+          "scalar_dim": 92,
+          "vector_dim": 23
+        },
+        "role": "geometry",
+        "seed": 0,
+        "sigma_b": 1.0,
+        "sigma_x": 0.5,
+        "split_hash": "a0225e6cb773049d94593f0d93bf6c753db125deeda3ade8899da6922835367f",
+        "training_status_sha256": "05b234ac6f5f7e0449568849ad6383b39f4c59094a31e3da085dd7f6d74c7341"
+      },
+      "joint": {
+        "checkpoint_sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda",
+        "dual_time": true,
+        "model_cfg": {
+          "edge_dim": 64,
+          "n_layers": 6,
+          "n_rbf": 32,
+          "n_rbf_reactant": 16,
+          "r_cut": 10.0,
+          "scalar_dim": 128,
+          "vector_dim": 32
+        },
+        "role": "joint",
+        "seed": 0,
+        "sigma_b": 1.0,
+        "sigma_x": 0.5,
+        "split_hash": "a0225e6cb773049d94593f0d93bf6c753db125deeda3ade8899da6922835367f",
+        "training_status_sha256": "db0747307a1b878d91121d4094e21a0ea774cc83df8e06652cd5bf8c40660c0e"
+      }
+    },
+    "permitted_fields": [
+      "query_id",
+      "atomic_numbers",
+      "x_r",
+      "b_r",
+      "charge",
+      "multiplicity"
+    ],
+    "reference_only_labels_visible": false,
+    "scope": "Cached trained generation to archived reference input; no new live trained-physics loop or efficacy success."
+  },
+  "training_steps": 0,
+  "wall_seconds": 0.08459005900658667
+}

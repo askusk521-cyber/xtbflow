@@ -1,0 +1,676 @@
+#!/usr/bin/env python3
+"""Run the first bounded live-xTB feedback loop on one parent and one seed.
+
+The experiment deliberately has two matched arms:
+
+``no_feedback``
+    calls xTB on the same current snapshot and charges the call, but does not
+    apply its force feedback;
+
+``physical_feedback``
+    sends the same xTB forces through the immutable snapshot/provider/merge
+    contract and applies bounded geometry plus force-derived event guidance.
+
+The downstream TS/IRC validator is invoked fail-closed with no fabricated
+Hessian/path evidence.  A successful loop therefore produces an auditable
+``certification=blocked`` artifact until an independent TS/IRC backend is
+provided.
+"""
+from __future__ import annotations
+
+import argparse
+from dataclasses import asdict, replace
+from datetime import datetime, timezone
+import hashlib
+import json
+from importlib.util import find_spec
+import os
+from pathlib import Path
+import platform
+import subprocess
+import sys
+import time
+from typing import Any, Mapping
+
+# Keep calculator CPU accounting reproducible across hosts with different
+# OpenMP/BLAS defaults.  The calculator protocol remains CPU-only.
+for _variable in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ[_variable] = "1"
+
+from xtbflow.calculators import MolecularSystem, XTBOracleAdapter
+from xtbflow.runtime import LedgerEvent, RunLedger, StageBudget
+from xtbflow.sampling.adapters import AdapterRunner, GuidanceBudget, ProviderRequest
+from xtbflow.sampling.live_physical import (
+    LiveXTBEventProvider,
+    LiveXTBGuidanceConfig,
+    LiveXTBPhysicalProvider,
+    xTB_protocol_from_mapping,
+)
+from xtbflow.sampling.reactant_candidates import build_reactant_approach
+from xtbflow.sampling.parallel_guidance import (
+    GenerationSnapshot,
+    GuidanceCost,
+    GuidanceLane,
+    MergeConfig,
+    merge_guidance,
+)
+from xtbflow.validation.ts_search import TSValidationConfig, validate_ts_evidence
+from xtbflow.validation.xtb_irc import XTBIRCConfig, run_xtb_irc_certification
+
+
+SCHEMA = "xtbflow-real-feedback-loop/v1"
+
+
+def _canonical(value: Any) -> str:
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False)
+
+
+def _sha256_text(value: str) -> str:
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def _sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _git_identity(root: Path) -> dict[str, Any]:
+    def run(*args: str) -> str | None:
+        result = subprocess.run(["git", *args], cwd=root, check=False, capture_output=True, text=True)
+        return result.stdout.strip() if result.returncode == 0 else None
+
+    return {"commit": run("rev-parse", "HEAD"), "dirty": bool(run("status", "--porcelain"))}
+
+
+def _write_json(path: Path, payload: Mapping[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
+
+
+def _load_config(path: Path) -> tuple[dict[str, Any], str]:
+    raw = path.read_text(encoding="utf-8")
+    value = json.loads(raw)
+    if not isinstance(value, dict):
+        raise ValueError("real feedback config must be a JSON object")
+    return value, raw
+
+
+def _snapshot(config: Mapping[str, Any], system: MolecularSystem, seed: int) -> GenerationSnapshot:
+    event_size = int(config["generation"]["event_size"])
+    generation = dict(config.get("generation", {}))
+    geometry = system.coordinates
+    candidate_metadata: dict[str, Any] = {}
+    if generation.get("geometry_rule") == "reactant-principal-axis-approach-v1":
+        result = build_reactant_approach(
+            system,
+            generation["components"],
+            target_centroid_distance_angstrom=float(generation["target_centroid_distance_angstrom"]),
+            collision_distance_angstrom=float(generation.get("collision_distance_angstrom", 0.70)),
+        )
+        geometry = result.coordinates
+        candidate_metadata = result.metadata | {"geometry_hash": result.geometry_hash}
+    candidate_system = system.with_coordinates(geometry)
+    return GenerationSnapshot(
+        parent_id=str(config["parent_id"]),
+        attempt_id=f"{config['parent_id']}-seed-{seed}",
+        generation_step=0,
+        geometry=geometry,
+        event=tuple(0.0 for _ in range(event_size)),
+        event_mask=tuple(True for _ in range(event_size)),
+        random_seed=seed,
+        metadata={
+            "input_hash": system.input_hash,
+            "symbols": list(system.symbols),
+            "charge": system.charge,
+            "multiplicity": system.multiplicity,
+            "environment": dict(system.environment),
+            "candidate_geometry_hash": candidate_system.input_hash,
+            "candidate_generator": candidate_metadata,
+        },
+        provenance={"workflow": "one-parent-one-seed-live-xtb-v1"},
+    )
+
+
+def _system(config: Mapping[str, Any]) -> MolecularSystem:
+    fixture = config["reactant"]
+    return MolecularSystem(
+        symbols=tuple(fixture["symbols"]),
+        coordinates=tuple(tuple(float(value) for value in row) for row in fixture["coordinates_angstrom"]),
+        charge=int(fixture["charge"]),
+        multiplicity=int(fixture["multiplicity"]),
+        environment=dict(fixture.get("environment", {})),
+        system_id=str(config["parent_id"]),
+    )
+
+
+def _make_backend(config: Mapping[str, Any]):
+    implementation = str(config["calculator"].get("implementation", "xtb"))
+    if implementation != "xtb" or find_spec("xtb") is None:
+        return None, None, "BLOCKED_BACKEND"
+    protocol = xTB_protocol_from_mapping(config["calculator"])
+    backend = XTBOracleAdapter(protocol=protocol, implementation=implementation)
+    return backend, protocol, None
+
+
+def _run_arm(
+    arm: str,
+    *,
+    config: Mapping[str, Any],
+    system: MolecularSystem,
+    snapshot: GenerationSnapshot,
+    backend: Any | None,
+    protocol: Any | None,
+    blocked_reason: str | None,
+    output_dir: Path,
+) -> dict[str, Any]:
+    """One immutable attempt: replay a verified result or stop without writes."""
+    if arm not in {"no_feedback", "physical_feedback"}:
+        raise ValueError("unregistered arm")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    context = _sha256_text(_canonical({
+        "arm": arm, "config": dict(config), "snapshot_id": snapshot.snapshot_id,
+        "input_hash": system.input_hash, "protocol": None if protocol is None else protocol.identity,
+        "runner_sha256": _sha256_file(Path(__file__)),
+    }))
+    files = _arm_files(output_dir, arm)
+    if files:
+        return _recover_arm(arm, output_dir, context, config)
+    # Exclusive creation is the launch lock. An interrupted attempt never
+    # becomes a fresh empty run, including when no provider journal was written.
+    try:
+        _write_new_arm_json(output_dir / f"arm_started_{arm}.json", {"context_sha256": context})
+    except FileExistsError:
+        return _recover_arm(arm, output_dir, context, config)
+    row = _run_arm_once(arm, config=config, system=system, snapshot=snapshot,
+                        backend=backend, protocol=protocol, blocked_reason=blocked_reason,
+                        output_dir=output_dir, context_sha256=context)
+    payload = {"context_sha256": context, "row": row,
+               "artifacts": {p.name: _sha256_file(p) for p in _arm_files(output_dir, arm)}}
+    _write_new_arm_json(output_dir / f"arm_result_{arm}.json", {
+        **payload, "content_sha256": _sha256_text(_canonical(payload)),
+    })
+    return row
+
+
+def _arm_files(root: Path, arm: str) -> list[Path]:
+    names = [f"{prefix}_{arm}.json" for prefix in (
+        "arm_started", "arm_candidate", "arm_certification_started", "arm_result",
+        "provider_attempts", "ledger", "settlement_failed", "certification_ledger")]
+    names.append(f"certification_ledger_{arm}.summary.json")
+    return [root / name for name in names if (root / name).exists()]
+
+
+def _write_new_arm_json(path: Path, value: Mapping[str, Any]) -> None:
+    """Immutable stage receipt; a partial write causes blocked recovery."""
+    with path.open("x", encoding="utf-8") as stream:
+        stream.write(json.dumps(value, sort_keys=True, indent=2, allow_nan=False) + "\n")
+        stream.flush()
+        os.fsync(stream.fileno())
+    directory = os.open(path.parent, os.O_RDONLY)
+    try:
+        os.fsync(directory)
+    finally:
+        os.close(directory)
+
+
+def _blocked_certification(reason: str) -> dict[str, Any]:
+    return {"status": "blocked", "reason_code": reason, "record": None,
+            "backend_result": None, "new_calculator_calls": 0}
+
+
+def _guidance_stop_reason(budget: GuidanceBudget, entries) -> str | None:
+    if any(e.backend_termination == "unknown" for e in entries):
+        return "BACKEND_TERMINATION_UNKNOWN"
+    if budget.reserved != GuidanceCost.zero() or any(e.measured_cost is None for e in entries):
+        return "COST_SETTLEMENT_INCOMPLETE"
+    if budget.halted or any(e.status.value == "budget_exhausted" for e in entries):
+        return "GUIDANCE_BUDGET_EXHAUSTED"
+    if any(e.status.value != "accepted" for e in entries):
+        return "GUIDANCE_NOT_ACCEPTED"
+    return None
+
+
+def _recover_arm(arm: str, root: Path, context: str, config: Mapping[str, Any]) -> dict[str, Any]:
+    """No provider/certifier invocation and no file writes on this path."""
+    result_path = root / f"arm_result_{arm}.json"
+    if result_path.exists():
+        try:
+            receipt = json.loads(result_path.read_text())
+            payload = {k: v for k, v in receipt.items() if k != "content_sha256"}
+            if receipt["content_sha256"] != _sha256_text(_canonical(payload)) or receipt["context_sha256"] != context:
+                raise ValueError("arm context/content mismatch")
+            expected = receipt["artifacts"]
+            actual = {p.name: _sha256_file(p) for p in _arm_files(root, arm) if p != result_path}
+            if actual != expected:
+                raise ValueError("arm artifact set or content changed")
+            return {**receipt["row"], "replayed": True, "new_guidance_cost": GuidanceCost.zero().to_mapping(),
+                    "new_certification_calls": 0}
+        except (ValueError, KeyError, TypeError, OSError):
+            reason = "ARM_RECOVERY_IDENTITY_MISMATCH"
+    else:
+        reason = "ARM_RECOVERY_INCOMPLETE"
+    preserved = {p.name: _sha256_file(p) for p in _arm_files(root, arm)}
+    journal_path, ledger_path = root / f"provider_attempts_{arm}.json", root / f"ledger_{arm}.json"
+    cumulative, ledger, prior_candidate = None, None, None
+    try:
+        if ledger_path.exists():
+            ledger = RunLedger.load(ledger_path).summary()
+        if journal_path.exists():
+            attempts = json.loads(journal_path.read_text())["attempts"].values()
+            cumulative = GuidanceCost.zero()
+            for entry in attempts:
+                cumulative = GuidanceBudget._add(cumulative, GuidanceCost(**entry["charged_cost"]))
+                if entry["status"] == "started" or entry.get("backend_termination") == "unknown":
+                    reason = "BACKEND_TERMINATION_UNKNOWN"
+        if (root / f"settlement_failed_{arm}.json").exists():
+            reason = "COST_SETTLEMENT_INCOMPLETE"
+        candidate_path = root / f"arm_candidate_{arm}.json"
+        if candidate_path.exists():
+            prior_candidate = json.loads(candidate_path.read_text())
+    except (ValueError, KeyError, TypeError, OSError):
+        reason = "ARM_RECOVERY_INCOMPLETE"
+    return {"arm": arm, "replayed": False, "certification": _blocked_certification(reason),
+            "runtime_ledger": ledger, "guidance_cumulative_cost": None if cumulative is None else cumulative.to_mapping(),
+            "preserved_candidate": prior_candidate, "preserved_artifacts": preserved,
+            "new_guidance_cost": GuidanceCost.zero().to_mapping(), "new_certification_calls": 0}
+
+
+def _run_arm_once(
+    arm: str, *, config: Mapping[str, Any], system: MolecularSystem,
+    snapshot: GenerationSnapshot, backend: Any | None, protocol: Any | None,
+    blocked_reason: str | None, output_dir: Path, context_sha256: str,
+) -> dict[str, Any]:
+    budget_cfg = config["budget"]
+    guidance_budget = GuidanceBudget(
+        GuidanceCost(
+            model_forwards=int(budget_cfg["max_model_forwards"]),
+            calculator_calls=int(budget_cfg["max_calculator_calls"]),
+            wall_seconds=float(budget_cfg["max_wall_seconds"]),
+            cpu_seconds=float(budget_cfg.get("max_cpu_core_hours", 0.0)) * 3600.0,
+            gpu_seconds=float(budget_cfg.get("max_gpu_hours", 0.0)) * 3600.0,
+        )
+    )
+    adapter_runner = AdapterRunner(guidance_budget, journal_path=output_dir / f"provider_attempts_{arm}.json")
+    config_obj = LiveXTBGuidanceConfig(**dict(config["guidance"]))
+    provider = None
+    physical_run = None
+    outputs = []
+    feedback = None
+    if backend is not None:
+        provider = LiveXTBPhysicalProvider(backend, system, protocol, config=config_obj)
+        physical_request = ProviderRequest(
+            snapshot=snapshot,
+            lane=GuidanceLane.GEOMETRY,
+            provider_revision=provider.provider_revision,
+            config_fingerprint=provider.config_fingerprint,
+            protocol_fingerprint=provider.protocol_fingerprint,
+            feedback={"arm": arm, "feedback_visibility": "current_snapshot_only"},
+        )
+        physical_run = adapter_runner.run(physical_request, provider)
+        feedback = provider.last_feedback
+        if arm == "physical_feedback" and physical_run.output is not None and feedback is not None:
+            outputs.append(physical_run.output)
+            event_provider = LiveXTBEventProvider(feedback, len(snapshot.event), config=config_obj)
+            event_request = ProviderRequest(
+                snapshot=snapshot,
+                lane=GuidanceLane.EVENT,
+                provider_revision=event_provider.provider_revision,
+                config_fingerprint=event_provider.config_fingerprint,
+                protocol_fingerprint=event_provider.protocol_fingerprint,
+                feedback={"arm": arm, "source_feedback_fingerprint": feedback.feedback_fingerprint},
+                action_space={"bookkeeping_update": "force_derived_bounded_delta"},
+            )
+            event_run = adapter_runner.run(event_request, event_provider)
+            if event_run.output is not None:
+                outputs.append(event_run.output)
+    if arm == "physical_feedback" and outputs:
+        merged = merge_guidance(
+            snapshot,
+            outputs,
+            config=MergeConfig(
+                geometry_trust_radius=float(config["merge"]["geometry_trust_radius"]),
+                collision_distance=float(config["merge"]["collision_distance"]),
+                event_freeze_step=int(config["merge"]["event_freeze_step"]),
+            ),
+            constraint_matrix=tuple(tuple(float(item) for item in row) for row in config["merge"]["constraint_matrix"]),
+            event_velocity_fn=lambda _geometry, event, _snapshot: event,
+        )
+        final_snapshot = merged.snapshot
+        merge_mapping = {"decision": merged.decision.to_mapping(), "ledger": merged.ledger.to_mapping()}
+    else:
+        final_snapshot = replace(snapshot, generation_step=1, snapshot_id="")
+        merge_mapping = {
+            "decision": {
+                "applied_lanes": [],
+                "rejected": [] if blocked_reason is None else [["geometry", blocked_reason]],
+                "geometry_before": [list(row) for row in snapshot.geometry],
+                "geometry_after": [list(row) for row in snapshot.geometry],
+                "event_before": list(snapshot.event),
+                "event_after": list(snapshot.event),
+                "event_frozen": snapshot.event_frozen,
+            },
+            "ledger": {"schema": "xtbflow-guidance-ledger/v1", "entries": []},
+        }
+
+    runtime_ledger = RunLedger(
+        StageBudget(
+            phase=f"real_feedback_{arm}",
+            max_system_evaluations=1,
+            max_calculator_calls=int(budget_cfg["max_calculator_calls"]),
+            max_cpu_core_hours=float(budget_cfg["max_cpu_core_hours"]),
+            max_gpu_hours=float(budget_cfg.get("max_gpu_hours", 0.0)),
+            max_retries_per_job=0,
+            max_wall_minutes_per_job=float(budget_cfg["max_wall_minutes_per_job"]),
+        ),
+        ledger_id=f"real-feedback-{arm}-{snapshot.snapshot_id[:16]}",
+    )
+    result_status = "success" if feedback is not None else "failure"
+    physical_cost = physical_run.charged_cost if physical_run is not None else GuidanceCost.zero()
+    calculator_calls = physical_cost.calculator_calls
+    error = None if feedback is not None else (blocked_reason or getattr(provider, "last_error", "physical provider did not produce feedback"))
+    runtime_event = LedgerEvent(
+        run_id=f"real-feedback-{snapshot.snapshot_id[:16]}",
+        phase=f"real_feedback_{arm}",
+        calculator="xtb_oracle",
+        protocol_id=protocol.protocol_id if protocol is not None else "unavailable",
+        calculator_build_hash=(feedback.calculator_build_hash if feedback is not None else "unavailable"),
+        system_id=f"{snapshot.parent_id}:{arm}",
+        input_hash=system.with_coordinates(snapshot.geometry).input_hash,
+        operation="energy_forces",
+        status=result_status,
+        calculator_calls=calculator_calls,
+        cpu_seconds=physical_cost.cpu_seconds,
+        gpu_seconds=0.0,
+        error=error,
+    )
+    settlement_error = None
+    try:
+        runtime_ledger.append(runtime_event, persist_path=output_dir / f"ledger_{arm}.json")
+    except Exception as exc:
+        _write_json(output_dir / f"settlement_failed_{arm}.json", {
+            "status": "settlement_failed", "error_type": type(exc).__name__,
+            "event": asdict(runtime_event), "adapter_ledger": adapter_runner.ledger.to_mapping(),
+        })
+        settlement_error = type(exc).__name__
+    stop_reason = ("COST_SETTLEMENT_INCOMPLETE" if settlement_error else
+                   _guidance_stop_reason(guidance_budget, adapter_runner.ledger.entries))
+    row = {
+        "arm": arm,
+        "snapshot_before": snapshot.to_mapping(),
+        "snapshot_after": final_snapshot.to_mapping(),
+        "geometry_changed": final_snapshot.geometry != snapshot.geometry,
+        "event_changed": final_snapshot.event != snapshot.event,
+        "feedback_used": bool(arm == "physical_feedback" and feedback is not None and outputs),
+        "feedback": None if feedback is None else feedback.to_mapping(),
+        "physical_provider_status": None if physical_run is None else physical_run.status.value,
+        "physical_provider_failure_stage": None if physical_run is None else physical_run.failure_stage,
+        "physical_provider_error": None if physical_run is None else physical_run.error,
+        "physical_cost_basis": None if physical_run is None else physical_run.ledger_entry.cost_basis,
+        "adapter_ledger": adapter_runner.ledger.to_mapping(),
+        "merge": merge_mapping,
+        "runtime_ledger": None if settlement_error else runtime_ledger.summary(),
+        "unsettled_event": asdict(runtime_event) if settlement_error else None,
+        "guidance_cumulative_cost": guidance_budget.charged.to_mapping(),
+        "guidance_budget_halted": guidance_budget.halted,
+        "new_guidance_cost": guidance_budget.charged.to_mapping(),
+        "certification": _blocked_certification(stop_reason or "CERTIFICATION_PENDING"),
+    }
+    _write_new_arm_json(output_dir / f"arm_candidate_{arm}.json", {"context_sha256": context_sha256, "row": row})
+    if stop_reason is None:
+        _write_new_arm_json(output_dir / f"arm_certification_started_{arm}.json", {"context_sha256": context_sha256})
+        row["certification"] = _run_certification(
+            arm=arm, config=config, system=system, final_snapshot=final_snapshot,
+            backend=backend, protocol=protocol, output_dir=output_dir, snapshot=snapshot, feedback=feedback)
+    return row
+
+
+def _run_certification(
+    *,
+    arm: str,
+    config: Mapping[str, Any],
+    system: MolecularSystem,
+    final_snapshot: GenerationSnapshot,
+    backend: Any | None,
+    protocol: Any | None,
+    output_dir: Path,
+    snapshot: GenerationSnapshot,
+    feedback: Any | None,
+) -> dict[str, Any]:
+    """Run the optional independent TS/IRC gate without changing the default fixture."""
+
+    settings = dict(config.get("certification", {}))
+    enabled = bool(settings.get("enabled", False))
+    candidate_id = f"{snapshot.parent_id}:{arm}"
+    reference_protocol = protocol.protocol_id if protocol is not None else "unavailable"
+    reference_build = feedback.calculator_build_hash if feedback is not None else "unavailable"
+    if not enabled:
+        validation_config = TSValidationConfig(
+            require_connectivity=True,
+            max_calls=1,
+            reference_protocol_id=reference_protocol,
+            reference_build_hash=reference_build,
+        )
+        record = validate_ts_evidence(candidate_id, "live-xtb-real-feedback", {}, validation_config, calls=0)
+        return {
+            "status": "blocked",
+            "reason_code": "MISSING_TS_HESSIAN_IRC_EVIDENCE",
+            "record": record.to_dict(),
+            "backend_result": None,
+            "claim_limit": "No TS/IRC certification is claimed until certification.enabled selects an independent stationary-point, mode, endpoint, and bidirectional path backend.",
+        }
+    if backend is None or protocol is None:
+        return {
+            "status": "blocked_backend",
+            "reason_code": "BLOCKED_BACKEND",
+            "record": None,
+            "backend_result": None,
+            "claim_limit": "Certification was explicitly requested but its calculator backend was unavailable; no fallback is permitted.",
+        }
+
+    implementation = str(settings.get("implementation", "xtb"))
+    max_calls = int(settings.get("max_calculator_calls", 256))
+    cert_config_values = {
+        key: value
+        for key, value in settings.items()
+        if key not in {"enabled", "implementation", "max_calculator_calls", "max_cpu_core_hours", "max_gpu_hours", "max_wall_minutes_per_job"}
+    }
+    cert_config_values["max_calls"] = max_calls
+    cert_config = XTBIRCConfig(**cert_config_values)
+    cert_backend = XTBOracleAdapter(protocol=protocol, implementation=implementation, require_budget_token=True)
+    cert_ledger = RunLedger(
+        StageBudget(
+            phase=f"real_feedback_certification_{arm}",
+            max_calculator_calls=max_calls,
+            max_cpu_core_hours=float(settings.get("max_cpu_core_hours", 2.0)),
+            max_gpu_hours=float(settings.get("max_gpu_hours", 0.0)),
+            max_wall_minutes_per_job=float(settings.get("max_wall_minutes_per_job", 30.0)),
+            max_retries_per_job=0,
+        )
+    )
+    ledger_path = output_dir / f"certification_ledger_{arm}.json"
+    token = cert_ledger.issue_calculator_token(
+        f"real-feedback-certification-{arm}",
+        max_calls,
+        metadata={"candidate_id": candidate_id, "protocol_id": protocol.protocol_id, "config_identity": cert_config.identity},
+        persist_path=ledger_path,
+    )
+    started_wall = time.perf_counter()
+    started_cpu = time.process_time()
+    result = None
+    try:
+        result = run_xtb_irc_certification(
+            cert_backend,
+            system.with_coordinates(final_snapshot.geometry),
+            token=token,
+            candidate_id=candidate_id,
+            config=cert_config,
+        )
+    except Exception as exc:
+        return {
+            "status": "execution_failed",
+            "reason_code": "CERTIFICATION_EXECUTION",
+            "record": None,
+            "backend_result": None,
+            "ledger_summary": cert_ledger.summary(),
+            "cost": {
+                "wall_seconds": time.perf_counter() - started_wall,
+                "cpu_seconds": time.process_time() - started_cpu,
+                "cpu_hours": (time.process_time() - started_cpu) / 3600.0,
+                "gpu_hours": 0.0,
+            },
+            "failure_stage": "certification",
+            "error": f"{type(exc).__name__}: {exc}",
+            "claim_limit": "Certification execution failed; consumed calls remain in the certification ledger.",
+        }
+    finally:
+        token.settle(recorded_calls=token.consumed_calls, persist_path=ledger_path)
+    _write_json(ledger_path.with_suffix(".summary.json"), cert_ledger.summary())
+    status = "success" if result.status == "success" else result.status
+    cost = {
+        "wall_seconds": time.perf_counter() - started_wall,
+        "cpu_seconds": time.process_time() - started_cpu,
+        "cpu_hours": (time.process_time() - started_cpu) / 3600.0,
+        "gpu_hours": 0.0,
+    }
+    return {
+        "status": status,
+        "reason_code": result.reason_code,
+        "record": result.validation,
+        "backend_result": result.to_mapping(),
+        "ledger_summary": cert_ledger.summary(),
+        "cost": cost,
+        "claim_limit": result.claim_limit,
+    }
+
+
+def run(config_path: Path, output_dir: Path) -> dict[str, Any]:
+    if output_dir.exists() and any(output_dir.iterdir()):
+        raise FileExistsError("existing run output is immutable; inspect/replay arm receipts explicitly")
+    config, raw = _load_config(config_path)
+    config_sha256 = _sha256_text(raw)
+    seed = int(config["seed"])
+    system = _system(config)
+    backend, protocol, blocked_reason = _make_backend(config)
+    snapshot = _snapshot(config, system, seed)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    arms = []
+    for arm in ("no_feedback", "physical_feedback"):
+        row = _run_arm(arm, config=config, system=system, snapshot=snapshot, backend=backend, protocol=protocol, blocked_reason=blocked_reason, output_dir=output_dir)
+        arms.append(row)
+        if row.get("guidance_budget_halted") or row["runtime_ledger"] is None:
+            raise RuntimeError(f"arm stopped; durable receipts retained: {row['certification']['reason_code']}")
+    certification_blocked = any(row["certification"]["status"] != "success" for row in arms)
+    deterministic = {
+        "parent_id": config["parent_id"],
+        "seed": seed,
+        "input_hash": system.input_hash,
+        "config_sha256": config_sha256,
+        "arms": [
+            {
+                "arm": row["arm"],
+                "snapshot_before": row["snapshot_before"]["snapshot_id"],
+                "snapshot_after": row["snapshot_after"]["snapshot_id"],
+                "feedback_used": row["feedback_used"],
+                "feedback_fingerprint": None if row["feedback"] is None else _sha256_text(_canonical({
+                    "snapshot_id": row["feedback"]["snapshot_id"],
+                    "input_hash": row["feedback"]["input_hash"],
+                    "protocol_id": row["feedback"]["protocol_id"],
+                    "calculator_build_hash": row["feedback"]["calculator_build_hash"],
+                    "forces": row["feedback"]["forces"],
+                    "scalar_observable": row["feedback"]["scalar_observable"],
+                    "force_norm": row["feedback"]["force_norm"],
+                    "calculator_calls": row["feedback"]["calculator_calls"],
+                })),
+                "geometry_changed": row["geometry_changed"],
+                "event_changed": row["event_changed"],
+                "provider_status": row["physical_provider_status"],
+                "certification_status": row["certification"]["status"],
+                "certification_reason": row["certification"]["reason_code"],
+                "certification_calls": (row["certification"].get("backend_result") or {}).get("calculator_calls", 0),
+                "certification_config_identity": (row["certification"].get("backend_result") or {}).get("config_identity"),
+                "certification_validation": row["certification"].get("record"),
+                "calculator_calls": row["runtime_ledger"]["totals"]["calculator_calls"],
+            }
+            for row in arms
+        ],
+    }
+    deterministic_hash = _sha256_text(_canonical(deterministic))
+    manifest = {
+        "schema": SCHEMA,
+        "status": "blocked_backend" if blocked_reason else ("blocked_certification" if certification_blocked else "completed"),
+        "source": _git_identity(Path(__file__).resolve().parents[1]),
+        "execution_host": platform.node(),
+        "python": sys.version.split()[0],
+        "config_path": str(config_path),
+        "config_sha256": config_sha256,
+        "resolved_config": config,
+        "input": system.payload(),
+        "input_hash": system.input_hash,
+        "parent_id": config["parent_id"],
+        "seed": seed,
+        "protocol": None if protocol is None else {"protocol_id": protocol.protocol_id, "identity": protocol.identity, "parameters": dict(protocol.parameters)},
+        "arms": arms,
+        "replay": {
+            "deterministic_summary": deterministic,
+            "deterministic_summary_sha256": deterministic_hash,
+            "environment_variance_note": "Wall/CPU timing is excluded; calculator build, certification config, outcomes and calls are included.",
+        },
+        "matched_budget": dict(config["budget"]),
+        "claim_levels": {
+            "workflow": "software_demo",
+            "calculator_feedback": "proxy_metric",
+            "ts_irc": "proxy_metric",
+        },
+        "strict_validation_status": "not_run",
+        "unique_strict_certified_channels": 0,
+        "claim_limit": "Live xTB force feedback and bounded state transition are demonstrated; no chemical pathway, TS, barrier, mechanism, or superiority claim is made.",
+        "output_paths": {
+            "manifest": str(output_dir / "manifest.json"),
+            "ledger": str(output_dir / "ledger.json"),
+            "feedback_jsonl": str(output_dir / "feedback.jsonl"),
+            "summary": str(output_dir / "summary.md"),
+        },
+    }
+    _write_json(output_dir / "manifest.json", manifest)
+    ledger_payload = {"schema": "xtbflow-real-feedback-ledger/v1", "arms": [{"arm": row["arm"], "runtime_ledger": row["runtime_ledger"], "adapter_ledger": row["adapter_ledger"], "merge_ledger": row["merge"]["ledger"], "certification_ledger": row["certification"].get("ledger_summary"), "certification_cost": row["certification"].get("cost")} for row in arms]}
+    _write_json(output_dir / "ledger.json", ledger_payload)
+    with (output_dir / "feedback.jsonl").open("w", encoding="utf-8") as handle:
+        for row in arms:
+            handle.write(json.dumps({"arm": row["arm"], "feedback": row["feedback"], "certification": row["certification"]}, ensure_ascii=False, sort_keys=True) + "\n")
+    summary = [
+        "# Real physical-feedback loop summary",
+        "",
+        f"status: `{manifest['status']}`",
+        f"source_commit: `{manifest['source']['commit']}`",
+        f"source_dirty: `{manifest['source']['dirty']}`",
+        f"parent_id: `{manifest['parent_id']}` seed: `{seed}`",
+        "",
+        "| arm | feedback_used | geometry_changed | event_changed | feedback + diagnostic calls | certification |",
+        "| --- | --- | --- | --- | ---: | --- |",
+    ]
+    for row in arms:
+        diagnostic_calls = (row["certification"].get("backend_result") or {}).get("calculator_calls", 0)
+        summary.append(f"| {row['arm']} | {row['feedback_used']} | {row['geometry_changed']} | {row['event_changed']} | {row['runtime_ledger']['totals']['calculator_calls']} + {diagnostic_calls} | `{row['certification']['status']}` |")
+    summary.extend([
+        "",
+        "The xTB forces, candidate Hessians and endpoint relaxations are proxy diagnostics. Independent bidirectional IRC, endpoint Hessians/minima and mapped reactant-endpoint identity remain unverified. Strict certified channels: 0.",
+    ])
+    (output_dir / "summary.md").write_text("\n".join(summary) + "\n", encoding="utf-8")
+    return manifest
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--config", type=Path, required=True)
+    parser.add_argument("--output-dir", type=Path, required=True)
+    args = parser.parse_args()
+    try:
+        manifest = run(args.config, args.output_dir)
+    except Exception as exc:
+        print(json.dumps({"status": "failed", "reason_code": "INTERNAL_ERROR", "error": f"{type(exc).__name__}: {exc}"}, sort_keys=True))
+        return 1
+    print(json.dumps({"status": manifest["status"], "output_dir": str(args.output_dir), "arms": [{"arm": row["arm"], "geometry_changed": row["geometry_changed"], "event_changed": row["event_changed"], "certification": row["certification"]["status"]} for row in manifest["arms"]]}, sort_keys=True))
+    return 0 if manifest["status"] in {"completed", "blocked_certification", "blocked_backend"} else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

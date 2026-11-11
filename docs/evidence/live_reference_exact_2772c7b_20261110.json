@@ -1,0 +1,297 @@
+{
+  "attempt": 1,
+  "budget": {
+    "max_calculator_calls": 6000,
+    "max_concurrent_jobs": 1,
+    "max_cpu_core_hours": 16.0,
+    "max_gpu_hours": 2.0,
+    "max_retries_per_job": 0,
+    "max_storage_gb": 1.0,
+    "max_system_evaluations": 2,
+    "max_wall_minutes_per_job": 120,
+    "phase": "live-feedback-independent-reference-20261110"
+  },
+  "candidates": [
+    {
+      "artifact_bytes": 2090781,
+      "attempt": 1,
+      "cache_key": "c47a57dac7d0bca50984f2f23fd35975bfd9844b20784d3ccc2ae99e16d1a171",
+      "cache_replay": {
+        "cache_hit": true,
+        "identical_record": true,
+        "new_calculator_calls": 0,
+        "new_channel": false
+      },
+      "candidate_id": "reactant-da-r0-approach-v1:no_feedback",
+      "candidate_sha256": "245b034cc57e149709daad7f299c026422da2d17a52e85c31139dd5ff5f42c2d",
+      "charged_calls": 500,
+      "cpu_hours": 0.6149202444444445,
+      "execution_status": "completed",
+      "feedback": {
+        "bidirectional_minima": true,
+        "evidence_status": "same_endpoint",
+        "first_order_saddle": true,
+        "observed_event_id": null,
+        "planned_event_id": null,
+        "planned_event_realized": null,
+        "raw_status": "STRICT_EVENT_MISMATCH",
+        "stationary_point": true
+      },
+      "gpu_hours": 0.5374923030777266,
+      "method": "no_feedback",
+      "reason_code": "both_ends_reactant",
+      "resources": {
+        "basis": "measured",
+        "cpu_seconds": 2213.71288,
+        "wall_seconds": 1934.9722910798155
+      },
+      "result_content_sha256": "8444ec9e4078cbc1d137a9c374c2b0624c1e7b923179980ed1c09d1ffcc347cb",
+      "status": "completed",
+      "wall_seconds": 1934.9722910798155
+    },
+    {
+      "artifact_bytes": 1721726,
+      "attempt": 1,
+      "cache_key": "b425f65c99fa79bf492e7a8201a464eb5589b52535b58d8b7ee584780e01dd88",
+      "cache_replay": {
+        "cache_hit": true,
+        "identical_record": true,
+        "new_calculator_calls": 0,
+        "new_channel": false
+      },
+      "candidate_id": "reactant-da-r0-approach-v1:physical_feedback",
+      "candidate_sha256": "5e6b03a4ff8428dc6d198da273ee15292b775709221081560a17a513199d0d63",
+      "charged_calls": 402,
+      "cpu_hours": 0.5183581569444445,
+      "execution_status": "completed",
+      "feedback": {
+        "bidirectional_minima": true,
+        "evidence_status": "same_endpoint",
+        "first_order_saddle": true,
+        "observed_event_id": null,
+        "planned_event_id": null,
+        "planned_event_realized": null,
+        "raw_status": "STRICT_EVENT_MISMATCH",
+        "stationary_point": true
+      },
+      "gpu_hours": 0.45445900757641844,
+      "method": "physical_feedback",
+      "reason_code": "both_ends_reactant",
+      "resources": {
+        "basis": "measured",
+        "cpu_seconds": 1866.0893650000003,
+        "wall_seconds": 1636.0524272751063
+      },
+      "result_content_sha256": "d7f99519c4751f54f0b334e94da71808743aaf55801ee411e6dbd2866e207c89",
+      "status": "completed",
+      "wall_seconds": 1636.0524272751063
+    }
+  ],
+  "claim_limits": [
+    "This is a one-parent, one-seed development integration test, not an independent benchmark, method comparison or discovery-rate estimate.",
+    "The original source is a declared reactant endpoint; atom-map/graph auditing does not make it an independently prepared blind reactant.",
+    "Gas phase is the explicit modeling environment of the frozen live input, not a claim about the source geometry environment.",
+    "Guidance scores have no mapped chemical-event decoder. The planned product is null, and planned-event ID/realization remain null.",
+    "Only the unchanged independent reference chain can establish a channel; same endpoints, unresolved results, failures and exhausted budgets stay in the denominator and charged costs.",
+    "Raw coordinates, Hessians, paths and graph records remain on n2. Public reports retain hashes, outcomes, provenance, measured costs and replay checks. No TS discovery, barrier, mechanism, chemical-accuracy or model-superiority claim is made."
+  ],
+  "config_sha256": "3a89632d2b711620c407cebc27dfee4d82738bf8fd71430a3b75fa83d721563e",
+  "cpu_hours": 1.133278401388889,
+  "generation": {
+    "arms": [
+      {
+        "arm": "no_feedback",
+        "event_changed": false,
+        "feedback_ledger_sha256": "7e160683a6060a58deb4dc52b60b27e6d3dbf0f7e7a6f71899e873c746077c92",
+        "feedback_totals": {
+          "attempts": 1,
+          "cache_hits": 0,
+          "calculator_calls": 1,
+          "cpu_core_hours": 4.059805000000015e-06,
+          "failures": 0,
+          "gpu_hours": 0.0,
+          "retries": 0,
+          "storage_gb": 0.0,
+          "successes": 1,
+          "system_evaluations": 1
+        },
+        "geometry_changed": false,
+        "prior_diagnostic_calls": 314,
+        "prior_diagnostic_cost": {
+          "cpu_hours": 0.0005431762472222223,
+          "cpu_seconds": 1.955432838,
+          "gpu_hours": 0.0,
+          "wall_seconds": 2.1663294520694762
+        },
+        "snapshot_id": "32d84d553e2ee0cef471a873d22a8f644fecd8f6bcf612184a076128ba7a65ee"
+      },
+      {
+        "arm": "physical_feedback",
+        "event_changed": true,
+        "feedback_ledger_sha256": "1fc41039ceff2d1e835bbf5017919ba2ea8d33265f5aa2211f3a4efdcda01516",
+        "feedback_totals": {
+          "attempts": 1,
+          "cache_hits": 0,
+          "calculator_calls": 1,
+          "cpu_core_hours": 1.5126272222222415e-06,
+          "failures": 0,
+          "gpu_hours": 0.0,
+          "retries": 0,
+          "storage_gb": 0.0,
+          "successes": 1,
+          "system_evaluations": 1
+        },
+        "geometry_changed": true,
+        "prior_diagnostic_calls": 306,
+        "prior_diagnostic_cost": {
+          "cpu_hours": 0.00048281739333333327,
+          "cpu_seconds": 1.7381409930000005,
+          "gpu_hours": 0.0,
+          "wall_seconds": 2.0050580750685185
+        },
+        "snapshot_id": "4bab227e6e6d2ee30758ed624aa070260890afb83e01afc75efd73231bb66bc7"
+      }
+    ],
+    "candidate_denominator": 2,
+    "config_sha256": "6aa438af414600d97997a7c823bda0a803a90de90d9a5a1536d4e7b5c769641f",
+    "context_sha256": "1f6685075ddd3f0bd2c1d33ade912656d0cbac2586500aea143d47210e269bea",
+    "kind": "live_feedback_handoff",
+    "parent_denominator": 1,
+    "parent_id": "reactant-da-r0-approach-v1",
+    "report_sha256": "4f0393bbf88f3805bfb480531dbc2a43c046a5eca9e3c282fae2fbb493518de7",
+    "seed": 20261111,
+    "source_commit": "a8e4a88069ba363f8e76f8378a58795800718648",
+    "source_dirty": false
+  },
+  "gpu_hours": 0.991951310654145,
+  "host": "node2",
+  "ledger": {
+    "active_jobs": [],
+    "budget": {
+      "max_calculator_calls": 6000,
+      "max_concurrent_jobs": 1,
+      "max_cpu_core_hours": 16.0,
+      "max_gpu_hours": 2.0,
+      "max_retries_per_job": 0,
+      "max_storage_gb": 1.0,
+      "max_system_evaluations": 2,
+      "max_wall_minutes_per_job": 120,
+      "phase": "live-feedback-independent-reference-20261110"
+    },
+    "by_calculator": {
+      "gpu4pyscf": 2
+    },
+    "by_operation": {
+      "other": 2
+    },
+    "by_status": {
+      "success": 2
+    },
+    "ledger_id": "2acd0838af52400998a3cbf89ac86c09",
+    "phase": "live-feedback-independent-reference-20261110",
+    "schema": "xtbflow-run-ledger/v1",
+    "totals": {
+      "attempts": 2,
+      "cache_hits": 0,
+      "calculator_calls": 902,
+      "cpu_core_hours": 1.133278401388889,
+      "failures": 0,
+      "gpu_hours": 0.991951310654145,
+      "retries": 0,
+      "storage_gb": 0.003550673834979534,
+      "successes": 2,
+      "system_evaluations": 2
+    }
+  },
+  "protocol": {
+    "adapter_source_sha256": "03b8de1165399dc3ba37fc4a26939bcfc65fb0b4fca716b45e1491acdb7fcce6",
+    "candidate_contract": "mapped-candidate-optional-proposal/v2",
+    "device": "gpu",
+    "engine": "gpu4pyscf",
+    "evidence_scope": "gas_phase_neutral_singlet_CHNO_reference_protocol",
+    "execution_build": {
+      "driver": 13020,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+      "runtime": 12090
+    },
+    "installed_record_sha256": {
+      "cupy-cuda12x": "2975a4ba372a04a5a0a5380c01504c0e5788b79f6030cceaf3924a728e1774b9",
+      "geometric": "fb7620676807f51b34f6da5689a2e01475229072ed4f854137c86c9dfb479a4a",
+      "gpu4pyscf-cuda12x": "1fc29488f8471674b4e50a15ff2cb5a245044bd81fc468f4b237fbd8b2ba34cb",
+      "numpy": "a59db318ca8beff222112cb8713d425702f744c329d409dad511c539d889a9a6",
+      "pyscf": "c528ff36159f1d0f894bf81236b7d954914a7c3f08e99d802ad4634dc2df1f14",
+      "rdkit": "ebafa0c60b860d7fdbfd829623a19da563357b22881b87e0e4d7bfd0b0e7c0cb",
+      "scipy": "b8ea386fea9f83a6696fb52817f71582fb1174192a306225bc87ea13177b1b64"
+    },
+    "method": {
+      "basis": "6-31g*",
+      "charge": 0,
+      "conv_tol": 1e-10,
+      "density_fitting": false,
+      "dispersion": null,
+      "energy_kind": "electronic",
+      "grids_level": 5,
+      "max_cycle": 300,
+      "program": "gpu4pyscf",
+      "solvent": null,
+      "spherical": true,
+      "spin": 0,
+      "wavefunction": "RKS",
+      "xc": "wb97x"
+    },
+    "packages": {
+      "cupy-cuda12x": "14.2.0",
+      "geometric": "1.1.1",
+      "gpu4pyscf-cuda12x": "1.8.1",
+      "numpy": "2.4.6",
+      "pyscf": "2.14.0",
+      "rdkit": "2026.3.6",
+      "scipy": "1.17.1"
+    },
+    "protocol_source_sha256": "84765f82b41e8164d388157e947d5ddd2c5d637256a8b9beb7796f9088b39a19",
+    "thresholds": {
+      "allow_endpoint_gray_zone": false,
+      "irc": {
+        "maxiter": 300,
+        "tmax": 0.2,
+        "trust": 0.2
+      },
+      "min_retry_displacement_angstrom": 0.1,
+      "negative_frequency_cm1": -30.0,
+      "opt_maxiter": 200,
+      "tight": {
+        "convergence_dmax": 0.001,
+        "convergence_drms": 0.0006,
+        "convergence_energy": 1e-06,
+        "convergence_gmax": 0.0001,
+        "convergence_grms": 3e-05
+      },
+      "very_tight": {
+        "convergence_dmax": 0.0002,
+        "convergence_drms": 0.0001,
+        "convergence_energy": 2e-07,
+        "convergence_gmax": 3e-05,
+        "convergence_grms": 8e-06
+      }
+    },
+    "units": {
+      "coordinates": "Angstrom",
+      "energy": "Hartree",
+      "frequencies": "cm^-1",
+      "gradient": "Hartree/bohr",
+      "hessian": "Hartree/bohr^2"
+    },
+    "version": "xtbflow-reference-certification/1"
+  },
+  "protocol_sha256": "6dc84cd79c7223e6e05126d1211d70075f5401d9f5f9fc45c396ea77a2d25a39",
+  "python": "3.11.17",
+  "reason_code": null,
+  "schema": "xtbflow-generated-certification/v1",
+  "slurm_job_id": "4223",
+  "source_commit": "2772c7bedb9c674144d7dab702a29178eeee699a",
+  "source_dirty": false,
+  "started_at": "2026-11-09T18:34:19.175558+00:00",
+  "status": "pipeline_completed",
+  "unique_certified_channels": 0,
+  "wall_seconds": 3571.9159611409996
+}

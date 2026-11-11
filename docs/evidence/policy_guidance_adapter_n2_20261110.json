@@ -1,0 +1,53 @@
+{
+  "schema": "xtbflow-evidence/policy-guidance-adapter-n2/v1",
+  "status": "completed",
+  "binding": "validated_at_parent_commit",
+  "work_item": "#166 PR C recorded policy guidance adapter",
+  "validated_commit": "5ddfa93cc87749343918b75b208ac402c87753ec",
+  "source_branch": "codex/issue166-policy-adapter-20261110",
+  "execution_host": "node2",
+  "execution_root": "~/xtbflow/xtbflow-exec-issue166-policy-20261110-5ddfa93",
+  "environment": {
+    "conda": "xtbflow",
+    "python": "3.10.19",
+    "pytorch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "gpu_calls": 0,
+    "real_calculator_calls": 0,
+    "training": false
+  },
+  "commands": [
+    "python -m compileall -q src scripts tests",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q tests/test_policy_adapter.py tests/test_physical_adapter.py tests/test_guidance_adapters.py tests/test_parallel_guidance.py tests/test_parallel_guidance_replay.py",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m unittest discover -s tests/reusable -p 'test_*.py'",
+    "python scripts/validate_bootstrap.py",
+    "git diff --check"
+  ],
+  "results": {
+    "focused_pytest_passed": 27,
+    "pytest_passed": 298,
+    "pytest_subtests_passed": 68,
+    "reusable_unittest_passed": 56,
+    "bootstrap_inventory_files_verified": 357,
+    "diff_check": "pass",
+    "policy_contracts": [
+      "event-only output boundary",
+      "action fingerprint de-duplication",
+      "freeze rejection through merge gate",
+      "recursive target-free policy feedback",
+      "same-budget off/on ablation"
+    ],
+    "warnings": [
+      "one pre-existing tensor-to-scalar warning in tests/test_energy_forces.py"
+    ]
+  },
+  "claim_limits": [
+    "This validates recorded policy guidance software, bounded event output, action de-duplication, freeze rejection, and cost accounting only.",
+    "The provider is deterministic and calculator-free; no policy quality, physical, chemistry, certification, performance, or generalization result is supported.",
+    "Live #139 policy integration remains follow-up work."
+  ],
+  "unfinished": [
+    "No live decision loop, agent tool execution, or matched certification comparison is included."
+  ]
+}

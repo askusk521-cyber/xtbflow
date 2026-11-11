@@ -1,0 +1,139 @@
+{
+  "caps": {
+    "concurrency": 1,
+    "cpu_seconds_per_process": 600,
+    "cpu_threads": 1,
+    "max_log_bytes": 67108864,
+    "retries": 0,
+    "wall_seconds_per_command": 600
+  },
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_narrowed_numerics.py"
+      ],
+      "cpu_seconds": 1.528404,
+      "exit_code": 0,
+      "log_bytes": 98,
+      "log_sha256": "7d209e7a67d4d4056b2535bffba5ccf0984c48a48b54ea9fa1588672ad3be0f3",
+      "name": "focused",
+      "tail": [
+        "...                                                                      [100%]",
+        "3 passed in 1.14s"
+      ],
+      "wall_seconds": 1.5692454541567713
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "cpu_seconds": 11.664602999999998,
+      "exit_code": 0,
+      "log_bytes": 1004,
+      "log_sha256": "ef258458a5719c7030357c9f0468587059412cb11464e707b84ab47291c4c6d2",
+      "name": "pytest",
+      "tail": [
+        "=============================== warnings summary ===============================",
+        "tests/test_energy_forces.py::test_direct_model_force_matches_finite_difference",
+        "  $XTB_REVIEW_CODE/tests/test_energy_forces.py:72: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.",
+        "  Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)",
+        "    finite_difference_force = -float((e_plus - e_minus) / (2 * step))",
+        "",
+        "-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html",
+        "274 passed, 1 warning, 68 subtests passed in 11.31s"
+      ],
+      "wall_seconds": 11.986788826994598
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/reusable",
+        "-p",
+        "test_*.py"
+      ],
+      "cpu_seconds": 1.5978540000000003,
+      "exit_code": 0,
+      "log_bytes": 155,
+      "log_sha256": "a00a4d6b29bce37e697b5d8d797d3a2b3a37b6557fc034e3ef8e81e2f24e8d09",
+      "name": "unittest",
+      "tail": [
+        "........................................................",
+        "----------------------------------------------------------------------",
+        "Ran 56 tests in 0.396s",
+        "",
+        "OK"
+      ],
+      "wall_seconds": 1.619693221990019
+    },
+    {
+      "command": [
+        "python",
+        "scripts/validate_bootstrap.py"
+      ],
+      "cpu_seconds": 0.059728000000001114,
+      "exit_code": 0,
+      "log_bytes": 151,
+      "log_sha256": "d7836c9b94ab19844b42d260c59fa1433ad5f036992f00643c4e7e992953b159",
+      "name": "bootstrap",
+      "tail": [
+        "PASS: 346 files match the bootstrap inventory.",
+        "This verifies files only; no training, quantum chemistry, remote upload or model validation is implied."
+      ],
+      "wall_seconds": 0.06767904595471919
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cpu_seconds": 0.004170999999999925,
+      "exit_code": 0,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "name": "diff",
+      "tail": [],
+      "wall_seconds": 0.007132724160328507
+    }
+  ],
+  "claim_limits": [
+    "Fake/recording backend and software tests only; no new scientific samples."
+  ],
+  "config_sha256": "c2213875ddbe39017669a235b036019525c52e02378687c529075f784a63e5fd",
+  "data_contract_sha256": "9964999089df7e67b9d5c0af99dcf5bd426974bca5128bee2623c928473d42a9",
+  "driver_sha256": "0bf8eee0d8a77cc4794635488ab2daf0410a28f110a52522a7e8ce1b52f4d46b",
+  "gpu_seconds": 0,
+  "host": "node2",
+  "new_qc_calls": 0,
+  "new_trained_checkpoint_forwards": 0,
+  "packages": {
+    "ase": "3.29.0",
+    "numpy": "2.2.6",
+    "pytest": "9.1.1",
+    "rdkit": "2024.3.3",
+    "scipy": "1.15.3",
+    "tblite": "0.7.0",
+    "torch": "2.10.0+cu128"
+  },
+  "publication": {
+    "raw_receipt_sha256": "fbb03758e43b5af19a0118a473d505e59a465d6367a39675d6c22fb9c55560b2",
+    "transformation": "Replace absolute n2 checkout prefixes in warning-text tails with $XTB_REVIEW_CODE; numerical fields, commands and original log hashes unchanged. Raw receipt/logs remain on n2."
+  },
+  "python": "3.10.19",
+  "schema": "xtbflow-review-software/v1",
+  "source_clean_after": true,
+  "source_commit": "fb024e039ae116b5856886e3ae9981c44d56edfb",
+  "status": "passed",
+  "training_steps": 0
+}

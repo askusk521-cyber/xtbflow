@@ -1,0 +1,216 @@
+{
+  "assets": [
+    {
+      "asset": "joint_s0/ckpt_60000.pt",
+      "bytes": 3901150,
+      "matches_expected": true,
+      "sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda"
+    },
+    {
+      "asset": "joint_s0/status.json",
+      "bytes": 80,
+      "matches_expected": true,
+      "sha256": "db0747307a1b878d91121d4094e21a0ea774cc83df8e06652cd5bf8c40660c0e"
+    },
+    {
+      "asset": "event_s0/ckpt_60000.pt",
+      "bytes": 2051220,
+      "matches_expected": true,
+      "sha256": "29ec75a0e66f1ffbb85d565591b8e4a7c31aa612175d3e3d7113e6c5a69637af"
+    },
+    {
+      "asset": "event_s0/status.json",
+      "bytes": 80,
+      "matches_expected": true,
+      "sha256": "9fd08082c92b239a418f2f5ccc233d1840b934117b7a51ff7dd7e1a10013a8f9"
+    },
+    {
+      "asset": "geometry_s0/ckpt_60000.pt",
+      "bytes": 1923151,
+      "matches_expected": true,
+      "sha256": "82d98876f5ead70990d893ffb013f3cbad1a4b57ad1d102f48c447f4396118fc"
+    },
+    {
+      "asset": "geometry_s0/status.json",
+      "bytes": 80,
+      "matches_expected": true,
+      "sha256": "05b234ac6f5f7e0449568849ad6383b39f4c59094a31e3da085dd7f6d74c7341"
+    },
+    {
+      "asset": "raw/reactants.json",
+      "bytes": 22110,
+      "matches_expected": true,
+      "sha256": "19ff7955de150b9879508414d1ecac5e89b6b323ec0f23dd3d67cdf484e4cfcc"
+    },
+    {
+      "asset": "raw/worker-packet.json",
+      "bytes": 8337,
+      "matches_expected": true,
+      "sha256": "3aa5566ea68752d67d777730899a8a5eaa21f108c7d06afe2751a86f38522799"
+    },
+    {
+      "asset": "raw/generation.json",
+      "bytes": 13752,
+      "matches_expected": null,
+      "sha256": "99e097f2a12c4330d3ab8d4e680e8f1bef8aa4a9f14e68663b4bd7f1055fe0f9"
+    },
+    {
+      "asset": "raw/calls.json",
+      "bytes": 37451,
+      "matches_expected": null,
+      "sha256": "1fdeec9febf81eefeb561d678aad3745c6cfea8cc28f4491e22f52336bef30ed"
+    },
+    {
+      "asset": "raw/certification-plan.json",
+      "bytes": 62917,
+      "matches_expected": null,
+      "sha256": "baf51f5fbc4961fb3f80aa71363edc8ec35fe45d535dd483e629031d80264dd6"
+    },
+    {
+      "asset": "report.json",
+      "bytes": 7375,
+      "matches_expected": null,
+      "sha256": "482ae6c426d71b1218cb104f7530b1d6c2755ddc8bf2bd309a58f6a8783acaa6"
+    },
+    {
+      "asset": "ledger.json",
+      "bytes": 1380,
+      "matches_expected": null,
+      "sha256": "7f258f2f3474e097496db9ea70eca30823ad43f347d947365cd5ccebd8a0bca4"
+    }
+  ],
+  "bytes_read": 8029083,
+  "caps": {
+    "backward_calls": 0,
+    "concurrency": 1,
+    "cpu_seconds": 180,
+    "gpu_seconds": 0,
+    "hessian_calls": 0,
+    "hvp_calls": 0,
+    "jvp_calls": 0,
+    "max_input_bytes": 268435456,
+    "max_output_bytes": 16777216,
+    "model_forwards": 0,
+    "reference_primitives": 0,
+    "retries": 0,
+    "training_steps": 0,
+    "wall_seconds": 180,
+    "xtb_energy_force_calls": 0
+  },
+  "claim_limits": [
+    "Availability and input identity, not scientific qualification."
+  ],
+  "config_sha256": "d0643a2a166a81b3939a9c07516d3d75d68a60081ccaa1cd8a3170db46bcfe70",
+  "cpu_seconds": 0.982856504,
+  "driver_sha256": "58668235efe52715ded9136dd8b4b91ac9ade83415426b7a00963e58cdb8b6e8",
+  "gpu_seconds": 0,
+  "host": "node2",
+  "input": {
+    "atom_ids": [
+      "dft-da:R0:map:1",
+      "dft-da:R0:map:2",
+      "dft-da:R0:map:3",
+      "dft-da:R0:map:4",
+      "dft-da:R0:map:11",
+      "dft-da:R0:map:12",
+      "dft-da:R0:map:10",
+      "dft-da:R0:map:9",
+      "dft-da:R0:map:7",
+      "dft-da:R0:map:8",
+      "dft-da:R0:map:5",
+      "dft-da:R0:map:6",
+      "dft-da:R0:map:15",
+      "dft-da:R0:map:16",
+      "dft-da:R0:map:13",
+      "dft-da:R0:map:14"
+    ],
+    "automorphism_count": 64,
+    "charge": 0,
+    "environment": {
+      "kind": "gas",
+      "periodic": false
+    },
+    "multiplicity": 1,
+    "parent_id": "ID63623",
+    "provenance": {
+      "atom_mapping_evidence": "Audited DFT-DA mapped SMILES/XYZ correspondence; reactant-only Kekule graph",
+      "electronic_state_evidence": "monomer_1.log: Charge=0 Multiplicity=1; xTB --chrg 0 --uhf 0; monomer_2.log: Charge=0 Multiplicity=1; xTB --chrg 0 --uhf 0",
+      "environment_origin": "Predeclared new gas-phase modeling condition, independent of hidden labels; source geometry environment remains unresolved",
+      "family_id": "dft-da-family:5337bd752821d77a88bb9ebd",
+      "input_origin": "declared_reactant_endpoint",
+      "input_sha256": "7ffaa060a33da76edae9870ca4be2c6a43c13865a5c71c464ba7ad244d30535c",
+      "role": "development_functional_integration",
+      "source_asset_sha256": "4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed",
+      "source_record_id": "dft-da:R0"
+    },
+    "query_id": "dft-da:R0"
+  },
+  "models": {
+    "event": {
+      "dual_time": false,
+      "model_cfg": {
+        "edge_dim": 64,
+        "n_layers": 6,
+        "n_rbf": 32,
+        "n_rbf_reactant": 16,
+        "r_cut": 10.0,
+        "scalar_dim": 92,
+        "vector_dim": 23
+      },
+      "role": "event",
+      "seed": 0,
+      "sigma_b": 1.0,
+      "sigma_x": 0.5,
+      "source_commit": "d20321facf804a7dea8341801935446c34ee5738",
+      "split_hash": "a0225e6cb773049d94593f0d93bf6c753db125deeda3ade8899da6922835367f",
+      "training_parent_ids_sha256": "bae58bca5f4e7710e37e387666259c5c5e8fe0334ab0e9d17bb8b1ba03667ae4"
+    },
+    "geometry": {
+      "dual_time": false,
+      "model_cfg": {
+        "edge_dim": 64,
+        "n_layers": 6,
+        "n_rbf": 32,
+        "n_rbf_reactant": 16,
+        "r_cut": 10.0,
+        "scalar_dim": 92,
+        "vector_dim": 23
+      },
+      "role": "geometry",
+      "seed": 0,
+      "sigma_b": 1.0,
+      "sigma_x": 0.5,
+      "source_commit": "d20321facf804a7dea8341801935446c34ee5738",
+      "split_hash": "a0225e6cb773049d94593f0d93bf6c753db125deeda3ade8899da6922835367f",
+      "training_parent_ids_sha256": "bae58bca5f4e7710e37e387666259c5c5e8fe0334ab0e9d17bb8b1ba03667ae4"
+    },
+    "joint": {
+      "dual_time": true,
+      "model_cfg": {
+        "edge_dim": 64,
+        "n_layers": 6,
+        "n_rbf": 32,
+        "n_rbf_reactant": 16,
+        "r_cut": 10.0,
+        "scalar_dim": 128,
+        "vector_dim": 32
+      },
+      "role": "joint",
+      "seed": 0,
+      "sigma_b": 1.0,
+      "sigma_x": 0.5,
+      "source_commit": "d20321facf804a7dea8341801935446c34ee5738",
+      "split_hash": "a0225e6cb773049d94593f0d93bf6c753db125deeda3ade8899da6922835367f",
+      "training_parent_ids_sha256": "bae58bca5f4e7710e37e387666259c5c5e8fe0334ab0e9d17bb8b1ba03667ae4"
+    }
+  },
+  "new_calculator_calls": 0,
+  "new_model_forwards": 0,
+  "new_training_steps": 0,
+  "python": "3.10.19",
+  "schema": "xtbflow-narrowed-availability/v1",
+  "source_commit": "83e5ba65387d91d6a66605d6e495aa2f78a829b5",
+  "status": "verified",
+  "torch": "2.10.0+cu128",
+  "wall_seconds": 0.9985047848895192
+}

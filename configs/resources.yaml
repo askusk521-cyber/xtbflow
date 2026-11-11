@@ -12,6 +12,12 @@ authority:
   merge_approval_authority: repository_owner_or_explicitly_delegated_human
   merge_approval_waiver: explicit_human_instruction_for_stated_scope_only
   merge_approval_policy: docs/REPOSITORY_MANAGEMENT.md
+  scoped_merge_waiver_20261111:
+    scope: issues 197-199, conditional 188, report 189 and necessary integration fixes
+    source: https://github.com/askusk521-cyber/xtbflow/issues/129#issuecomment-6789105000
+    explicit_owner_merge_authorization: true
+    repeated_approval_required: false
+    requires: exact source review, passing applicable CI, recorded bounded scientific gates
   historical_zero_budget_permissions_superseded: true
 project:
   name: xtbflow

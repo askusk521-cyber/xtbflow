@@ -1,0 +1,39 @@
+{
+  "schema": "xtbflow-registered-diagnostic-recovery/v1",
+  "reason": "Fix NumPy clock to tensor conversion in diagnostic wrapper, no model/threshold/sample change.",
+  "prior_source": "9a5599c180c5640668ee349260ab6180d304c68f",
+  "prior_report_sha256": "a3a601406cd23138c9fd79eae1763c99daf0d63b4fa58c645cb0d8309b227069",
+  "prior_started_forwards": 51,
+  "prior_completed_forwards": 50,
+  "prior_jvp_attempts": 1,
+  "prior_backward_reserved_upper_bound": 2,
+  "prior_backward_completed": 0,
+  "prior_cpu_seconds": 1.275234794,
+  "prior_wall_seconds": 1.4029899211600423,
+  "saved_state_sha256": {
+    "10": "0582b709de1145f2a1a1c3c278ce52dcd577c09f6b384117484361cc970b15fc",
+    "25": "272f994a7590e93c24f95a4df1609735221982aa75571381a0c527e96dfa3e6a",
+    "40": "3bd32cdce359052bbbee23a7f5aabe77a89205ce406dadc760fbe08bf9e6d0cc"
+  },
+  "recovery_count": 1,
+  "automatic_retries": 0,
+  "cumulative_cap_unchanged": true,
+  "caps": {
+    "backward_calls": 22,
+    "concurrency": 1,
+    "cpu_seconds": 598,
+    "gpu_seconds": 0,
+    "hessian_calls": 0,
+    "hvp_calls": 0,
+    "jvp_calls": 11,
+    "max_input_bytes": 268435456,
+    "max_output_bytes": 16777216,
+    "max_saved_states": 3,
+    "model_forwards": 141,
+    "reference_primitives": 0,
+    "retries": 0,
+    "training_steps": 0,
+    "wall_seconds": 598,
+    "xtb_energy_force_calls": 0
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "caps": {
+    "cpu_threads": 1,
+    "gpu_devices": 0,
+    "log_bytes_per_file": 67108864,
+    "wall_seconds_per_command": 600
+  },
+  "claim_limits": [
+    "Software qualification only; diagnostic/model/audit work has separate receipts."
+  ],
+  "commands": [
+    "PYTHONPATH=src:vendor/mechai_reusable timeout 600 python -m pytest -q",
+    "PYTHONPATH=src:vendor/mechai_reusable timeout 600 python -m unittest discover -s tests/reusable -p test_*.py",
+    "python scripts/validate_bootstrap.py"
+  ],
+  "host": "node2",
+  "logs": {
+    "bootstrap.log": {
+      "bytes": 151,
+      "sha256": "70d521640c161cdd6237f2dad54734193b2750375aacefeeda920b7abc9ebfe3",
+      "summary": [
+        "PASS: 406 files match the bootstrap inventory.",
+        "This verifies files only; no training, quantum chemistry, remote upload or model validation is implied."
+      ]
+    },
+    "focused.log": {
+      "bytes": 99,
+      "sha256": "a4ddb9b71a203fa20a521309f1738c9373577d25b66bb5068b2f18c414ebb181",
+      "summary": [
+        "..................                                                       [100%]",
+        "18 passed in 1.12s"
+      ]
+    },
+    "pytest.log": {
+      "bytes": 1086,
+      "sha256": "942edf82f43d97e0b9448bd41e0de0914b1eaeeaf9346385f82e0df1d3a07007",
+      "summary": [
+        "  Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)",
+        "    finite_difference_force = -float((e_plus - e_minus) / (2 * step))",
+        "",
+        "-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html",
+        "327 passed, 1 warning, 68 subtests passed in 11.82s"
+      ]
+    },
+    "unittest.log": {
+      "bytes": 155,
+      "sha256": "a00a4d6b29bce37e697b5d8d797d3a2b3a37b6557fc034e3ef8e81e2f24e8d09",
+      "summary": [
+        "........................................................",
+        "----------------------------------------------------------------------",
+        "Ran 56 tests in 0.396s",
+        "",
+        "OK"
+      ]
+    }
+  },
+  "measured_cpu_seconds": null,
+  "measurement_limits": "Test runner elapsed times only; no retrospective CPU/RSS or scheduler measurements invented.",
+  "new_model_generation_calls": 0,
+  "new_qc_calls": 0,
+  "new_training_steps": 0,
+  "packages": {
+    "ase": "3.29.0",
+    "numpy": "2.2.6",
+    "pytest": "9.1.1",
+    "rdkit": "2024.3.3",
+    "scipy": "1.15.3",
+    "tblite": "0.7.0",
+    "torch": "2.10.0+cu128"
+  },
+  "python": "3.10.19",
+  "schema": "xtbflow-narrowed-software-validation/v1",
+  "software_only": true,
+  "source_clean": true,
+  "source_commit": "afcac51fe3473ae875811494bdec138160612a28",
+  "stage": "s2_identity"
+}

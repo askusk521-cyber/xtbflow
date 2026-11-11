@@ -1,0 +1,57 @@
+{
+  "schema": "xtbflow-evidence/guidance-adapter-boundary-n2/v1",
+  "status": "completed",
+  "binding": "validated_at_parent_commit",
+  "work_item": "#166 PR A adapter boundary",
+  "validated_commit": "5e56299215a15b9c050cfa7b1c2050e94d406164",
+  "source_branch": "codex/issue166-adapter-boundary-20261110",
+  "execution_host": "node2",
+  "execution_root": "~/xtbflow/xtbflow-exec-issue166-adapter-20261110-5e56299",
+  "environment": {
+    "conda": "xtbflow",
+    "python": "3.10.19",
+    "pytorch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "gpu_calls": 0,
+    "real_calculator_calls": 0,
+    "training": false
+  },
+  "commands": [
+    "python -m compileall -q src scripts tests",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q tests/test_guidance_adapters.py tests/test_parallel_guidance.py tests/test_parallel_guidance_replay.py",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m unittest discover -s tests/reusable -p 'test_*.py'",
+    "python scripts/validate_bootstrap.py",
+    "git diff --check"
+  ],
+  "results": {
+    "focused_pytest_passed": 20,
+    "pytest_passed": 291,
+    "pytest_subtests_passed": 68,
+    "reusable_unittest_passed": 56,
+    "bootstrap_inventory_files_verified": 345,
+    "diff_check": "pass",
+    "adapter_contracts": [
+      "strict lowercase hexadecimal SHA-256 identities",
+      "reserve before invoke",
+      "measured-cost reconciliation",
+      "duplicate request de-duplication",
+      "budget reservation exhaustion",
+      "timeout and provider failure-stage mapping",
+      "physical geometry lane mock",
+      "policy event lane mock",
+      "recursive target-free request firewall"
+    ],
+    "warnings": [
+      "one pre-existing tensor-to-scalar warning in tests/test_energy_forces.py"
+    ]
+  },
+  "claim_limits": [
+    "This validates only the provider boundary, strict identity, reservation/reconciliation, immutable output, and failure accounting contracts.",
+    "The physical and policy providers are deterministic mocks; no physical or chemical result is supported.",
+    "Real #136 and #139 adapters remain follow-up work."
+  ],
+  "unfinished": [
+    "No live calculator, policy loop, or matched certification comparison is included."
+  ]
+}

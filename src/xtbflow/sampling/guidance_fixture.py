@@ -92,4 +92,3 @@ def run_fixture(out: Path, mode: str) -> dict:
         raise FileExistsError(target)
     write_json(target, report)
     return report
-

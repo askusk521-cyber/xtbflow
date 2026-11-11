@@ -2024,8 +2024,8 @@
     },
     {
       "path": "src/xtbflow/sampling/guidance_fixture.py",
-      "sha256": "6c567bfc5a323b45a8bb8ec566a560a87858e21750917c3241614e01d2652582",
-      "bytes": 4988
+      "sha256": "15a05478913e8b65e17fc499387a81a736a9c93f9b35015cdd9cc36cc4755083",
+      "bytes": 4987
     },
     {
       "path": "src/xtbflow/sampling/integrated_guidance.py",

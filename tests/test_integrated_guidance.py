@@ -7,9 +7,7 @@ import torch
 
 from xtbflow.sampling.integrated_guidance import guided_step, require_settled
 
-spec = importlib.util.spec_from_file_location("integrated_fixture", Path(__file__).parents[1]/"scripts/check_integrated_guidance.py")
-fixture = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(fixture)
+from xtbflow.sampling import guidance_fixture as fixture
 
 
 def test_installed_guide_zero_and_actual_next_forward_order():

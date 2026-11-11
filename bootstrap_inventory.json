@@ -1604,8 +1604,8 @@
     },
     {
       "path": "scripts/check_integrated_guidance.py",
-      "sha256": "bf730ea78ada5186e8ffc90d8d5e3446b7604254f556194a4465adeb903e0978",
-      "bytes": 5459
+      "sha256": "e911448a2291e2f422431e20be20ac2c25f94e0dea5df0dd43ec27bb76947ce3",
+      "bytes": 679
     },
     {
       "path": "scripts/check_narrowed_guidance_entry.py",
@@ -2023,6 +2023,11 @@
       "bytes": 1273
     },
     {
+      "path": "src/xtbflow/sampling/guidance_fixture.py",
+      "sha256": "6c567bfc5a323b45a8bb8ec566a560a87858e21750917c3241614e01d2652582",
+      "bytes": 4988
+    },
+    {
       "path": "src/xtbflow/sampling/integrated_guidance.py",
       "sha256": "14a5fa90972dcb7961aff04bb76c3e00556b79348d3c22c6051584165b04c25f",
       "bytes": 4781
@@ -2269,8 +2274,8 @@
     },
     {
       "path": "tests/test_integrated_guidance.py",
-      "sha256": "35907c82433939cf4cfcefb10552f164a85a9f3c497104cd03ef01a44b560a36",
-      "bytes": 3504
+      "sha256": "a018285307839271344338cab7da095364ced835c0ed43b38642bf0bd1e16410",
+      "bytes": 3346
     },
     {
       "path": "tests/test_joint_flow.py",

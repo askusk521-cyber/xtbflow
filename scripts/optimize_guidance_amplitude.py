@@ -75,7 +75,7 @@ def run(args):
                 return evaluate_physical(y,query.atomic_numbers,spec,meter,label)
             before=meter.summary()['counts']
             state,result=bounded_backtrack(model,query,injection,cache['reflected'],cache['directions'].get('G',{}),
-                                           previous['directions']['G'],physical,context=f'k{k}')
+                                           previous['directions']['G'],physical,context=f'k{k}',audit=row)
             row.update(result,source_cache_sha256=previous['cache_sha256'])
             after=meter.summary()['counts']
             row['new_work']={name:after[name]-before[name] for name in before}
@@ -88,8 +88,10 @@ def run(args):
         report.update(status='failed_or_blocked',failure_type=type(exc).__name__,
                       failure=str(exc) if not isinstance(exc,OSError) else 'asset_or_report_io_failure')
         for row in report['states']:
-            if row['status'] in ('started','not_run'):
+            if row['status'] in ('started','not_run','executing'):
                 row['reason']='stage_stopped:'+type(exc).__name__
+                if row['status']!='not_run':
+                    row['status']='failed_after_started_work'
     work=meter.summary()
     report['work']={k:v for k,v in work.items() if k!='rows'}
     report['work']['attempts']=[{k:v for k,v in r.items() if k!='worker'} for r in work['rows']]

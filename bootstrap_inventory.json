@@ -1689,8 +1689,8 @@
     },
     {
       "path": "scripts/optimize_guidance_amplitude.py",
-      "sha256": "05691ccb78039bfe2dded9800e6986b8ed3539a422fd721d5497e23464e8ddf1",
-      "bytes": 6374
+      "sha256": "efcec709fc6fa1bb33682ee8d0ade34f9d4d0f5a9b73f7ce041cde585c56f5d3",
+      "bytes": 6503
     },
     {
       "path": "scripts/portal_hooks.py",
@@ -2069,8 +2069,8 @@
     },
     {
       "path": "src/xtbflow/sampling/amplitude_backtracking.py",
-      "sha256": "8029ebcb0cad4eb3ea54aea2369fe10fdf98486f3c60a5ee0bf272f5e4349b69",
-      "bytes": 4417
+      "sha256": "31b6174bedca0caa9216beb64e1414b0e701d3e9bf7fa8a153c65762bc24b7cf",
+      "bytes": 4737
     },
     {
       "path": "src/xtbflow/sampling/guidance.py",
@@ -2234,8 +2234,8 @@
     },
     {
       "path": "tests/test_amplitude_backtracking.py",
-      "sha256": "21b740ee721a5a85b135901b84b08c9bcfebd11e654e2b8f19e99114fcd50f9a",
-      "bytes": 3579
+      "sha256": "40b3ef029eacc56605dba62f8d9a8b58b97d00879edc89bfe8ba19f636dc1d57",
+      "bytes": 4289
     },
     {
       "path": "tests/test_architecture_contract.py",

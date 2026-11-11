@@ -57,6 +57,19 @@ def test_unknown_cost_stops_before_any_trial_and_is_not_a_zero_cost_rejection():
     assert len(net.calls)==before
 
 
+def test_unknown_second_trial_retains_completed_first_trial_and_started_work():
+    q,net,item,g,derivative,qualified=prepared();audit={};calls=[]
+    def physics(y,label):
+        calls.append(label)
+        if len(calls)==3:raise RuntimeError('unsettled_cost')
+        return dict(status='completed',force=(g[0]*(1 if len(calls)==1 else 1.1)).tolist())
+    with pytest.raises(RuntimeError,match='unsettled_cost'):
+        bounded_backtrack(net,q,item,g,derivative,qualified,physics,context='fixture',audit=audit)
+    assert len(audit['trials'])==2 and not audit['trials'][0]['accepted']
+    assert audit['trials'][1]['model_status']=='completed'
+    assert audit['trials'][1]['physical_status']=='started'
+
+
 def test_failed_trial_is_preserved_with_no_substitute_or_extra_lambda():
     q,net,item,g,derivative,qualified=prepared();calls=[]
     def physics(y,label):

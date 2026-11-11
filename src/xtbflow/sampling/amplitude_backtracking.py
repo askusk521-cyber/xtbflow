@@ -28,7 +28,8 @@ def residual(force, mask):
 
 
 def bounded_backtrack(model, query, injection: Injection, reflected, derivative: dict,
-                      qualification: dict, physical: Callable, *, context: str) -> tuple[object,dict]:
+                      qualification: dict, physical: Callable, *, context: str,
+                      audit: dict | None = None) -> tuple[object,dict]:
     """Freeze direction, event, clocks and base; return a state with selected push or no push.
 
     physical(Y, label) returns a settled finite E/F receipt or an explicit
@@ -36,33 +37,36 @@ def bounded_backtrack(model, query, injection: Injection, reflected, derivative:
     Cached JVP is per unit flattened L2; its scaling uses the actual delta.
     """
     zero=torch.zeros_like(injection.base.x)
-    report=dict(status='no_push',selected_lambda=None,trials=[],alpha_cap=ALPHA_CAP,
-                lambdas=list(LAMBDAS),actual_displacement=displacement_metrics(zero,query.atom_mask))
+    report={} if audit is None else audit
+    report.update(status='executing',selected_lambda=None,trials=[],alpha_cap=ALPHA_CAP,
+                  lambdas=list(LAMBDAS),actual_displacement=displacement_metrics(zero,query.atom_mask))
     if (not qualification.get('qualified') or not qualification.get('endpoint_response_resolved') or
             qualification.get('endpoint_projection',0)<=0 or float(reflected.norm())<=FORCE_FLOOR):
-        report['reason']='amplitude_only_repair_not_supported'
+        report.update(status='no_push',reason='amplitude_only_repair_not_supported')
         return injection.base,report
     d=reflected/rms_atom(reflected,query.atom_mask)[:,None,None]
     delta0,actual=geometry_step(d,query.atom_mask,ALPHA_CAP*injection.dt_x)
     y0=derivative['y0'];vb0=derivative['vb0'];jx=derivative['jx']
     report['nominal_displacement']=displacement_metrics(delta0,query.atom_mask)
+    report['baseline_status']='started'
     baseline=physical(y0,context+':unperturbed_next_endpoint')
     report['baseline_status']=baseline['status']
     if baseline['status']!='completed':
-        report['reason']='baseline_physical_unavailable'
+        report.update(status='no_push',reason='baseline_physical_unavailable')
         return injection.base,report
     phi0=residual(torch.as_tensor(baseline['force'],dtype=y0.dtype)[None],query.atom_mask)
     report['baseline_phi']=phi0
     for scale in LAMBDAS:
         delta=delta0*scale
+        row=dict(lambda_value=scale,physical_status='not_run',model_status='started',
+                 displacement=displacement_metrics(delta,query.atom_mask),accepted=False)
+        report['trials'].append(row)
         with torch.no_grad():
             trial_state=apply_update(injection,query,delta)
             y,vb,_=model_values(model,query,trial_state)
+        row.update(model_status='completed',physical_status='started',next_event_velocity_delta_l2=float((vb-vb0).norm()))
         receipt=physical(y,context+f':lambda={scale}')
-        row=dict(lambda_value=scale,physical_status=receipt['status'],
-                 displacement=displacement_metrics(delta,query.atom_mask),
-                 next_event_velocity_delta_l2=float((vb-vb0).norm()),accepted=False)
-        report['trials'].append(row)
+        row['physical_status']=receipt['status']
         if receipt['status']!='completed':
             row['reason']='trial_physical_unavailable'
             continue
@@ -80,5 +84,5 @@ def bounded_backtrack(model, query, injection: Injection, reflected, derivative:
             report.update(status='accepted',selected_lambda=scale,accepted_phi=phi,
                           actual_displacement=row['displacement'],reason='first_acceptable_trial')
             return trial_state,report
-    report['reason']='no_trial_satisfies_registered_rule'
+    report.update(status='no_push',reason='no_trial_satisfies_registered_rule')
     return injection.base,report

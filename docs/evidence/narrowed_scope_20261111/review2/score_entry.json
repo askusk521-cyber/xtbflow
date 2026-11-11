@@ -1,0 +1,61 @@
+{
+  "caps": {
+    "concurrency": 1,
+    "cpu_seconds": 60,
+    "output_bytes": 4194304,
+    "retries": 0,
+    "synthetic_forwards": 16,
+    "wall_seconds": 60
+  },
+  "checks": {
+    "entry": "v1.sampler.rollout -> score_direction -> Guide.components",
+    "positive_control": {
+      "aggregate_backwards": 2,
+      "declared_member_backwards": 6.0,
+      "declared_member_forwards": 6.0,
+      "guide_calls": 2
+    },
+    "positive_failing_guide_reached": true,
+    "synthetic_forwards": 9,
+    "zero_strength": [
+      {
+        "extra_charged_work": 0,
+        "failing_guide": false,
+        "guide_backwards": 0,
+        "guide_calls": 0,
+        "synthetic_forwards": 2,
+        "trajectory_bitwise_equal": true
+      },
+      {
+        "extra_charged_work": 0,
+        "failing_guide": true,
+        "guide_backwards": 0,
+        "guide_calls": 0,
+        "synthetic_forwards": 2,
+        "trajectory_bitwise_equal": true
+      }
+    ]
+  },
+  "claim_limits": [
+    "Synthetic network and nonempty guides exercise real pinned code entries; no chemical/physical efficacy.",
+    "This adds boundary coverage; the previous 90 trained forwards and derivative evidence are unchanged."
+  ],
+  "cpu_seconds": 1.0867857090000002,
+  "driver_sha256": "9ad49316628f47ecd9e8ecfa366d7468c23019324f266cc536a55667c04a63af",
+  "gpu_seconds": 0,
+  "host": "node2",
+  "new_qc_calls": 0,
+  "new_trained_model_forwards": 0,
+  "python": "3.10.19",
+  "research_commit": "e84e330390a519bf4ac12048b297403c09717646",
+  "schema": "xtbflow-guidance-entry-check/v1",
+  "source_commit": "fbe0ad1b4d34ed1bea675fa1150735a4e5661d35",
+  "source_file_sha256": {
+    "src/xtbflow/v1/clocks.py": "1b2e48df971d68033c671b395fb8bffb64aaf85deb4e904818432a4482e9fea1",
+    "src/xtbflow/v1/guidance.py": "fd32541a895a75c5fbbc8c224ef365b378a78d65e1aa28b7a049d7c960f0a68c",
+    "src/xtbflow/v1/sampler.py": "97c8eb5955b78fbcc4b12c8da152cd4fbac67c57df93f73eee13bf68013f83b5"
+  },
+  "status": "passed",
+  "training_steps": 0,
+  "wall_seconds": 1.1134034139104187
+}

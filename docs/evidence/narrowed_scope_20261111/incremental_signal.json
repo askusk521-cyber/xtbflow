@@ -1,0 +1,318 @@
+{
+  "caps": {
+    "concurrency": 1,
+    "cpu_seconds": 600,
+    "gpu_seconds": 0,
+    "max_input_bytes": 268435456,
+    "max_output_bytes": 16777216,
+    "model_forwards": 0,
+    "reference_calls": 0,
+    "retries": 0,
+    "training_steps": 0,
+    "wall_seconds": 600,
+    "xtb_calls": 0
+  },
+  "claim_limits": [
+    "Existing exposed frozen-head/trajectory outputs only; no new causal sample.",
+    "True TS geometry and eventual event labels are retrospective, not legal online inputs.",
+    "Information, numerical coupling and connected-channel efficacy are different endpoints."
+  ],
+  "conditional_shuffle": "not_validated; no exchangeability/support proof, not executed",
+  "config_sha256": "e712ee18b7858548afc16d66171bdc0028f4938068e8fa2a96c5b93df4280904",
+  "cpu_seconds": 0.796641033,
+  "decision": "inconclusive_for_declared_strict_channel_endpoint",
+  "driver_sha256": "7c90df30a64a0358701558366b7cc3a61d0756dd254084e93f3232b747bf47e1",
+  "figure_sha256": "dacdaac7f71c71003be716214957738e0cca3ae72753f4f79f69264a938b85a5",
+  "gpu_seconds": 0,
+  "host": "node2",
+  "independent_confirmation_available": false,
+  "input_sha256": {
+    "heads": "34c49edbaba62458157b7864c6cb89e1f40c6af8f4596a72a518f4da57f85c7d",
+    "trajectories": "bb104be033abd8627eae1fb2a57338287557ecd3708ccb7b10fd8d48e073fee4"
+  },
+  "new_calculator_calls": 0,
+  "new_model_forwards": 0,
+  "python": "3.10.19",
+  "reaggregation": {
+    "catalogue_labelled_rows": 2336,
+    "final_status": {
+      "INVALID_OUTPUT": 1016,
+      "KNOWN_EVENT_GEOMETRY_MISS": 876,
+      "OUTSIDE_CATALOGUE_EVENT": 2600,
+      "PROXY_MATCH": 1460
+    },
+    "head_comparisons": {
+      "G_clean-N_clean": {
+        "ci_two95": [
+          -0.11096316500557121,
+          0.1652490801623542
+        ],
+        "estimate": 0.0271429575783915,
+        "n_formula_groups": 21,
+        "n_parents": 62
+      },
+      "X_frozen-E_frozen": {
+        "ci_two95": [
+          -0.026558386840767792,
+          0.21744957395186898
+        ],
+        "estimate": 0.09544559355555059,
+        "n_formula_groups": 21,
+        "n_parents": 62
+      }
+    },
+    "head_parents": 62,
+    "head_predictors": {
+      "E_frozen": {
+        "ci_two95": [
+          0.4672708346553456,
+          0.7484458448833653
+        ],
+        "estimate": 0.6078583397693554,
+        "n_formula_groups": 21,
+        "n_parents": 62
+      },
+      "G_clean": {
+        "ci_two95": [
+          0.6257913243802652,
+          0.8147178144385715
+        ],
+        "estimate": 0.7202545694094183,
+        "n_formula_groups": 21,
+        "n_parents": 62
+      },
+      "N_clean": {
+        "ci_two95": [
+          0.5825621591985592,
+          0.8036610644634938
+        ],
+        "estimate": 0.6931116118310265,
+        "n_formula_groups": 21,
+        "n_parents": 62
+      },
+      "X_frozen": {
+        "ci_two95": [
+          0.6147931623048544,
+          0.7918147043449577
+        ],
+        "estimate": 0.703303933324906,
+        "n_formula_groups": 21,
+        "n_parents": 62
+      }
+    },
+    "head_records": 558,
+    "invalid_final": 1016,
+    "median_commit_time": 0.5,
+    "offline_uncommitted_by_time": [
+      0.998581847649919,
+      0.9933144246353323,
+      0.9657617504051864,
+      0.8687196110210696,
+      0.6801053484602917,
+      0.46312803889789306,
+      0.2726904376012966,
+      0.1454619124797407,
+      0.0796191247974068,
+      0.031604538087520256,
+      0.0
+    ],
+    "offline_uncommitted_fraction": 0.1454619124797407,
+    "out_of_catalogue_or_invalid": 3616,
+    "physical_status_by_time": [
+      {
+        "collapsed": 354,
+        "ok": 5598
+      },
+      {
+        "collapsed": 403,
+        "ok": 5549
+      },
+      {
+        "collapsed": 384,
+        "ok": 5568
+      },
+      {
+        "collapsed": 289,
+        "ok": 5663
+      },
+      {
+        "collapsed": 183,
+        "ok": 5769
+      },
+      {
+        "collapsed": 89,
+        "ok": 5862,
+        "scf_failed:TBLiteRuntimeError": 1
+      },
+      {
+        "collapsed": 39,
+        "ok": 5913
+      },
+      {
+        "collapsed": 15,
+        "ok": 5937
+      },
+      {
+        "collapsed": 7,
+        "ok": 5945
+      },
+      {
+        "collapsed": 4,
+        "ok": 5948
+      },
+      {
+        "collapsed": 5,
+        "ok": 5947
+      }
+    ],
+    "t_geo": 0.7000000000000001,
+    "total_trajectories": 5952,
+    "valid_final": 4936,
+    "xtb_curve": [
+      {
+        "ci_two95": [
+          -0.07230457063380745,
+          0.041390391378277616
+        ],
+        "eligible_rows": 2174,
+        "estimate": -0.015457089627764913,
+        "n_formula_groups": 20,
+        "n_parents": 61,
+        "time": 0.0
+      },
+      {
+        "ci_two95": [
+          -0.094319801970876,
+          0.07668425957163988
+        ],
+        "eligible_rows": 2163,
+        "estimate": -0.008817771199618053,
+        "n_formula_groups": 20,
+        "n_parents": 61,
+        "time": 0.1
+      },
+      {
+        "ci_two95": [
+          -0.1031267056950639,
+          0.06452381238586387
+        ],
+        "eligible_rows": 2179,
+        "estimate": -0.01930144665460001,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "time": 0.2
+      },
+      {
+        "ci_two95": [
+          -0.10210958880725071,
+          0.05264589555386171
+        ],
+        "eligible_rows": 2204,
+        "estimate": -0.024731846626694497,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "time": 0.30000000000000004
+      },
+      {
+        "ci_two95": [
+          -0.057339882527529015,
+          0.12082268702639733
+        ],
+        "eligible_rows": 2255,
+        "estimate": 0.031741402249434156,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "time": 0.4
+      },
+      {
+        "ci_two95": [
+          0.014016323143071885,
+          0.2161364652735015
+        ],
+        "eligible_rows": 2298,
+        "estimate": 0.11507639420828669,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "time": 0.5
+      },
+      {
+        "ci_two95": [
+          0.11010756286041914,
+          0.3315832647813075
+        ],
+        "eligible_rows": 2328,
+        "estimate": 0.22084541382086334,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "time": 0.6000000000000001
+      },
+      {
+        "ci_two95": [
+          0.2171935684333274,
+          0.4430340813237932
+        ],
+        "eligible_rows": 2333,
+        "estimate": 0.3301138248785603,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "time": 0.7000000000000001
+      },
+      {
+        "ci_two95": [
+          0.3261818798914375,
+          0.5534889150888654
+        ],
+        "eligible_rows": 2335,
+        "estimate": 0.43983539749015144,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "time": 0.8
+      },
+      {
+        "ci_two95": [
+          0.38152737298773637,
+          0.6141467200534878
+        ],
+        "eligible_rows": 2336,
+        "estimate": 0.49783704652061206,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "time": 0.9
+      },
+      {
+        "ci_two95": [
+          0.39364903269599527,
+          0.6299907520070923
+        ],
+        "eligible_rows": 2336,
+        "estimate": 0.5118198923515438,
+        "n_formula_groups": 21,
+        "n_parents": 62,
+        "time": 1.0
+      }
+    ]
+  },
+  "reasons": [
+    "Retained matched-head ranking uncertainty includes both adverse and useful effects.",
+    "Catalogue CI-NEB targets and offline eventual-event conditioning do not measure strict connected-channel benefit.",
+    "S1 diagnostic directions are not physical observations; local response is not final decoded-event/endpoint improvement.",
+    "No matched frozen predictors for the selected Diels-Alder task, valid conditional shuffle, strong adaptive serial or eligible untouched confirmation pool.",
+    "Source endpoint preparation/environment and historical model overlap remain development limitations."
+  ],
+  "s5_launch": false,
+  "schema": "xtbflow-narrowed-incremental-signal/v1",
+  "source_commit": "d18de80bd6f22c3649a7772ee8505a0c77f16ac2",
+  "status": "completed",
+  "strict_channel_effect": {
+    "confidence_interval": null,
+    "estimate": null,
+    "logical_probability_difference_bounds": [
+      -1,
+      1
+    ],
+    "practical_effect_excluded": false,
+    "practical_threshold": 0.1
+  },
+  "training_steps": 0,
+  "wall_seconds": 0.8553151041269302
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "xtbflow-generated-certification/v1",
+  "input_kind": "immutable_live_feedback_snapshots",
+  "selection": "The no_feedback and physical_feedback final snapshots from the same frozen parent/seed, in that order, with no reference-outcome selection.",
+  "protocol_version": "xtbflow-reference-certification/1",
+  "candidate_contract": "mapped-candidate-optional-proposal/v2",
+  "max_candidates": 2,
+  "live_source": {
+    "source_commit": "a8e4a88069ba363f8e76f8378a58795800718648",
+    "manifest_sha256": "4f0393bbf88f3805bfb480531dbc2a43c046a5eca9e3c282fae2fbb493518de7",
+    "config_sha256": "6aa438af414600d97997a7c823bda0a803a90de90d9a5a1536d4e7b5c769641f",
+    "context_sha256": "1f6685075ddd3f0bd2c1d33ade912656d0cbac2586500aea143d47210e269bea",
+    "parent_id": "reactant-da-r0-approach-v1",
+    "seed": 20261111
+  },
+  "context_preparation_source": "cae68937c00a6bf6061b44a2cc977d6fe66a60c9",
+  "stage_budget": {
+    "phase": "live-feedback-independent-reference-20261110",
+    "max_gpu_hours": 2.0,
+    "max_cpu_core_hours": 16.0,
+    "max_system_evaluations": 2,
+    "max_calculator_calls": 6000,
+    "max_storage_gb": 1.0,
+    "max_concurrent_jobs": 1,
+    "max_retries_per_job": 0,
+    "max_wall_minutes_per_job": 120
+  },
+  "per_candidate": {
+    "max_calls": 3000,
+    "max_wall_seconds": 3300,
+    "cpu_cores": 8,
+    "max_raw_bytes": 134217728
+  },
+  "scheduler": {
+    "partition": "main",
+    "gres": "gpu:pro6000:1",
+    "cpus_per_task": 8,
+    "memory_gb": 64,
+    "wall_minutes": 120
+  },
+  "budget_rationale": "A separate reference budget, frozen before execution. Existing #137 regression chains consumed 202 and 290 SCF/gradient/Hessian primitives and approximately 1078 and 1463 seconds. Reuse its bounded 16-atom generated-candidate envelope: two serial 3300-second/3000-primitive attempts, with five-second recovery allowance each. Together these fit 2 GPU-hours, 16 CPU-core-hours and 1 GiB. No cap extension, automatic retry, training, additional parent or fixture search is authorized. Earlier xTB feedback and proxy costs remain recorded separately and are not erased.",
+  "claim_limits": [
+    "This is a one-parent, one-seed development integration test, not an independent benchmark, method comparison or discovery-rate estimate.",
+    "The original source is a declared reactant endpoint; atom-map/graph auditing does not make it an independently prepared blind reactant.",
+    "Gas phase is the explicit modeling environment of the frozen live input, not a claim about the source geometry environment.",
+    "Guidance scores have no mapped chemical-event decoder. The planned product is null, and planned-event ID/realization remain null.",
+    "Only the unchanged independent reference chain can establish a channel; same endpoints, unresolved results, failures and exhausted budgets stay in the denominator and charged costs.",
+    "Raw coordinates, Hessians, paths and graph records remain on n2. Public reports retain hashes, outcomes, provenance, measured costs and replay checks. No TS discovery, barrier, mechanism, chemical-accuracy or model-superiority claim is made."
+  ]
+}

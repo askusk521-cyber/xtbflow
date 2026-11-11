@@ -1,0 +1,683 @@
+{
+  "schema": "xtbflow-narrowed-assets/v1",
+  "observed_on": "2026-11-11",
+  "remote_heads_sha256": "051ef703bb91c26edd1e37283fd67b81fb33d81fcf85544796fcd7a04568bd94",
+  "remote_head_count": 87,
+  "remote_heads": [
+    {
+      "branch": "agent/76-reaction-qm-task-funnel",
+      "commit": "095d4505bfc6ac9975a73e00c9f7b6410dae6067",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/c2-kingfisher-preflight-20260930",
+      "commit": "5638ace2993efa8d8d56a129cbf5bea979fd677c",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/c2-n2-runtime-evidence-20260930",
+      "commit": "4f0ac1a4e2ba2850992ce1caf3c7813f05c23088",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/c2-reference-bridge-20260930",
+      "commit": "5fd3da1c5e23d44a29d0456198924f57cf064cf9",
+      "group": "reference_certification"
+    },
+    {
+      "branch": "codex/cloud-task-routing-20261002",
+      "commit": "6ddefe20f9d5f6579c10bfb96a13f269b9a8917c",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/code-optimization-20261108",
+      "commit": "299ee0854e569be1fdf7e2f66d59f713295644f4",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/data-admission-contract-20261002",
+      "commit": "104e5fa6b268deed954c75e3ca4f8493188ed8ed",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/docs-final-agents-20261108",
+      "commit": "e94b466fb0c200154e94b44310cbc693a980996a",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/docs-live-generation-evidence-20261108",
+      "commit": "5f5304bcded99f2711ce21a090392cc2d6db8973",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/docs-parallel-reaction-data-prompt-20260930",
+      "commit": "43131c346bd22afce412b5f70c6a22c6f26e4d10",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/docs-research-playbook-20261108",
+      "commit": "219d5edbf8be276871da6aa8e4679db849945718",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/generation-eval-20260930",
+      "commit": "efcee26a13b0d9da3bd6716f8cd37f618b21adc1",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/handoff-freeze-validator-20261002",
+      "commit": "e6ca5d776a4c92d9060d51f21c1d0d1afab576b5",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/issue-3-package-ci",
+      "commit": "a2f0a1d24b9fcb8ad67e52a6900ad42a5e191c92",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/issue140-scheduler-20261108",
+      "commit": "cf743fd70fe57517e162426b9943a6341288e925",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/issue141-campaign-20261108",
+      "commit": "3efc9f3131dea2ca508afe552222786d3dde6b3d",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/issue142-network-20261108",
+      "commit": "c7b602e1777f2c9ddf1329dbe6f2cd025c6b4f51",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/issue166-adapter-boundary-20261110",
+      "commit": "6e9ffc56eda9f17bc175bb6c0774622ec2289f00",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/issue166-guidance-contract-20261108",
+      "commit": "f6b9ee9f4192b519ca0d1430744c1579198bcdce",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/issue166-live-pvo-20261110",
+      "commit": "d1c7badeb805f115e6bf7d2b60c644fb7a727572",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/issue166-matched-integration-20261110",
+      "commit": "4688bdead7c99f81731e01bcd76c11ad9e39b8ed",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/issue166-offline-replay-20261109",
+      "commit": "636589de40dba9eff8c78832587759e274026763",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/issue166-physical-adapter-20261110",
+      "commit": "379dddcc6c520ead09fba30df8345ef8e7a5ddab",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/issue166-policy-adapter-20261110",
+      "commit": "c7dd101407bacc862c6b63d45a32855ee53bc80c",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/issue166-pvo-summary-fix-20261110",
+      "commit": "a93eeb4b30301f7792f1952c947e30b0a9d837e6",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/issue166-qualified-pvo-20261110",
+      "commit": "bf2821581b408c10ec972d7a85add57121688411",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/issue77-models-manual",
+      "commit": "62afba83b5470de61c25e55e28e808e4f04c9639",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/mvp-20261109",
+      "commit": "073947a8626ea17a12f4565d0ae0bb45bc1b45df",
+      "group": "mvp_release"
+    },
+    {
+      "branch": "codex/mvp-inventory-repair-20261109",
+      "commit": "6b38af8bc4cf3659a82ac95dd114a02fd2ce2dcf",
+      "group": "mvp_release"
+    },
+    {
+      "branch": "codex/mvp-only-20261109",
+      "commit": "b097e4830bfd8ccef8634fdf35dafeadc5c0f056",
+      "group": "mvp_release"
+    },
+    {
+      "branch": "codex/paired-pilot-real-20261002",
+      "commit": "9eef68ac454da4ae22819076cdcd84fbbd567203",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/pr156-data-schema-audit-fix-20261108",
+      "commit": "82e87442564cd27df263b0496ccf69bfc0f385b8",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/pr156-docs-evidence-fix-20261108",
+      "commit": "63ad6be2386c820e3ba47aa730b2aac9cd4649ac",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/pr156-generation-scoring-fix-20261108",
+      "commit": "f32fe58345500801e83508846b9d36b4651deb1b",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/pr156-model-projector-fix-20261108",
+      "commit": "89f0e36c98b3cc46edde02958c2e048be2f26115",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/pr156-rebased-head-20261108",
+      "commit": "7a95431fb1de90b8073068d267fc3fdb14b61f44",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/pr157-claim-evidence-fix-20261108",
+      "commit": "aac8f8d60e7525fe172a087614ca842a19e46e76",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/real-da-training-20260930",
+      "commit": "3174085dc084fa5c5fe3ad9fc3fbc0bbcd583796",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/real-physical-feedback-20261110",
+      "commit": "8628b0843ea492a592b10eb2165a8c40880688a2",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/reference-optional-proposal-20261110",
+      "commit": "721a9f2075dcc9abba819ecb91c34e256b75c44a",
+      "group": "reference_certification"
+    },
+    {
+      "branch": "codex/run-status-retry-20261108",
+      "commit": "eab684c71709bacd8c3942c9eb6e02a4ea2ee3cb",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/track-b-real-development",
+      "commit": "3a5f10a3b355998bf115d01a6e7fbcaa14680f9b",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/ts-irc-backend-20261110",
+      "commit": "5ccba76e668047607d24480a3f8392cd296b1874",
+      "group": "reference_certification"
+    },
+    {
+      "branch": "codex/v1a-20261007",
+      "commit": "ce76584fde7af54297ea7902c96dc018d1c6ca2e",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "codex/v1b-20261007",
+      "commit": "5998dfd3e339623cb1599b862293ae8edbfe0ca1",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "codex/w13-claim-evidence-20261108",
+      "commit": "fe476a453867d0c0ca15395b8c60b375ed78dfe7",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/w131-asset-replay-20261107",
+      "commit": "314d4fb5895aaa851c68a95afbb31e80a6fbefbb",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/w131-generation-bridge-20261107",
+      "commit": "df21cfd4963e3e5380ef541690930a9974d85958",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/w132-task-views-20261107",
+      "commit": "69f52283f48934d598ef686fd22f08aa7ae4140b",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/w133-dual-clock-20261108",
+      "commit": "5544a4ae837b61cce1ef645704a36ea2c48e8f8c",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/w137-certification-service-20261107",
+      "commit": "4b4572c39c9e01865f615d799bceced7171ae461",
+      "group": "reference_certification"
+    },
+    {
+      "branch": "codex/w137-monitor-race-20261107",
+      "commit": "067b86dc330dd2ed8798f1d209938c8b268f810d",
+      "group": "reference_certification"
+    },
+    {
+      "branch": "codex/w138-comparison-accounting-20261107",
+      "commit": "5acca873494d3470fc5cea5c1d4d92eaf8e3b461",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/w139-feedback-loop-20261107",
+      "commit": "907da198388f6080cd01e469841bf479306253c8",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/w139-live-generation-20261107",
+      "commit": "ae47ed37c96997e5136e278ad39d511ca0083119",
+      "group": "modern_runtime"
+    },
+    {
+      "branch": "codex/workflow-a-track-b-20260929",
+      "commit": "be52a939637d3a90ec05405076e3b94a08e10e44",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/workflow-b-software-acceptance-20261002",
+      "commit": "d108e283658945c0aad3198a03b1b104a2c31eab",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "codex/workflow-c2-reference-validation-20260929",
+      "commit": "36a72b3c1ce6554a57a7a6086445008f60aeef04",
+      "group": "reference_certification"
+    },
+    {
+      "branch": "codex/workflow-d-research-validation-20260929",
+      "commit": "2baa5ce9dad0b8271abec7321e8a256acebe5d5e",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "docs/homepage-rewrite",
+      "commit": "b95f45b168c738f499892ed4961fae2eabc0bbd7",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "docs/project-site",
+      "commit": "041c08eabac503ad187848adcc7059a7e3e38f7f",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "docs/status-20261017",
+      "commit": "d919b26d434e06362f7274ee8d124a89331076d2",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "docs/status-20261019",
+      "commit": "b796b7a536a76c09e281dfc1339280f1ff34180e",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "docs/status-merged-note",
+      "commit": "4645c7100be9e5e0ca6615e87ba7dc75a639ed0d",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "explore/enum-thermo",
+      "commit": "b6db3df15eefd85a64eed329674a48d3ecba301e",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "explore/followup-base",
+      "commit": "d7a7b7b5931a9e64a3ea91e8918a87a979f37dfb",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "explore/geometry-information",
+      "commit": "e5ceb870d28d77ab1efaad4af5652ef4f4978738",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "explore/geometry-lead-clock",
+      "commit": "9cc15e03672264fddda0804bb8c2cb4eb31da8f0",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "explore/physics-guidance",
+      "commit": "ffca40f9dc9b8f72f67c695a7b99fa38e83794e3",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "explore/smc-oracle",
+      "commit": "dd55970b0dfb89a167c12f9588ca193c3f6966b8",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "explore/smc-raw-ranking",
+      "commit": "cc96b45664aa2657f159c15fad52023ac294ac62",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "explore/smc-selection",
+      "commit": "0517ff946fb319b4a815343ed574915cfd6f3c0c",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "explore/smc-strict-replication",
+      "commit": "50bcb7db0e6736ea667e4dbea8616b64655f8555",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "m0/task0-env",
+      "commit": "a803e78ee9d104a7535005032da983252fa7b073",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "m0/task1-data",
+      "commit": "abfdd73f0e2d0e645a6970809b286e8e18404794",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "m0/task2-model",
+      "commit": "bc969a2b46cb3313ada2f5db155a3ca217136542",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "m0/task3-train",
+      "commit": "350a5d49f2a996ce4e60fbf7007b52d5d52cbc1d",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "m0/task4-eval",
+      "commit": "fa12ce624969e6058b9b33d8168fdd32f136530d",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "main",
+      "commit": "ac36394571a48491cbbfe860653bc604532b0e88",
+      "group": "main"
+    },
+    {
+      "branch": "review/enum-baseline",
+      "commit": "3db499ca1ae956dc572ee87439fe654b0192d8f3",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "review/open-world-o1",
+      "commit": "419308bd580c73b201271604faf5fb4259af5a8d",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "review/open-world-o2",
+      "commit": "e84e330390a519bf4ac12048b297403c09717646",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "review/oracle-benchmark",
+      "commit": "98720d8e358904f72b76df0a40b81e969769cabd",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "site",
+      "commit": "b95f45b168c738f499892ed4961fae2eabc0bbd7",
+      "group": "archival_or_governance"
+    },
+    {
+      "branch": "v1a-n/nfe-control",
+      "commit": "d60088576f9939ae6fb43edd8110c5af3ab53d12",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "v1a-r/reanalysis",
+      "commit": "987a7d44f32519e3763527a881ddb9715d1fa10f",
+      "group": "trained_scientific"
+    },
+    {
+      "branch": "v1b/amend-v2.2",
+      "commit": "5305eac4fbc244a6f24a0d0b1d571847f3bc7b72",
+      "group": "trained_scientific"
+    }
+  ],
+  "assets": [
+    {
+      "commit": "e84e330390a519bf4ac12048b297403c09717646",
+      "path": "src/xtbflow/m0/model.py",
+      "sha256": "3e41529a9e0c65bb69a9526db1a443685bd45156588558c87276dbd6529d13a8",
+      "bytes": 4246,
+      "role": "trained_model_and_decoder"
+    },
+    {
+      "commit": "e84e330390a519bf4ac12048b297403c09717646",
+      "path": "src/xtbflow/m0/sampler.py",
+      "sha256": "d01f69766f6d4d5930f25e9bf6b7f8949957e0c38eb0150a7614530037af6874",
+      "bytes": 3611,
+      "role": "trained_model_and_decoder"
+    },
+    {
+      "commit": "e84e330390a519bf4ac12048b297403c09717646",
+      "path": "src/xtbflow/v1/interfaces.py",
+      "sha256": "eee219bb7e004f68e4052d9ef4fc7f159c147a22069a146eed800f728b39d498",
+      "bytes": 1611,
+      "role": "trained_model_and_decoder"
+    },
+    {
+      "commit": "e84e330390a519bf4ac12048b297403c09717646",
+      "path": "src/xtbflow/v1/sampler.py",
+      "sha256": "97c8eb5955b78fbcc4b12c8da152cd4fbac67c57df93f73eee13bf68013f83b5",
+      "bytes": 6009,
+      "role": "trained_model_and_decoder"
+    },
+    {
+      "commit": "e84e330390a519bf4ac12048b297403c09717646",
+      "path": "src/xtbflow/v1/clocks.py",
+      "sha256": "1b2e48df971d68033c671b395fb8bffb64aaf85deb4e904818432a4482e9fea1",
+      "bytes": 579,
+      "role": "trained_model_and_decoder"
+    },
+    {
+      "commit": "e5ceb870d28d77ab1efaad4af5652ef4f4978738",
+      "path": "docs/evidence/explore_geoinfo/REPORT_ZH.md",
+      "sha256": "263ea01d037cf001c279793b76f9dfd1a7ba24bd2e1bf2cd6f6f364da86f7934",
+      "bytes": 8913,
+      "role": "exposed_information_study"
+    },
+    {
+      "commit": "e5ceb870d28d77ab1efaad4af5652ef4f4978738",
+      "path": "docs/evidence/explore_geoinfo/results.json",
+      "sha256": "3194f5dfbd1fbf4a6d8e6f34890983230e8d1daf028ae2578272d565581fed28",
+      "bytes": 43624,
+      "role": "exposed_information_study"
+    },
+    {
+      "commit": "e5ceb870d28d77ab1efaad4af5652ef4f4978738",
+      "path": "docs/evidence/explore_geoinfo/check_a_rows.jsonl",
+      "sha256": "34c49edbaba62458157b7864c6cb89e1f40c6af8f4596a72a518f4da57f85c7d",
+      "bytes": 302048,
+      "role": "exposed_information_study"
+    },
+    {
+      "commit": "e5ceb870d28d77ab1efaad4af5652ef4f4978738",
+      "path": "docs/evidence/explore_geoinfo/SHA256SUMS",
+      "sha256": "bf42bec1503aff94ac8768f764b866516add2d4575e4fddeefe672dc3c2fa4c8",
+      "bytes": 673,
+      "role": "exposed_information_study"
+    },
+    {
+      "commit": "9cc15e03672264fddda0804bb8c2cb4eb31da8f0",
+      "path": "docs/evidence/explore_geolead/REPORT_ZH.md",
+      "sha256": "63ea588d6e8c4b8b7677e5b743bab9eb8c9a7bc5a6ffe2a718bea0fa3610c98d",
+      "bytes": 6600,
+      "role": "exposed_clock_study"
+    },
+    {
+      "commit": "9cc15e03672264fddda0804bb8c2cb4eb31da8f0",
+      "path": "docs/evidence/explore_geolead/geolead_results.json",
+      "sha256": "4a4543ba26138fdf5a323b5c91e42e9e454bb5b80757c5f5498a47c678970458",
+      "bytes": 34231,
+      "role": "exposed_clock_study"
+    },
+    {
+      "commit": "ffca40f9dc9b8f72f67c695a7b99fa38e83794e3",
+      "path": "src/xtbflow/v1/explore_rollout.py",
+      "sha256": "2519d397742c0a5a3ca021e2d4c28bc0e57aae0c369e78d1ed25e0abbe41c42b",
+      "bytes": 3660,
+      "role": "exposed_physical_study"
+    },
+    {
+      "commit": "ffca40f9dc9b8f72f67c695a7b99fa38e83794e3",
+      "path": "scripts/explore_geometry_information.py",
+      "sha256": "ee892e4eaccdf20a94be296dcc446ce3274f7306fe493b8e5c940260df6cc792",
+      "bytes": 43409,
+      "role": "exposed_physical_study"
+    },
+    {
+      "commit": "ffca40f9dc9b8f72f67c695a7b99fa38e83794e3",
+      "path": "docs/evidence/explore_physics/REPORT_ZH.md",
+      "sha256": "ec7d2fec110f1b50f19e75a72f6b6f1e7b09c8d335813a0ef5091319c746b3e8",
+      "bytes": 6127,
+      "role": "exposed_physical_study"
+    },
+    {
+      "commit": "ffca40f9dc9b8f72f67c695a7b99fa38e83794e3",
+      "path": "docs/evidence/explore_physics/pg1_results.json",
+      "sha256": "3085e6b1f458f9d994307f8fb61b42e372e1d2c01127a4a96d7d504030bd1fcf",
+      "bytes": 87567,
+      "role": "exposed_physical_study"
+    },
+    {
+      "commit": "d60088576f9939ae6fb43edd8110c5af3ab53d12",
+      "path": "docs/evidence/v1a_n/REPORT_ZH.md",
+      "sha256": "6917aa955429e5b127091ccc3666949ae04b059ef61ef8839cd843fc5ddc5f1b",
+      "bytes": 5145,
+      "role": "exposed_equal_nfe"
+    },
+    {
+      "commit": "d60088576f9939ae6fb43edd8110c5af3ab53d12",
+      "path": "docs/evidence/v1a_n/nfe_result.json",
+      "sha256": "a0c6ed11972b58a92ab507e060587877c9803b54e80230eed02da42125fe0e26",
+      "bytes": 20393,
+      "role": "exposed_equal_nfe"
+    },
+    {
+      "commit": "50bcb7db0e6736ea667e4dbea8616b64655f8555",
+      "path": "docs/evidence/explore_smc_strict/completed/REPORT_ZH.md",
+      "sha256": "a253a1303c2d001ee7bac94fab53bc438b6f660f5973f2cf1a058f2a2ce57a6c",
+      "bytes": 3147,
+      "role": "exposed_smc"
+    },
+    {
+      "commit": "50bcb7db0e6736ea667e4dbea8616b64655f8555",
+      "path": "docs/evidence/explore_smc_strict/completed/results.json",
+      "sha256": "ebe22593fa3cee2627df1b2fcb499869e62d806b030d102e3c5ba0ca5a94ec94",
+      "bytes": 912302,
+      "role": "exposed_smc"
+    },
+    {
+      "commit": "50bcb7db0e6736ea667e4dbea8616b64655f8555",
+      "path": "docs/evidence/explore_smc_strict/completed/strict_audit.json",
+      "sha256": "432e951c88c90cc08e790d418c1209cc1f536f19a1250cdaeba9cdf2c94743f6",
+      "bytes": 1917,
+      "role": "exposed_smc"
+    },
+    {
+      "commit": "bf2821581b408c10ec972d7a85add57121688411",
+      "path": "docs/evidence/qualified_baseline_confirmation_20261109.json",
+      "sha256": "06bd3edc83381ef3a1d0c43c090f3970cce543a40184cdb2baf83f2856dbd917",
+      "bytes": 61518,
+      "role": "exposed_nine_parent_force_diagnostic"
+    },
+    {
+      "commit": "bf2821581b408c10ec972d7a85add57121688411",
+      "path": "scripts/run_qualified_baseline_confirmation.py",
+      "sha256": "f974f8f809bf30c01b49b00791c1c228888dab5beeb822b942e70d88219cfbe2",
+      "bytes": 8287,
+      "role": "exposed_nine_parent_force_diagnostic"
+    },
+    {
+      "commit": "721a9f2075dcc9abba819ecb91c34e256b75c44a",
+      "path": "docs/LIVE_REFERENCE_EXECUTION_20261110.md",
+      "sha256": "8625ef02546a942835b2071c293a9e5f58caf5d2f382eae6ef930c5109cd56b7",
+      "bytes": 11387,
+      "role": "reference_or_bridge"
+    },
+    {
+      "commit": "721a9f2075dcc9abba819ecb91c34e256b75c44a",
+      "path": "scripts/audit_live_reference_cache.py",
+      "sha256": "c489dec0afe50ee58ed36de4654c7ba264743175d40277556b8682860c11089d",
+      "bytes": 9788,
+      "role": "reference_or_bridge"
+    },
+    {
+      "commit": "721a9f2075dcc9abba819ecb91c34e256b75c44a",
+      "path": "docs/evidence/live_reference_cache_audit_2772c7b_20261110.json",
+      "sha256": "509f34bb284a8447ccd3203a887c485496a1e163d0b59844352f0296b3d3bb38",
+      "bytes": 4610,
+      "role": "reference_or_bridge"
+    },
+    {
+      "commit": "721a9f2075dcc9abba819ecb91c34e256b75c44a",
+      "path": "docs/evidence/live_reference_execution_receipt_2772c7b_20261110.json",
+      "sha256": "0e17ace0cd9233cb3ae35ea02990d3e5b327196ed071482bc63ee625025cbd37",
+      "bytes": 11291,
+      "role": "reference_or_bridge"
+    },
+    {
+      "commit": "721a9f2075dcc9abba819ecb91c34e256b75c44a",
+      "path": "configs/research/generation_bridge_20261107.json",
+      "sha256": "50d7d9c80cb0dba82e4e797e5cc2456e0ca14c21646b37d5a3dc31c3eeeac11e",
+      "bytes": 2462,
+      "role": "reference_or_bridge"
+    },
+    {
+      "commit": "721a9f2075dcc9abba819ecb91c34e256b75c44a",
+      "path": "scripts/research_generation_worker.py",
+      "sha256": "408c36fa1adfb01790039ea8712ff86f37cdeda277a35843f6cf3db1f9413206",
+      "bytes": 12107,
+      "role": "reference_or_bridge"
+    },
+    {
+      "commit": "721a9f2075dcc9abba819ecb91c34e256b75c44a",
+      "path": "src/xtbflow/governance/generation_bridge.py",
+      "sha256": "97472645e507ee0bd51ff74045e767ef2ed2f99a1248c550c2daadf648e019a4",
+      "bytes": 5349,
+      "role": "reference_or_bridge"
+    },
+    {
+      "commit": "5f5304bcded99f2711ce21a090392cc2d6db8973",
+      "path": "docs/evidence/live_feedback_generation_reference_terminal_20261108.json",
+      "sha256": "f3cc2274aa5b3e1d47a8bb0beb4c32f04dbf99948f5b4f4cb6455b773aba8ff0",
+      "bytes": 4805,
+      "role": "trained_terminal_evidence"
+    },
+    {
+      "commit": "a8e4a88069ba363f8e76f8378a58795800718648",
+      "path": "src/xtbflow/sampling/reactant_candidates.py",
+      "sha256": "a944ed6064f184a12d0f4ec2f48b326dc31f7f2266c35b7db27044f8ec53106c",
+      "bytes": 6069,
+      "role": "rule_fixture"
+    },
+    {
+      "commit": "a8e4a88069ba363f8e76f8378a58795800718648",
+      "path": "src/xtbflow/sampling/adapters.py",
+      "sha256": "75d5807cda383221deda9db95acf1c1bf4145f7a1c9ef2b4bd3083c8561fa04a",
+      "bytes": 19453,
+      "role": "rule_fixture"
+    },
+    {
+      "commit": "a8e4a88069ba363f8e76f8378a58795800718648",
+      "path": "src/xtbflow/sampling/live_physical.py",
+      "sha256": "a801b86f7e446de9599d0956eee84f970f8cdbdefe1a2ec548d13945413c7ca1",
+      "bytes": 13330,
+      "role": "rule_fixture"
+    },
+    {
+      "commit": "a93eeb4b30301f7792f1952c947e30b0a9d837e6",
+      "path": "scripts/run_live_matched_pvo.py",
+      "sha256": "a1243e7a0aa329ed7f14ab6e449d6f2bd2ce414a0e2a370d2fbc5e4778ed4346",
+      "bytes": 22470,
+      "role": "old_snapshot_provider"
+    }
+  ]
+}

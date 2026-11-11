@@ -1,0 +1,46 @@
+{
+  "schema": "xtbflow-real-feedback-config/v1",
+  "parent_id": "mvp-water-parent-v1",
+  "seed": 20261110,
+  "reactant": {
+    "symbols": ["O", "H", "H"],
+    "coordinates_angstrom": [
+      [0.0, 0.0, 0.0],
+      [0.9572, 0.0, 0.0],
+      [-0.239987, 0.927297, 0.0]
+    ],
+    "charge": 0,
+    "multiplicity": 1,
+    "environment": {"periodic": false, "solvent": "none"}
+  },
+  "calculator": {
+    "implementation": "xtb",
+    "protocol_id": "real-feedback-gfn2-xtb-v1",
+    "accuracy": 1.0,
+    "max_iterations": 100,
+    "electronic_temperature": 300,
+    "solvent": null
+  },
+  "generation": {"event_size": 4},
+  "guidance": {
+    "geometry_scale": 0.15,
+    "geometry_trust_radius": 0.08,
+    "event_scale": 0.03,
+    "event_trust_radius": 0.12,
+    "estimated_wall_seconds": 5.0
+  },
+  "merge": {
+    "geometry_trust_radius": 0.08,
+    "collision_distance": 0.35,
+    "event_freeze_step": 1,
+    "constraint_matrix": [[1.0, 1.0, 1.0, 1.0]]
+  },
+  "budget": {
+    "max_model_forwards": 1,
+    "max_calculator_calls": 1,
+    "max_wall_seconds": 10.0,
+    "max_cpu_core_hours": 0.05,
+    "max_gpu_hours": 0.0,
+    "max_wall_minutes_per_job": 5.0
+  }
+}

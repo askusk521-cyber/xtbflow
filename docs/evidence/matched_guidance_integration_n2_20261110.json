@@ -1,0 +1,54 @@
+{
+  "schema": "xtbflow-evidence/matched-guidance-integration-n2/v1",
+  "status": "completed",
+  "binding": "validated_at_parent_commit",
+  "work_item": "#166 PR D matched guidance integration",
+  "validated_commit": "7dc18b71f575cfb70f89bfe3680559de388ae0a5",
+  "source_branch": "codex/issue166-matched-integration-20261110",
+  "execution_host": "node2",
+  "execution_root": "~/xtbflow/xtbflow-exec-issue166-matched-20261110-7dc18b7",
+  "environment": {
+    "conda": "xtbflow",
+    "python": "3.10.19",
+    "pytorch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "gpu_calls": 0,
+    "real_calculator_calls": 0,
+    "training": false
+  },
+  "commands": [
+    "python -m compileall -q src scripts tests",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q tests/test_matched_integration.py tests/test_policy_adapter.py tests/test_physical_adapter.py tests/test_guidance_adapters.py tests/test_parallel_guidance.py tests/test_parallel_guidance_replay.py",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m pytest -q",
+    "PYTHONPATH=src:vendor/mechai_reusable python -m unittest discover -s tests/reusable -p 'test_*.py'",
+    "python scripts/validate_bootstrap.py",
+    "git diff --check"
+  ],
+  "results": {
+    "focused_pytest_passed": 30,
+    "pytest_passed": 301,
+    "pytest_subtests_passed": 68,
+    "reusable_unittest_passed": 56,
+    "bootstrap_inventory_files_verified": 363,
+    "diff_check": "pass",
+    "matched_parent_denominator": 3,
+    "matched_arm_count": 5,
+    "parallel_geometry_changed": true,
+    "parallel_event_changed": true,
+    "serial_physical_geometry_changed": true,
+    "serial_physical_event_changed": false,
+    "policy_on_event_changed": true,
+    "real_calculator_calls": 0,
+    "warnings": [
+      "one pre-existing tensor-to-scalar warning in tests/test_energy_forces.py"
+    ]
+  },
+  "claim_limits": [
+    "This validates a matched synthetic software comparison, fixed parent denominator, separated cost accounting, and replay behavior only.",
+    "It does not establish chemistry, certification, physical accuracy, performance, or generalization.",
+    "Real #140 comparison requires frozen candidate pools, physical protocols, measured calculator costs, and independent certification."
+  ],
+  "unfinished": [
+    "No real calculator-backed certification or parent-level chemistry result is included."
+  ]
+}

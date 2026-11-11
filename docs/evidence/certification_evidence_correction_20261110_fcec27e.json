@@ -1,0 +1,203 @@
+{
+  "arms": [
+    {
+      "arm": "no_feedback",
+      "attempt": 1,
+      "calculator_calls": 314,
+      "cpu_hours": 0.0005715121527777778,
+      "endpoint_hessians_present": [
+        false,
+        false
+      ],
+      "gpu_hours": 0.0,
+      "missing_checks": [
+        "CARTESIAN_DESCENT_IS_NOT_INDEPENDENT_IRC",
+        "ENDPOINT_HESSIAN_EVIDENCE_MISSING",
+        "REACTANT_ENDPOINT_IDENTITY_MISSING"
+      ],
+      "original_reported_reason_code": "CERTIFIED",
+      "original_reported_status": "success",
+      "path_frame_counts": [
+        3,
+        3
+      ],
+      "reason_code": "INCOMPLETE_IRC_CERTIFICATION",
+      "status": "attempted_unresolved",
+      "wall_seconds": 2.365856775082648
+    },
+    {
+      "arm": "physical_feedback",
+      "attempt": 1,
+      "calculator_calls": 306,
+      "cpu_hours": 0.0005075357927777779,
+      "endpoint_hessians_present": [
+        false,
+        false
+      ],
+      "gpu_hours": 0.0,
+      "missing_checks": [
+        "CARTESIAN_DESCENT_IS_NOT_INDEPENDENT_IRC",
+        "ENDPOINT_HESSIAN_EVIDENCE_MISSING",
+        "REACTANT_ENDPOINT_IDENTITY_MISSING"
+      ],
+      "original_reported_reason_code": "CERTIFIED",
+      "original_reported_status": "success",
+      "path_frame_counts": [
+        3,
+        3
+      ],
+      "reason_code": "INCOMPLETE_IRC_CERTIFICATION",
+      "status": "attempted_unresolved",
+      "wall_seconds": 2.1493149120360613
+    }
+  ],
+  "asset_hashes": {
+    "configuration": "6aa438af414600d97997a7c823bda0a803a90de90d9a5a1536d4e7b5c769641f",
+    "published_evidence": "dc9a0931e1b13ee50f28ea5c28bdeb343ce6bc3defd17c39a235b5a32a94454c",
+    "raw_manifest": "cc52c294b1bedf861105bbc22803dd37d24d872b422a72ebe4df1b0fdbc30212"
+  },
+  "attempt": 1,
+  "audit_calculator_calls": 0,
+  "audited_run_source": {
+    "commit": "37e42e02585ee5c8a638aea5747cd773541def18",
+    "dirty": false
+  },
+  "auditor_script_sha256": "768c94e5cffb908711c6081662047a4b9350997b1e303dfe3e641635e6608430",
+  "auditor_source": {
+    "commit": "fcec27ed9cdd6f58e7b20eb9f22c73f14d4f9b0a",
+    "dirty": false
+  },
+  "claim_limit": "Read-only evidence audit. Historical bytes and charged costs are retained. No strict certification or chemical negative is inferred.",
+  "corrected_rerun": {
+    "arms": [
+      {
+        "arm": "no_feedback",
+        "attempt": 1,
+        "cpu_hours": 0.0005431762472222223,
+        "diagnostic_calculator_calls": 314,
+        "event_changed": false,
+        "feedback_calculator_calls": 1,
+        "geometry_changed": false,
+        "gpu_hours": 0.0,
+        "missing_checks": [
+          "independent_bidirectional_irc",
+          "endpoint_hessians_and_minimum_verification",
+          "mapped_reactant_endpoint_identity"
+        ],
+        "reason_code": "INCOMPLETE_IRC_CERTIFICATION",
+        "status": "attempted_unresolved",
+        "strict_validation_record": {
+          "cache_key": "baf56ae8f563d6ccee8cf54d975a13ca5b8d7fac61c6e5e9fc179572e82bd8e1",
+          "calculator_calls": 314,
+          "candidate_hash": "db538187200b9b193d7704a426c0e73352a9b61cdd5d77c73709ce6ee83e903b",
+          "candidate_id": "reactant-da-r0-approach-v1:no_feedback",
+          "error": "connectivity evidence is required",
+          "gradient_norm": 9.947200521850976e-05,
+          "mode_status": "mode_count_pass",
+          "observed_event": null,
+          "path_status": "not_validated",
+          "source": "xtbflow-bounded-path-proxy/v2",
+          "status": "failure",
+          "validation_identity": "644b45a239ed210e3e9baf9b8bd1ef40dda6da7946e808d43aac8079d63358d6"
+        },
+        "wall_seconds": 2.1663294520694762
+      },
+      {
+        "arm": "physical_feedback",
+        "attempt": 1,
+        "cpu_hours": 0.00048281739333333327,
+        "diagnostic_calculator_calls": 306,
+        "event_changed": true,
+        "feedback_calculator_calls": 1,
+        "geometry_changed": true,
+        "gpu_hours": 0.0,
+        "missing_checks": [
+          "independent_bidirectional_irc",
+          "endpoint_hessians_and_minimum_verification",
+          "mapped_reactant_endpoint_identity"
+        ],
+        "reason_code": "INCOMPLETE_IRC_CERTIFICATION",
+        "status": "attempted_unresolved",
+        "strict_validation_record": {
+          "cache_key": "7a458351465b7413f3c43ce3b4c615baf810d06cca36f8b29221304a50410833",
+          "calculator_calls": 306,
+          "candidate_hash": "34ed9b50670d8fb56150aff742d9cac7dcd1c02d16cea0e61ff239fd612930bc",
+          "candidate_id": "reactant-da-r0-approach-v1:physical_feedback",
+          "error": "connectivity evidence is required",
+          "gradient_norm": 9.906345928581752e-05,
+          "mode_status": "mode_count_pass",
+          "observed_event": null,
+          "path_status": "not_validated",
+          "source": "xtbflow-bounded-path-proxy/v2",
+          "status": "failure",
+          "validation_identity": "644b45a239ed210e3e9baf9b8bd1ef40dda6da7946e808d43aac8079d63358d6"
+        },
+        "wall_seconds": 2.0050580750685185
+      }
+    ],
+    "config_sha256": "6aa438af414600d97997a7c823bda0a803a90de90d9a5a1536d4e7b5c769641f",
+    "deterministic_summary_sha256": "e8d7ff5ed6bc56b37205901b47596356d701e81ba00b31f8b8814d06e175e079",
+    "identical_replay": true,
+    "input_hash": "726656ab0c3d2878853a858c4bbc5d5df82665c584dcbd368735b22084fbc4f5",
+    "manifest_sha256": "4f0393bbf88f3805bfb480531dbc2a43c046a5eca9e3c282fae2fbb493518de7",
+    "protocol": {
+      "identity": "30a8e5d3774c8993fd52d9633cbfbcae51c0872af7865b6afefcda5189af1364",
+      "parameters": {
+        "accuracy": 1.0,
+        "electronic_temperature": 300,
+        "max_iterations": 100,
+        "solvent": null
+      },
+      "protocol_id": "real-feedback-gfn2-xtb-v1"
+    },
+    "replay_manifest_sha256": "4d353b58cee32041dca27955722c99e616cca101005153d62dce1807fc0bca61",
+    "source": {
+      "commit": "a8e4a88069ba363f8e76f8378a58795800718648",
+      "dirty": false
+    },
+    "strict_certified_channels": 0
+  },
+  "counts": {
+    "attempts_in_denominator": 2,
+    "strict_certified_channels_supported": 0
+  },
+  "cpu_hours": 1.7278333333333338e-06,
+  "evidence_level": "software_demo",
+  "execution_host": "node2",
+  "findings": [
+    {
+      "published_config_sha256": "ad10fe307f1cf2d92f60b3f02d49d8953c6a9ea4ec4deefceccbc32f49e42ae2",
+      "raw_manifest_config_sha256": "6aa438af414600d97997a7c823bda0a803a90de90d9a5a1536d4e7b5c769641f",
+      "reason_code": "PUBLIC_CONFIG_HASH_MISMATCH"
+    },
+    {
+      "arm": "no_feedback",
+      "missing_checks": [
+        "CARTESIAN_DESCENT_IS_NOT_INDEPENDENT_IRC",
+        "ENDPOINT_HESSIAN_EVIDENCE_MISSING",
+        "REACTANT_ENDPOINT_IDENTITY_MISSING"
+      ],
+      "reason_code": "UNSUPPORTED_STRICT_CERTIFICATION"
+    },
+    {
+      "arm": "physical_feedback",
+      "missing_checks": [
+        "CARTESIAN_DESCENT_IS_NOT_INDEPENDENT_IRC",
+        "ENDPOINT_HESSIAN_EVIDENCE_MISSING",
+        "REACTANT_ENDPOINT_IDENTITY_MISSING"
+      ],
+      "reason_code": "UNSUPPORTED_STRICT_CERTIFICATION"
+    }
+  ],
+  "gpu_hours": 0.0,
+  "input_hash": "726656ab0c3d2878853a858c4bbc5d5df82665c584dcbd368735b22084fbc4f5",
+  "python": "3.10.19",
+  "reason_code": "EVIDENCE_INSUFFICIENT",
+  "regression": {
+    "log_sha256": "ca6dc10f1193282b940de24b5f1751f0d75f95eafdd656352ff81e855edd34bd",
+    "output": "....................................................................     [100%]\n68 passed in 1.88s\n"
+  },
+  "schema": "xtbflow-live-certification-evidence-audit/v1",
+  "status": "invalidated",
+  "wall_seconds": 0.013530754018574953
+}

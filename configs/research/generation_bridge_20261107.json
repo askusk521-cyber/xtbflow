@@ -1,0 +1,41 @@
+{
+  "schema": "xtbflow-generation-bridge/v1",
+  "research_commit": "e84e330390a519bf4ac12048b297403c09717646",
+  "source_manifest": "data/manifests/paired_pilot_v1/manifest.jsonl",
+  "source_manifest_sha256": "6b84937d3cc75bea44faa7608d690618ce22f7ab75c51b8e25515f05a193cc90",
+  "input_policy": "Smallest mapped atom pool among admitted training rows, then record ID; no product/TS/energy-based selection",
+  "query_count": 1,
+  "max_atoms": 64,
+  "max_automorphisms": 2048,
+  "methods": ["joint_generation", "independent_event_then_geometry"],
+  "proposals_per_query": 1,
+  "steps_per_branch": 50,
+  "joint_clock": "event_lead2",
+  "sampling_seed": 0,
+  "noise_namespace": "w01-common-generation-20261107",
+  "generation": {
+    "max_forward_evaluations": 150,
+    "max_wall_seconds": 600,
+    "cpu_cores": 8,
+    "max_output_bytes": 67108864,
+    "max_gpu_hours": 0.2,
+    "max_cpu_core_hours": 1.6,
+    "max_storage_gb": 0.25
+  },
+  "checkpoint_step": 60000,
+  "checkpoint_seed": 0,
+  "checkpoints": {
+    "joint": {"bytes": 3901150, "sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda", "training_status_sha256": "db0747307a1b878d91121d4094e21a0ea774cc83df8e06652cd5bf8c40660c0e"},
+    "event": {"bytes": 2051220, "sha256": "29ec75a0e66f1ffbb85d565591b8e4a7c31aa612175d3e3d7113e6c5a69637af", "training_status_sha256": "9fd08082c92b239a418f2f5ccc233d1840b934117b7a51ff7dd7e1a10013a8f9"},
+    "geometry": {"bytes": 1923151, "sha256": "82d98876f5ead70990d893ffb013f3cbad1a4b57ad1d102f48c447f4396118fc", "training_status_sha256": "05b234ac6f5f7e0449568849ad6383b39f4c59094a31e3da085dd7f6d74c7341"}
+  },
+  "environment": {"kind": "gas", "periodic": false},
+  "environment_origin": "Predeclared new gas-phase modeling condition, independent of hidden labels; source geometry environment remains unresolved",
+  "claim_limits": [
+    "Functional integration of existing trained models, not a method ranking or a new training result.",
+    "Matched proposal count is not matched total compute: serial executes separate event and geometry branches; all forwards and wall time are recorded.",
+    "Declared reactant endpoints from development data are not independently prepared confirmatory inputs.",
+    "Cross-dataset overlap of these historical weights with Diels-Alder chemistry is unresolved; no independent-generalization claim.",
+    "Reference certification is a separate bounded stage; generation success does not certify a TS."
+  ]
+}

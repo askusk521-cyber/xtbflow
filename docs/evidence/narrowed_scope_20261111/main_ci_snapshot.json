@@ -1,0 +1,58 @@
+{
+  "observed_on": "2026-11-11",
+  "main_commit": "ac36394571a48491cbbfe860653bc604532b0e88",
+  "total_count": 6,
+  "checks": [
+    {
+      "name": "deploy",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "ac36394571a48491cbbfe860653bc604532b0e88",
+      "html_url": "https://github.com/askusk521-cyber/xtbflow/actions/runs/42777290602/job/129698816003",
+      "completed_at": "2026-11-10T07:44:10Z"
+    },
+    {
+      "name": "build",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "ac36394571a48491cbbfe860653bc604532b0e88",
+      "html_url": "https://github.com/askusk521-cyber/xtbflow/actions/runs/42777290602/job/129698677350",
+      "completed_at": "2026-11-10T07:43:57Z"
+    },
+    {
+      "name": "deploy",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "ac36394571a48491cbbfe860653bc604532b0e88",
+      "html_url": "https://github.com/askusk521-cyber/xtbflow/actions/runs/42577608037/job/129028905433",
+      "completed_at": "2026-11-09T07:11:06Z"
+    },
+    {
+      "name": "build",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "ac36394571a48491cbbfe860653bc604532b0e88",
+      "html_url": "https://github.com/askusk521-cyber/xtbflow/actions/runs/42577608037/job/129028745038",
+      "completed_at": "2026-11-09T07:10:50Z"
+    },
+    {
+      "name": "test (3.10)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "ac36394571a48491cbbfe860653bc604532b0e88",
+      "html_url": "https://github.com/askusk521-cyber/xtbflow/actions/runs/42487013381/job/128750981989",
+      "completed_at": "2026-11-08T13:55:23Z"
+    },
+    {
+      "name": "test (3.11)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "ac36394571a48491cbbfe860653bc604532b0e88",
+      "html_url": "https://github.com/askusk521-cyber/xtbflow/actions/runs/42487013381/job/128750981711",
+      "completed_at": "2026-11-08T13:55:03Z"
+    }
+  ],
+  "traditional_statuses": [],
+  "merge_authorized": false,
+  "note": "Snapshot only; refresh exact main/head CI and human approval before any future merge. Stacked PRs may not trigger main-targeted workflows."
+}

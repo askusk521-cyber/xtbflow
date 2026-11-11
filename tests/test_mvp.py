@@ -59,11 +59,14 @@ def test_mvp_replays_qc_failure_and_candidate_order(tmp_path: Path) -> None:
     assert any(row["reason_code"] == "QC_MIN_DISTANCE" for row in first_rows)
 
 
-def test_xtb_request_is_fail_closed_or_completes_without_mock_fallback(tmp_path: Path) -> None:
+def test_xtb_request_fails_closed_without_mock_fallback(tmp_path: Path, monkeypatch) -> None:
+    # Ordinary CPU validation must not launch real QC merely because n2 has xTB.
+    import xtbflow.mvp as mvp
+    monkeypatch.setattr(mvp, "XTBOracleAdapter", None)
     manifest = run_mvp(CONFIG, output_dir=tmp_path / "xtb", backend_override="xtb")
 
     assert manifest["backend"] == "xtb"
-    assert manifest["status"] in {"completed", "blocked_backend"}
+    assert manifest["status"] == "blocked_backend"
     assert all(row["backend"] == "xtb" for row in _rows(tmp_path / "xtb"))
     if manifest["status"] == "blocked_backend":
         assert manifest["failure_reason_counts"].get("BLOCKED_BACKEND", 0) == 4

@@ -1,0 +1,381 @@
+{
+  "analytic": [
+    {
+      "after_saddle_distance": 1.2727922061357855,
+      "alpha_zero_equivalent": true,
+      "before_saddle_distance": 1.4142135623730951,
+      "case": "correct_mode_identity",
+      "expected_counterexample": false,
+      "first_unstable_coordinate_after": 0.9,
+      "first_unstable_coordinate_before": 1.0,
+      "normalized_unit_rescaling_invariant": true
+    },
+    {
+      "after_saddle_distance": 1.5556349186104046,
+      "alpha_zero_equivalent": true,
+      "before_saddle_distance": 1.4142135623730951,
+      "case": "wrong_mode_identity",
+      "expected_counterexample": true,
+      "first_unstable_coordinate_after": 1.1,
+      "first_unstable_coordinate_before": 1.0,
+      "normalized_unit_rescaling_invariant": true
+    },
+    {
+      "after_saddle_distance": 1.4212670403551895,
+      "alpha_zero_equivalent": true,
+      "before_saddle_distance": 1.4142135623730951,
+      "case": "correct_mode_reversed_endpoint",
+      "expected_counterexample": true,
+      "first_unstable_coordinate_after": 1.1,
+      "first_unstable_coordinate_before": 1.0,
+      "normalized_unit_rescaling_invariant": true
+    }
+  ],
+  "caps": {
+    "backward_calls": 22,
+    "concurrency": 1,
+    "cpu_seconds": 598,
+    "gpu_seconds": 0,
+    "hessian_calls": 0,
+    "hvp_calls": 0,
+    "jvp_calls": 11,
+    "max_input_bytes": 268435456,
+    "max_output_bytes": 16777216,
+    "max_saved_states": 3,
+    "model_forwards": 141,
+    "reference_primitives": 0,
+    "retries": 0,
+    "training_steps": 0,
+    "wall_seconds": 598,
+    "xtb_energy_force_calls": 0
+  },
+  "checkpoint_sha256": "570bc0d176a7fdc2639ec0688dbf70d762b90e00273139d49a4b5f466698bcda",
+  "claim_limits": [
+    "Calibration/numerical response only; no physical direction, chemistry or efficacy result.",
+    "Saved states reconstructed under frozen rules, not recovered archived tensors.",
+    "No automatic J-transpose saddle correction or retuning on nine exposed parents."
+  ],
+  "config_sha256": "d0643a2a166a81b3939a9c07516d3d75d68a60081ccaa1cd8a3170db46bcfe70",
+  "cpu_seconds": 1.628181339,
+  "diagnostic_reconstruction_forwards": 0,
+  "driver_sha256": "be90b7dec344757cab9ad77f6f6f48965f763070b3c75db7c5fce9062e2078b2",
+  "dtype": "float64 after float32 initial noise",
+  "forbidden_imports": [],
+  "gpu_seconds": 0,
+  "host": "node2",
+  "model_work": {
+    "backward_calls": 6,
+    "forwards": [
+      {
+        "sequence": 1,
+        "status": "completed"
+      },
+      {
+        "sequence": 2,
+        "status": "completed"
+      },
+      {
+        "sequence": 3,
+        "status": "completed"
+      },
+      {
+        "sequence": 4,
+        "status": "completed"
+      },
+      {
+        "sequence": 5,
+        "status": "completed"
+      },
+      {
+        "sequence": 6,
+        "status": "completed"
+      },
+      {
+        "sequence": 7,
+        "status": "completed"
+      },
+      {
+        "sequence": 8,
+        "status": "completed"
+      },
+      {
+        "sequence": 9,
+        "status": "completed"
+      },
+      {
+        "sequence": 10,
+        "status": "completed"
+      },
+      {
+        "sequence": 11,
+        "status": "completed"
+      },
+      {
+        "sequence": 12,
+        "status": "completed"
+      },
+      {
+        "sequence": 13,
+        "status": "completed"
+      },
+      {
+        "sequence": 14,
+        "status": "completed"
+      },
+      {
+        "sequence": 15,
+        "status": "completed"
+      },
+      {
+        "sequence": 16,
+        "status": "completed"
+      },
+      {
+        "sequence": 17,
+        "status": "completed"
+      },
+      {
+        "sequence": 18,
+        "status": "completed"
+      },
+      {
+        "sequence": 19,
+        "status": "completed"
+      },
+      {
+        "sequence": 20,
+        "status": "completed"
+      },
+      {
+        "sequence": 21,
+        "status": "completed"
+      },
+      {
+        "sequence": 22,
+        "status": "completed"
+      },
+      {
+        "sequence": 23,
+        "status": "completed"
+      },
+      {
+        "sequence": 24,
+        "status": "completed"
+      },
+      {
+        "sequence": 25,
+        "status": "completed"
+      },
+      {
+        "sequence": 26,
+        "status": "completed"
+      },
+      {
+        "sequence": 27,
+        "status": "completed"
+      },
+      {
+        "sequence": 28,
+        "status": "completed"
+      },
+      {
+        "sequence": 29,
+        "status": "completed"
+      },
+      {
+        "sequence": 30,
+        "status": "completed"
+      },
+      {
+        "sequence": 31,
+        "status": "completed"
+      },
+      {
+        "sequence": 32,
+        "status": "completed"
+      },
+      {
+        "sequence": 33,
+        "status": "completed"
+      },
+      {
+        "sequence": 34,
+        "status": "completed"
+      },
+      {
+        "sequence": 35,
+        "status": "completed"
+      },
+      {
+        "sequence": 36,
+        "status": "completed"
+      },
+      {
+        "sequence": 37,
+        "status": "completed"
+      },
+      {
+        "sequence": 38,
+        "status": "completed"
+      },
+      {
+        "sequence": 39,
+        "status": "completed"
+      }
+    ],
+    "jvp_calls": 3
+  },
+  "new_calculator_calls": 0,
+  "new_generation_candidates": 0,
+  "publication_transform": "Decoded intermediate matrices replaced by null/validity and hashes; all numeric diagnostics and costs unchanged.",
+  "python": "3.10.19",
+  "raw_artifacts": [
+    {
+      "bytes": 2512,
+      "name": "model_calls.json",
+      "sha256": "bcd9dae2bf3cf0d42a26852c8ba06ad4f03f92ec40962de7d6b3f036c58f4a69"
+    }
+  ],
+  "raw_report_sha256": "4b2f115bf07cd312247f9c77d0ee48f856ff3d61de208a18ebe4102f15f07828",
+  "recovery_of": "a3a601406cd23138c9fd79eae1763c99daf0d63b4fa58c645cb0d8309b227069",
+  "research_commit": "e84e330390a519bf4ac12048b297403c09717646",
+  "response": [
+    {
+      "alpha_zero_bitwise": true,
+      "baseline_decoded_sha256": null,
+      "baseline_decoded_valid": false,
+      "centered_endpoint_derivative_error": 8.673617379884035e-19,
+      "endpoint_direction_cosine": 0.15498714795297144,
+      "endpoint_gain": 0.46383492548754174,
+      "event_response_electron_sum": 5.551115123125783e-17,
+      "event_response_symmetry_error": 0.0,
+      "event_velocity_response_norm": 0.35520279683811273,
+      "finite_differences": [
+        {
+          "endpoint_relative_error": 3.838878524280387e-09,
+          "epsilon_angstrom": 0.0001,
+          "event_relative_error": 3.5270454418086615e-09
+        },
+        {
+          "endpoint_relative_error": 3.490636673920153e-08,
+          "epsilon_angstrom": 0.0003,
+          "event_relative_error": 3.1609250848696224e-08
+        },
+        {
+          "endpoint_relative_error": 3.878058898395425e-07,
+          "epsilon_angstrom": 0.001,
+          "event_relative_error": 3.5110075867311486e-07
+        }
+      ],
+      "next_step_event_delta_norm": 7.557549480468945e-06,
+      "next_step_geometry_delta_norm_angstrom": 0.0009911182424968542,
+      "perturbed_decoded_sha256": null,
+      "perturbed_decoded_valid": false,
+      "same_step_event_unchanged": true,
+      "step": 10,
+      "t_b": 0.2,
+      "t_x": 0.04000000000000001
+    },
+    {
+      "alpha_zero_bitwise": true,
+      "baseline_decoded_sha256": null,
+      "baseline_decoded_valid": false,
+      "centered_endpoint_derivative_error": 3.469446951953614e-18,
+      "endpoint_direction_cosine": 0.30045316175847697,
+      "endpoint_gain": 0.4970833634958099,
+      "event_response_electron_sum": -5.551115123125783e-17,
+      "event_response_symmetry_error": 0.0,
+      "event_velocity_response_norm": 0.46070496737931493,
+      "finite_differences": [
+        {
+          "endpoint_relative_error": 3.797512779003058e-09,
+          "epsilon_angstrom": 0.0001,
+          "event_relative_error": 1.504256094833964e-08
+        },
+        {
+          "endpoint_relative_error": 3.434258693848533e-08,
+          "epsilon_angstrom": 0.0003,
+          "event_relative_error": 1.3546447485908061e-07
+        },
+        {
+          "endpoint_relative_error": 3.8160801155897025e-07,
+          "epsilon_angstrom": 0.001,
+          "event_relative_error": 1.5051304730662798e-06
+        }
+      ],
+      "next_step_event_delta_norm": 1.323794632057744e-05,
+      "next_step_geometry_delta_norm_angstrom": 0.000975444212518448,
+      "perturbed_decoded_sha256": null,
+      "perturbed_decoded_valid": false,
+      "same_step_event_unchanged": true,
+      "step": 25,
+      "t_b": 0.5,
+      "t_x": 0.25
+    },
+    {
+      "alpha_zero_bitwise": true,
+      "baseline_decoded_sha256": null,
+      "baseline_decoded_valid": false,
+      "centered_endpoint_derivative_error": 6.071532165918825e-18,
+      "endpoint_direction_cosine": 0.5343669086610465,
+      "endpoint_gain": 0.4109831318486815,
+      "event_response_electron_sum": -1.6653345369377348e-16,
+      "event_response_symmetry_error": 0.0,
+      "event_velocity_response_norm": 0.5744618153088925,
+      "finite_differences": [
+        {
+          "endpoint_relative_error": 2.24441061405559e-09,
+          "epsilon_angstrom": 0.0001,
+          "event_relative_error": 4.59140167501005e-09
+        },
+        {
+          "endpoint_relative_error": 2.025144829795779e-08,
+          "epsilon_angstrom": 0.0003,
+          "event_relative_error": 4.115949068275978e-08
+        },
+        {
+          "endpoint_relative_error": 2.2500959610795855e-07,
+          "epsilon_angstrom": 0.001,
+          "event_relative_error": 4.5697817179960687e-07
+        }
+      ],
+      "next_step_event_delta_norm": 5.8640024981810665e-06,
+      "next_step_geometry_delta_norm_angstrom": 0.0009217538190183544,
+      "perturbed_decoded_sha256": null,
+      "perturbed_decoded_valid": false,
+      "same_step_event_unchanged": true,
+      "step": 40,
+      "t_b": 0.8,
+      "t_x": 0.6400000000000001
+    }
+  ],
+  "retained_rows_sha256": "06bd3edc83381ef3a1d0c43c090f3970cce543a40184cdb2baf83f2856dbd917",
+  "saved_state_sha256": {
+    "10": "0582b709de1145f2a1a1c3c278ce52dcd577c09f6b384117484361cc970b15fc",
+    "25": "272f994a7590e93c24f95a4df1609735221982aa75571381a0c527e96dfa3e6a",
+    "40": "3bd32cdce359052bbbee23a7f5aabe77a89205ce406dadc760fbe08bf9e6d0cc"
+  },
+  "schema": "xtbflow-narrowed-numerical/v1",
+  "source_commit": "0bdd8b83e73597bf21c324d9a766010872e1cd33",
+  "status": "completed",
+  "step_audit": {
+    "interpretation": "Amplitude confounding supports overshoot; no sign-error or TS-success proof.",
+    "normalized_energy_worsened": 27,
+    "normalized_force_worsened": 27,
+    "normalized_median_angstrom": 0.05,
+    "pairs": 27,
+    "parents": 9,
+    "ratio_median": 240.74094134599588,
+    "ratio_range": [
+      151.98621289278788,
+      316.7349695171353
+    ],
+    "rows": 81,
+    "standard_energy_improved": 27,
+    "standard_force_improved": 27,
+    "standard_median_angstrom": 0.00020769213462590636
+  },
+  "torch": "2.10.0+cu128",
+  "training_steps": 0,
+  "wall_seconds": 1.7287386648822576
+}

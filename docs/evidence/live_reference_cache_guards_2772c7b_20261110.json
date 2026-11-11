@@ -1,0 +1,21 @@
+{
+  "attempt": 1,
+  "audit_driver_sha256": "c489dec0afe50ee58ed36de4654c7ba264743175d40277556b8682860c11089d",
+  "checks": {
+    "existing_receipt_sha256": "27d4bec8a05c9bac5c86ace8f50334d5f9359cedb639bdebce2328b176b9b04a",
+    "existing_receipt_unchanged": true,
+    "expected_first_exit_code": 1,
+    "expected_second_exit_code": 2,
+    "incomplete_run_rejected": true,
+    "overwrite_rejected": true
+  },
+  "cpu_hours": null,
+  "evidence_level": "software_demo",
+  "gpu_hours": 0.0,
+  "new_calculator_calls": 0,
+  "reason_code": null,
+  "source_commit": "2772c7bedb9c674144d7dab702a29178eeee699a",
+  "source_dirty": false,
+  "status": "passed",
+  "wall_seconds": 0.27801522496156394
+}

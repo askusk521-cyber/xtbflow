@@ -72,7 +72,9 @@ class StageMeter:
         def before(module, args, kwargs):
             self.begin('forward', 'trained_joint')
         def after(module, args, output):
-            row = next(r for r in reversed(self.rows) if r['kind']=='forward' and r['status']=='started')
+            row = next((r for r in reversed(self.rows) if r['kind']=='forward' and r['status']=='started'), None)
+            if row is None:  # Pre-hook rejected a call before it started.
+                return
             if output is None:
                 self.end(row, 'execution_failed')
                 return

@@ -9,6 +9,8 @@ from xtbflow.sampling.integrated_guidance import guided_step, require_settled
 
 from xtbflow.sampling import guidance_fixture as fixture
 
+CONFIG = Path(__file__).parents[1]/"configs/research/integrated_entry_20261111.json"
+
 
 def test_installed_guide_zero_and_actual_next_forward_order():
     query, _, initial = fixture.fixture_query()
@@ -46,8 +48,8 @@ def test_certification_boundary_blocks_unsettled_or_stopped_guidance(change):
 
 def test_integrated_candidate_reference_ledger_and_zero_cost_cache(tmp_path):
     out = tmp_path/"run"
-    first = fixture.run_fixture(out, "fake")
-    second = fixture.run_fixture(out, "cached")
+    first = fixture.run_fixture(out, "fake", CONFIG)
+    second = fixture.run_fixture(out, "cached", CONFIG)
     assert first["candidate_sha256"] == second["candidate_sha256"]
     assert first["result"]["new_calculator_calls"] == 1
     assert second["result"]["cache_hit"] and second["result"]["new_calculator_calls"] == 0
@@ -57,10 +59,10 @@ def test_integrated_candidate_reference_ledger_and_zero_cost_cache(tmp_path):
 
 def test_incomplete_replay_preserves_generated_evidence(tmp_path):
     out = tmp_path/"run"
-    fixture.run_fixture(out, "fake")
+    fixture.run_fixture(out, "fake", CONFIG)
     before = (out/"generated.json").read_bytes()
     (out/"generated.json").write_bytes(before.replace(b'"completed"', b'"incomplete"'))
     altered = (out/"generated.json").read_bytes()
     with pytest.raises(ValueError, match="identity_mismatch"):
-        fixture.run_fixture(out, "cached")
+        fixture.run_fixture(out, "cached", CONFIG)
     assert (out/"generated.json").read_bytes() == altered

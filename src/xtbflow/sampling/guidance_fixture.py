@@ -51,8 +51,8 @@ def fixture_query():
     return query, packet, FlowState(b, x, torch.zeros(1, dtype=torch.float64), torch.zeros(1, dtype=torch.float64))
 
 
-def run_fixture(out: Path, mode: str) -> dict:
-    cfg = json.loads((Path(__file__).resolve().parents[3]/"configs/research/integrated_entry_20261111.json").read_text())
+def run_fixture(out: Path, mode: str, config: Path) -> dict:
+    cfg = json.loads(config.read_text())
     budget = StageBudget(**cfg["software_budget"])
     generated = out/"generated.json"
     if mode == "fake":

@@ -11,6 +11,6 @@ if __name__ == "__main__":
     parser.add_argument("--mode", choices=("fake", "cached"), required=True)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
-    result = run_fixture(args.out, args.mode)
+    result = run_fixture(args.out, args.mode, Path(__file__).resolve().parents[1]/"configs/research/integrated_entry_20261111.json")
     print(json.dumps({"mode": args.mode, "new_calls": result["result"]["new_calculator_calls"],
                       "cache_hit": result["result"]["cache_hit"]}))

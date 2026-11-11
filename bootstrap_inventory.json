@@ -504,8 +504,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "3c0a29e003afb47f820f6d39b92c7499d1d095b4f6b3ff84beb8bf1cd67ee774",
-      "bytes": 2767
+      "sha256": "b421cf3959b9bb9b42800ef6e6671efe60c4db3ddcc90eae6071ab2112872756",
+      "bytes": 3383
     },
     {
       "path": "docs/HANDOFF_FREEZE.md",
@@ -584,8 +584,8 @@
     },
     {
       "path": "docs/architecture/integrated_guidance_20261111.md",
-      "sha256": "d5d1afc428cb29081bca590d8e41ce52ec6c5639b581d851a2a75af437eab23a",
-      "bytes": 5039
+      "sha256": "8d019221180367c3931db2e30c19f15795c710efdfd321cf3900fdbcd890fc97",
+      "bytes": 5594
     },
     {
       "path": "docs/architecture/live_physical_feedback_loop_v0.1.md",
@@ -733,9 +733,19 @@
       "bytes": 785
     },
     {
+      "path": "docs/evidence/integration_197_20261111/installed_package_ci_failure.json",
+      "sha256": "f9f5fa2e1377e3de56e1dadfbefdd65817fda3557987d7e84906b9477d2b66d4",
+      "bytes": 393
+    },
+    {
       "path": "docs/evidence/integration_197_20261111/software_aa01c85.json",
       "sha256": "e9d0d485555606efa43e64376a5a2a43f680668fa771ddbd533189b5776b15a4",
       "bytes": 2593
+    },
+    {
+      "path": "docs/evidence/integration_197_20261111/software_c7e8b0b.json",
+      "sha256": "1f9b6a6152646bc3409d6d07fbaf889c3c99e1360502b7adb1277f8fe67dfe7f",
+      "bytes": 2583
     },
     {
       "path": "docs/evidence/joint_flow_smoke_20260927.json",

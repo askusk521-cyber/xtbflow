@@ -81,3 +81,11 @@ PYTHONPATH=src:vendor/mechai_reusable`. Reserve `srun --partition=main --nodes=1
 028d2aaed2c4bfbed173dc8f6b06106b3686f700 HEAD`, and the two fixture commands above.
 The receipt records actual per-command process/child CPU, wall, source, versions,
 Slurm job and log hashes. Allocated limits are distinct from measurements.
+
+Installed-package CI exposed a separate config-resolution issue after the first
+n2 pass. It is fixed by explicit config injection. Exact functional source
+`c7e8b0bf49b7c2d09c170f5e81e232470933d948` repeats the entire n2 validation with
+419 pytest tests/68 subtests, 56 reusable tests, 42 focused tests, 497 inventory
+files and both executable modes passing. Its own receipt and the failed CI run
+are retained alongside the original validation. Subsequent evidence-only commits
+do not change this tested code; main-targeted CI validates the final commit.

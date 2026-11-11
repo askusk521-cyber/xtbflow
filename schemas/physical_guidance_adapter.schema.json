@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xtbflow-guidance/physical-adapter/v1",
+  "title": "Recorded physical guidance adapter",
+  "type": "object",
+  "required": ["schema", "enabled", "candidate_pool_id", "initial_snapshot", "final_snapshot", "merge_decision", "adapter_ledger", "claim_limits"],
+  "properties": {
+    "schema": {"const": "xtbflow-physical-guidance-ablation/v1"},
+    "enabled": {"type": "boolean"},
+    "candidate_pool_id": {"type": "string", "minLength": 1},
+    "initial_snapshot": {"type": "object"},
+    "final_snapshot": {"type": "object"},
+    "adapter_run": {"type": ["object", "null"]},
+    "merge_decision": {"type": "object"},
+    "merge_ledger": {"type": "object"},
+    "adapter_ledger": {"type": "object"},
+    "claim_limits": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  },
+  "additionalProperties": false
+}

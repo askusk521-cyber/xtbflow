@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xtbflow-guidance/adapter-contract/v1",
+  "title": "Guidance provider adapter contract",
+  "type": "object",
+  "required": ["request", "result", "ledger_entry"],
+  "properties": {
+    "request": {"$ref": "#/$defs/request"},
+    "result": {"$ref": "#/$defs/result"},
+    "ledger_entry": {"$ref": "#/$defs/ledger"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "request": {
+      "type": "object",
+      "required": ["snapshot_id", "lane", "provider_revision", "config_fingerprint", "protocol_fingerprint", "request_fingerprint"],
+      "properties": {
+        "snapshot_id": {"$ref": "#/$defs/sha256"},
+        "lane": {"enum": ["base", "geometry", "event"]},
+        "provider_revision": {"$ref": "#/$defs/sha256"},
+        "config_fingerprint": {"$ref": "#/$defs/sha256"},
+        "protocol_fingerprint": {"$ref": "#/$defs/sha256"},
+        "feedback": {"type": "object"},
+        "action_space": {"type": "object"},
+        "request_fingerprint": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "cost": {
+      "type": "object",
+      "required": ["model_forwards", "calculator_calls", "wall_seconds", "cpu_seconds", "gpu_seconds"],
+      "properties": {
+        "model_forwards": {"type": "integer", "minimum": 0},
+        "calculator_calls": {"type": "integer", "minimum": 0},
+        "wall_seconds": {"type": "number", "minimum": 0},
+        "cpu_seconds": {"type": "number", "minimum": 0},
+        "gpu_seconds": {"type": "number", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "required": ["status", "request_fingerprint", "estimated_cost", "measured_cost", "charged_cost"],
+      "properties": {
+        "status": {"enum": ["accepted", "invalid", "budget_exhausted", "timeout", "failed", "duplicate"]},
+        "request_fingerprint": {"$ref": "#/$defs/sha256"},
+        "failure_stage": {"type": ["string", "null"]},
+        "error": {"type": ["string", "null"]},
+        "estimated_cost": {"$ref": "#/$defs/cost"},
+        "measured_cost": {"$ref": "#/$defs/cost"},
+        "charged_cost": {"$ref": "#/$defs/cost"}
+      },
+      "additionalProperties": true
+    },
+    "ledger": {
+      "type": "object",
+      "required": ["request_fingerprint", "lane", "provider_revision", "config_fingerprint", "protocol_fingerprint", "status", "estimated_cost", "measured_cost", "charged_cost"],
+      "properties": {
+        "request_fingerprint": {"$ref": "#/$defs/sha256"},
+        "lane": {"enum": ["base", "geometry", "event"]},
+        "provider_revision": {"$ref": "#/$defs/sha256"},
+        "config_fingerprint": {"$ref": "#/$defs/sha256"},
+        "protocol_fingerprint": {"$ref": "#/$defs/sha256"},
+        "status": {"enum": ["accepted", "invalid", "budget_exhausted", "timeout", "failed", "duplicate"]},
+        "failure_stage": {"type": ["string", "null"]},
+        "error": {"type": ["string", "null"]},
+        "estimated_cost": {"$ref": "#/$defs/cost"},
+        "measured_cost": {"$ref": "#/$defs/cost"},
+        "charged_cost": {"$ref": "#/$defs/cost"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

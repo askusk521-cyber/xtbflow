@@ -77,6 +77,8 @@ def run_fixture(out: Path, mode: str) -> dict:
         if identity(payload["payload"]) != payload["sha256"]:
             raise ValueError("cached_generated_identity_mismatch")
         candidate = CertificationCandidate(**payload["payload"]["candidate"])
+        if not (out/"fake-receipt.json").exists() or not list((out/"reference").glob("*/attempt-*/settlement.json")):
+            raise ValueError("incomplete_cached_fixture")
     service = CertificationService(out/"reference", budget)
     result = service.run(candidate, FixtureReference(), max_calls=2, max_wall_seconds=10,
                          cpu_cores=1, max_raw_bytes=1024**2)

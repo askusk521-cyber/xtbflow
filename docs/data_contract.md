@@ -68,4 +68,3 @@ W07 的版本化入口是 `CertificationService` 与 `ReferenceBackend`，输入
 和协议下的重复几何不增加独立通道数。未执行、数值失败、超时、预算耗尽、报告写出
 失败与账本结算失败保留各自状态和已消耗费用。详见
 [认证服务合同](architecture/certification_service.md)。
-

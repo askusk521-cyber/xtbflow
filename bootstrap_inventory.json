@@ -293,6 +293,11 @@
       "bytes": 2462
     },
     {
+      "path": "configs/research/gqc_tautomer_pilot_20261114.json",
+      "sha256": "b4245b2ece9f1695bb0445045d0cf81ac54916c26c7072a7fabd39510e155f58",
+      "bytes": 3300
+    },
+    {
       "path": "configs/research/incremental_signal_audit_20261111.json",
       "sha256": "e712ee18b7858548afc16d66171bdc0028f4938068e8fa2a96c5b93df4280904",
       "bytes": 1907
@@ -1348,6 +1353,11 @@
       "bytes": 13696
     },
     {
+      "path": "docs/research/GQC_TAUTOMER_PILOT_20261114.md",
+      "sha256": "b3fe3fc5beefb0d5680ef643c27cfe4bcdf85c506145ae18b0091cefcd228df8",
+      "bytes": 4882
+    },
+    {
       "path": "docs/research/GUIDANCE_ENTRY_REVIEW_20261111.md",
       "sha256": "a0ba541e122535cd650fe04d2b1fded9d15330291b1870243274df1adacf1730",
       "bytes": 3143
@@ -1731,6 +1741,11 @@
       "path": "scripts/diagnose_physical_direction.py",
       "sha256": "191bc0a7053c6978c1bd1369d8f0d18f04e2cbcb97dcdd45fe45b7fcec97ea6b",
       "bytes": 10086
+    },
+    {
+      "path": "scripts/gqc_tautomer_pilot.py",
+      "sha256": "42a564c860e362b911009b170da02e270c2af47479b9e6dca2a61eb4a5c6394e",
+      "bytes": 18957
     },
     {
       "path": "scripts/joint_flow_smoke.py",
@@ -2371,6 +2386,11 @@
       "path": "tests/test_geometry_flow.py",
       "sha256": "3a1f64a2bb77180cd7416b52d120dd14bd899881f5fb7bc812636133edbe506d",
       "bytes": 4675
+    },
+    {
+      "path": "tests/test_gqc_tautomer_pilot.py",
+      "sha256": "621bc4f4bd0e06221c7b8949875e0f094417528eb6575a1d97fdc3ef39433531",
+      "bytes": 1673
     },
     {
       "path": "tests/test_guidance_adapters.py",

@@ -1,0 +1,9 @@
+{
+  "task_count": 32,
+  "gpu_tasks": 14,
+  "cpu_tasks": 18,
+  "gpu_hour_ceiling": 5.833333333333334,
+  "cpu_core_hour_ceiling": 151.33333333333334,
+  "operation_ceiling": 166,
+  "manifest_sha256": "9f89ec5680089e1333b219ab99804deb84630fadb43ca5ec9b5376817af0c60b"
+}

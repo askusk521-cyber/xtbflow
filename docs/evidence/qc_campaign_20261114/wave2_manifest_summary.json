@@ -1,0 +1,19 @@
+{
+  "task_count": 74,
+  "kind_counts": {
+    "audit": 2,
+    "ccsd_t": 2,
+    "frequency": 28,
+    "opt": 28,
+    "path": 8,
+    "single_point": 6
+  },
+  "gpu_hour_ceiling": 35.0,
+  "cpu_core_hour_ceiling": 300.0,
+  "operation_ceiling": 17990,
+  "manifest_sha256": "f1421d6b8870157b93c42f3dd89f23f874ed8fe247d5dfb8906191fc8fcd9c66",
+  "preparation_failures": [],
+  "campaign_gpu_hour_ceiling": 40.833333333333336,
+  "campaign_cpu_core_hour_ceiling": 451.33333333333337,
+  "campaign_operation_ceiling": 18156
+}

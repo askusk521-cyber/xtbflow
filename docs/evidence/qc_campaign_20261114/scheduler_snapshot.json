@@ -1,0 +1,72 @@
+{
+  "host": "node2",
+  "utc": "2026-11-14T14:32:30Z",
+  "queue_fields": [
+    "id",
+    "name",
+    "state",
+    "elapsed",
+    "node_or_reason"
+  ],
+  "queue_rows": [
+    [
+      "4684_69",
+      "qc2-ccsd_t",
+      "PENDING",
+      "0:00",
+      "(JobArrayTaskLimit)"
+    ],
+    [
+      "4693_[14-56:2%2]",
+      "qc2-opt",
+      "PENDING",
+      "0:00",
+      "(JobArrayTaskLimit)"
+    ],
+    [
+      "4698_[5-57:2%1]",
+      "qc2-frequency",
+      "PENDING",
+      "0:00",
+      "(Dependency)"
+    ],
+    [
+      "4699_[58-65%2]",
+      "qc2-path",
+      "PENDING",
+      "0:00",
+      "(Dependency)"
+    ],
+    [
+      "4700",
+      "qc-final-collect",
+      "PENDING",
+      "0:00",
+      "(Dependency)"
+    ],
+    [
+      "4684_67",
+      "qc2-ccsd_t",
+      "RUNNING",
+      "8:41",
+      "node2"
+    ],
+    [
+      "4693_12",
+      "qc2-opt",
+      "RUNNING",
+      "0:50",
+      "node2"
+    ],
+    [
+      "4693_10",
+      "qc2-opt",
+      "RUNNING",
+      "1:14",
+      "node2"
+    ]
+  ],
+  "retained_bytes_observed": 2424049642,
+  "accounting": "sacct unavailable; allocated GPU seconds unknown",
+  "preparation_smoke": "initial water-placement smoke identified two wrong perceived graphs; corrected placement has all 28 identities passed before any wave2 production task; neither smoke ran quantum chemistry"
+}

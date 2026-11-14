@@ -1,0 +1,38 @@
+{
+  "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+  "checks": [
+    {
+      "name": "pytest",
+      "exit_code": 0,
+      "wall_seconds": 21.247372105997783,
+      "tail": "............................................................................ [ 17%]\n........................................................................ [ 33%]\n........................................................................ [ 49%]\n........................................................................ [ 66%]\n........................................................................ [ 82%]\n........................................................................ [ 98%]\n.....                                                                    [100%]\n=============================== warnings summary ===============================\ntests/test_energy_forces.py::test_direct_model_force_matches_finite_difference\n  ${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114/tests/test_energy_forces.py:72: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\n  Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n    finite_difference_force = -float((e_plus - e_minus) / (2 * step))\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n441 passed, 1 warning, 68 subtests passed in 20.46s\n"
+    },
+    {
+      "name": "unittest",
+      "exit_code": 0,
+      "wall_seconds": 1.5665072289993986,
+      "tail": "........................................................\n----------------------------------------------------------------------\nRan 56 tests in 0.336s\n\nOK\n"
+    },
+    {
+      "name": "inventory",
+      "exit_code": 0,
+      "wall_seconds": 0.06407624199709971,
+      "tail": "PASS: 551 files match the bootstrap inventory.\nThis verifies files only; no training, quantum chemistry, remote upload or model validation is implied.\n"
+    }
+  ],
+  "host": "node2",
+  "python": "3.10.19",
+  "environment": "xtbflow",
+  "versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.10.0+cu128",
+    "rdkit": "2024.03.3"
+  },
+  "resource_limits": {
+    "timeout_seconds": 300,
+    "OMP_NUM_THREADS": 2,
+    "OPENBLAS_NUM_THREADS": 2,
+    "CUDA_VISIBLE_DEVICES": ""
+  }
+}

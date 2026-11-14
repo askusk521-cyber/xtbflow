@@ -58,11 +58,12 @@ water-count total energies are not directly compared. Bulk-water effects,
 hydrolysis networks and solution kinetics remain conditional on actual path
 and thermodynamic evidence, not on the mere presence of a water cluster.
 
-Final submission evidence will include every task index and job/dependency ID,
-the exact execution source, manifest/configuration hashes and actual startup
-status. Queued, running, failed, blocked by an upstream numerical gate and
-completed are reported separately. A post-array CPU collector will write a
-final status snapshot without launching extra quantum calculations.
+[Submission evidence](../evidence/qc_campaign_20261114/RESULTS_ZH.md) records
+all 106 task indices, job/dependency IDs, exact execution sources, hashes and
+actual startup status. Queued, running, failed, blocked by an upstream
+numerical gate and completed are reported separately. Collector job 4700
+will write the final n2 snapshot after the arrays without extra quantum work.
+The submitted path chains have not yet established reaction connectivity.
 
 Base/head: #207 (`codex/gqc-tautomer-20261114`) →
 `codex/qc-campaign-20261114`. No PR is merged by this campaign.

@@ -1158,6 +1158,41 @@
       "bytes": 2250
     },
     {
+      "path": "docs/evidence/qc_campaign_20261114/RESULTS_ZH.md",
+      "sha256": "2bc9c89fd361bd23eb5c05ab7a53dc79c11d0d6836676efce3b568a45a6fda26",
+      "bytes": 10467
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/scheduler_snapshot.json",
+      "sha256": "e3d5bba929dbe317961c86f5429cf7687f3b10c94daa6f5cd40d087188351227",
+      "bytes": 1324
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/software_checks.json",
+      "sha256": "9e4bb3a3500f2c6b937ef7e49bb1984e4a3ea187aeffe4512fa9d0bf59f3d5a5",
+      "bytes": 2357
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/submission_receipts.json",
+      "sha256": "6106198448194022de5a1f0589933da5671f02ddf4843c4194941365b6472c20",
+      "bytes": 12463
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/submission_snapshot.json",
+      "sha256": "2763d863aae5b35985426af270fe12186984db704316caf19f5c841e64c44daf",
+      "bytes": 55796
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/wave1_manifest_summary.json",
+      "sha256": "c0c839ee40ccde800d0d9bce42f1124e9c9e5f781fe8e8796e77e9d81508357d",
+      "bytes": 266
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/wave2_manifest_summary.json",
+      "sha256": "2356522352f663b577ba3e64f9c4592a024dbabe3bb8c667ebc8e4620dbc3d58",
+      "bytes": 510
+    },
+    {
       "path": "docs/evidence/reactant_only_saddle_refinement_probe_exact_1a7c72d_20261110.json",
       "sha256": "3201f3dfa20b19e6156c6d44a498aedfcd0bee1467e1d966a6b935b6c4effafd",
       "bytes": 1824
@@ -1439,8 +1474,8 @@
     },
     {
       "path": "docs/research/QC_CAMPAIGN_20261114.md",
-      "sha256": "e978aa2c65498a229b55c322df58e6bfdf13a2bac599f2ebd1a31b98c63f2021",
-      "bytes": 6487
+      "sha256": "0039483848a0ba855051dac678796c032658b8ce424a8b478c4c66860e42fabe",
+      "bytes": 6565
     },
     {
       "path": "docs/sources.md",

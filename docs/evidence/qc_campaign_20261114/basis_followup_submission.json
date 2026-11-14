@@ -1,0 +1,153 @@
+{
+  "summary": {
+    "new_task_count": 4,
+    "total_task_count": 110,
+    "manifest_sha256": "5c0ba4cc23d9c4309f6dce22b3d47acdfbb4def3b63a207cdd6f3d604a00d503",
+    "source_commit": "be3a3365b056db90bb1f638565618708bb8e9c7b",
+    "aggregate_ceilings": {
+      "gpu_allocation_hours_ceiling": 40.833333333333336,
+      "cpu_core_hours_ceiling": 507.33333333333337,
+      "quantum_operations_ceiling": 18176
+    },
+    "new_cpu_core_hour_ceiling": 56,
+    "new_quantum_operation_ceiling": 20,
+    "trigger_report_sha256": [
+      "91f4c7db2ee681cc73ec626acea236e2b26f1e1f32f155a054f49313c1c2cbcf",
+      "981235a85f76cc5a1094c73eb6212f68f094df949e795cf001d5b584f6a9db2d"
+    ]
+  },
+  "submission": {
+    "source_commit": "be3a3365b056db90bb1f638565618708bb8e9c7b",
+    "manifest_sha256": "5c0ba4cc23d9c4309f6dce22b3d47acdfbb4def3b63a207cdd6f3d604a00d503",
+    "utc": "2026-11-14T14:47:00Z",
+    "software_checks": {
+      "targeted_pytest": "10 passed",
+      "bootstrap": "560 tracked files passed"
+    },
+    "jobs": [
+      {
+        "job_id": "4710",
+        "kind": "ccsd_t",
+        "indices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "array_limit": 1,
+        "argv": [
+          "sbatch",
+          "--parsable",
+          "--partition=main",
+          "--nodes=1",
+          "--ntasks=1",
+          "--cpus-per-task=8",
+          "--mem=48G",
+          "--time=105",
+          "--job-name=qc3-ccsd_t",
+          "--array=0-3%1",
+          "--output=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave3/ccsd_t-%A_%a.out",
+          "--error=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave3/ccsd_t-%A_%a.err",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-be3a336-20261114/scripts/run_qc_campaign_task.sbatch",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-be3a336-20261114",
+          "be3a3365b056db90bb1f638565618708bb8e9c7b",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/wave3/tasks.json",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/results-wave3",
+          "0"
+        ]
+      }
+    ],
+    "collector_replacement": {
+      "old_job_id": "4700",
+      "previous_state": "PENDING",
+      "reason": "replace a pending no-QC collector so the new four reference tasks are included"
+    },
+    "collector": {
+      "job_id": "4711",
+      "argv": [
+        "sbatch",
+        "--parsable",
+        "--partition=main",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=1",
+        "--mem=2G",
+        "--time=5",
+        "--job-name=qc-final-collect",
+        "--dependency=afterany:4699:4710",
+        "--output=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/collector-%j.out",
+        "--error=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/collector-%j.err",
+        "--wrap",
+        "set -e\nsource ${N2_HOME}/miniconda3/etc/profile.d/conda.sh\nconda activate xtbflow\ncd ${N2_HOME}/xtbflow/xtbflow-exec-campaign-be3a336-20261114\npython scripts/collect_qc_campaign.py --root ${N2_HOME}/xtbflow-runs/qc-campaign-20261114 --out ${N2_HOME}/xtbflow-runs/qc-campaign-20261114/final-summary.json"
+      ]
+    }
+  },
+  "observed_utc": "2026-11-14T14:47:42Z",
+  "wave3_tasks": [
+    {
+      "wave": "wave3",
+      "index": 0,
+      "id": "ccsdt_tz_R30_enol",
+      "kind": "ccsd_t",
+      "status": "started",
+      "report_sha256": "dd0966990a75c0e1149f20c05c0fcce930201857dc15a7056c21473a002d91b1",
+      "source_commit": "be3a3365b056db90bb1f638565618708bb8e9c7b",
+      "slurm_job_id": "4712",
+      "host": "node2",
+      "python": "3.11.17",
+      "journal": {
+        "started": 2,
+        "completed": 1,
+        "unsettled": 1
+      }
+    },
+    {
+      "wave": "wave3",
+      "index": 1,
+      "id": "ccsdt_tz_R30_carbonyl",
+      "kind": "ccsd_t",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave3",
+      "index": 2,
+      "id": "ccsdt_tz_R51_enol",
+      "kind": "ccsd_t",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave3",
+      "index": 3,
+      "id": "ccsdt_tz_R51_carbonyl",
+      "kind": "ccsd_t",
+      "status": "report_not_present"
+    }
+  ],
+  "overall_status_counts": {
+    "qualification_passed": 8,
+    "execution_failed": 8,
+    "qualification_failed": 2,
+    "completed_finite_basis_reference": 8,
+    "completed_solvent_single_point": 12,
+    "optimized_identity_passed": 6,
+    "minimum_verified": 1,
+    "report_not_present": 56,
+    "started": 3,
+    "completed_gas_single_point": 6
+  },
+  "quantum_journal_counts": {
+    "started": 473,
+    "completed": 464,
+    "failed": 6
+  },
+  "queue": [
+    "4693_[22-56:2%2]|qc2-opt|PENDING|0:00|(JobArrayTaskLimit)",
+    "4698_[5-57:2%1]|qc2-frequency|PENDING|0:00|(Dependency)",
+    "4699_[58-65%2]|qc2-path|PENDING|0:00|(Dependency)",
+    "4710_[1-3%1]|qc3-ccsd_t|PENDING|0:00|(JobArrayTaskLimit)",
+    "4711|qc-final-collect|PENDING|0:00|(Dependency)",
+    "4693_20|qc2-opt|RUNNING|3:30|node2",
+    "4693_18|qc2-opt|RUNNING|4:01|node2",
+    "4710_0|qc3-ccsd_t|RUNNING|0:41|node2"
+  ]
+}

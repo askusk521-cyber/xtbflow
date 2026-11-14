@@ -59,9 +59,9 @@ hydrolysis networks and solution kinetics remain conditional on actual path
 and thermodynamic evidence, not on the mere presence of a water cluster.
 
 [Submission evidence](../evidence/qc_campaign_20261114/RESULTS_ZH.md) records
-all 106 task indices, job/dependency IDs, exact execution sources, hashes and
+all 110 task indices across three waves, job/dependency IDs, exact execution sources, hashes and
 actual startup status. Queued, running, failed, blocked by an upstream
-numerical gate and completed are reported separately. Collector job 4700
+numerical gate and completed are reported separately. Collector job 4711
 will write the final n2 snapshot after the arrays without extra quantum work.
 The submitted path chains have not yet established reaction connectivity.
 

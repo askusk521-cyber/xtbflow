@@ -1,0 +1,13 @@
+{
+  "schema": "xtbflow-qc-campaign/v1",
+  "authorization": "2026-11-14 owner asked to launch the previously proposed quantum calculations while capacity is available",
+  "scope": "GQC numerical accuracy, finite-state chemical sensitivity, and eight explicitly prepared competing paths for candidates A-D",
+  "resources": {"gpu_concurrency": 2, "cpu_concurrency": 2, "gpu_allocation_hours_ceiling": 48, "cpu_core_hours_ceiling": 512, "retained_gib_ceiling": 32, "quantum_operations_ceiling": 20000, "external_retries": 0},
+  "rationale": "Live inspection found two other GPU jobs on a four-GPU node; this campaign is capped at two GPU workers and two CPU workers. This supersedes the earlier single-job planning cap for this request only.",
+  "gqc": {"method": "b3lyp-rks", "basis": "def2-svp", "device": "cuda", "precision": "fp64", "basis_representation": "spherical", "density_fitting": "none", "energy_tolerance": 1e-10, "density_tolerance": 1e-7, "max_iterations": 150},
+  "native_sha256": "67bc98a4549fe8854ed6ae65791c824024bd77a9e8e498c6891dea3b8de670c4",
+  "qualification": {"fd_steps_bohr": [0.001, 0.0003], "fd_force_tolerance": 0.00002, "cross_energy_tolerance_hartree": 0.0001, "cross_force_tolerance_hartree_per_bohr": 0.0003, "pyscf_grid_level": 3},
+  "optimization": {"max_iterations": 80, "max_force_hartree_per_bohr": 0.00003},
+  "paths": {"max_chains": 8, "images": 7, "neb_relax_steps": 15, "neb_climb_steps": 50, "neb_fmax_ev_angstrom": 0.05, "ts_steps": 60, "irc_steps": 120, "maximum_negative_frequency_cm1": -30.0},
+  "claim_limits": ["Software agreement is not chemical accuracy.", "CCSD(T)/cc-pVDZ is a finite-basis reference, not exact or experimental truth.", "Continuum-solvent single points are sensitivity probes, not solution free energies.", "A proposed endpoint or NEB maximum is not a verified reaction; saddle, frequency and bidirectional connectivity checks are required.", "No trained model or sealed test labels are used."]
+}

@@ -353,6 +353,11 @@
       "bytes": 3211
     },
     {
+      "path": "configs/research/qc_campaign_20261114.json",
+      "sha256": "e2d870a1fd71706970236b74313d7e5f69e209640dbb61b199d9fcc48a622bd9",
+      "bytes": 1963
+    },
+    {
       "path": "configs/resources.yaml",
       "sha256": "27a81d4cdecfb85a8129a5bf4fc14818be4acc5b6e918fe97a2f6a1a84fcc4bc",
       "bytes": 6685
@@ -524,8 +529,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "0bb5da7b9fb8fea0dc1c4bbc8876972cdab7a01c132b0c908d210acb542c58cb",
-      "bytes": 4924
+      "sha256": "8fd05982fba201f467dce1be0bb573e9d8689b91ad26d60a7ddf25bcb980eddb",
+      "bytes": 6487
     },
     {
       "path": "docs/HANDOFF_FREEZE.md",
@@ -1153,6 +1158,56 @@
       "bytes": 2250
     },
     {
+      "path": "docs/evidence/qc_campaign_20261114/RESULTS_ZH.md",
+      "sha256": "8069d75397ec2e258cae8db1d3645dc8e5ea5a3324f3dc74ed7c6ed7c0cded4b",
+      "bytes": 13976
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/basis_followup_submission.json",
+      "sha256": "5bacc72c509ed12e8d137eb86e181671d9eac4e4aefe5c3e1b765cf7bc54a85f",
+      "bytes": 4998
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/endpoint_limits.json",
+      "sha256": "179a17cdaff3c00c66636494dfc23d7e0beb0628d79a2267d88183ac66a7d354",
+      "bytes": 1426
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/handoff_update.json",
+      "sha256": "6f404a67a90140eb5eba40767b7235092f137a23be7a3ec28b736307c5af3c83",
+      "bytes": 11879
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/scheduler_snapshot.json",
+      "sha256": "e3d5bba929dbe317961c86f5429cf7687f3b10c94daa6f5cd40d087188351227",
+      "bytes": 1324
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/software_checks.json",
+      "sha256": "9e4bb3a3500f2c6b937ef7e49bb1984e4a3ea187aeffe4512fa9d0bf59f3d5a5",
+      "bytes": 2357
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/submission_receipts.json",
+      "sha256": "6106198448194022de5a1f0589933da5671f02ddf4843c4194941365b6472c20",
+      "bytes": 12463
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/submission_snapshot.json",
+      "sha256": "2763d863aae5b35985426af270fe12186984db704316caf19f5c841e64c44daf",
+      "bytes": 55796
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/wave1_manifest_summary.json",
+      "sha256": "c0c839ee40ccde800d0d9bce42f1124e9c9e5f781fe8e8796e77e9d81508357d",
+      "bytes": 266
+    },
+    {
+      "path": "docs/evidence/qc_campaign_20261114/wave2_manifest_summary.json",
+      "sha256": "2356522352f663b577ba3e64f9c4592a024dbabe3bb8c667ebc8e4620dbc3d58",
+      "bytes": 510
+    },
+    {
       "path": "docs/evidence/reactant_only_saddle_refinement_probe_exact_1a7c72d_20261110.json",
       "sha256": "3201f3dfa20b19e6156c6d44a498aedfcd0bee1467e1d966a6b935b6c4effafd",
       "bytes": 1824
@@ -1431,6 +1486,11 @@
       "path": "docs/research/NARROWED_STUDY_REPORT_20261111.md",
       "sha256": "739479b0faed4e68bae04ec32ac66e5731a684af000ecbbbcde26dff99bad2cc",
       "bytes": 14912
+    },
+    {
+      "path": "docs/research/QC_CAMPAIGN_20261114.md",
+      "sha256": "92aa74a7827275d1f03f3192ba2e54e477b832af0cb9841ee1f6f4e9767933ac",
+      "bytes": 7719
     },
     {
       "path": "docs/sources.md",
@@ -1783,6 +1843,11 @@
       "bytes": 6215
     },
     {
+      "path": "scripts/collect_qc_campaign.py",
+      "sha256": "6d77c7f2df46e3610e767a59d876dfd37742089782ca82b2876ca3e500352351",
+      "bytes": 4819
+    },
+    {
       "path": "scripts/continue_gqc_tautomer_minima.py",
       "sha256": "444035acdef94d434e1cd204c51f86c2a9da1ba8d111bf5b5b4e66248f85c235",
       "bytes": 6850
@@ -1833,9 +1898,39 @@
       "bytes": 28579
     },
     {
+      "path": "scripts/prepare_qc_basis_followup.py",
+      "sha256": "f7b726cfb9da93c58877c1584b8b95b5ccf50fc07b6d294a4aca5bff5cc941b7",
+      "bytes": 3228
+    },
+    {
+      "path": "scripts/prepare_qc_campaign.py",
+      "sha256": "3d7a809ca1a67b9f9ec128a9bba7bbe16340e47b9a072e9e519eb8525c910fa4",
+      "bytes": 3755
+    },
+    {
+      "path": "scripts/prepare_qc_paths.py",
+      "sha256": "28694dc1f188052b13651d7a75802ca5c74bfc9e28d03aa5181a120a8978eec0",
+      "bytes": 17363
+    },
+    {
       "path": "scripts/prepare_spice_openff_pilot.py",
       "sha256": "9121a7e5cef736d6459b5dc3400465c5924d678ba1bec4963335cb8b197c0010",
       "bytes": 17349
+    },
+    {
+      "path": "scripts/qc_campaign_geometry.py",
+      "sha256": "9cc20d60c575a7ac0e4f5f0d802757295ab24e5ff78e953a147dca4e75b5edce",
+      "bytes": 1417
+    },
+    {
+      "path": "scripts/qc_campaign_paths.py",
+      "sha256": "a80121dbc31d65c63ab00ed9cc9d693298ff68c2c2c9585236d9d72d966c53e4",
+      "bytes": 14136
+    },
+    {
+      "path": "scripts/qc_campaign_task.py",
+      "sha256": "2e1d756372a4e52f207bb84ccd6dedd961e4ed1aeae0694bca0b7eac738d8fda",
+      "bytes": 12927
     },
     {
       "path": "scripts/render_claim_evidence.py",
@@ -1886,6 +1981,11 @@
       "path": "scripts/run_parallel_guidance_replay.py",
       "sha256": "00787dc6c35dc4e4c36abe339399c4c9e5b38577aafb3fede861126f188df258",
       "bytes": 1533
+    },
+    {
+      "path": "scripts/run_qc_campaign_task.sbatch",
+      "sha256": "ea3604867d3b3fc66b1c911efe9b294e5f0e5f8447fb9dd49db56cb7b861ea45",
+      "bytes": 1418
     },
     {
       "path": "scripts/run_real_feedback_loop.py",
@@ -1944,8 +2044,8 @@
     },
     {
       "path": "skills/n2-quantum-chemistry/references/qualification.md",
-      "sha256": "3fe8c7eaee35880ab9979503de47e53d26625cd8e957cb72eacac981c0ce9a36",
-      "bytes": 3591
+      "sha256": "722618410c74a2f6abb170b7477a26f3313adeb68478a2066afa38c2e4a5ecc5",
+      "bytes": 5190
     },
     {
       "path": "skills/n2-quantum-chemistry/references/runtime.md",
@@ -2596,6 +2696,11 @@
       "path": "tests/test_policy_adapter.py",
       "sha256": "fc068531603bad9b254ad663f9662f1631c7385258190de641aea116f394d4cb",
       "bytes": 3830
+    },
+    {
+      "path": "tests/test_qc_campaign.py",
+      "sha256": "7264eb251b021dc9b29f918436ff33832144fbbc5f424ca3ee6930b35a05cf7e",
+      "bytes": 3267
     },
     {
       "path": "tests/test_reactant_candidates.py",

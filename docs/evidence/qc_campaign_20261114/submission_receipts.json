@@ -1,0 +1,407 @@
+{
+  "submission-wave1.json": {
+    "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+    "manifest_sha256": "9f89ec5680089e1333b219ab99804deb84630fadb43ca5ec9b5376817af0c60b",
+    "observed_utc": "2026-11-14T13:54:11.571724+00:00",
+    "groups": {
+      "audit": {
+        "probe_job": "4650",
+        "remaining_job": "4651",
+        "probe_index": 0,
+        "remaining_indices": [
+          1,
+          2,
+          6,
+          7,
+          8,
+          12,
+          13,
+          17,
+          18,
+          22,
+          23,
+          27,
+          28
+        ],
+        "concurrency": 2
+      },
+      "ccsd_t": {
+        "probe_job": "4652",
+        "remaining_job": "4653",
+        "probe_index": 3,
+        "remaining_indices": [
+          9,
+          14,
+          19,
+          24,
+          29
+        ],
+        "concurrency": 1
+      },
+      "solvent": {
+        "probe_job": "4654",
+        "remaining_job": "4655",
+        "probe_index": 4,
+        "remaining_indices": [
+          5,
+          10,
+          11,
+          15,
+          16,
+          20,
+          21,
+          25,
+          26,
+          30,
+          31
+        ],
+        "concurrency": 1
+      }
+    }
+  },
+  "submission-wave2-opt-frequency-probe.json": {
+    "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+    "utc": "2026-11-14T14:28:10Z",
+    "jobs": [
+      {
+        "job_id": "4693",
+        "kind": "opt",
+        "indices": [
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20,
+          22,
+          24,
+          26,
+          28,
+          30,
+          32,
+          34,
+          36,
+          38,
+          40,
+          42,
+          44,
+          46,
+          48,
+          50,
+          52,
+          54,
+          56
+        ],
+        "array_limit": 2,
+        "dependency": "afterany:4685",
+        "argv": [
+          "sbatch",
+          "--parsable",
+          "--partition=main",
+          "--nodes=1",
+          "--ntasks=1",
+          "--cpus-per-task=4",
+          "--mem=16G",
+          "--time=30",
+          "--job-name=qc2-opt",
+          "--array=4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56%2",
+          "--dependency=afterany:4685",
+          "--output=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/opt-%A_%a.out",
+          "--error=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/opt-%A_%a.err",
+          "--gres=gpu:pro6000:1",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114/scripts/run_qc_campaign_task.sbatch",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114",
+          "bc13c63f1d3bb602e41982df349f6800b67d3043",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/wave2/tasks.json",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/results-wave2",
+          "1"
+        ]
+      },
+      {
+        "job_id": "4694",
+        "kind": "freq-probe",
+        "indices": [
+          3
+        ],
+        "array_limit": 1,
+        "dependency": "afterany:4685",
+        "argv": [
+          "sbatch",
+          "--parsable",
+          "--partition=main",
+          "--nodes=1",
+          "--ntasks=1",
+          "--cpus-per-task=4",
+          "--mem=16G",
+          "--time=45",
+          "--job-name=qc2-freq-probe",
+          "--array=3%1",
+          "--dependency=afterany:4685",
+          "--output=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/freq-probe-%A_%a.out",
+          "--error=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/freq-probe-%A_%a.err",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114/scripts/run_qc_campaign_task.sbatch",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114",
+          "bc13c63f1d3bb602e41982df349f6800b67d3043",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/wave2/tasks.json",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/results-wave2",
+          "0"
+        ]
+      }
+    ]
+  },
+  "submission-wave2-probes.json": {
+    "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+    "manifest_sha256": "f1421d6b8870157b93c42f3dd89f23f874ed8fe247d5dfb8906191fc8fcd9c66",
+    "utc": "2026-11-14T14:23:49Z",
+    "jobs": [
+      {
+        "job_id": "4682",
+        "kind": "audit",
+        "indices": [
+          0,
+          1
+        ],
+        "array_limit": 2,
+        "dependency": null,
+        "argv": [
+          "sbatch",
+          "--parsable",
+          "--partition=main",
+          "--nodes=1",
+          "--ntasks=1",
+          "--cpus-per-task=4",
+          "--mem=16G",
+          "--time=30",
+          "--job-name=qc2-audit",
+          "--array=0,1%2",
+          "--output=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/audit-%A_%a.out",
+          "--error=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/audit-%A_%a.err",
+          "--gres=gpu:pro6000:1",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114/scripts/run_qc_campaign_task.sbatch",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114",
+          "bc13c63f1d3bb602e41982df349f6800b67d3043",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/wave2/tasks.json",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/results-wave2",
+          "1"
+        ]
+      },
+      {
+        "job_id": "4683",
+        "kind": "gas",
+        "indices": [
+          66,
+          68,
+          70,
+          71,
+          72,
+          73
+        ],
+        "array_limit": 1,
+        "dependency": null,
+        "argv": [
+          "sbatch",
+          "--parsable",
+          "--partition=main",
+          "--nodes=1",
+          "--ntasks=1",
+          "--cpus-per-task=4",
+          "--mem=16G",
+          "--time=30",
+          "--job-name=qc2-gas",
+          "--array=66,68,70,71,72,73%1",
+          "--output=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/gas-%A_%a.out",
+          "--error=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/gas-%A_%a.err",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114/scripts/run_qc_campaign_task.sbatch",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114",
+          "bc13c63f1d3bb602e41982df349f6800b67d3043",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/wave2/tasks.json",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/results-wave2",
+          "0"
+        ]
+      },
+      {
+        "job_id": "4684",
+        "kind": "ccsd_t",
+        "indices": [
+          67,
+          69
+        ],
+        "array_limit": 1,
+        "dependency": null,
+        "argv": [
+          "sbatch",
+          "--parsable",
+          "--partition=main",
+          "--nodes=1",
+          "--ntasks=1",
+          "--cpus-per-task=8",
+          "--mem=32G",
+          "--time=240",
+          "--job-name=qc2-ccsd_t",
+          "--array=67,69%1",
+          "--output=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/ccsd_t-%A_%a.out",
+          "--error=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/ccsd_t-%A_%a.err",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114/scripts/run_qc_campaign_task.sbatch",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114",
+          "bc13c63f1d3bb602e41982df349f6800b67d3043",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/wave2/tasks.json",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/results-wave2",
+          "0"
+        ]
+      },
+      {
+        "job_id": "4685",
+        "kind": "opt-probe",
+        "indices": [
+          2
+        ],
+        "array_limit": 1,
+        "dependency": "afterany:4682",
+        "argv": [
+          "sbatch",
+          "--parsable",
+          "--partition=main",
+          "--nodes=1",
+          "--ntasks=1",
+          "--cpus-per-task=4",
+          "--mem=16G",
+          "--time=30",
+          "--job-name=qc2-opt-probe",
+          "--array=2%1",
+          "--output=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/opt-probe-%A_%a.out",
+          "--error=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/opt-probe-%A_%a.err",
+          "--gres=gpu:pro6000:1",
+          "--dependency=afterany:4682",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114/scripts/run_qc_campaign_task.sbatch",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114",
+          "bc13c63f1d3bb602e41982df349f6800b67d3043",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/wave2/tasks.json",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/results-wave2",
+          "1"
+        ]
+      }
+    ]
+  },
+  "submission-wave2-remainder.json": {
+    "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+    "utc": "2026-11-14T14:30:10Z",
+    "jobs": [
+      {
+        "job_id": "4698",
+        "kind": "frequency",
+        "indices": [
+          5,
+          7,
+          9,
+          11,
+          13,
+          15,
+          17,
+          19,
+          21,
+          23,
+          25,
+          27,
+          29,
+          31,
+          33,
+          35,
+          37,
+          39,
+          41,
+          43,
+          45,
+          47,
+          49,
+          51,
+          53,
+          55,
+          57
+        ],
+        "array_limit": 1,
+        "dependency": "afterany:4693:4694:4683",
+        "argv": [
+          "sbatch",
+          "--parsable",
+          "--partition=main",
+          "--nodes=1",
+          "--ntasks=1",
+          "--cpus-per-task=4",
+          "--mem=16G",
+          "--time=45",
+          "--job-name=qc2-frequency",
+          "--array=5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57%1",
+          "--dependency=afterany:4693:4694:4683",
+          "--output=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/frequency-%A_%a.out",
+          "--error=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/frequency-%A_%a.err",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114/scripts/run_qc_campaign_task.sbatch",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114",
+          "bc13c63f1d3bb602e41982df349f6800b67d3043",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/wave2/tasks.json",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/results-wave2",
+          "0"
+        ]
+      },
+      {
+        "job_id": "4699",
+        "kind": "path",
+        "indices": [
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65
+        ],
+        "array_limit": 2,
+        "dependency": "afterany:4698:4694",
+        "argv": [
+          "sbatch",
+          "--parsable",
+          "--partition=main",
+          "--nodes=1",
+          "--ntasks=1",
+          "--cpus-per-task=4",
+          "--mem=24G",
+          "--time=150",
+          "--job-name=qc2-path",
+          "--array=58,59,60,61,62,63,64,65%2",
+          "--dependency=afterany:4698:4694",
+          "--output=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/path-%A_%a.out",
+          "--error=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/logs-wave2/path-%A_%a.err",
+          "--gres=gpu:pro6000:1",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114/scripts/run_qc_campaign_task.sbatch",
+          "${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114",
+          "bc13c63f1d3bb602e41982df349f6800b67d3043",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/wave2/tasks.json",
+          "${N2_HOME}/xtbflow-runs/qc-campaign-20261114/results-wave2",
+          "1"
+        ]
+      }
+    ],
+    "collector": {
+      "job_id": "4700",
+      "argv": [
+        "sbatch",
+        "--parsable",
+        "--partition=main",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=1",
+        "--mem=2G",
+        "--time=5",
+        "--job-name=qc-final-collect",
+        "--dependency=afterany:4699:4684:4698",
+        "--output=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/collector-%j.out",
+        "--error=${N2_HOME}/xtbflow-runs/qc-campaign-20261114/collector-%j.err",
+        "--wrap",
+        "set -e\nsource ${N2_HOME}/miniconda3/etc/profile.d/conda.sh\nconda activate xtbflow\ncd ${N2_HOME}/xtbflow/xtbflow-exec-campaign-bc13c63-20261114\npython scripts/collect_qc_campaign.py --root ${N2_HOME}/xtbflow-runs/qc-campaign-20261114 --out ${N2_HOME}/xtbflow-runs/qc-campaign-20261114/final-summary.json"
+      ]
+    }
+  }
+}

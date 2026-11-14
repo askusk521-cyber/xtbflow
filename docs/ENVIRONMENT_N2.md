@@ -107,3 +107,28 @@ and commands: [pilot evidence](evidence/gqc_tautomer_20261114/RESULTS_ZH.md).
 Slurm accounting storage was disabled; program time is not relabelled as exact
 allocated GPU time. A private n2 runtime.env and the reusable
 `skills/n2-quantum-chemistry/` instructions preserve the verified invocation.
+
+## 2026-11-14 expanded GQC qualification
+
+With the same native hash, six displaced R6/R30/R51 B3LYP/def2-SVP checks
+passed. CPU PySCF energy differences were at most 4.75e-12 Hartree; Cartesian
+force differences at most 7.23e-5 Hartree/Bohr. Two additional B3LYP/def2-SVP
+checks passed for an explicit-water cluster and the amino-furan/maleimide
+model. These are measured molecular cases, not universal accuracy guarantees.
+
+GQC CUDA M06-2X/def2-SVP energies agreed on two R6 structures, but forces
+failed both finite differences and independent PySCF comparisons (directional
+errors 0.170–0.195 Hartree/Bohr; Cartesian difference up to 0.744). This build's
+M06-2X force route remains quarantined. Six CUDA B3LYP/def2-TZVP attempts
+failed with `CUDA gradient integral descriptors admit s/p/d bases only`.
+That route is unsupported for these basis functions, rather than numerically
+qualified. PySCF CPU provides the campaign's larger-basis and Hessian stages.
+
+Exact execution sources: `cb28d5c765ce2026395e149d91fd5662845b18d8` (first
+wave), `bc13c63` (mapped follow-up campaign). The latter passed 441 pytest
+tests, 68 subtests and 56 reusable unittest tests in the n2 `xtbflow` environment.
+The frozen quantum interpreter remains the separate Python 3.11 GQC venv.
+ASE 3.29.0 pure-Python files were copied to the private run's isolated dependency
+directory for NEB; neither scientific environment was upgraded. All eight
+path searches are conditional on endpoint and numerical checks. Submission
+does not establish a transition state or connected reaction.

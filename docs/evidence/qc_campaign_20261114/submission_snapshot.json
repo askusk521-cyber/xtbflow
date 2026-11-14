@@ -1,0 +1,2007 @@
+{
+  "schema": "xtbflow-qc-campaign-summary/v1",
+  "host": "node2",
+  "collected_utc": "2026-11-14T14:30:55Z",
+  "manifests": {
+    "wave1": {
+      "sha256": "9f89ec5680089e1333b219ab99804deb84630fadb43ca5ec9b5376817af0c60b",
+      "config_sha256": "e2d870a1fd71706970236b74313d7e5f69e209640dbb61b199d9fcc48a622bd9"
+    },
+    "wave2": {
+      "sha256": "f1421d6b8870157b93c42f3dd89f23f874ed8fe247d5dfb8906191fc8fcd9c66",
+      "config_sha256": "e2d870a1fd71706970236b74313d7e5f69e209640dbb61b199d9fcc48a622bd9"
+    }
+  },
+  "status_counts": {
+    "qualification_passed": 8,
+    "execution_failed": 6,
+    "qualification_failed": 2,
+    "completed_finite_basis_reference": 6,
+    "completed_solvent_single_point": 12,
+    "optimized_identity_passed": 2,
+    "minimum_verified": 1,
+    "report_not_present": 60,
+    "started": 3,
+    "completed_gas_single_point": 6
+  },
+  "tasks": [
+    {
+      "wave": "wave1",
+      "index": 0,
+      "id": "audit_R6_enol_def2-svp",
+      "kind": "audit",
+      "status": "qualification_passed",
+      "report_sha256": "fc83729e02bd23a6867339f29d7f99479b2043ed46616700d5d9babb2459a1ca",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4650",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 6,
+        "completed": 6,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 12.874684189999243,
+        "process_cpu_seconds": 38.02747914
+      },
+      "energy_hartree": -231.0461447661145,
+      "reference_energy_hartree": -231.04614476610976,
+      "cross_energy_error_hartree": 4.746425474877469e-12,
+      "cross_force_error_hartree_per_bohr": 4.5608024779042466e-05,
+      "energy_pass": true,
+      "force_pass": true,
+      "fd": [
+        {
+          "step_bohr": 0.001,
+          "abs_error": 1.3138234073589716e-08
+        },
+        {
+          "step_bohr": 0.0003,
+          "abs_error": 1.2342747761351358e-09
+        }
+      ],
+      "journal": {
+        "started": 6,
+        "completed": 6,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 1,
+      "id": "audit_R6_enol_def2-tzvp",
+      "kind": "audit",
+      "status": "execution_failed",
+      "report_sha256": "2ccc31ed086196b8be71b55b8e19c3cf2a64a5189294e15b435ccf06ad5826c8",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4656",
+      "host": "node2",
+      "python": "3.11.17",
+      "error_type": "RuntimeError",
+      "resources": {
+        "started": 1,
+        "completed": 0,
+        "failed": 1,
+        "unsettled": 0,
+        "wall_seconds": 17.63313237300099,
+        "process_cpu_seconds": 18.028659468999997
+      },
+      "journal": {
+        "started": 1,
+        "failed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 2,
+      "id": "audit_m06_R6_enol",
+      "kind": "audit",
+      "status": "qualification_failed",
+      "report_sha256": "d73ac2d3581d06e37a5d889417a7e670b4699af02de586dcd93e8b2600f61d4e",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4657",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 6,
+        "completed": 6,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 16.210071213998162,
+        "process_cpu_seconds": 50.530257989
+      },
+      "energy_hartree": -230.93228441243377,
+      "reference_energy_hartree": -230.93228441243264,
+      "cross_energy_error_hartree": 1.1368683772161603e-12,
+      "cross_force_error_hartree_per_bohr": 0.5667259541819902,
+      "energy_pass": true,
+      "force_pass": false,
+      "fd": [
+        {
+          "step_bohr": 0.001,
+          "abs_error": 0.19538079238193068
+        },
+        {
+          "step_bohr": 0.0003,
+          "abs_error": 0.19538080594382304
+        }
+      ],
+      "journal": {
+        "started": 6,
+        "completed": 6,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 3,
+      "id": "ccsdt_R6_enol",
+      "kind": "ccsd_t",
+      "status": "completed_finite_basis_reference",
+      "report_sha256": "8ecd74f6c7819df4ec8b9d316aa759c0954bbccb0be96085af893be6b9f69e8b",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4652",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 3,
+        "completed": 3,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 20.656073268997716,
+        "process_cpu_seconds": 154.055399426
+      },
+      "ccsdt_hartree": -230.60170689221465,
+      "t1_frobenius_norm": 0.06586256061143622,
+      "basis": "cc-pvdz",
+      "journal": {
+        "started": 3,
+        "completed": 3,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 4,
+      "id": "pcm_water_R6_enol",
+      "kind": "solvent",
+      "status": "completed_solvent_single_point",
+      "report_sha256": "00d5c72865fe701df72fae4facb6f4db5d8027640fdd8d89c9fcb317cf9d0e9a",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4654",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 22.636020382000424,
+        "process_cpu_seconds": 110.900742058
+      },
+      "energy_hartree": -231.32374854827026,
+      "epsilon": 78.3553,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 5,
+      "id": "pcm_acetonitrile_R6_enol",
+      "kind": "solvent",
+      "status": "completed_solvent_single_point",
+      "report_sha256": "80838c36618fd8b79d5d0a71a6a4864de29759bf38ab376f11229f748f916df2",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4659",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 22.688546301000315,
+        "process_cpu_seconds": 111.02586255599999
+      },
+      "energy_hartree": -231.32357937126324,
+      "epsilon": 35.688,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 6,
+      "id": "audit_R6_carbonyl_def2-svp",
+      "kind": "audit",
+      "status": "qualification_passed",
+      "report_sha256": "4ca42453daba031bc1dab08c12f49b1d89b714d062f39059f0cd48f6643b8f04",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4660",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 6,
+        "completed": 6,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 13.471396000000823,
+        "process_cpu_seconds": 38.764518583
+      },
+      "energy_hartree": -231.04663597140168,
+      "reference_energy_hartree": -231.0466359714018,
+      "cross_energy_error_hartree": 1.1368683772161603e-13,
+      "cross_force_error_hartree_per_bohr": 3.704315623165311e-05,
+      "energy_pass": true,
+      "force_pass": true,
+      "fd": [
+        {
+          "step_bohr": 0.001,
+          "abs_error": 1.9171511461690827e-09
+        },
+        {
+          "step_bohr": 0.0003,
+          "abs_error": 5.386982526722761e-10
+        }
+      ],
+      "journal": {
+        "started": 6,
+        "completed": 6,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 7,
+      "id": "audit_R6_carbonyl_def2-tzvp",
+      "kind": "audit",
+      "status": "execution_failed",
+      "report_sha256": "ebec367ff0481bd00381f42f414da686ecd2b4d439881eea91fb390449a27856",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4661",
+      "host": "node2",
+      "python": "3.11.17",
+      "error_type": "RuntimeError",
+      "resources": {
+        "started": 1,
+        "completed": 0,
+        "failed": 1,
+        "unsettled": 0,
+        "wall_seconds": 18.74833651100198,
+        "process_cpu_seconds": 19.315189805
+      },
+      "journal": {
+        "started": 1,
+        "failed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 8,
+      "id": "audit_m06_R6_carbonyl",
+      "kind": "audit",
+      "status": "qualification_failed",
+      "report_sha256": "e4f39266db0a8e55b67ff5b9080c616043ba2a5b9e79214087d36f303c450f1c",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4663",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 6,
+        "completed": 6,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 16.562969626000267,
+        "process_cpu_seconds": 51.391599982
+      },
+      "energy_hartree": -230.9365588320276,
+      "reference_energy_hartree": -230.93655883202766,
+      "cross_energy_error_hartree": 5.684341886080802e-14,
+      "cross_force_error_hartree_per_bohr": 0.7436602138391954,
+      "energy_pass": true,
+      "force_pass": false,
+      "fd": [
+        {
+          "step_bohr": 0.001,
+          "abs_error": 0.1703730039127689
+        },
+        {
+          "step_bohr": 0.0003,
+          "abs_error": 0.17037300826129045
+        }
+      ],
+      "journal": {
+        "started": 6,
+        "completed": 6,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 9,
+      "id": "ccsdt_R6_carbonyl",
+      "kind": "ccsd_t",
+      "status": "completed_finite_basis_reference",
+      "report_sha256": "bca768d4e5bbf4942e7ea11af50298ba6900b688999a1a6f1a9d8082b3f77a11",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4658",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 3,
+        "completed": 3,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 21.21417814900269,
+        "process_cpu_seconds": 158.686352611
+      },
+      "ccsdt_hartree": -230.6130464618877,
+      "t1_frobenius_norm": 0.07211008586322877,
+      "basis": "cc-pvdz",
+      "journal": {
+        "started": 3,
+        "completed": 3,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 10,
+      "id": "pcm_water_R6_carbonyl",
+      "kind": "solvent",
+      "status": "completed_solvent_single_point",
+      "report_sha256": "e4e93459906b245387700cd0e0ed2ef7311cf02dfb7c792bb088d2e9674c4d68",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4664",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 21.616171893001592,
+        "process_cpu_seconds": 105.25562349
+      },
+      "energy_hartree": -231.32718739566477,
+      "epsilon": 78.3553,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 11,
+      "id": "pcm_acetonitrile_R6_carbonyl",
+      "kind": "solvent",
+      "status": "completed_solvent_single_point",
+      "report_sha256": "9eeb94ff096eafc514361288512823825cf72f6ae2f07ffc77db0192f538356e",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4667",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 21.663446128000942,
+        "process_cpu_seconds": 105.51220638400001
+      },
+      "energy_hartree": -231.32701281544152,
+      "epsilon": 35.688,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 12,
+      "id": "audit_R30_enol_def2-svp",
+      "kind": "audit",
+      "status": "qualification_passed",
+      "report_sha256": "1d3bfbd67f564ddf3503a5e7791bdfc49c76445d74a9854df99aa0774df8c8d8",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4665",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 6,
+        "completed": 6,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 31.084225288999733,
+        "process_cpu_seconds": 68.758817804
+      },
+      "energy_hartree": -270.33304878206496,
+      "reference_energy_hartree": -270.33304878206116,
+      "cross_energy_error_hartree": 3.808509063674137e-12,
+      "cross_force_error_hartree_per_bohr": 4.114482415595866e-05,
+      "energy_pass": true,
+      "force_pass": true,
+      "fd": [
+        {
+          "step_bohr": 0.001,
+          "abs_error": 9.221683291982252e-09
+        },
+        {
+          "step_bohr": 0.0003,
+          "abs_error": 1.669547278204675e-10
+        }
+      ],
+      "journal": {
+        "started": 6,
+        "completed": 6,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 13,
+      "id": "audit_R30_enol_def2-tzvp",
+      "kind": "audit",
+      "status": "execution_failed",
+      "report_sha256": "b70879feb4775b142c50a0638628069f2aace69e3d19a7e953067a063cf5937e",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4666",
+      "host": "node2",
+      "python": "3.11.17",
+      "error_type": "RuntimeError",
+      "resources": {
+        "started": 1,
+        "completed": 0,
+        "failed": 1,
+        "unsettled": 0,
+        "wall_seconds": 29.1514613679974,
+        "process_cpu_seconds": 29.753311109000002
+      },
+      "journal": {
+        "started": 1,
+        "failed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 14,
+      "id": "ccsdt_R30_enol",
+      "kind": "ccsd_t",
+      "status": "completed_finite_basis_reference",
+      "report_sha256": "c35042ad810e3a46820db8c686b2dfe41f9ceda055ef72a5635b630d2dab0e48",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4662",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 3,
+        "completed": 3,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 63.353539656000066,
+        "process_cpu_seconds": 451.414468032
+      },
+      "ccsdt_hartree": -269.8062730975529,
+      "t1_frobenius_norm": 0.0676031918585223,
+      "basis": "cc-pvdz",
+      "journal": {
+        "started": 3,
+        "completed": 3,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 15,
+      "id": "pcm_water_R30_enol",
+      "kind": "solvent",
+      "status": "completed_solvent_single_point",
+      "report_sha256": "ed8c5719301d52a634e23b297200f05b5c8044fd6559a747fe42a8e18ea45588",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4669",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 41.353015503998904,
+        "process_cpu_seconds": 188.671623093
+      },
+      "energy_hartree": -270.65609734345117,
+      "epsilon": 78.3553,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 16,
+      "id": "pcm_acetonitrile_R30_enol",
+      "kind": "solvent",
+      "status": "completed_solvent_single_point",
+      "report_sha256": "b556bb4330d3706f02d67d9da5163cd2c645d0ecc952e84bfc6e26089c54a23e",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4674",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 41.23028475599858,
+        "process_cpu_seconds": 188.100479341
+      },
+      "energy_hartree": -270.6559330822793,
+      "epsilon": 35.688,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 17,
+      "id": "audit_R30_carbonyl_def2-svp",
+      "kind": "audit",
+      "status": "qualification_passed",
+      "report_sha256": "9caec062004ba7a88b68e8f5c4ed8b7a6b05232b07ee147cd714c814537ec2f4",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4668",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 6,
+        "completed": 6,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 33.399545649001084,
+        "process_cpu_seconds": 73.62960695199999
+      },
+      "energy_hartree": -270.3395806773028,
+      "reference_energy_hartree": -270.3395806773034,
+      "cross_energy_error_hartree": 5.684341886080801e-13,
+      "cross_force_error_hartree_per_bohr": 3.2985781173167084e-05,
+      "energy_pass": true,
+      "force_pass": true,
+      "fd": [
+        {
+          "step_bohr": 0.001,
+          "abs_error": 6.619339687485848e-09
+        },
+        {
+          "step_bohr": 0.0003,
+          "abs_error": 5.181460607794897e-10
+        }
+      ],
+      "journal": {
+        "started": 6,
+        "completed": 6,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 18,
+      "id": "audit_R30_carbonyl_def2-tzvp",
+      "kind": "audit",
+      "status": "execution_failed",
+      "report_sha256": "d8d68c4c910501a7fe869379cdff1f30285707449da96ad0abf4fded658cdfb8",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4670",
+      "host": "node2",
+      "python": "3.11.17",
+      "error_type": "RuntimeError",
+      "resources": {
+        "started": 1,
+        "completed": 0,
+        "failed": 1,
+        "unsettled": 0,
+        "wall_seconds": 31.481529320000845,
+        "process_cpu_seconds": 32.086265554
+      },
+      "journal": {
+        "started": 1,
+        "failed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 19,
+      "id": "ccsdt_R30_carbonyl",
+      "kind": "ccsd_t",
+      "status": "completed_finite_basis_reference",
+      "report_sha256": "7e105a96f17c6060bc2778647b4d202b24ba8c794410e3d7ea8cb35723b86c5b",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4671",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 3,
+        "completed": 3,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 64.8726516099996,
+        "process_cpu_seconds": 462.15119528400004
+      },
+      "ccsdt_hartree": -269.8181035776496,
+      "t1_frobenius_norm": 0.07434077413151569,
+      "basis": "cc-pvdz",
+      "journal": {
+        "started": 3,
+        "completed": 3,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 20,
+      "id": "pcm_water_R30_carbonyl",
+      "kind": "solvent",
+      "status": "completed_solvent_single_point",
+      "report_sha256": "7aa11811cab8bc9348fb2f798dcc02c93dabc68fe9a21108226feff435514015",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4677",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 38.96745308200116,
+        "process_cpu_seconds": 177.50849277999998
+      },
+      "energy_hartree": -270.6605452903576,
+      "epsilon": 78.3553,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 21,
+      "id": "pcm_acetonitrile_R30_carbonyl",
+      "kind": "solvent",
+      "status": "completed_solvent_single_point",
+      "report_sha256": "95802a359ab6493e231536804b00bd6742f8a8d779e950fd7b145af06b42e5f5",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4678",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 38.837978682997345,
+        "process_cpu_seconds": 177.00631192999998
+      },
+      "energy_hartree": -270.66037148384316,
+      "epsilon": 35.688,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 22,
+      "id": "audit_R51_enol_def2-svp",
+      "kind": "audit",
+      "status": "qualification_passed",
+      "report_sha256": "60f8d5d0e6f4a979f9b55b0d5cff281a10135875d7a42274c2e4189e2a2482db",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4672",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 6,
+        "completed": 6,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 34.138777683001535,
+        "process_cpu_seconds": 77.39210040500001
+      },
+      "energy_hartree": -344.3094496202458,
+      "reference_energy_hartree": -344.3094496202475,
+      "cross_energy_error_hartree": 1.7053025658242404e-12,
+      "cross_force_error_hartree_per_bohr": 6.317746524819867e-05,
+      "energy_pass": true,
+      "force_pass": true,
+      "fd": [
+        {
+          "step_bohr": 0.001,
+          "abs_error": 1.1885293027535937e-09
+        },
+        {
+          "step_bohr": 0.0003,
+          "abs_error": 5.916734047151095e-10
+        }
+      ],
+      "journal": {
+        "started": 6,
+        "completed": 6,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 23,
+      "id": "audit_R51_enol_def2-tzvp",
+      "kind": "audit",
+      "status": "execution_failed",
+      "report_sha256": "4fb6e8accfb9ebcf1fa982b5f9cbf5191281e4dbf009d1af44fe8dcc5720d79f",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4673",
+      "host": "node2",
+      "python": "3.11.17",
+      "error_type": "RuntimeError",
+      "resources": {
+        "started": 1,
+        "completed": 0,
+        "failed": 1,
+        "unsettled": 0,
+        "wall_seconds": 52.506882707999466,
+        "process_cpu_seconds": 53.149305806
+      },
+      "journal": {
+        "started": 1,
+        "failed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 24,
+      "id": "ccsdt_R51_enol",
+      "kind": "ccsd_t",
+      "status": "completed_finite_basis_reference",
+      "report_sha256": "aaa0abe692e79f6100cf64206068f0cf56e8dcf346ba01b6c2a144ac8b37bdfe",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4676",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 3,
+        "completed": 3,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 83.05273261500042,
+        "process_cpu_seconds": 599.2288205660001
+      },
+      "ccsdt_hartree": -343.68147360301606,
+      "t1_frobenius_norm": 0.07597662740818605,
+      "basis": "cc-pvdz",
+      "journal": {
+        "started": 3,
+        "completed": 3,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 25,
+      "id": "pcm_water_R51_enol",
+      "kind": "solvent",
+      "status": "completed_solvent_single_point",
+      "report_sha256": "332bc4c8fa53d7ec3ce30b6051f89b183f97f8235f85461bd55761661e8e117b",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4679",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 45.725749866000115,
+        "process_cpu_seconds": 206.305316438
+      },
+      "energy_hartree": -344.7143562979137,
+      "epsilon": 78.3553,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 26,
+      "id": "pcm_acetonitrile_R51_enol",
+      "kind": "solvent",
+      "status": "completed_solvent_single_point",
+      "report_sha256": "caf5ccac3b0a89a68fa9ba25909dc899bd23a40a234dbc0c94f6e64159854e09",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4680",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 45.44210772600127,
+        "process_cpu_seconds": 205.331816591
+      },
+      "energy_hartree": -344.71420153364227,
+      "epsilon": 35.688,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 27,
+      "id": "audit_R51_carbonyl_def2-svp",
+      "kind": "audit",
+      "status": "qualification_passed",
+      "report_sha256": "b70eabf5c572a0f747169cecee39011f1f3352341017a1bd0fbc51a37561f414",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4675",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 6,
+        "completed": 6,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 36.50630988800185,
+        "process_cpu_seconds": 80.25220628
+      },
+      "energy_hartree": -344.3297840970436,
+      "reference_energy_hartree": -344.32978409704594,
+      "cross_energy_error_hartree": 2.3305801732931286e-12,
+      "cross_force_error_hartree_per_bohr": 7.22493597695717e-05,
+      "energy_pass": true,
+      "force_pass": true,
+      "fd": [
+        {
+          "step_bohr": 0.001,
+          "abs_error": 5.5596577619443366e-09
+        },
+        {
+          "step_bohr": 0.0003,
+          "abs_error": 8.606017981582781e-10
+        }
+      ],
+      "journal": {
+        "started": 6,
+        "completed": 6,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 28,
+      "id": "audit_R51_carbonyl_def2-tzvp",
+      "kind": "audit",
+      "status": "execution_failed",
+      "report_sha256": "19dd12e1929e6b258e38bc659a4ee1c9ebd98330ce08fa0f04437f07860d61dc",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4651",
+      "host": "node2",
+      "python": "3.11.17",
+      "error_type": "RuntimeError",
+      "resources": {
+        "started": 1,
+        "completed": 0,
+        "failed": 1,
+        "unsettled": 0,
+        "wall_seconds": 52.86932414100011,
+        "process_cpu_seconds": 53.50437002
+      },
+      "journal": {
+        "started": 1,
+        "failed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 29,
+      "id": "ccsdt_R51_carbonyl",
+      "kind": "ccsd_t",
+      "status": "completed_finite_basis_reference",
+      "report_sha256": "fb69d2108fee71d7ab283ebfdbb248f329e7a5fc5ce377d156ede61b15b02f56",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4653",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 3,
+        "completed": 3,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 83.83829984000113,
+        "process_cpu_seconds": 603.807958498
+      },
+      "ccsdt_hartree": -343.70581074668326,
+      "t1_frobenius_norm": 0.09052617134227907,
+      "basis": "cc-pvdz",
+      "journal": {
+        "started": 3,
+        "completed": 3,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 30,
+      "id": "pcm_water_R51_carbonyl",
+      "kind": "solvent",
+      "status": "completed_solvent_single_point",
+      "report_sha256": "43ab693d8f1430b0893547945976af247c777d4d57feffb690326409d4e75ac1",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4681",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 45.749506618998566,
+        "process_cpu_seconds": 206.471326685
+      },
+      "energy_hartree": -344.7371995014375,
+      "epsilon": 78.3553,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave1",
+      "index": 31,
+      "id": "pcm_acetonitrile_R51_carbonyl",
+      "kind": "solvent",
+      "status": "completed_solvent_single_point",
+      "report_sha256": "9f90df22abe8339f9cad7bbeece41116d96f29bcd3bf3fbb57b1086691269f99",
+      "source_commit": "cb28d5c765ce2026395e149d91fd5662845b18d8",
+      "slurm_job_id": "4655",
+      "host": "node2",
+      "python": "3.11.17",
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 45.58039530899987,
+        "process_cpu_seconds": 205.917118717
+      },
+      "energy_hartree": -344.7369991159714,
+      "epsilon": 35.688,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 0,
+      "id": "audit_AD_R6_water_R",
+      "kind": "audit",
+      "status": "qualification_passed",
+      "report_sha256": "e8bbbaf5b1353880256ea14f5d3d6fc944567fd5661ee4d5c668d92d9acd30bb",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4686",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 6,
+        "completed": 6,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 36.50016659099856,
+        "process_cpu_seconds": 77.323399406
+      },
+      "energy_hartree": -307.3850158263239,
+      "reference_energy_hartree": -307.3850158263243,
+      "cross_energy_error_hartree": 3.979039320256561e-13,
+      "cross_force_error_hartree_per_bohr": 6.302782431433229e-05,
+      "energy_pass": true,
+      "force_pass": true,
+      "fd": [
+        {
+          "step_bohr": 0.001,
+          "abs_error": 1.0133811819204586e-09
+        },
+        {
+          "step_bohr": 0.0003,
+          "abs_error": 4.923165087405978e-10
+        }
+      ],
+      "journal": {
+        "started": 6,
+        "completed": 6,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 1,
+      "id": "audit_C_amino_DA_R",
+      "kind": "audit",
+      "status": "qualification_passed",
+      "report_sha256": "ce22a74d25b067f6d2a80fa688db814742c5862ff578d3c432b329dfb3c396c4",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4682",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 6,
+        "completed": 6,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 113.57632339799966,
+        "process_cpu_seconds": 280.522561494
+      },
+      "energy_hartree": -683.6273275843616,
+      "reference_energy_hartree": -683.6273275843612,
+      "cross_energy_error_hartree": 4.547473508864641e-13,
+      "cross_force_error_hartree_per_bohr": 5.336680418510653e-05,
+      "energy_pass": true,
+      "force_pass": true,
+      "fd": [
+        {
+          "step_bohr": 0.001,
+          "abs_error": 3.2183695131658696e-09
+        },
+        {
+          "step_bohr": 0.0003,
+          "abs_error": 6.84878582232068e-10
+        }
+      ],
+      "journal": {
+        "started": 6,
+        "completed": 6,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 2,
+      "id": "opt_A_R6_tautomer_R",
+      "kind": "opt",
+      "status": "optimized_identity_passed",
+      "report_sha256": "c2ee7b61c115188514ab7b59bbfbf4ee7ebb93c5d7cebcfd25d673f103f4562e",
+      "stage": "GQC_optimization",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4685",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 18,
+        "completed": 18,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 27.707206551000127,
+        "process_cpu_seconds": 34.464000653
+      },
+      "energy_hartree": -231.052775685885,
+      "max_force_hartree_per_bohr": 7.7972568828244e-06,
+      "identity": {
+        "rdkit_version": "2024.03.3",
+        "status": "identity_passed",
+        "observed_smiles": "C=CCC=O",
+        "expected_smiles": "C=CCC=O"
+      },
+      "gate_evidence": {
+        "id": "wave1/audit_R6_enol_def2-svp",
+        "status": "qualification_passed",
+        "report_sha256": "fc83729e02bd23a6867339f29d7f99479b2043ed46616700d5d9babb2459a1ca",
+        "identity_valid": true
+      },
+      "journal": {
+        "started": 18,
+        "completed": 18,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 3,
+      "id": "freq_A_R6_tautomer_R",
+      "kind": "frequency",
+      "status": "minimum_verified",
+      "report_sha256": "70630a4e3728573df477eed38063c6dfe86ba55234a7abe14723b4e794b36bf2",
+      "stage": "PySCF_minimum_frequency",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4694",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 2,
+        "completed": 2,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 57.86183082500065,
+        "process_cpu_seconds": 233.441939693
+      },
+      "energy_hartree": -231.0527756858838,
+      "frequencies_cm1": [
+        68.95039397246619,
+        159.61283437635473,
+        221.7212525709467,
+        398.7082667209168,
+        554.7091492298213,
+        711.7708403545595,
+        757.4239948712338,
+        865.7693949392602,
+        949.5416598105147,
+        971.7136131392324,
+        1012.4144822536083,
+        1036.9665034901425,
+        1146.8079119759257,
+        1223.6381843451836,
+        1298.546692135012,
+        1327.5404979134723,
+        1393.6098799450408,
+        1413.6785066328728,
+        1444.8747228328318,
+        1726.5631337372336,
+        1852.779609191302,
+        2864.8713305704628,
+        2982.5966398823452,
+        3052.4957224812447,
+        3129.5304298235833,
+        3162.7360988183427,
+        3226.6276303448003
+      ],
+      "max_force_hartree_per_bohr": 3.477745628910345e-05,
+      "harmonic_gibbs_hartree": -230.9932548690489,
+      "gate_evidence": {
+        "id": "wave1/audit_R6_enol_def2-svp",
+        "status": "qualification_passed",
+        "report_sha256": "fc83729e02bd23a6867339f29d7f99479b2043ed46616700d5d9babb2459a1ca",
+        "identity_valid": true
+      },
+      "upstream": {
+        "id": "opt_A_R6_tautomer_R",
+        "report_sha256": "c2ee7b61c115188514ab7b59bbfbf4ee7ebb93c5d7cebcfd25d673f103f4562e",
+        "status": "optimized_identity_passed"
+      },
+      "journal": {
+        "started": 2,
+        "completed": 2,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 4,
+      "id": "opt_A_R6_tautomer_P",
+      "kind": "opt",
+      "status": "optimized_identity_passed",
+      "report_sha256": "87572de37cb8000879e0cecdd26cd7b91022c2465aaa40abb894e3cd8867561d",
+      "stage": "GQC_optimization",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4695",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 12,
+        "completed": 12,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 19.40244890199756,
+        "process_cpu_seconds": 23.931420978000002
+      },
+      "energy_hartree": -231.04688605094523,
+      "max_force_hartree_per_bohr": 1.1027375217409485e-05,
+      "identity": {
+        "rdkit_version": "2024.03.3",
+        "status": "identity_passed",
+        "observed_smiles": "C=C/C=C\\O",
+        "expected_smiles": "C=C/C=C\\O"
+      },
+      "gate_evidence": {
+        "id": "wave1/audit_R6_enol_def2-svp",
+        "status": "qualification_passed",
+        "report_sha256": "fc83729e02bd23a6867339f29d7f99479b2043ed46616700d5d9babb2459a1ca",
+        "identity_valid": true
+      },
+      "journal": {
+        "started": 12,
+        "completed": 12,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 5,
+      "id": "freq_A_R6_tautomer_P",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 6,
+      "id": "opt_AD_R6_water_R",
+      "kind": "opt",
+      "status": "started",
+      "report_sha256": "df0abd926924298095aa83a34ab9c058fc77b695368ecf0bbc9341f8c94658c1",
+      "stage": "GQC_optimization",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4696",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 0,
+        "completed": 0,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 2.6558718950000184
+      },
+      "gate_evidence": {
+        "id": "wave2/audit_AD_R6_water_R",
+        "status": "qualification_passed",
+        "report_sha256": "e8bbbaf5b1353880256ea14f5d3d6fc944567fd5661ee4d5c668d92d9acd30bb",
+        "identity_valid": true
+      },
+      "journal": {
+        "started": 33,
+        "completed": 32,
+        "unsettled": 1
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 7,
+      "id": "freq_AD_R6_water_R",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 8,
+      "id": "opt_AD_R6_water_P",
+      "kind": "opt",
+      "status": "started",
+      "report_sha256": "17a7eafd62035c4c3d1fb6865bfbcee60741d59f605668b08425ab4223a744c2",
+      "stage": "GQC_optimization",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4697",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 0,
+        "completed": 0,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 2.1614100110018626
+      },
+      "gate_evidence": {
+        "id": "wave2/audit_AD_R6_water_R",
+        "status": "qualification_passed",
+        "report_sha256": "e8bbbaf5b1353880256ea14f5d3d6fc944567fd5661ee4d5c668d92d9acd30bb",
+        "identity_valid": true
+      },
+      "journal": {
+        "started": 31,
+        "completed": 30,
+        "unsettled": 1
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 9,
+      "id": "freq_AD_R6_water_P",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 10,
+      "id": "opt_A_R6_DA_R",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 11,
+      "id": "freq_A_R6_DA_R",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 12,
+      "id": "opt_A_R6_DA_P",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 13,
+      "id": "freq_A_R6_DA_P",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 14,
+      "id": "opt_B_R51_DA_R",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 15,
+      "id": "freq_B_R51_DA_R",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 16,
+      "id": "opt_B_R51_DA_P",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 17,
+      "id": "freq_B_R51_DA_P",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 18,
+      "id": "opt_B_R51_open_P",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 19,
+      "id": "freq_B_R51_open_P",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 20,
+      "id": "opt_D_R51_water_R",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 21,
+      "id": "freq_D_R51_water_R",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 22,
+      "id": "opt_D_R51_water_P",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 23,
+      "id": "freq_D_R51_water_P",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 24,
+      "id": "opt_C_amino_DA_R",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 25,
+      "id": "freq_C_amino_DA_R",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 26,
+      "id": "opt_C_amino_DA_P",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 27,
+      "id": "freq_C_amino_DA_P",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 28,
+      "id": "opt_C_amino_Michael_P",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 29,
+      "id": "freq_C_amino_Michael_P",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 30,
+      "id": "opt_conformer_R6_enol",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 31,
+      "id": "freq_conformer_R6_enol",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 32,
+      "id": "opt_conformer_R6_carbonyl",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 33,
+      "id": "freq_conformer_R6_carbonyl",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 34,
+      "id": "opt_conformer_R30_enol",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 35,
+      "id": "freq_conformer_R30_enol",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 36,
+      "id": "opt_conformer_R30_carbonyl",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 37,
+      "id": "freq_conformer_R30_carbonyl",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 38,
+      "id": "opt_conformer_R51_enol",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 39,
+      "id": "freq_conformer_R51_enol",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 40,
+      "id": "opt_conformer_R51_carbonyl",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 41,
+      "id": "freq_conformer_R51_carbonyl",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 42,
+      "id": "opt_alternative_R6_0_0",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 43,
+      "id": "freq_alternative_R6_0_0",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 44,
+      "id": "opt_alternative_R6_0_1",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 45,
+      "id": "freq_alternative_R6_0_1",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 46,
+      "id": "opt_alternative_R30_1_0",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 47,
+      "id": "freq_alternative_R30_1_0",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 48,
+      "id": "opt_alternative_R30_1_1",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 49,
+      "id": "freq_alternative_R30_1_1",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 50,
+      "id": "opt_alternative_R30_2_0",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 51,
+      "id": "freq_alternative_R30_2_0",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 52,
+      "id": "opt_alternative_R51_3_0",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 53,
+      "id": "freq_alternative_R51_3_0",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 54,
+      "id": "opt_alternative_R51_3_1",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 55,
+      "id": "freq_alternative_R51_3_1",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 56,
+      "id": "opt_alternative_R51_4_0",
+      "kind": "opt",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 57,
+      "id": "freq_alternative_R51_4_0",
+      "kind": "frequency",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 58,
+      "id": "path_A_R6_tautomer",
+      "kind": "path",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 59,
+      "id": "path_AD_R6_water",
+      "kind": "path",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 60,
+      "id": "path_A_R6_DA",
+      "kind": "path",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 61,
+      "id": "path_B_R51_DA",
+      "kind": "path",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 62,
+      "id": "path_B_R51_open",
+      "kind": "path",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 63,
+      "id": "path_D_R51_water",
+      "kind": "path",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 64,
+      "id": "path_C_amino_DA",
+      "kind": "path",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 65,
+      "id": "path_C_amino_Michael",
+      "kind": "path",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 66,
+      "id": "gas_tz_R6_enol",
+      "kind": "single_point",
+      "status": "completed_gas_single_point",
+      "report_sha256": "73866e974798ec42abfa88547e29705635258967dcbdb3376aae91d037abc722",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4687",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 8.275150069999654,
+        "process_cpu_seconds": 52.006318783
+      },
+      "energy_hartree": -231.31397629322498,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 67,
+      "id": "ccsdt_tz_R6_enol",
+      "kind": "ccsd_t",
+      "status": "started",
+      "report_sha256": "b365de86ec75f244da96fd556b9e6ef3248609ce62c4905f1111c726dc4b1b6e",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4688",
+      "host": "node2",
+      "python": "3.11.17",
+      "journal": {
+        "started": 3,
+        "completed": 2,
+        "unsettled": 1
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 68,
+      "id": "gas_tz_R6_carbonyl",
+      "kind": "single_point",
+      "status": "completed_gas_single_point",
+      "report_sha256": "b91f4c53e15451d7c97f436ad9b9c77c54402144c205a301fe86ad743fecda60",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4689",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 7.840528343000187,
+        "process_cpu_seconds": 48.984914732
+      },
+      "energy_hartree": -231.31802500786827,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 69,
+      "id": "ccsdt_tz_R6_carbonyl",
+      "kind": "ccsd_t",
+      "status": "report_not_present"
+    },
+    {
+      "wave": "wave2",
+      "index": 70,
+      "id": "gas_tz_R30_enol",
+      "kind": "single_point",
+      "status": "completed_gas_single_point",
+      "report_sha256": "7a8f1dddf69f4065fe6028eb03db2817c7938838a31fa456e2745cb3db17114d",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4690",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 15.302398513998924,
+        "process_cpu_seconds": 86.174403434
+      },
+      "energy_hartree": -270.64658130896925,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 71,
+      "id": "gas_tz_R30_carbonyl",
+      "kind": "single_point",
+      "status": "completed_gas_single_point",
+      "report_sha256": "d2e1fe11d5e75cad561ddef620d6f34ee8f60b6b80d1d3bb943db4b64827350c",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4691",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 15.420944002002216,
+        "process_cpu_seconds": 86.604036214
+      },
+      "energy_hartree": -270.651436629416,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 72,
+      "id": "gas_tz_R51_enol",
+      "kind": "single_point",
+      "status": "completed_gas_single_point",
+      "report_sha256": "02f5a7ac122667b8538a3acde1d5242f6ed5b521bf4eef0032465f6fa86683ed",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4692",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 19.10387267600163,
+        "process_cpu_seconds": 101.587150824
+      },
+      "energy_hartree": -344.70536387100026,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 73,
+      "id": "gas_tz_R51_carbonyl",
+      "kind": "single_point",
+      "status": "completed_gas_single_point",
+      "report_sha256": "a2ed997755a541923ed9f30339e22b4727ad05daf08c76b163d91b364b395eeb",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4683",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 1,
+        "completed": 1,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 19.122191132999433,
+        "process_cpu_seconds": 101.63272637899999
+      },
+      "energy_hartree": -344.7264540549874,
+      "journal": {
+        "started": 1,
+        "completed": 1,
+        "unsettled": 0
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "group": "R6",
+      "sign": "enol minus the previously selected carbonyl; positive favors that carbonyl",
+      "ccsdt_ccpvdz_delta_e_kcal_mol": 7.115687400925056,
+      "b3lyp_tz_water_delta_e_kcal_mol": 2.15790931969256,
+      "b3lyp_tz_acetonitrile_delta_e_kcal_mol": 2.154518750323742,
+      "b3lyp_tz_gas_delta_e_kcal_mol": 2.5406067961866827
+    },
+    {
+      "group": "R30",
+      "sign": "enol minus the previously selected carbonyl; positive favors that carbonyl",
+      "ccsdt_ccpvdz_delta_e_kcal_mol": 7.423738342651003,
+      "b3lyp_tz_water_delta_e_kcal_mol": 2.7911288236480427,
+      "b3lyp_tz_acetonitrile_delta_e_kcal_mol": 2.7851390307295754,
+      "b3lyp_tz_gas_delta_e_kcal_mol": 3.0467595796599785
+    },
+    {
+      "group": "R51",
+      "sign": "enol minus the previously selected carbonyl; positive favors that carbonyl",
+      "ccsdt_ccpvdz_delta_e_kcal_mol": 15.271788221264853,
+      "b3lyp_tz_water_delta_e_kcal_mol": 14.334326627689377,
+      "b3lyp_tz_acetonitrile_delta_e_kcal_mol": 14.305698895826001,
+      "b3lyp_tz_gas_delta_e_kcal_mol": 13.234290260343071
+    }
+  ],
+  "quantum_journal_counts": {
+    "started": 201,
+    "completed": 192,
+    "failed": 6
+  },
+  "allocated_gpu_seconds": "unknown: Slurm accounting unavailable",
+  "claim_limits": [
+    "Read per-task status; queue disappearance is not success.",
+    "No coordinates, weights, source raw bytes or private absolute paths are exported.",
+    "GQC agreement is scoped to exact tested native build/method/basis; CCSD(T) remains a finite-basis reference.",
+    "New path hypotheses require a qualified saddle and bidirectional verified endpoints; a NEB maximum alone is not a reaction."
+  ]
+}

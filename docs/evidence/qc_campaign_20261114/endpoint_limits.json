@@ -1,0 +1,41 @@
+{
+  "host": "node2",
+  "utc": "2026-11-14T14:48:12Z",
+  "failed_endpoints": [
+    {
+      "status": "execution_failed",
+      "stage": "GQC_optimization",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "manifest_sha256": "f1421d6b8870157b93c42f3dd89f23f874ed8fe247d5dfb8906191fc8fcd9c66",
+      "error_type": "GeomOptNotConvergedError",
+      "resources": {
+        "started": 81,
+        "completed": 81,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 429.7724849469996,
+        "process_cpu_seconds": 460.60787327500003
+      },
+      "task_id": "opt_A_R6_DA_R",
+      "report_sha256": "555e0060fd4019fa51cd4b8def3a44751cd7dedc0944d161f8bf68edc52dbb06"
+    },
+    {
+      "status": "execution_failed",
+      "stage": "GQC_optimization",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "manifest_sha256": "f1421d6b8870157b93c42f3dd89f23f874ed8fe247d5dfb8906191fc8fcd9c66",
+      "error_type": "GeomOptNotConvergedError",
+      "resources": {
+        "started": 81,
+        "completed": 81,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 607.976699865998,
+        "process_cpu_seconds": 639.333488743
+      },
+      "task_id": "opt_B_R51_DA_R",
+      "report_sha256": "61acbed99184b3ebf936eebd1d2664b4cbfb30682a87022915d1a72e351c596f"
+    }
+  ],
+  "claim_limit": "iteration-limit failures do not establish absence of a reaction"
+}

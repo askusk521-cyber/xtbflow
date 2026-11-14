@@ -1,0 +1,377 @@
+{
+  "host": "node2",
+  "utc": "2026-11-14T14:42:20Z",
+  "raw_summary_sha256": "4d24e1c13596effbd7be47a4eb51c686a625d41bf1365641344e37042d9bd496",
+  "status_counts": {
+    "qualification_passed": 8,
+    "execution_failed": 7,
+    "qualification_failed": 2,
+    "completed_finite_basis_reference": 8,
+    "completed_solvent_single_point": 12,
+    "optimized_identity_passed": 5,
+    "minimum_verified": 1,
+    "report_not_present": 55,
+    "started": 2,
+    "completed_gas_single_point": 6
+  },
+  "quantum_journal_counts": {
+    "started": 410,
+    "completed": 402,
+    "failed": 6
+  },
+  "pairs": [
+    {
+      "group": "R6",
+      "sign": "enol minus the previously selected carbonyl; positive favors that carbonyl",
+      "ccsdt_ccpvdz_delta_e_kcal_mol": 7.115687400925056,
+      "ccsdt_ccpvtz_delta_e_kcal_mol": 3.5060252356270856,
+      "b3lyp_tz_water_delta_e_kcal_mol": 2.15790931969256,
+      "b3lyp_tz_acetonitrile_delta_e_kcal_mol": 2.154518750323742,
+      "b3lyp_tz_gas_delta_e_kcal_mol": 2.5406067961866827
+    },
+    {
+      "group": "R30",
+      "sign": "enol minus the previously selected carbonyl; positive favors that carbonyl",
+      "ccsdt_ccpvdz_delta_e_kcal_mol": 7.423738342651003,
+      "b3lyp_tz_water_delta_e_kcal_mol": 2.7911288236480427,
+      "b3lyp_tz_acetonitrile_delta_e_kcal_mol": 2.7851390307295754,
+      "b3lyp_tz_gas_delta_e_kcal_mol": 3.0467595796599785
+    },
+    {
+      "group": "R51",
+      "sign": "enol minus the previously selected carbonyl; positive favors that carbonyl",
+      "ccsdt_ccpvdz_delta_e_kcal_mol": 15.271788221264853,
+      "b3lyp_tz_water_delta_e_kcal_mol": 14.334326627689377,
+      "b3lyp_tz_acetonitrile_delta_e_kcal_mol": 14.305698895826001,
+      "b3lyp_tz_gas_delta_e_kcal_mol": 13.234290260343071
+    }
+  ],
+  "changed_tasks_since_submission_snapshot": [
+    {
+      "wave": "wave2",
+      "index": 6,
+      "id": "opt_AD_R6_water_R",
+      "kind": "opt",
+      "status": "optimized_identity_passed",
+      "report_sha256": "19d79887094357822399fd97009c419dcade1ba78fb296e3d0342d68332de8ad",
+      "stage": "GQC_optimization",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4696",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 37,
+        "completed": 37,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 184.8687923690013,
+        "process_cpu_seconds": 199.066375007
+      },
+      "energy_hartree": -307.4214084163912,
+      "max_force_hartree_per_bohr": 2.3277336999250053e-05,
+      "identity": {
+        "rdkit_version": "2024.03.3",
+        "status": "identity_passed",
+        "observed_smiles": "C=CCC=O.O",
+        "expected_smiles": "C=CCC=O.O"
+      },
+      "gate_evidence": {
+        "id": "wave2/audit_AD_R6_water_R",
+        "status": "qualification_passed",
+        "report_sha256": "e8bbbaf5b1353880256ea14f5d3d6fc944567fd5661ee4d5c668d92d9acd30bb",
+        "identity_valid": true
+      },
+      "journal": {
+        "started": 37,
+        "completed": 37,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 8,
+      "id": "opt_AD_R6_water_P",
+      "kind": "opt",
+      "status": "optimized_identity_passed",
+      "report_sha256": "dae9cb3081b8a6c275c6f138265c7bb78889de6c7bfada972a1b8d2e05c653ff",
+      "stage": "GQC_optimization",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4697",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 40,
+        "completed": 40,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 188.11289059200135,
+        "process_cpu_seconds": 204.033690853
+      },
+      "energy_hartree": -307.4226603225021,
+      "max_force_hartree_per_bohr": 1.4530001784418545e-05,
+      "identity": {
+        "rdkit_version": "2024.03.3",
+        "status": "identity_passed",
+        "observed_smiles": "C=C/C=C\\O.O",
+        "expected_smiles": "C=C/C=C\\O.O"
+      },
+      "gate_evidence": {
+        "id": "wave2/audit_AD_R6_water_R",
+        "status": "qualification_passed",
+        "report_sha256": "e8bbbaf5b1353880256ea14f5d3d6fc944567fd5661ee4d5c668d92d9acd30bb",
+        "identity_valid": true
+      },
+      "journal": {
+        "started": 40,
+        "completed": 40,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 10,
+      "id": "opt_A_R6_DA_R",
+      "kind": "opt",
+      "status": "execution_failed",
+      "report_sha256": "555e0060fd4019fa51cd4b8def3a44751cd7dedc0944d161f8bf68edc52dbb06",
+      "stage": "GQC_optimization",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4701",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "error_type": "GeomOptNotConvergedError",
+      "resources": {
+        "started": 81,
+        "completed": 81,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 429.7724849469996,
+        "process_cpu_seconds": 460.60787327500003
+      },
+      "gate_evidence": {
+        "id": "wave1/audit_R6_enol_def2-svp",
+        "status": "qualification_passed",
+        "report_sha256": "fc83729e02bd23a6867339f29d7f99479b2043ed46616700d5d9babb2459a1ca",
+        "identity_valid": true
+      },
+      "journal": {
+        "started": 81,
+        "completed": 81,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 12,
+      "id": "opt_A_R6_DA_P",
+      "kind": "opt",
+      "status": "optimized_identity_passed",
+      "report_sha256": "dce8a5ae43a6d66a00057dea7538f4b404bee19d49a7c9abbee60fbff05e185e",
+      "stage": "GQC_optimization",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4702",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 22,
+        "completed": 22,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 141.95457071499914,
+        "process_cpu_seconds": 150.80805643800002
+      },
+      "energy_hartree": -309.6359531745422,
+      "max_force_hartree_per_bohr": 1.6422120006964747e-05,
+      "identity": {
+        "rdkit_version": "2024.03.3",
+        "status": "identity_passed",
+        "observed_smiles": "O[C@H]1C=CCCC1",
+        "expected_smiles": "O[C@H]1C=CCCC1"
+      },
+      "gate_evidence": {
+        "id": "wave1/audit_R6_enol_def2-svp",
+        "status": "qualification_passed",
+        "report_sha256": "fc83729e02bd23a6867339f29d7f99479b2043ed46616700d5d9babb2459a1ca",
+        "identity_valid": true
+      },
+      "journal": {
+        "started": 22,
+        "completed": 22,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 14,
+      "id": "opt_B_R51_DA_R",
+      "kind": "opt",
+      "status": "started",
+      "report_sha256": "15b2929766026e6444975d56b2bc41b132d050a100c176a78499a6e3c3d2f7cb",
+      "stage": "GQC_optimization",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4703",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 0,
+        "completed": 0,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 2.1657884050000575
+      },
+      "gate_evidence": {
+        "id": "wave1/audit_R51_enol_def2-svp",
+        "status": "qualification_passed",
+        "report_sha256": "60f8d5d0e6f4a979f9b55b0d5cff281a10135875d7a42274c2e4189e2a2482db",
+        "identity_valid": true
+      },
+      "journal": {
+        "started": 67,
+        "completed": 66,
+        "unsettled": 1
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 16,
+      "id": "opt_B_R51_DA_P",
+      "kind": "opt",
+      "status": "started",
+      "report_sha256": "3b81b9765f7c6aefd4db4a19790354994c5a7affa92870892ef0b2eb2a51ebbc",
+      "stage": "GQC_optimization",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4704",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 0,
+        "completed": 0,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 2.155756334999751
+      },
+      "gate_evidence": {
+        "id": "wave1/audit_R51_enol_def2-svp",
+        "status": "qualification_passed",
+        "report_sha256": "60f8d5d0e6f4a979f9b55b0d5cff281a10135875d7a42274c2e4189e2a2482db",
+        "identity_valid": true
+      },
+      "journal": {
+        "started": 23,
+        "completed": 22,
+        "unsettled": 1
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 67,
+      "id": "ccsdt_tz_R6_enol",
+      "kind": "ccsd_t",
+      "status": "completed_finite_basis_reference",
+      "report_sha256": "91f4c7db2ee681cc73ec626acea236e2b26f1e1f32f155a054f49313c1c2cbcf",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4688",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 3,
+        "completed": 3,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 523.7159551010009,
+        "process_cpu_seconds": 3901.960460236
+      },
+      "ccsdt_hartree": -230.90338388941015,
+      "t1_frobenius_norm": 0.06696453739196194,
+      "basis": "cc-pvtz",
+      "journal": {
+        "started": 3,
+        "completed": 3,
+        "unsettled": 0
+      }
+    },
+    {
+      "wave": "wave2",
+      "index": 69,
+      "id": "ccsdt_tz_R6_carbonyl",
+      "kind": "ccsd_t",
+      "status": "completed_finite_basis_reference",
+      "report_sha256": "981235a85f76cc5a1094c73eb6212f68f094df949e795cf001d5b584f6a9db2d",
+      "source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+      "slurm_job_id": "4684",
+      "host": "node2",
+      "python": "3.11.17",
+      "environment_versions": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pyscf": "2.14.0",
+        "geometric": "1.1.1"
+      },
+      "resources": {
+        "started": 3,
+        "completed": 3,
+        "failed": 0,
+        "unsettled": 0,
+        "wall_seconds": 536.7927093750004,
+        "process_cpu_seconds": 3989.393326594
+      },
+      "ccsdt_hartree": -230.9089710962666,
+      "t1_frobenius_norm": 0.07241952293096039,
+      "basis": "cc-pvtz",
+      "journal": {
+        "started": 3,
+        "completed": 3,
+        "unsettled": 0
+      }
+    }
+  ],
+  "source_assets": {
+    "pilot_verified_sha256": "0faebb96ef2a3ca9997c4b8fe14ab45b7a2b607abfc12f694e3179a88d4f1f61",
+    "pilot_minima_sha256": "3074312887fef84cd7f4f1f1f9f76cd7bc74b8ec76e772a88f0235df2f255001",
+    "wave2_preparation_source_commit": "bc13c63f1d3bb602e41982df349f6800b67d3043",
+    "wave2_preparation_script_sha256": "28694dc1f188052b13651d7a75802ca5c74bfc9e28d03aa5181a120a8978eec0"
+  },
+  "ci": "No pull-request workflow runs returned for the stacked PR head; n2 exact-source checks are recorded separately."
+}

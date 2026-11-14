@@ -34,6 +34,34 @@ force gate. If PySCF or another program provides frequencies or a reaction path,
 retain its method/build, actual call counts and claim boundary separately.
 Small-system stationary points do not by themselves predict solution kinetics.
 
+## Broader checks on 2026-11-14
+
+The same native library (`67bc98a4…`) was checked again using
+`scripts/qc_campaign_task.py` at xtbflow `cb28d5c765ce2026395e149d91fd5662845b18d8`.
+Six displaced R6/R30/R51 geometries passed B3LYP/def2-SVP: maximum energy
+discrepancy 4.75e-12 Hartree, two-scale directional force discrepancy
+1.32e-8 Hartree/Bohr, and Cartesian PySCF force difference 7.23e-5
+Hartree/Bohr. A mapped one-water cluster and an amino-furan/maleimide pair
+also passed under `bc13c63` with the same settings and thresholds.
+
+Two new boundaries matter when reusing this build:
+
+- **CUDA M06-2X/def2-SVP forces fail.** The two R6 energy comparisons passed,
+  but directional force errors were 0.170–0.195 Hartree/Bohr and Cartesian
+  differences reached 0.744 Hartree/Bohr. Energy agreement does not authorize
+  optimization, NEB, MD or IRC with these forces. Keep this route quarantined
+  until a changed build passes new derivative checks.
+- **CUDA def2-TZVP forces are unsupported for these molecules.** All six
+  attempts raised `CUDA gradient integral descriptors admit s/p/d bases only`.
+  This is an implementation capability failure, not a measured chemical error.
+  A PySCF CPU calculation at def2-TZVP is a different backend and must be
+  identified as such; do not silently relabel it GQC.
+
+Finite-basis CCSD(T) and continuum-solvent single points belong in a separate
+chemical sensitivity assessment. They do not turn cross-program agreement
+into a general accuracy guarantee. See the xtbflow campaign protocol
+`docs/research/QC_CAMPAIGN_20261114.md` and its dated evidence.
+
 ## Completed optimization example
 
 The same pilot subsequently reached the recorded force threshold for all 13

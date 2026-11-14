@@ -529,8 +529,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "0bb5da7b9fb8fea0dc1c4bbc8876972cdab7a01c132b0c908d210acb542c58cb",
-      "bytes": 4924
+      "sha256": "8fd05982fba201f467dce1be0bb573e9d8689b91ad26d60a7ddf25bcb980eddb",
+      "bytes": 6487
     },
     {
       "path": "docs/HANDOFF_FREEZE.md",
@@ -1989,8 +1989,8 @@
     },
     {
       "path": "skills/n2-quantum-chemistry/references/qualification.md",
-      "sha256": "3fe8c7eaee35880ab9979503de47e53d26625cd8e957cb72eacac981c0ce9a36",
-      "bytes": 3591
+      "sha256": "722618410c74a2f6abb170b7477a26f3313adeb68478a2066afa38c2e4a5ecc5",
+      "bytes": 5190
     },
     {
       "path": "skills/n2-quantum-chemistry/references/runtime.md",

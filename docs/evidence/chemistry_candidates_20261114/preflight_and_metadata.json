@@ -1,0 +1,63 @@
+{
+  "schema": "xtbflow-chemistry-question-preflight/v1",
+  "observed_on": "2026-11-14",
+  "host": "node2",
+  "role": "read_only_reconnaissance_not_chemical_qualification",
+  "local_base_commit": "61269f2241cb182a010763291f349a0258c111f9",
+  "remote_legacy_checkout": {
+    "commit": "3a5f10a3b355998bf115d01a6e7fbcaa14680f9b",
+    "clean": false,
+    "action": "preserved; exact-source audit used a newly created isolated checkout"
+  },
+  "xtbflow": {
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "rdkit": "2024.3.3",
+    "ase": "3.29.0",
+    "tblite": "0.7.0",
+    "xtb_distribution": "22.1",
+    "pyscf_distribution_metadata": null,
+    "gpu4pyscf_distribution_metadata": null
+  },
+  "xtbflow_qc": {
+    "python": "3.11.17",
+    "pyscf": "2.14.0",
+    "geometric": "1.1.1",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "orca_executable_on_path": true,
+    "orca_version": "not_queried",
+    "method_energy_gradient_hessian_qualification": "not_run"
+  },
+  "scheduler": {
+    "sbatch_available": true,
+    "srun_available": true,
+    "user_queue_at_preflight": "empty",
+    "new_jobs_submitted": 0
+  },
+  "metadata_update": {
+    "status": "execution_timed_out_without_retained_response",
+    "planned_urls": [
+      "https://api.figshare.com/v2/articles/29118509",
+      "https://api.figshare.com/v2/articles/28768301",
+      "https://api.figshare.com/v2/articles/28936460"
+    ],
+    "outer_wall_limit_seconds": 65,
+    "exit_code": 124,
+    "max_response_bytes_per_request": 1048576,
+    "external_retries": 0,
+    "completed_requests": "unknown",
+    "retained_response_bytes": 0,
+    "actual_cpu_seconds": "not_measured",
+    "new_qc_calls": 0,
+    "claim_limit": "No current-version or new license verification was obtained. A timeout is not evidence of unavailable source data."
+  },
+  "limits": [
+    "Metadata availability does not prove importability or scientific backend qualification.",
+    "Missing distribution metadata does not prove a module cannot be imported from another configured source.",
+    "No model inference, new quantum chemistry, GPU use or training occurred in this preflight.",
+    "Read-only command outputs were transcribed into this summary; no missing timing is reconstructed."
+  ]
+}

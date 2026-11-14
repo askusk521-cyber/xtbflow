@@ -14,7 +14,7 @@ def collect(root):
     tasks = []
     manifests = {}
     resource = Counter()
-    for wave in ("wave1", "wave2"):
+    for wave in ("wave1", "wave2", "wave3"):
         path = root / wave / "tasks.json"
         if not path.exists():
             continue

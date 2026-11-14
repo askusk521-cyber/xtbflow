@@ -101,6 +101,24 @@ may leave `started`/unsettled work; the collector preserves it. Disk limits
 (4 GiB/task and 32 GiB/campaign) are checked between operations, with a
 campaign check every ten operations, not enforced as filesystem quotas.
 
+## Four additional basis checks, registered after the R6 result
+
+The completed R6 all-electron CCSD(T) gap changes from 7.116 kcal/mol at
+cc-pVDZ to 3.506 at cc-pVTZ. The exposed finite-cohort assessment therefore
+adds four new cc-pVTZ single points for the old R30/R51 enol/carbonyl geometries.
+These are new basis calculations, not retries or changes to the sealed inputs
+of either submitted wave. Each has 8 CPUs, 48 GiB, 105 minutes and at most
+five operations; the CPU array runs one task at a time alongside the existing
+frequency worker. The three-wave ceiling becomes 110 tasks, 40.834 GPU hours,
+507.334 CPU-core hours and 18,176 operations, still under the original limits.
+
+`prepare_qc_basis_followup.py` verifies completed R6 trigger reports, hashes
+the two previous manifests, copies only the four explicit old states, and
+rejects any aggregate budget overflow. The collector now includes optional
+wave3. Replace its old pending job with one depending on both the existing
+path array and the new CPU array; preserve the replacement receipt and reason.
+No stronger accuracy claim is made before those calculations finish.
+
 Primary software references:
 [PySCF CCSD(T)](https://pyscf.org/user/cc.html),
 [PySCF solvent models](https://pyscf.org/user/solvent.html),

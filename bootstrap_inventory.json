@@ -1479,8 +1479,8 @@
     },
     {
       "path": "docs/research/QC_CAMPAIGN_20261114.md",
-      "sha256": "0039483848a0ba855051dac678796c032658b8ce424a8b478c4c66860e42fabe",
-      "bytes": 6565
+      "sha256": "3cbd6016ff48b20a138bc97a02f4d569a7e0d1cd24a475569c9d8271b386ca6f",
+      "bytes": 7700
     },
     {
       "path": "docs/sources.md",
@@ -1834,8 +1834,8 @@
     },
     {
       "path": "scripts/collect_qc_campaign.py",
-      "sha256": "556074e43e6782d01e95301a1ad19de7f5dc20cf7f9116d27dcab60b00ec3ac3",
-      "bytes": 4810
+      "sha256": "6d77c7f2df46e3610e767a59d876dfd37742089782ca82b2876ca3e500352351",
+      "bytes": 4819
     },
     {
       "path": "scripts/continue_gqc_tautomer_minima.py",
@@ -1886,6 +1886,11 @@
       "path": "scripts/portal_hooks.py",
       "sha256": "9be7852267216a1e14f8c07bf6173110ee514db812f37f620d8de64e1b266fd4",
       "bytes": 28579
+    },
+    {
+      "path": "scripts/prepare_qc_basis_followup.py",
+      "sha256": "f7b726cfb9da93c58877c1584b8b95b5ccf50fc07b6d294a4aca5bff5cc941b7",
+      "bytes": 3228
     },
     {
       "path": "scripts/prepare_qc_campaign.py",

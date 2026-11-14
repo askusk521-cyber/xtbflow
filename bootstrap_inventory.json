@@ -1588,6 +1588,11 @@
       "bytes": 2079
     },
     {
+      "path": "scripts/audit_chemistry_candidate_assets.py",
+      "sha256": "6246873aa4985331dbf65c5074b7c5f340a75568b871555c2c4f68d74ceee4a2",
+      "bytes": 11622
+    },
+    {
       "path": "scripts/audit_independent_seeds.py",
       "sha256": "81198a65a682682f1dd005e395af76675662f0e5b0f1bd4a69e4a3934066348d",
       "bytes": 3107

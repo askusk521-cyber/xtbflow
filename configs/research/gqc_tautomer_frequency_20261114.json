@@ -1,0 +1,24 @@
+{
+  "schema": "xtbflow-gqc-tautomer-frequency/v1",
+  "selection": "lowest GQC energy among force-converged, identity-verified starts for each of the eight registered connectivity graphs; retain all start denominators",
+  "backend": "PySCF CPU; not GenerativeQC Hessian",
+  "basis": "def2-svp",
+  "xc": "b3lyp",
+  "grids_level": 3,
+  "scf_tolerance": 1e-11,
+  "scf_max_cycle": 150,
+  "cross_force_max_hartree_per_bohr": 0.0001,
+  "significant_imaginary_cm1": 10.0,
+  "temperature_k": 298.15,
+  "pressure_pa": 101325.0,
+  "sensitivity": {"xc": "m06-2x", "basis": "def2-tzvp", "grids_level": 4, "kind": "single_point_on_GQC_B3LYP_geometry"},
+  "hessian_probe": {"species_priority": ["R6_carbonyl", "R6_enol"], "steps_bohr": [0.001, 0.0003], "relative_error_tolerance": 0.01},
+  "caps": {"qc_operations": 32, "hessians": 8, "wall_seconds": 1100, "cpus": 4, "slurm_wall_minutes": 20, "memory_gib": 16, "gpu_count": 0, "retries": 0},
+  "shared_qc_operation_ceiling": 800,
+  "claim_limits": [
+    "Single-conformer harmonic gas-phase quantities at 298.15 K and 1 atm, not solution equilibrium or ensemble rates.",
+    "M06-2X values are independent-method single points, not M06-2X optimized minima or thermal free energies.",
+    "Shallow imaginary frequencies remain a gray-zone result and are not silently deleted.",
+    "Total prior qualification and optimization work is subtracted from the 800-operation shared envelope before new work."
+  ]
+}

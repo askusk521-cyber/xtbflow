@@ -293,6 +293,21 @@
       "bytes": 2462
     },
     {
+      "path": "configs/research/gqc_tautomer_continuation_20261114.json",
+      "sha256": "99d1b30c19e60e64cc9ed89d119b91a733743875eb74adf8062d62d8d3fb06d8",
+      "bytes": 904
+    },
+    {
+      "path": "configs/research/gqc_tautomer_frequency_20261114.json",
+      "sha256": "6c3bfcf6a46e5e8dfad029cd0030793379dd2df4174aae99fbf2c1e2d070c2f3",
+      "bytes": 1443
+    },
+    {
+      "path": "configs/research/gqc_tautomer_pilot_20261114.json",
+      "sha256": "b4245b2ece9f1695bb0445045d0cf81ac54916c26c7072a7fabd39510e155f58",
+      "bytes": 3300
+    },
+    {
       "path": "configs/research/incremental_signal_audit_20261111.json",
       "sha256": "e712ee18b7858548afc16d66171bdc0028f4938068e8fa2a96c5b93df4280904",
       "bytes": 1907
@@ -509,8 +524,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "b421cf3959b9bb9b42800ef6e6671efe60c4db3ddcc90eae6071ab2112872756",
-      "bytes": 3383
+      "sha256": "0bb5da7b9fb8fea0dc1c4bbc8876972cdab7a01c132b0c908d210acb542c58cb",
+      "bytes": 4924
     },
     {
       "path": "docs/HANDOFF_FREEZE.md",
@@ -733,6 +748,11 @@
       "bytes": 2049
     },
     {
+      "path": "docs/evidence/generativeqc_force_root_cause_20261109.json",
+      "sha256": "81ba2aae1ab9730ce160aeecaa497213eccfb9d5307f7207e1578a76aac92c90",
+      "bytes": 5833
+    },
+    {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
       "sha256": "a8f35cecb50117422a0dd28953d079634aa780dd5336baf6ee23cfd817952d57",
       "bytes": 6712
@@ -751,6 +771,51 @@
       "path": "docs/evidence/gfn2_units_diagnostic_20260927.json",
       "sha256": "58ce3ca92d5d5733eb2d7b153f7f180a5fb25552647b4b0c25a926281b6b36e7",
       "bytes": 21013
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/RESULTS_ZH.md",
+      "sha256": "61bd9b7b6d978fde209894ed221cf39d52476079416a4b6ba0de6f888ea5f4eb",
+      "bytes": 8565
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/continuation_4621_summary.json",
+      "sha256": "a4ff606ad1e12fd7f085ec9e8a51e9d66cffe535c6032cb0499b7d0fef7f6421",
+      "bytes": 15095
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/execution_receipt.json",
+      "sha256": "a51a74b0762ca66d3eb4938cdf96fc3d758876ce57af485bee41545309f584d9",
+      "bytes": 9946
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/identity_check_summary.json",
+      "sha256": "f8141ec356a35422a80107f992512254458ed2b85f59eee47526206b8d6b478f",
+      "bytes": 15840
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/minima_4622.json",
+      "sha256": "3074312887fef84cd7f4f1f1f9f76cd7bc74b8ec76e772a88f0235df2f255001",
+      "bytes": 16698
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/optimization_4620_summary.json",
+      "sha256": "36b9408a24067fd2e3fd4feb776aa12955a7ecdf0cff274414971269b010e368",
+      "bytes": 13223
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/preparation_323fd15.json",
+      "sha256": "20d2e9ccb3e788566a7ca0e9450b1013c61d60649b0033fef310a8956a89f376",
+      "bytes": 3740
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/qualification_4618_launch_failed.json",
+      "sha256": "d0b80ff79fde7bc722eef30aed4d66729a553eaa3a19413c888e7e94990ccf6f",
+      "bytes": 8365
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/qualification_4619.json",
+      "sha256": "69eb883be785ee9f4352fb968ff6b8ef55fafc7e4f6f134bf2783351f83250da",
+      "bytes": 10195
     },
     {
       "path": "docs/evidence/guidance_adapter_boundary_n2_20261110.json",
@@ -1348,6 +1413,11 @@
       "bytes": 13696
     },
     {
+      "path": "docs/research/GQC_TAUTOMER_PILOT_20261114.md",
+      "sha256": "72304e30080382b13ef63c003d4ed7abc8c351b2710dbdbe08d4eba322da1401",
+      "bytes": 6966
+    },
+    {
       "path": "docs/research/GUIDANCE_ENTRY_REVIEW_20261111.md",
       "sha256": "a0ba541e122535cd650fe04d2b1fded9d15330291b1870243274df1adacf1730",
       "bytes": 3143
@@ -1693,6 +1763,11 @@
       "bytes": 10480
     },
     {
+      "path": "scripts/check_gqc_tautomer_minima.py",
+      "sha256": "ef10c4b9477aae58b8571bcb67c9cbb9221a209e29b974bff23d3fdba7e510aa",
+      "bytes": 10314
+    },
+    {
       "path": "scripts/check_integrated_guidance.py",
       "sha256": "3a60d20e1e2ff5bf65c15d0af8a8705fe867093cb6977db172d5f7b4bba26093",
       "bytes": 766
@@ -1706,6 +1781,11 @@
       "path": "scripts/check_portal.py",
       "sha256": "7e545c2516b71f790d9eed89604c3b6b487b0530ea73a70533ad02b9a69be10a",
       "bytes": 6215
+    },
+    {
+      "path": "scripts/continue_gqc_tautomer_minima.py",
+      "sha256": "444035acdef94d434e1cd204c51f86c2a9da1ba8d111bf5b5b4e66248f85c235",
+      "bytes": 6850
     },
     {
       "path": "scripts/cp2k_calibration_smoke.py",
@@ -1731,6 +1811,11 @@
       "path": "scripts/diagnose_physical_direction.py",
       "sha256": "191bc0a7053c6978c1bd1369d8f0d18f04e2cbcb97dcdd45fe45b7fcec97ea6b",
       "bytes": 10086
+    },
+    {
+      "path": "scripts/gqc_tautomer_pilot.py",
+      "sha256": "42a564c860e362b911009b170da02e270c2af47479b9e6dca2a61eb4a5c6394e",
+      "bytes": 18957
     },
     {
       "path": "scripts/joint_flow_smoke.py",
@@ -1846,6 +1931,26 @@
       "path": "scripts/validate_workflow_b.py",
       "sha256": "6163d0d2fcb13bcc6b4383c20cd177f462d1b67e6f2a6495cda4a7491f4bc9e0",
       "bytes": 13653
+    },
+    {
+      "path": "skills/n2-quantum-chemistry/SKILL.md",
+      "sha256": "36957d484b2d6e01d8dd9260b358584d802ca551b7e2621b82c84056d6b6b469",
+      "bytes": 3857
+    },
+    {
+      "path": "skills/n2-quantum-chemistry/agents/openai.yaml",
+      "sha256": "688ea33b7530a17a8ba532b494140d4aaa17ab49b35828648a0bcb16e1a446c2",
+      "bytes": 127
+    },
+    {
+      "path": "skills/n2-quantum-chemistry/references/qualification.md",
+      "sha256": "3fe8c7eaee35880ab9979503de47e53d26625cd8e957cb72eacac981c0ce9a36",
+      "bytes": 3591
+    },
+    {
+      "path": "skills/n2-quantum-chemistry/references/runtime.md",
+      "sha256": "14eb571047eec12cd5c9900cde3aa66625f1cab265028144b5a884d3657f20a9",
+      "bytes": 3903
     },
     {
       "path": "src/xtbflow/__init__.py",
@@ -2371,6 +2476,11 @@
       "path": "tests/test_geometry_flow.py",
       "sha256": "3a1f64a2bb77180cd7416b52d120dd14bd899881f5fb7bc812636133edbe506d",
       "bytes": 4675
+    },
+    {
+      "path": "tests/test_gqc_tautomer_pilot.py",
+      "sha256": "37c1be1d3da02c93397c546db1c5d4d360b56978d3902d98550b52f8da0dbde7",
+      "bytes": 2635
     },
     {
       "path": "tests/test_guidance_adapters.py",

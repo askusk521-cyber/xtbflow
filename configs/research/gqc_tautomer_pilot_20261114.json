@@ -1,0 +1,30 @@
+{
+  "schema": "xtbflow-gqc-tautomer-pilot/v1",
+  "purpose": "Bounded gas-phase minimum-energy tautomer screen; no reaction or solution claim",
+  "authorization": "Owner requested actual n2 calculations and a reusable quantum-chemistry skill on 2026-11-14; GPU is now explicitly allowed for this pilot",
+  "environment": {"kind": "gas", "periodic": false},
+  "units": {"input_coordinates": "angstrom", "native_coordinates": "bohr", "energy": "hartree", "native_forces": "hartree/bohr"},
+  "generativeqc": {"method": "b3lyp-rks", "basis": "def2-svp", "device": "cuda", "precision": "fp64", "basis_representation": "spherical", "density_fitting": "none", "energy_tolerance": 1e-10, "density_tolerance": 1e-7, "max_iterations": 150},
+  "reference": {"program": "PySCF CPU", "xc": "b3lyp", "basis": "def2-svp", "cart": false, "grids_level": 3, "conv_tol": 1e-11, "max_cycle": 150},
+  "qualification": {"fd_steps_bohr": [0.001, 0.0003], "fd_abs_tolerance_hartree_per_bohr": 0.00002, "cross_energy_tolerance_hartree": 0.0001, "cross_force_tolerance_hartree_per_bohr": 0.0003, "max_calls": 40, "wall_seconds": 480},
+  "preparation": {"seed": 20261114, "conformers_per_stereoisomer": 2, "max_stereoisomers_per_graph": 8, "max_initial_conformers": 32, "mmff_max_iterations": 300},
+  "optimization": {"max_iterations_per_start": 80, "force_max_hartree_per_bohr": 0.00003, "max_calls": 800, "max_hessians": 8, "wall_seconds": 1500, "minimum_imaginary_tolerance_cm1": 10.0},
+  "resources": {"partition": "main", "gpu_gres": "gpu:pro6000:1", "cpus_per_task": 4, "memory_gib": 16, "max_concurrent_jobs": 1, "max_job_minutes": 30, "retained_output_mib": 256, "external_retries": 0},
+  "species": [
+    {"id": "R6_enol", "group": "R6", "form": "enol", "smiles": "C=CC=CO", "charge": 0, "multiplicity": 1},
+    {"id": "R6_carbonyl", "group": "R6", "form": "carbonyl", "smiles": "C=CCC=O", "charge": 0, "multiplicity": 1},
+    {"id": "R30_enol", "group": "R30", "form": "enol", "smiles": "CC=CC=CO", "charge": 0, "multiplicity": 1},
+    {"id": "R30_carbonyl", "group": "R30", "form": "carbonyl", "smiles": "CC=CCC=O", "charge": 0, "multiplicity": 1},
+    {"id": "R51_enol", "group": "R51", "form": "enol", "smiles": "Cc1ccc(O)o1", "charge": 0, "multiplicity": 1},
+    {"id": "R51_carbonyl", "group": "R51", "form": "carbonyl", "smiles": "CC1=CCC(=O)O1", "charge": 0, "multiplicity": 1},
+    {"id": "control_butadiene", "group": "control_butadiene", "form": "control", "smiles": "C=CC=C", "charge": 0, "multiplicity": 1},
+    {"id": "control_furan", "group": "control_furan", "form": "control", "smiles": "c1ccoc1", "charge": 0, "multiplicity": 1}
+  ],
+  "claim_limits": [
+    "These are independently constructed, explicitly neutral-singlet gas-phase models; missing source states are not repaired or admitted.",
+    "Only the listed tautomer connectivity proposals and finite E/Z/conformer sample are covered.",
+    "No observed reaction rates, solution populations, reaction TS/IRC, reversibility, synthetic feasibility or novel mechanism are established.",
+    "B3LYP/def2-SVP is an exploratory protocol selected for the available qualified force route, not a replacement for source-paper M06-2X labels.",
+    "GPU preparation/qualification/allocation time and failed calculations count toward this campaign."
+  ]
+}

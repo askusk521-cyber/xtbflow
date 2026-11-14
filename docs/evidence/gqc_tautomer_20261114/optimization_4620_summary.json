@@ -1,0 +1,369 @@
+{
+  "schema": "xtbflow-gqc-tautomer-stage/v1",
+  "stage": "optimize",
+  "host": "node2",
+  "source_commit": "323fd156987322ed7181dd48b4fe514a162f702d",
+  "config_sha256": "b4245b2ece9f1695bb0445045d0cf81ac54916c26c7072a7fabd39510e155f58",
+  "slurm_job_id": "4620",
+  "python": "3.11.17",
+  "status": "budget_exhausted",
+  "rows": [
+    {
+      "id": "R6_enol",
+      "group": "R6",
+      "form": "enol",
+      "start_id": "R6_enol_stereo0",
+      "formula": "C4H6O",
+      "stereo_smiles": "C=C/C=C/O",
+      "charge": 0,
+      "multiplicity": 1,
+      "status": "force_converged_identity_pending",
+      "energy_hartree": -231.04797700191895,
+      "max_force_hartree_per_bohr": 2.283762250954169e-05,
+      "iterations": 37,
+      "optimizer_success": true,
+      "optimizer_message": "Optimization terminated successfully.",
+      "calls_started": 38
+    },
+    {
+      "id": "R6_enol",
+      "group": "R6",
+      "form": "enol",
+      "start_id": "R6_enol_stereo1",
+      "formula": "C4H6O",
+      "stereo_smiles": "C=C/C=C\\O",
+      "charge": 0,
+      "multiplicity": 1,
+      "status": "force_converged_identity_pending",
+      "energy_hartree": -231.04688761654717,
+      "max_force_hartree_per_bohr": 2.0665690313448337e-05,
+      "iterations": 41,
+      "optimizer_success": true,
+      "optimizer_message": "Optimization terminated successfully.",
+      "calls_started": 42
+    },
+    {
+      "id": "R6_carbonyl",
+      "group": "R6",
+      "form": "carbonyl",
+      "start_id": "R6_carbonyl_stereo0",
+      "formula": "C4H6O",
+      "stereo_smiles": "C=CCC=O",
+      "charge": 0,
+      "multiplicity": 1,
+      "status": "optimization_unresolved",
+      "energy_hartree": -231.05278062073657,
+      "max_force_hartree_per_bohr": 8.237226560114941e-05,
+      "iterations": 80,
+      "optimizer_success": false,
+      "optimizer_message": "Maximum number of iterations has been exceeded.",
+      "calls_started": 81
+    },
+    {
+      "id": "R30_enol",
+      "group": "R30",
+      "form": "enol",
+      "start_id": "R30_enol_stereo0",
+      "formula": "C5H8O",
+      "stereo_smiles": "C/C=C/C=C/O",
+      "charge": 0,
+      "multiplicity": 1,
+      "status": "force_converged_identity_pending",
+      "energy_hartree": -270.33842543853734,
+      "max_force_hartree_per_bohr": 2.551899274738645e-05,
+      "iterations": 52,
+      "optimizer_success": true,
+      "optimizer_message": "Optimization terminated successfully.",
+      "calls_started": 53
+    },
+    {
+      "id": "R30_enol",
+      "group": "R30",
+      "form": "enol",
+      "start_id": "R30_enol_stereo1",
+      "formula": "C5H8O",
+      "stereo_smiles": "C/C=C/C=C\\O",
+      "charge": 0,
+      "multiplicity": 1,
+      "status": "force_converged_identity_pending",
+      "energy_hartree": -270.33775043413823,
+      "max_force_hartree_per_bohr": 8.891244358377737e-06,
+      "iterations": 49,
+      "optimizer_success": true,
+      "optimizer_message": "Optimization terminated successfully.",
+      "calls_started": 50
+    },
+    {
+      "id": "R30_enol",
+      "group": "R30",
+      "form": "enol",
+      "start_id": "R30_enol_stereo2",
+      "formula": "C5H8O",
+      "stereo_smiles": "C/C=C\\C=C/O",
+      "charge": 0,
+      "multiplicity": 1,
+      "status": "force_converged_identity_pending",
+      "energy_hartree": -270.33618261318236,
+      "max_force_hartree_per_bohr": 2.753804160171569e-05,
+      "iterations": 45,
+      "optimizer_success": true,
+      "optimizer_message": "Optimization terminated successfully.",
+      "calls_started": 46
+    },
+    {
+      "id": "R30_enol",
+      "group": "R30",
+      "form": "enol",
+      "start_id": "R30_enol_stereo3",
+      "formula": "C5H8O",
+      "stereo_smiles": "C/C=C\\C=C\\O",
+      "charge": 0,
+      "multiplicity": 1,
+      "status": "force_converged_identity_pending",
+      "energy_hartree": -270.3368380772958,
+      "max_force_hartree_per_bohr": 2.575583033700285e-05,
+      "iterations": 49,
+      "optimizer_success": true,
+      "optimizer_message": "Optimization terminated successfully.",
+      "calls_started": 50
+    },
+    {
+      "id": "R30_carbonyl",
+      "group": "R30",
+      "form": "carbonyl",
+      "start_id": "R30_carbonyl_stereo0",
+      "formula": "C5H8O",
+      "stereo_smiles": "C/C=C/CC=O",
+      "charge": 0,
+      "multiplicity": 1,
+      "status": "optimization_unresolved",
+      "energy_hartree": -270.34386367048285,
+      "max_force_hartree_per_bohr": 0.0001990027764771085,
+      "iterations": 80,
+      "optimizer_success": false,
+      "optimizer_message": "Maximum number of iterations has been exceeded.",
+      "calls_started": 81
+    },
+    {
+      "id": "R30_carbonyl",
+      "group": "R30",
+      "form": "carbonyl",
+      "start_id": "R30_carbonyl_stereo1",
+      "formula": "C5H8O",
+      "stereo_smiles": "C/C=C\\CC=O",
+      "charge": 0,
+      "multiplicity": 1,
+      "status": "budget_exhausted",
+      "calls_started": 15
+    }
+  ],
+  "claim_limits": [
+    "These are independently constructed, explicitly neutral-singlet gas-phase models; missing source states are not repaired or admitted.",
+    "Only the listed tautomer connectivity proposals and finite E/Z/conformer sample are covered.",
+    "No observed reaction rates, solution populations, reaction TS/IRC, reversibility, synthetic feasibility or novel mechanism are established.",
+    "B3LYP/def2-SVP is an exploratory protocol selected for the available qualified force route, not a replacement for source-paper M06-2X labels.",
+    "GPU preparation/qualification/allocation time and failed calculations count toward this campaign."
+  ],
+  "input_sha256": "d6175d057bbd193b6c2e8b1e48066fb61cd8a92ac7f9fbace199e08b021bc3b2",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+  "build_identity": {
+    "source_commit_declared": "2bf3fd98da9c6cfba46ca83345e63e1d934e4780",
+    "calculator_sha256": "bcc9aa3a5763adf8607b32063cfb5a259c5497275b8717ef13a4e14c24055b36",
+    "native_libraries": [
+      {
+        "name": "lib/libgenerativeqc.so",
+        "bytes": 986609080,
+        "sha256": "67bc98a4549fe8854ed6ae65791c824024bd77a9e8e498c6891dea3b8de670c4"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_b3lyp_rks.so",
+        "bytes": 7588816,
+        "sha256": "56d5922a61b0da850397fe6e5ab8be87740fbbbac65e67eb5d89c47f5c89a1de"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_b3lyp_rks_spd.so",
+        "bytes": 22198520,
+        "sha256": "ac4e909083369f96a4434adb0f0a1ec64687bc62680e41bc8bd68599f7ecefbf"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_b3lyp_uks.so",
+        "bytes": 7196992,
+        "sha256": "67c8887174808cab24c82f9d7423d63abb6b1ba0a717b17c2631b0f99ae70beb"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_b3lyp_uks_spd.so",
+        "bytes": 21810736,
+        "sha256": "4b20831c2e69c74fb6ca959cdb6ad9b2b7495702328f4a00eb9c786ea0d1a237"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_lda_rks.so",
+        "bytes": 7264880,
+        "sha256": "5394a77f043bababb4b25f81a6c2778c0e9a135ac768a18dda08d1ac333aba57"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_lda_rks_spd.so",
+        "bytes": 21874744,
+        "sha256": "a4e560216abf22ed7579ab53a9ee0b98ec2d97bc5980e59ce154f9cac9f6dd42"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_lda_uks.so",
+        "bytes": 7086568,
+        "sha256": "36c264f1465fcdac9150f59339e673846ecd5dc5fc2bc5dbcc8c42e63c08f105"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_lda_uks_spd.so",
+        "bytes": 21704296,
+        "sha256": "8c744376f29b8f19d2445547232eb5c8e6f6aca4aebed2de649ab97c5a76192d"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_m06_2x_rks.so",
+        "bytes": 8700232,
+        "sha256": "4ac9d8ddc8b8920c20e155ce1e2cdf5cc98d66229a7dfa58e4b91ae3aff01435"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_m06_2x_rks_spd.so",
+        "bytes": 23310176,
+        "sha256": "eb62d613bb31d3ec6e20f2dcb0a605403110913db02225f4ad5998127f9bc86a"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_m06_2x_uks.so",
+        "bytes": 8188752,
+        "sha256": "3ddb52ad9fbc9e2f5dbd407befd6e934bf16a96f1abbce95f1ef3bc1aef05b86"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_m06_2x_uks_spd.so",
+        "bytes": 22806776,
+        "sha256": "256fe1b664fd866fb327a369b1cec56581e2b7b4fdd1a63f4f0b8d790f11ccf1"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_mn15_rks.so",
+        "bytes": 7850056,
+        "sha256": "6ffebde89dc5fb87ff92c32cb9d2055d76bf6b8ad3a986292fde433ff0300c94"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_mn15_rks_spd.so",
+        "bytes": 22463704,
+        "sha256": "dcde9dbdee091a00f0ce494aae0412d5be0ef6ad79da45a268f23de6e92baf19"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_mn15_uks.so",
+        "bytes": 7599464,
+        "sha256": "90f8296afeeb1303d0e2dc2cfa6ea4f6554878e139c2dbdc6f4005e391c953f1"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_mn15_uks_spd.so",
+        "bytes": 22213416,
+        "sha256": "549f09611ce16d19e756b6dbd677ce53ee0976dbd41c4053086672e6b4518720"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_pbe0_rks.so",
+        "bytes": 8129000,
+        "sha256": "932f98d760a5f297209dcc7289964378d7fd775af1ab41db3acc626abc64d9b1"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_pbe0_rks_spd.so",
+        "bytes": 22738920,
+        "sha256": "e919d58f00901245ec109d4c18b7c3a0bc4dd75862ab79d951e8f761f632c5de"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_pbe0_uks.so",
+        "bytes": 7721296,
+        "sha256": "40eb90e95b0abf41e19c327998dba546527c6de0400de0c3fb9bde50ca6b0520"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_pbe0_uks_spd.so",
+        "bytes": 22335120,
+        "sha256": "b9bf4f77c98fb332eb5899472e35ee88ad6bbefd837bc7624a9ec6676cf23caa"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_pbe_rks.so",
+        "bytes": 8122328,
+        "sha256": "2ee58bc4b4c51c4ad50c25049ed4af9b3d314670533870d2747779fda9f5d980"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_pbe_rks_spd.so",
+        "bytes": 22732168,
+        "sha256": "75c198948b70f348e6aa352efbaac456189344873337a2c11fbe6213d2635793"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_pbe_uks.so",
+        "bytes": 7710296,
+        "sha256": "e901ef908bde4d050f38a0240b1985c10df25804a2102dc2b3a28634c92c8bd6"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_pbe_uks_spd.so",
+        "bytes": 22327944,
+        "sha256": "e10639e0f6628f8f32ba9456c72d473a40b3a97cd373ed0bb6ebfa7ffdbd44c3"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_r2scan_rks.so",
+        "bytes": 8724920,
+        "sha256": "c2b6e4bf910c702008dd500dc42d9b08ce244f2c9e532058959c178b1d6b5306"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_r2scan_rks_spd.so",
+        "bytes": 23334760,
+        "sha256": "f01674a31b34ee69afcb5938acb8dc0400831e75120436e229e5d529bdb31bcf"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_r2scan_uks.so",
+        "bytes": 8037792,
+        "sha256": "6710afda4bfdd3362b0ab3d147860cce1ee9b9178c35051893435b5fdd9663b0"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_r2scan_uks_spd.so",
+        "bytes": 22656016,
+        "sha256": "b0366c8e70915a6f764d6aed0d27b217048bf03732f5432662a34d0bc00f4c9d"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_wb97mv_rks.so",
+        "bytes": 8259408,
+        "sha256": "b386fd0dd92713a8d24a8c889a456cddb469d15328ec368f0e3765f643bfebec"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_wb97mv_rks_spd.so",
+        "bytes": 22873440,
+        "sha256": "0699c2eec0015af3988dc4caf7ea4d513e2e6675c406eb4b7ab2ce2dd5496d34"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_wb97mv_uks.so",
+        "bytes": 7791480,
+        "sha256": "43337fe8f252658231e0140ae76e8d8613738d02f8da6d8491f4fd7b87888131"
+      },
+      {
+        "name": "lib/libgenerativeqc_stationary_wb97mv_uks_spd.so",
+        "bytes": 22405280,
+        "sha256": "f9479e9661f55df23458d99d8562ecb3d80e21dfe2447930b4ce5036f70494a8"
+      },
+      {
+        "name": "lib/libgenerativeqc_xtb_openblas_lp64_shim.so",
+        "bytes": 14120,
+        "sha256": "add93002a95215e32180de9f65125aad8dde746e1f5aac8d117c15b8cea73a4b"
+      }
+    ]
+  },
+  "packages": {
+    "generativeqc": "0.1.0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pyscf": "2.14.0",
+    "cupy-cuda12x": "14.2.0"
+  },
+  "gate_sha256": "69eb883be785ee9f4352fb968ff6b8ef55fafc7e4f6f134bf2783351f83250da",
+  "error_type": "BudgetExceeded",
+  "resources": {
+    "calls_started": 456,
+    "calls_completed": 456,
+    "calls_failed": 0,
+    "calls_unsettled": 0,
+    "hessians_started": 0,
+    "wall_seconds": 1502.2457180290003,
+    "driver_wall_seconds": 1503.8117221520006,
+    "process_cpu_seconds": 1505.3823513359998
+  },
+  "raw_report_sha256": "b6d65b99d6d39c9c25ff5741adb4d1245d802d901e4e7f355080df5cce132738",
+  "public_summary_omits": [
+    "coordinates_angstrom",
+    "symbols"
+  ]
+}

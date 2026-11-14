@@ -83,3 +83,36 @@ not a prerequisite for these independently generated molecular inputs.
 中文说明：本轮实际计算先核验已有 GPU 程序，再优化少数互变异构体。输入来自独立
 生成的小分子结构，并明确采用气相中性单重态，不能把这些条件补写成来源数据的事实。
 本轮最多给出有限构象范围内的稳定性线索，不据此宣布新反应机理、溶液种群或合成产率。
+
+## Registered bounded continuation and minimum checks
+
+The original runtime launch (Slurm 4618) failed before QC because its existing
+OpenBLAS provider was not on the loader path. The preserved failure used zero
+QC calls. Exposing that existing directory produced a fresh successful gate,
+with 18 counted operations. This was an environment correction, not a repeated
+scientific calculation or a replacement of the old receipt.
+
+The R6 carbonyl Cartesian BFGS start reached the registered 80-iteration limit
+at 8.24e-5 Hartree/Bohr maximum force. Without changing that criterion, a separate
+TRIC continuation is now frozen in
+`configs/research/gqc_tautomer_continuation_20261114.json`. It visits unresolved
+or budget-unreached starts in the original input order, at most once each, and
+leaves completed starts unchanged. It may use at most 200 new calls/650 seconds
+on one GPU, while subtracting all prior QC from a shared 800-operation envelope
+and reserving 32 operations for independent checks. Original statuses/costs and
+the entire input denominator remain visible even if the continuation stops.
+
+The separate CPU PySCF minimum checks are frozen in
+`configs/research/gqc_tautomer_frequency_20261114.json`. They select the lowest
+qualified sampled geometry for each connectivity graph, compare B3LYP E/F,
+compute up to eight analytic Hessians, check one Hessian-vector derivative at
+two finite-difference scales, and evaluate M06-2X/def2-TZVP single points as a
+method/basis sensitivity check. Maximum 32 QC operations, four CPU cores,
+1,100 internal wall seconds, 20-minute CPU Slurm job, no GPU. Previous QC costs
+are subtracted before execution. No new GQC Hessian qualification is implied.
+
+Harmonic Gibbs quantities, when valid, use 298.15 K/1 atm gas and a single
+sampled minimum per form. Shallow imaginary modes remain gray-zone results.
+The alternative-method energies are single points on B3LYP geometries, not
+M06-2X optimized structures or free energies. Missing forms yield incomplete
+comparisons; a failed structure is never silently replaced by another molecule.

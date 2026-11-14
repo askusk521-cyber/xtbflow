@@ -1,0 +1,18 @@
+{
+  "schema": "xtbflow-gqc-tautomer-continuation/v1",
+  "reason": "The original R6 carbonyl Cartesian BFGS attempt reached 80 iterations with max force 8.24e-5 Hartree/Bohr. Preserve it and use a separately recorded internal-coordinate continuation, rather than loosening convergence.",
+  "selection": "all unresolved or unattempted starts in original input order; never select by energy; converged starts unchanged",
+  "optimizer": "geomeTRIC TRIC",
+  "max_iterations_per_start": 40,
+  "max_new_calls": 200,
+  "shared_qc_ceiling": 800,
+  "reserved_followup_calls": 32,
+  "wall_seconds": 650,
+  "slurm_wall_minutes": 12,
+  "force_max_hartree_per_bohr": 0.00003,
+  "max_continuations_per_start": 1,
+  "gpu_count": 1,
+  "cpus": 4,
+  "memory_gib": 16,
+  "claim_limit": "Original failures, attempts and costs remain visible. A new continuation is not a retrospective success of the original optimization."
+}

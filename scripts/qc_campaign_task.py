@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import platform
+import signal
 import socket
 import subprocess
 import time
@@ -24,6 +25,8 @@ class Ledger:
             raise BudgetExceeded("task call or soft wall limit")
         if sum(p.stat().st_size for p in self.out.rglob("*") if p.is_file()) > 4 * 1024**3:
             raise BudgetExceeded("task disk limit")
+        if self.started % 10 == 0 and sum(p.stat().st_size for p in self.out.parent.parent.rglob("*") if p.is_file()) > 32 * 1024**3:
+            raise BudgetExceeded("campaign retained-disk checkpoint limit")
         self.started += 1
         index, start = self.started, time.monotonic()
         self.log({"operation": index, "label": label, "status": "started", "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
@@ -135,6 +138,33 @@ def run_solvent(task, point, ledger, report):
                   claim_limit="Electrostatic continuum single point at gas geometry; not a solvent free-energy or rate prediction.")
 
 
+def run_single_point(task, point, ledger, report):
+    _, mf = mol_and_mf(point, task)
+    energy = ledger.call("gas_single_point", lambda: float(mf.kernel()))
+    if not mf.converged or not np.isfinite(energy):
+        raise RuntimeError("gas reference SCF failed")
+    report.update(status="completed_gas_single_point", energy_hartree=energy)
+
+
+def numerical_gate(task, manifest, out, report):
+    if "gate" not in task:
+        return True
+    wave, name = task["gate"].split("/")
+    path = out.parent.parent / ("results-" + wave) / name / "report.json"
+    if not path.exists():
+        report.update(status="blocked_numerical_gate", gate_evidence={"id": task["gate"], "status": "missing"})
+        return False
+    gate = json.loads(path.read_text())
+    expected_manifest = manifest["wave1_manifest_sha256"] if wave == "wave1" else task["_manifest_sha256"]
+    native = next((r["sha256"] for r in gate.get("build_identity", {}).get("native_libraries", []) if r["name"] == "lib/libgenerativeqc.so"), None)
+    allowed = gate["status"] == "qualification_passed" and gate["manifest_sha256"] == expected_manifest and native == manifest["config"]["native_sha256"]
+    allowed = allowed and gate["task"]["method"] == "b3lyp-rks" and gate["task"]["basis"] == "def2-svp"
+    report["gate_evidence"] = {"id": task["gate"], "status": gate["status"], "report_sha256": digest(path), "identity_valid": allowed}
+    if not allowed:
+        report["status"] = "blocked_numerical_gate"
+    return allowed
+
+
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--manifest", type=Path, required=True)
@@ -144,7 +174,7 @@ def main() -> int:
     if socket.gethostname() != "node2" or not os.environ.get("SLURM_JOB_ID"):
         raise RuntimeError("QC campaign tasks require n2 Slurm")
     manifest = json.loads(a.manifest.read_text())
-    task = manifest["tasks"][a.index]
+    task = dict(manifest["tasks"][a.index])
     point = manifest["points"][task["point"]]
     out = a.out / task["id"]
     out.mkdir(parents=True, exist_ok=False)
@@ -165,8 +195,15 @@ def main() -> int:
               "claim_limits": manifest["config"]["claim_limits"]}
     write_json(out / "report.json", report)
     ledger = Ledger(out, task)
+    task["_manifest_sha256"] = digest(a.manifest)
     cpu = time.process_time()
+    def terminating(signum, frame):
+        raise BudgetExceeded("scheduler termination signal")
+    signal.signal(signal.SIGTERM, terminating)
     try:
+        import importlib.metadata
+        report["environment_versions"] = {name: importlib.metadata.version(name) for name in ("numpy", "scipy", "pyscf", "geometric")}
+        report["allocated_cpus"] = int(os.environ["SLURM_CPUS_PER_TASK"])
         if task["gpu"]:
             if not os.environ.get("CUDA_VISIBLE_DEVICES"):
                 raise RuntimeError("missing Slurm GPU visibility")
@@ -175,18 +212,30 @@ def main() -> int:
                 raise ValueError("unqualified native library")
             os.environ["GENERATIVEQC_LIBRARY"] = str(library)
             report["build_identity"] = build_identity()
-        if task["kind"] == "audit":
+        if not numerical_gate(task, manifest, out, report):
+            pass
+        elif task["kind"] == "audit":
             run_audit(task, point, manifest["config"], ledger, report)
         elif task["kind"] == "ccsd_t":
             run_cc(task, point, ledger, report)
         elif task["kind"] == "solvent":
             run_solvent(task, point, ledger, report)
+        elif task["kind"] == "single_point":
+            run_single_point(task, point, ledger, report)
+        elif task["kind"] in ("opt", "frequency", "path"):
+            from qc_campaign_paths import run_opt, run_frequency, run_path
+            if task["kind"] == "opt":
+                run_opt(task, point, manifest["config"], ledger, report)
+            elif task["kind"] == "frequency":
+                run_frequency(task, point, ledger, report)
+            else:
+                run_path(task, point, manifest, ledger, report)
         else:
             raise ValueError("unregistered task kind")
     except Exception as exc:
         import traceback
         traceback.print_exc()
-        report.update(status="budget_exhausted" if isinstance(exc, BudgetExceeded) else "execution_failed", error_type=type(exc).__name__)
+        report.update(status="budget_exhausted" if isinstance(exc, BudgetExceeded) else "execution_failed", error_type=type(exc).__name__, error_message=str(exc))
     finally:
         report["resources"] = {**ledger.summary(), "process_cpu_seconds": time.process_time() - cpu}
         write_json(out / "report.json", report)

@@ -1439,8 +1439,8 @@
     },
     {
       "path": "docs/research/QC_CAMPAIGN_20261114.md",
-      "sha256": "62c07b199f46f21565b0eb8fc02139528951973e73c325d4ef707225a9eb5ab8",
-      "bytes": 4433
+      "sha256": "e978aa2c65498a229b55c322df58e6bfdf13a2bac599f2ebd1a31b98c63f2021",
+      "bytes": 6487
     },
     {
       "path": "docs/sources.md",
@@ -1793,6 +1793,11 @@
       "bytes": 6215
     },
     {
+      "path": "scripts/collect_qc_campaign.py",
+      "sha256": "556074e43e6782d01e95301a1ad19de7f5dc20cf7f9116d27dcab60b00ec3ac3",
+      "bytes": 4810
+    },
+    {
       "path": "scripts/continue_gqc_tautomer_minima.py",
       "sha256": "444035acdef94d434e1cd204c51f86c2a9da1ba8d111bf5b5b4e66248f85c235",
       "bytes": 6850
@@ -1848,14 +1853,29 @@
       "bytes": 3755
     },
     {
+      "path": "scripts/prepare_qc_paths.py",
+      "sha256": "28694dc1f188052b13651d7a75802ca5c74bfc9e28d03aa5181a120a8978eec0",
+      "bytes": 17363
+    },
+    {
       "path": "scripts/prepare_spice_openff_pilot.py",
       "sha256": "9121a7e5cef736d6459b5dc3400465c5924d678ba1bec4963335cb8b197c0010",
       "bytes": 17349
     },
     {
+      "path": "scripts/qc_campaign_geometry.py",
+      "sha256": "9cc20d60c575a7ac0e4f5f0d802757295ab24e5ff78e953a147dca4e75b5edce",
+      "bytes": 1417
+    },
+    {
+      "path": "scripts/qc_campaign_paths.py",
+      "sha256": "a80121dbc31d65c63ab00ed9cc9d693298ff68c2c2c9585236d9d72d966c53e4",
+      "bytes": 14136
+    },
+    {
       "path": "scripts/qc_campaign_task.py",
-      "sha256": "510c07f4e74defe149c7f5333473613602f1efce6d88ed7727b26e096b3e9553",
-      "bytes": 10124
+      "sha256": "2e1d756372a4e52f207bb84ccd6dedd961e4ed1aeae0694bca0b7eac738d8fda",
+      "bytes": 12927
     },
     {
       "path": "scripts/render_claim_evidence.py",
@@ -1909,8 +1929,8 @@
     },
     {
       "path": "scripts/run_qc_campaign_task.sbatch",
-      "sha256": "b09d3b20d07b35f764394f45d25ecf31a5ad1fbe754dee9ea7b34b7a2c408e0d",
-      "bytes": 750
+      "sha256": "ea3604867d3b3fc66b1c911efe9b294e5f0e5f8447fb9dd49db56cb7b861ea45",
+      "bytes": 1418
     },
     {
       "path": "scripts/run_real_feedback_loop.py",
@@ -2624,8 +2644,8 @@
     },
     {
       "path": "tests/test_qc_campaign.py",
-      "sha256": "150fc47f89a50c78eaa0b4602694fabd966451c288087dd5d4110b10e5b96921",
-      "bytes": 1039
+      "sha256": "7264eb251b021dc9b29f918436ff33832144fbbc5f424ca3ee6930b35a05cf7e",
+      "bytes": 3267
     },
     {
       "path": "tests/test_reactant_candidates.py",

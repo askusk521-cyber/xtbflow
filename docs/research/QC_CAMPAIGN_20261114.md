@@ -67,6 +67,39 @@ final status snapshot without launching extra quantum calculations.
 Base/head: #207 (`codex/gqc-tautomer-20261114`) →
 `codex/qc-campaign-20261114`. No PR is merged by this campaign.
 
+## Frozen second wave
+
+The n2 preparation smoke produced 28 opt/frequency pairs, two additional
+derivative gates (nitrogen-containing bimolecular system and explicit-water
+cluster), eight path chains, six matched gas B3LYP/def2-TZVP single points,
+and two R6 all-electron CCSD(T)/cc-pVTZ single points. The combined upper
+bounds are 40.8334 GPU hours, 451.334 CPU-core hours and 18,156 operations.
+The preparation uses RDKit ETKDGv3/MMFF with fixed seeds, preserves explicit
+hydrogen atom maps through bond edits, and records missing/failed preparations.
+Extra conformers are fixed new starts, not a complete conformational ensemble.
+The extra R51 chiral carbonyl starts include both mirror configurations.
+
+GQC B3LYP/def2-SVP drives endpoint optimization and seven-image NEB. PySCF CPU
+B3LYP/def2-SVP supplies all Hessians, TS refinement and both IRC directions.
+An initial TS Hessian must also pass a gradient finite-difference directional
+check. Every native operation remains within the path's 1,600-operation and
+150-minute allocation. All-negative-frequency/gradient/identity gates are
+strict; an unresolved endpoint blocks its dependent path. NEB need not have
+converged to supply a candidate for independent TS refinement, but its status
+is retained and never itself certifies a reaction.
+
+Each finite cluster uses one water placement; the neutral Michael hypothesis
+does not test all stepwise/zwitterionic possibilities. Double-ended structures
+are deliberate chemical hypotheses, not reaction-blind model inputs. Local
+electronic barriers reference the verified finite-complex minimum and cannot
+be reported as solution activation free energies or bulk hydrolysis rates.
+
+Failed work is journaled before exceptions propagate. Completed child exit
+codes are retained separately from scientific status. A scheduler hard kill
+may leave `started`/unsettled work; the collector preserves it. Disk limits
+(4 GiB/task and 32 GiB/campaign) are checked between operations, with a
+campaign check every ten operations, not enforced as filesystem quotas.
+
 Primary software references:
 [PySCF CCSD(T)](https://pyscf.org/user/cc.html),
 [PySCF solvent models](https://pyscf.org/user/solvent.html),

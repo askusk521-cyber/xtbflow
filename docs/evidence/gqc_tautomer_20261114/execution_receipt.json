@@ -1,0 +1,256 @@
+{
+  "schema": "xtbflow-gqc-tautomer-execution-receipt/v1",
+  "observed_utc": "2026-11-14T12:26:13.419230+00:00",
+  "host": "node2",
+  "stages": {
+    "prepare": {
+      "source_commit": "323fd156987322ed7181dd48b4fe514a162f702d",
+      "status": "prepared_no_qc",
+      "slurm_job_id": null,
+      "report_sha256": "20d2e9ccb3e788566a7ca0e9450b1013c61d60649b0033fef310a8956a89f376",
+      "resources": {
+        "calls_started": 0,
+        "driver_wall_seconds": 0.19385851699917112,
+        "process_cpu_seconds": 0.16476774900000002
+      }
+    },
+    "launch_failure": {
+      "source_commit": "323fd156987322ed7181dd48b4fe514a162f702d",
+      "status": "execution_failed",
+      "slurm_job_id": "4618",
+      "report_sha256": "d0b80ff79fde7bc722eef30aed4d66729a553eaa3a19413c888e7e94990ccf6f",
+      "resources": {
+        "calls_started": 0,
+        "calls_completed": 0,
+        "calls_failed": 0,
+        "calls_unsettled": 0,
+        "hessians_started": 0,
+        "wall_seconds": 0.10547127699828707,
+        "driver_wall_seconds": 3.0679381390000344,
+        "process_cpu_seconds": 2.275296516
+      }
+    },
+    "qualification": {
+      "source_commit": "323fd156987322ed7181dd48b4fe514a162f702d",
+      "status": "qualified_for_bounded_pilot",
+      "slurm_job_id": "4619",
+      "report_sha256": "69eb883be785ee9f4352fb968ff6b8ef55fafc7e4f6f134bf2783351f83250da",
+      "resources": {
+        "calls_started": 18,
+        "calls_completed": 18,
+        "calls_failed": 0,
+        "calls_unsettled": 0,
+        "hessians_started": 0,
+        "wall_seconds": 22.3207663230005,
+        "driver_wall_seconds": 23.923937576000753,
+        "process_cpu_seconds": 74.800849932
+      }
+    },
+    "optimization": {
+      "source_commit": "323fd156987322ed7181dd48b4fe514a162f702d",
+      "status": "budget_exhausted",
+      "slurm_job_id": "4620",
+      "report_sha256": "b6d65b99d6d39c9c25ff5741adb4d1245d802d901e4e7f355080df5cce132738",
+      "resources": {
+        "calls_started": 456,
+        "calls_completed": 456,
+        "calls_failed": 0,
+        "calls_unsettled": 0,
+        "hessians_started": 0,
+        "wall_seconds": 1502.2457180290003,
+        "driver_wall_seconds": 1503.8117221520006,
+        "process_cpu_seconds": 1505.3823513359998
+      }
+    },
+    "continuation": {
+      "source_commit": "aad1b5362883c5c2364acd2eec5c6c1e90ff4d13",
+      "status": "continuation_complete_identity_pending",
+      "slurm_job_id": "4621",
+      "report_sha256": "aafb3454653e581e3757adc24a6316e84088638540f835a6baa701ab7df5a1d0",
+      "resources": {
+        "calls_started": 91,
+        "calls_completed": 91,
+        "calls_failed": 0,
+        "calls_unsettled": 0,
+        "hessians_started": 0,
+        "wall_seconds": 336.5050819709977,
+        "process_cpu_seconds": 369.122004926
+      }
+    },
+    "identity": {
+      "source_commit": "aad1b5362883c5c2364acd2eec5c6c1e90ff4d13",
+      "status": "identity_checks_complete",
+      "slurm_job_id": null,
+      "report_sha256": "0faebb96ef2a3ca9997c4b8fe14ab45b7a2b607abfc12f694e3179a88d4f1f61",
+      "resources": {
+        "calls_started": 0,
+        "driver_wall_seconds": 0.05583489099808503,
+        "process_cpu_seconds": 0.055686669999999994
+      }
+    },
+    "minima": {
+      "source_commit": "aad1b5362883c5c2364acd2eec5c6c1e90ff4d13",
+      "status": "completed_with_recorded_per_structure_status",
+      "slurm_job_id": "4622",
+      "report_sha256": "3074312887fef84cd7f4f1f1f9f76cd7bc74b8ec76e772a88f0235df2f255001",
+      "resources": {
+        "calls_started": 28,
+        "calls_completed": 28,
+        "calls_failed": 0,
+        "calls_unsettled": 0,
+        "hessians_started": 8,
+        "wall_seconds": 1054.9261056709984,
+        "process_cpu_seconds": 4437.972064367999
+      }
+    }
+  },
+  "artifact_hashes": {
+    "first_run/optimize/calls.jsonl": {
+      "bytes": 94031,
+      "sha256": "cf16a2d59e58562e08f076eacf031d917a028f53b713ff80a725ced1955f6098"
+    },
+    "first_run/optimize-4620.err": {
+      "bytes": 3586,
+      "sha256": "80b5c0a99feec562dbbfbe7ac4ce01c6070b89c071531d609dc2299c25c89b50"
+    },
+    "first_run/optimize-4620.out": {
+      "bytes": 299,
+      "sha256": "709669fe2d225c0447891c2e97d287052a7719b5dd07bb505eb3894950b7e020"
+    },
+    "first_run/qualify-4618.err": {
+      "bytes": 1714,
+      "sha256": "34e9733a863273f027fcd777ad0fb962a5118e82677acc0df9b6a3f64561b632"
+    },
+    "first_run/qualify-4618.out": {
+      "bytes": 288,
+      "sha256": "a904a2b8280fbbd403627ef60b701a72abaa10af52c261a512232f4dc872c21b"
+    },
+    "first_run/qualify-openblas/calls.jsonl": {
+      "bytes": 3446,
+      "sha256": "fed00cd20923d83ab55a0c91ee3e88cf8b14a47c710ac6150e2de13a3a3c90f9"
+    },
+    "first_run/qualify-openblas-4619.err": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "first_run/qualify-openblas-4619.out": {
+      "bytes": 299,
+      "sha256": "f44c6f99ac31156e6c2724ff426ea083a652f1fc88e3c2e50cf9d4de39ce560b"
+    },
+    "first_run/software.log": {
+      "bytes": 98,
+      "sha256": "c2d64d41edcb4d9a0b7a81fcc964ceb8d2b7d73d7d92491bb17f24d0bbaea6d3"
+    },
+    "continuation_and_reference/continue/R30_carbonyl_stereo0/opt.log": {
+      "bytes": 10385,
+      "sha256": "4d487d6c7b7f26b463da099bf1191bd2161986d00af95ade9385af2b84dabec3"
+    },
+    "continuation_and_reference/continue/R30_carbonyl_stereo1/opt.log": {
+      "bytes": 17761,
+      "sha256": "3dd3fdda7d4c076d796a4c4118057e5e8e00061d5fcde5553b279c76ff2403d0"
+    },
+    "continuation_and_reference/continue/R51_carbonyl_stereo0/opt.log": {
+      "bytes": 10144,
+      "sha256": "83efe59a32f21f5e70e5f2c2ac7eaf5c98bced40a423c48b29ec5932f82b5aaf"
+    },
+    "continuation_and_reference/continue/R51_enol_stereo0/opt.log": {
+      "bytes": 10096,
+      "sha256": "2825202c8b77c06b863114c1e193e57d86aa9b2138b5d029e3502d0f875639dd"
+    },
+    "continuation_and_reference/continue/R6_carbonyl_stereo0/opt.log": {
+      "bytes": 8561,
+      "sha256": "23e1282d3def3dcb8d0a55bcd65c6c065a1d8e8b880763b73557d83a98baee37"
+    },
+    "continuation_and_reference/continue/calls.jsonl": {
+      "bytes": 17695,
+      "sha256": "1bfbfc0891db05cc9c338a596d191c9e007278d3cf318850832c73a619b7d96f"
+    },
+    "continuation_and_reference/continue/control_butadiene_stereo0/opt.log": {
+      "bytes": 9736,
+      "sha256": "4ad9d14299e78b9b68d8f0accef1d6ef6516873688d19bc0d5a588e04667086a"
+    },
+    "continuation_and_reference/continue/control_furan_stereo0/opt.log": {
+      "bytes": 9856,
+      "sha256": "2a47f6f3f576387de5c5ae1ac8617396d238b04ee0d280ffa471360619c68522"
+    },
+    "continuation_and_reference/continue-4621.err": {
+      "bytes": 76539,
+      "sha256": "1ff4792e5e3720ed04dc41414a41da30ad804f188b592731e49907c744e4a6da"
+    },
+    "continuation_and_reference/continue-4621.out": {
+      "bytes": 253,
+      "sha256": "28fdff587cbd08ffdc4764a6aa4766e4b3f27304c2fba88b019f67eb93cb0e48"
+    },
+    "continuation_and_reference/minima/calls.jsonl": {
+      "bytes": 5446,
+      "sha256": "de79617306b7e7325e66e512bd6e70e619746a17dcd17c35dd9bde11cc3acff3"
+    },
+    "continuation_and_reference/minima-4622.err": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "continuation_and_reference/minima-4622.out": {
+      "bytes": 1388,
+      "sha256": "bb6898286efdd27a5a9e8bd43b03e80f762a6d4fa94a8df7757410bba49ce5bb"
+    },
+    "continuation_and_reference/reusable.log": {
+      "bytes": 155,
+      "sha256": "622b0827a994f0250680a342ec012eff6fb3ea1bd7e340d9e5f38ab125edae34"
+    },
+    "continuation_and_reference/software.log": {
+      "bytes": 1168,
+      "sha256": "57770749145300f51f0862228901cd537d433557180e22c8ea5fcd9073f2bdf7"
+    }
+  },
+  "operation_counts": {
+    "generativeqc_cuda_energy_or_force_calls": 562,
+    "independent_pyscf_operations": 31,
+    "analytic_hessians_included_in_pyscf": 8,
+    "total": 593
+  },
+  "retained_run_bytes": 645128,
+  "software": {
+    "source_commit": "aad1b5362883c5c2364acd2eec5c6c1e90ff4d13",
+    "pytest": "435 passed, 68 subtests, 1 warning, 21.25 s",
+    "reusable": "56 passed, 0.400 s",
+    "bootstrap_files": 527
+  },
+  "scheduler_accounting": {
+    "status": "unavailable",
+    "observed_message": "Slurm accounting storage is disabled",
+    "finished_job_records": "scontrol records for 4618 and 4619 had already expired",
+    "launcher_exit_codes": {
+      "4618": 1,
+      "4619": 0,
+      "4620": 1,
+      "4621": 0,
+      "4622": 0
+    },
+    "allocated_gpu_seconds": "unknown; driver timings are retained separately"
+  },
+  "failures_and_corrections": [
+    {
+      "job": "4618",
+      "phase": "native_library_load_before_QC",
+      "reason": "libscipy_openblas.so was not on the loader path",
+      "new_qc_calls": 0,
+      "correction": "Expose the existing scipy_openblas32 library directory; preserve the failed receipt."
+    },
+    {
+      "job": "4620",
+      "phase": "optimization_budget",
+      "status": "budget_exhausted",
+      "internal_wall_deadline_seconds": 1500,
+      "measured_meter_wall_seconds": 1502.2457180290003,
+      "note": "The last native operation completed after the soft deadline; no next call was launched. All 456 calls settled. The 30-minute Slurm hard limit was not hit."
+    }
+  ],
+  "claims": [
+    "Gas-phase finite-cohort relative stability only.",
+    "Eight representative minima have positive projected vibrational frequencies; all 13 optimized starts have verified graph/stereochemical identity.",
+    "GQC did not supply these Hessians; they were calculated independently using CPU PySCF.",
+    "No solution populations, reaction rates, TS/IRC connectivity, irreversible trapping or new mechanism are established.",
+    "M06-2X/def2-TZVP energies are single points at the selected B3LYP geometries.",
+    "Other tautomer connectivities, double-bond migrations, larger conformer ensembles and solvent are untested."
+  ]
+}

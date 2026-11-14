@@ -1,0 +1,131 @@
+{
+  "schema": "xtbflow-gqc-tautomer-stage/v1",
+  "stage": "prepare",
+  "host": "node2",
+  "source_commit": "323fd156987322ed7181dd48b4fe514a162f702d",
+  "config_sha256": "b4245b2ece9f1695bb0445045d0cf81ac54916c26c7072a7fabd39510e155f58",
+  "slurm_job_id": null,
+  "python": "3.10.19",
+  "status": "prepared_no_qc",
+  "rows": [
+    {
+      "start_id": "R6_enol_stereo0",
+      "stereo_smiles": "C=C/C=C/O",
+      "formula": "C4H6O",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    },
+    {
+      "start_id": "R6_enol_stereo1",
+      "stereo_smiles": "C=C/C=C\\O",
+      "formula": "C4H6O",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    },
+    {
+      "start_id": "R6_carbonyl_stereo0",
+      "stereo_smiles": "C=CCC=O",
+      "formula": "C4H6O",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    },
+    {
+      "start_id": "R30_enol_stereo0",
+      "stereo_smiles": "C/C=C/C=C/O",
+      "formula": "C5H8O",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    },
+    {
+      "start_id": "R30_enol_stereo1",
+      "stereo_smiles": "C/C=C/C=C\\O",
+      "formula": "C5H8O",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    },
+    {
+      "start_id": "R30_enol_stereo2",
+      "stereo_smiles": "C/C=C\\C=C/O",
+      "formula": "C5H8O",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    },
+    {
+      "start_id": "R30_enol_stereo3",
+      "stereo_smiles": "C/C=C\\C=C\\O",
+      "formula": "C5H8O",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    },
+    {
+      "start_id": "R30_carbonyl_stereo0",
+      "stereo_smiles": "C/C=C/CC=O",
+      "formula": "C5H8O",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    },
+    {
+      "start_id": "R30_carbonyl_stereo1",
+      "stereo_smiles": "C/C=C\\CC=O",
+      "formula": "C5H8O",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    },
+    {
+      "start_id": "R51_enol_stereo0",
+      "stereo_smiles": "Cc1ccc(O)o1",
+      "formula": "C5H6O2",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    },
+    {
+      "start_id": "R51_carbonyl_stereo0",
+      "stereo_smiles": "CC1=CCC(=O)O1",
+      "formula": "C5H6O2",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    },
+    {
+      "start_id": "control_butadiene_stereo0",
+      "stereo_smiles": "C=CC=C",
+      "formula": "C4H6",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    },
+    {
+      "start_id": "control_furan_stereo0",
+      "stereo_smiles": "c1ccoc1",
+      "formula": "C4H4O",
+      "charge": 0,
+      "multiplicity": 1,
+      "mmff_converged": true
+    }
+  ],
+  "claim_limits": [
+    "These are independently constructed, explicitly neutral-singlet gas-phase models; missing source states are not repaired or admitted.",
+    "Only the listed tautomer connectivity proposals and finite E/Z/conformer sample are covered.",
+    "No observed reaction rates, solution populations, reaction TS/IRC, reversibility, synthetic feasibility or novel mechanism are established.",
+    "B3LYP/def2-SVP is an exploratory protocol selected for the available qualified force route, not a replacement for source-paper M06-2X labels.",
+    "GPU preparation/qualification/allocation time and failed calculations count toward this campaign."
+  ],
+  "input_sha256": "d6175d057bbd193b6c2e8b1e48066fb61cd8a92ac7f9fbace199e08b021bc3b2",
+  "starts": 13,
+  "initial_conformers_attempted": 26,
+  "resources": {
+    "calls_started": 0,
+    "driver_wall_seconds": 0.19385851699917112,
+    "process_cpu_seconds": 0.16476774900000002
+  }
+}

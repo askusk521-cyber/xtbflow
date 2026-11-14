@@ -82,3 +82,28 @@ Full software validation (419 pytest tests/68 subtests, 56 reusable tests)
 and fake/cached integration pass. Receipt:
 `docs/evidence/integration_197_20261111/software_c7e8b0b.json`.
 No trained-checkpoint forwards or quantum chemistry were executed by this stage.
+
+## 2026-11-14 GenerativeQC runtime and first tautomer pilot
+
+The owner requested reuse of the compiled GenerativeQC program and Slurm GPU
+execution. The reusable wheel/venv uses Python 3.11.17, NumPy 2.4.6, SciPy
+1.17.1, PySCF 2.14.0 and CuPy CUDA12x 14.2.0. Its upstream source is
+`2bf3fd98da9c6cfba46ca83345e63e1d934e4780`; main library SHA-256 is
+`67bc98a4549fe8854ed6ae65791c824024bd77a9e8e498c6891dea3b8de670c4`.
+The node's `latest` source bundle was not a complete runtime. Existing compiled
+artifacts were preserved. The wheel required its existing scipy_openblas32
+directory on LD_LIBRARY_PATH; the initial missing-library failure is archived.
+
+One `gpu:pro6000:1` allocation at a time, partition `main`, ran a new bounded
+B3LYP/def2-SVP force/energy gate and the tautomer optimization. CPU PySCF then
+checked eight representative minima and an independent single-point method.
+The `xtbflow` Python 3.10 environment was used for structure preparation and
+identity checking; the GQC interpreter was explicitly selected for native QC.
+These observations do not qualify other GQC methods, native Hessians, CP2K,
+solution prediction or reaction connectivity.
+
+Full outcomes, exact source commits, protocols, failed-work costs, environment
+and commands: [pilot evidence](evidence/gqc_tautomer_20261114/RESULTS_ZH.md).
+Slurm accounting storage was disabled; program time is not relabelled as exact
+allocated GPU time. A private n2 runtime.env and the reusable
+`skills/n2-quantum-chemistry/` instructions preserve the verified invocation.

@@ -33,3 +33,27 @@ The current GQC analytic Hessian/IRC interfaces have not been qualified by this
 force gate. If PySCF or another program provides frequencies or a reaction path,
 retain its method/build, actual call counts and claim boundary separately.
 Small-system stationary points do not by themselves predict solution kinetics.
+
+## Completed optimization example
+
+The same pilot subsequently reached the recorded force threshold for all 13
+finite E/Z starts. Two Cartesian BFGS starts hit their iteration limits and a
+time-limited batch left later starts incomplete. A separately registered
+geomeTRIC TRIC continuation, using the same GQC forces, resolved the remaining
+starts with 91 new calls while retaining the original 456 calls and failures.
+For similar molecular optimizations, the internal-coordinate driver is a useful
+starting example; this observation does not require changing every optimizer.
+
+All 13 final graphs/stereoisomers matched their intended identity. Eight
+representative minima had positive projected frequencies using **CPU PySCF**
+B3LYP/def2-SVP Hessians. One Hessian-vector finite-difference probe had relative
+error about 2.01e-4 at two scales. This is not a GQC-native Hessian qualification.
+The complete pilot recorded 562 GQC CUDA energy/force calls and 31 independent
+PySCF operations, including eight Hessians, with no model training.
+
+Exact continuation/reference source:
+`aad1b5362883c5c2364acd2eec5c6c1e90ff4d13` in the xtbflow repository.
+Evidence and command recipe: `docs/evidence/gqc_tautomer_20261114/RESULTS_ZH.md`.
+Repository: <https://github.com/askusk521-cyber/xtbflow>.
+Read the source before adapting the standalone driver; retain its budget and
+input/build identity checks, but choose chemistry and tolerances for the task.

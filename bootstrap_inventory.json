@@ -524,8 +524,8 @@
     },
     {
       "path": "docs/ENVIRONMENT_N2.md",
-      "sha256": "b421cf3959b9bb9b42800ef6e6671efe60c4db3ddcc90eae6071ab2112872756",
-      "bytes": 3383
+      "sha256": "0bb5da7b9fb8fea0dc1c4bbc8876972cdab7a01c132b0c908d210acb542c58cb",
+      "bytes": 4924
     },
     {
       "path": "docs/HANDOFF_FREEZE.md",
@@ -748,6 +748,11 @@
       "bytes": 2049
     },
     {
+      "path": "docs/evidence/generativeqc_force_root_cause_20261109.json",
+      "sha256": "81ba2aae1ab9730ce160aeecaa497213eccfb9d5307f7207e1578a76aac92c90",
+      "bytes": 5833
+    },
+    {
       "path": "docs/evidence/gfn2_independent_fd_20260929.json",
       "sha256": "a8f35cecb50117422a0dd28953d079634aa780dd5336baf6ee23cfd817952d57",
       "bytes": 6712
@@ -766,6 +771,51 @@
       "path": "docs/evidence/gfn2_units_diagnostic_20260927.json",
       "sha256": "58ce3ca92d5d5733eb2d7b153f7f180a5fb25552647b4b0c25a926281b6b36e7",
       "bytes": 21013
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/RESULTS_ZH.md",
+      "sha256": "61bd9b7b6d978fde209894ed221cf39d52476079416a4b6ba0de6f888ea5f4eb",
+      "bytes": 8565
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/continuation_4621_summary.json",
+      "sha256": "a4ff606ad1e12fd7f085ec9e8a51e9d66cffe535c6032cb0499b7d0fef7f6421",
+      "bytes": 15095
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/execution_receipt.json",
+      "sha256": "a51a74b0762ca66d3eb4938cdf96fc3d758876ce57af485bee41545309f584d9",
+      "bytes": 9946
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/identity_check_summary.json",
+      "sha256": "f8141ec356a35422a80107f992512254458ed2b85f59eee47526206b8d6b478f",
+      "bytes": 15840
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/minima_4622.json",
+      "sha256": "3074312887fef84cd7f4f1f1f9f76cd7bc74b8ec76e772a88f0235df2f255001",
+      "bytes": 16698
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/optimization_4620_summary.json",
+      "sha256": "36b9408a24067fd2e3fd4feb776aa12955a7ecdf0cff274414971269b010e368",
+      "bytes": 13223
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/preparation_323fd15.json",
+      "sha256": "20d2e9ccb3e788566a7ca0e9450b1013c61d60649b0033fef310a8956a89f376",
+      "bytes": 3740
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/qualification_4618_launch_failed.json",
+      "sha256": "d0b80ff79fde7bc722eef30aed4d66729a553eaa3a19413c888e7e94990ccf6f",
+      "bytes": 8365
+    },
+    {
+      "path": "docs/evidence/gqc_tautomer_20261114/qualification_4619.json",
+      "sha256": "69eb883be785ee9f4352fb968ff6b8ef55fafc7e4f6f134bf2783351f83250da",
+      "bytes": 10195
     },
     {
       "path": "docs/evidence/guidance_adapter_boundary_n2_20261110.json",
@@ -1894,8 +1944,8 @@
     },
     {
       "path": "skills/n2-quantum-chemistry/references/qualification.md",
-      "sha256": "d9fa60bfa7a5d8fbd066db19a740f51dc1f8bef797e0f187e81abbb15eed5069",
-      "bytes": 2147
+      "sha256": "3fe8c7eaee35880ab9979503de47e53d26625cd8e957cb72eacac981c0ce9a36",
+      "bytes": 3591
     },
     {
       "path": "skills/n2-quantum-chemistry/references/runtime.md",

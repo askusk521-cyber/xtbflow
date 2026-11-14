@@ -1,0 +1,118 @@
+{
+  "schema": "xtbflow-generativeqc-force-root-cause/v1",
+  "status": "cuda_dft_force_endpoint_failed_finite_difference",
+  "host": "node2",
+  "generativeqc_source_commit": "2bf3fd98da9c6cfba46ca83345e63e1d934e4780",
+  "generativeqc_native_build_sha256": "67bc98a4549fe8854ed6ae65791c824024bd77a9e8e498c6891dea3b8de670c4",
+  "hardware": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition; compute capability 12.0; CUDA 12.9.86; driver 595.99.02",
+  "xtbflow_source_commit": "2ee900d6c18f1257da833b52faa758a5aebc40e0",
+  "fixture": "water_perturbed from docs/evidence/gfn2_qualification_20260929.json",
+  "method": "PBE/def2-SVP/spherical/FP64",
+  "coordinate_unit": "Angstrom public -> Bohr native",
+  "force_unit": "Hartree/Bohr native; Hartree/Angstrom adapter output",
+  "finite_difference_step_sweep_bohr": {
+    "1e-2": 0.002794850977494434,
+    "1e-3": 0.002763409312933618,
+    "1e-4": 0.0027630955656832157,
+    "1e-5": 0.0027630917998067157,
+    "1e-6": 0.0027630733256955864
+  },
+  "cuda_pbe": {
+    "analytic_force_atom1_x_hartree_per_bohr": 1.2836358254249995,
+    "finite_difference_limit_hartree_per_bohr": 0.00276309,
+    "relative_error_approx": 463.7,
+    "capabilities_reported": [
+      "energy",
+      "forces"
+    ],
+    "converged": true
+  },
+  "cpu_pbe": {
+    "analytic_force_atom1_x_hartree_per_bohr": 0.002763091839153089,
+    "finite_difference_force_hartree_per_bohr": 0.002763095139357574,
+    "abs_difference": 3.300204485e-09,
+    "backend": "cpu_reference"
+  },
+  "cuda_method_matrix": {
+    "rhf": {
+      "analytic": -0.027155100431237603,
+      "finite_difference": -0.02715503228500893,
+      "status": "pass"
+    },
+    "lda-rks": {
+      "analytic": 1.2862652375098722,
+      "finite_difference": 0.003110619815061,
+      "status": "fail"
+    },
+    "pbe-rks": {
+      "analytic": 1.283635825424993,
+      "finite_difference": 0.00276309584990031,
+      "status": "fail"
+    },
+    "pbe0-rks": {
+      "analytic": 0.9871962052213781,
+      "finite_difference": -0.008337510664091496,
+      "status": "fail"
+    },
+    "b3lyp-rks": {
+      "analytic": -0.004211684901276325,
+      "finite_difference": -0.004212149846694047,
+      "status": "pass"
+    },
+    "r2scan-rks": {
+      "analytic": 1.3637082746579083,
+      "finite_difference": -0.006061346695673819,
+      "status": "fail"
+    }
+  },
+  "cuda_pbe_variants": {
+    "spherical_auto": {
+      "analytic": 1.283635825424994,
+      "finite_difference": 0.0027630957788460364,
+      "status": "fail"
+    },
+    "spherical_none": {
+      "analytic": 1.2836353273166936,
+      "finite_difference": 0.0027630957788460364,
+      "status": "fail"
+    },
+    "cartesian_auto": {
+      "analytic": 1.2869619948859143,
+      "finite_difference": 0.00319404279025548,
+      "status": "fail"
+    },
+    "cartesian_none": {
+      "analytic": 1.2869615848079519,
+      "finite_difference": 0.003194043287635395,
+      "status": "fail"
+    }
+  },
+  "diagnosis": [
+    "Energy finite differences are smooth over 1e-2 to 1e-6 Bohr, so the discrepancy is not a noisy or under-resolved finite-difference reference.",
+    "CPU GenerativeQC uses the same energy and passes the derivative check, so public unit conversion, atom order and the mathematical PBE energy are not the cause.",
+    "RHF and B3LYP CUDA force paths pass while LDA/PBE/PBE0/r2SCAN fail; the defect is in a method-specific CUDA DFT stationary-force owner/profile, not generic CUDA loading.",
+    "Changing initial_guess and Cartesian/spherical representation does not repair PBE, so the defect is not an SCF warm-start or AO representation choice.",
+    "The PBE CUDA capability advertises forces despite this failed numerical gate; capability admission is therefore insufficient evidence of force qualification for this build.",
+    "The returned CUDA vector is not exactly the nuclear-repulsion force; it is best classified as an incomplete or incorrect stationary-force assembly until upstream source-level ownership is corrected."
+  ],
+  "claim_limits": [
+    "This diagnoses the current GenerativeQC commit/build on this GPU and method matrix; it does not prove every future commit or GPU fails.",
+    "No chemistry accuracy, TS, IRC or CP2K-equivalence claim is made.",
+    "CUDA PBE/LDA/PBE0/r2SCAN forces remain quarantined from xtbflow reference labels."
+  ],
+  "artifacts": [
+    "docs/evidence/generativeqc_gpu4pyscf_bridge_cuda_20261108.json",
+    "docs/evidence/generativeqc_gpu4pyscf_bridge_cpu_20261108.json",
+    "docs/evidence/generativeqc_cuda_force_variants_20261109.log",
+    "docs/evidence/generativeqc_force_diagnosis_cuda_20261108.log",
+    "docs/evidence/generativeqc_force_diagnosis_cpu_20261109.log"
+  ],
+  "source_inspection": {
+    "file": "upstream python/generativeqc/calculator.py at commit 2bf3fd98da9c6cfba46ca83345e63e1d934e4780",
+    "semilocal_force_admission": "The semilocal_force condition admits CUDA when ks_options exists, coefficients equal (1,1,0), and the graph is not nonlocal; this broad path is later OR-ed into supported_properties forces for native DFT method IDs.",
+    "native_cuda_model_probe_scope": "native_cuda_stationary_model_available is explicitly called in the automatic Libxc branch, but named pbe-rks/lda-rks/r2scan-rks paths can reach the broad CUDA semilocal_force branch without an equivalent exact numerical force gate.",
+    "observed_capability": "Calculator.capabilities.supported_properties included forces for pbe-rks despite finite-difference failure.",
+    "likely_fix_boundary": "Make named CUDA force admission depend on exact prepared-item/profile capability plus a retained finite-difference/independent-force qualification; otherwise expose energy only or fail closed."
+  },
+  "root_cause_class": "method_specific_cuda_stationary_force_owner_or_profile_incomplete_plus_overbroad_force_capability_admission"
+}

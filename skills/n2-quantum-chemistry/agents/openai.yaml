@@ -1,0 +1,3 @@
+interface:
+  display_name: "N2 Quantum Chemistry"
+  short_description: "Run bounded, verified GenerativeQC calculations on n2"

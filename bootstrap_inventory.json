@@ -1883,6 +1883,26 @@
       "bytes": 13653
     },
     {
+      "path": "skills/n2-quantum-chemistry/SKILL.md",
+      "sha256": "36957d484b2d6e01d8dd9260b358584d802ca551b7e2621b82c84056d6b6b469",
+      "bytes": 3857
+    },
+    {
+      "path": "skills/n2-quantum-chemistry/agents/openai.yaml",
+      "sha256": "688ea33b7530a17a8ba532b494140d4aaa17ab49b35828648a0bcb16e1a446c2",
+      "bytes": 127
+    },
+    {
+      "path": "skills/n2-quantum-chemistry/references/qualification.md",
+      "sha256": "d9fa60bfa7a5d8fbd066db19a740f51dc1f8bef797e0f187e81abbb15eed5069",
+      "bytes": 2147
+    },
+    {
+      "path": "skills/n2-quantum-chemistry/references/runtime.md",
+      "sha256": "14eb571047eec12cd5c9900cde3aa66625f1cab265028144b5a884d3657f20a9",
+      "bytes": 3903
+    },
+    {
       "path": "src/xtbflow/__init__.py",
       "sha256": "aae4ab20d62b3b8f021c101973d2997c057d3c39cf2fefdc7f9a6fff55da8fa4",
       "bytes": 1705

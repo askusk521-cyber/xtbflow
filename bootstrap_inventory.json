@@ -503,6 +503,11 @@
       "bytes": 3580
     },
     {
+      "path": "docs/CURRENT_FOCUS.md",
+      "sha256": "6f80076b71c159e7a095a650c6f4d948158473634919c279f916d1bfc38646ed",
+      "bytes": 6728
+    },
+    {
       "path": "docs/DFT_DA_TRACK_B.md",
       "sha256": "01d5c9e827e695cbf681bc59a5ca3dc6c4fa110c45d29111c82f2cd2f0a5103b",
       "bytes": 3355
@@ -541,6 +546,11 @@
       "path": "docs/REPOSITORY_MANAGEMENT.md",
       "sha256": "1bf9ce543a431c92e2a0285ad74595d44854fbfa0228e82483bcaac76e220ea5",
       "bytes": 3180
+    },
+    {
+      "path": "docs/RESEARCH_PLAYBOOK.md",
+      "sha256": "63e005f0ae2aa92a4ea7522ba99327981c3e51991478a72e86418f7a66ff7ad6",
+      "bytes": 8953
     },
     {
       "path": "docs/STATUS_ZH.md",

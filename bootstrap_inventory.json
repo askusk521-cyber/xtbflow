@@ -688,6 +688,16 @@
       "bytes": 7527
     },
     {
+      "path": "docs/evidence/chemistry_candidates_20261114/inventory_b072978.json",
+      "sha256": "6b20d6d9e92f31d4dcebc3e84ff3bd9492cbbb52ef8080e88abfc0442cde3fe9",
+      "bytes": 13052
+    },
+    {
+      "path": "docs/evidence/chemistry_candidates_20261114/preflight_and_metadata.json",
+      "sha256": "131c55ff4d4bb193fb56cbe7397154003592358dd9ad3dd04233e9a578a24a77",
+      "bytes": 2283
+    },
+    {
       "path": "docs/evidence/claim_evidence_contract_20261108.json",
       "sha256": "4d8851f0e0d8f741cf7fe0a11c3ad71c6415c62db56b3385328fdf88f3f85719",
       "bytes": 1543

@@ -1,0 +1,499 @@
+{
+  "schema": "xtbflow-chemistry-question-inventory/v1",
+  "host": "node2",
+  "observed_utc": "2026-11-14T09:37:22Z",
+  "source_commit": "b0729780782e516fb98c7379febf1abdaf22719a",
+  "source_clean": true,
+  "script_sha256": "6246873aa4985331dbf65c5074b7c5f340a75568b871555c2c4f68d74ceee4a2",
+  "protocol_sha256": "bac9fa693bab0e2535e2654a089c8fcb7a822c11da5e2b1d1034e279d23937f1",
+  "caps": {
+    "wall_seconds": 180,
+    "cpu_seconds": 180,
+    "input_bytes": 536870912,
+    "output_bytes": 8388608,
+    "model_forwards": 0,
+    "quantum_chemistry_calls": 0,
+    "gpu_seconds": 0,
+    "retries": 0
+  },
+  "sources": {
+    "figshare_29118509_archive": {
+      "bytes": 358677850,
+      "sha256": "4df57289edecdfc518da6aab147b704745a9f42901893671aab05a3f72bd73ed"
+    },
+    "figshare_28768301_archive": {
+      "bytes": 3357107,
+      "sha256": "8644db068a769f2b9e9054594b6299f57eaa154172f40853b93177d4d418cedd"
+    },
+    "paired_source_csv": {
+      "bytes": 860371,
+      "sha256": "28aab43ed85fda091a8261c229f90b9bd421be4f49075d42982d753a0806dbed"
+    },
+    "dft_source_csv": {
+      "bytes": 822035,
+      "sha256": "af21deca86d8ea94445693494bc0de87002dafb140e7627fcbc9cabe2337438a"
+    },
+    "development_manifest": {
+      "bytes": 845869,
+      "sha256": "6b84937d3cc75bea44faa7608d690618ce22f7ab75c51b8e25515f05a193cc90"
+    }
+  },
+  "status": "completed_inventory_only",
+  "phase": "complete",
+  "claim_limits": [
+    "Graph coverage and file availability only; no chemical result or new QC.",
+    "Canonical graph grouping is not atom-map/coordinate proof or reaction-family independence.",
+    "Source reported labels retain unresolved per-record environment and protocol qualifications.",
+    "All selected seeds are exposed hypothesis-development examples, not blind model evaluation.",
+    "RDKit tautomers are finite graph proposals; populations and conversion rates are unknown.",
+    "Installed packages do not establish an operational or chemically qualified DFT backend."
+  ],
+  "coverage": {
+    "paired_rows": 1580,
+    "dft_rows": 1582,
+    "canonical_reactant_groups": 406,
+    "parse_failures": [],
+    "chno_groups": 276,
+    "admitted_rows": 201,
+    "admitted_parent_ids": 41,
+    "exact_R_and_mapped_reaction_join": 1580,
+    "motif_groups": {
+      "furan": 23,
+      "maleimide": 109,
+      "maleic_anhydride": 26,
+      "enol": 71,
+      "aromatic_hydroxy": 19,
+      "hydroxy": 153,
+      "nh": 67
+    },
+    "motif_groups_with_development_rows": {
+      "furan": 0,
+      "maleimide": 14,
+      "maleic_anhydride": 2,
+      "enol": 10,
+      "aromatic_hydroxy": 0,
+      "hydroxy": 19,
+      "nh": 9
+    },
+    "label_columns": {
+      "paired": [
+        "ID",
+        "R",
+        "R_dir",
+        "smiles",
+        "DG_act",
+        "DrG",
+        "DG_act_xtb",
+        "DrG_xtb"
+      ],
+      "dft": [
+        "ID",
+        "R",
+        "R_dir",
+        "reaction",
+        "G(TS)",
+        "DrG"
+      ]
+    },
+    "label_interpretation": "No energies compared; source labels are not new independent calculations."
+  },
+  "seeds": [
+    {
+      "record": "R0",
+      "source_parent": "ID63623",
+      "reactant_graph": "C=C.C=CC=C",
+      "heavy_atoms": 6,
+      "motifs": [],
+      "development_admission": "development_train",
+      "source_electronic_state": "see existing manifest evidence",
+      "source_environment": "unknown",
+      "geometry_files_present": {
+        "paired_archive": {
+          "R0_reactant.xyz": true,
+          "R0_ts.xyz": true,
+          "monomer_1.log": true,
+          "monomer_2.log": true
+        },
+        "dft_archive": {
+          "R0_ts_dft.xyz": true,
+          "R0_product_dft.xyz": true
+        }
+      },
+      "tautomer_proposals": [
+        {
+          "input": "C=CC=C",
+          "proposed_graphs": [
+            "C=CC=C"
+          ],
+          "enumeration_status": "Completed"
+        },
+        {
+          "input": "C=C",
+          "proposed_graphs": [
+            "C=C"
+          ],
+          "enumeration_status": "Completed"
+        }
+      ]
+    },
+    {
+      "record": "R1",
+      "source_parent": "ID86062",
+      "reactant_graph": "C=C.c1ccoc1",
+      "heavy_atoms": 7,
+      "motifs": [
+        "furan"
+      ],
+      "development_admission": "not_in_admitted_manifest",
+      "source_electronic_state": "unknown",
+      "source_environment": "unknown",
+      "geometry_files_present": {
+        "paired_archive": {
+          "R1_reactant.xyz": true,
+          "R1_ts.xyz": true,
+          "monomer_1.log": true,
+          "monomer_2.log": true
+        },
+        "dft_archive": {
+          "R1_ts_dft.xyz": true,
+          "R1_product_dft.xyz": true
+        }
+      },
+      "tautomer_proposals": [
+        {
+          "input": "C=C",
+          "proposed_graphs": [
+            "C=C"
+          ],
+          "enumeration_status": "Completed"
+        },
+        {
+          "input": "c1ccoc1",
+          "proposed_graphs": [
+            "c1ccoc1"
+          ],
+          "enumeration_status": "Completed"
+        }
+      ]
+    },
+    {
+      "record": "R6",
+      "source_parent": "ID88101",
+      "reactant_graph": "C=C.C=CC=CO",
+      "heavy_atoms": 7,
+      "motifs": [
+        "enol",
+        "hydroxy"
+      ],
+      "development_admission": "not_in_admitted_manifest",
+      "source_electronic_state": "unknown",
+      "source_environment": "unknown",
+      "geometry_files_present": {
+        "paired_archive": {
+          "R6_reactant.xyz": true,
+          "R6_ts.xyz": true,
+          "monomer_1.log": false,
+          "monomer_2.log": false
+        },
+        "dft_archive": {
+          "R6_ts_dft.xyz": true,
+          "R6_product_dft.xyz": true
+        }
+      },
+      "tautomer_proposals": [
+        {
+          "input": "C=C",
+          "proposed_graphs": [
+            "C=C"
+          ],
+          "enumeration_status": "Completed"
+        },
+        {
+          "input": "C=CC=CO",
+          "proposed_graphs": [
+            "C=CC=CO",
+            "C=CCC=O"
+          ],
+          "enumeration_status": "Completed"
+        }
+      ]
+    },
+    {
+      "record": "R30",
+      "source_parent": "ID42968",
+      "reactant_graph": "C=C.CC=CC=CO",
+      "heavy_atoms": 8,
+      "motifs": [
+        "enol",
+        "hydroxy"
+      ],
+      "development_admission": "not_in_admitted_manifest",
+      "source_electronic_state": "unknown",
+      "source_environment": "unknown",
+      "geometry_files_present": {
+        "paired_archive": {
+          "R30_reactant.xyz": true,
+          "R30_ts.xyz": true,
+          "monomer_1.log": false,
+          "monomer_2.log": false
+        },
+        "dft_archive": {
+          "R30_ts_dft.xyz": true,
+          "R30_product_dft.xyz": true
+        }
+      },
+      "tautomer_proposals": [
+        {
+          "input": "C=C",
+          "proposed_graphs": [
+            "C=C"
+          ],
+          "enumeration_status": "Completed"
+        },
+        {
+          "input": "CC=CC=CO",
+          "proposed_graphs": [
+            "CC=CC=CO",
+            "CC=CCC=O"
+          ],
+          "enumeration_status": "Completed"
+        }
+      ]
+    },
+    {
+      "record": "R51",
+      "source_parent": "ID80220",
+      "reactant_graph": "C=C.Cc1ccc(O)o1",
+      "heavy_atoms": 9,
+      "motifs": [
+        "furan",
+        "aromatic_hydroxy",
+        "hydroxy"
+      ],
+      "development_admission": "not_in_admitted_manifest",
+      "source_electronic_state": "unknown",
+      "source_environment": "unknown",
+      "geometry_files_present": {
+        "paired_archive": {
+          "R51_reactant.xyz": true,
+          "R51_ts.xyz": true,
+          "monomer_1.log": false,
+          "monomer_2.log": false
+        },
+        "dft_archive": {
+          "R51_ts_dft.xyz": true,
+          "R51_product_dft.xyz": true
+        }
+      },
+      "tautomer_proposals": [
+        {
+          "input": "Cc1ccc(O)o1",
+          "proposed_graphs": [
+            "CC1=CCC(=O)O1",
+            "Cc1ccc(O)o1"
+          ],
+          "enumeration_status": "Completed"
+        },
+        {
+          "input": "C=C",
+          "proposed_graphs": [
+            "C=C"
+          ],
+          "enumeration_status": "Completed"
+        }
+      ]
+    },
+    {
+      "record": "R85",
+      "source_parent": "ID19184",
+      "reactant_graph": "C=C.CC=C(C)C=CO",
+      "heavy_atoms": 9,
+      "motifs": [
+        "enol",
+        "hydroxy"
+      ],
+      "development_admission": "not_in_admitted_manifest",
+      "source_electronic_state": "unknown",
+      "source_environment": "unknown",
+      "geometry_files_present": {
+        "paired_archive": {
+          "R85_reactant.xyz": true,
+          "R85_ts.xyz": true,
+          "monomer_1.log": false,
+          "monomer_2.log": false
+        },
+        "dft_archive": {
+          "R85_ts_dft.xyz": true,
+          "R85_product_dft.xyz": true
+        }
+      },
+      "tautomer_proposals": [
+        {
+          "input": "CC=C(C)C=CO",
+          "proposed_graphs": [
+            "CC=C(C)C=CO",
+            "CC=C(C)CC=O"
+          ],
+          "enumeration_status": "Completed"
+        },
+        {
+          "input": "C=C",
+          "proposed_graphs": [
+            "C=C"
+          ],
+          "enumeration_status": "Completed"
+        }
+      ]
+    },
+    {
+      "record": "R671",
+      "source_parent": "ID38070",
+      "reactant_graph": "N#C/C=C\\C#N.Oc1ccco1",
+      "heavy_atoms": 12,
+      "motifs": [
+        "furan",
+        "aromatic_hydroxy",
+        "hydroxy"
+      ],
+      "development_admission": "not_in_admitted_manifest",
+      "source_electronic_state": "unknown",
+      "source_environment": "unknown",
+      "geometry_files_present": {
+        "paired_archive": {
+          "R671_reactant.xyz": true,
+          "R671_ts.xyz": true,
+          "monomer_1.log": false,
+          "monomer_2.log": false
+        },
+        "dft_archive": {
+          "R671_ts_dft.xyz": true,
+          "R671_product_dft.xyz": true
+        }
+      },
+      "tautomer_proposals": [
+        {
+          "input": "N#C/C=C\\C#N",
+          "proposed_graphs": [
+            "N#C/C=C\\C#N"
+          ],
+          "enumeration_status": "Completed"
+        },
+        {
+          "input": "Oc1ccco1",
+          "proposed_graphs": [
+            "O=C1CC=CO1",
+            "Oc1ccco1"
+          ],
+          "enumeration_status": "Completed"
+        }
+      ]
+    },
+    {
+      "record": "R3066",
+      "source_parent": "ID78966",
+      "reactant_graph": "Cc1ccc(N)o1.O=C1C=CC(=O)N1",
+      "heavy_atoms": 14,
+      "motifs": [
+        "furan",
+        "maleimide",
+        "nh"
+      ],
+      "development_admission": "not_in_admitted_manifest",
+      "source_electronic_state": "unknown",
+      "source_environment": "unknown",
+      "geometry_files_present": {
+        "paired_archive": {
+          "R3066_reactant.xyz": true,
+          "R3066_ts.xyz": true,
+          "monomer_1.log": false,
+          "monomer_2.log": false
+        },
+        "dft_archive": {
+          "R3066_ts_dft.xyz": true,
+          "R3066_product_dft.xyz": true
+        }
+      },
+      "tautomer_proposals": [
+        {
+          "input": "Cc1ccc(N)o1",
+          "proposed_graphs": [
+            "CC1=CCC(=N)O1",
+            "Cc1ccc(N)o1"
+          ],
+          "enumeration_status": "Completed"
+        },
+        {
+          "input": "O=C1C=CC(=O)N1",
+          "proposed_graphs": [
+            "O=C1C=CC(=O)N1",
+            "O=C1C=CC(O)=N1"
+          ],
+          "enumeration_status": "Completed"
+        }
+      ]
+    },
+    {
+      "record": "R9173",
+      "source_parent": "ID79608",
+      "reactant_graph": "CC1=C(C)C(=O)N(C)C1=O.Cc1ccc(C)o1",
+      "heavy_atoms": 17,
+      "motifs": [
+        "furan",
+        "maleimide"
+      ],
+      "development_admission": "not_in_admitted_manifest",
+      "source_electronic_state": "unknown",
+      "source_environment": "unknown",
+      "geometry_files_present": {
+        "paired_archive": {
+          "R9173_reactant.xyz": true,
+          "R9173_ts.xyz": true,
+          "monomer_1.log": false,
+          "monomer_2.log": false
+        },
+        "dft_archive": {
+          "R9173_ts_dft.xyz": true,
+          "R9173_product_dft.xyz": true
+        }
+      },
+      "tautomer_proposals": [
+        {
+          "input": "Cc1ccc(C)o1",
+          "proposed_graphs": [
+            "Cc1ccc(C)o1"
+          ],
+          "enumeration_status": "Completed"
+        },
+        {
+          "input": "CC1=C(C)C(=O)N(C)C1=O",
+          "proposed_graphs": [
+            "CC1=C(C)C(=O)N(C)C1=O"
+          ],
+          "enumeration_status": "Completed"
+        }
+      ]
+    }
+  ],
+  "environment": {
+    "python": "3.10.19",
+    "packages": {
+      "torch": "2.10.0+cu128",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "rdkit": "2024.3.3",
+      "tblite": "0.7.0",
+      "xtb": "22.1",
+      "pyscf": null,
+      "gpu4pyscf": null
+    }
+  },
+  "resources": {
+    "wall_seconds": 1.0876963149985386,
+    "process_cpu_seconds": 0.813169566,
+    "input_bytes": 364563232,
+    "max_rss_kib": 94244,
+    "qc_calls": 0,
+    "model_forwards": 0,
+    "gpu_seconds": 0
+  }
+}

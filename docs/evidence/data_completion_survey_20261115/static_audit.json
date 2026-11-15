@@ -1,0 +1,290 @@
+{
+  "schema": "xtbflow-related-source-audit/v1",
+  "status": "completed_static_audit",
+  "environment": {
+    "python": "3.10.12",
+    "system": "Linux",
+    "location": "local_development_host"
+  },
+  "manifest_sha256": "9a3f93573d37493fe0570f9a857f2f4628ec6fb53699d4e00d1472388b48d079",
+  "audit_script_sha256": "ae3d47e566704c0fc0a662ec11315bf5368b512cb3b14a785c32483d5f8a27ad",
+  "repositories": [
+    {
+      "name": "geom",
+      "sha": "ebd5569e130f4dcfbecf2a88718247fc2f71b03e",
+      "clean": true
+    },
+    {
+      "name": "hippynn",
+      "sha": "0dfa22d281cc89fea63179f70bbfedff3d4b17a5",
+      "clean": true
+    },
+    {
+      "name": "PICPS-ML4Sci",
+      "sha": "fc04b1c990a532a6d1d1e1b726615b053ec585a6",
+      "clean": true
+    },
+    {
+      "name": "EnFlow",
+      "sha": "2332d74ea3e2b3bee49109133feebce6c332a39c",
+      "clean": true
+    },
+    {
+      "name": "ETFlow",
+      "sha": "80f82d7d142bc3872412d2966a8d71ed14462b18",
+      "clean": true
+    },
+    {
+      "name": "qml",
+      "sha": "607d49eba83f54d2db9bdda11fb3b9824f8796e8",
+      "clean": true
+    },
+    {
+      "name": "ANI1x_datasets",
+      "sha": "c6b6d20b9915a4534204800b634fc1f8ee0a08bc",
+      "clean": true
+    }
+  ],
+  "files": [
+    {
+      "path": "geom/README.md",
+      "bytes": 6545,
+      "sha256": "3168efefe1625cacf740339acaff8c5612b5bb5c38876ad5acb478c304e553cb"
+    },
+    {
+      "path": "geom/tutorials/02_loading_rdkit_mols.ipynb",
+      "bytes": 1153198,
+      "sha256": "36719a095524cf7cb1f65ed17e2485f0b8c81ce785b45ba8b545c50ccdb4b1f2"
+    },
+    {
+      "path": "geom/tutorials/03_loading_molecule_net.ipynb",
+      "bytes": 487937,
+      "sha256": "d74ca882b5f2293da6decb1bb1d03f80060f4837d400a0d815a584c6abea7aec"
+    },
+    {
+      "path": "hippynn/examples/multifidelity_ani1x_training.py",
+      "bytes": 15893,
+      "sha256": "880e89f33c9a7a9cbb9a4d2c9a46502ca641002bce569f229ca55b65514f4913"
+    },
+    {
+      "path": "hippynn/hippynn/databases/database.py",
+      "bytes": 36393,
+      "sha256": "84019f6241f27bb656b998a83635125b8db450901d6642078c8e1529f619c5e2"
+    },
+    {
+      "path": "hippynn/hippynn/databases/h5_pyanitools.py",
+      "bytes": 15919,
+      "sha256": "fd73bbdfb1f14dbc9b94d7574c64008b71c086a8cb36035f7aa905378d5276c4"
+    },
+    {
+      "path": "hippynn/LICENSE.txt",
+      "bytes": 1479,
+      "sha256": "fb062bf1d44b5ebbaba846359c6a97ba628e75cc02ed9904bad751a4137cacb3"
+    },
+    {
+      "path": "PICPS-ML4Sci/preprocessing/ani-1x_new.py",
+      "bytes": 11688,
+      "sha256": "30cba8ebd4a4bd5bd86d0733b6d8eb20094da6e52e6a5768084fe4748d1d2f6d"
+    },
+    {
+      "path": "PICPS-ML4Sci/mdsim/trainers/trainer.py",
+      "bytes": 69949,
+      "sha256": "3f16e191a6158f397ab55ac579e49c9cc3e784c27c3373ddea004eb84ce30d1a"
+    },
+    {
+      "path": "PICPS-ML4Sci/configs/ani-1x/base_piwsl.yml",
+      "bytes": 737,
+      "sha256": "070fdfd99343030c0a70aadfe1f1cb4c5959d2c06bdd39de8f4fc90585defc26"
+    },
+    {
+      "path": "PICPS-ML4Sci/README.md",
+      "bytes": 2862,
+      "sha256": "53cbbc8a745bd701bb085d5340e2051d5216fed3eb67fee8321466d1e40b64a7"
+    },
+    {
+      "path": "EnFlow/scripts/prepare_data.py",
+      "bytes": 12196,
+      "sha256": "e1bb215bdcad84742887fafbdb29c51ccb1766f2403fdcaca25a58a8001b7a57"
+    },
+    {
+      "path": "EnFlow/enflow/data/dataset.py",
+      "bytes": 3814,
+      "sha256": "d1b11aaf0647289d171683f59861a96fece86f4e499fcece89c55517d4f0247e"
+    },
+    {
+      "path": "EnFlow/enflow/models/model.py",
+      "bytes": 26902,
+      "sha256": "7cc221fe225be1f2365b08bca2a2f123dfc7847f4af203074abb4ebe13151fe3"
+    },
+    {
+      "path": "EnFlow/env.yml",
+      "bytes": 528,
+      "sha256": "8708b2d61cc743c4edcca9109921c60b7408ea5ed03dfe95839b75f87587560a"
+    },
+    {
+      "path": "EnFlow/README.md",
+      "bytes": 9258,
+      "sha256": "565bcd456cc7b840189495ceda743abfad648d8330703a8b1db6ea3e64c8f7c0"
+    },
+    {
+      "path": "EnFlow/LICENSE",
+      "bytes": 1138,
+      "sha256": "1f42d590a27f66cd2bafbd3b2a0c096ef9cce13edefb3d84e320a2f357646daa"
+    },
+    {
+      "path": "ETFlow/scripts/prepare_data.py",
+      "bytes": 9958,
+      "sha256": "d515841c06359656548d160f5c80ab8af509d0584eeefa151301e5dd88ea5ea0"
+    },
+    {
+      "path": "ETFlow/etflow/data/dataset.py",
+      "bytes": 2704,
+      "sha256": "12642a3bf8732e7302017dee6aa2a15e4160ef1eed4e6c717e19202293f09125"
+    },
+    {
+      "path": "ETFlow/README.md",
+      "bytes": 6744,
+      "sha256": "17b521f79b7f55c421f178454ead47eebb48efc7ae12f17c4e5b433c4bd31e98"
+    },
+    {
+      "path": "ETFlow/LICENSE",
+      "bytes": 1098,
+      "sha256": "4dbcd14e1886e576d60d8c31545288789837525901d966e914f527bf73936ce5"
+    },
+    {
+      "path": "qml/setup.py",
+      "bytes": 7908,
+      "sha256": "ef1ca98d34a9ce6ba211f2f6c872bf5ee9e7c5526dcea60985ecb64092ec969f"
+    },
+    {
+      "path": "qml/test/test_fchl_force.py",
+      "bytes": 12602,
+      "sha256": "4aea8a84d2463322b474ac2de38eca9d350a39dae33ff7c6cd830db6e8989b0b"
+    },
+    {
+      "path": "qml/LICENSE",
+      "bytes": 1120,
+      "sha256": "518d172b706cb7e37947210387b3237e09b9737cac28a6f7a4faac126f262792"
+    },
+    {
+      "path": "ANI1x_datasets/dataloader.py",
+      "bytes": 1005,
+      "sha256": "19bde3f3891dd3ec535cacfb705392ffe2f5d3fc29872c0c02057a2e42558619"
+    },
+    {
+      "path": "ANI1x_datasets/README.md",
+      "bytes": 2240,
+      "sha256": "ad09a3d7dab946ff20bbcb3f426beaf1a194892ed2f61de63aef958c298a154a"
+    },
+    {
+      "path": "ANI1x_datasets/LICENSE",
+      "bytes": 1061,
+      "sha256": "991db8311736892ae9f77939ed194dd80ee820707fc569b3322a341b4182bec1"
+    }
+  ],
+  "observations": [
+    {
+      "id": "hippynn_split_api",
+      "status": "confirmed_static",
+      "caller_line": 201,
+      "definition_line": 213,
+      "signature": "(self, *, test_size, valid_size)",
+      "binding_result": "too many positional arguments"
+    },
+    {
+      "id": "hippynn_complete_case_filter",
+      "status": "confirmed_static",
+      "lines": [
+        191,
+        195,
+        198
+      ],
+      "meaning": "Example retains intersection including CC energy; not a general partial-label loader."
+    },
+    {
+      "id": "picps_default_size",
+      "status": "confirmed_static",
+      "line": 167,
+      "default": "100K",
+      "allowed": [
+        "50",
+        "100",
+        "1K",
+        "10K"
+      ],
+      "default_exists": false
+    },
+    {
+      "id": "picps_perturbation_scale",
+      "status": "source_observation_intent_unverified",
+      "first_scale_lines": [
+        1408,
+        1415
+      ],
+      "meaning": "Random dirc1 is scaled before and after centering; dirc2 only after centering. Check intended amplitudes before reproduction."
+    },
+    {
+      "id": "picps_variable_atoms",
+      "status": "adaptation_required",
+      "lines": [
+        1412,
+        1413
+      ],
+      "meaning": "Audit molecule segmentation before applying this loss to variable-size batches."
+    },
+    {
+      "id": "enflow_energy_normalization",
+      "status": "confirmed_static",
+      "lines": [
+        91
+      ],
+      "meaning": "Per-molecule standardization; score gradients are not automatically physical forces."
+    },
+    {
+      "id": "enflow_gradient_target",
+      "status": "confirmed_static",
+      "lines": [
+        514,
+        537
+      ],
+      "meaning": "Gradient matching uses flow displacement target s_t, not reference QC forces."
+    },
+    {
+      "id": "etflow_training_energy_route",
+      "status": "confirmed_static",
+      "get_reads_data_energy": false,
+      "meaning": "Preprocessor retains energy; this dataset getter reconstructs a training graph without that field."
+    },
+    {
+      "id": "ani_complete_case_filter",
+      "status": "confirmed_static",
+      "lines": [
+        20
+      ],
+      "meaning": "Requesting extra sparse properties can drop otherwise useful configurations."
+    },
+    {
+      "id": "qml_build_dependency",
+      "status": "compatibility_unexecuted",
+      "lines": [
+        2
+      ],
+      "meaning": "Legacy compiled Fortran build; install in a separate compatible environment if used."
+    }
+  ],
+  "resources": {
+    "input_bytes": 1902876,
+    "elapsed_seconds": 0.05277903299429454,
+    "process_cpu_seconds": 0.021554387999999994,
+    "qc_calls": 0,
+    "training_runs": 0,
+    "dataset_reads": 0,
+    "network_calls": 0
+  },
+  "claim_limits": [
+    "No external package imported or tested.",
+    "No public molecular dataset downloaded or parsed.",
+    "No physical accuracy, learning benefit or paper reproduction established.",
+    "Findings apply only to the recorded source commits."
+  ]
+}

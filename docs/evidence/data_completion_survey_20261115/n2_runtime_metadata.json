@@ -1,0 +1,65 @@
+{
+  "schema": "xtbflow-runtime-metadata-observation/v1",
+  "observed_on": "2026-11-15",
+  "stage": "read_only_n2_runtime_identity",
+  "project_base_sha": "61269f2241cb182a010763291f349a0258c111f9",
+  "remote_project_code_executed": false,
+  "remote_cwd": "SSH login default; not recorded by this read-only probe",
+  "observation": {
+    "host": "node2",
+    "python": "3.11.17",
+    "declared_source_sha": "2bf3fd98da9c6cfba46ca83345e63e1d934e4780",
+    "versions": {
+      "generativeqc": "0.1.0",
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "pyscf": "2.14.0"
+    },
+    "libraries": [
+      {
+        "basename": "libgenerativeqc.so",
+        "bytes": 986609080,
+        "sha256": "67bc98a4549fe8854ed6ae65791c824024bd77a9e8e498c6891dea3b8de670c4"
+      }
+    ],
+    "status": "read_only_metadata_no_native_import",
+    "qc_calls": 0,
+    "gpu_jobs_submitted": 0,
+    "elapsed_seconds": 0.65721484599635
+  },
+  "preflight": {
+    "host": "node2",
+    "xtbflow_python": "3.10.19",
+    "torch": "2.10.0+cu128",
+    "git": "2.34.1",
+    "sbatch_found": true,
+    "srun_found": true,
+    "user_queue_rows": 0
+  },
+  "budgets": {
+    "metadata_timeout_seconds": 60,
+    "qc_calls": 0,
+    "gpu_jobs": 0,
+    "training_runs": 0
+  },
+  "input_assets": "Installed package metadata and native library only; no molecular dataset",
+  "protocol": "importlib.metadata + SHA-256 read; no generativeqc import or Calculator construction",
+  "claim_limits": [
+    "Declared source SHA is from the private runtime configuration, not a new source-build attestation.",
+    "Measured native-library hash matches the 2026-11-14 qualification evidence.",
+    "No new energy, force, Hessian, IRC or speed qualification performed.",
+    "Private interpreter and installation paths omitted."
+  ],
+  "related_evidence": [
+    {
+      "sha": "91d3c7f205b1eb470a1c1c7a18049c5a1a0cde72",
+      "path": "docs/evidence/gqc_tautomer_20261114/RESULTS_ZH.md",
+      "pr": 207
+    },
+    {
+      "sha": "932b011d21bb6ae1f0fb23c8ceeefa8764566cf4",
+      "path": "docs/evidence/qc_campaign_20261114/RESULTS_ZH.md",
+      "pr": 208
+    }
+  ]
+}

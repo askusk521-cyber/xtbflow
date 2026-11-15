@@ -1,0 +1,35 @@
+{
+  "schema": "xtbflow-runtime-metadata-recheck/v1",
+  "observed_at_utc": "2026-11-15T09:48:55.209697+00:00",
+  "host": "node2",
+  "remote_cwd": "login_home",
+  "remote_project_checkout_executed": false,
+  "python": "3.11.17",
+  "versions": {
+    "generativeqc": "0.1.0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pyscf": "2.14.0"
+  },
+  "declared_source_sha": "2bf3fd98da9c6cfba46ca83345e63e1d934e4780",
+  "libraries": [
+    {
+      "basename": "libgenerativeqc.so",
+      "bytes": 986609080,
+      "sha256": "67bc98a4549fe8854ed6ae65791c824024bd77a9e8e498c6891dea3b8de670c4"
+    }
+  ],
+  "status": "read_only_metadata_no_native_import",
+  "resources": {
+    "qc_calls": 0,
+    "training_runs": 0,
+    "gpu_jobs_submitted": 0,
+    "input_bytes": 986609080,
+    "elapsed_seconds": 0.6546971600037068,
+    "process_cpu_seconds": 0.654684955
+  },
+  "claim_limits": [
+    "No new numerical qualification.",
+    "Configured source SHA is declared, not independently rebuilt."
+  ]
+}

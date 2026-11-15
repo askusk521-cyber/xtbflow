@@ -1,0 +1,130 @@
+[
+  {
+    "repository": "learningmatter-mit/geom",
+    "url": "https://github.com/learningmatter-mit/geom.git",
+    "checkout": "code-only sparse; no LFS or dataset fetch",
+    "started_utc": "2026-11-15T09:39:32.387523+00:00",
+    "status": "cloned",
+    "sha": "ebd5569e130f4dcfbecf2a88718247fc2f71b03e",
+    "selected_files": 3,
+    "tracked_paths": 7,
+    "license_paths": [],
+    "elapsed_seconds": 3.558,
+    "checked_out_file_count": 7,
+    "clean_after_review": true,
+    "branch": "master"
+  },
+  {
+    "repository": "lanl/hippynn",
+    "url": "https://github.com/lanl/hippynn.git",
+    "checkout": "code-only sparse; no LFS or dataset fetch",
+    "started_utc": "2026-11-15T09:39:35.945903+00:00",
+    "status": "cloned",
+    "sha": "0dfa22d281cc89fea63179f70bbfedff3d4b17a5",
+    "selected_files": 273,
+    "tracked_paths": 295,
+    "license_paths": [
+      "LICENSE.txt",
+      "docs/source/license.rst"
+    ],
+    "elapsed_seconds": 6.829,
+    "checked_out_file_count": 273,
+    "clean_after_review": true,
+    "branch": "development"
+  },
+  {
+    "repository": "nec-research/PICPS-ML4Sci",
+    "url": "https://github.com/nec-research/PICPS-ML4Sci.git",
+    "checkout": "code-only sparse; no LFS or dataset fetch",
+    "started_utc": "2026-11-15T09:39:42.775345+00:00",
+    "status": "cloned",
+    "sha": "fc04b1c990a532a6d1d1e1b726615b053ec585a6",
+    "selected_files": 273,
+    "tracked_paths": 319,
+    "license_paths": [
+      "mdsim/models/equiformer_v2/LICENSE",
+      "ocpmodels/models/equiformer_v2/LICENSE"
+    ],
+    "elapsed_seconds": 4.561,
+    "checked_out_file_count": 273,
+    "clean_after_review": true,
+    "branch": "main"
+  },
+  {
+    "repository": "Rich-XGK/EnFlow",
+    "url": "https://github.com/Rich-XGK/EnFlow.git",
+    "checkout": "code-only sparse; no LFS or dataset fetch",
+    "started_utc": "2026-11-15T09:39:47.336198+00:00",
+    "status": "cloned",
+    "sha": "2332d74ea3e2b3bee49109133feebce6c332a39c",
+    "selected_files": 45,
+    "tracked_paths": 51,
+    "license_paths": [
+      "LICENSE"
+    ],
+    "elapsed_seconds": 3.861,
+    "checked_out_file_count": 45,
+    "clean_after_review": true,
+    "branch": "main"
+  },
+  {
+    "repository": "qmlcode/qml",
+    "url": "https://github.com/qmlcode/qml.git",
+    "checkout": "code-only sparse; no LFS or dataset fetch",
+    "started_utc": "2026-11-15T09:39:51.197590+00:00",
+    "status": "cloned",
+    "sha": "607d49eba83f54d2db9bdda11fb3b9824f8796e8",
+    "selected_files": 105,
+    "tracked_paths": 7350,
+    "license_paths": [
+      "LICENSE"
+    ],
+    "elapsed_seconds": 5.628,
+    "checked_out_file_count": 105,
+    "clean_after_review": true,
+    "branch": "archive"
+  },
+  {
+    "repository": "shenoynikhil/ETFlow",
+    "url": "https://github.com/shenoynikhil/ETFlow.git",
+    "checkout": "code-only sparse; no LFS or dataset fetch",
+    "started_utc": "2026-11-15T09:39:56.825873+00:00",
+    "status": "cloned",
+    "sha": "80f82d7d142bc3872412d2966a8d71ed14462b18",
+    "selected_files": 48,
+    "tracked_paths": 52,
+    "license_paths": [
+      "LICENSE"
+    ],
+    "elapsed_seconds": 3.905,
+    "checked_out_file_count": 48,
+    "clean_after_review": true,
+    "branch": "main"
+  },
+  {
+    "repository": "aiqm/ani1x",
+    "url": "https://github.com/aiqm/ani1x.git",
+    "checkout": "code-only sparse; no LFS or dataset fetch",
+    "started_utc": "2026-11-15T09:40:00.731553+00:00",
+    "status": "failed",
+    "error": "git clone returned 128: repository not found; corrected to aiqm/ANI1x_datasets below",
+    "elapsed_seconds": 1.57
+  },
+  {
+    "repository": "aiqm/ANI1x_datasets",
+    "url": "https://github.com/aiqm/ANI1x_datasets.git",
+    "checkout": "code-only sparse; no dataset fetch",
+    "started_utc": "2026-11-15T09:41:05.786487+00:00",
+    "status": "cloned",
+    "sha": "c6b6d20b9915a4534204800b634fc1f8ee0a08bc",
+    "selected_files": 4,
+    "tracked_paths": 12,
+    "license_paths": [
+      "LICENSE"
+    ],
+    "elapsed_seconds": 3.5563493450026726,
+    "checked_out_file_count": 4,
+    "clean_after_review": true,
+    "branch": "master"
+  }
+]
